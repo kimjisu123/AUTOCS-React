@@ -1,49 +1,50 @@
 import './Header.css'
 import img from './LOGO.png'
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
         <div className="headerWrapper">
             <div className="topNav">
-                <div className="gohome">
+                <Link to="/"><div className="gohome">
                     <div className="logo">
                         <img src={ img } style={{ width: "40px", marginTop: "2px"}}/>
                     </div>
                     <div className="officName">
                         AUTOCSS
                     </div>
-                </div>
+                </div></Link>
                 <div style={{display: "flex", justifyContent: "space-between", width: "100%", paddingRight: "10px"}}>
-                    <div className="home">
+                    <Link to="/"><div className="home">
                         홈
-                    </div>
-                    <div className="dashboard">
+                    </div></Link>
+                    <Link to="/dashborad"><div className="dashboard">
                         게시판
-                    </div>
-                    <div className="chart">
+                    </div></Link>
+                    <Link to="chart"><div className="chart">
                         조직도
-                    </div>
-                    <div className="approval">
+                    </div></Link>
+                    <Link to="approval"><div className="approval">
                         전자결재
-                    </div>
-                    <div className="calendar">
+                    </div></Link>
+                    <Link to="calendar"><div className="calendar">
                         캘린더
-                    </div>
-                    <div className="management">
+                    </div></Link>
+                    <Link to="management"><div className="management">
                         근태관리
-                    </div>
-                    <div className="todo">
+                    </div></Link>
+                    <Link to="todo"><div className="todo">
                         +Todo
-                    </div>
-                    <div className="stock">
+                    </div></Link>
+                    <Link to="stock"><div className="stock">
                         재고관리
-                    </div>
-                    <div className="profile">
+                    </div></Link>
+                    <Link to="myPage"><div className="profile">
                         <div className="profileImg">
 
                         </div>
                         마이페이지
-                    </div>
+                    </div></Link>
                 </div>
             </div>
             <div className="menubar">
