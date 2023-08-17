@@ -47,10 +47,6 @@ const Header = () => {
                     </div></Link>
                 </div>
             </div>
-            <div className="menubar">
-
-            </div>
-
         </div>
 
 
