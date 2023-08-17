@@ -1,56 +1,65 @@
 import './Header.css'
-import img from './LOGO.png'
+import img from './logo-black1.png'
 import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+
 
 const Header = () => {
+
+    const activestyle = {
+
+        backgroundColor: '#8d8a6d'
+    }
+
+
     return (
         <div className="headerWrapper">
             <div className="topNav">
-                <Link to="/"><div className="gohome">
+                <NavLink to="/"><div className="gohome">
                     <div className="logo">
                         <img src={ img } style={{ width: "40px", marginTop: "2px"}}/>
                     </div>
                     <div className="officName">
                         AUTOCSS
                     </div>
-                </div></Link>
+                </div></NavLink>
                 <div style={{display: "flex", justifyContent: "space-between", width: "100%", paddingRight: "10px"}}>
-                    <Link to="/"><div className="home">
+                    <NavLink to="/" style={({isActive}) => isActive? activestyle:undefined} className="home">
                         홈
-                    </div></Link>
-                    <Link to="/dashborad"><div className="dashboard">
+                    </NavLink>
+                    <NavLink to="/dashborad" style={({isActive}) => isActive? activestyle:undefined} className="dashboard">
                         게시판
-                    </div></Link>
-                    <Link to="chart"><div className="chart">
+                    </NavLink>
+                    <NavLink to="chart" style={({isActive}) => isActive? activestyle:undefined} className="chart">
                         조직도
-                    </div></Link>
-                    <Link to="approval"><div className="approval">
+                    </NavLink>
+                    <NavLink to="approval" style={({isActive}) => isActive? activestyle:undefined} className="approval">
                         전자결재
-                    </div></Link>
-                    <Link to="calendar"><div className="calendar">
+                    </NavLink>
+                    <NavLink to="calendar" style={({isActive}) => isActive? activestyle:undefined} className="calendar">
                         캘린더
-                    </div></Link>
-                    <Link to="management"><div className="management">
+                    </NavLink>
+                    <NavLink to="management" style={({isActive}) => isActive? activestyle:undefined} className="management">
                         근태관리
-                    </div></Link>
-                    <Link to="todo"><div className="todo">
+                    </NavLink>
+                    <NavLink to="todo" style={({isActive}) => isActive? activestyle:undefined} className="todo">
                         +Todo
-                    </div></Link>
-                    <Link to="stock"><div className="stock">
+                    </NavLink>
+                    <NavLink to="stock" style={({isActive}) => isActive? activestyle:undefined} className="stock">
                         재고관리
-                    </div></Link>
-                    <Link to="myPage"><div className="profile">
+                    </NavLink>
+                    <NavLink to="myPage" style={({isActive}) => isActive? activestyle:undefined} className="profile">
                         <div className="profileImg">
 
                         </div>
                         마이페이지
-                    </div></Link>
+                    </NavLink>
                 </div>
             </div>
         </div>
 
 
-)
+    )
 }
 
 export default Header;

@@ -5,7 +5,7 @@
     border-top: 1px solid rgb(203, 203, 203);
     margin-top: 15px;
     padding-top: 20px;
-    width: 100%px;
+    width: 100%;
 }
 
 main {
@@ -13,7 +13,8 @@ main {
 }
 
 .approval {
-    background-color: #8d8a6d;
+    /*background-color: #8d8a6d;*/
+    height: 100%;
 }
 
 .newApp {

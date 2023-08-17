@@ -2,7 +2,27 @@ import './approvalCss.css';
 
 const onClickAddHandler = () => {
     let inputRow = document.getElementById('inputRow');
-    console.log(inputRow);
+    let table2 = document.getElementsByClassName('table2')[0];
+    let clone = inputRow.cloneNode(true);
+    console.log(clone.children[3].children[0])
+    for(let i = 0; i <= 5; i++) {
+        if(i != 4) {
+            clone.children[i].children[0].value = '';
+        }
+    }
+    table2.append(clone);
+}
+
+const onClickDelHandler = () => {
+    let table2 = document.getElementsByClassName('table2')[0];
+    console.log(table2.lastElementChild);
+    if(table2.childElementCount == 2) {
+    alert('더 이상 삭제하실 수 없습니다.');
+    } else {
+        table2.lastElementChild.remove();
+    }
+
+
 }
 
 function ApprovalContent() {
@@ -65,7 +85,7 @@ function ApprovalContent() {
                     <br/><br/>
                         <div className="addDelBtn">
                             <div className="add" onClick={ onClickAddHandler }>추가</div>
-                            <div className="delete">삭제</div>
+                            <div className="delete" onClick={ onClickDelHandler }>삭제</div>
                         </div>
                         <div className="area10">
                             <table className="table2">
