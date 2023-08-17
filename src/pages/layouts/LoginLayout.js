@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Header from "../compoments/Login/Header";
+import Header from "../compoments/LoginHeader/Header";
 
 function LoginLayout() {
     return (
