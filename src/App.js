@@ -1,6 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./pages/layouts/layout";
+//지호
 import Approval from './pages/approvalPage/Approval'
+
+//해든
 import Login from "./pages/Login/Login";
 import FindId from "./pages/Login/findId";
 import FindPwd from "./pages/Login/findPwd";
@@ -9,6 +12,21 @@ import Registration from "./pages/createMember/registration";
 import RegistOk from "./pages/createMember/registOk";
 import ApplyMForm from "./pages/applyForm/applyMForm";
 import ApplyOk from "./pages/applyForm/applyOk";
+import FindPwdOk from "./pages/Login/findPwdOk";
+import GuideId from "./pages/Login/guideId";
+import GuidePwd from "./pages/Login/guidePwd";
+import ApplySForm from "./pages/applyForm/applySForm";
+import OutOk from "./pages/outForm/outOk";
+import OutSForm from "./pages/outForm/outSForm";
+import OutMForm from "./pages/outForm/outMForm";
+
+//지수
+import Management from "./pages/managementPage/Management"
+import Department from "./pages/managementPage/Department"
+import HeadOffice from "./pages/managementPage/HeadOffice"
+import Mail from "./pages/managementPage/Mail"
+
+//미지
 import Stock from './pages/stock/Stock'
 import Category from "./pages/stock/Category";
 import Check from "./pages/stock/Check";
@@ -18,17 +36,6 @@ import Unit from "./pages/stock/Unit";
 import ListPopup from "./pages/stock/ListPopup";
 import StockIo from "./pages/stock/StockIo";
 import OrderList from "./pages/stock/OrderList";
-import Management from "./pages/managementPage/Management"
-import Department from "./pages/managementPage/Department"
-import HeadOffice from "./pages/managementPage/HeadOffice"
-import Mail from "./pages/managementPage/Mail"
-import FindPwdOk from "./pages/Login/findPwdOk";
-import GuideId from "./pages/Login/guideId";
-import GuidePwd from "./pages/Login/guidePwd";
-import ApplySForm from "./pages/applyForm/applySForm";
-import OutOk from "./pages/outForm/outOk";
-import OutSForm from "./pages/outForm/outSForm";
-import OutMForm from "./pages/outForm/outMForm";
 
 function App() {
     return (
@@ -36,12 +43,16 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<Layout/>}>
+                        //지호
                         <Route path='approval' element={<Approval/>}/>
+
+                        //지수
                         <Route path='management' element={<Management />} />
                         <Route path='department' element={<Department />} />
                         <Route path='headOffice' element={<HeadOffice />} />
                         <Route path='mail' element={<Mail />} />
 
+                        //미지
                         <Route path='/stock' element={<Stock/>}>
                             <Route path='check' element={<Check/>}/>
                             <Route path='orderlist' element={<OrderList/>}/>
@@ -55,6 +66,7 @@ function App() {
 
                     <Route path='ListPopup' element={<ListPopup/>}/>
 
+                    //해든
                     //로그인, 아이디비밀번호찾기, 안내등
                     <Route path='login' element={<Login/>}/>
                     <Route path='/login/findId' element={<FindId/>}/>
