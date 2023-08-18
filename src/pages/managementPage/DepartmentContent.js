@@ -69,7 +69,7 @@ function DepartmentContent (){
                             <form style={{display: "flex", justifyContent:"flex-start"}}>
                                 <div className={styles.type}> 부서원</div>
                                 <input type="text" className={styles.inputText} />
-                                <input type="submit" value="검색" className={styles.subInputButton} />
+                                <input type="submit" value="검색" className={styles.inputButton} />
                             </form>
                             <select name="10" style={{marginLeft: "auto", width: "40px"}}>
                                 <option value="10">10</option>
