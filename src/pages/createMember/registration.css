@@ -49,6 +49,15 @@ select {
     outline: none;
 }
 
+.date-pickers {
+    width: 350px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #1C2C10;
+    border-radius: 5px;
+    outline: none;
+}
+
 
 
 

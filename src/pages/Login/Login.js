@@ -22,12 +22,13 @@ const Login = () => {
                 <button type="login">로그인</button>
 
                 <div style={{ display: "flex", justifyContent: "space-between", marginTop: "15px" }}>
-                    <div style={{ display: "flex", alignItems: "center", marginRight: "-255px", marginTop: "-22px" }}>
-                        <input type="checkbox" id="accountSave" name="accountSave"/>
-                        <h4>계정 저장</h4>
+                    <div style={{ display: "flex", alignItems: "center", marginRight: "-900px", marginTop: "-22px" }}>
+                        <input type="checkbox" id="accountSave" name="accountSave" style={{marginTop: "3px"}}/>
+                        <h4 style={{marginLeft: "170px"}}>계정 저장</h4>
                     </div>
-                    <Link to="/login/findId" style={{ color: "#1C2C10", marginRight: "170px", marginLeft: "380px" }}>아이디/비밀번호 찾기</Link>
+                    <Link to="/login/findId" style={{ color: "#1C2C10", marginLeft: "1030px" }}>아이디/비밀번호 찾기</Link>
                 </div>
+                <Link to="/applyS" style={{ color: "#1C2C10", marginLeft: "225px", marginTop: "-10px"}}>영업점 계정 신청하기</Link>
             </main>
         </div>
         </div>

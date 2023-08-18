@@ -2,7 +2,7 @@ import './findPwd.css'
 import img from './loginMain.png'
 import {Link} from "react-router-dom";
 
-const findId = () => {
+const FindPwd = () => {
     return (
         <div style={{backgroundColor: "#1C2C10"}}>
             <div className="border">
@@ -21,11 +21,11 @@ const findId = () => {
                     <h4 style={{ marginBottom: "10px", marginTop: "5px", background: "white" }}>이메일</h4>
                     <input className="lo" type="text" id="email" name="email" required />
 
-                    <Link to="/login/findOk" type="button" className="find">비밀번호 찾기</Link>
+                    <Link to="/login/fPOk" type="button" className="find">비밀번호 찾기</Link>
                 </main>
             </div>
         </div>
     )
 }
 
-export default findId;
+export default FindPwd;

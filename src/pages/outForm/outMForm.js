@@ -1,5 +1,5 @@
 import img from './loginMain.png'
-import './registration.css'
+import './outMForm.css'
 import {Link} from "react-router-dom";
 
 import React, { useState } from 'react';
@@ -7,7 +7,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import ko from 'date-fns/locale/ko';
 
-const Registration = () => {
+const OutMForm = () => {
 
     const [selectedDate, setSelectedDate] = useState(null);
 
@@ -15,20 +15,20 @@ const Registration = () => {
         <div style={{backgroundColor: "#1C2C10"}}>
             <div className="border">
                 <main>
-                    <img src={img} style={{ width: "145px", height: "200px", marginTop: "-150px", marginBottom: "-35px" }} />
+                    <img src={img} style={{ width: "145px", height: "200px", marginTop: "-150px", marginBottom: "-35px"}} />
 
-                    <h1 style={{ color: "#1C2C10" }}>사원 등록</h1>
-                    <div className="separator" style={{width: "30%"}}></div>
+                    <h1 style={{ color: "#1C2C10" }}>계정 비활성화 신청</h1>
+                    <div className="separator" style={{width: "50%"}}></div>
 
                     <h4 style={{ marginBottom: "10px", marginTop: "10px", background: "white" }}>이름</h4>
                     <input className="lo" type="text" id="name" name="name" required />
 
-                    <h4 style={{ marginBottom: "10px", marginTop: "5px", background: "white" }}>입사일</h4>
+                    <h4 style={{ marginBottom: "10px", marginTop: "5px", background: "white" }}>퇴사일</h4>
                     <DatePicker
                         selected={selectedDate}
                         onChange={date => setSelectedDate(date)}
                         dateFormat="yyyy-MM-dd"
-                        placeholderText="입사일을 입력하세요"
+                        placeholderText="퇴사일을 입력하세요"
                         id="join"
                         name="join"
                         className="date-pickers"
@@ -56,11 +56,14 @@ const Registration = () => {
                         <option value="SaWon">사원</option>
                     </select>
 
-                    <Link to="/registration/registOk" type="button" className="regist">등록하기</Link>
+                    <h4 style={{ marginBottom: "10px", marginTop: "10px", background: "white" }}>퇴사 사유</h4>
+                    <input className="reson" type="text" id="reson" name="reson" required />
+
+                    <Link to="/OutOk" type="button" className="regist" style={{marginTop: "10px"}}>신청하기</Link>
                 </main>
             </div>
         </div>
     )
 }
 
-export default Registration;
+export default OutMForm;

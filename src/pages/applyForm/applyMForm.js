@@ -2,7 +2,7 @@ import img from './loginMain.png'
 import './applyMForm.css'
 import {Link} from "react-router-dom";
 
-const applyMForm = () => {
+const ApplyMForm = () => {
 
     return (
         <div style={{backgroundColor: "#1C2C10"}}>
@@ -14,7 +14,7 @@ const applyMForm = () => {
                     <div className="separator" style={{width: "40%"}}></div>
 
                     <h4 style={{ marginBottom: "10px", marginTop: "10px", background: "white" }}>이름</h4>
-                    <input type="text" id="name" name="name" required />
+                    <input className="lo" type="text" id="name" name="name" required />
 
                     <h4 style={{ marginBottom: "10px", marginTop: "10px", background: "white" }}>부서</h4>
                     <select id="department" name="department">
@@ -44,4 +44,4 @@ const applyMForm = () => {
     )
 }
 
-export default applyMForm;
+export default ApplyMForm;
