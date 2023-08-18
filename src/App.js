@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./pages/layouts/layout";
 import Approval from './pages/approvalPage/Approval'
 import Login from "./pages/Login/Login";
-import LoginLayout from "./pages/layouts/LoginLayout";
+import Loginlayout from "./pages/layouts/Loginlayout";
 
 
 function App() {
@@ -10,8 +10,8 @@ function App() {
       <>
         <BrowserRouter>
           <Routes>
-              <Route path='/login' element={<Login/>}/>
-              <Route path='/login' element={<LoginLayout/>}>
+              <Route path='/login' element={<Loginlayout/>}>
+                  <Route path='/login' element={<Login/>}/>
               </Route>
 
               <Route path='/' element={<Layout/>}>
