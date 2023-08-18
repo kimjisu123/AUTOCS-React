@@ -10,7 +10,7 @@ function ManagementMenu(){
             </div>
             <Link to="/management"> <div className={styles.workStatus}>근태 현황</div> </Link>
             <Link to="/department"> <div className={styles.department}>부서 근태 통계</div> </Link>
-            <div className={styles.headOffice}>전사 근태 현황</div>
+            <Link to="/headOffice"> <div className={styles.headOffice}>전사 근태 현황</div> </Link>
         </div>
     )
 }

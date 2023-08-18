@@ -9,6 +9,8 @@ import Registration from "./pages/createMember/registration";
 import RegistOk from "./pages/createMember/registOk";
 import Management from "./pages/managementPage/Management"
 import Department from "./pages/managementPage/Department"
+import HeadOffice from "./pages/managementPage/HeadOffice"
+import Mail from "./pages/managementPage/Mail"
 
 function App() {
     return (
@@ -19,8 +21,9 @@ function App() {
                         <Route path='approval' element={<Approval/>}/>
                         <Route path='management' element={<Management />} />
                         <Route path='department' element={<Department />} />
+                        <Route path='headOffice' element={<HeadOffice />} />
+                        <Route path='mail' element={<Mail />} />
                     </Route>
-
                     <Route path='login' element={<Login/>}/>
                     <Route path='/login/findId' element={<FindId/>}/>
                     <Route path='/login/findPwd' element={<FindPwd/>}/>

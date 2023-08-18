@@ -1,7 +1,7 @@
 .modal{
     display: none;
 }
-.app {
+.newApp {
     width: 200px;
     height: 50px;
 }
@@ -10,6 +10,7 @@
     margin: 50px 0px 0px 70px;
     font-size: 30px;
     font-weight: bolder;
+
 }
 
 .today{
@@ -25,10 +26,11 @@
     font-weight: bolder;
 }
 .statusContainer{
+    margin-top: 20px;
     border: 1.5px solid rgb(187, 187, 187, 0.3);
     height: 70px;
     display: flex;
-    margin: 20px 40px 0px;
+    margin-left: 20px
 }
 
 .statusBox{
@@ -47,77 +49,110 @@
 
 .weekStatus{
     display: flex;
-    justify-content: flex-start;
-    margin-top: 15px;
     padding-bottom: 5px;
     text-align: left;
     font-size: 18px;
-    font-weight: bolder;
     border-bottom: 1.5px solid rgb(187, 187, 187, 0.3);
 }
 .infoHeader{
     display: flex;
     border-bottom: 1.5px solid rgb(187, 187, 187, 0.3);
     padding-bottom: 5px;
-    text-align: center;
 }
 
 .statusInfoBox1{
     margin-left: 25px;
     width: 120px;
     height: 100%;
+    text-align: center;
 }
 .statusInfoBox2{
-    width: 240px;
+    width: 230px;
     height: 100%;
+    text-align: center;
 }
 .statusInfoBox3{
-    width: 240px;
+    width: 170px;
     height: 100%;
+    text-align: center;
 }
 .statusInfoBox4{
-    width: 240px;
+    width: 170px;
     height: 100%;
+    text-align: center;
 }
 .statusInfoBox5{
-    width: 500px;
+    width: 170px;
     height: 100%;
+    text-align: center;
 }
+.statusInfoBox6{
+    width: 170px;
+    height: 100%;
+    text-align: center;
+}
+.statusInfoBox7{
+    width: 170px;
+    height: 100%;
+    text-align: center;
+}
+.statusInfoBox8{
+    width: 170px;
+    height: 100%;
+    text-align: center;
+}
+.statusInfoBox9{
+    width: 170px;
+    height: 100%;
+    text-align: center;
+}
+
 
 .infoContent{
     display: flex;
     margin-top: 13px;
-    text-align: center;
-    margin-bottom: 20px;
 }
-.weeks{
-    margin-left: 60px;
-    margin-right: auto;
-    margin-bottom: 5px;
-}
+
 .statusTime{
     text-align: center;
 }
-.workStatus, .department, .headOffice{
-    padding-left: 60px;
-    margin-bottom: 7px;
+
+.type{
+    margin-left: 20px;
+    border: 1px solid rgb(187, 187, 187);
+    font-size: 14px;
+    line-height: 24px;
+    width: 50px;
+    text-align: center;
+    border-radius: 2px;
+    margin-right: 7px;
+    margin-bottom: 13px;
+}
+.inputText{
+    width: 200px;
+    height: 28px;
+    box-sizing: border-box;
+    border: 1px solid rgb(187, 187, 187);
+    border-radius: 2px;
+}
+.inputButton{
+    border: 0px;
+    margin-left: 2px;
+    border-radius: 2px;
+    box-sizing: border-box;
+    width: 50px;
+    height: 28px;
     cursor: pointer;
 }
-.workStatus {
-    margin-top: 10px;
-}
-.totalTime{
-    display: flex;
-    margin-right: 40px;
-}
 
-.menubar {
-    width: 250px;
-    height: 623px;
-    padding-top: 30px;
-}
 .content {
     width: 83.7%;
     border-left: 1px solid rgb(203, 203, 203);
     min-height: 1000px;
+}
+
+.cumulativeTime{
+    font-weight: bolder;
+    font-size: 18px;
+    margin-bottom: 4px;
 }
