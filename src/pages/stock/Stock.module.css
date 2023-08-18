@@ -1,0 +1,99 @@
+/* 메뉴바 */
+.menuHeader {
+    margin-top: 30px;
+    margin-left: 40px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.menuContents {
+    padding-left: 60px;
+    margin-bottom: 7px;
+    cursor: pointer;
+}
+
+/* 컨텐츠 */
+.content {
+    border-left: 1px solid rgb(202, 202, 202);
+    min-height: 959px;
+    width: 100%;
+    padding: 2%;
+}
+
+.headLine {
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: 1000;
+    border-bottom: 1px solid rgb(203, 203, 203);
+    margin-bottom: 15px;
+    padding-bottom: 20px;
+    width: 100%;
+}
+
+.contentsHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* 수직 가운데 정렬 */
+}
+
+.datebox {
+    display: flex;
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+}
+
+.dateSelectbox{
+    width: 100px;
+    height: 10px;
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.searchbox{
+    width: 200px;
+    height: 10px;
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.readOnlybox{
+    background-color: lightgray;
+}
+
+
+.context {
+    padding-top: -20px;
+    font-size: 45px;
+}
+
+/* 테이블 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+tr{
+    white-space: pre-line;
+}
+
+input{
+    align-items: center; /* 수직 가운데 정렬 */
+}
+
+.listbox {
+    display: flex;
+    height: auto;
+    background-color: #ecead8;
+}
+
+.mainline{
+    background-color: lightgoldenrodyellow;
+}
