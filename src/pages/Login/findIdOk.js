@@ -1,4 +1,4 @@
-import './findIOk.css'
+import './findIdOk.css'
 import img from './loginMain.png'
 import {Link} from "react-router-dom";
 
@@ -15,12 +15,7 @@ const findId = () => {
                     <h4 style={{ marginBottom: "10px", marginTop: "10px", background: "white" }}>인증번호</h4>
                     <input className="lo" type="text" id="no" name="no" required />
 
-                    <button type="logGo">확인</button>
-
-
-
-                    <Link to="/login" style={{ color: "#1C2C10", marginTop: "40px"}}>로그인 하러가기</Link>
-
+                    <Link to="/login/fIOk/guideId" className="guideId">확인</Link>
                 </main>
             </div>
         </div>

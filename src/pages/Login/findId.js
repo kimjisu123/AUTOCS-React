@@ -18,7 +18,7 @@ const findId = () => {
                     <h4 style={{ marginBottom: "10px", marginTop: "5px", background: "white" }}>이메일</h4>
                     <input className="lo" type="text" id="email" name="email" required />
 
-                    <Link to="/login/findOk" type="button" className="find">아이디 찾기</Link>
+                    <Link to="/login/fIOk" type="button" className="find">아이디 찾기</Link>
 
 
 
