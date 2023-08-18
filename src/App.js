@@ -4,7 +4,7 @@ import Approval from './pages/approvalPage/Approval'
 import Login from "./pages/Login/Login";
 import FindId from "./pages/Login/findId";
 import FindPwd from "./pages/Login/findPwd";
-import FindOk from "./pages/Login/findOk";
+import FindIdOk from "./pages/Login/findIdOk";
 import Registration from "./pages/createMember/registration";
 import RegistOk from "./pages/createMember/registOk";
 import ApplyMForm from "./pages/applyForm/applyMForm";
@@ -22,6 +22,13 @@ import Management from "./pages/managementPage/Management"
 import Department from "./pages/managementPage/Department"
 import HeadOffice from "./pages/managementPage/HeadOffice"
 import Mail from "./pages/managementPage/Mail"
+import FindPwdOk from "./pages/Login/findPwdOk";
+import GuideId from "./pages/Login/guideId";
+import GuidePwd from "./pages/Login/guidePwd";
+import ApplySForm from "./pages/applyForm/applySForm";
+import OutOk from "./pages/outForm/outOk";
+import OutSForm from "./pages/outForm/outSForm";
+import OutMForm from "./pages/outForm/outMForm";
 
 function App() {
     return (
@@ -46,6 +53,8 @@ function App() {
                         </Route>
                     </Route>
 
+                    <Route path='ListPopup' element={<ListPopup/>}/>
+
                     //로그인, 아이디비밀번호찾기, 안내등
                     <Route path='login' element={<Login/>}/>
                     <Route path='/login/findId' element={<FindId/>}/>
@@ -55,19 +64,19 @@ function App() {
                     <Route path='/login/fPOk' element={<FindPwdOk/>}/>
                     <Route path='/login/fPOk/guidePwd' element={<GuidePwd/>}/>
 
-                  //사원 등록
-                  <Route path='/registration' element={<Registration/>}/>
-                  <Route path='/registration/registOk' element={<RegistOk/>}/>
+                    //사원 등록
+                    <Route path='/registration' element={<Registration/>}/>
+                    <Route path='/registration/registOk' element={<RegistOk/>}/>
 
-                  //계정신청
-                  <Route path='/applyM' element={<ApplyMForm/>}/>
-                  <Route path='/applyS' element={<ApplySForm/>}/>
-                  <Route path='/ApplyOk' element={<ApplyOk/>}/>
+                    //계정신청
+                    <Route path='/applyM' element={<ApplyMForm/>}/>
+                    <Route path='/applyS' element={<ApplySForm/>}/>
+                    <Route path='/ApplyOk' element={<ApplyOk/>}/>
 
-                  //계정 비활성화 신청
-                  <Route path='/outM' element={<OutMForm/>}/>
-                  <Route path='/outS' element={<OutSForm/>}/>
-                  <Route path='/OutOk' element={<OutOk/>}/>
+                    //계정 비활성화 신청
+                    <Route path='/outM' element={<OutMForm/>}/>
+                    <Route path='/outS' element={<OutSForm/>}/>
+                    <Route path='/OutOk' element={<OutOk/>}/>
 
               </Routes>
           </BrowserRouter>
