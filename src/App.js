@@ -9,41 +9,39 @@ import Registration from "./pages/createMember/registration";
 import RegistOk from "./pages/createMember/registOk";
 import ApplyMForm from "./pages/applyForm/applyMForm";
 import ApplyOk from "./pages/applyForm/applyOk";
-import LoginLayout from "./pages/layouts/LoginLayout";
 import Stock from './pages/stock/Stock'
 import Category from "./pages/stock/Category";
 import Check from "./pages/stock/Check";
 import Product from "./pages/stock/Product";
+import Standard from "./pages/stock/Standard";
+import Unit from "./pages/stock/Unit";
+import ListPopup from "./pages/stock/ListPopup";
+import StockIo from "./pages/stock/StockIo";
+import OrderList from "./pages/stock/OrderList";
 
 
 
 function App() {
   return (
       <>
-        <BrowserRouter>
-          <Routes>
-              <Route path='/login' element={<LoginLayout/>}>
-              <Route path='/login' element={<Login/>}/>
-              </Route>
-
-              <Route path='/' element={<Layout/>}>
-                    <Route path='approval' element={<Approval/>}/>
-
-                    <Route path='/stock' element={<Stock/>}>
-                        <Route path='check' element={<Check/>}/>
-                        <Route path='category' element={<Category/>}/>
-                        <Route path='product' element={<Product/>}/>
-                    </Route>
-              </Route>
-
-
-          </Routes>
-        </BrowserRouter>
           <BrowserRouter>
               <Routes>
                   <Route path='/' element={<Layout/>}>
                       <Route path='approval' element={<Approval/>}/>
+
+                      <Route path='/stock' element={<Stock/>}>
+                          <Route path='check' element={<Check/>}/>
+                          <Route path='orderlist' element={<OrderList/>}/>
+                          <Route path='stockio' element={<StockIo/>}/>
+
+                          <Route path='category' element={<Category/>}/>
+                          <Route path='product' element={<Product/>}/>
+                          <Route path='standard' element={<Standard/>}/>
+                          <Route path='unit' element={<Unit/>}/>
+                      </Route>
                   </Route>
+
+                  <Route path='ListPopup' element={<ListPopup/>}/>
 
                   <Route path='login' element={<Login/>}/>
                   <Route path='/login/findId' element={<FindId/>}/>

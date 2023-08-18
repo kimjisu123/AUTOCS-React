@@ -13,11 +13,12 @@
 }
 
 /* 컨텐츠 */
-.content {
+.contents {
     border-left: 1px solid rgb(202, 202, 202);
     min-height: 959px;
     width: 100%;
     padding: 2%;
+    text-align: center;
 }
 
 .headLine {
@@ -28,6 +29,12 @@
     margin-bottom: 15px;
     padding-bottom: 20px;
     width: 100%;
+}
+
+.middleLine{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .contentsHeader {
@@ -44,16 +51,12 @@
 
 .dateSelectbox{
     width: 100px;
-    height: 10px;
-    margin-top: 15px;
     margin-left: 10px;
     margin-right: 10px;
 }
 
 .searchbox{
     width: 200px;
-    height: 10px;
-    margin-top: 15px;
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -63,19 +66,18 @@
 }
 
 
-.context {
-    padding-top: -20px;
-    font-size: 45px;
-}
+
 
 /* 테이블 */
 table {
     width: 100%;
     border-collapse: collapse;
     border: 1px solid #ccc;
+    margin-top: 2%;
 }
 
 th, td {
+    padding: 10px;
     border: 1px solid #ccc;
     text-align: center;
 }
@@ -84,16 +86,23 @@ tr{
     white-space: pre-line;
 }
 
-input{
-    align-items: center; /* 수직 가운데 정렬 */
+.mainline{
+    background-color: lightgoldenrodyellow;
 }
 
+/* 팝업창 */
 .listbox {
     display: flex;
     height: auto;
     background-color: #ecead8;
 }
 
-.mainline{
-    background-color: lightgoldenrodyellow;
+.contentsbox {
+    padding: 2%;
+    width: 100%;
+    height: 100%;
+    margin: 3%;
+    background-color: white;
+    text-align: center;
 }
+

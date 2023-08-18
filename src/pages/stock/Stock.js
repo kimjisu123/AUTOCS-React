@@ -8,7 +8,7 @@ function Stock() {
     return (
         <div style={{display:"flex"}}>
             <StockMenubar/>
-            <div className={StockCSS.content}>
+            <div className={StockCSS.contents}>
             <Outlet />
             </div>
         </div>

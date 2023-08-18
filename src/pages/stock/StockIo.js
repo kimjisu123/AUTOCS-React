@@ -2,22 +2,22 @@ import StockCSS from './Stock.module.css'
 
 function showPopup() { window.open('/ListPopup', "a", "width=400, height=600, left=100, top=50"); }
 
-function Product() {
+function StockIo() {
 
     const onClickRegistHadler= () => {
         alert('등록하시겠습니까?');
     }
 
-    return(
+    return (
         <div>
-            <div className={StockCSS.headLine}>물품 신규등록</div>
+            <div className={StockCSS.headLine}>입고 폐기 등록</div>
             <table>
                 <tr>
                     <td>
-                        카테고리
+                        CODE
                     </td>
                     <td>
-                        <input className={StockCSS.readOnlybox} type="text" placeholder="카테고리를 조회하세요" readOnly/>
+                        <input className={StockCSS.readOnlybox} type="text" placeholder="품목명을 조회하세요" readOnly/>
                     </td>
                     <td>
                         <button onClick={()=> showPopup()}>조회</button>
@@ -28,7 +28,7 @@ function Product() {
                         품목명
                     </td>
                     <td>
-                        <input type="text"/>
+                        <input className={StockCSS.readOnlybox} type="text" readOnly/>
                     </td>
                     <td>
                     </td>
@@ -38,10 +38,9 @@ function Product() {
                         규격
                     </td>
                     <td>
-                        <input className={StockCSS.readOnlybox} type="selectbox" placeholder="규격을 조회하세요" readOnly/>
+                        <input className={StockCSS.readOnlybox} type="text" readOnly/>
                     </td>
                     <td>
-                        <button onClick={()=> showPopup()}>조회</button>
                     </td>
                 </tr>
                 <tr>
@@ -49,10 +48,9 @@ function Product() {
                         단위
                     </td>
                     <td>
-                        <input className={StockCSS.readOnlybox} type="text" placeholder="단위를 조회하세요" readOnly/>
+                        <input className={StockCSS.readOnlybox} type="text" readOnly/>
                     </td>
                     <td>
-                        <button onClick={()=> showPopup()}>조회</button>
                     </td>
                 </tr>
                 <tr>
@@ -60,7 +58,7 @@ function Product() {
                         적정재고
                     </td>
                     <td>
-                        <input type="text"/>
+                        <input className={StockCSS.readOnlybox} type="text" readOnly/>
                     </td>
                     <td>
                     </td>
@@ -70,14 +68,25 @@ function Product() {
                         단가
                     </td>
                     <td>
-                        <input type="text"/>
+                        <input className={StockCSS.readOnlybox} type="text" readOnly/>
                     </td>
                     <td>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        비고
+                        입고/폐기 선택
+                    </td>
+                    <td>
+                        <input type="radio" name="option" value="input"/> 입고
+                        <input type="radio" name="option" value="output"/> 폐기
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        수량
                     </td>
                     <td>
                         <input type="text"/>
@@ -91,4 +100,4 @@ function Product() {
     )
 }
 
-export default Product;
+export default StockIo;

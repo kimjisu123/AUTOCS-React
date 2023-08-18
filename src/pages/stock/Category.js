@@ -2,6 +2,10 @@ import StockCSS from './Stock.module.css'
 
 function Category() {
 
+    const onClickRegistHadler= () => {
+        alert('등록하시겠습니까?');
+    }
+
     return(
         <div>
             <div className={StockCSS.headLine}>카테고리 신규등록</div>
@@ -14,13 +18,13 @@ function Category() {
                         <input type="text" placeholder="카테고리명을 입력하세요"/>
                     </td>
                     <td>
-                        <button onClick="alert('등록하시겠습니까?')">등록</button>
+                        <button onClick={ onClickRegistHadler }>등록</button>
                     </td>
                 </tr>
             </table>
-            <div style={{marginTop: "10%"}}>
-                <h2>카테고리 목록</h2>
-                <table style={{border: "solid 1px" }}>
+            <div style={{marginTop: "5%"}}>
+                <div className={StockCSS.middleLine}>카테고리 목록</div>
+                <table>
                     <tr>
                         <th>NO</th>
                         <th>카테고리명</th>
