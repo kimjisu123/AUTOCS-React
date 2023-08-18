@@ -13,7 +13,7 @@ const findId = () => {
                     <div className="separator" style={{width: "60%"}}></div>
 
                     <h4 style={{ marginBottom: "10px", marginTop: "10px", background: "white" }}>인증번호</h4>
-                    <input type="text" id="no" name="no" required />
+                    <input className="lo" type="text" id="no" name="no" required />
 
                     <button type="logGo">확인</button>
 
