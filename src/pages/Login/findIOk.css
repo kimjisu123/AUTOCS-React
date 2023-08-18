@@ -12,20 +12,7 @@ main {
     height: 100vh;
 }
 
-label {
-    font-weight: bold;
-}
-
-input.lo{
-    width: 350px;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #1C2C10;
-    border-radius: 5px;
-    outline: none;
-}
-
-button[type="login"] {
+button[type="logGo"] {
     background-color: #26361B;
     color: #FFF;
     cursor: pointer;
@@ -36,7 +23,7 @@ button[type="login"] {
     height: 40px;
 }
 
-button[type="login"]:hover {
+button[type="logGo"]:hover {
     background-color: #1C2716;
     marginTop: 10px;
 }
@@ -47,13 +34,7 @@ button[type="login"]:hover {
     margin-top:  -10px;
 }
 
-input[type="checkbox"] {
-    margin-right: -160px;
-    margin-top: 15px;
-}
 
-h4 {
-    background: white;
-    marginBottom: 32px;
-    paddingRight: 450px;
-}
+
+
+
