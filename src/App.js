@@ -7,6 +7,8 @@ import FindPwd from "./pages/Login/findPwd";
 import FindOk from "./pages/Login/findOk";
 import Registration from "./pages/createMember/registration";
 import RegistOk from "./pages/createMember/registOk";
+import ApplyMForm from "./pages/applyForm/applyMForm";
+import ApplyOk from "./pages/applyForm/applyOk";
 
 
 function App() {
@@ -25,6 +27,9 @@ function App() {
 
                   <Route path='/registration' element={<Registration/>}/>
                   <Route path='/registration/registOk' element={<RegistOk/>}/>
+
+                  <Route path='/ApplyM' element={<ApplyMForm/>}/>
+                  <Route path='/ApplyOk' element={<ApplyOk/>}/>
 
               </Routes>
           </BrowserRouter>

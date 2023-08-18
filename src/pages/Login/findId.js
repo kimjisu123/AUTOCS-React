@@ -13,10 +13,10 @@ const findId = () => {
                     <div className="separator" style={{width: "30%"}}></div>
 
                     <h4 style={{ marginBottom: "10px", marginTop: "10px", background: "white" }}>이름</h4>
-                    <input type="text" id="name" name="name" required />
+                    <input className="lo" type="text" id="name" name="name" required />
 
                     <h4 style={{ marginBottom: "10px", marginTop: "5px", background: "white" }}>이메일</h4>
-                    <input type="text" id="email" name="email" required />
+                    <input className="lo" type="text" id="email" name="email" required />
 
                     <Link to="/login/findOk" type="button" className="find">아이디 찾기</Link>
 

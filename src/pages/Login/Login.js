@@ -14,10 +14,10 @@ const Login = () => {
                 <div className="separator" style={{width: "20%"}}></div>
 
                 <h4 style={{ marginBottom: "10px", marginTop: "10px", background: "white"}}>아이디</h4>
-                <input type="text" id="id" name="id" required />
+                <input className="lo" type="text" id="id" name="id" required />
 
                 <h4 style={{ marginBottom: "10px", marginTop: "5px", background: "white" }}>비밀번호</h4>
-                <input type="password" id="pwd" name="pwd" required />
+                <input className="lo" type="password" id="pwd" name="pwd" required />
 
                 <button type="login">로그인</button>
 
