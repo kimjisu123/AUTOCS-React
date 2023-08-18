@@ -1,11 +1,15 @@
+.border {
+    width: 40%;
+    margin: auto;
+}
+
 main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #ECEAD8;
-    height: 80vh;
-
+    background-color: white;
+    height: 100vh;
 }
 
 label {
@@ -16,27 +20,45 @@ input {
     width: 350px;
     padding: 10px;
     margin-bottom: 15px;
-    border: 1px solid #ddd;
+    border: 1px solid #1C2C10;
     border-radius: 5px;
     outline: none;
 }
 
-input[type="submit"] {
+button[type="login"] {
     background-color: #26361B;
     color: #FFF;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 100px;
+    border-radius: 5px;
+    width: 375px;
     text-align: center;
-    margin-left: 5px;
+    height: 40px;
 }
 
-input[type="submit"]:hover {
+button[type="login"]:hover {
     background-color: #1C2716;
+    marginTop: 10px;
 }
 
 .separator {
     border-bottom: 1px solid #1C2C10;
-    width: 15%;
+    width: 20%;
     margin-bottom: 20px;
+    margin-top:  -10px;
+}
+
+input[type="checkbox"] {
+    margin-right: -160px;
+    margin-top: 15px;
+}
+
+h4 {
+    background: white;
+    marginBottom: 32px;
+    paddingRight: 450px;
+}
+
+a {
+    margin-left: 380px;
 }
