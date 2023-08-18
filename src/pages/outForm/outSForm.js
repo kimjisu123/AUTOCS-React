@@ -1,9 +1,9 @@
 import img from './loginMain.png'
-import './applyMForm.css'
+import './outMForm.css'
 import {Link} from "react-router-dom";
 
 
-const ApplySForm = () => {
+const OutSForm = () => {
 
     return (
         <div style={{backgroundColor: "#1C2C10"}}>
@@ -11,8 +11,8 @@ const ApplySForm = () => {
                 <main>
                     <img src={img} style={{ width: "145px", height: "200px", marginTop: "-150px", marginBottom: "-35px" }} />
 
-                    <h1 style={{ color: "#1C2C10" }}>계정 생성 신청</h1>
-                    <div className="separator" style={{width: "40%"}}></div>
+                    <h1 style={{ color: "#1C2C10" }}>계정 비활성화 신청</h1>
+                    <div className="separator" style={{width: "50%"}}></div>
 
                     <h4 style={{ marginBottom: "10px", marginTop: "10px", background: "white" }}>영업점 주소</h4>
                     <input className="lo" type="text" id="address" name="address" required />
@@ -20,19 +20,18 @@ const ApplySForm = () => {
                     <h4 style={{ marginBottom: "10px", marginTop: "10px", background: "white" }}>대표자명</h4>
                     <input className="lo" type="text" id="name" name="name" required />
 
-                    <h4 style={{ marginBottom: "10px", marginTop: "10px", background: "white" }}>표준가맹계약서</h4>
+                    <h4 style={{ marginBottom: "10px", marginTop: "10px", background: "white" }}>계약 종료/해지 확인서</h4>
                     <input className="lo" type="file" id="file" name="file" required />
 
                     <h4 style={{ marginBottom: "10px", marginTop: "10px", background: "white" }}>이메일</h4>
                     <input className="lo" type="text" id="email" name="email" required />
 
-                    <Link to="/ApplyOk" type="button" className="regist">신청하기</Link>
+                    <Link to="/OutOk" type="button" className="regist">신청하기</Link>
 
-                    <h6 style={{color: "red"}}>생성된 계정은 2영업일 내 이메일로 발송됩니다.</h6>
                 </main>
             </div>
         </div>
     )
 }
 
-export default ApplySForm;
+export default OutSForm;

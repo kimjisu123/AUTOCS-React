@@ -2,7 +2,7 @@ import img from './loginMain.png'
 import './guideId.css'
 import {Link} from "react-router-dom";
 
-const guideId = () => {
+const GuidePwd = () => {
 
     return (
         <div style={{backgroundColor: "#1C2C10"}}>
@@ -20,4 +20,4 @@ const guideId = () => {
     )
 }
 
-export default guideId;
+export default GuidePwd;

@@ -2,7 +2,7 @@ import './findIdOk.css'
 import img from './loginMain.png'
 import {Link} from "react-router-dom";
 
-const findId = () => {
+const FindPwdOk = () => {
     return (
         <div style={{backgroundColor: "#1C2C10"}}>
             <div className="border">
@@ -22,4 +22,4 @@ const findId = () => {
     )
 }
 
-export default findId;
+export default FindPwdOk;

@@ -2,7 +2,7 @@ import img from './loginMain.png'
 import './applyOk.css'
 import {Link} from "react-router-dom";
 
-const applyMForm = () => {
+const ApplyOk = () => {
 
     return (
         <div style={{backgroundColor: "#1C2C10"}}>
@@ -26,4 +26,4 @@ const applyMForm = () => {
     )
 }
 
-export default applyMForm;
+export default ApplyOk;

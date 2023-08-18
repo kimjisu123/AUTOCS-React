@@ -12,13 +12,13 @@ main {
     height: 100vh;
 }
 
-.ok {
+.regist {
     background-color: #26361B;
     color: #FFF;
     cursor: pointer;
     transition: background-color 0.3s ease;
     border-radius: 5px;
-    width: 350px;
+    width: 375px;
     text-align: center;
     height: 40px;
     display: flex;
@@ -28,7 +28,7 @@ main {
     margin-top: 30px;
 }
 
-.ok:hover {
+.regist:hover {
     background-color: #1C2716;
 }
 
@@ -36,6 +36,27 @@ main {
     border-bottom: 1px solid #1C2C10;
     margin-bottom: 20px;
     margin-top:  -10px;
+}
+
+select {
+    width: 50%;
+    padding: 8px;
+    border: 1px solid #1C2C10;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+}
+
+input.reson{
+    width: 350px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #1C2C10;
+    border-radius: 5px;
+    outline: none;
+    height: 70px;
 }
 
 
