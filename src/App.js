@@ -4,6 +4,7 @@ import Layout from "./pages/layouts/layout";
 import Approval from './pages/approvalPage/Approval'
 
 //해든
+//로그인 관련
 import Login from "./pages/Login/Login";
 import FindId from "./pages/Login/findId";
 import FindPwd from "./pages/Login/findPwd";
@@ -19,6 +20,8 @@ import ApplySForm from "./pages/applyForm/applySForm";
 import OutOk from "./pages/outForm/outOk";
 import OutSForm from "./pages/outForm/outSForm";
 import OutMForm from "./pages/outForm/outMForm";
+import Mmail from "./pages/emailGuide/Mmail";
+import Smail from "./pages/emailGuide/Smail";
 
 //지수
 import Management from "./pages/managementPage/Management"
@@ -89,6 +92,10 @@ function App() {
                     <Route path='/outM' element={<OutMForm/>}/>
                     <Route path='/outS' element={<OutSForm/>}/>
                     <Route path='/OutOk' element={<OutOk/>}/>
+
+                    //계정 안내(메일)
+                    <Route path='/Mmail' element={<Mmail/>}/>
+                    <Route path='/Smail' element={<Smail/>}/>
 
               </Routes>
           </BrowserRouter>
