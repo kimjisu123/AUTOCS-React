@@ -18,7 +18,7 @@ main {
     cursor: pointer;
     transition: background-color 0.3s ease;
     border-radius: 5px;
-    width: 375px;
+    width: 300px;
     text-align: center;
     height: 40px;
     display: flex;
