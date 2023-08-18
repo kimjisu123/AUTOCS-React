@@ -28,6 +28,7 @@ const Login = () => {
                     </div>
                     <Link to="/login/findId" style={{ color: "#1C2C10", marginLeft: "1030px" }}>아이디/비밀번호 찾기</Link>
                 </div>
+                <Link to="/applyS" style={{ color: "#1C2C10", marginLeft: "225px", marginTop: "-10px"}}>영업점 계정 신청하기</Link>
             </main>
         </div>
         </div>

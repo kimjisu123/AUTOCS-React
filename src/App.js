@@ -8,6 +8,7 @@ import FindOk from "./pages/Login/findOk";
 import Registration from "./pages/createMember/registration";
 import RegistOk from "./pages/createMember/registOk";
 import ApplyMForm from "./pages/applyForm/applyMForm";
+import ApplySForm from "./pages/applyForm/applySForm";
 import ApplyOk from "./pages/applyForm/applyOk";
 
 
@@ -28,7 +29,8 @@ function App() {
                   <Route path='/registration' element={<Registration/>}/>
                   <Route path='/registration/registOk' element={<RegistOk/>}/>
 
-                  <Route path='/ApplyM' element={<ApplyMForm/>}/>
+                  <Route path='/applyM' element={<ApplyMForm/>}/>
+                  <Route path='/applyS' element={<ApplySForm/>}/>
                   <Route path='/ApplyOk' element={<ApplyOk/>}/>
 
               </Routes>

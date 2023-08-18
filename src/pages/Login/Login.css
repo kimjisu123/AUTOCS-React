@@ -47,7 +47,7 @@ button[type="login"]:hover {
     margin-top:  -10px;
 }
 
-input[type="checkbox"] {
+input[id="accountSave"] {
     margin-right: -160px;
     margin-top: 15px;
 }
