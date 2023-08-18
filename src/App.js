@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Layout from "./pages/layouts/layout";
+import Layout from "./layouts/layout";
 import Approval from './pages/approvalPage/Approval'
 import Login from "./pages/Login/Login";
-import LoginLayout from "./pages/layouts/LoginLayout";
+import LoginLayout from "./layouts/LoginLayout";
 
 
 function App() {
