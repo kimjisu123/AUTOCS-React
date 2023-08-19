@@ -2,31 +2,38 @@ import MypageCSS from './MypageEmp.module.css';
 import emp from './emp.jpg'
 function MypageEmp() {
 
+    // 비구조화 할당 문법을 활용한 css내부 값 추출하기 이렇게 쓰면 MypageCSS.mainContatiner를 안써도된다. )
+    const { mainContainer, rightContainer, content, wrap , empInfoTitle, infoTitle,empInfoImg
+            ,imgButton , empDepDate ,infoInput, sections, section1,section2 ,pwButton
+            ,empAddress,addressButton,adButton, inputAddress, baseAddress, detailAddress
+            ,udButton,updateButton
+    } = MypageCSS;
+
     return (
         <>
-            <div className={MypageCSS.mainContainer}>
-                <div className={MypageCSS.rightContainer}>
-                    <div className={MypageCSS.content}>
-                        <div className={MypageCSS.wrap}>
-                            <div className={MypageCSS.empInfoTitle}>
-                                <div className={MypageCSS.infoTitle}>
+            <div className={ mainContainer }>
+                <div className={rightContainer}>
+                    <div className={content}>
+                        <div className={wrap}>
+                            <div className={empInfoTitle}>
+                                <div className={infoTitle}>
                                     <h1>사원 정보</h1>
                                 </div>
                                 <div>
-                                    <img src={ emp } alt="" className={MypageCSS.empInfoImg}/>
-                                    <button className={MypageCSS.imgButton} type="submit">바꾸기</button>
+                                    <img src={ emp } alt="" className={empInfoImg}/>
+                                    <button className={imgButton} type="submit">바꾸기</button>
                                 </div>
                                 <br/>
                                     <span style={{color: "white", textAlign:"center"}}>가로200 세로 200<br/>이미지를 넣어주세요</span>
-                                    <div className={MypageCSS.empDepDate}>
+                                    <div className={empDepDate}>
                                         <h3>입사일</h3>
                                         <h1>23.01.01</h1>
                                     </div>
                             </div>
-                            <div className={MypageCSS.infoInput}>
+                            <div className={infoInput}>
                                 <form id="infoform" action="" method="post">
-                                    <div className={MypageCSS.sections}>
-                                        <div className={MypageCSS.section1}>
+                                    <div className={sections}>
+                                        <div className={section1}>
                                             <div className="empId">
                                                 <label htmlFor="empId">사원ID</label>
                                                 <input type="text" id="empId" name="empId" maxLength="20" value="emp01"
@@ -58,10 +65,10 @@ function MypageEmp() {
                                                        style={{border: "none"}}/>
                                             </div>
                                         </div>
-                                        <div className={MypageCSS.section2}>
-                                            <div className={MypageCSS.button}>
+                                        <div className={section2}>
+                                            <div className="button">
                                                 <label htmlFor="changepw">비밀번호</label>
-                                                <button className={MypageCSS.pwButton} type="button" onClick="">비밀번호 변경</button>
+                                                <button className={pwButton} type="button" onClick="">비밀번호 변경</button>
                                             </div>
                                             <div className=" empInfo empDep">
                                                 <label htmlFor="empDep">휴대 전화</label>
@@ -91,38 +98,38 @@ function MypageEmp() {
                                         </div>
                                     </div>
                                     {/*<fieldset id="adress" style={{border: "none"}}>*/}
-                                    <div className={MypageCSS.empAddress}>
+                                    <div className={empAddress}>
                                         <div className="">
-                                            <div className={MypageCSS.addressButton}>
+                                            <div className={addressButton}>
                                                 <label htmlFor="postcode">주소</label>
                                                 <div>
-                                                    <button className={MypageCSS.adButton} type="button"
+                                                    <button className={adButton} type="button"
                                                             onClick="sample6_execDaumPostcode()" value="우편번호 찾기">
                                                         <span><i
                                                             className="fa-solid fa-magnifying-glass"></i>주소검색</span>
                                                     </button>
                                                 </div>
                                             </div>
-                                            <div className={MypageCSS.inputAddress}>
-                                                <div className={MypageCSS.postCode}>
+                                            <div className={inputAddress}>
+                                                <div className="postCode">
                                                     <input type="text" name="zipcode" id="postcode" placeholder="우편번호"
                                                            required style={{border: "none"}}/>
                                                 </div>
-                                                <div className={MypageCSS.baseAddress}>
+                                                <div className={baseAddress}>
                                                     <input type="text" name="baseAddress" id="aseAddress"
                                                            placeholder="기본주소" required style={{border: "none"}}/>
                                                 </div>
                                             </div>
-                                            <div className={MypageCSS.detailAddress}>
+                                            <div className={detailAddress}>
                                                 <input type="text" name="detailAddress" id="detailAddress"
                                                        placeholder="상세주소" required style={{border: "none"}}/>
                                             </div>
                                         </div>
                                     </div>
                                     {/*</fieldset>*/}
-                                    <div className={MypageCSS.udButton}>
+                                    <div className={udButton}>
                                         <div>
-                                            <button className={MypageCSS.updateButton} type="submit">
+                                            <button className={updateButton} type="submit">
                                                 회원정보 수정
                                             </button>
                                         </div>
