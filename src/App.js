@@ -10,10 +10,12 @@ import RegistOk from "./pages/createMember/registOk";
 import ApplyMForm from "./pages/applyForm/applyMForm";
 import ApplyOk from "./pages/applyForm/applyOk";
 
+
 import Management from "./pages/managementPage/Management"
 import Department from "./pages/managementPage/Department"
 import HeadOffice from "./pages/managementPage/HeadOffice"
-import Mail from "./pages/managementPage/Mail"
+import Mail from "./pages/Mail/Mail"
+import Calendar from "./pages/Calendar/Calendar"
 
 function App() {
     return (
@@ -25,6 +27,7 @@ function App() {
                         <Route path='management' element={<Management />} />
                         <Route path='department' element={<Department />} />
                         <Route path='headOffice' element={<HeadOffice />} />
+                        <Route path='calendar' element={<Calendar />} />
                         <Route path='mail' element={<Mail />} />
                     </Route>
                     <Route path='login' element={<Login/>}/>

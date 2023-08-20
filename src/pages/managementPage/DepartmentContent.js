@@ -9,15 +9,15 @@ function DepartmentContent (){
                             부서 근태 통계
                         </div>
                         <div className={styles.today}>
-                             오늘 일자
+                        {'<'} 2023-08-20 {'>'}
                         </div>
                     </div>
 
-                    <div className={styles.download} style={{ display: 'flex' }}>
-                        <div style={{cursor: "pointer"}}>
+                    <div className={styles.downloadHeader} style={{display: "flex"}}>
+                        <div className={styles.download}>
                             목록 다운로드
                         </div>
-                        <div style={{ margin: '0px 40px', cursor: 'pointer' }}>
+                        <div className={styles.print} style={{margin:"0px 40px"}}>
                             인쇄
                         </div>
                     </div>
@@ -71,7 +71,7 @@ function DepartmentContent (){
                                 <input type="text" className={styles.inputText} />
                                 <input type="submit" value="검색" className={styles.inputButton} />
                             </form>
-                            <select name="10" style={{marginLeft: "auto", width: "40px"}}>
+                            <select className={styles.selectBox} name="10">
                                 <option value="10">10</option>
                                 <option value="20">20</option>
                                 <option value="40">40</option>
