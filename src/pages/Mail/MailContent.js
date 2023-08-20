@@ -37,6 +37,27 @@ function MailContent(){
                     x
                 </div>
             </div>
+
+            <div class="modal">
+
+                <div class="xbtn">
+                    <div class="x">X</div>
+                </div>
+                <div class="modalContent">
+                    <h1>공지사항 제목</h1>
+                    <div class="reportTitle">
+                        <div class="reportitle"></div>
+                    </div>
+                    <h3>공지사항 내용</h3>
+                    <div class="inputText">
+                        <div class="reportReason"></div>
+                    </div>
+                        <div class="modalbot">
+                    </div>
+                </div>
+                
+            </div>
+
         </div>
     )
 }

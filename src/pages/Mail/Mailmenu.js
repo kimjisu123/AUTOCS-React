@@ -9,7 +9,7 @@ function Mailmenu(){
             </div>
             <div className={styles.receivedMail}>받은 편지</div>
             <div className={styles.sentMail}>보낸 편지</div>
-            <div className={styles.bookmark}>즐겨찾기</div>
+            <div className={styles.mailBookMark}>즐겨찾기</div>
         </div>
     )
 }

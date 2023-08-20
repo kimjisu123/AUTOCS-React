@@ -112,7 +112,7 @@
     font-weight: 600;
 }
 
-.receivedMail, .sentMail, .bookmark{
+.receivedMail, .sentMail, .mailBookMark{
     padding-left: 60px;
     margin-bottom: 7px;
     cursor: pointer;
