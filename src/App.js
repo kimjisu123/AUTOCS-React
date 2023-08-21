@@ -69,18 +69,22 @@ function App() {
                         <Route path='mail' element={<Mail />} />
 
                         //미지
+                        //재고관리
                         <Route path='/stock' element={<Stock/>}>
+                            //본사 고관리
                             <Route path='check' element={<Check/>}/>
                             <Route path='orderlist' element={<OrderList/>}/>
                             <Route path='bill' element={<Bill/>}/>
                             <Route path='bill/detail' element={<BillDetail/>}/>
                             <Route path='statistics' element={<Statistics/>}/>
                             <Route path='stockio' element={<StockIo/>}/>
+                            //본사 물품관리
                             <Route path='productregist' element={<ProductRegist/>}/>
                             <Route path='productdelete' element={<ProductDelete/>}/>
                             <Route path='category' element={<Category/>}/>
                             <Route path='standard' element={<Standard/>}/>
                             <Route path='unit' element={<Unit/>}/>
+                            //영업점 발주관리
                             <Route path='order' element={<Order/>}/>
                             <Route path='myorderlist' element={<MyOrderList/>}/>
                             <Route path='myorderlist/detail' element={<MyOrderListDetail/>}/>
@@ -101,6 +105,8 @@ function App() {
                         <Route path='/outS' element={<OutSForm/>}/>
                     </Route>
 
+                    //미지
+                    //재고관리 팝업
                     <Route path='ListPopup' element={<ListPopup/>}/>
                     <Route path='ReciptPopup' element={<ReciptPopup/>}/>
 
