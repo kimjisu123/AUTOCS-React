@@ -1,11 +1,13 @@
 import MypageEmp from "./MypageEmp";
 import MypageEmpMenubar from "./MypageEmpMenubar";
+import MypageStore from "./MypageStore";
 
 function Mypage(){
     return (
         <div style={{display:"flex"}}>
             <MypageEmpMenubar />
-            <MypageEmp />
+            {/*<MypageEmp />*/}
+            <MypageStore />
         </div>
 
     )

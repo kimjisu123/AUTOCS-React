@@ -1,7 +1,7 @@
 import MypageCSS from './MypageEmp.module.css';
-import emp from './emp.jpg'
+import emp from './store.jpg'
 import {MdAccountCircle} from "react-icons/md";
-function MypageEmp() {
+function MypageStore() {
 
     // 비구조화 할당 문법을 활용한 css내부 값 추출하기 이렇게 쓰면 MypageCSS.mainContatiner를 안써도된다. )
     const { mainContainer, rightContainer, content, wrap , empInfoTitle, infoTitle,empInfoImg
@@ -18,7 +18,7 @@ function MypageEmp() {
                         <div className={wrap}>
                             <div className={empInfoTitle}>
                                 <div className={infoTitle}>
-                                    <h1>사원 정보</h1>
+                                    <h1>매장 정보</h1>
                                 </div>
                                 <div>
                                     <img src={ emp } alt="" className={empInfoImg}/>
@@ -30,8 +30,10 @@ function MypageEmp() {
                                 <br/>
                                     <span style={{color: "white", textAlign:"center"}}>가로200 세로 200<br/>이미지를 넣어주세요</span>
                                     <div className={empDepDate}>
-                                        <h3>입사일</h3>
-                                        <h1>23.01.01</h1>
+                                        <h3>오픈시간</h3>
+                                        <h1>8 : 00</h1>
+                                        <h3>마감 시간</h3>
+                                        <h1>22 : 00</h1>
                                     </div>
                             </div>
                             <div className={infoInput}>
@@ -39,17 +41,17 @@ function MypageEmp() {
                                     <div className={sections}>
                                         <div className={section1}>
                                             <div className="empId">
-                                                <label htmlFor="empId">사원ID</label>
+                                                <label htmlFor="empId">매장ID</label>
                                                 <input type="text" id="empId" name="empId" maxLength="20" value="emp01"
                                                        readOnly style={{border: "none"}}/>
                                             </div>
                                             <div className=" empInfo empName kor">
-                                                <label htmlFor="empNameKor">이름(한글)</label>
+                                                <label htmlFor="empNameKor">상호명</label>
                                                 <input type="text" id="empNameKor" name="empNameKor" maxLength="20"
                                                        value="김사원" readOnly style={{border: "none"}}/>
                                             </div>
                                             <div className=" empInfo empName Eng">
-                                                <label htmlFor="empNameEng">이름(영문)</label>
+                                                <label htmlFor="empNameEng">대표자명</label>
                                                 <input type="text" id="empNameEng" name="empNameEng" maxLength="20"
                                                        value="KIM SA WON" style={{border: "none"}}/>
                                             </div>
@@ -147,4 +149,4 @@ function MypageEmp() {
         </>
     )
 }
-export default MypageEmp;
+export default MypageStore;

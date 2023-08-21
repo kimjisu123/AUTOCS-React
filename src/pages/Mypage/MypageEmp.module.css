@@ -18,55 +18,55 @@ body {
     justify-content: space-between;
 }
 
-.logo {
-    width: 25%;
-    text-align: center;
-}
+/*.logo {*/
+/*    width: 25%;*/
+/*    text-align: center;*/
+/*}*/
 
-.hor {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    align-content: center;
-}
+/*.hor {*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+/*    flex-direction: column;*/
+/*    align-content: center;*/
+/*}*/
 
-.logo img {
-    width: 40%;
-}
+/*.logo img {*/
+/*    width: 40%;*/
+/*}*/
 
-.nav {
-    background: #2A3C1E;
-    width: 100%;
-    /* padding: 20px 30px; */
-    /* box-sizing: border-box; */
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column; /* 수직 정렬 */
-    justify-content: space-between;
-}
+/*.nav {*/
+/*    background: #2A3C1E;*/
+/*    width: 100%;*/
+/*    !* padding: 20px 30px; *!*/
+/*    !* box-sizing: border-box; *!*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+/*    flex-direction: column; !* 수직 정렬 *!*/
+/*    justify-content: space-between;*/
+/*}*/
 
-.menubar {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 130px 30px 85px;
-}
+/*.menubar {*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    padding: 0 130px 30px 85px;*/
+/*}*/
 
-.menu {
-    cursor: pointer;
-    color: rgb(255, 255, 255);
-    font-size: 1.3em;
-}
+/*.menu {*/
+/*    cursor: pointer;*/
+/*    color: rgb(255, 255, 255);*/
+/*    font-size: 1.3em;*/
+/*}*/
 
-#logout {
-    color: white;
-    font-size: 1em;
-    cursor: pointer;
-}
+/*#logout {*/
+/*    color: white;*/
+/*    font-size: 1em;*/
+/*    cursor: pointer;*/
+/*}*/
 
-.logout {
-    text-align: right;
-    padding: 20px 30px 0 0;
-}
+/*.logout {*/
+/*    text-align: right;*/
+/*    padding: 20px 30px 0 0;*/
+/*}*/
 
 .mainContainer {
     display: flex;
@@ -74,25 +74,25 @@ body {
     width: 100%;
 }
 
-.leftContainer {
-    width: 15%;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column; /* 수직 정렬 */
-    /*justify-content: first baseline;*/
-    align-content: center;
-}
+/*.leftContainer {*/
+/*    width: 15%;*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+/*    flex-direction: column; !* 수직 정렬 *!*/
+/*    !*justify-content: first baseline;*!*/
+/*    align-content: center;*/
+/*}*/
 
 .rightContainer {
     width: 100%;
     height: 100%;
 }
 
-.content {
-    /*height: 860px;*/
-    height: 100%;
-    background-color: #ecead8;
-}
+/*.content {*/
+/*    !*height: 860px;*!*/
+/*    !*height: 100%;*!*/
+/*    !*background-color: #ecead8;*!*/
+/*}*/
 /*.horizon {*/
 /*    border: 1.5px solid #2A3C1E;*/
 /*    width: 80%;*/
@@ -131,68 +131,6 @@ body {
     padding-top: 30px;
 }
 
-.name {
-    font-size: 1.8em;
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-
-.dept {
-    font-size: 1.4em;
-    margin-bottom: 30px;
-}
-
-.workHours {
-    width: 100%;
-    background-color: #2A3C1E;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-bottom: 30px;
-}
-
-.work, .date, .hour {
-    color: white;
-}
-
-.work {
-    font-size: 1.2em;
-    margin-bottom: 10px;
-}
-
-.date {
-    font-size: 1.3em;
-    margin-bottom: 10px;
-}
-
-.hour {
-    font-size: 3em;
-}
-
-.workBtn {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-}
-
-.workBtn div {
-    background-color: rgb(204, 204, 204);
-    border-radius: 20px;
-    box-shadow: 0 2px 4px 0px rgb(187, 187, 187);
-    width: 40%;
-    margin-bottom: 30px;
-}
-
-.attendence, .leaveWork {
-    font-size: 1.2em;
-    padding: 5px;
-    cursor: pointer;
-}
-
-.memo {
-    width: 100%;
-    height: 200px;
-    background-color: rgb(204, 204, 204);
-}
 
 /* content 영역 */
 
@@ -208,7 +146,7 @@ body {
     height: 90%;
     border-radius: 30px;
     background-color: white;
-    box-shadow: 2px 2px 40px  #99a45c74 ;
+    box-shadow: 2px 2px 10px #cdcec974;
     margin: 3% 5%;
     /*margin-bottom: 30px;*/
     transition: all 0.5s;
@@ -216,14 +154,14 @@ body {
     display: flex;
 }
 
-/*.wrap:hover {*/
-/*        width: 92%;*/
-/*        height:92%;*/
-/*}*/
+.wrap:hover {
+        width: 92%;
+        height:92%;
+}
 
 .empInfoTitle{
     position: relative;
-    /*width: 10%;*/
+    width: 15%;
     padding: 20px 50px;
     background-color: #2A3C1E;
     border-radius: 30px 0px 0px 30px;
@@ -317,16 +255,34 @@ body {
 }
 
 
-.imgButton {
+/* 사진 넣기 버튼 */
 
+.empImg input, .empImg svg{
+    color: white;
+    /*z-index: 1;*/
+    position: absolute;
     width: 50px;
     height: 50px;
     border-radius: 50px;
-    position: absolute;
-    top: 300px;
-    left:200px
+    top: 35%;
+    left:60%;
 
 }
+
+.empImg input {
+    /*background-color: #2A3C1E;*/
+    content-visibility: hidden;
+    z-index: 2;
+}
+
+.empImg svg {
+    background-color: #2A3C1E;
+    z-index: 1;
+    /* 아이콘 이미지  */
+}
+
+
+
 
 .updateButton {
 
@@ -350,6 +306,7 @@ body {
     color: white;
     font-weight: 700;
     font-size: 0.8em;
+    display: initial;
 
 }
 

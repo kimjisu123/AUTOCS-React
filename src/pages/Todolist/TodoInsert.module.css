@@ -25,7 +25,7 @@
     flex: 1;
 }
 
-button {
+.TodoInsert button {
     background: none;
     outline: none;
     border: none;

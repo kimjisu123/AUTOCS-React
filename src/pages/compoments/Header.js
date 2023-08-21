@@ -11,7 +11,18 @@ const Header = ( todos ) => {
         backgroundColor: '#8d8a6d'
     }
 
-    return (
+    // const modal = () => {
+    //     const [isModalOpen, setIsModalOpen] = useState(false);
+    //     if(isModalOpen !== true) { const openModal = () => {
+    //         setIsModalOpen(true);
+    //     }; }
+    //     if(isModalOpen !== false) { const closeModal = () => {
+    //         setIsModalOpen(false);
+    //     };}
+
+
+
+        return (
         <div className="headerWrapper">
             <div className="topNav">
                 <NavLink to="/"><div className="gohome">

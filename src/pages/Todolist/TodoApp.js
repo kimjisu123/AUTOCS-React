@@ -2,7 +2,10 @@ import TodoTemplate from "./TodoTemplate";
 import TodoInsert from "./TodoInsert";
 import TodoList from "./TodoList";
 import {useCallback, useRef, useState} from "react";
-const TodoApp = () => {
+
+
+
+const TodoApp = ({isOpen , onClose }) => {
 
     const [todos, setTodos ] = useState([
     // 초기값.
@@ -59,12 +62,15 @@ const TodoApp = () => {
     );
 
 
+
     return(
-        <TodoTemplate todos={todos}>
-            <TodoInsert onInsert={onInsert}/>
-            <TodoList todos={todos} onRemove={ onRemove } onToggle={onToggle}/>
-        </TodoTemplate>
-        )
+        <div className="TodoApp">
+            <TodoTemplate todos={todos}>
+                <TodoInsert onInsert={onInsert}/>
+                <TodoList todos={todos} onRemove={ onRemove } onToggle={onToggle}/>
+            </TodoTemplate>
+        </div>
+    )
 
 }
 

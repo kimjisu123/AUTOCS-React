@@ -5,9 +5,11 @@ import Login from "./pages/Login/Login";
 import LoginLayout from "./layouts/LoginLayout";
 import Mypage from "./pages/Mypage/Mypage";
 import TodoApp from "./pages/Todolist/TodoApp";
-import {useState} from "react";
+
 
 function App() {
+
+
   return (
       <>
         <BrowserRouter>
@@ -18,7 +20,7 @@ function App() {
               <Route path='/' element={<Layout />}>
                     <Route path='approval' element={<Approval/>}/>
                     <Route path='myPage' element={<Mypage/>}/>
-                    <Route path='todo' element={<TodoApp/>}/>
+                    <Route path='todo' element={<TodoApp />}/>
               </Route>
           </Routes>
         </BrowserRouter>

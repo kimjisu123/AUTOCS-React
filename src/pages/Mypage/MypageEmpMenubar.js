@@ -3,25 +3,16 @@ import empimg from './emp.jpg';
 function MypageEmpMenubar(){
 
     return (
-        <div className={style.leftContainer}>
-        <div className={style.paddingContainer}>
-            <div className={style.profile}>
-                {/*<img src={ empimg } alt=""/>*/}
+        <>
+            <div className="menubar" style={{width: "295px",  height: "959px", paddingTop: "30px"}}>
+                <div className="myPgateNavTitle" style={{marginLeft:"auto", marginRight:"auto",textAlign:"center"}}><h1>마이페이지</h1></div>
+                <div className="documentForm">
+                    사원 정보
+                </div>
+                <div className="purchase">사원정보 변경</div>
+                <div className="traffic">비밀번호 변경</div>
             </div>
-            <div className={style.name}>사이드바</div>
-            <div className={style.dept}>영업 1부</div>
-            <div className={style.workHours}>
-                <div className={style.work}>근태관리</div>
-                <div className={style.date}>2023-08-08</div>
-                <div className={style.hour}>8H 17M</div>
-            </div>
-            <div className={style.workBtn}>
-                <div className={style.attendence}>출근하기</div>
-                <div className={style.leaveWork}>퇴근하기</div>
-            </div>
-            <div className={style.memo}></div>
-        </div>
-    </div>
+        </>
 
     )
 }
