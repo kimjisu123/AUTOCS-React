@@ -1,0 +1,139 @@
+/* 메뉴바 */
+.menuHeader {
+    margin-top: 30px;
+    margin-left: 40px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.menuContents {
+    padding-left: 60px;
+    margin-bottom: 7px;
+    cursor: pointer;
+}
+
+/* 컨텐츠 */
+.contents {
+    border-left: 1px solid rgb(202, 202, 202);
+    min-height: 959px;
+    width: 100%;
+    padding: 2%;
+    text-align: center;
+}
+
+.headLine {
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: 1000;
+    border-bottom: 1px solid rgb(203, 203, 203);
+    margin-bottom: 15px;
+    padding-bottom: 20px;
+    width: 100%;
+}
+
+.middleLine{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.contentsHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* 수직 가운데 정렬 */
+}
+
+.datebox {
+    display: flex;
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+}
+
+.dateSelectbox{
+    width: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.searchbox{
+    width: 200px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.readOnlybox{
+    background-color: lightgray;
+}
+
+.selectbox{
+    width: 100px;
+    height:10px;
+    marginLeft: 10px;
+}
+
+
+
+
+/* 테이블 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    margin-top: 2%;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+tr{
+    white-space: pre-line;
+}
+
+.mainline{
+    background-color: lightgoldenrodyellow;
+}
+
+/* 팝업창 */
+.listbox {
+    display: flex;
+    height: auto;
+    background-color: #ecead8;
+}
+
+.contentsbox {
+    padding: 2%;
+    width: 100%;
+    height: 100%;
+    margin: 3%;
+    background-color: white;
+    text-align: center;
+}
+
+/* 세금계산서 테이블 */
+.billTable{
+    border: 3px solid blue;
+}
+
+.billTable th, .billTable td{
+    border: 2px solid blue;
+}
+
+.reciptTable{
+    border: 3px solid limegreen;
+}
+
+.reciptTable th, .reciptTable td{
+    border: 2px solid limegreen;
+}
+
+.reciptbox {
+    padding: 2%;
+    width: 1000px;
+    height: 100%;
+    margin: 3%;
+    background-color: white;
+    text-align: center;
+}
