@@ -36,7 +36,7 @@ const OutMForm = () => {
                     />
 
                     <h4 style={{ marginBottom: "10px", marginTop: "10px", background: "white" }}>부서</h4>
-                    <select id="department" name="department">
+                    <select id="pos" name="department">
                         <option value="default" selected>부서를 선택하세요</option>
                         <option value="HR">인사부</option>
                         <option value="finance">재무/회계부</option>
@@ -47,7 +47,7 @@ const OutMForm = () => {
                     </select>
 
                     <h4 style={{ marginBottom: "10px", marginTop: "20px", background: "white"}}>직급</h4>
-                    <select id="position" name="position">
+                    <select id="pos" name="position">
                         <option value="default" selected>직급을 선택하세요</option>
                         <option value="BooJang">부장</option>
                         <option value="ChaJang">차장</option>
