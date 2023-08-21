@@ -34,7 +34,7 @@ const TodoApp = () => {
                 text,
                 checked: false,
             };
-            setTodos(todos.concat(todo)); // 객체 추가
+            setTodos(todos => todos.concat(todo)); // 객체 추가
             nextId.current += 1; // id에 1씩 더하기
         }
 
@@ -43,26 +43,26 @@ const TodoApp = () => {
     //  할일 지우기 함수 filter 사용
     const onRemove = useCallback(
         id => {
-            setTodos(todos.filter(todo => todo.id !== id));
-        },[todos],
+            setTodos(todos => todos.filter(todo => todo.id !== id));
+        },[],
     );
 
     // 할일 체크 함수
     const onToggle = useCallback(
         id => {
-            setTodos(
+            setTodos(todos=>
                 todos.map(todo =>
                 todo.id === id? { ...todo, checked: !todo.checked} : todo,
                 ),
             );
-        },[todos],
+        },[],
     );
 
 
     return(
         <TodoTemplate>
-            <TodoInsert onInsert={onInsert}/>
             <TodoList todos={todos} onRemove={ onRemove } onToggle={onToggle}/>
+            <TodoInsert onInsert={onInsert}/>
         </TodoTemplate>
         )
 

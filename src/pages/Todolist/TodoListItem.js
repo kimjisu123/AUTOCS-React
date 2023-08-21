@@ -1,3 +1,4 @@
+import React from 'react';
 import { MdCheckBoxOutlineBlank , MdCheckBox , MdRemoveCircleOutline } from 'react-icons/md';
 import './TodoListItem.css';
 import cn from 'classnames';  // 조건부 스타일링을 위 해 classnames를 사용함.
@@ -18,4 +19,4 @@ const TodoListItem = ({todo, onRemove, onToggle }) => {
         </div>
     );
 };
-export default TodoListItem;
+export default React.memo(TodoListItem);  // 성능최적화를 위해 리랜더링을 방지하려 React.memo를 사용함. 컴포넌트의 props가 바뀌지 않은면 리랜더링 하지 않음.

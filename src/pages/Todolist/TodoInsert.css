@@ -1,8 +1,12 @@
 .TodoInsert {
 
     display: flex;
-    background: gray;
-    /*flex: 1;*/
+    /*background: gray;*/
+    flex: 1;
+    border: 1px solid #2a3c1e;
+    border-radius: 17px;
+    margin-left: 5px;
+    margin-right: 5px;
 
 }
 
@@ -14,12 +18,13 @@ input {
     padding: 0.5rem;
     font-size: 1.125rem;
     line-height: 1.5;
-    color: white;
+    color: gray;
     flex: 1;
+
 }
 
 input::placeholder {
-    color: white;
+    color: gray;
     flex: 1;
 }
 
@@ -36,6 +41,8 @@ button {
     align-items: center;
     cursor: pointer;
     transition: 0.1s background ease-in;
+    border-radius: 10px;
+    margin: 0.5rem;
 
 }
 

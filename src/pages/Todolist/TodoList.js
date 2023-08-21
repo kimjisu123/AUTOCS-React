@@ -1,5 +1,6 @@
 import TodoListItem from "./TodoListItem";
 import './TodoList.css'
+import React from 'react';
 
 const TodoList = ({todos, onRemove ,onToggle}) => {
 
@@ -17,4 +18,4 @@ const TodoList = ({todos, onRemove ,onToggle}) => {
         </div>
     )
 }
-export default TodoList;
+export default React.memo(TodoList); // 성능 최적화
