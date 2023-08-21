@@ -4,18 +4,10 @@ function showPopup() { window.open('/ListPopup', "a", "width=400, height=600, le
 
 function ProductDelete() {
 
-    const onClickRegistHadler= () => {
+    const onClickRegistHandler= () => {
         alert('등록하시겠습니까?');
     }
-
-    const onClickUseHadler= () => {
-        alert('사용 등록하시겠습니까?');
-    }
-
-    const onClickUnuseHadler= () => {
-        alert('미사용 등록하시겠습니까?');
-    }
-
+    
     return(
         <div>
             <div className={StockCSS.headLine}>물품 불용등록</div>
@@ -39,17 +31,13 @@ function ProductDelete() {
                         <input type="date"/>
                     </td>
                     <td>
-                        <button onClick={ onClickRegistHadler }>등록</button>
+                        <button onClick={ onClickRegistHandler }>등록</button>
                     </td>
                 </tr>
             </table>
             <div style={{marginTop: "5%"}}>
                 <div className={StockCSS.middleLine}>
                     물품 목록
-                    <div>
-                        <button style={{marginRight: "10px"}} onClick={ onClickUseHadler }>사용</button>
-                        <button onClick={ onClickUnuseHadler }>미사용</button>
-                    </div>
                 </div>
                 <table>
                     <tr>

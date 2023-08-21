@@ -1,15 +1,20 @@
+import { NavLink } from 'react-router-dom';
 import StockCSS from './Stock.module.css'
 
 function showPopup() { window.open('/ListPopup', "a", "width=400, height=600, left=100, top=50"); }
 
-function OrderList() {
+function MyOrderListDetail() {
 
-    const onClickPermitHandler= () => {
-        alert('승인하시겠습니까?');
+    const onClickCancelHandler= () => {
+        alert('취소하시겠습니까?');
     }
 
-    const onClickRejectHandler= () => {
-        alert('반려하시겠습니까?');
+    const onClickRefundHandler= () => {
+        alert('반품하시겠습니까?');
+    }
+
+    const onClickCompleteHandler= () => {
+        alert('완료하시겠습니까?');
     }
 
     return (
@@ -23,11 +28,6 @@ function OrderList() {
                     <input className={StockCSS.dateSelectbox} type="date"/>
                 </div>
 
-                <div className={StockCSS.contentsHeader}>
-                    <div>영업점</div>
-                    <input className={StockCSS.searchbox} type="text" placeholder="영업점을 조회하세요"/>
-                    <button>조회</button>
-                </div>
                 <div className={StockCSS.contentsHeader}>
                     <div>상태</div>
                     <select className={StockCSS.selectbox}>
@@ -86,12 +86,13 @@ function OrderList() {
                     </tr>
                 </table>
                 <div style={{display: "flex", justifyContent: "flex-end", marginTop: "1%"}}>
-                    <button style={{marginRight: "10px"}} onClick={ onClickPermitHandler }>승인</button>
-                    <button onClick={ onClickRejectHandler }>반려</button>
+                    <button style={{marginRight: "10px"}} onClick={ onClickCancelHandler }>취소</button>
+                    <button style={{marginRight: "10px"}}><NavLink to="/stock/refund">반품</NavLink></button>
+                    <button onClick={ onClickCompleteHandler }>완료</button>
                 </div>
             </div>
         </div>
     )
 }
 
-export default OrderList;
+export default MyOrderListDetail;

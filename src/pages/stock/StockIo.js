@@ -4,7 +4,7 @@ function showPopup() { window.open('/ListPopup', "a", "width=400, height=600, le
 
 function StockIo() {
 
-    const onClickRegistHadler= () => {
+    const onClickRegistHandler= () => {
         alert('등록하시겠습니까?');
     }
 
@@ -95,7 +95,7 @@ function StockIo() {
                     </td>
                 </tr>
             </table>
-            <button style={{marginTop: "5%"}} onClick={ onClickRegistHadler }>등록</button>
+            <button style={{marginTop: "5%"}} onClick={ onClickRegistHandler }>등록</button>
         </div>
     )
 }

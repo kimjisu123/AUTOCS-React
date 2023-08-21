@@ -46,6 +46,11 @@ import Category from "./pages/stock/Category";
 import Standard from "./pages/stock/Standard";
 import Unit from "./pages/stock/Unit";
 import Order from "./pages/stock/Order";
+import MyOrderList from "./pages/stock/MyOrderList";
+import MyOrderListDetail from "./pages/stock/MyOrderListDetail";
+import Refund from "./pages/stock/Refund";
+import MyBill from "./pages/stock/MyBill";
+import MyStatistics from "./pages/stock/MyStatistics";
 
 
 function App() {
@@ -77,6 +82,11 @@ function App() {
                             <Route path='standard' element={<Standard/>}/>
                             <Route path='unit' element={<Unit/>}/>
                             <Route path='order' element={<Order/>}/>
+                            <Route path='myorderlist' element={<MyOrderList/>}/>
+                            <Route path='myorderlist/detail' element={<MyOrderListDetail/>}/>
+                            <Route path='refund' element={<Refund/>}/>
+                            <Route path='mybill' element={<MyBill/>}/>
+                            <Route path='mystatistics' element={<MyStatistics/>}/>
                         </Route>
                     </Route>
 

@@ -3,11 +3,11 @@ import StockCSS from './Stock.module.css'
 
 function showPopup() { window.open('/ListPopup', "a", "width=400, height=600, left=100, top=50"); }
 
-function Bill() {
+function MyOrderList() {
 
     return (
         <div>
-            <div className={StockCSS.headLine}>세금계산서 발행내역</div>
+            <div className={StockCSS.headLine}>신청내역관리</div>
             <div className={StockCSS.contentsHeader}>
                 <div className={StockCSS.datebox}>
                     <div>조회기간</div>
@@ -17,9 +17,7 @@ function Bill() {
                 </div>
 
                 <div className={StockCSS.contentsHeader}>
-                    <div>영업점</div>
-                    <input className={StockCSS.searchbox} type="text" placeholder="영업점을 조회하세요"/>
-                    <button>조회</button>
+                    <div>종로점</div>
                 </div>
             </div>
 
@@ -28,20 +26,23 @@ function Bill() {
                     <tr>
                         <th>NO</th>
                         <th>거래번호</th>
-                        <th>영업점</th>
-                        <th>발행일</th>
+                        <th>발주일</th>
+                        <th>발주상태</th>
+                        <th>세금계산서발행</th>
                     </tr>
                     <tr>
                         <td>1</td>
-                        <td><NavLink to="/stock/bill/detail">20201234</NavLink></td>
-                        <td>종로점</td>
+                        <td><NavLink to="/stock/myorderlist/detail">20201234</NavLink></td>
                         <td>2023-08-01</td>
+                        <td>진행중</td>
+                        <td><button>발행</button></td>
                     </tr>
                     <tr>
-                        <td>1</td>
-                        <td><NavLink to="/stock/bill/detail">20201234</NavLink></td>
-                        <td>종로점</td>
+                        <td>2</td>
+                        <td><NavLink to="/stock/myorderlist/detail">20201234</NavLink></td>
                         <td>2023-08-01</td>
+                        <td>완료</td>
+                        <td><button>발행</button></td>
                     </tr>
                 </table>
             </div>
@@ -49,4 +50,4 @@ function Bill() {
     )
 }
 
-export default Bill;
+export default MyOrderList;

@@ -9,10 +9,6 @@ function Bill() {
         alert('거래명세표를 출력 하시겠습니까?');
     }
 
-    const onClickRejustHadler= () => {
-        alert('반려하시겠습니까?');
-    }
-
     return (
         <div>
             <div className={StockCSS.headLine}>세금계산서</div>

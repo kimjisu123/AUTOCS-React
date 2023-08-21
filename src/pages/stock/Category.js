@@ -2,15 +2,15 @@ import StockCSS from './Stock.module.css'
 
 function Category() {
 
-    const onClickRegistHadler= () => {
+    const onClickRegistHandler= () => {
         alert('등록하시겠습니까?');
     }
 
-    const onClickUseHadler= () => {
+    const onClickUseHandler= () => {
         alert('사용 등록하시겠습니까?');
     }
 
-    const onClickUnuseHadler= () => {
+    const onClickUnuseHandler= () => {
         alert('미사용 등록하시겠습니까?');
     }
     return(
@@ -25,7 +25,7 @@ function Category() {
                         <input type="text" placeholder="카테고리명을 입력하세요"/>
                     </td>
                     <td>
-                        <button onClick={ onClickRegistHadler }>등록</button>
+                        <button onClick={ onClickRegistHandler }>등록</button>
                     </td>
                 </tr>
             </table>
@@ -33,8 +33,8 @@ function Category() {
                 <div className={StockCSS.middleLine}>
                     카테고리 목록
                     <div>
-                        <button style={{marginRight: "10px"}} onClick={ onClickUseHadler }>사용</button>
-                        <button onClick={ onClickUnuseHadler }>미사용</button>
+                        <button style={{marginRight: "10px"}} onClick={ onClickUseHandler }>사용</button>
+                        <button onClick={ onClickUnuseHandler }>미사용</button>
                     </div>
                 </div>
                 <table>

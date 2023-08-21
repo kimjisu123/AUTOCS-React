@@ -3,7 +3,7 @@ import StockCSS from './Stock.module.css'
 
 function showPopup() { window.open('/ListPopup', "a", "width=400, height=600, left=100, top=50"); }
 
-function Bill() {
+function MyBill() {
 
     return (
         <div>
@@ -15,11 +15,8 @@ function Bill() {
                     <div>~</div>
                     <input className={StockCSS.dateSelectbox} type="date"/>
                 </div>
-
                 <div className={StockCSS.contentsHeader}>
-                    <div>영업점</div>
-                    <input className={StockCSS.searchbox} type="text" placeholder="영업점을 조회하세요"/>
-                    <button>조회</button>
+                    <div>종로점</div>
                 </div>
             </div>
 
@@ -49,4 +46,4 @@ function Bill() {
     )
 }
 
-export default Bill;
+export default MyBill;

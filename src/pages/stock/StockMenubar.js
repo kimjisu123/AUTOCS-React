@@ -23,7 +23,7 @@ function StockMenubar() {
                 <div className={StockCSS.menuContents}><NavLink to="/stock/order">발주신청</NavLink></div>
                 <div className={StockCSS.menuContents}><NavLink to="/stock/myorderlist">신청내역관리</NavLink></div>
                 <div className={StockCSS.menuContents}><NavLink to="/stock/mybill">세금계산서</NavLink></div>
-                <div className={StockCSS.menuContents}><NavLink to="/stock/mystatistics">통계</NavLink></div>
+                <div className={StockCSS.menuContents}><NavLink to="/stock/mystatistics">발주통계</NavLink></div>
             </div>
     )
 }
