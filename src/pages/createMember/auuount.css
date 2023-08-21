@@ -1,0 +1,25 @@
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.create-button {
+    width: 130px;
+    height: 40px;
+    color: white;
+    background-color: #2a3c1e;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px; /* Reset margin */
+
+}
+
+.create-button:hover {
+    background-color: #1c2811;
+}

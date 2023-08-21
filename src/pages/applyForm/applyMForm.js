@@ -1,11 +1,11 @@
 import img from './loginMain.png'
 import './applyMForm.css'
 import {Link} from "react-router-dom";
+import React from "react";
 
 const ApplyMForm = () => {
 
     return (
-        <div style={{backgroundColor: "#1C2C10"}}>
             <div className="border">
                 <main>
                     <img src={img} style={{ width: "145px", height: "200px", marginTop: "-150px", marginBottom: "-35px" }} />
@@ -35,12 +35,13 @@ const ApplyMForm = () => {
                         <option value="GaJang">과장</option>
                         <option value="DaeRi">대리</option>
                         <option value="SaWon">사원</option>
+                        <option value="Intern">인턴</option>
                     </select>
 
-                    <Link to="/ApplyOk" type="button" className="regist">신청하기</Link>
+                     {/*신청 되었다는 알림 띄워주기 */}
+                    <button type="button" className="regist" style={{marginTop: "40px"}}>신청하기</button>
                 </main>
             </div>
-        </div>
     )
 }
 
