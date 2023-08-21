@@ -5,8 +5,7 @@ import Login from "./pages/Login/Login";
 import LoginLayout from "./layouts/LoginLayout";
 import Mypage from "./pages/Mypage/Mypage";
 import TodoApp from "./pages/Todolist/TodoApp";
-
-
+import {useState} from "react";
 
 function App() {
   return (
@@ -16,7 +15,7 @@ function App() {
               <Route path='/login' element={<LoginLayout/>}>
               <Route path='/login' element={<Login/>}/>
               </Route>
-              <Route path='/' element={<Layout/>}>
+              <Route path='/' element={<Layout />}>
                     <Route path='approval' element={<Approval/>}/>
                     <Route path='myPage' element={<Mypage/>}/>
                     <Route path='todo' element={<TodoApp/>}/>

@@ -1,6 +1,7 @@
 import { MdAdd } from 'react-icons/md';
-import './TodoInsert.css';
+import styles from './TodoInsert.module.css';
 import {useCallback, useState} from "react";
+
 
 const TodoInsert = ({onInsert}) => {
     const [ value , setValue ] = useState('');
@@ -25,9 +26,10 @@ const TodoInsert = ({onInsert}) => {
 
 
     return (
-        <form className="TodoInsert" onSubmit={ onSubmit }>
+        <form className={ styles.TodoInsert } onSubmit={ onSubmit }>
             {/*// form을 사용한 이유는 클릭과 엔터를 칠때 둘다 값이 들어가도록하기위해서 -> onPress코드를 또 입력하지 않아도됨. */}
             <input
+                className={styles.todoinput}
                 placeholder='할일을 입력하세요'
                 value={ value }
                 onChange={onChnage}

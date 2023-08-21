@@ -1,15 +1,15 @@
 import './Header.css'
 import img from './logo-black1.png'
 import { NavLink } from 'react-router-dom';
+import {useEffect, useState} from "react";
 
 
-const Header = () => {
+const Header = ( todos ) => {
 
     const activestyle = {
 
         backgroundColor: '#8d8a6d'
     }
-
 
     return (
         <div className="headerWrapper">

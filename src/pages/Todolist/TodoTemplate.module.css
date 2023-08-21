@@ -1,0 +1,43 @@
+
+
+.TodoTemplate {
+    width: 570px;
+    height: 512px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:6rem;
+    margin-bottom: 6rem;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 2px 2px 10px #cdcec974; ;
+    /*margin: 3% 5%;*/
+    /*margin-bottom: 30px;*/
+    transition: all 0.5s;
+    transition-delay: 0.4s;
+}
+
+.appTitle {
+    background-color: #2a3c1e;
+    color: white;
+    height: 5rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content {
+    background: white;
+
+}
+
+
+.todoCount {
+    font-size:2rem;
+    margin:10px;
+    color: #b8b8b8;
+    transition: all 0.3s;
+    transition-delay: 0.2s;
+
+}

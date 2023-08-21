@@ -20,7 +20,7 @@
     align-items: center;
 }
 svg {
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 .text {
     margin-left:0.5rem;
@@ -30,13 +30,21 @@ svg {
 
 /*체크박스에 체크가 되었을때 */
 .checkbox.checked svg {
-     color:#22b8cf;
+    color: #a8ad9d;
 
 }
 
 .checkbox.checked  .text {
-    color: #adb5db;
+    color: #d5d5d7;
     text-decoration: line-through;
+
+}
+
+.TodoListItem:hover {
+    background-color: #F0F1EEFF;
+    transition: all 0.1s;
+    transition-delay: 0.1s;
+
 }
 
 /*지울때 */
@@ -44,13 +52,13 @@ svg {
     display: flex;
     align-items: center;
     font-size: 1.5rem;
-    color: #ff6b6b;
+    color: #f87c7c;
     cursor: pointer;
 
 }
 
 .remove:hover {
-    color: #ff8787;
+    color: #ff4545;
 
 }
 

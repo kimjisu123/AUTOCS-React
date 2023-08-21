@@ -60,9 +60,9 @@ const TodoApp = () => {
 
 
     return(
-        <TodoTemplate>
-            <TodoList todos={todos} onRemove={ onRemove } onToggle={onToggle}/>
+        <TodoTemplate todos={todos}>
             <TodoInsert onInsert={onInsert}/>
+            <TodoList todos={todos} onRemove={ onRemove } onToggle={onToggle}/>
         </TodoTemplate>
         )
 
