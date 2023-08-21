@@ -17,11 +17,11 @@ import FindPwdOk from "./pages/Login/findPwdOk";
 import GuideId from "./pages/Login/guideId";
 import GuidePwd from "./pages/Login/guidePwd";
 import ApplySForm from "./pages/applyForm/applySForm";
-import OutOk from "./pages/outForm/outOk";
 import OutSForm from "./pages/outForm/outSForm";
 import OutMForm from "./pages/outForm/outMForm";
 import Mmail from "./pages/emailGuide/Mmail";
 import Smail from "./pages/emailGuide/Smail";
+import AccountCreate from "./pages/createMember/accountCreate";
 
 //지수
 import Management from "./pages/managementPage/Management"
@@ -65,6 +65,17 @@ function App() {
                             <Route path='standard' element={<Standard/>}/>
                             <Route path='unit' element={<Unit/>}/>
                         </Route>
+
+                        //해든
+                        <Route path='account' element={<AccountCreate/>} />
+                        //사원 등록
+                        <Route path='/registration' element={<Registration/>}/>
+                        <Route path='/registration/registOk' element={<RegistOk/>}/>
+                        //계정신청
+                        <Route path='/applyM' element={<ApplyMForm/>}/>
+                        //계정 비활성화 신청
+                        <Route path='/outM' element={<OutMForm/>}/>
+                        <Route path='/outS' element={<OutSForm/>}/>
                     </Route>
 
                     <Route path='ListPopup' element={<ListPopup/>}/>
@@ -79,19 +90,9 @@ function App() {
                     <Route path='/login/fPOk' element={<FindPwdOk/>}/>
                     <Route path='/login/fPOk/guidePwd' element={<GuidePwd/>}/>
 
-                    //사원 등록
-                    <Route path='/registration' element={<Registration/>}/>
-                    <Route path='/registration/registOk' element={<RegistOk/>}/>
-
                     //계정신청
-                    <Route path='/applyM' element={<ApplyMForm/>}/>
                     <Route path='/applyS' element={<ApplySForm/>}/>
                     <Route path='/ApplyOk' element={<ApplyOk/>}/>
-
-                    //계정 비활성화 신청
-                    <Route path='/outM' element={<OutMForm/>}/>
-                    <Route path='/outS' element={<OutSForm/>}/>
-                    <Route path='/OutOk' element={<OutOk/>}/>
 
                     //계정 안내(메일)
                     <Route path='/Mmail' element={<Mmail/>}/>

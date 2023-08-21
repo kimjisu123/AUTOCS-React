@@ -1,12 +1,12 @@
 import img from './loginMain.png'
 import './outMForm.css'
 import {Link} from "react-router-dom";
+import React from "react";
 
 
 const OutSForm = () => {
 
     return (
-        <div style={{backgroundColor: "#1C2C10"}}>
             <div className="border">
                 <main>
                     <img src={img} style={{ width: "145px", height: "200px", marginTop: "-150px", marginBottom: "-35px" }} />
@@ -26,11 +26,10 @@ const OutSForm = () => {
                     <h4 style={{ marginBottom: "10px", marginTop: "10px", background: "white" }}>이메일</h4>
                     <input className="lo" type="text" id="email" name="email" required />
 
-                    <Link to="/OutOk" type="button" className="regist">신청하기</Link>
-
+                    {/*신청 되었다는 알림 띄워주기 */}
+                    <button type="button" className="regist">신청하기</button>
                 </main>
             </div>
-        </div>
     )
 }
 

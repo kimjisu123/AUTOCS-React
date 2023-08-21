@@ -58,6 +58,11 @@ main {
     outline: none;
 }
 
+.fixed-select {
+    width: 20%;
+    box-sizing: border-box; /* 너비를 테두리를 포함한 크기로 설정 */
+}
+
 
 
 

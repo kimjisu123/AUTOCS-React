@@ -12,7 +12,6 @@ const OutMForm = () => {
     const [selectedDate, setSelectedDate] = useState(null);
 
     return (
-        <div style={{backgroundColor: "#1C2C10"}}>
             <div className="border">
                 <main>
                     <img src={img} style={{ width: "145px", height: "200px", marginTop: "-150px", marginBottom: "-35px"}} />
@@ -54,15 +53,16 @@ const OutMForm = () => {
                         <option value="GaJang">과장</option>
                         <option value="DaeRi">대리</option>
                         <option value="SaWon">사원</option>
+                        <option value="Intern">인턴</option>
                     </select>
 
                     <h4 style={{ marginBottom: "10px", marginTop: "10px", background: "white" }}>퇴사 사유</h4>
                     <input className="reson" type="text" id="reson" name="reson" required />
 
-                    <Link to="/OutOk" type="button" className="regist" style={{marginTop: "10px"}}>신청하기</Link>
+                    {/*신청 되었다는 알림 띄워주기 */}
+                    <button type="button" className="regist">신청하기</button>
                 </main>
             </div>
-        </div>
     )
 }
 
