@@ -38,7 +38,7 @@ main {
     margin-top:  -10px;
 }
 
-#pos {
+select {
     width: 50%;
     padding: 8px;
     border: 1px solid #1C2C10;
@@ -49,18 +49,14 @@ main {
     outline: none;
 }
 
-.date-pickers {
+input.reson{
     width: 350px;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #1C2C10;
     border-radius: 5px;
     outline: none;
-}
-
-.fixed-select {
-    width: 20%;
-    box-sizing: border-box; /* 너비를 테두리를 포함한 크기로 설정 */
+    height: 70px;
 }
 
 

@@ -1,23 +1,37 @@
-import React from 'react'
-import FullCalendar from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
+import React, { Component } from "react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import FullCalendar from '@fullcalendar/react';
 
-export default class DemoApp extends React.Component {
-  render() {
-    return (
-      <FullCalendar
-        plugins={[ dayGridPlugin ]}
-        eventContent={renderEventContent}
-      />
-    )
-  }
-}
+export default class DashBoard extends Component {
+    constructor(props){
+        super(props);
+    }
+    dateClick=(info)=>{          // 모달창을 보여주는 이벤트로 변경
+        alert(info.dateStr)
+    }
 
-function renderEventContent(eventInfo) {
-  return (
-    <>
-      <b>{eventInfo.timeText}</b>
-      <i>{eventInfo.event.title}</i>
-    </>
-  )
+    render() {
+        return(
+            <>
+                <div style={{ margin:15, display:'grid',gridTemplateColumns:"2fr 1fr"}}>
+                    <FullCalendar
+                        plugins={[dayGridPlugin,timeGridPlugin,interactionPlugin]}
+                        initialView={'dayGridMonth'}
+                        headerToolbar={
+                            {
+                                start: 'today',
+                                center: 'title',
+                                end: 'prev,next'
+                            }
+                        }
+                        height={"85vh"}
+                        dateClick={this.dateClick}
+                        events={[{title:'판매건수 : 23건', date:'2023-05-11',},{title:'판매건수 : 23건',date:'2023-05-13',}]} // ajax데이터를 가져오는 곳
+                    />
+                </div>
+            </>
+        );
+    }
 }
