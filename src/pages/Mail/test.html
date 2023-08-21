@@ -3,58 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Document</title>
 </head>
 <body>
-    <div style="width: 1300px; height: 300px; border: 1px solid black;">
-        <!-- 헤더 -->
-        <div style="display: flex; margin: 0px auto;">
-            <div style="margin-left: 49px;">
-                일정 상세
+    <div style="position: relative;">
+        <div style="width: 950px; height: 500px; border: 1px solid black; position: absolute; left: 50%; margin: 5% 0 0 -25%;" >
+            <!-- 헤더 -->
+            <div style="display: flex; margin: 0px auto; ">
+                <h1 style="margin-left: 49px;">
+                    일정 상세
+                </h1>
+                <div style="margin: 17px 40px 0px auto; font-size: 30px; cursor: pointer;">
+                    x
+                </div>
+            </div>            
+            <input type="text" style="border: 1px solid black; width: 850px; margin-left: 50px; height: 30px;" placeholder="일정이름">
+            <div style="display: flex;">
+                <div style="margin-left: 50px;">
+                    시작일자 
+                </div>
+                <div>
+                    (시작시간)
+                </div>
+                <div>
+                    종료일자 
+                </div>
+                <div>
+                    (종료시간)
+                </div>
             </div>
-            <div style="margin-left: auto;">
-                x
+            <input type="text" style="border: 1px solid black; width: 850px; margin-left: 50px; height: 30px;" placeholder="장소">
+            <div style="margin-left: 50px; width: 850px; height: 250px; border: 1px solid black; margin-top: 20px;">
+                내용
             </div>
-        </div>
-        <div style="border: 1px solid black; width: 1200px; margin: 0px auto;">
-            일정이름
-        </div>
-        <div style="display: flex;">
-            <div>
-                시작일자 
-            </div>
-            <div>
-                (시작시간)
-            </div>
-            <div>
-                종료일자 
-            </div>
-            <div>
-                (종료시간)
-            </div>
-        </div>
-        <div>
-            장소
-        </div>
-        <div>
-            내용
         </div>
     </div>
 
-    <div style="width: 1300px; height: 500px; border: 1px solid black;">
+
+    <div style="width: 950px; height: 850px; border: 1px solid black; position: absolute; left: 50%; margin: 5% 0 0 -25%; ">
         <!-- 헤더 -->
-        <div style="display: flex; margin: 0px auto;">
-            <div style="margin-left: 49px;">
+        <div style="display: flex; margin: 0px auto; ">
+            <h1 style="margin-left: 49px;">
                 일정 상세
-            </div>
-            <div style="margin-left: auto;">
+            </h1>
+            <div style="margin: 17px 40px 0px auto; font-size: 30px; cursor: pointer;">
                 x
             </div>
-        </div>
-        <div style="border: 1px solid black; width: 1200px; margin: 0px auto;">
-            일정이름
-        </div>
-        <div style="display: flex;">
+        </div>  
+        <input type="text" style="border: 1px solid black; width: 850px; margin-left: 50px; height: 30px;" placeholder="일정이름">
+        <div style="display: flex; margin-left: 50px;">
             <div>
                 시작일자 
             </div>
@@ -68,38 +66,41 @@
                 (종료시간)
             </div>
         </div>
-        <div>
-            장소
-        </div>
-        <div>
+        <input type="text" style="border: 1px solid black; width: 850px; margin-left: 50px; height: 30px;" placeholder="장소">
+        <div style="margin-left: 50px; width: 850px; height: 250px; border: 1px solid black; margin-top: 20px;">
             내용
         </div>
-        <div style="width: 1000px; height: 300px; border: 1px solid black;">
-            <div style="border-bottom: 1px solid black;">
+        <div style="width: 850px; height: 300px; border: 1px solid black; margin: 0 auto; margin-top: 30px;">
+            <h3 style="margin: 10px 0px 10px 10px ;">
                 댓글
-            </div>
-            <div>
-                <div>
-                    댓글쓰기
+            </h3>
+            <div style="border-top: 1px solid black;">
+                <div style="padding: 10px 0px 10px 10px; border-bottom: 1px solid black;">
+                    댓글 1번
                 </div>
-                <div style="display: flex;">
-                    <div style="width: 600px; height: 60px; border: 1px solid black;">
-                        댓글 내용
+                <div style="padding: 10px 0px 10px 10px; border-bottom: 1px solid black;">
+                    댓글 2번
+                </div>
+                <div>
+                    <div style="margin: 10px 0px 0px 10px;"">
+                        댓글 쓰기
                     </div>
-                    <div>
-                        작성하기
-                    </div>
-                </div>  
+                    <div style="display: flex; margin-top: 10px;">
+                        <input type="text" style="width: 600px; height: 60px; border: 1px solid black; margin: 10px 0px 10px 10px;" placeholder="댓글쓰기">
+                        <input type="submit" style="margin: 10px 0px 10px 10px;"" value="제출하기">
+                    </div>  
+                </div>
             </div>
         </div>
-        <div style="display: flex;">
-            <div>
+        <div style="display: flex; margin-top: 25px;">
+            <div style="margin-left: auto; border: 1px solid black;">
                 수정하기
             </div>
-            <div>
+            <div style="margin: 0px 50px 0px 30px; border: 1px solid black;">
                 삭제하기
             </div>
         </div>
     </div>
+
 </body>
 </html>
