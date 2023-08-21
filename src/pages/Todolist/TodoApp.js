@@ -5,7 +5,7 @@ import {useCallback, useRef, useState} from "react";
 const TodoApp = () => {
 
     const [todos, setTodos ] = useState([
-
+    // 초기값.
         {
             id:1,
             text:'내일 까지 보고 하기 ',
@@ -23,8 +23,10 @@ const TodoApp = () => {
         },
     ]);
 
+    // 고유 아이디 붙여주기
     const nextId = useRef(4);
 
+    // 입력 값 전달.
     const onInsert = useCallback(   // 값을 보낼때는 useCallback을 사용하여 성능 향상
         text => {
             const todo = {
@@ -38,10 +40,29 @@ const TodoApp = () => {
 
     );
 
+    //  할일 지우기 함수 filter 사용
+    const onRemove = useCallback(
+        id => {
+            setTodos(todos.filter(todo => todo.id !== id));
+        },[todos],
+    );
+
+    // 할일 체크 함수
+    const onToggle = useCallback(
+        id => {
+            setTodos(
+                todos.map(todo =>
+                todo.id === id? { ...todo, checked: !todo.checked} : todo,
+                ),
+            );
+        },[todos],
+    );
+
+
     return(
         <TodoTemplate>
             <TodoInsert onInsert={onInsert}/>
-            <TodoList todos={todos}/>
+            <TodoList todos={todos} onRemove={ onRemove } onToggle={onToggle}/>
         </TodoTemplate>
         )
 
