@@ -2,39 +2,35 @@ import StockCSS from './Stock.module.css'
 
 function showPopup() { window.open('/ListPopup', "a", "width=400, height=600, left=100, top=50"); }
 
-function StockIo() {
+function OrderList() {
 
-    const onClickRegistHadler= () => {
-        alert('등록하시겠습니까?');
+    const onClickPermitHadler= () => {
+        alert('승인하시겠습니까?');
     }
 
-    const onClickUseHadler= () => {
-        alert('사용 등록하시겠습니까?');
-    }
-
-    const onClickUnuseHadler= () => {
-        alert('미사용 등록하시겠습니까?');
+    const onClickRejustHadler= () => {
+        alert('반려하시겠습니까?');
     }
 
     return (
         <div>
-            <div style={{display: "flex", justifyContent: "space-between"}}>
-                <div>
+            <div className={StockCSS.headLine}>신청내역관리</div>
+            <div className={StockCSS.contentsHeader}>
+                <div className={StockCSS.datebox}>
                     <div>조회기간</div>
                     <input className={StockCSS.dateSelectbox} type="date"/>
                     <div>~</div>
                     <input className={StockCSS.dateSelectbox} type="date"/>
                 </div>
 
-                <div>
+                <div className={StockCSS.contentsHeader}>
                     <div>영업점</div>
-                    <input type="text" placeholder="영업점을 조회하세요"/>
+                    <input className={StockCSS.searchbox} type="text" placeholder="영업점을 조회하세요"/>
                     <button>조회</button>
                 </div>
-
-                <div>
+                <div className={StockCSS.contentsHeader}>
                     <div>상태</div>
-                    <select>
+                    <select className={StockCSS.selectbox}>
                         <option value="wait">대기</option>
                         <option value="cancel">취소</option>
                         <option value="reject">반려</option>
@@ -43,12 +39,8 @@ function StockIo() {
                     </select>
                 </div>
             </div>
-            <div>
-                <button onClick={ onClickUseHadler }>사용</button>
-                <button onClick={ onClickUnuseHadler }>미사용</button>
-            </div>
 
-            <div style={{marginTop: "5%"}}>
+            <div style={{marginTop: "1%"}}>
                 <table >
                     <tr>
                         <th>거래<br/>번호</th>
@@ -93,9 +85,13 @@ function StockIo() {
                         <td><input type="checkbox"/></td>
                     </tr>
                 </table>
+                <div style={{display: "flex", justifyContent: "flex-end", marginTop: "1%"}}>
+                    <button style={{marginRight: "10px"}} onClick={ onClickPermitHadler }>승인</button>
+                    <button onClick={ onClickRejustHadler }>반려</button>
+                </div>
             </div>
         </div>
     )
 }
 
-export default StockIo;
+export default OrderList;

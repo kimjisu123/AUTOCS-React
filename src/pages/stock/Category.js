@@ -6,9 +6,16 @@ function Category() {
         alert('등록하시겠습니까?');
     }
 
+    const onClickUseHadler= () => {
+        alert('사용 등록하시겠습니까?');
+    }
+
+    const onClickUnuseHadler= () => {
+        alert('미사용 등록하시겠습니까?');
+    }
     return(
         <div>
-            <div className={StockCSS.headLine}>카테고리 신규등록</div>
+            <div className={StockCSS.headLine}>카테고리 관리</div>
             <table>
                 <tr>
                     <td>
@@ -23,25 +30,31 @@ function Category() {
                 </tr>
             </table>
             <div style={{marginTop: "5%"}}>
-                <div className={StockCSS.middleLine}>카테고리 목록</div>
+                <div className={StockCSS.middleLine}>
+                    카테고리 목록
+                    <div>
+                        <button style={{marginRight: "10px"}} onClick={ onClickUseHadler }>사용</button>
+                        <button onClick={ onClickUnuseHadler }>미사용</button>
+                    </div>
+                </div>
                 <table>
                     <tr>
                         <th>NO</th>
                         <th>카테고리명</th>
-                        <th>등록일</th>
-                        <th>불용일</th>
+                        <th>사용여부</th>
+                        <th>상태변경</th>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td>식품</td>
-                        <td>2023-07-01</td>
-                        <td></td>
+                        <td>사용</td>
+                        <td><input type="checkbox"/></td>
                     </tr>
                     <tr>
                         <td>2</td>
                         <td>소모품</td>
-                        <td>2023-08-01</td>
-                        <td>2023-08-04</td>
+                        <td>사용</td>
+                        <td><input type="checkbox"/></td>
                     </tr>
                 </table>
             </div>

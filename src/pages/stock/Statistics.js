@@ -1,10 +1,10 @@
 import StockCSS from './Stock.module.css'
 
-function Check() {
+function Statistics() {
 
     return (
         <div>
-            <div className={StockCSS.headLine}>재고조회</div>
+            <div className={StockCSS.headLine}>매출통계</div>
             <div className={StockCSS.contentsHeader}>
                 <div className={StockCSS.datebox}>
                     <div>조회기간</div>
@@ -28,13 +28,12 @@ function Check() {
                         <th>품목명</th>
                         <th>규격</th>
                         <th>단위</th>
-                        <th>적정<br/>재고</th>
-                        <th className={StockCSS.mainline}>현재<br/>재고</th>
                         <th>기간<br/>입고</th>
                         <th>기간<br/>출고</th>
                         <th>기간<br/>폐기</th>
+                        <th className={StockCSS.mainline}>매출<br/>수량</th>
                         <th>단가</th>
-                        <th>비고</th>
+                        <th>합계<br/>매출</th>
                     </tr>
                     <tr>
                         <td>1</td>
@@ -43,12 +42,11 @@ function Check() {
                         <td>10kg</td>
                         <td>EA</td>
                         <td>100</td>
-                        <td className={StockCSS.mainline}>70</td>
-                        <td>50</td>
-                        <td>30</td>
-                        <td>-</td>
+                        <td>140</td>
+                        <td>5</td>
+                        <td className={StockCSS.mainline}>35</td>
                         <td>12,000</td>
-                        <td>-</td>
+                        <td>420,000</td>
                     </tr>
                     <tr>
                         <td>2</td>
@@ -57,12 +55,15 @@ function Check() {
                         <td>10kg</td>
                         <td>EA</td>
                         <td>100</td>
-                        <td className={StockCSS.mainline}>70</td>
-                        <td>50</td>
-                        <td>30</td>
-                        <td>-</td>
+                        <td>70</td>
+                        <td>5</td>
+                        <td className={StockCSS.mainline}>35</td>
                         <td>12,000</td>
-                        <td>-</td>
+                        <td>420,000</td>
+                    </tr>
+                    <tr>
+                        <td colSpan={10}>매출합계</td>
+                        <td>840,000</td>
                     </tr>
                 </table>
             </div>
@@ -70,4 +71,4 @@ function Check() {
     )
 }
 
-export default Check;
+export default Statistics;

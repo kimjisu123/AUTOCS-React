@@ -2,7 +2,7 @@ import StockCSS from './Stock.module.css'
 
 function showPopup() { window.open('/ListPopup', "a", "width=400, height=600, left=100, top=50"); }
 
-function Product() {
+function Order() {
 
     const onClickRegistHadler= () => {
         alert('등록하시겠습니까?');
@@ -10,14 +10,14 @@ function Product() {
 
     return(
         <div>
-            <div className={StockCSS.headLine}>물품 신규등록</div>
+            <div className={StockCSS.headLine}>발주 신청</div>
             <table>
                 <tr>
                     <td>
-                        카테고리
+                        품목명
                     </td>
                     <td>
-                        <input className={StockCSS.readOnlybox} type="text" placeholder="카테고리를 조회하세요" readOnly/>
+                        <input type="text" placeholder="품목명을 조회하세요" readOnly/>
                     </td>
                     <td>
                         <button onClick={()=> showPopup()}>조회</button>
@@ -25,10 +25,10 @@ function Product() {
                 </tr>
                 <tr>
                     <td>
-                        품목명
+                        CODE
                     </td>
                     <td>
-                        <input type="text"/>
+                        <input className={StockCSS.readOnlybox}  type="text"/>
                     </td>
                     <td>
                     </td>
@@ -38,10 +38,9 @@ function Product() {
                         규격
                     </td>
                     <td>
-                        <input className={StockCSS.readOnlybox} type="selectbox" placeholder="규격을 조회하세요" readOnly/>
+                        <input className={StockCSS.readOnlybox} type="text" placeholder="규격을 조회하세요" readOnly/>
                     </td>
                     <td>
-                        <button onClick={()=> showPopup()}>조회</button>
                     </td>
                 </tr>
                 <tr>
@@ -52,7 +51,6 @@ function Product() {
                         <input className={StockCSS.readOnlybox} type="text" placeholder="단위를 조회하세요" readOnly/>
                     </td>
                     <td>
-                        <button onClick={()=> showPopup()}>조회</button>
                     </td>
                 </tr>
                 <tr>
@@ -91,4 +89,4 @@ function Product() {
     )
 }
 
-export default Product;
+export default Order;

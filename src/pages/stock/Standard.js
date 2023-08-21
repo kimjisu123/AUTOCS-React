@@ -34,10 +34,9 @@ function Standard() {
                 <div className={StockCSS.middleLine}>
                     규격 목록
                     <div>
-                        <button onClick={ onClickUseHadler }>사용</button>
+                        <button style={{marginRight: "10px"}} onClick={ onClickUseHadler }>사용</button>
                         <button onClick={ onClickUnuseHadler }>미사용</button>
                     </div>
-
                 </div>
 
                 <table>

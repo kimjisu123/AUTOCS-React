@@ -30,15 +30,23 @@ import HeadOffice from "./pages/managementPage/HeadOffice"
 import Mail from "./pages/managementPage/Mail"
 
 //미지
+//재고관리
 import Stock from './pages/stock/Stock'
-import Category from "./pages/stock/Category";
+import ListPopup from "./pages/stock/ListPopup";
+import ReciptPopup from "./pages/stock/ReciptPopup";
 import Check from "./pages/stock/Check";
-import Product from "./pages/stock/Product";
+import OrderList from "./pages/stock/OrderList";
+import Bill from "./pages/stock/Bill";
+import Statistics from "./pages/stock/Statistics";
+import BillDetail from "./pages/stock/BillDetail";
+import StockIo from "./pages/stock/StockIo";
+import ProductDelete from "./pages/stock/ProductDelete";
+import ProductRegist from "./pages/stock/ProductRegist";
+import Category from "./pages/stock/Category";
 import Standard from "./pages/stock/Standard";
 import Unit from "./pages/stock/Unit";
-import ListPopup from "./pages/stock/ListPopup";
-import StockIo from "./pages/stock/StockIo";
-import OrderList from "./pages/stock/OrderList";
+import Order from "./pages/stock/Order";
+
 
 function App() {
     return (
@@ -59,15 +67,21 @@ function App() {
                         <Route path='/stock' element={<Stock/>}>
                             <Route path='check' element={<Check/>}/>
                             <Route path='orderlist' element={<OrderList/>}/>
+                            <Route path='bill' element={<Bill/>}/>
+                            <Route path='bill/detail' element={<BillDetail/>}/>
+                            <Route path='statistics' element={<Statistics/>}/>
                             <Route path='stockio' element={<StockIo/>}/>
+                            <Route path='productregist' element={<ProductRegist/>}/>
+                            <Route path='productdelete' element={<ProductDelete/>}/>
                             <Route path='category' element={<Category/>}/>
-                            <Route path='product' element={<Product/>}/>
                             <Route path='standard' element={<Standard/>}/>
                             <Route path='unit' element={<Unit/>}/>
+                            <Route path='order' element={<Order/>}/>
                         </Route>
                     </Route>
 
                     <Route path='ListPopup' element={<ListPopup/>}/>
+                    <Route path='ReciptPopup' element={<ReciptPopup/>}/>
 
                     //해든
                     //로그인, 아이디비밀번호찾기, 안내등

@@ -65,6 +65,12 @@
     background-color: lightgray;
 }
 
+.selectbox{
+    width: 100px;
+    height:10px;
+    marginLeft: 10px;
+}
+
 
 
 
@@ -106,3 +112,28 @@ tr{
     text-align: center;
 }
 
+/* 세금계산서 테이블 */
+.billTable{
+    border: 3px solid blue;
+}
+
+.billTable th, .billTable td{
+    border: 2px solid blue;
+}
+
+.reciptTable{
+    border: 3px solid limegreen;
+}
+
+.reciptTable th, .reciptTable td{
+    border: 2px solid limegreen;
+}
+
+.reciptbox {
+    padding: 2%;
+    width: 1000px;
+    height: 100%;
+    margin: 3%;
+    background-color: white;
+    text-align: center;
+}
