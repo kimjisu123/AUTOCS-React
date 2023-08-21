@@ -1,5 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./pages/layouts/layout";
+import React from 'react';
+import { Provider } from 'react-redux';
+import store from './modules/store';
+
 //지호
 import Approval from './pages/approvalPage/Approval'
 
@@ -42,7 +46,7 @@ import OrderList from "./pages/stock/OrderList";
 
 function App() {
     return (
-        <>
+        <Provider store={store}>
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<Layout/>}>
@@ -97,10 +101,9 @@ function App() {
                     //계정 안내(메일)
                     <Route path='/Mmail' element={<Mmail/>}/>
                     <Route path='/Smail' element={<Smail/>}/>
-
               </Routes>
           </BrowserRouter>
-      </>
+        </Provider>
   );
 }
 
