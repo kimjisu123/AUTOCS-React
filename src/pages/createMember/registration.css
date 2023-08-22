@@ -1,0 +1,68 @@
+.border {
+    width: 40%;
+    margin: auto;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height: 100vh;
+}
+
+.regist {
+    background-color: #26361B;
+    color: #FFF;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+    width: 375px;
+    text-align: center;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    margin-top: 30px;
+}
+
+.regist:hover {
+    background-color: #1C2716;
+}
+
+.separator {
+    border-bottom: 1px solid #1C2C10;
+    margin-bottom: 20px;
+    margin-top:  -10px;
+}
+
+#pos {
+    width: 50%;
+    padding: 8px;
+    border: 1px solid #1C2C10;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+}
+
+.date-pickers {
+    width: 350px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #1C2C10;
+    border-radius: 5px;
+    outline: none;
+}
+
+.fixed-select {
+    width: 20%;
+    box-sizing: border-box; /* 너비를 테두리를 포함한 크기로 설정 */
+}
+
+
+
+
