@@ -1,0 +1,21 @@
+
+.customModalStyle {
+    position: absolute;
+    inset: 40px;
+    overflow: auto;
+    border-radius: 4px;
+    outline: none;
+    padding: 20px;
+    display: contents;
+    z-index: 999;
+}
+.overlay {
+
+    position: fixed;
+
+}
+
+
+
+
+

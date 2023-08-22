@@ -1,5 +1,7 @@
-import style from './MypageEmp.module.css';
-import empimg from './emp.jpg';
+import {NavLink} from "react-router-dom";
+import React from "react";
+import UpdatePW from "./UpdatePwd/UpdatePW";
+
 function MypageEmpMenubar(){
 
     return (
@@ -10,7 +12,9 @@ function MypageEmpMenubar(){
                     사원 정보
                 </div>
                 <div className="purchase">사원정보 변경</div>
-                <div className="traffic">비밀번호 변경</div>
+                <div className="purchase">비밀번호 변경
+                    {/*<NavLink to=<UpdatePW /> className="upadatepw"/>*/}
+                </div>
             </div>
         </>
 

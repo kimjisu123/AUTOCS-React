@@ -1,25 +1,22 @@
 import './Header.css'
 import img from './logo-black1.png'
 import { NavLink } from 'react-router-dom';
-import {useEffect, useState} from "react";
+import React, { useState } from "react";
+import Modal from 'react-modal';
+import TodoApp from "../Todolist/TodoApp";
+import './CoustomModal.css';
+import { useUserContext } from "../Todolist/TodoContext";
 
-
-const Header = ( todos ) => {
+const Header = () => {
 
     const activestyle = {
 
         backgroundColor: '#8d8a6d'
     }
 
-    // const modal = () => {
-    //     const [isModalOpen, setIsModalOpen] = useState(false);
-    //     if(isModalOpen !== true) { const openModal = () => {
-    //         setIsModalOpen(true);
-    //     }; }
-    //     if(isModalOpen !== false) { const closeModal = () => {
-    //         setIsModalOpen(false);
-    //     };}
-
+    // 모달 값
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const { todos, setTodos } = useUserContext(); // Use todos and setTodos from the context
 
 
         return (
@@ -34,7 +31,7 @@ const Header = ( todos ) => {
                     </div>
                 </div></NavLink>
                 <div style={{display: "flex", justifyContent: "space-between", width: "100%", paddingRight: "10px"}}>
-                    <NavLink to="/" style={({isActive}) => isActive? activestyle:undefined} className="home">
+                    <NavLink to="/home" style={({isActive}) => isActive? activestyle:undefined} className="home">
                         홈
                     </NavLink>
                     <NavLink to="/dashborad" style={({isActive}) => isActive? activestyle:undefined} className="dashboard">
@@ -52,7 +49,8 @@ const Header = ( todos ) => {
                     <NavLink to="management" style={({isActive}) => isActive? activestyle:undefined} className="management">
                         근태관리
                     </NavLink>
-                    <NavLink to="todo" style={({isActive}) => isActive? activestyle:undefined} className="todo">
+                    <NavLink to="" style={({isActive}) => isActive? activestyle:undefined} className="todo"
+                             onClick={()=> setModalIsOpen(true)}>
                         +Todo
                     </NavLink>
                     <NavLink to="stock" style={({isActive}) => isActive? activestyle:undefined} className="stock">
@@ -66,6 +64,19 @@ const Header = ( todos ) => {
                     </NavLink>
                 </div>
             </div>
+
+            {/*투두 리스트 모달창으로 띄우기 */}
+            {modalIsOpen && (
+                <Modal
+                    isOpen={modalIsOpen}
+                    onRequestClose={() => setModalIsOpen(false)}
+                    className="customModalStyle"
+                    // contentLabel="Modal"
+                >
+                        <TodoApp todo={ todos } setTodo={ setTodos } />
+                </Modal>
+            )}
+
         </div>
 
 

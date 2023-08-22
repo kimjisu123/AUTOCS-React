@@ -14,6 +14,7 @@
     /*margin-bottom: 30px;*/
     transition: all 0.5s;
     transition-delay: 0.4s;
+    background: white;
 }
 
 .appTitle {
@@ -27,10 +28,10 @@
     justify-content: center;
 }
 
-.content {
-    background: white;
+/*.content {*/
+/*    background: white;*/
 
-}
+/*}*/
 
 
 .todoCount {

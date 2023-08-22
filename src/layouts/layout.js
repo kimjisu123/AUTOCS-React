@@ -1,15 +1,20 @@
 import { Outlet } from "react-router-dom";
 import Header from "../pages/compoments/Header";
 import Footer from "../pages/compoments/Footer";
-import {useState} from "react";
+import { UserProvider } from "../pages/Todolist/TodoContext";
+
 
 function Layout() {
 
+
+
     return (
         <>
-            <Header />
-            <Outlet />
-            <Footer/>
+            <UserProvider>
+                <Header />
+                <Outlet />
+                <Footer/>
+            </UserProvider>
         </>
     )
 }
