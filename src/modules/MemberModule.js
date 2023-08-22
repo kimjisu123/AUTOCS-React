@@ -14,11 +14,11 @@ const actions = createActions({
 
 //리듀서
 const memberReducer = handleActions(
-    {
-        [ADD_EMPLOYEE]: (state, { payload }) => {
-            return { ...state, employeeData: payload };
-        }
-    },
+    // {
+    //     [ADD_EMPLOYEE]: (state, { payload }) => {
+    //         return { ...state, employeeData: payload };
+    //     }
+    // },
     {
         [GET_EMPLOYEE]: (state, { payload }) => {
             return payload;

@@ -3,19 +3,6 @@ import { useState, useEffect } from 'react'
 import axios from 'axios';
 function MailContent(){
 
-    const { result, setResult } = useState([]);
-
-    useEffect(() => {
-        axios.get('http://localhost:8080/mail')
-            .then(response => {
-                setResult(response.data.data);
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
-    },[])
-
-
     return(
         <div className={styles.content}>
             <div className={styles.mainHeader}>
@@ -38,7 +25,8 @@ function MailContent(){
                 </div>
                 <div className={styles.noteHeader}>
                     <div style={{marginBottom: "5px"}}>
-                        [알림] '마장웅 상무'이(가) 작성한 '합의 테스트'이(가) 완료되었습니다. (쪽지 제목) {result.}
+                        Accept: application/json
+                        [알림] '마장웅 상무'이(가) 작성한 '합의 테스트'이(가) 완료되었습니다. (쪽지 제목)
                     </div>
                     <div style={{display: "flex"}}>
                         <div style={{color: "gray"}}>
