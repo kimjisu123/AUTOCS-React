@@ -1,8 +1,31 @@
 import StockCSS from './Stock.module.css'
+import { useNavigate, useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+
+import {
+    callProductAPI
+} from '../../apis/StockAPICalls';
 
 function showPopup() { window.open('/ListPopup', "a", "width=400, height=600, left=100, top=50"); }
 
 function ProductDelete() {
+
+    // const dispatch = useDispatch();
+    // const navigate = useNavigate();
+    // const params = useParams();
+    // const product  = useSelector(state => state.stockReducer);
+    //
+    // const [amount, setAmount] = useState(1);
+    // const [loginModal, setLoginModal] = useState(false);
+    //
+    // useEffect(
+    //     () => {
+    //         dispatch(callProductAPI());
+    //     }
+    //     ,[]
+    // );
+
 
     const onClickRegistHandler= () => {
         alert('등록하시겠습니까?');
@@ -11,7 +34,7 @@ function ProductDelete() {
     return(
         <div>
             <div className={StockCSS.headLine}>물품 불용등록</div>
-            <table>
+            <table className={StockCSS.stockTable}>
                 <tr>
                     <td>
                         물품명
@@ -39,7 +62,12 @@ function ProductDelete() {
                 <div className={StockCSS.middleLine}>
                     물품 목록
                 </div>
-                <table>
+                {/*{product.name}*/}
+                <div>
+
+                </div>
+
+                <table className={StockCSS.stockTable}>
                     <tr>
                         <th>NO</th>
                         <th>카테고리명</th>

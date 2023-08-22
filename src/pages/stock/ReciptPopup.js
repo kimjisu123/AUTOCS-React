@@ -6,7 +6,7 @@ function ReciptPopup() {
         <>
             <div className={StockCSS.listbox}>
                 <div className={StockCSS.reciptbox}>
-                <h1>거래명세서</h1>
+                <h1>거래명세표</h1>
                     <div>
                         <table className={StockCSS.reciptTable}>
                             <tr style={{color: "limegreen"}}>

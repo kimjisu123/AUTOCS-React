@@ -75,20 +75,20 @@
 
 
 /* 테이블 */
-table {
+.stockTable {
     width: 100%;
     border-collapse: collapse;
     border: 1px solid #ccc;
     margin-top: 2%;
 }
 
-th, td {
+.stockTable th, .stockTable td {
     padding: 10px;
     border: 1px solid #ccc;
     text-align: center;
 }
 
-tr{
+.stockTable tr{
     white-space: pre-line;
 }
 

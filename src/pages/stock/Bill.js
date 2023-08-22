@@ -24,7 +24,7 @@ function Bill() {
             </div>
 
             <div style={{marginTop: "1%"}}>
-                <table>
+                <table className={StockCSS.stockTable}>
                     <tr>
                         <th>NO</th>
                         <th>거래번호</th>
