@@ -38,7 +38,7 @@ function MailContent(){
                 </div>
                 <div className={styles.noteHeader}>
                     <div style={{marginBottom: "5px"}}>
-                        [알림] '마장웅 상무'이(가) 작성한 '합의 테스트'이(가) 완료되었습니다. (쪽지 제목)
+                        [알림] '마장웅 상무'이(가) 작성한 '합의 테스트'이(가) 완료되었습니다. (쪽지 제목) {result.}
                     </div>
                     <div style={{display: "flex"}}>
                         <div style={{color: "gray"}}>
