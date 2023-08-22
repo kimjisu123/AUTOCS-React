@@ -1,5 +1,10 @@
 import StockCSS from './Stock.module.css'
 
+import {
+    callProductListAPI
+} from '../../apis/StockAPICalls'
+import Product from "../compoments/stock/Product";
+
 function Category() {
 
     const onClickRegistHandler= () => {

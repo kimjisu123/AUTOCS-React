@@ -1,30 +1,49 @@
 import StockCSS from './Stock.module.css'
-import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { Navigate } from "react-router-dom";
 
 import {
-    callProductAPI
-} from '../../apis/StockAPICalls';
+    callProductListAPI
+} from '../../apis/StockAPICalls'
+import Product from "../compoments/stock/Product";
 
 function showPopup() { window.open('/ListPopup', "a", "width=400, height=600, left=100, top=50"); }
 
 function ProductDelete() {
 
-    // const dispatch = useDispatch();
-    // const navigate = useNavigate();
-    // const params = useParams();
-    // const product  = useSelector(state => state.stockReducer);
-    //
-    // const [amount, setAmount] = useState(1);
-    // const [loginModal, setLoginModal] = useState(false);
-    //
-    // useEffect(
-    //     () => {
-    //         dispatch(callProductAPI());
-    //     }
-    //     ,[]
-    // );
+    /*******************************************************************************/
+
+
+    // 리덕스를 이용하기 위한 디스패처, 셀렉터 선언
+    const dispatch = useDispatch();
+    const products = useSelector(state => state.stockReducer);
+    const productList = products.data;
+
+    const pageInfo = products.pageInfo;
+
+    const [start, setStart] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [pageEnd, setPageEnd] = useState(1);
+
+    const pageNumber = [];
+    if(pageInfo){
+        for(let i = 1; i <= pageInfo.pageEnd ; i++){
+            pageNumber.push(i);
+        }
+    }
+
+    useEffect(
+        () => {
+            setStart((currentPage - 1) * 5);
+            dispatch(callProductListAPI({
+                currentPage: currentPage
+            }));
+        }
+        ,[currentPage]
+    );
+
+    /*******************************************************************************/
 
 
     const onClickRegistHandler= () => {
@@ -34,6 +53,8 @@ function ProductDelete() {
     return(
         <div>
             <div className={StockCSS.headLine}>물품 불용등록</div>
+
+
             <table className={StockCSS.stockTable}>
                 <tr>
                     <td>
@@ -58,50 +79,61 @@ function ProductDelete() {
                     </td>
                 </tr>
             </table>
+
             <div style={{marginTop: "5%"}}>
+
                 <div className={StockCSS.middleLine}>
                     물품 목록
                 </div>
-                {/*{product.name}*/}
-                <div>
 
+                <div>
+                    <table className={StockCSS.stockTable}>
+                        <tr>
+                            <th>CODE</th>
+                            <th>카테고리명</th>
+                            <th>품목명</th>
+                            <th>규격</th>
+                            <th>단위</th>
+                            <th>적정재고</th>
+                            <th>단가</th>
+                            <th>비고</th>
+                            <th>등록일</th>
+                            <th>불용일</th>
+                            <th>사용상태</th>
+                        </tr>
+                    {
+                        Array.isArray(productList) && productList.map((product) => (<Product key={ product.productNo } product={ product } />))
+                    }
+                    </table>
                 </div>
 
-                <table className={StockCSS.stockTable}>
-                    <tr>
-                        <th>NO</th>
-                        <th>카테고리명</th>
-                        <th>품목명</th>
-                        <th>규격</th>
-                        <th>단위</th>
-                        <th>적정재고</th>
-                        <th>단가</th>
-                        <th>비고</th>
-                        <th>불용일</th>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>식품</td>
-                        <td>밀가루</td>
-                        <td>10kg</td>
-                        <td>EA</td>
-                        <td>100</td>
-                        <td>12,000</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>식품</td>
-                        <td>밀가루</td>
-                        <td>10kg</td>
-                        <td>EA</td>
-                        <td>100</td>
-                        <td>12,000</td>
-                        <td>-</td>
-                        <td>2023-01-01</td>
-                    </tr>
-                </table>
+                <div style={{ listStyleType: "none", display: "flex", justifyContent: "center", marginTop:"2%"}}>
+                    { Array.isArray(productList) &&
+                        <button
+                            onClick={() => setCurrentPage(currentPage - 1)}
+                            disabled={currentPage === 1}
+                        >
+                            &lt;
+                        </button>
+                    }
+                    {pageNumber.map((num) => (
+                        <li key={num} onClick={() => setCurrentPage(num)}>
+                            <button
+                                style={ currentPage === num ? {backgroundColor : '#ecead8' } : null}
+                            >
+                                {num}
+                            </button>
+                        </li>
+                    ))}
+                    { Array.isArray(productList) &&
+                        <button
+                            onClick={() => setCurrentPage(currentPage + 1)}
+                            disabled={currentPage === pageInfo.pageEnd  || pageInfo.total == 0}
+                        >
+                            &gt;
+                        </button>
+                    }
+                </div>
             </div>
         </div>
     )
