@@ -1,9 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./pages/layouts/layout";
-import React from 'react';
-import { Provider } from 'react-redux';
-import store from './modules/store';
-
 //지호
 import Approval from './pages/approvalPage/Approval'
 
@@ -28,9 +24,9 @@ import Smail from "./pages/emailGuide/Smail";
 import AccountCreate from "./pages/createMember/accountCreate";
 
 //지수
-import Management from "./pages/managementPage/Management"
-import Department from "./pages/managementPage/Department"
-import HeadOffice from "./pages/managementPage/HeadOffice"
+import Management from "./pages/management/Management"
+import Department from "./pages/management/Department"
+import HeadOffice from "./pages/management/HeadOffice"
 import Mail from "./pages/Mail/Mail"
 import Calendar from "./pages/Calendar/Calendar"
 
