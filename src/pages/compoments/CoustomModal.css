@@ -8,13 +8,14 @@
     padding: 20px;
     display: contents;
     z-index: 999;
-}
-.overlay {
-
-    position: fixed;
-
+    transform: scale(0); /* 초기 크기 설정 */
+    transition: transform 0.3s ease-in-out; /* 애니메이션 설정 */
 }
 
+.customModalStyle.isOpen {
+
+    transform: scale(1); /* 열릴 때 크기 설정 */
+}
 
 
 

@@ -14,9 +14,10 @@ const Header = () => {
         backgroundColor: '#8d8a6d'
     }
 
+
     // 모달 값
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const { todos, setTodos } = useUserContext(); // Use todos and setTodos from the context
+    const { todoModal, setTodoModal } = useUserContext(); // Use todos and setTodos from the context
 
 
         return (
@@ -73,7 +74,7 @@ const Header = () => {
                     className="customModalStyle"
                     // contentLabel="Modal"
                 >
-                        <TodoApp todo={ todos } setTodo={ setTodos } />
+                        <TodoApp todoModal={ todoModal } setTodoModal={ setTodoModal } />
                 </Modal>
             )}
 

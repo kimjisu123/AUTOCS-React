@@ -3,7 +3,6 @@ body {
 
 }
 
-
 .container {
     justify-content: center;
     max-width: 90%;
@@ -18,108 +17,17 @@ body {
     justify-content: space-between;
 }
 
-/*.logo {*/
-/*    width: 25%;*/
-/*    text-align: center;*/
-/*}*/
-
-/*.hor {*/
-/*    display: flex;*/
-/*    flex-wrap: wrap;*/
-/*    flex-direction: column;*/
-/*    align-content: center;*/
-/*}*/
-
-/*.logo img {*/
-/*    width: 40%;*/
-/*}*/
-
-/*.nav {*/
-/*    background: #2A3C1E;*/
-/*    width: 100%;*/
-/*    !* padding: 20px 30px; *!*/
-/*    !* box-sizing: border-box; *!*/
-/*    display: flex;*/
-/*    flex-wrap: wrap;*/
-/*    flex-direction: column; !* 수직 정렬 *!*/
-/*    justify-content: space-between;*/
-/*}*/
-
-/*.menubar {*/
-/*    display: flex;*/
-/*    justify-content: space-between;*/
-/*    padding: 0 130px 30px 85px;*/
-/*}*/
-
-/*.menu {*/
-/*    cursor: pointer;*/
-/*    color: rgb(255, 255, 255);*/
-/*    font-size: 1.3em;*/
-/*}*/
-
-/*#logout {*/
-/*    color: white;*/
-/*    font-size: 1em;*/
-/*    cursor: pointer;*/
-/*}*/
-
-/*.logout {*/
-/*    text-align: right;*/
-/*    padding: 20px 30px 0 0;*/
-/*}*/
-
 .mainContainer {
     display: flex;
     justify-content: space-between;
     width: 100%;
 }
 
-/*.leftContainer {*/
-/*    width: 15%;*/
-/*    display: flex;*/
-/*    flex-wrap: wrap;*/
-/*    flex-direction: column; !* 수직 정렬 *!*/
-/*    !*justify-content: first baseline;*!*/
-/*    align-content: center;*/
-/*}*/
 
 .rightContainer {
     width: 100%;
     height: 100%;
 }
-
-/*.content {*/
-/*    !*height: 860px;*!*/
-/*    !*height: 100%;*!*/
-/*    !*background-color: #ecead8;*!*/
-/*}*/
-/*.horizon {*/
-/*    border: 1.5px solid #2A3C1E;*/
-/*    width: 80%;*/
-/*}*/
-
-
-/*.profile {*/
-/*    width: 200px;*/
-/*    height: 200px;*/
-/*    border: 8px solid #2A3C1E;*/
-/*    border-radius: 50%;*/
-/*    background-color: rgb(199, 199, 199);*/
-/*    margin-bottom: 30px;*/
-/*}*/
-
-/*.profile img {*/
-
-/*    width: 100%;*/
-/*    height: 100%;*/
-/*    border-radius: 50%;*/
-/*    object-fit: cover;*/
-
-
-
-/*.leftContainer div {*/
-/*    text-align: center;*/
-/*}*/
 
 .paddingContainer {
     width: 80%;
@@ -137,8 +45,11 @@ body {
 
 .content{
 
-    display: flex;
+    border-left: 1px solid rgb(202, 202, 202);
+    min-height: 959px;
+    width: 100%;
 }
+
 
 .wrap{
 

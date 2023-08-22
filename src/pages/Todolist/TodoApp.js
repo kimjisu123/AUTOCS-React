@@ -6,7 +6,7 @@ import React from "react";
 import styles from "./TodoApp.module.css"
 
 
-const TodoApp = ({ todo , setTodo }) => {
+const TodoApp = ({ todoModal , setTodoModal } ) => {
 
     const [todos, setTodos ] = useState([
     // 초기값.

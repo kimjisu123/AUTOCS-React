@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Layout from "./pages/layouts/layout";
+// import Layout from "./pages/layouts/layout";
 import React from 'react';
 import { Provider } from 'react-redux';
 import store from './modules/store';
@@ -60,6 +60,7 @@ import MyStatistics from "./pages/stock/MyStatistics";
 import LoginLayout from "./layouts/LoginLayout";
 import Mypage from "./pages/Mypage/Mypage";
 import MainContent from "./pages/mainpage/MainContent";
+import UpdatePW from "./pages/UpdatePwd/UpdatePW";
 
 
 function App() {
@@ -72,14 +73,12 @@ function App() {
                     <Route path='/' element={<Layout/>}>
                         //지호
                         <Route path='approval' element={<Approval/>}/>
-
                         //지수
                         <Route path='management' element={<Management />} />
                         <Route path='department' element={<Department />} />
                         <Route path='headOffice' element={<HeadOffice />} />
                         <Route path='calendar' element={<Calendar />} />
                         <Route path='mail' element={<Mail />} />
-
                         //미지
                         //재고관리
                         <Route path='/stock' element={<Stock/>}>
@@ -104,7 +103,6 @@ function App() {
                             <Route path='mybill' element={<MyBill/>}/>
                             <Route path='mystatistics' element={<MyStatistics/>}/>
                         </Route>
-
                         //해든
                         <Route path='account' element={<AccountCreate/>} />
                         //사원 등록
@@ -115,13 +113,17 @@ function App() {
                         //계정 비활성화 신청
                         <Route path='/outM' element={<OutMForm/>}/>
                         <Route path='/outS' element={<OutSForm/>}/>
-                    </Route>
 
+                        //지은
+                        <Route path='/myPage' element={<Mypage/>}>
+                            <Route path='pw' element={<UpdatePW/>}/>
+                        </Route>
+                        <Route path='home' element={<MainContent/>}/>
+                    </Route>
                     //미지
                     //재고관리 팝업
                     <Route path='ListPopup' element={<ListPopup/>}/>
                     <Route path='ReciptPopup' element={<ReciptPopup/>}/>
-
                     //해든
                     //로그인, 아이디비밀번호찾기, 안내등
                     <Route path='login' element={<Login/>}/>
@@ -139,8 +141,7 @@ function App() {
                     //계정 안내(메일)
                     <Route path='/Mmail' element={<Mmail/>}/>
                     <Route path='/Smail' element={<Smail/>}/>
-                    //지은
-                    <Route path='myPage' element={<Mypage/>}/>
+
                 </Routes>
           </BrowserRouter>
         </Provider>

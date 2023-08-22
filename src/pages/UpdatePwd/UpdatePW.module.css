@@ -98,7 +98,7 @@
     height: 54px;
     border-radius: 3px;
     color: rgb(255, 255, 255);
-    background-color: #f35f4c;
+    background-color: #2A3C1E;
     border: 0px none;
 }
 
@@ -111,9 +111,9 @@
     width: 100%;
     height: 54px;
     border-radius: 3px;
-    color: #f35f4c;
+    color: #2A3C1E;
     background-color: white;
-    border: 1px solid #f35f4c;
+    border: 1px solid #2A3C1E;
 }
 
 .finding {
@@ -142,15 +142,15 @@
     width: 100%;
     height: 54px;
     border-radius: 3px;
-    color: #f35f4c;
+    color: #2A3C1E;
     background-color: white;
-    border: 1px solid #f35f4c;
+    border: 1px solid #2A3C1E;
 }
 
 .inputBox input:focus{
 
 
-    border: 2px solid #f35f4c;
+    border: 2px solid #2A3C1E;
     cursor: pointer;
 
 }
