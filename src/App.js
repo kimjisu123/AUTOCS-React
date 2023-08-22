@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./pages/layouts/layout";
 import React from 'react';
 import { Provider } from 'react-redux';
-import store from './modules/store';
+import store from './store';
 
 //지호
 import Approval from './pages/approvalPage/Approval'
