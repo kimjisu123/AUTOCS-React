@@ -13,6 +13,56 @@ import store from './modules/store';
 //지호
 import Approval from './pages/approvalPage/Approval'
 
+//해든
+//로그인 관련
+import Login from "./pages/Login/Login";
+import FindId from "./pages/Login/findId";
+import FindPwd from "./pages/Login/findPwd";
+import FindIdOk from "./pages/Login/findIdOk";
+import Registration from "./pages/createMember/registration";
+import RegistOk from "./pages/createMember/registOk";
+import ApplyMForm from "./pages/applyForm/applyMForm";
+import ApplyOk from "./pages/applyForm/applyOk";
+import FindPwdOk from "./pages/Login/findPwdOk";
+import GuideId from "./pages/Login/guideId";
+import GuidePwd from "./pages/Login/guidePwd";
+import ApplySForm from "./pages/applyForm/applySForm";
+import OutSForm from "./pages/outForm/outSForm";
+import OutMForm from "./pages/outForm/outMForm";
+import Mmail from "./pages/emailGuide/Mmail";
+import Smail from "./pages/emailGuide/Smail";
+import AccountCreate from "./pages/createMember/accountCreate";
+
+//지수
+import Management from "./pages/management/Management"
+import Department from "./pages/management/Department"
+import HeadOffice from "./pages/management/HeadOffice"
+import Mail from "./pages/Mail/Mail"
+import Calendar from "./pages/Calendar/Calendar"
+
+//미지
+//재고관리
+import Stock from './pages/stock/Stock'
+import ListPopup from "./pages/stock/ListPopup";
+import ReciptPopup from "./pages/stock/ReciptPopup";
+import Check from "./pages/stock/Check";
+import OrderList from "./pages/stock/OrderList";
+import Bill from "./pages/stock/Bill";
+import Statistics from "./pages/stock/Statistics";
+import BillDetail from "./pages/stock/BillDetail";
+import StockIo from "./pages/stock/StockIo";
+import ProductDelete from "./pages/stock/ProductDelete";
+import ProductRegist from "./pages/stock/ProductRegist";
+import Category from "./pages/stock/Category";
+import Standard from "./pages/stock/Standard";
+import Unit from "./pages/stock/Unit";
+import Order from "./pages/stock/Order";
+import MyOrderList from "./pages/stock/MyOrderList";
+import MyOrderListDetail from "./pages/stock/MyOrderListDetail";
+import Refund from "./pages/stock/Refund";
+import MyBill from "./pages/stock/MyBill";
+import MyStatistics from "./pages/stock/MyStatistics";
+
 
 function App() {
     return (

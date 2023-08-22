@@ -1,14 +1,18 @@
 import styles from "./Management.module.css";
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
+import axios from 'axios';
 
 function ManagementContent (){
 
     const [isOpen1, setIsOpen1] = useState(true); 
     const [isOpen2, setIsOpen2] = useState(true); 
     const [isOpen3, setIsOpen3] = useState(true); 
-    const [isOpen4, setIsOpen4] = useState(true); 
+    const [isOpen4, setIsOpen4] = useState(true);
+    const [message, setMessage] = useState({});
 
     const toggleMenu1 = () => {
+
+
         setIsOpen1(isOpen1 => !isOpen1); 
     }
     const toggleMenu2 = () => {
@@ -20,6 +24,17 @@ function ManagementContent (){
     const toggleMenu4 = () => {
         setIsOpen4(isOpen4 => !isOpen4); 
     }
+
+
+    useEffect(() => {
+        axios.get('http://localhost:8080/management')
+            .then(response => {
+                setMessage(response.data.data);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    },[])
 
     return (
         <>
@@ -94,7 +109,7 @@ function ManagementContent (){
                                     누적 근로시간
                                 </div>
                                 <div>
-                                    (누적 근로 시간)
+                                    {message.absenceWorkStatus}
                                 </div>
                             </div>
                         </div>
