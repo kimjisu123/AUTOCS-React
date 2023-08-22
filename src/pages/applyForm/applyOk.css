@@ -12,33 +12,24 @@ main {
     height: 100vh;
 }
 
-label {
-    font-weight: bold;
-}
-
-input.lo{
-    width: 350px;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #1C2C10;
-    border-radius: 5px;
-    outline: none;
-}
-
-button[type="login"] {
+.ok {
     background-color: #26361B;
     color: #FFF;
     cursor: pointer;
     transition: background-color 0.3s ease;
     border-radius: 5px;
-    width: 375px;
+    width: 350px;
     text-align: center;
     height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    margin-top: 30px;
 }
 
-button[type="login"]:hover {
+.ok:hover {
     background-color: #1C2716;
-    marginTop: 10px;
 }
 
 .separator {
@@ -47,13 +38,6 @@ button[type="login"]:hover {
     margin-top:  -10px;
 }
 
-input[id="accountSave"] {
-    margin-right: -160px;
-    margin-top: 15px;
-}
 
-h4 {
-    background: white;
-    marginBottom: 32px;
-    paddingRight: 450px;
-}
+
+

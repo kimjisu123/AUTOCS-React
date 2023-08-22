@@ -12,33 +12,24 @@ main {
     height: 100vh;
 }
 
-label {
-    font-weight: bold;
-}
-
-input.lo{
-    width: 350px;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #1C2C10;
-    border-radius: 5px;
-    outline: none;
-}
-
-button[type="login"] {
+.guideId {
     background-color: #26361B;
     color: #FFF;
     cursor: pointer;
     transition: background-color 0.3s ease;
     border-radius: 5px;
     width: 375px;
-    text-align: center;
     height: 40px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center; /* 가로 가운데 정렬 */
+    align-items: center; /* 세로 가운데 정렬 */
+    margin-top: 10px; /* 상단 여백 추가 */
+    text-align: center; /* 가운데 정렬 */
 }
 
-button[type="login"]:hover {
+.guideId:hover {
     background-color: #1C2716;
-    marginTop: 10px;
 }
 
 .separator {
@@ -47,13 +38,7 @@ button[type="login"]:hover {
     margin-top:  -10px;
 }
 
-input[id="accountSave"] {
-    margin-right: -160px;
-    margin-top: 15px;
-}
 
-h4 {
-    background: white;
-    marginBottom: 32px;
-    paddingRight: 450px;
-}
+
+
+
