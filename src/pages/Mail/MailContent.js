@@ -1,5 +1,21 @@
 import styles from './Mail.module.css';
+import { useState, useEffect } from 'react'
+import axios from 'axios';
 function MailContent(){
+
+    const { result, setResult } = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:8080/mail')
+            .then(response => {
+                setResult(response.data.data);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    },[])
+
+
     return(
         <div className={styles.content}>
             <div className={styles.mainHeader}>

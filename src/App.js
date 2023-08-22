@@ -24,9 +24,9 @@ import Smail from "./pages/emailGuide/Smail";
 import AccountCreate from "./pages/createMember/accountCreate";
 
 //지수
-import Management from "./pages/managementPage/Management"
-import Department from "./pages/managementPage/Department"
-import HeadOffice from "./pages/managementPage/HeadOffice"
+import Management from "./pages/management/Management"
+import Department from "./pages/management/Department"
+import HeadOffice from "./pages/management/HeadOffice"
 import Mail from "./pages/Mail/Mail"
 import Calendar from "./pages/Calendar/Calendar"
 
