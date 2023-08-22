@@ -1,4 +1,34 @@
 import styles from './approval.module.css';
+import traffic from './Traffic.module.css';
+import Swal from 'sweetalert2';
+
+
+const onClickAddHandler = () => {
+    let inputRow = document.getElementsByClassName(traffic.tr)[1];
+    let table1 = document.getElementsByClassName(traffic.table1)[0].children[0];
+    let clone = inputRow.cloneNode(true);
+    console.log(clone.children[3].children[0])
+    for(let i = 0; i <= 7; i++) {
+            clone.children[i].children[0].value = '';
+    }
+    table1.append(clone);
+}
+
+
+const onClickDelHandler = () => {
+    let table1 = document.getElementsByClassName(traffic.table1)[0].children[0];
+    console.log(table1.lastElementChild);
+    if(table1.childElementCount === 2) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: '더 이상 삭제하실 수 없어요',
+        })
+    } else {
+        table1.lastElementChild.remove();
+    }
+
+}
 
 function TrafficContent() {
 
@@ -55,6 +85,41 @@ function TrafficContent() {
                 </div>
             </div>
             <br/><br/>
+            <div className={styles.addDelBtn}>
+                <div className={styles.add} onClick={ onClickAddHandler }>추가</div>
+                <div className={styles.delete} onClick={ onClickDelHandler }>삭제</div>
+            </div>
+            <table className={traffic.table1}>
+                <tbody>
+                <tr className={traffic.tr}>
+                    <td className={traffic.td1}>일자</td>
+                    <td className={traffic.td1}>출발시간</td>
+                    <td className={traffic.td1}>출발지</td>
+                    <td className={traffic.td1}>목적지</td>
+                    <td className={traffic.td1}>거리</td>
+                    <td className={traffic.td1}>용무</td>
+                    <td className={traffic.td1}>금액</td>
+                    <td className={traffic.td1}>교통편</td>
+                </tr>
+                <tr className={traffic.tr}>
+                    <td className={traffic.td}><input type="date" name="trafficDate" id={traffic.trafficDate}/></td>
+                    <td className={traffic.td}><input type="time" name="trafficTime" id={traffic.trafficTime}/></td>
+                    <td className={traffic.td}><input type="text" name="from" id={traffic.from}/></td>
+                    <td className={traffic.td}><input type="text" name="to" id={traffic.to}/></td>
+                    <td className={traffic.td}><input type="text" name="distance" id={traffic.distance}/></td>
+                    <td className={traffic.td}><input type="text" name="business" id={traffic.business}/></td>
+                    <td className={traffic.td}><input type="text" name="trafficPrice" id={traffic.trafficPrice}/></td>
+                    <td className={traffic.td}><input type="text" name="vehicle" id={traffic.vehicle}/></td>
+                </tr>
+                </tbody>
+            </table>
+            <br/><br/>
+            <div className={styles.file}>
+                <label htmlFor="fileBtn">파일 업로드</label>
+                <input type="file" className={styles.fileBtn} name="fileBtn" id="fileBtn"/>
+                <div className={styles.fileshow}></div>
+            </div>
+            <br/><br/><br/>
         </div>
     )
 }

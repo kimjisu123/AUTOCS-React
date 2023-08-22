@@ -1,17 +1,18 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./pages/layouts/layout";
+import React from 'react';
+import { Provider } from 'react-redux';
+import store from './modules/store';
+
+
+//지호
 import AppHome from './pages/approvalPage/AppHome'
 import Purchase from './pages/approvalPage/Purchase'
 import Vacation from './pages/approvalPage/Vacation'
 import Traffic from './pages/approvalPage/Traffic'
 import Business from './pages/approvalPage/Business'
 import Pay from './pages/approvalPage/Pay'
-import React from 'react';
-import { Provider } from 'react-redux';
-import store from './modules/store';
 
-//지호
-import Approval from './pages/approvalPage/Approval'
 
 //해든
 //로그인 관련

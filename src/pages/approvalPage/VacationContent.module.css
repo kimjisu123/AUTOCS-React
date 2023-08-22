@@ -1,0 +1,59 @@
+.table1 {
+    border: 1px solid black;
+    border-collapse: collapse;
+    height: 250px;
+    width: 95.4%;
+    margin-left: 40px;
+}
+
+.td, .tr, .td3, .td2 {
+    border: 1px solid black;
+    text-align: center;
+}
+
+.td1 {
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+}
+
+#endDate, #startDate {
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.leftVacation, .useVacation {
+    margin-right: 10px;
+}
+
+.vaca {
+    margin-right: 10px;
+}
+
+#vacationReason {
+    width: 98%;
+    border: 1px solid rgb(200, 200, 200);
+    padding: 10px;
+    resize: none;
+    outline: none;
+
+}
+
+.td2 {
+    padding: 10px;
+}
+
+.td3, .td4 {
+    background: #ecead8;
+    border: 1px solid black;
+}
+
+.td4 {
+    text-align: left;
+    padding: 10px;
+}
+
+.total {
+    margin-left: 10px;
+}
+

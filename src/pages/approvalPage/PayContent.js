@@ -1,4 +1,33 @@
-import styles from './approval.module.css'
+import styles from './approval.module.css';
+import Swal from 'sweetalert2';
+import pay from './PayContent.module.css'
+
+const onClickAddHandler = () => {
+    let inputRow = document.getElementsByClassName(pay.tr1)[0];
+    let table1 = document.getElementsByClassName(pay.table1)[0].children[0];
+    let clone = inputRow.cloneNode(true);
+    console.log(clone.children[0].children[0])
+    for(let i = 0; i <= 2; i++) {
+            clone.children[i].children[0].value = '';
+    }
+    table1.append(clone);
+}
+
+
+const onClickDelHandler = () => {
+    let table1 = document.getElementsByClassName(pay.table1)[0].children[0];
+    console.log(table1.lastElementChild);
+    if(table1.childElementCount === 2) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: '더 이상 삭제하실 수 없어요',
+        })
+    } else {
+        table1.lastElementChild.remove();
+    }
+
+}
 
 function PayContent() {
 
@@ -56,6 +85,30 @@ function PayContent() {
                 </div>
             </div>
             <br/><br/>
+            <div className={styles.addDelBtn}>
+                <div className={styles.add} onClick={ onClickAddHandler }>추가</div>
+                <div className={styles.delete} onClick={ onClickDelHandler }>삭제</div>
+            </div>
+            <table className={pay.table1}>
+                <tbody>
+                <tr className={pay.tr}>
+                    <td className={pay.td1}>일자</td>
+                    <td className={pay.td2}>용무</td>
+                    <td className={pay.td3}>금액</td>
+                </tr>
+                <tr className={pay.tr1}>
+                    <td className={pay.td}><input type="date" name="payDate" id={pay.payDate}/></td>
+                    <td className={pay.td}><input type="text" name="payReason" id={pay.payReason}/></td>
+                    <td className={pay.td}><input type="text" name="payPrice" id={pay.payPrice}/></td>
+                </tr>
+                </tbody>
+            </table>
+            <br/><br/>
+            <div className={styles.file}>
+                <label htmlFor="fileBtn">파일 업로드</label>
+                <input type="file" className={styles.fileBtn} name="fileBtn" id="fileBtn"/>
+                <div className={styles.fileshow}></div>
+            </div>
         </div>
     )
 }
