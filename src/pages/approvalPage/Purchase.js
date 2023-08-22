@@ -1,14 +1,14 @@
-import ApprovalContent from './ApprovalContent';
+import PurchaseContent from './PurchaseContent';
 import ApprovalMenubar from './ApprovalMenubar';
 
-function Approval() {
+function Purchase() {
 
     return (
         <div style={{display:"flex"}}>
             <ApprovalMenubar/>
-            <ApprovalContent/>
+            <PurchaseContent/>
         </div>
     )
 }
 
-export default Approval;
+export default Purchase;
