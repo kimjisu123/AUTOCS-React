@@ -12,7 +12,13 @@ import Vacation from './pages/approvalPage/Vacation'
 import Traffic from './pages/approvalPage/Traffic'
 import Business from './pages/approvalPage/Business'
 import Pay from './pages/approvalPage/Pay'
-
+import AppWait from './pages/approvalPage/AppWait'
+import AppSee from './pages/approvalPage/AppSee'
+import MyBusiness from './pages/approvalPage/MyBusiness'
+import MyApp from './pages/approvalPage/MyApp'
+import MySee from './pages/approvalPage/MySee'
+import Receive from './pages/approvalPage/Receive'
+import Send from './pages/approvalPage/Send'
 
 //해든
 //로그인 관련
@@ -78,6 +84,13 @@ function App() {
                         <Route path='/approval/traffic' element={<Traffic/>}/>
                         <Route path='/approval/business' element={<Business/>}/>
                         <Route path='/approval/pay' element={<Pay/>}/>
+                        <Route path='/approval/appWait' element={<AppWait/>}/>
+                        <Route path='/approval/appSee' element={<AppSee/>}/>
+                        <Route path='/approval/myBusiness' element={<MyBusiness/>}/>
+                        <Route path='/approval/myApp' element={<MyApp/>}/>
+                        <Route path='/approval/mySee' element={<MySee/>}/>
+                        <Route path='/approval/Receive' element={<Receive/>}/>
+                        <Route path='/approval/Send' element={<Send/>}/>
 
                         //지수
                         <Route path='management' element={<Management />} />

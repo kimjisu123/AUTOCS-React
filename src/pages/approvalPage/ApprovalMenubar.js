@@ -14,9 +14,10 @@ function ApprovalMenubar() {
     return(
         <>
             <div className={style.menubar} style={{width: "295px",  height: "959px", paddingTop: "30px"}}>
-            <div className={style.newApp} onClick={newApproval}>새 결재 진행</div>
+                    <Link to='/approval' style={{textDecoration:"none"}}><div className={style.newApp}>전자결재</div></Link>
+                    <br/><br/>
             <div className={style.documentForm}>
-            문서 양식
+            문서 작성
             </div>
             <Link to='/approval/purchase' style={{textDecoration:"none"}}><div className={style.purchase}>구매요청</div></Link>
             <Link to='/approval/traffic' style={{textDecoration:"none"}}><div className={style.traffic}>여비정산</div></Link>
@@ -28,7 +29,7 @@ function ApprovalMenubar() {
             </div>
             <Link to='/approval/appWait' style={{textDecoration:"none"}}><div className={style.appWait}>결재 대기 문서</div></Link>
             <Link to='/approval/appSee' style={{textDecoration:"none"}}><div className={style.appSee}>참조/열람 대기 문서</div></Link>
-            <Link to='/approval/appSoon' style={{textDecoration:"none"}}><div className={style.appSoon}>결재 예정 문서</div></Link>
+            {/*<Link to='/approval/appSoon' style={{textDecoration:"none"}}><div className={style.appSoon}>결재 예정 문서</div></Link>*/}
             <div className={style.myDocument}>
             개인 문서함
             </div>

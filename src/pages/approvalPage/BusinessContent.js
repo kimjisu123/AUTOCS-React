@@ -1,4 +1,6 @@
 import styles from './approval.module.css';
+import business from './Business.module.css';
+import Tiny from './Tiny'
 
 function BusinessContent() {
 
@@ -53,6 +55,34 @@ function BusinessContent() {
                         </span>
                     </div>
                 </div>
+            </div>
+            <br/><br/>
+            <table className={business.table1}>
+                <tbody>
+                <tr className={business.tr}>
+                    <td className={business.td2}>제목</td>
+                    <td className={business.td1}>
+                        <input type="text" name="businessTitle" id={business.businessTitle}/>
+                    </td>
+                </tr>
+                <tr className={business.tr}>
+                    <td className={business.td1} colSpan="2">
+                        <Tiny/>
+                    </td>
+                </tr>
+                <tr className={business.tr}>
+                    <td className={business.td2}>비고</td>
+                    <td className={business.td1}>
+                        <input type="text" name="businessNote" id={business.businessNote}/>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <br/><br/>
+            <div className={styles.file}>
+                <label htmlFor="fileBtn">파일 업로드</label>
+                <input type="file" className={styles.fileBtn} name="fileBtn" id="fileBtn"/>
+                <div className={styles.fileshow}></div>
             </div>
             <br/><br/>
         </div>

@@ -1,12 +1,13 @@
 .newWrapper {
     padding: 20px;
-    border: 1px solid gainsboro;
+    border: 3px solid #2a3c1e;
     width: 600px;
     z-index: 100;
     position: absolute;
     top: 35%;
     left: 35%;
     background: white;
+    border-radius: 15px;
 }
 
 .topText {

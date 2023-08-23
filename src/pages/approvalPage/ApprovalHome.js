@@ -11,7 +11,7 @@ function ApprovalHome() {
                 결재할 문서가 없습니다
             </div>
             <div className={style.waiting}>
-                결재 대기 문서
+                결재 요청 문서
             </div>
             <div className={style.waitingDoc}>
                 <table className={style.table1}>

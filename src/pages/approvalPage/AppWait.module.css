@@ -1,0 +1,21 @@
+.paging {
+    display: flex;
+    justify-content: center;
+}
+
+.one, .two, .three, .four, .five {
+    cursor: pointer;
+    font-size: 1.3em;
+    margin-left: 20px;
+}
+
+.first, .before, .after, .last {
+    cursor: pointer;
+    font-size: 2em;
+    line-height: 26px;
+    margin-left: 20px;
+}
+
+.one:hover, .two:hover, .three:hover, .four:hover, .five:hover, .first:hover, .before:hover, .after:hover, .last:hover {
+    color: #8d8a6d;
+}

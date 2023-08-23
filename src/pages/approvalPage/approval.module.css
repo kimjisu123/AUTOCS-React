@@ -24,12 +24,12 @@ main {
     height: 50px;
     line-height: 49px;
     border-radius: 8px;
-    font-size: 1.3em;
+    font-size: 1.6em;
     font-weight: 500;
     margin-left: 25px;
     cursor: pointer;
 }
-t
+
 .newApp:hover {
     /* border: 2px solid #8d8a6d; */
     box-shadow: 0 2px 4px 0 rgb(203, 203, 203);
