@@ -62,6 +62,8 @@ import Mypage from "./pages/Mypage/Mypage";
 import MainContent from "./pages/mainpage/MainContent";
 import UpdatePW from "./pages/Mypage/UpdatePW";
 import UpdatePwApp from "./pages/Mypage/UpdatePwApp";
+import MyMemoAPP from "./pages/mainpage/MyMemoAPP";
+import MyMemoTemplate from "./pages/mainpage/MyMemoTemplate";
 
 
 function App() {
@@ -121,6 +123,7 @@ function App() {
                         </Route>
                         <Route path='pw2' element={<UpdatePwApp/>}/>
                         <Route path='home' element={<MainContent/>}/>
+                        <Route path='test' element={<MyMemoTemplate/>}/>
 
                     </Route>
                     //미지

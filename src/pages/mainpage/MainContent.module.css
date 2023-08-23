@@ -53,6 +53,9 @@ body {
     gap: 10px;
 
 }
+
+
+
 .tempBox {
     margin: 20px;
     /*background: yellow;*/
@@ -66,7 +69,11 @@ body {
     transition: all 0.5s;
     transition-delay: 0.4s;
 
+}
 
+.tempBox:hover {
+    width: 99%;
+    height:99%;
 }
 
 
