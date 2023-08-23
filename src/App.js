@@ -60,7 +60,8 @@ import MyStatistics from "./pages/stock/MyStatistics";
 import LoginLayout from "./layouts/LoginLayout";
 import Mypage from "./pages/Mypage/Mypage";
 import MainContent from "./pages/mainpage/MainContent";
-import UpdatePW from "./pages/UpdatePwd/UpdatePW";
+import UpdatePW from "./pages/Mypage/UpdatePW";
+import UpdatePwApp from "./pages/Mypage/UpdatePwApp";
 
 
 function App() {
@@ -115,10 +116,12 @@ function App() {
                         <Route path='/outS' element={<OutSForm/>}/>
 
                         //지은
-                        <Route path='/myPage' element={<Mypage/>}>
+                        <Route path='myPage' element={<Mypage/>}>
                             <Route path='pw' element={<UpdatePW/>}/>
                         </Route>
+                        <Route path='pw2' element={<UpdatePwApp/>}/>
                         <Route path='home' element={<MainContent/>}/>
+
                     </Route>
                     //미지
                     //재고관리 팝업

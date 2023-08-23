@@ -2,8 +2,13 @@ import MypageCSS from './MypageEmp.module.css';
 import emp from './emp.jpg'
 import {MdAccountCircle} from "react-icons/md";
 import DatePicker from "react-datepicker";
-import {useState} from "react";
+import React, {useState} from "react";
 import { ko } from 'date-fns/esm/locale';
+import Modal from "react-modal";
+import UpdatePwApp from "./UpdatePwApp";
+import UpdatePW from "./UpdatePW";
+
+
 function MypageEmp() {
 
     // 비구조화 할당 문법을 활용한 css내부 값 추출하기 이렇게 쓰면 MypageCSS.mainContatiner를 안써도된다. )
@@ -15,6 +20,9 @@ function MypageEmp() {
 
     // 생일입력 (Date에 현재 값 가지고 와야함.
     const [birthDate,setBirthDate] =useState(new Date("1994/02/01"));
+
+    // TodoList 모달 값
+    const [modalIsOpen, setModalIsOpen] = useState(false);
 
     return (
         <>
@@ -78,7 +86,7 @@ function MypageEmp() {
                                         <div className={section2}>
                                             <div className="button">
                                                 <label htmlFor="changepw">비밀번호</label>
-                                                <button className={pwButton} type="button" onClick="">비밀번호 변경</button>
+                                                <button className={pwButton} type="button" onClick={()=> setModalIsOpen(true)}>비밀번호 변경</button>
                                             </div>
                                             <div className=" empInfo empDep">
                                                 <label htmlFor="empDep">휴대 전화</label>
@@ -155,7 +163,22 @@ function MypageEmp() {
                     </div>
                 </div>
             </div>
+
+            {/*비밀번호 변경 모달창 띄우기 */}
+            {modalIsOpen && (
+                <Modal
+                    isOpen={modalIsOpen}
+                    onRequestClose={() => setModalIsOpen(false)}
+                    className={`customModalStyle ${modalIsOpen? 'isOpen':''}`}
+                >
+                    <UpdatePwApp/>
+                </Modal>
+            )}
         </>
     )
+
+
+
+
 }
 export default MypageEmp;

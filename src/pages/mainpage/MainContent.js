@@ -5,7 +5,7 @@ import {MdAccessTime, MdCoPresent, MdHome, MdOutlineWorkOff, MdOutlineWorkOutlin
 import classNames from "classnames";
 import TodoApp from "../Todolist/TodoApp";
 import MiniCalender from "../compoments/MiniCalender";
-
+import monent from 'moment';
 
 // 비구조화 할당 문법을 활용한 css내부 값 추출하기 이렇게 쓰면 MypageCSS.mainContatiner를 안써도된다. )
 
@@ -13,6 +13,8 @@ import MiniCalender from "../compoments/MiniCalender";
 const MainContent = () => {
 
     const combineClass = classNames('tempBox' , 'three')
+    const today = String(new Date().toLocaleDateString());
+    const formatDate = monent(today).format("MMMM Do YYYY");
 
     return (
         <>
@@ -33,9 +35,9 @@ const MainContent = () => {
                     </div>
                     <div className={mainstyle.tempBox}>
                         <div className={mainstyle.mainTime}>
-                            <MdAccessTime />
+                            {/*<MdAccessTime />*/}
                             <h3>Today</h3>
-                            <h1>2023년 3월 31일</h1>
+                            <h1>{ formatDate }</h1>
                         </div>
                     </div>
                     <div className={mainstyle.tempBox} style={{ display:"flex"}}>

@@ -65,7 +65,7 @@ const TodoApp = ({ todoModal , setTodoModal } ) => {
 
 
     return(
-        <div className={styles.todoApp}>
+        <div>
             <TodoTemplate todos={todos} >
                 <TodoInsert onInsert={onInsert}/>
                 <TodoList todos={todos} onRemove={ onRemove } onToggle={onToggle}/>

@@ -1,3 +1,10 @@
+.body {
+
+    transform: scale3d(0,0,1);
+    transform-origin: right bottom;
+    transition: opacity,transform .1s ease-out;
+}
+
 
 .customModalStyle {
     position: absolute;
@@ -8,12 +15,12 @@
     padding: 20px;
     display: contents;
     z-index: 999;
-    transform: scale(0); /* 초기 크기 설정 */
-    transition: transform 0.3s ease-in-out; /* 애니메이션 설정 */
+
 }
 
-.customModalStyle.isOpen {
-    transform: scale(1); /* 열릴 때 크기 설정 */
+.isOpen {
+    opacity: 1;
+    transform: scaleX(1);
 }
 
 

@@ -67,7 +67,8 @@ const Header = () => {
                 </div>
             </div>
 
-            {/*투두 리스트 모달창으로 띄우기 */}
+
+            {/*투두 리스트 모달창 띄우기 */}
             {modalIsOpen && (
                 <Modal
                     isOpen={modalIsOpen}
@@ -75,9 +76,15 @@ const Header = () => {
                     className={`customModalStyle ${modalIsOpen? 'isOpen':''}`}
                     // contentLabel="Modal"
                 >
+                    <div style={{ width:"500px", height:"500px"}}>
                         <TodoApp todoModal={ todoModal } setTodoModal={ setTodoModal } />
+                    </div>
+
                 </Modal>
             )}
+
+
+
 
         </div>
 

@@ -1,15 +1,11 @@
 import updateCSS from './UpdatePW.module.css';
-// const [changePwPage , pageTitle ,inputBox, userId,boxMargin2 ,checkMail  ,findingButton ,longinName, buttons ] = UpdateCSS;
 
 function UpdatePW() {
 
     return (
         <>
+            <div className={updateCSS.updatePwModal}>
                     <div className={updateCSS.changePwPage}>
-                            <div className={updateCSS.pageTitle}>
-                                <h1>비밀번호 변경</h1>
-                                <br/>
-                            </div>
                         <form className="" onSubmit="">
                             <input type="hidden" value="아이디 찾기"/>
                                 <div className={updateCSS.inputBox}>
@@ -35,6 +31,7 @@ function UpdatePW() {
                                 </div>
                         </form>
                     </div>
+            </div>
         </>
 
     )

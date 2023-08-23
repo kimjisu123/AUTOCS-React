@@ -1,7 +1,7 @@
 import MypageEmp from "./MypageEmp";
 import MypageEmpMenubar from "./MypageEmpMenubar";
 import MypageStore from "./MypageStore";
-import UpdatePW from "../UpdatePwd/UpdatePW";
+import UpdatePW from "./UpdatePW";
 
 function Mypage(){
     return (

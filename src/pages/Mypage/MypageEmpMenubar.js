@@ -12,7 +12,7 @@ function MypageEmpMenubar(){
                     사원 정보
                 </div>
                 <div className="purchase">사원정보 변경</div>
-                <div className="purchase"><NavLink to="./pw">비밀번호 변경</NavLink></div>
+                <div className="purchase"><NavLink to="/myPage/pw">비밀번호 변경</NavLink></div>
             </div>
         </>
 
