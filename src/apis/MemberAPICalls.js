@@ -1,4 +1,5 @@
 import { GET_EMPLOYEE } from '../modules/MemberModule';
+import { GET_SELECT_EMPLOYEE} from '../modules/MemberModule';
 
 
 export const callInsertEmployeeAPI = ({ infoToPass }) => {
@@ -42,4 +43,19 @@ export const callGetEmployeeAPI = () => {
          console.log('response :>>>>>>>>>>>>>>>>', result);
          dispatch({ type: GET_EMPLOYEE, payload: result });
      }
+};
+export const callSelectEmployeeAPI = () => {
+    const requestURL = 'http://localhost:8080/member/selectEmployee';
+
+    return async (dispatch) => {
+        const result = await fetch(requestURL, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+        }).then(response => response.json());
+
+        dispatch({ type: GET_SELECT_EMPLOYEE, payload: result });
+    }
 };

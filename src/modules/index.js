@@ -5,7 +5,7 @@ import mailReducer from './MailModule';
 import stockReducer from './StockModule';
 
 const rootReducer = combineReducers({
-    mailReducer
+    mailReducer,
     memberReducer,
     stockReducer
 });
