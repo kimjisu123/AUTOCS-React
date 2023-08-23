@@ -11,7 +11,7 @@ function StockIo() {
     return (
         <div>
             <div className={StockCSS.headLine}>입고 폐기 등록</div>
-            <table>
+            <table className={StockCSS.stockTable}>
                 <tr>
                     <td>
                         CODE

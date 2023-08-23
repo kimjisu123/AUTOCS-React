@@ -13,13 +13,13 @@ function Order() {
             <div className={StockCSS.headLine}>발주 신청</div>
             <div style={{display: "flex"}}>
                 <div>
-                    <table>
+                    <table className={StockCSS.stockTable}>
                         <tr>
                             <td>
                                 품목명
                             </td>
                             <td>
-                                <input type="text" placeholder="품목명을 조회하세요" readOnly/>
+                                <input className={StockCSS.readOnlybox} type="text" placeholder="품목명을 조회하세요" readOnly/>
                             </td>
                             <td>
                                 <button onClick={()=> showPopup()}>조회</button>
@@ -69,7 +69,7 @@ function Order() {
                     <button style={{marginTop: "5%"}}>추가</button>
                 </div>
                 <div style={{width: "400px", marginLeft: "10%"}}>
-                    <table>
+                    <table className={StockCSS.stockTable}>
                         <th>품목</th>
                         <th>수량</th>
                         <th>삭제</th>

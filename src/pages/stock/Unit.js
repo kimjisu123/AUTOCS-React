@@ -18,7 +18,7 @@ function Unit() {
     return(
         <div>
             <div className={StockCSS.headLine}>단위 관리</div>
-            <table>
+            <table className={StockCSS.stockTable}>
                 <tr>
                     <td>
                         단위명
@@ -40,7 +40,7 @@ function Unit() {
                     </div>
                 </div>
 
-                <table>
+                <table className={StockCSS.stockTable}>
                     <tr>
                         <th>NO</th>
                         <th>단위명</th>

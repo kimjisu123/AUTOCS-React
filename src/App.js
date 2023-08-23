@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 // import Layout from "./pages/layouts/layout";
 import React from 'react';
 import { Provider } from 'react-redux';
-import store from './modules/store';
+import store from './store';
 
 //지호
 import Layout from "./layouts/layout";
@@ -29,11 +29,10 @@ import Smail from "./pages/emailGuide/Smail";
 import AccountCreate from "./pages/createMember/accountCreate";
 
 //지수
-import Management from "./pages/managementPage/Management"
-import Department from "./pages/managementPage/Department"
-import HeadOffice from "./pages/managementPage/HeadOffice"
+import Management from "./pages/management/Management"
+import Department from "./pages/management/Department"
+import HeadOffice from "./pages/management/HeadOffice"
 import Mail from "./pages/Mail/Mail"
-import Calendar from "./pages/Calendar/Calendar"
 
 //미지
 //재고관리
@@ -80,12 +79,11 @@ function App() {
                         <Route path='management' element={<Management />} />
                         <Route path='department' element={<Department />} />
                         <Route path='headOffice' element={<HeadOffice />} />
-                        <Route path='calendar' element={<Calendar />} />
                         <Route path='mail' element={<Mail />} />
                         //미지
                         //재고관리
                         <Route path='/stock' element={<Stock/>}>
-                            //본사 고관리
+                            //본사 재고관리
                             <Route path='check' element={<Check/>}/>
                             <Route path='orderlist' element={<OrderList/>}/>
                             <Route path='bill' element={<Bill/>}/>
