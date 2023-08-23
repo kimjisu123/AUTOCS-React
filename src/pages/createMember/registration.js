@@ -23,8 +23,8 @@ const Registration = () => {
             const infoToPass = {
                 name: name,
                 employeeJoin: selectedDate,
-                department: selectedDepartment,
-                position: selectedPosition
+                departmentCode: selectedDepartment,
+                positionCode: selectedPosition
             };
 
             console.log('Info to Pass:', infoToPass);
