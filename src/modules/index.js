@@ -3,7 +3,7 @@ import memberReducer from './MemberModule';
 import mailReducer from './MailModule';
 
 const rootReducer = combineReducers({
-    memberReducer
+    memberReducer,
     mailReducer
 });
 

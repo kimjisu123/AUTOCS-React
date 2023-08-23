@@ -7,7 +7,8 @@ const initialState = [];
 export const GET_MAIL = 'mail/GET_MAIL';
 
 const actions = createActions({
-    [GET_MAIL]: () =>{}
+    [GET_MAIL]: () =>{},
+    
 });
 
 //리듀서

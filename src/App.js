@@ -57,6 +57,7 @@ import Refund from "./pages/stock/Refund";
 import MyBill from "./pages/stock/MyBill";
 import MyStatistics from "./pages/stock/MyStatistics";
 
+import MailSend from "./pages/Mail/MailSend";
 
 function App() {
     return (
@@ -73,6 +74,7 @@ function App() {
                         <Route path='headOffice' element={<HeadOffice />} />
                         <Route path='calendar' element={<Calendar />} />
                         <Route path='mail' element={<Mail />} />
+
 
                         //미지
                         //재고관리
