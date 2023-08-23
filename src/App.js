@@ -62,7 +62,10 @@ function App() {
         <Provider store={store}>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/' element={<Layout/>}>
+                    //로그인 먼저
+                    <Route path='/' element={<Login/>}/>
+
+                    <Route path='/main' element={<Layout/>}>
                         //지호
                         <Route path='approval' element={<Approval/>}/>
 
@@ -74,7 +77,7 @@ function App() {
 
                         //미지
                         //재고관리
-                        <Route path='/stock' element={<Stock/>}>
+                        <Route path='main/stock' element={<Stock/>}>
                             //본사 재고관리
                             <Route path='check' element={<Check/>}/>
                             <Route path='orderlist' element={<OrderList/>}/>
@@ -100,13 +103,13 @@ function App() {
                         //해든
                         <Route path='account' element={<AccountCreate/>} />
                         //사원 등록
-                        <Route path='/registration' element={<Registration/>}/>
-                        <Route path='/registration/registOk' element={<RegistOk/>}/>
+                        <Route path='registration' element={<Registration/>}/>
+                        <Route path='registOk' element={<RegistOk/>}/>
                         //계정신청
-                        <Route path='/applyM' element={<ApplyMForm/>}/>
+                        <Route path='applyM' element={<ApplyMForm/>}/>
                         //계정 비활성화 신청
-                        <Route path='/outM' element={<OutMForm/>}/>
-                        <Route path='/outS' element={<OutSForm/>}/>
+                        <Route path='outM' element={<OutMForm/>}/>
+                        <Route path='outS' element={<OutSForm/>}/>
                     </Route>
 
                     //미지
@@ -115,8 +118,7 @@ function App() {
                     <Route path='ReciptPopup' element={<ReciptPopup/>}/>
 
                     //해든
-                    //로그인, 아이디비밀번호찾기, 안내등
-                    <Route path='login' element={<Login/>}/>
+                    //아이디비밀번호찾기, 안내등
                     <Route path='/login/findId' element={<FindId/>}/>
                     <Route path='/login/fIOk' element={<FindIdOk/>}/>
                     <Route path='/login/fIOk/guideId' element={<GuideId/>}/>

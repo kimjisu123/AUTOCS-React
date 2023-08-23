@@ -47,8 +47,8 @@ const RegistOk = () => {
                         <tr key={employee.employeeNo}>
                             <td>{employee.name}</td>
                             <td>{employee.employeeJoin.split('T')[0].replace(/-/g, '/')}</td>
-                            <td>{employee.departmentCode}</td>
-                            <td>{employee.positionCode}</td>
+                            <td>{employee.department}</td>
+                            <td>{employee.position}</td>
                         </tr>
                     ))}
                     </tbody>
