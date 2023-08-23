@@ -17,7 +17,7 @@ function Standard() {
     return(
         <div>
             <div className={StockCSS.headLine}>규격 관리</div>
-            <table>
+            <table className={StockCSS.stockTable}>
                 <tr>
                     <td>
                         규격명
@@ -39,7 +39,7 @@ function Standard() {
                     </div>
                 </div>
 
-                <table>
+                <table className={StockCSS.stockTable}>
                     <tr>
                         <th>NO</th>
                         <th>규격명</th>

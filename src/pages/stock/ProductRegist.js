@@ -11,7 +11,7 @@ function ProductRegist() {
     return(
         <div>
             <div className={StockCSS.headLine}>물품 신규등록</div>
-            <table>
+            <table className={StockCSS.stockTable}>
                 <tr>
                     <td>
                         카테고리

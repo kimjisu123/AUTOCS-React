@@ -43,6 +43,7 @@
     align-items: center; /* 수직 가운데 정렬 */
 }
 
+
 .datebox {
     display: flex;
     justify-content: center; /* 수평 가운데 정렬 */
@@ -75,20 +76,20 @@
 
 
 /* 테이블 */
-table {
+.stockTable {
     width: 100%;
     border-collapse: collapse;
     border: 1px solid #ccc;
     margin-top: 2%;
 }
 
-th, td {
+.stockTable th, .stockTable td {
     padding: 10px;
     border: 1px solid #ccc;
     text-align: center;
 }
 
-tr{
+.stockTable tr{
     white-space: pre-line;
 }
 

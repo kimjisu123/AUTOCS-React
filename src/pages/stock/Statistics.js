@@ -21,7 +21,7 @@ function Statistics() {
             </div>
 
             <div>
-                <table>
+                <table className={StockCSS.stockTable}>
                     <tr>
                         <th>CODE</th>
                         <th>카테고리</th>

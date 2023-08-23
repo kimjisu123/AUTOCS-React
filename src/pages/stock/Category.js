@@ -1,5 +1,10 @@
 import StockCSS from './Stock.module.css'
 
+import {
+    callProductListAPI
+} from '../../apis/StockAPICalls'
+import Product from "../compoments/stock/Product";
+
 function Category() {
 
     const onClickRegistHandler= () => {
@@ -16,7 +21,7 @@ function Category() {
     return(
         <div>
             <div className={StockCSS.headLine}>카테고리 관리</div>
-            <table>
+            <table className={StockCSS.stockTable}>
                 <tr>
                     <td>
                         카테고리명
@@ -37,7 +42,7 @@ function Category() {
                         <button onClick={ onClickUnuseHandler }>미사용</button>
                     </div>
                 </div>
-                <table>
+                <table className={StockCSS.stockTable}>
                     <tr>
                         <th>NO</th>
                         <th>카테고리명</th>

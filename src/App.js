@@ -32,7 +32,6 @@ import Management from "./pages/management/Management"
 import Department from "./pages/management/Department"
 import HeadOffice from "./pages/management/HeadOffice"
 import Mail from "./pages/Mail/Mail"
-import Calendar from "./pages/Calendar/Calendar"
 
 //미지
 //재고관리
@@ -72,14 +71,13 @@ function App() {
                         <Route path='management' element={<Management />} />
                         <Route path='department' element={<Department />} />
                         <Route path='headOffice' element={<HeadOffice />} />
-                        <Route path='calendar' element={<Calendar />} />
                         <Route path='mail' element={<Mail />} />
 
 
                         //미지
                         //재고관리
                         <Route path='/stock' element={<Stock/>}>
-                            //본사 고관리
+                            //본사 재고관리
                             <Route path='check' element={<Check/>}/>
                             <Route path='orderlist' element={<OrderList/>}/>
                             <Route path='bill' element={<Bill/>}/>

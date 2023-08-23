@@ -11,7 +11,7 @@ function Refund() {
     return(
         <div>
             <div className={StockCSS.headLine}>반품신청</div>
-            <table>
+            <table className={StockCSS.stockTable}>
                 <tr>
                     <td>
                         거래번호
