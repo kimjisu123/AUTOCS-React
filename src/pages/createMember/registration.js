@@ -7,18 +7,18 @@ import 'react-datepicker/dist/react-datepicker.css';
 import ko from 'date-fns/locale/ko';
 import { useSelector, useDispatch } from 'react-redux';
 import { callInsertEmployeeAPI } from '../../apis/MemberAPICalls';
+import { Link } from 'react-router-dom';
 
 const Registration = () => {
     const dispatch = useDispatch();
     const regist  = useSelector(state => state.memberReducer);
-    const registList = regist.data;
 
     const [name, setName] = useState(''); // Declare and initialize name state
     const [selectedDate, setSelectedDate] = useState(null); // Declare and initialize selectedDate state
     const [selectedDepartment, setSelectedDepartment] = useState('default');
     const [selectedPosition, setSelectedPosition] = useState('default');
 
-    const handleRegistration = async () => {
+    const handleRegistration = () => {
         try {
             const infoToPass = {
                 name: name,
@@ -27,10 +27,9 @@ const Registration = () => {
                 positionCode: selectedPosition
             };
 
-            console.log('registList', registList);
             console.log('Info to Pass:', infoToPass);
 
-            await callInsertEmployeeAPI(infoToPass, dispatch);
+            callInsertEmployeeAPI({ infoToPass, dispatch });
 
         } catch (error) {
             console.error('Error:', error);
@@ -113,9 +112,11 @@ const Registration = () => {
                     <option value="I1">인턴</option>
                 </select>
 
+                <Link to="/registration/registOk">
                 <button type="button" className="regist" onClick={handleRegistration}>
                     등록하기
                 </button>
+                </Link>
             </main>
         </div>
     )
