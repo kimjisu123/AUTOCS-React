@@ -2,6 +2,7 @@ import styles from './approval.module.css';
 import { useState } from 'react';
 import NewApproval from './NewApproval';
 import Swal from 'sweetalert2';
+import Modal from './Modal'
 
 const onClickAddHandler = () => {
     let inputRow = document.getElementsByClassName(styles.inputRow)[0];
@@ -29,14 +30,20 @@ const onClickDelHandler = () => {
     } else {
         table2.lastElementChild.remove();
     }
-
 }
+
 
 function PurchaseContent() {
 
+    const [addPeople, setAddPeople] = useState(false);
+
+    const showPeople = () => {
+        setAddPeople(true);
+    }
+
     return (
         <div className={styles.content}>
-            <div className={styles.modify}>
+            <div className={styles.modify} onClick={showPeople}>
                 결재선 추가
             </div>
             <div className={styles.area1}>구 매 요 청</div>
@@ -128,6 +135,7 @@ function PurchaseContent() {
                 <input type="file" className={styles.fileBtn} name="fileBtn" id="fileBtn"/>
                 <div className={styles.fileshow}></div>
             </div>
+            { addPeople && <Modal setAddPeople={setAddPeople}/>}
             <br/><br/><br/>
         </div>
     )

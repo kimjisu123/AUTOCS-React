@@ -19,6 +19,7 @@ import MyApp from './pages/approvalPage/MyApp'
 import MySee from './pages/approvalPage/MySee'
 import Receive from './pages/approvalPage/Receive'
 import Send from './pages/approvalPage/Send'
+import OrgChart from './pages/Chart/OrgChart'
 
 //해든
 //로그인 관련
@@ -91,8 +92,9 @@ function App() {
                         <Route path='/approval/mySee' element={<MySee/>}/>
                         <Route path='/approval/Receive' element={<Receive/>}/>
                         <Route path='/approval/Send' element={<Send/>}/>
+                        <Route path='chart' element={<OrgChart/>}/>
 
-                        //지수
+                        //지수https://github.com/dabeng/react-orgchart.git
                         <Route path='management' element={<Management />} />
                         <Route path='department' element={<Department />} />
                         <Route path='headOffice' element={<HeadOffice />} />
