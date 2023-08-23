@@ -1,6 +1,9 @@
 import MypageCSS from './MypageEmp.module.css';
 import emp from './emp.jpg'
 import {MdAccountCircle} from "react-icons/md";
+import DatePicker from "react-datepicker";
+import {useState} from "react";
+import { ko } from 'date-fns/esm/locale';
 function MypageEmp() {
 
     // 비구조화 할당 문법을 활용한 css내부 값 추출하기 이렇게 쓰면 MypageCSS.mainContatiner를 안써도된다. )
@@ -9,6 +12,9 @@ function MypageEmp() {
             ,empAddress,addressButton,adButton, inputAddress, baseAddress, detailAddress
             ,udButton,updateButton,empImg
     } = MypageCSS;
+
+    // 생일입력 (Date에 현재 값 가지고 와야함.
+    const [birthDate,setBirthDate] =useState(new Date("1994/02/01"));
 
     return (
         <>
@@ -86,8 +92,13 @@ function MypageEmp() {
                                             </div>
                                             <div className=" empInfo empDep">
                                                 <label htmlFor="empDep">생일</label>
-                                                <input type="date" id="empDep" name="empDep" maxLength="20"
-                                                       value="94.02.01" style={{border: "none"}}/>
+                                                <DatePicker
+                                                    locale={ko}
+                                                    dateFormat="yyyy년 MM월 dd일"
+                                                    selected={ birthDate }
+                                                    onChange={date => setBirthDate(date)}
+                                                />
+
                                             </div>
                                             <div className=" empInfo empDep">
                                                 <label htmlFor="empDep">근무지</label>

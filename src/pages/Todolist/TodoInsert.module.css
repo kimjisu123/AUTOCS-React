@@ -1,14 +1,14 @@
 .TodoInsert {
 
     display: flex;
-    background:none;
+    background: ghostwhite ;
     flex: 1;
 
 }
 
 .todoinput {
 
-    background: none;
+    background: ghostwhite ;
     outline: none;
     border: none;
     padding: 0.5rem;

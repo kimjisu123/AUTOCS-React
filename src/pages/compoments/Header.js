@@ -1,6 +1,6 @@
 import './Header.css'
 import img from './logo-black1.png'
-import { NavLink } from 'react-router-dom';
+import {NavLink, useLocation} from 'react-router-dom';
 import React, { useState } from "react";
 import Modal from 'react-modal';
 import TodoApp from "../Todolist/TodoApp";
@@ -14,11 +14,12 @@ const Header = () => {
         backgroundColor: '#8d8a6d'
     }
 
-
-    // 모달 값
+    // TodoList 모달 값
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const { todoModal, setTodoModal } = useUserContext(); // Use todos and setTodos from the context
 
+    //창띄울때  요거 NavLink to 에 location.pathname 넣으면 현재페이지 유지됩니다.
+    const location = useLocation();
 
         return (
         <div className="headerWrapper">
@@ -50,7 +51,7 @@ const Header = () => {
                     <NavLink to="management" style={({isActive}) => isActive? activestyle:undefined} className="management">
                         근태관리
                     </NavLink>
-                    <NavLink to="" style={({isActive}) => isActive? activestyle:undefined} className="todo"
+                    <NavLink to={ location.pathname } style={({isActive}) => isActive? activestyle:undefined} className="todo"
                              onClick={()=> setModalIsOpen(true)}>
                         +Todo
                     </NavLink>
@@ -71,7 +72,7 @@ const Header = () => {
                 <Modal
                     isOpen={modalIsOpen}
                     onRequestClose={() => setModalIsOpen(false)}
-                    className="customModalStyle"
+                    className={`customModalStyle ${modalIsOpen? 'isOpen':''}`}
                     // contentLabel="Modal"
                 >
                         <TodoApp todoModal={ todoModal } setTodoModal={ setTodoModal } />

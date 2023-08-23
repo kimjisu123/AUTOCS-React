@@ -13,7 +13,6 @@
 }
 
 .customModalStyle.isOpen {
-
     transform: scale(1); /* 열릴 때 크기 설정 */
 }
 

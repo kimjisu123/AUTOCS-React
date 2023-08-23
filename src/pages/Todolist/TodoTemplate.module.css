@@ -28,10 +28,10 @@
     justify-content: center;
 }
 
-/*.content {*/
-/*    background: white;*/
+.content {
+    background: none;
 
-/*}*/
+}
 
 
 .todoCount {

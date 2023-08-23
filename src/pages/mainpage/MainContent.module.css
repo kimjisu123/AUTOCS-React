@@ -1,9 +1,48 @@
+body {
+    font-family: 'Noto Sans KR', sans-serif;
 
+}
+
+.container {
+    justify-content: center;
+    max-width: 90%;
+    margin: auto;
+    /*border: 1px solid rgb(199, 199, 199);*/
+    min-width: 1500px;
+}
+
+.headerContainer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.mainContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+.rightContainer {
+    width: 100%;
+    height: 100%;
+}
+
+.paddingContainer {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column; /* 수직 정렬 */
+    /*justify-content: first baseline;*/
+    align-items: center;
+    padding-top: 30px;
+}
 
 .homeContainer {
 
-    width:1500px;
-    height: 800px;
+    /*width:1500px;*/
+    /*height: 800px;*/
     margin: auto;
     display: grid;
     grid-template-columns: 70% 30%;
@@ -50,7 +89,7 @@
     border-radius: 50%;
     border: 2px solid #92aa81;
     position: relative;
-    flex:1;
+    /*flex:1;*/
 }
 .empInfoImg:hover{
 
@@ -69,14 +108,15 @@
 }
 
 .maintitle {
-     display: flex;
-     /*margin-left: 20px;*/
+    display: flex;
+    margin-left: 20px;
+    margin-top: 20px;
     justify-content: space-around
 }
 
 .maintext {
     margin-left: 20px;
-    margin-top: 2%;
+    margin-top: 20px;
     flex:7
 }
 
@@ -136,26 +176,7 @@
     text-align: center;
 }
 
-/*달력*/
 
-.tempBox three {
-    display: flex;
-    flex-direction: column;
-}
-
-.tempBox three > div:first-child{
-
-    width: 100%;
-    flex:6;
-
-}
-
-.tempBox three > div:last-child{
-
-    width: 100%;
-    flex:4;
-
-}
 
 .calendarWrap {
     width: 100%;
@@ -184,6 +205,7 @@
     height: 100%;
     display: flex;
     flex: 7;
+
 
 }
 
