@@ -1,18 +1,142 @@
 import StockCSS from './Stock.module.css'
+import { useEffect, useRef, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+
+import {
+    callStandardListAPI,
+    callStandardRegistAPI,
+    callStandardUpdateAPI
+} from '../../apis/StockAPICalls'
+
 
 function Standard() {
 
-    const onClickRegistHandler= () => {
-        alert('등록하시겠습니까?');
+    /********************************************************************/
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    // 수정
+    const [modifyMode, setModifyMode] = useState(false);
+
+    // 조회
+    const standards = useSelector(state => state.stockReducer);
+    const standardList = standards.data;
+    const pageInfo = standards.pageInfo;
+
+    const [start, setStart] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [pageEnd, setPageEnd] = useState(1);
+
+    const pageNumber = [];
+    if(pageInfo){
+        for(let i = 1; i <= pageInfo.pageEnd ; i++){
+            pageNumber.push(i);
+        }
+    }
+    useEffect(
+        () => {
+            setStart((currentPage - 1) * 5);
+            dispatch(callStandardListAPI({
+                currentPage: currentPage
+            }));
+        }
+        ,[currentPage]
+    );
+
+    // 등록
+    const [form, setForm] = useState({
+        name: '',
+        useYn: 'Y',
+    });
+
+    // 수정
+    const [modifyForm, setModifyForm] = useState({
+        productStandardNo: '',
+        name: '',
+        useYn: '',
+    });
+
+
+    // form 데이터 세팅
+    const onChangeHandler = (e) => {
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    // 등록
+    const onClickRegistHandler = () => {
+
+        const confirmed = window.confirm('등록하시겠습니까?');
+        if (confirmed) {
+            const formData = new FormData();
+
+            formData.append("name", form.name);
+            formData.append("useYn", form.useYn);
+
+            dispatch(callStandardRegistAPI({
+                form: formData
+            }));
+
+            alert('등록되었습니다.');
+            navigate('/stock/standard', {replace: true});
+            window.location.reload();
+        }
     }
 
-    const onClickUseHandler= () => {
-        alert('사용 등록하시겠습니까?');
+    // 수정
+    const onClickModifyModeHandler = (e) => {    // 수정모드
+        setModifyMode(true);
+        setForm({
+            productStandardNo: e.target.value,
+        });
     }
 
-    const onClickUnuseHandler= () => {
-        alert('미사용 등록하시겠습니까?');
+    /* 미사용 핸들러 */
+    const onClickUnuseHandler = () => {
+        const confirmed = window.confirm('미사용 하시겠습니까?');
+        if (confirmed) {
+            const formData = new FormData();
+            formData.append("productStandardNo", form.productStandardNo);
+            formData.append("name", form.name);
+            formData.append("useYn", 'N');
+            console.log(formData);
+            dispatch(callStandardUpdateAPI({	// 상품 정보 업데이트
+                form: formData
+            }));
+
+            setModifyMode(false);
+
+            alert('수정되었습니다.');
+            navigate('/stock/standard', {replace: true});
+            window.location.reload();
+        }
     }
+
+    /* 사용 핸들러 */
+    const onClickUseHandler = () => {
+        const confirmed = window.confirm('사용 하시겠습니까?');
+        if (confirmed) {
+            const formData = new FormData();
+            formData.append("productStandardNo", form.productStandardNo);
+            formData.append("name", form.name);
+            formData.append("useYn", 'Y');
+            console.log(formData);
+            dispatch(callStandardUpdateAPI({	// 상품 정보 업데이트
+                form: formData
+            }));
+
+            setModifyMode(false);
+
+            alert('수정되었습니다.');
+            navigate('/stock/standard', {replace: true});
+            window.location.reload();
+        }
+    }
+    /********************************************************************/
+
 
     return(
         <div>
@@ -23,7 +147,11 @@ function Standard() {
                         규격명
                     </td>
                     <td>
-                        <input type="text" placeholder="규격명을 입력하세요"/>
+                        <input
+                            name='name'
+                            placeholder="규격명을 입력하세요"
+                            onChange={ onChangeHandler }
+                        />
                     </td>
                     <td>
                         <button onClick={ onClickRegistHandler }>등록</button>
@@ -41,24 +169,21 @@ function Standard() {
 
                 <table className={StockCSS.stockTable}>
                     <tr>
-                        <th>NO</th>
+                        <th>CODE</th>
                         <th>규격명</th>
                         <th>사용여부</th>
                         <th>상태변경</th>
-
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>500ml</td>
-                        <td>사용</td>
-                        <td><input type="checkbox"/></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>100m</td>
-                        <td>미사용</td>
-                        <td><input type="checkbox"/></td>
-                    </tr>
+                    {
+                        Array.isArray(standardList) && standardList.map((standard) => (
+                            <tr key={standard.productStandardNo}>
+                                <td>{standard.productStandardNo}</td>
+                                <td>{standard.name}</td>
+                                <td>{standard.useYn}</td>
+                                <td><input type="checkbox" value={standard.productStandardNo} onClick={onClickModifyModeHandler} /></td>
+                            </tr>
+                        ))
+                    }
                 </table>
             </div>
         </div>
