@@ -23,7 +23,7 @@
 }
 
 .react-calendar__navigation {
-    background-color: #adb5db;
+    background-color: #fffde9;
     height: 20%;
 
 }
@@ -116,3 +116,4 @@ abbr[title] {
     background: #facece;
     color: white;
 }
+

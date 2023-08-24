@@ -65,7 +65,7 @@ const TodoApp = ({ todoModal , setTodoModal } ) => {
 
 
     return(
-        <div>
+        <div className="popup" style={{opacity:"1", transform:"scaleX(1)"}}>
             <TodoTemplate todos={todos} >
                 <TodoInsert onInsert={onInsert}/>
                 <TodoList todos={todos} onRemove={ onRemove } onToggle={onToggle}/>

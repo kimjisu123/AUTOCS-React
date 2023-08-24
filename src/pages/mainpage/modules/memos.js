@@ -69,12 +69,12 @@ function memos(state = initialState, action ) {
             return {
                 ...state,
                 memos: state.memos.map(memo =>
-                memo.id === action.id? {...memo ,done: !memo.done} :memo)
+                memo.id === action.id? {...memo , done: !memo.done} : memo)
             };
         case REMOVE:
             return {
                 ...state,
-                memos:state.memos.filter(memo => memo.id !== action.id)
+                memos: state.memos.filter(memo => memo.id !== action.id)
             };
         default:
             return state;

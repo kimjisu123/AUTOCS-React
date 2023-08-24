@@ -5,9 +5,10 @@
 
 /* 메인페이지 */
 .changePwPage{
-    margin-left: 143px;
-    float: left;
-    width: 400px;
+    margin: 0px 80px 0px 80px;
+    /*margin-left: 143px;*/
+    /*float: left;*/
+    /*width: 400px;*/
     letter-spacing: -0.6px;
     background-color: rgb(255, 255, 255);
     width: 500px;
@@ -71,11 +72,13 @@
 
 .inputBox div label{
 
-    float: left;
     display: inline-block;
     margin-bottom: 13px;
     font-weight: 700;
     color: rgb(51, 51, 51);
+    font-size: 20px;
+    width: 200px;
+    text-align: left;
 }
 
 
@@ -95,6 +98,8 @@
 
 .findingButton{
 
+    font-weight: 700;
+    font-size: 20px;
     display: block;
     padding: 0px 10px;
     text-align: center;
@@ -155,7 +160,7 @@
 .inputBox input:focus{
 
 
-    border: 2px solid #2A3C1E;
+    border: 3px solid #2A3C1E;
     cursor: pointer;
 
 }

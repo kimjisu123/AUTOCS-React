@@ -1,7 +1,6 @@
-
 import { connect } from "react-redux";
-import {changeInput, insert, remove, update } from "./modules/myMemo";
-import MyMemoAPP from "./MyMemoAPP";
+import { memos,changeInput, insert, remove, update } from "./modules/memos";
+import MyMemoList from "./MyMemoList";
 
 
 const MyMemoTemplate = ({
@@ -14,7 +13,7 @@ const MyMemoTemplate = ({
                    }) => {
 
     return (
-            <MyMemoAPP
+            <MyMemoList
                 input={input}
                 memos={memos}
                 onChangeInput={changeInput}
@@ -22,19 +21,22 @@ const MyMemoTemplate = ({
                 onUpDate={update}
                 onRemve={remove}
             />
-    )
-}
+
+    );
+};
 export default connect(
-    ({memos}) => ({
+    (memos) => ({
         input: memos.input,
         memos: memos.memos,
+
     }),
     {
-
         changeInput,
         insert,
         update,
         remove,
+
     },
+
 )(MyMemoTemplate);
 

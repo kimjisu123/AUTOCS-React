@@ -6,13 +6,11 @@ import { UserProvider } from "../pages/Todolist/TodoContext";
 
 function Layout() {
 
-
-
     return (
         <>
             <UserProvider>
                 <Header />
-                <Outlet />
+                <Outlet/>
                 <Footer/>
             </UserProvider>
         </>

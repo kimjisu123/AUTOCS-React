@@ -9,6 +9,44 @@ import UpdatePwApp from "./UpdatePwApp";
 import UpdatePW from "./UpdatePW";
 
 
+
+// 회원정보 수정 확인 모달
+const UpdateModal = () => {
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
+    const openModal = () => {
+        setModalIsOpen(true);
+    };
+
+    const closeModal = () => {
+        setModalIsOpen(false);
+    };
+
+    const okModal = () => {
+        setModalIsOpen(false);
+    };
+
+    const cancleModal = () => {
+        setModalIsOpen(false);
+    }
+
+    return (
+        <div>
+            <button >회원정보 수정</button>
+            <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                contentLabel="회원정보 수정"
+            >
+                <div>정말로 수정하시겠습니까?</div>
+                <button onClick={cancleModal}>아니오</button>
+                <button onClick={okModal}>예</button>
+            </Modal>
+        </div>
+    );
+};
+
+
 function MypageEmp() {
 
     // 비구조화 할당 문법을 활용한 css내부 값 추출하기 이렇게 쓰면 MypageCSS.mainContatiner를 안써도된다. )
@@ -23,6 +61,9 @@ function MypageEmp() {
 
     // TodoList 모달 값
     const [modalIsOpen, setModalIsOpen] = useState(false);
+
+
+
 
     return (
         <>
@@ -152,7 +193,17 @@ function MypageEmp() {
                                     {/*</fieldset>*/}
                                     <div className={udButton}>
                                         <div>
-                                            <button className={updateButton} type="submit">
+                                            <button className={updateButton} type="submit"
+                                                    onClick={() => {
+                                                        const confirmResult = window.confirm('정말로 수정하시겠습니까?');
+                                                        if (confirmResult) {
+                                                            // 예 버튼이 클릭된 경우에 실행할 코드
+                                                            // 예를 들어 회원정보 수정 함수 호출 등
+                                                        } else {
+                                                            // 아니오 버튼이 클릭된 경우에 실행할 코드
+                                                        }
+                                                    }}
+                                            >
                                                 회원정보 수정
                                             </button>
                                         </div>

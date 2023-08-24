@@ -56,13 +56,18 @@ import MyOrderListDetail from "./pages/stock/MyOrderListDetail";
 import Refund from "./pages/stock/Refund";
 import MyBill from "./pages/stock/MyBill";
 import MyStatistics from "./pages/stock/MyStatistics";
-import LoginLayout from "./layouts/LoginLayout";
+
+//지은
 import Mypage from "./pages/Mypage/Mypage";
 import MainContent from "./pages/mainpage/MainContent";
 import UpdatePW from "./pages/Mypage/UpdatePW";
 import UpdatePwApp from "./pages/Mypage/UpdatePwApp";
 import MyMemoAPP from "./pages/mainpage/MyMemoAPP";
 import MyMemoTemplate from "./pages/mainpage/MyMemoTemplate";
+import Table from "./pages/mainpage/Table";
+import SlideCard from "./pages/mainpage/SlideCard";
+// import {ThemeProvider} from "./theme/context/ThemeProvider";
+// import {GlobalStyle} from "./theme/theme/GlobalStyle";
 
 
 function App() {
@@ -71,6 +76,8 @@ function App() {
       <>
       <Provider store={store}>
             <BrowserRouter>
+                {/*<ThemeProvider>*/}
+                    {/*<GlobalStyle/>*/}
                 <Routes>
                     <Route path='/' element={<Layout/>}>
                         //지호
@@ -116,12 +123,11 @@ function App() {
                         <Route path='/outS' element={<OutSForm/>}/>
 
                         //지은
-                        <Route path='myPage' element={<Mypage/>}>
-                            <Route path='pw' element={<UpdatePW/>}/>
-                        </Route>
+                        <Route path='myPage' element={<Mypage/>}/>
                         <Route path='pw2' element={<UpdatePwApp/>}/>
                         <Route path='home' element={<MainContent/>}/>
                         <Route path='test' element={<MyMemoTemplate/>}/>
+
 
                     </Route>
                     //미지
@@ -147,6 +153,7 @@ function App() {
                     <Route path='/Smail' element={<Smail/>}/>
 
                 </Routes>
+            {/*</ThemeProvider>*/}
           </BrowserRouter>
         </Provider>
       </>

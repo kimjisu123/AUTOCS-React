@@ -6,6 +6,8 @@ import classNames from "classnames";
 import TodoApp from "../Todolist/TodoApp";
 import MiniCalender from "../compoments/MiniCalender";
 import monent from 'moment';
+import {useTheme} from "styled-components";
+import ThemeToggle from "../../theme/context/ThemeToggle";
 
 // 비구조화 할당 문법을 활용한 css내부 값 추출하기 이렇게 쓰면 MypageCSS.mainContatiner를 안써도된다. )
 
@@ -15,6 +17,7 @@ const MainContent = () => {
     const combineClass = classNames('tempBox' , 'three')
     const today = String(new Date().toLocaleDateString());
     const formatDate = monent(today).format("MMMM Do YYYY");
+    // const [ThemeMode , toggleTheme] = useTheme();
 
     return (
         <>
@@ -45,7 +48,9 @@ const MainContent = () => {
                             <MiniCalender/>
                         </div>
                         <div className={mainstyle.datelist}>
-                            <h1>일정리스트</h1>
+                            <div className={mainstyle.daliyTitle}>
+                                <h1>일정리스트</h1>
+                            </div>
                         </div>
                     </div>
                     <div className={mainstyle.tempBox}>
@@ -53,7 +58,9 @@ const MainContent = () => {
                             <div className={mainstyle.mainTodo}><TodoApp /></div>
                         </div>
                     </div>
-                    <div className={mainstyle.tempBox}>5</div>
+                    <div className={mainstyle.tempBox}>
+                        {/*<ThemeToggle/>*/}
+                    </div>
                     <div className={mainstyle.tempBox}>6</div>
                 </div>
             </div>
