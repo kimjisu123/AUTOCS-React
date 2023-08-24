@@ -29,7 +29,7 @@ const Header = () => {
             console.log(loginMember);
             if(loginMember.status === 200){
                 console.log("[Login] Login SUCCESS ||||||||||||||| {}", loginMember);
-                navigate("/main", { replace: true });
+                navigate("/", { replace: true });
             }
         }
         ,[loginMember]);
@@ -59,7 +59,7 @@ const Header = () => {
         dispatch(callLogoutAPI());
 
         alert('로그인 화면으로 이동합니다.');
-        navigate("/", { replace: true })
+        navigate("/login", { replace: true })
         window.location.reload();
     }
 
@@ -104,14 +104,17 @@ const Header = () => {
                     <NavLink to="myPage" style={({isActive}) => isActive? activestyle:undefined} className="profile" onClick={ mypageHandler }>
                         <div className="profileImg" onClick={ mypageHandler }>
                         </div>
-                        <h5 className="userName" style={{marginTop: "-0.5px", fontSize: "16px"}}>{decodedToken.Name}님 안녕하세요!</h5>
+                        {decodedToken ? (
+                            <h5 className="userName" style={{ marginTop: "-0.5px", fontSize: "16px" }}>
+                                {decodedToken.Name}님 안녕하세요!
+                            </h5>
+                        ) : (
+                            window.location="/login"
+                        )}
                     </NavLink>
-                    <NavLink to="/" style={({isActive}) => isActive? activestyle:undefined} className="logOut">
-                        <button onClick={onClickLogoutHandler} style={{marginRight: "-50px"}}>
+                        <button onClick={onClickLogoutHandler} style={{marginRight: "-50px"}} className="logOut">
                             로그아웃
                         </button>
-                    </NavLink>
-
                 </div>
             </div>
         </div>
