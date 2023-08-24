@@ -77,7 +77,7 @@ function App() {
 
                         //미지
                         //재고관리
-                        <Route path='main/stock' element={<Stock/>}>
+                        <Route path='stock' element={<Stock/>}>
                             //본사 재고관리
                             <Route path='check' element={<Check/>}/>
                             <Route path='orderlist' element={<OrderList/>}/>
