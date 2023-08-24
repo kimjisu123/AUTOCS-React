@@ -1,41 +1,51 @@
 import './Header.css'
 import img from './logo-black1.png'
-import { useState } from 'react';
-import { NavLink, useNavigate  } from 'react-router-dom';
+import {useEffect, useState} from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch  } from 'react-redux';
 import { decodeJwt } from '../../util/tokenUtils';
 import { callLogoutAPI } from '../../apis/MemberAPICalls';
+import login from '../Login/Login';
 
 const Header = () => {
 
+    //const isLogin = false;
+    const navigate = useNavigate();
+
     // 리덕스를 이용하기 위한 디스패처, 셀렉터 선언
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const loginMember = useSelector(state => state.memberReducer);  // 저장소에서 가져온 loginMember 정보
+    const loginMember = useSelector(state => state.memberReducer);
+    const isLogin = window.localStorage.getItem('accessToken');
+    //나중에 지워주자
+    console.log("토큰값 : ", isLogin);
 
-    const token = decodeJwt(window.localStorage.getItem("accessToken"));
-    const decodedToken = decodeJwt(token);
-    const userId = decodedToken ? decodedToken.id : null;
+    const [login, setLogin] = useState(false);
 
-    const [loginModal, setLoginModal] = useState(false);
+    useEffect(() => {
+
+            if(loginMember.status === 200){
+                console.log("[Login] Login SUCCESS {}", loginMember);
+            }
+        }
+        ,[loginMember]);
 
     const activestyle = {
 
         backgroundColor: '#8d8a6d'
     }
 
-    const onClickMypageHandler = () => {
+    const mypageHandler = () => {
 
         // 토큰이 만료되었을때 다시 로그인
         const token = decodeJwt(window.localStorage.getItem("accessToken"));
-        console.log('[Header] onClickMypageHandler token : ', token);
+        console.log('[Header] mypageHandler token : ', token);
 
         if (token.exp * 1000 < Date.now()) {
-            setLoginModal(true);
+            setLogin(true);
             return ;
         }
 
-        navigate("/", { replace: true });
+        navigate("/마이페이지경로", { replace: true });
     }
 
     const onClickLogoutHandler = () => {
@@ -49,6 +59,8 @@ const Header = () => {
     }
 
     return (
+        <>
+            { login ? <login setLoginModal={ setLogin }/> : null}
         <div className="headerWrapper">
             <div className="topNav">
                 <NavLink to="/"><div className="gohome">
@@ -60,7 +72,7 @@ const Header = () => {
                     </div>
                 </div></NavLink>
                 <div style={{display: "flex", justifyContent: "space-between", width: "100%", paddingRight: "50px"}}>
-                    <h5 className="userName">{}님 안녕하세요!</h5>
+                    <h5 className="userName">{loginMember.id}님 안녕하세요!</h5>
                     <NavLink to="/" style={({isActive}) => isActive? activestyle:undefined} className="home">
                         홈
                     </NavLink>
@@ -85,8 +97,8 @@ const Header = () => {
                     <NavLink to="stock" style={({isActive}) => isActive? activestyle:undefined} className="stock">
                         재고관리
                     </NavLink>
-                    <NavLink to="myPage" style={({isActive}) => isActive? activestyle:undefined} className="profile" onClick={ onClickMypageHandler }>
-                        <div className="profileImg" onClick={ onClickMypageHandler }>
+                    <NavLink to="myPage" style={({isActive}) => isActive? activestyle:undefined} className="profile" onClick={ mypageHandler }>
+                        <div className="profileImg" onClick={ mypageHandler }>
 
                         </div>
                         마이페이지
@@ -100,8 +112,7 @@ const Header = () => {
                 </div>
             </div>
         </div>
-
-
+        </>
     )
 }
 

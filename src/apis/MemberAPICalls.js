@@ -2,6 +2,7 @@ import { GET_EMPLOYEE,
          ADD_EMPLOYEE,
          GO_LOGIN
         } from '../modules/MemberModule';
+import { useDispatch } from 'react-redux';
 
 
 //직원 등록 및 아이디/비번 생성
@@ -49,32 +50,29 @@ export const callGetEmployeeAPI = () => {
      }
 };
 
-//로그인
+// 로그인
 export const callLoginAPI = ({ loginInfo }) => {
     const requestURL = 'http://localhost:8080/auth/login';
 
-    return fetch(requestURL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(loginInfo),
-        })
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    console.error('Login Error');
-                    throw new Error('Login Error');
+    return async (dispatch, getState) => {
+            const result = await fetch(requestURL, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "*/*",
+                    "Access-Control-Allow-Origin": "*"
+                },
+                body: JSON.stringify(loginInfo),
+            }).then(response => response.json());
+
+                console.log('[MemberAPICalls] callLoginAPI RESULT : ', result);
+                if(result.status === 200){
+                    window.localStorage.setItem('accessToken', result.data.accessToken);
+                    window.alert('로그인 되었습니다.');
+                    window.location ="/main"
                 }
-            })
-            .then(() => {
-                window.alert(`로그인 되었습니다.`);
-                window.location ="/main"
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
+                dispatch({ type: GO_LOGIN, payload: result });
+    };
 };
 
 //로그아웃

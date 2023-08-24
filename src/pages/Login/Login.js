@@ -4,9 +4,8 @@ import React, {useState, useEffect } from 'react';
 import { Link, Navigate  } from 'react-router-dom';
 import {useDispatch, useSelector  } from "react-redux";
 import { callLoginAPI} from "../../apis/MemberAPICalls";
-import { GO_LOGIN } from '../../modules/MemberModule';
 
-const Login = () => {
+function Login({setLogin}) {
     const dispatch = useDispatch();
     const loginMember = useSelector(state => state.memberReducer);  // API 요청하여 가져온 loginMember 정보
 
@@ -24,7 +23,7 @@ const Login = () => {
     // 로그인 상태일 시 로그인페이지로 접근 방지
     if(loginMember.length > 0) {
         console.log("[Login] Login is already authenticated by the server");
-        return <Navigate to="/"/>;
+        return <Navigate to="/main"/>;
     }
 
     const handlelogin = () => {
@@ -36,7 +35,12 @@ const Login = () => {
 
             console.log('Info to Pass:', loginInfo);
 
-            callLoginAPI({ loginInfo, dispatch });
+            dispatch(callLoginAPI({
+                loginInfo: loginInfo
+            }))
+
+            setLogin(false);
+            console.log('[LoginModal] Login Process End!!');
 
         } catch (error) {
             console.error('Error:', error);
