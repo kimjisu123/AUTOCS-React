@@ -38,7 +38,7 @@ main {
     margin-top:  -10px;
 }
 
-select {
+.pos {
     width: 50%;
     padding: 8px;
     border: 1px solid #1C2C10;

@@ -1,16 +1,31 @@
 import './Login.css'
 import img from './loginMain.png'
-import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
-import {useDispatch } from "react-redux";
+import React, {useState, useEffect } from 'react';
+import { Link, Navigate  } from 'react-router-dom';
+import {useDispatch, useSelector  } from "react-redux";
 import { callLoginAPI} from "../../apis/MemberAPICalls";
 import { GO_LOGIN } from '../../modules/MemberModule';
 
 const Login = () => {
     const dispatch = useDispatch();
+    const loginMember = useSelector(state => state.memberReducer);  // API 요청하여 가져온 loginMember 정보
 
     const [id, setId] = useState('');
     const [pwd, setPwd] = useState('');
+
+    useEffect(() => {
+
+            if(loginMember.status === 200){
+                console.log("[Login] Login SUCCESS {}", loginMember);
+            }
+        }
+        ,[loginMember]);
+
+    // 로그인 상태일 시 로그인페이지로 접근 방지
+    if(loginMember.length > 0) {
+        console.log("[Login] Login is already authenticated by the server");
+        return <Navigate to="/"/>;
+    }
 
     const handlelogin = () => {
         try {

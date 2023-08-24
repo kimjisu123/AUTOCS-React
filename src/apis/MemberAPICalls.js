@@ -76,3 +76,13 @@ export const callLoginAPI = ({ loginInfo }) => {
                 console.error('Error:', error);
             });
 };
+
+//로그아웃
+export const callLogoutAPI = () => {
+
+    return async (dispatch, getState) => {
+
+        dispatch({ type: GO_LOGIN,  payload: '' });
+        console.log('[MemberAPICalls] callLogoutAPI RESULT : SUCCESS');
+    };
+}
