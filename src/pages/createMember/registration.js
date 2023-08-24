@@ -114,11 +114,11 @@ const Registration = () => {
                     onChange={handlePositionChange}
                 >
                     <option value="default">직급을 선택하세요</option>
-                    <option value="B1">부장</option>
-                    <option value="C1">차장</option>
-                    <option value="G1">과장</option>
-                    <option value="D1">대리</option>
-                    <option value="S1">사원</option>
+                    <option value="b1">부장</option>
+                    <option value="c1">차장</option>
+                    <option value="g1">과장</option>
+                    <option value="d1">대리</option>
+                    <option value="s1">사원</option>
                     <option value="I1">인턴</option>
                 </select>
 

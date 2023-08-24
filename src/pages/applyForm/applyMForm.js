@@ -18,24 +18,24 @@ const ApplyMForm = () => {
 
                     <h4 style={{ marginBottom: "10px", marginTop: "8px", background: "white" }}>부서</h4>
                     <select id="pos" name="department">
-                        <option value="default" selected>부서를 선택하세요</option>
-                        <option value="HR">인사부</option>
-                        <option value="finance">재무/회계부</option>
-                        <option value="management">경영부</option>
-                        <option value="marketing">마케팅부</option>
-                        <option value="sales">영업부</option>
-                        <option value="service">서비스부</option>
+                        <option value="default">부서를 선택하세요</option>
+                        <option value="H1">인사부</option>
+                        <option value="F1">재무/회계부</option>
+                        <option value="M1">경영부</option>
+                        <option value="M2">마케팅부</option>
+                        <option value="S1">영업부</option>
+                        <option value="S2">서비스부</option>
                     </select>
 
                     <h4 style={{ marginBottom: "10px", marginTop: "20px", background: "white"}}>직급</h4>
                     <select id="pos" name="position">
-                        <option value="default" selected>직급을 선택하세요</option>
-                        <option value="BooJang">부장</option>
-                        <option value="ChaJang">차장</option>
-                        <option value="GaJang">과장</option>
-                        <option value="DaeRi">대리</option>
-                        <option value="SaWon">사원</option>
-                        <option value="Intern">인턴</option>
+                        <option value="default">직급을 선택하세요</option>
+                        <option value="b1">부장</option>
+                        <option value="c1">차장</option>
+                        <option value="g1">과장</option>
+                        <option value="d1">대리</option>
+                        <option value="s1">사원</option>
+                        <option value="I1">인턴</option>
                     </select>
 
                      {/*신청 되었다는 알림 띄워주기 */}
