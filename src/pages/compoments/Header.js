@@ -11,20 +11,25 @@ const Header = () => {
 
     //const isLogin = false;
     const navigate = useNavigate();
-
     // 리덕스를 이용하기 위한 디스패처, 셀렉터 선언
     const dispatch = useDispatch();
     const loginMember = useSelector(state => state.memberReducer);
-    const isLogin = window.localStorage.getItem('accessToken');
+    const accessToken = window.localStorage.getItem('accessToken');
+
     //나중에 지워주자
-    console.log("토큰값 : ", isLogin);
+    console.log("토큰값 : ", accessToken);
 
     const [login, setLogin] = useState(false);
 
+    //토큰 정보 추출
+    const decodedToken = accessToken ? decodeJwt(accessToken) : null;
+
     useEffect(() => {
 
+            console.log(loginMember);
             if(loginMember.status === 200){
-                console.log("[Login] Login SUCCESS {}", loginMember);
+                console.log("[Login] Login SUCCESS ||||||||||||||| {}", loginMember);
+                navigate("/main", { replace: true });
             }
         }
         ,[loginMember]);
@@ -65,14 +70,13 @@ const Header = () => {
             <div className="topNav">
                 <NavLink to="/"><div className="gohome">
                     <div className="logo">
-                        <img src={ img } style={{ width: "40px", marginTop: "2px"}}/>
+                        <img src={ img } style={{ width: "40px", marginTop: "6px", marginRight: "5px", marginLeft: "10px"}}/>
                     </div>
                     <div className="officName">
                         AUTOCSS
                     </div>
                 </div></NavLink>
-                <div style={{display: "flex", justifyContent: "space-between", width: "100%", paddingRight: "50px"}}>
-                    <h5 className="userName">{loginMember.id}님 안녕하세요!</h5>
+                <div style={{display: "flex", justifyContent: "space-between", width: "100%", paddingRight: "80px"}}>
                     <NavLink to="/" style={({isActive}) => isActive? activestyle:undefined} className="home">
                         홈
                     </NavLink>
@@ -99,12 +103,11 @@ const Header = () => {
                     </NavLink>
                     <NavLink to="myPage" style={({isActive}) => isActive? activestyle:undefined} className="profile" onClick={ mypageHandler }>
                         <div className="profileImg" onClick={ mypageHandler }>
-
                         </div>
-                        마이페이지
+                        <h5 className="userName" style={{marginTop: "-0.5px", fontSize: "16px"}}>{decodedToken.Name}님 안녕하세요!</h5>
                     </NavLink>
                     <NavLink to="/" style={({isActive}) => isActive? activestyle:undefined} className="logOut">
-                        <button onClick={onClickLogoutHandler}>
+                        <button onClick={onClickLogoutHandler} style={{marginRight: "-50px"}}>
                             로그아웃
                         </button>
                     </NavLink>

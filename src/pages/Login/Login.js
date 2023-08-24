@@ -1,5 +1,6 @@
 import './Login.css'
 import img from './loginMain.png'
+import { useNavigate } from 'react-router-dom';
 import React, {useState, useEffect } from 'react';
 import { Link, Navigate  } from 'react-router-dom';
 import {useDispatch, useSelector  } from "react-redux";
@@ -11,14 +12,18 @@ function Login({setLogin}) {
 
     const [id, setId] = useState('');
     const [pwd, setPwd] = useState('');
+    const navigate = useNavigate();
+
 
     useEffect(() => {
 
             if(loginMember.status === 200){
-                console.log("[Login] Login SUCCESS {}", loginMember);
+                console.log("[Login] Login SUCCESS>>>>>>>>>>>>>> {}", loginMember);
+                navigate("/main", { replace: true });
             }
         }
-        ,[loginMember]);
+        ,[loginMember]
+    );
 
     // 로그인 상태일 시 로그인페이지로 접근 방지
     if(loginMember.length > 0) {

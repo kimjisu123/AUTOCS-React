@@ -18,8 +18,18 @@ const Registration = () => {
     const [selectedDepartment, setSelectedDepartment] = useState('default');
     const [selectedPosition, setSelectedPosition] = useState('default');
 
+    const isFormValid = () => {
+        return name !== '' && selectedDate !== null && selectedDepartment !== 'default' && selectedPosition !== 'default';
+    };
+
+
     const handleRegistration = () => {
         try {
+            if (!isFormValid()) {
+                window.alert('모든 필드를 입력해주세요.');
+                window.location="/main/registration"
+            }
+
             const infoToPass = {
                 name: name,
                 employeeJoin: selectedDate,

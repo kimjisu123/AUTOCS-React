@@ -65,13 +65,15 @@ export const callLoginAPI = ({ loginInfo }) => {
                 body: JSON.stringify(loginInfo),
             }).then(response => response.json());
 
+
                 console.log('[MemberAPICalls] callLoginAPI RESULT : ', result);
                 if(result.status === 200){
                     window.localStorage.setItem('accessToken', result.data.accessToken);
                     window.alert('로그인 되었습니다.');
-                    window.location ="/main"
+                   // window.location ="/main"
                 }
-                dispatch({ type: GO_LOGIN, payload: result });
+            dispatch({ type: GO_LOGIN, payload: result });
+
     };
 };
 
