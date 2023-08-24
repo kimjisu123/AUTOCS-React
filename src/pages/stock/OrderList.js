@@ -30,7 +30,7 @@ function OrderList() {
                 </div>
                 <div className={StockCSS.contentsHeader}>
                     <div>상태</div>
-                    <select className={StockCSS.selectbox}>
+                    <select>
                         <option value="wait">대기</option>
                         <option value="cancel">취소</option>
                         <option value="reject">반려</option>

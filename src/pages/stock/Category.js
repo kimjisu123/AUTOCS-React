@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import {
     callCategoryRegistAPI,
-    callCategoryListAPI,
+    callCategoryListWithPagingAPI,
     callCategoryUpdateAPI
 } from '../../apis/StockAPICalls'
 
@@ -17,13 +17,12 @@ function Category() {
 
     // 수정
     const [modifyMode, setModifyMode] = useState(false);
-    /**/
     const [selectedCategories, setSelectedCategories] = useState([]); // 배열로 선택된 카테고리 저장
-
 
     // 조회
     const categories = useSelector(state => state.stockReducer);
     const categoryList = categories.data;
+    console.log('data',categoryList);
     const pageInfo = categories.pageInfo;
 
     const [start, setStart] = useState(0);
@@ -39,7 +38,7 @@ function Category() {
     useEffect(
         () => {
             setStart((currentPage - 1) * 5);
-            dispatch(callCategoryListAPI({
+            dispatch(callCategoryListWithPagingAPI({
                 currentPage: currentPage
             }));
         }
@@ -85,94 +84,71 @@ function Category() {
             }));
 
             alert('등록되었습니다.');
-            navigate('/stock/category', {replace: true});
+            navigate('/main/stock/category', {replace: true});
             window.location.reload();
         }
     }
 
     // 수정
-    /**/
-    // const onClickModifyModeHandler = (e) => {    // 수정모드
     const onClickModifyModeHandler = (e) => {    // 수정모드
         setModifyMode(true);
-        console.log('====================>',e.target.value);
-        console.log('====================>>>',e.target.parentElement.previousElementSibling.innerText);
 
-        // setForm({
-        //     productCategoryNo: e.target.value,
-        // });
-/**/
-        // 선택된 카테고리를 배열에 추가
-        setSelectedCategories([...selectedCategories, e.target.value]);
+        let inputValue = { productCategoryNo: e.target.value };
+        console.log(e.target.value);
+
+        setSelectedCategories(prevSelectedCategories => [...prevSelectedCategories, inputValue]);
         console.log(selectedCategories);
-
     }
 
-    /* 미사용 핸들러 */
-    // const onClickUnuseHandler = () => {
-    //     const confirmed = window.confirm('미사용 하시겠습니까?');
-    //     if (confirmed) {
-    //         console.log('[CategoryUpdate] onClickUnuseHandler');
-    //         console.dir( form.productCategoryNo);
-    //         const formData = new FormData();
-    //         formData.append("productCategoryNo", form.productCategoryNo);
-    //         formData.append("name", form.name);
-    //         formData.append("useYn", 'N');
-    //         console.log(formData);
-    //         dispatch(callCategoryUpdateAPI({	// 상품 정보 업데이트
-    //             form: formData
-    //         }));
-    //
-    //         setModifyMode(false);
-    //
-    //         alert('수정되었습니다.');
-    //         navigate('/stock/category', {replace: true});
-    //         window.location.reload();
-    //     }
-    // }
 
-
+    /* 미사용 핸들러*/
     const onClickUnuseHandler = () => {
-        // 선택된 카테고리들의 정보를 사용하여 업데이트
-        selectedCategories.forEach(form => {
-            // 업데이트 로직 적용
-            const formData = new FormData();
-            formData.append("productCategoryNo", form.productCategoryNo);
-            formData.append("name", form.name);
-            formData.append("useYn", 'N');
+        const confirmed = window.confirm('미사용 하시겠습니까?');
+        if (confirmed) {
+            // 선택된 카테고리들의 정보를 사용하여 업데이트
+            selectedCategories.forEach(form => {
+                // 업데이트 로직 적용
+                const formData = new FormData();
+                formData.append("productCategoryNo", form.productCategoryNo);
+                formData.append("name", form.name);
+                formData.append("useYn", 'N');
 
-            dispatch(callCategoryUpdateAPI({
-                form: formData
-            }));
-        });
+                dispatch(callCategoryUpdateAPI({
+                    form: formData
+                }));
+            });
 
-        setModifyMode(false);
-        setSelectedCategories([]); // 선택된 카테고리 초기화
+            setModifyMode(false);
+            setSelectedCategories([]); // 선택된 카테고리 초기화
 
-        alert('선택된 카테고리들이 수정되었습니다.');
-        // navigate('/stock/category', { replace: true });
-        // window.location.reload();
+            alert('수정되었습니다.');
+            navigate('/main/stock/category', { replace: true });
+            window.location.reload();
+        }
     }
-
-
 
     /* 사용 핸들러 */
     const onClickUseHandler = () => {
         const confirmed = window.confirm('사용 하시겠습니까?');
         if (confirmed) {
-            const formData = new FormData();
-            formData.append("productCategoryNo", form.productCategoryNo);
-            formData.append("name", form.name);
-            formData.append("useYn", 'Y');
-            console.log(formData);
-            dispatch(callCategoryUpdateAPI({	// 상품 정보 업데이트
-                form: formData
-            }));
+            // 선택된 카테고리들의 정보를 사용하여 업데이트
+            selectedCategories.forEach(form => {
+                // 업데이트 로직 적용
+                const formData = new FormData();
+                formData.append("productCategoryNo", form.productCategoryNo);
+                formData.append("name", form.name);
+                formData.append("useYn", 'Y');
+
+                dispatch(callCategoryUpdateAPI({
+                    form: formData
+                }));
+            });
 
             setModifyMode(false);
+            setSelectedCategories([]); // 선택된 카테고리 초기화
 
             alert('수정되었습니다.');
-            navigate('/stock/category', {replace: true});
+            navigate('/main/stock/category', { replace: true });
             window.location.reload();
         }
     }

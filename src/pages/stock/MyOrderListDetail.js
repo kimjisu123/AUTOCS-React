@@ -41,7 +41,7 @@ function MyOrderListDetail() {
             </div>
 
             <div style={{marginTop: "1%"}}>
-                <table >
+                <table className={StockCSS.stockTable}>
                     <tr>
                         <th>거래<br/>번호</th>
                         <th>영업점</th>
@@ -87,7 +87,7 @@ function MyOrderListDetail() {
                 </table>
                 <div style={{display: "flex", justifyContent: "flex-end", marginTop: "1%"}}>
                     <button style={{marginRight: "10px"}} onClick={ onClickCancelHandler }>취소</button>
-                    <button style={{marginRight: "10px"}}><NavLink to="/stock/refund">반품</NavLink></button>
+                    <button style={{marginRight: "10px"}}><NavLink to="/main/stock/refund">반품</NavLink></button>
                     <button onClick={ onClickCompleteHandler }>완료</button>
                 </div>
             </div>

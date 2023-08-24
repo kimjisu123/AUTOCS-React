@@ -12,6 +12,9 @@ export const PUT_CATEGORY           = 'stock/PUT_CATEGORY';
 export const GET_STANDARDS           = 'stock/GET_STANDARDS';
 export const POST_STANDARD           = 'stock/POST_STANDARD';
 export const PUT_STANDARD           = 'stock/PUT_STANDARD';
+export const GET_UNITS           = 'stock/GET_UNITS';
+export const POST_UNIT           = 'stock/POST_UNIT';
+export const PUT_UNIT           = 'stock/PUT_UNIT';
 
 const actions = createActions({
     [GET_PRODUCT]: () => {},
@@ -22,6 +25,9 @@ const actions = createActions({
     [GET_STANDARDS]: () => {},
     [POST_STANDARD]: () => {},
     [PUT_STANDARD]: () => {},
+    [GET_UNITS]: () => {},
+    [POST_UNIT]: () => {},
+    [PUT_UNIT]: () => {},
 });
 
 /* 리듀서 */
@@ -56,6 +62,18 @@ const stockReducer = handleActions(
             return payload;
         },
         [PUT_STANDARD]: (state, { payload }) => {
+
+            return payload;
+        },
+        [GET_UNITS]: (state, { payload }) => {
+
+            return payload;
+        },
+        [POST_UNIT]: (state, { payload }) => {
+
+            return payload;
+        },
+        [PUT_UNIT]: (state, { payload }) => {
 
             return payload;
         },
