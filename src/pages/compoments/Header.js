@@ -1,7 +1,7 @@
 import './Header.css'
 import img from './logo-black1.png'
 import { useState } from 'react';
-import { NavLink, useNavigate  } from 'react-router-dom';
+import {NavLink, useLocation, useNavigate} from 'react-router-dom';
 import { useSelector, useDispatch  } from 'react-redux';
 import { decodeJwt } from '../../util/tokenUtils';
 import { callLogoutAPI } from '../../apis/MemberAPICalls';

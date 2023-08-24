@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Layout from "./pages/layouts/layout";
+// import Layout from "./pages/layouts/layout";
 import React from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
@@ -62,8 +62,7 @@ import Mypage from "./pages/Mypage/Mypage";
 import MainContent from "./pages/mainpage/MainContent";
 import UpdatePW from "./pages/Mypage/UpdatePW";
 import UpdatePwApp from "./pages/Mypage/UpdatePwApp";
-import MyMemoAPP from "./pages/mainpage/MyMemoAPP";
-import MyMemoTemplate from "./pages/mainpage/MyMemoTemplate";
+import MyMemoTemplate from "./pages/mainpage/memo/MyMemoTemplate";
 import Table from "./pages/mainpage/Table";
 import SlideCard from "./pages/mainpage/SlideCard";
 // import {ThemeProvider} from "./theme/context/ThemeProvider";

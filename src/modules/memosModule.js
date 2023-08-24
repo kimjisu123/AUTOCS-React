@@ -4,6 +4,26 @@ const UPDATE = 'memo/UPDATE';
 const REMOVE = 'memo/REMOVE';
 
 
+//  초기값 설정 (임시 )
+
+const initialState = {
+    input:'',
+    memos:[
+        {
+            id :4,
+            text: '메모1',
+            done:true
+        },
+        {
+            id :5,
+            text: '메모2',
+            done:true
+        }
+    ]
+};
+
+
+
 //액션 ================================================================================
 export const changeInput = input => ({
     type:CHANGE_INPUT,
@@ -37,23 +57,7 @@ export const remove = id => ({
 
 // 리듀서 ==================================================================================================================
 
-const initialState = {
-    input:'',
-    memos:[
-        {
-            id :1,
-            text: '메모1',
-            done:true
-        },
-        {
-            id :2,
-            text: '메모2',
-            done:true
-        }
-    ]
-};
-
-function memos(state = initialState, action ) {
+function memosModule(state = initialState, action ) {
     switch (action.type) {
         case CHANGE_INPUT:
             return {
@@ -80,4 +84,4 @@ function memos(state = initialState, action ) {
             return state;
     }
 }
-export default memos;
+export default memosModule;

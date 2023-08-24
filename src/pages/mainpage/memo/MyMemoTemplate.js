@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { memos,changeInput, insert, remove, update } from "./modules/memos";
+import { changeInput, insert, remove, update } from "../../../modules/memosModule";
 import MyMemoList from "./MyMemoList";
 
 
