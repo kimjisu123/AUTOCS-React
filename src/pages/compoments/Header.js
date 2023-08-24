@@ -60,7 +60,7 @@ const Header = () => {
                     </div>
                 </div></NavLink>
                 <div style={{display: "flex", justifyContent: "space-between", width: "100%", paddingRight: "50px"}}>
-                    <h5 className="userName">{userId}님 안녕하세요!</h5>
+                    <h5 className="userName">{}님 안녕하세요!</h5>
                     <NavLink to="/" style={({isActive}) => isActive? activestyle:undefined} className="home">
                         홈
                     </NavLink>

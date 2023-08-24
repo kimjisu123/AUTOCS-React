@@ -80,7 +80,6 @@ export const callLoginAPI = ({ loginInfo }) => {
 //로그아웃
 export const callLogoutAPI = () => {
 
-
     return async (dispatch, getState) => {
 
         dispatch({ type: GO_LOGIN,  payload: '' });
