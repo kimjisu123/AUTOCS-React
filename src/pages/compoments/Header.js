@@ -1,16 +1,52 @@
 import './Header.css'
 import img from './logo-black1.png'
-import { Link } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
-
+import { useState } from 'react';
+import { NavLink, useNavigate  } from 'react-router-dom';
+import { useSelector, useDispatch  } from 'react-redux';
+import { decodeJwt } from '../../util/tokenUtils';
+import { callLogoutAPI } from '../../apis/MemberAPICalls';
 
 const Header = () => {
+
+    // 리덕스를 이용하기 위한 디스패처, 셀렉터 선언
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const loginMember = useSelector(state => state.memberReducer);  // 저장소에서 가져온 loginMember 정보
+
+    const token = decodeJwt(window.localStorage.getItem("accessToken"));
+    const decodedToken = decodeJwt(token);
+    const userId = decodedToken ? decodedToken.id : null;
+
+    const [loginModal, setLoginModal] = useState(false);
 
     const activestyle = {
 
         backgroundColor: '#8d8a6d'
     }
 
+    const onClickMypageHandler = () => {
+
+        // 토큰이 만료되었을때 다시 로그인
+        const token = decodeJwt(window.localStorage.getItem("accessToken"));
+        console.log('[Header] onClickMypageHandler token : ', token);
+
+        if (token.exp * 1000 < Date.now()) {
+            setLoginModal(true);
+            return ;
+        }
+
+        navigate("/", { replace: true });
+    }
+
+    const onClickLogoutHandler = () => {
+        window.localStorage.removeItem('accessToken');
+        //로그아웃
+        dispatch(callLogoutAPI());
+
+        alert('로그인 화면으로 이동합니다.');
+        navigate("/", { replace: true })
+        window.location.reload();
+    }
 
     return (
         <div className="headerWrapper">
@@ -23,7 +59,8 @@ const Header = () => {
                         AUTOCSS
                     </div>
                 </div></NavLink>
-                <div style={{display: "flex", justifyContent: "space-between", width: "100%", paddingRight: "10px"}}>
+                <div style={{display: "flex", justifyContent: "space-between", width: "100%", paddingRight: "50px"}}>
+                    <h5 className="userName">{}님 안녕하세요!</h5>
                     <NavLink to="/" style={({isActive}) => isActive? activestyle:undefined} className="home">
                         홈
                     </NavLink>
@@ -48,12 +85,18 @@ const Header = () => {
                     <NavLink to="stock" style={({isActive}) => isActive? activestyle:undefined} className="stock">
                         재고관리
                     </NavLink>
-                    <NavLink to="myPage" style={({isActive}) => isActive? activestyle:undefined} className="profile">
-                        <div className="profileImg">
+                    <NavLink to="myPage" style={({isActive}) => isActive? activestyle:undefined} className="profile" onClick={ onClickMypageHandler }>
+                        <div className="profileImg" onClick={ onClickMypageHandler }>
 
                         </div>
                         마이페이지
                     </NavLink>
+                    <NavLink to="/" style={({isActive}) => isActive? activestyle:undefined} className="logOut">
+                        <button onClick={onClickLogoutHandler}>
+                            로그아웃
+                        </button>
+                    </NavLink>
+
                 </div>
             </div>
         </div>

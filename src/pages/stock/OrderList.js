@@ -41,7 +41,7 @@ function OrderList() {
             </div>
 
             <div style={{marginTop: "1%"}}>
-                <table >
+                <table className={StockCSS.stockTable}>
                     <tr>
                         <th>거래<br/>번호</th>
                         <th>영업점</th>

@@ -2,8 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./pages/layouts/layout";
 import React from 'react';
 import { Provider } from 'react-redux';
-import store from './modules/store';
-
+import store from './store';
 
 //지호
 import AppHome from './pages/approvalPage/AppHome'
@@ -46,7 +45,6 @@ import Management from "./pages/management/Management"
 import Department from "./pages/management/Department"
 import HeadOffice from "./pages/management/HeadOffice"
 import Mail from "./pages/Mail/Mail"
-import Calendar from "./pages/Calendar/Calendar"
 
 //미지
 //재고관리
@@ -77,7 +75,10 @@ function App() {
         <Provider store={store}>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/' element={<Layout/>}>
+                    //로그인 먼저
+                    <Route path='/' element={<Login/>}/>
+
+                    <Route path='/main' element={<Layout/>}>
                         //지호
                         <Route path='approval' element={<AppHome/>}/>
                         <Route path='/approval/purchase' element={<Purchase/>}/>
@@ -94,17 +95,16 @@ function App() {
                         <Route path='/approval/Send' element={<Send/>}/>
                         <Route path='chart' element={<OrgChart/>}/>
 
-                        //지수https://github.com/dabeng/react-orgchart.git
+                        //지수
                         <Route path='management' element={<Management />} />
                         <Route path='department' element={<Department />} />
                         <Route path='headOffice' element={<HeadOffice />} />
-                        <Route path='calendar' element={<Calendar />} />
                         <Route path='mail' element={<Mail />} />
 
                         //미지
                         //재고관리
-                        <Route path='/stock' element={<Stock/>}>
-                            //본사 고관리
+                        <Route path='main/stock' element={<Stock/>}>
+                            //본사 재고관리
                             <Route path='check' element={<Check/>}/>
                             <Route path='orderlist' element={<OrderList/>}/>
                             <Route path='bill' element={<Bill/>}/>
@@ -129,13 +129,13 @@ function App() {
                         //해든
                         <Route path='account' element={<AccountCreate/>} />
                         //사원 등록
-                        <Route path='/registration' element={<Registration/>}/>
-                        <Route path='/registration/registOk' element={<RegistOk/>}/>
+                        <Route path='registration' element={<Registration/>}/>
+                        <Route path='registOk' element={<RegistOk/>}/>
                         //계정신청
-                        <Route path='/applyM' element={<ApplyMForm/>}/>
+                        <Route path='applyM' element={<ApplyMForm/>}/>
                         //계정 비활성화 신청
-                        <Route path='/outM' element={<OutMForm/>}/>
-                        <Route path='/outS' element={<OutSForm/>}/>
+                        <Route path='outM' element={<OutMForm/>}/>
+                        <Route path='outS' element={<OutSForm/>}/>
                     </Route>
 
                     //미지
@@ -144,8 +144,7 @@ function App() {
                     <Route path='ReciptPopup' element={<ReciptPopup/>}/>
 
                     //해든
-                    //로그인, 아이디비밀번호찾기, 안내등
-                    <Route path='login' element={<Login/>}/>
+                    //아이디비밀번호찾기, 안내등
                     <Route path='/login/findId' element={<FindId/>}/>
                     <Route path='/login/fIOk' element={<FindIdOk/>}/>
                     <Route path='/login/fIOk/guideId' element={<GuideId/>}/>
