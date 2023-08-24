@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-// import Layout from "./pages/layouts/layout";
+import Layout from "./pages/layouts/layout";
 import React from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
-
-//지호
 import Layout from "./layouts/layout";
+//지호
+
 import Approval from './pages/approvalPage/Approval'
 
 //해든
@@ -71,25 +71,28 @@ import SlideCard from "./pages/mainpage/SlideCard";
 
 
 function App() {
-
-  return (
-      <>
-      <Provider store={store}>
+    return (
+        <Provider store={store}>
             <BrowserRouter>
                 {/*<ThemeProvider>*/}
                     {/*<GlobalStyle/>*/}
                 <Routes>
-                    <Route path='/' element={<Layout/>}>
+                    //로그인 먼저
+                    <Route path='/' element={<Login/>}/>
+
+                    <Route path='/main' element={<Layout/>}>
                         //지호
                         <Route path='approval' element={<Approval/>}/>
+
                         //지수
                         <Route path='management' element={<Management />} />
                         <Route path='department' element={<Department />} />
                         <Route path='headOffice' element={<HeadOffice />} />
                         <Route path='mail' element={<Mail />} />
+
                         //미지
                         //재고관리
-                        <Route path='/stock' element={<Stock/>}>
+                        <Route path='main/stock' element={<Stock/>}>
                             //본사 재고관리
                             <Route path='check' element={<Check/>}/>
                             <Route path='orderlist' element={<OrderList/>}/>
@@ -111,16 +114,17 @@ function App() {
                             <Route path='mybill' element={<MyBill/>}/>
                             <Route path='mystatistics' element={<MyStatistics/>}/>
                         </Route>
+
                         //해든
                         <Route path='account' element={<AccountCreate/>} />
                         //사원 등록
-                        <Route path='/registration' element={<Registration/>}/>
-                        <Route path='/registration/registOk' element={<RegistOk/>}/>
+                        <Route path='registration' element={<Registration/>}/>
+                        <Route path='registOk' element={<RegistOk/>}/>
                         //계정신청
-                        <Route path='/applyM' element={<ApplyMForm/>}/>
+                        <Route path='applyM' element={<ApplyMForm/>}/>
                         //계정 비활성화 신청
-                        <Route path='/outM' element={<OutMForm/>}/>
-                        <Route path='/outS' element={<OutSForm/>}/>
+                        <Route path='outM' element={<OutMForm/>}/>
+                        <Route path='outS' element={<OutSForm/>}/>
 
                         //지은
                         <Route path='myPage' element={<Mypage/>}/>
@@ -130,13 +134,14 @@ function App() {
 
 
                     </Route>
+
                     //미지
                     //재고관리 팝업
                     <Route path='ListPopup' element={<ListPopup/>}/>
                     <Route path='ReciptPopup' element={<ReciptPopup/>}/>
+
                     //해든
-                    //로그인, 아이디비밀번호찾기, 안내등
-                    <Route path='login' element={<Login/>}/>
+                    //아이디비밀번호찾기, 안내등
                     <Route path='/login/findId' element={<FindId/>}/>
                     <Route path='/login/fIOk' element={<FindIdOk/>}/>
                     <Route path='/login/fIOk/guideId' element={<GuideId/>}/>
@@ -156,9 +161,7 @@ function App() {
             {/*</ThemeProvider>*/}
           </BrowserRouter>
         </Provider>
-      </>
   );
-
 }
 
-export default App ;
+export default App;
