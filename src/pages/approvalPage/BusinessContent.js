@@ -1,12 +1,20 @@
 import styles from './approval.module.css';
 import business from './Business.module.css';
 import Tiny from './Tiny'
+import Modal from './Modal'
+import {useState} from "react";
 
 function BusinessContent() {
 
+    const [addPeople, setAddPeople] = useState(false);
+
+    const showPeople = () => {
+        setAddPeople(true);
+    }
+
     return(
         <div className={styles.content}>
-            <div className={styles.modify}>
+            <div className={styles.modify} onClick={showPeople}>
                 결재선 추가
             </div>
             <div className={styles.area1}>업 무 보 고</div>
@@ -84,6 +92,7 @@ function BusinessContent() {
                 <input type="file" className={styles.fileBtn} name="fileBtn" id="fileBtn"/>
                 <div className={styles.fileshow}></div>
             </div>
+            { addPeople && <Modal setAddPeople={setAddPeople}/>}
             <br/><br/>
         </div>
     )

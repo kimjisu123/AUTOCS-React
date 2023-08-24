@@ -1,6 +1,8 @@
 import styles from './approval.module.css';
 import traffic from './Traffic.module.css';
 import Swal from 'sweetalert2';
+import {useState} from "react";
+import Modal from './Modal'
 
 
 const onClickAddHandler = () => {
@@ -32,9 +34,15 @@ const onClickDelHandler = () => {
 
 function TrafficContent() {
 
+    const [addPeople, setAddPeople] = useState(false);
+
+    const showPeople = () => {
+        setAddPeople(true);
+    }
+
     return (
         <div className={styles.content}>
-            <div className={styles.modify}>
+            <div className={styles.modify} onClick={showPeople}>
                 결재선 추가
             </div>
             <div className={styles.area1}>여 비 정 산</div>
@@ -119,6 +127,7 @@ function TrafficContent() {
                 <input type="file" className={styles.fileBtn} name="fileBtn" id="fileBtn"/>
                 <div className={styles.fileshow}></div>
             </div>
+            { addPeople && <Modal setAddPeople={setAddPeople}/>}
             <br/><br/><br/>
         </div>
     )

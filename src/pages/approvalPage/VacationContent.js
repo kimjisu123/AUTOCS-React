@@ -1,11 +1,19 @@
 import styles from './approval.module.css'
 import vaca from './VacationContent.module.css'
+import Modal from './Modal'
+import {useState} from "react";
 
 function VacationContent() {
 
+    const [addPeople, setAddPeople] = useState(false);
+
+    const showPeople = () => {
+        setAddPeople(true);
+    }
+
     return (
         <div className={styles.content}>
-            <div className={styles.modify}>
+            <div className={styles.modify} onClick={showPeople}>
                 결재선 추가
             </div>
             <div className={styles.area1}>휴 가 신 청</div>
@@ -121,6 +129,7 @@ function VacationContent() {
                 <input type="file" className={styles.fileBtn} name="fileBtn" id="fileBtn"/>
                 <div className={styles.fileshow}></div>
             </div>
+            { addPeople && <Modal setAddPeople={setAddPeople}/>}
             <br/><br/><br/>
         </div>
     )

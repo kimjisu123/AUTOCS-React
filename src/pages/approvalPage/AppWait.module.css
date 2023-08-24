@@ -1,3 +1,4 @@
+
 .paging {
     display: flex;
     justify-content: center;
@@ -18,4 +19,55 @@
 
 .one:hover, .two:hover, .three:hover, .four:hover, .five:hover, .first:hover, .before:hover, .after:hover, .last:hover {
     color: #8d8a6d;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+}
+
+.searchBar {
+    border: 3px solid #8d8a6d;
+    border-right: none;
+    padding: 5px;
+    height: 30px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    font-size: 15px;
+    width: 400px;
+}
+
+
+.searchButton {
+    width: 50px;
+    height: 46px;
+    border: #8d8a6d;
+    background: #8d8a6d;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 30px;
+    line-height: 10px;
+}
+
+.allCheck {
+    margin-left: 40px;
+    margin-top: 30px;
+    margin-bottom: -20px;
+    display: flex;
+}
+
+.delete {
+    margin-left: 30px;
+    cursor: pointer;
+}
+
+.delete:hover {
+    color: #95ab85;
+}
+
+.checkOne {
+    margin-right: 50px;
+    margin-left: -60px;
 }
