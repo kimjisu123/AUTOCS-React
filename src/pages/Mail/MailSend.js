@@ -8,15 +8,38 @@ function MailSend( {setModal} ){
 
     const dispatch = useDispatch();
     const memberData = useSelector(state => state.memberReducer);
-    const [form, setForm] = useState('')
+    const [form, setForm] = useState({
+        employeeNo : '',
+        name : '',
+        employeeJoin : '',
+        employeeEmail : '',
+        employeePhone : '',
+        employeeManager : '',
+        departmentCode : '',
+        positionCode : '',
+        memberNo : ''
+    })
 
     const onClickClose = () =>{
         setModal(false)
     }
 
-    const onChangeName = () => {
+    const onChangeName = async (e) => {
+        setForm({
+            employeeNo : '',
+            name : e.target.value,
+            employeeJoin : '',
+            employeeEmail : '',
+            employeePhone : '',
+            employeeManager : '',
+            departmentCode : '',
+            positionCode : '',
+            memberNo : ''
+        });
+        console.log(form)
         dispatch( callSelectEmployeeAPI(form) );
     }
+
 
     return (
         <div className={styles.body}>
@@ -32,7 +55,7 @@ function MailSend( {setModal} ){
             
             <form>
                 <input className={styles.title} type="text" placeholder="제목" />
-                <input style={{marginTop : "10px"}} className={styles.title} type="text" placeholder="참석자" onChange={ onChangeName } />
+                <input style={{marginTop : "10px"}} className={styles.title} type="text" placeholder="참석자" onChange={onChangeName} />
                 <div> {memberData.data && memberData.data.map( data =>
                     <div>
                         {data.name}

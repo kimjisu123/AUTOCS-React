@@ -1,7 +1,7 @@
 import styles from './Mail.module.css';
 import { useState, useEffect } from 'react'
 import axios from 'axios';
-import { callGetMailAPI } from '../../apis/MailAPICalls';
+import { callGetMailAPI, callDELETEMailAPI } from '../../apis/MailAPICalls';
 import { useDispatch, useSelector } from 'react-redux';
 
 function MailContent(){
@@ -9,10 +9,10 @@ function MailContent(){
     const dispatch = useDispatch();
     const mailData = useSelector(state => state.mailReducer);
 
-    const [ bookMark, setBookMark ] = useState(false);
-
-    const onClickBookmark = () => {
-        setBookMark(!bookMark)
+    const onClickMailDelete = () =>{
+        dispatch( callDELETEMailAPI() );
+        window.location.reload();
+        alert('성공적으로 삭제가 되었습니다!')
     }
 
     useEffect(
@@ -28,7 +28,7 @@ function MailContent(){
                 <div className={styles.contentHeader}>
                     받은 쪽지
                 </div>
-                <div className={styles.allDelete}>
+                <div onClick={onClickMailDelete} className={styles.allDelete}>
                     전체 삭제
                 </div>
                 <form style={{display: "flex", justifyContent:"flex-start"}}>
@@ -48,6 +48,7 @@ function MailContent(){
 }
 
 function MailItem({ mail }) {
+
     const [bookMark, setBookMark] = useState(false);
 
     const onClickBookmark = () => {

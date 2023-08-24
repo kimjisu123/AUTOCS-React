@@ -44,16 +44,17 @@ export const callGetEmployeeAPI = () => {
          dispatch({ type: GET_EMPLOYEE, payload: result });
      }
 };
-export const callSelectEmployeeAPI = () => {
+export const callSelectEmployeeAPI = (paramValue) => {
     const requestURL = 'http://localhost:8080/member/selectEmployee';
 
     return async (dispatch) => {
         const result = await fetch(requestURL, {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
+            body: JSON.stringify(paramValue)
         }).then(response => response.json());
 
         dispatch({ type: GET_SELECT_EMPLOYEE, payload: result });
