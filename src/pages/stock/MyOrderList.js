@@ -32,14 +32,14 @@ function MyOrderList() {
                     </tr>
                     <tr>
                         <td>1</td>
-                        <td><NavLink to="/main/stock/myorderlist/detail">20201234</NavLink></td>
+                        <td><NavLink to="/stock/myorderlist/detail">20201234</NavLink></td>
                         <td>2023-08-01</td>
                         <td>진행중</td>
                         <td><button>발행</button></td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td><NavLink to="/main/stock/myorderlist/detail">20201234</NavLink></td>
+                        <td><NavLink to="/stock/myorderlist/detail">20201234</NavLink></td>
                         <td>2023-08-01</td>
                         <td>완료</td>
                         <td><button>발행</button></td>

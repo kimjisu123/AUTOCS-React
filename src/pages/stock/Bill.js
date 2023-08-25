@@ -33,13 +33,13 @@ function Bill() {
                     </tr>
                     <tr>
                         <td>1</td>
-                        <td><NavLink to="/main/stock/bill/detail">20201234</NavLink></td>
+                        <td><NavLink to="/stock/bill/detail">20201234</NavLink></td>
                         <td>종로점</td>
                         <td>2023-08-01</td>
                     </tr>
                     <tr>
                         <td>1</td>
-                        <td><NavLink to="/main/stock/bill/detail">20201234</NavLink></td>
+                        <td><NavLink to="/stock/bill/detail">20201234</NavLink></td>
                         <td>종로점</td>
                         <td>2023-08-01</td>
                     </tr>

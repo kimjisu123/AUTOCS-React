@@ -21,7 +21,7 @@ function Unit() {
 
 
     // 조회
-    const units = useSelector(state => state.stockReducer);
+    const units = useSelector(state => state.unitReducer);
     const unitList = units.data;
     const pageInfo = units.pageInfo;
 
@@ -82,7 +82,7 @@ function Unit() {
             }));
 
             alert('등록되었습니다.');
-            navigate('/main/stock/unit', {replace: true});
+            navigate('/stock/unit', {replace: true});
             window.location.reload();
         }
     }
@@ -118,7 +118,7 @@ function Unit() {
             setSelectedUnits([]); // 선택된 카테고리 초기화
 
             alert('수정되었습니다.');
-            navigate('/main/stock/unit', { replace: true });
+            navigate('/stock/unit', { replace: true });
             window.location.reload();
         }
     }
@@ -142,7 +142,7 @@ function Unit() {
             setSelectedUnits([]); // 선택된 카테고리 초기화
 
             alert('수정되었습니다.');
-            navigate('/main/stock/unit', { replace: true });
+            navigate('/stock/unit', { replace: true });
             window.location.reload();
         }
     }

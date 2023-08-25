@@ -17,7 +17,7 @@ const Header = () => {
     const accessToken = window.localStorage.getItem('accessToken');
 
     //나중에 지워주자
-    console.log("토큰값 : ", accessToken);
+    // console.log("토큰값 : ", accessToken);
 
     const [login, setLogin] = useState(false);
 

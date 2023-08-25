@@ -22,7 +22,7 @@ function Standard() {
 
 
     // 조회
-    const standards = useSelector(state => state.stockReducer);
+    const standards = useSelector(state => state.standardReducer);
     const standardList = standards.data;
     const pageInfo = standards.pageInfo;
 
@@ -83,7 +83,7 @@ function Standard() {
             }));
 
             alert('등록되었습니다.');
-            navigate('/main/stock/standard', {replace: true});
+            navigate('/stock/standard', {replace: true});
             window.location.reload();
         }
     }
@@ -119,7 +119,7 @@ function Standard() {
             setSelectedStandards([]); // 선택된 카테고리 초기화
 
             alert('수정되었습니다.');
-            navigate('/main/stock/standard', { replace: true });
+            navigate('/stock/standard', { replace: true });
             window.location.reload();
         }
     }
@@ -143,7 +143,7 @@ function Standard() {
             setSelectedStandards([]); // 선택된 카테고리 초기화
 
             alert('수정되었습니다.');
-            navigate('/main/stock/standard', { replace: true });
+            navigate('/stock/standard', { replace: true });
             window.location.reload();
         }
     }

@@ -1,19 +1,25 @@
 import {
     GET_PRODUCT,
     GET_PRODUCTS,
+    POST_PRODUCT,
+} from '../modules/ProductModule';
+import {
     GET_CATEGORIES,
     POST_CATEGORY,
     PUT_CATEGORY,
+} from '../modules/CategoryModule';
+import {
     GET_STANDARDS,
     POST_STANDARD,
     PUT_STANDARD,
+} from '../modules/StandardModule';
+import {
     GET_UNITS,
     POST_UNIT,
-    PUT_UNIT, GET_CATEGORYLIST,
+    PUT_UNIT,
+} from '../modules/UnitModule';
 
-} from '../modules/StockModule';
-
-/* 상품 조회 */
+/* 물품 조회 */
 export const callProductListAPI = ({currentPage}) => {
 
     let requestURL;
@@ -43,6 +49,59 @@ export const callProductListAPI = ({currentPage}) => {
 
     };
 }
+
+/* 물품 조회 */
+export const callProductListByNameAPI = ({currentPage, s}) => {
+    console.log('시작......')
+
+
+    let requestURL;
+
+    if(currentPage !== undefined || currentPage !== null){
+        requestURL = `http://localhost:8080/ListPopup?offset=${currentPage}&s=${s}`;
+        console.log(s)
+    }else {
+        requestURL = `http://localhost:8080/ListPopup`;
+    }
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            }
+        })
+            .then(response => response.json());
+        if(result.status === 200){
+            dispatch({ type: GET_PRODUCTS,  payload: result.data });
+        }
+
+    };
+}
+
+/* 물품 등록 */
+export const callProductRegistAPI = ({form}) => {
+    const requestURL = `http://localhost:8080/stock/productregist`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "POST",
+            headers: {
+                "Accept": "*/*"
+            },
+            body: form
+        })
+            .then(response => response.json());
+
+        dispatch({ type: POST_PRODUCT,  payload: result });
+
+    };
+}
+
+
 /* 카테고리 조회 */
 export const callCategoryListAPI = () => {
     let requestURL;
