@@ -121,6 +121,9 @@ body {
 
 }
 
+.titleContainer {
+    /*display: flex;*/
+}
 .maintitle {
     display: flex;
     /*margin-left: 20px;*/
@@ -129,8 +132,8 @@ body {
 }
 
 .maintext {
-    margin-left: 20px;
-    margin-top: 20px;
+    /*margin-left: 20px;*/
+    /*margin-top: 20px;*/
     flex:7
 }
 
@@ -168,7 +171,14 @@ body {
 
 }
 
-.mainTime {
+/*다크모드와 시간 표시*/
+.timeAndDark {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.mainTime  .darkmode{
     display: flex;
     margin:5px;
     text-align: center;
@@ -185,7 +195,7 @@ body {
     /*color: #909094;*/
     font-size: 2em;
     font-weight: 700;
-    margin: 0;
+    /*margin: 0;*/
 }
 .mainTime svg {
     text-align: center;
@@ -293,4 +303,16 @@ body {
 
 .daliyTitle {
     /*background-color: #1C2C10;*/
+}
+
+/*문서 파트*/
+.documentPart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*게시판 파트*/
+.boradPart {
+    display: flex;
 }

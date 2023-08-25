@@ -5,62 +5,119 @@ const Table = () => {
 
     return (
         <>
-            <table className="table table-striped table-centered mb-0">
-                <thead>
-                <tr>
-                    <th>User</th>
-                    <th>Account No.</th>
-                    <th>Balance</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td className="table-user">
-                        Risa D. Pearson
-                    </td>
-                    <td>AC336 508 2157</td>
-                    <td>July 24, 1950</td>
-                    <td className="table-action">
-                        <a href="javascript: void(0);" className="action-icon"> <i class="mdi mdi-pencil"></i></a>
-                        <a href="javascript: void(0);" className="action-icon"> <i class="mdi mdi-delete"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td className="table-user">
-                        Ann C. Thompson
-                    </td>
-                    <td>SB646 473 2057</td>
-                    <td>January 25, 1959</td>
-                    <td className="table-action">
-                        <a href="javascript: void(0);" className="action-icon"> <i class="mdi mdi-pencil"></i></a>
-                        <a href="javascript: void(0);" className="action-icon"> <i class="mdi mdi-delete"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td className="table-user">
-                        Paul J. Friend
-                    </td>
-                    <td>DL281 308 0793</td>
-                    <td>September 1, 1939</td>
-                    <td className="table-action">
-                        <a href="javascript: void(0);" className="action-icon"> <i class="mdi mdi-pencil"></i></a>
-                        <a href="javascript: void(0);" className="action-icon"> <i class="mdi mdi-delete"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td className="table-user">
-                        Sean C. Nguyen
-                    </td>
-                    <td>CA269 714 6825</td>
-                    <td>February 5, 1994</td>
-                    <td className="table-action">
-                        <a href="javascript: void(0);" className="action-icon"> <i class="mdi mdi-pencil"></i></a>
-                        <a href="javascript: void(0);" className="action-icon"> <i class="mdi mdi-delete"></i></a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+            <div className="container mt-5 pt-4">
+                <div className="row">
+                    <div className="card">
+                        <div className="card border-0 bg-light rounded shadow">
+                            <div className="card-body p-4">
+                                <span className="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">Full time</span>
+                                <h5>Web Designer</h5>
+                                <div className="mt-3">
+                                    <span className="text-muted d-block"><i className="fa fa-home" aria-hidden="true"></i> <a
+                                        href="#" target="_blank" className="text-muted">Bootdey.com LLC.</a></span>
+                                    <span className="text-muted d-block"><i className="fa fa-map-marker" aria-hidden="true"></i> USA</span>
+                                </div>
+
+                                <div className="mt-3">
+                                    <a href="#" className="btn btn-primary">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className="card">
+                        <div className="card border-0 bg-light rounded shadow">
+                            <div className="card-body p-4">
+                                <span className="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">Remote</span>
+                                <h5>Front-end Developer</h5>
+                                <div className="mt-3">
+                                    <span className="text-muted d-block"><i className="fa fa-home" aria-hidden="true"></i> <a
+                                        href="#" target="_blank" className="text-muted">Bootdey.com LLC.</a></span>
+                                    <span className="text-muted d-block"><i className="fa fa-map-marker" aria-hidden="true"></i> USA</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className="card">
+                        <div className="card border-0 bg-light rounded shadow">
+                            <div className="card-body p-4">
+                                <span className="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">Contract</span>
+                                <h5>Web Developer</h5>
+                                <div className="mt-3">
+                                    <span className="text-muted d-block"><i className="fa fa-home" aria-hidden="true"></i> <a
+                                        href="#" target="_blank" className="text-muted">Bootdey.com LLC.</a></span>
+                                    <span className="text-muted d-block"><i className="fa fa-map-marker" aria-hidden="true"></i> USA</span>
+                                </div>
+
+                                <div className="mt-3">
+                                    <a href="#" className="btn btn-primary">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className="card">
+                        <div className="card border-0 bg-light rounded shadow">
+                            <div className="card-body p-4">
+                                <span className="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">WFH</span>
+                                <h5>Back-end Developer</h5>
+                                <div className="mt-3">
+                                    <span className="text-muted d-block"><i className="fa fa-home" aria-hidden="true"></i> <a
+                                        href="#" target="_blank" className="text-muted">Bootdey.com LLC.</a></span>
+                                    <span className="text-muted d-block"><i className="fa fa-map-marker" aria-hidden="true"></i> USA</span>
+                                </div>
+
+                                <div className="mt-3">
+                                    <a href="#" className="btn btn-primary">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className="card">
+                        <div className="card border-0 bg-light rounded shadow">
+                            <div className="card-body p-4">
+                                <span className="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">Full time</span>
+                                <h5>UX / UI Designer</h5>
+                                <div className="mt-3">
+                                    <span className="text-muted d-block"><i className="fa fa-home" aria-hidden="true"></i> <a
+                                        href="#" target="_blank" className="text-muted">Bootdey.com LLC.</a></span>
+                                    <span className="text-muted d-block"><i className="fa fa-map-marker" aria-hidden="true"></i> USA</span>
+                                </div>
+
+                                <div className="mt-3">
+                                    <a href="#" className="btn btn-primary">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className="card">
+                        <div className="card border-0 bg-light rounded shadow">
+                            <div className="card-body p-4">
+                                <span className="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">Remote</span>
+                                <h5>Tester</h5>
+                                <div className="mt-3">
+                                    <span className="text-muted d-block"><i className="fa fa-home" aria-hidden="true"></i> <a
+                                        href="#" target="_blank" className="text-muted">Bootdey.com LLC.</a></span>
+                                    <span className="text-muted d-block"><i className="fa fa-map-marker" aria-hidden="true"></i> USA</span>
+                                </div>
+
+                                <div className="mt-3">
+                                    <a href="#" className="btn btn-primary">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
         </>
