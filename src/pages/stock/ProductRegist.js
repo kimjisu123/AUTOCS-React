@@ -39,6 +39,15 @@ function ProductRegist() {
     }, []);
 
 
+    // 단위 조회
+    const units = useSelector(state => state.stockReducer);
+    const unitList = units;
+
+    useEffect(() => {
+        dispatch(callUnitListAPI());
+    }, []);
+
+
 
 // 등록
     const [form, setForm] = useState({
@@ -131,7 +140,13 @@ function ProductRegist() {
                         단위
                     </td>
                     <td>
-                        <select></select>
+                        <select>
+                        {
+                            Array.isArray(unitList) && unitList.map((unit) => (
+                                <option value={unit.productUnitNo}>{unit.name}</option>
+                            ))
+                        }
+                        </select>
                     </td>
                 </tr>
                 <tr>
