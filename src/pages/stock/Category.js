@@ -20,9 +20,8 @@ function Category() {
     const [selectedCategories, setSelectedCategories] = useState([]); // 배열로 선택된 카테고리 저장
 
     // 조회
-    const categories = useSelector(state => state.stockReducer);
+    const categories = useSelector(state => state.categoryReducer);
     const categoryList = categories.data;
-    console.log('data',categoryList);
     const pageInfo = categories.pageInfo;
 
     const [start, setStart] = useState(0);
@@ -84,7 +83,7 @@ function Category() {
             }));
 
             alert('등록되었습니다.');
-            navigate('/main/stock/category', {replace: true});
+            navigate('/stock/category', {replace: true});
             window.location.reload();
         }
     }
@@ -122,7 +121,7 @@ function Category() {
             setSelectedCategories([]); // 선택된 카테고리 초기화
 
             alert('수정되었습니다.');
-            navigate('/main/stock/category', { replace: true });
+            navigate('/stock/category', { replace: true });
             window.location.reload();
         }
     }
@@ -148,7 +147,7 @@ function Category() {
             setSelectedCategories([]); // 선택된 카테고리 초기화
 
             alert('수정되었습니다.');
-            navigate('/main/stock/category', { replace: true });
+            navigate('/stock/category', { replace: true });
             window.location.reload();
         }
     }

@@ -8,7 +8,7 @@ import {
 } from '../../apis/StockAPICalls'
 
 
-function showPopup() { window.open('/ListPopup', "a", "width=400, height=600, left=100, top=50"); }
+function showPopup() { window.open('/ListPopup', "a", "width=400, height=800, left=100, top=50"); }
 
 function ProductDelete() {
 
@@ -17,7 +17,7 @@ function ProductDelete() {
 
     // 리덕스를 이용하기 위한 디스패처, 셀렉터 선언
     const dispatch = useDispatch();
-    const products = useSelector(state => state.stockReducer);
+    const products = useSelector(state => state.productReducer);
     const productList = products.data;
 
     const pageInfo = products.pageInfo;

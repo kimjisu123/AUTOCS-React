@@ -10,6 +10,7 @@
     padding-left: 60px;
     margin-bottom: 7px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 /* 컨텐츠 */
@@ -93,6 +94,7 @@
 /* 팝업창 */
 .listbox {
     display: flex;
+    width: 400px;
     height: auto;
     background-color: #ecead8;
 }
