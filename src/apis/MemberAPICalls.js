@@ -2,7 +2,6 @@ import { GET_EMPLOYEE,
          ADD_EMPLOYEE,
          GO_LOGIN
         } from '../modules/MemberModule';
-import { useDispatch } from 'react-redux';
 
 
 //직원 등록 및 아이디/비번 생성
