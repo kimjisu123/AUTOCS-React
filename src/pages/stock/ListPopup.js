@@ -63,10 +63,16 @@ function ListPopup() {
         formData.append("s", form.s);
 
         dispatch(callProductListByNameAPI({
-            form: formData
+            s: form.s,
+            currentPage: 1
         }));
-
     }
+
+    const onEnterKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            onClickSearchHandler();
+        }
+    };
 
     /*******************************************************************************/
 
@@ -78,6 +84,7 @@ function ListPopup() {
                     name='s'
                     placeholder={'품목명을 입력하세요'}
                     onChange={ onChangeHandler }
+                    onKeyPress={onEnterKeyPress}
                 />
                     <button onClick={onClickSearchHandler}>조회</button>
                     <table className={StockCSS.stockTable}>
