@@ -11,12 +11,12 @@ import {
 function ListPopup() {
 
     /*******************************************************************************/
-
-
-    // 리덕스를 이용하기 위한 디스패처, 셀렉터 선언
     const dispatch = useDispatch();
     const products = useSelector(state => state.productReducer);
     const productList = products.data;
+
+    const [selectedProductName, setSelectedProductName] = useState(""); // 선택된 물품명
+
 
     const pageInfo = products.pageInfo;
 
@@ -74,6 +74,13 @@ function ListPopup() {
         }
     };
 
+    // 물품명 셀 클릭 이벤트 핸들러
+    const onProductNameClick = (productNo) => {
+        setSelectedProductName(productNo); // 선택된 물품명 설정
+        console.log(productNo)
+    };
+
+
     /*******************************************************************************/
 
     return (
@@ -96,7 +103,10 @@ function ListPopup() {
                         </tr>
                         {
                             Array.isArray(productList) && productList.map((product) => (
-                                <tr key={ product.productNo }>
+                                <tr key={ product.productNo }
+                                    onClick={() => onProductNameClick(product.productNo)} // 클릭 핸들러 추가
+                                    style={{ cursor: 'pointer' }}
+                                >
                                     <td>{ product.productNo }</td>
                                     <td>{ product.category.name}</td>
                                     <td>{ product.name }</td>
