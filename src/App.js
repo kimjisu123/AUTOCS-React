@@ -15,7 +15,6 @@ import FindPwd from "./pages/Login/findPwd";
 import FindIdOk from "./pages/Login/findIdOk";
 import Registration from "./pages/createMember/registration";
 import RegistOk from "./pages/createMember/registOk";
-import ApplyMForm from "./pages/applyForm/applyMForm";
 import ApplyOk from "./pages/applyForm/applyOk";
 import FindPwdOk from "./pages/Login/findPwdOk";
 import GuideId from "./pages/Login/guideId";
@@ -25,7 +24,7 @@ import OutSForm from "./pages/outForm/outSForm";
 import OutMForm from "./pages/outForm/outMForm";
 import Mmail from "./pages/emailGuide/Mmail";
 import Smail from "./pages/emailGuide/Smail";
-import AccountCreate from "./pages/createMember/accountCreate";
+import NoAuthority from "./pages/Login/noAuthority"
 
 //지수
 import Management from "./pages/management/Management"
@@ -79,7 +78,7 @@ function App() {
 
                         //미지
                         //재고관리
-                        <Route path='/stock' element={<Stock/>}>
+                        <Route path='stock' element={<Stock/>}>
                             //본사 재고관리
                             <Route path='check' element={<Check/>}/>
                             <Route path='orderlist' element={<OrderList/>}/>
@@ -103,15 +102,12 @@ function App() {
                         </Route>
 
                         //해든
-                        <Route path='account' element={<AccountCreate/>} />
                         //사원 등록
-                        <Route path='/registration' element={<Registration/>}/>
-                        <Route path='/registration/registOk' element={<RegistOk/>}/>
-                        //계정신청
-                        <Route path='/applyM' element={<ApplyMForm/>}/>
+                        <Route path='registration' element={<Registration/>}/>
+                        <Route path='registOk' element={<RegistOk/>}/>
                         //계정 비활성화 신청
-                        <Route path='/outM' element={<OutMForm/>}/>
-                        <Route path='/outS' element={<OutSForm/>}/>
+                        <Route path='outM' element={<OutMForm/>}/>
+                        <Route path='outS' element={<OutSForm/>}/>
                     </Route>
 
                     //미지
@@ -120,14 +116,17 @@ function App() {
                     <Route path='ReciptPopup' element={<ReciptPopup/>}/>
 
                     //해든
-                    //로그인, 아이디비밀번호찾기, 안내등
-                    <Route path='login' element={<Login/>}/>
+                    //아이디비밀번호찾기, 안내등
+                    <Route path='/login' element={<Login/>}/>
                     <Route path='/login/findId' element={<FindId/>}/>
                     <Route path='/login/fIOk' element={<FindIdOk/>}/>
                     <Route path='/login/fIOk/guideId' element={<GuideId/>}/>
                     <Route path='/login/findPwd' element={<FindPwd/>}/>
                     <Route path='/login/fPOk' element={<FindPwdOk/>}/>
                     <Route path='/login/fPOk/guidePwd' element={<GuidePwd/>}/>
+
+                    //NO권한
+                    <Route path='/noAuthority' element={<NoAuthority/>}/>
 
                     //계정신청
                     <Route path='/applyS' element={<ApplySForm/>}/>

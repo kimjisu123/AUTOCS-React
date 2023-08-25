@@ -20,28 +20,25 @@
     font-style: italic;
 }
 
-.employee-ul {
-    list-style: none;
-    padding: 0;
-}
-
-.employee-li {
-    margin-bottom: 10px;
-    padding: 10px;
+.employee-table {
+    width: 100%;
+    border-collapse: collapse;
     border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: white;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    table-layout: fixed;
 }
 
-.employee-name {
+.employee-table th, .employee-table td {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.employee-table th {
+    background-color: #f2f2f2;
     font-weight: bold;
 }
 
-.employee-info {
-    color: #555;
+.employee-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
-
