@@ -1,5 +1,5 @@
 import img from './loginMain.png'
-import './applyMForm.css'
+import './applySForm.css'
 import {Link} from "react-router-dom";
 
 

@@ -15,7 +15,6 @@ import FindPwd from "./pages/Login/findPwd";
 import FindIdOk from "./pages/Login/findIdOk";
 import Registration from "./pages/createMember/registration";
 import RegistOk from "./pages/createMember/registOk";
-import ApplyMForm from "./pages/applyForm/applyMForm";
 import ApplyOk from "./pages/applyForm/applyOk";
 import FindPwdOk from "./pages/Login/findPwdOk";
 import GuideId from "./pages/Login/guideId";
@@ -25,7 +24,6 @@ import OutSForm from "./pages/outForm/outSForm";
 import OutMForm from "./pages/outForm/outMForm";
 import Mmail from "./pages/emailGuide/Mmail";
 import Smail from "./pages/emailGuide/Smail";
-import AccountCreate from "./pages/createMember/accountCreate";
 import NoAuthority from "./pages/Login/noAuthority"
 
 //지수
@@ -99,12 +97,9 @@ function App() {
                         </Route>
 
                         //해든
-                        <Route path='account' element={<AccountCreate/>} />
                         //사원 등록
                         <Route path='registration' element={<Registration/>}/>
                         <Route path='registOk' element={<RegistOk/>}/>
-                        //계정신청
-                        <Route path='applyM' element={<ApplyMForm/>}/>
                         //계정 비활성화 신청
                         <Route path='outM' element={<OutMForm/>}/>
                         <Route path='outS' element={<OutSForm/>}/>

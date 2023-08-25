@@ -32,14 +32,15 @@ function Login({setLogin}) {
         }
     }, [loginMember, navigate]);
 
+    useEffect(() => {
+        console.log("계정저장 확인>>>>>> : " + rememberAccount);
+    }, [rememberAccount]);
+
     // 로그인 상태일 시 로그인페이지로 접근 방지
     if(loginMember.length > 0) {
         console.log("[Login] Login is already authenticated by the server");
         return <Navigate to="/"/>;
     }
-
-    console.log("계정저장 확인>>>>>> : " + setRememberAccount);
-    console.log("로컬스토리지 확인>>>>>> : " + localStorage.getItem('savedId'));
 
     const handlelogin = () => {
         try {

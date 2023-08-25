@@ -68,6 +68,7 @@ export const callLoginAPI = ({ loginInfo, rememberAccount }) => {
                 console.log('[MemberAPICalls] callLoginAPI RESULT : ', result);
                 if(result.status === 200){
                     window.localStorage.setItem('accessToken', result.data.accessToken);
+
                     // 체크박스가 체크되어 있다면 아이디를 로컬 스토리지에 저장
                     if (rememberAccount) {
                         window.localStorage.setItem('savedId', loginInfo.id);
@@ -76,7 +77,7 @@ export const callLoginAPI = ({ loginInfo, rememberAccount }) => {
                         window.localStorage.removeItem('savedId');
                     }
                     window.alert('로그인 되었습니다.');
-                   // window.location ="/main"
+
                 } else {
         window.alert('아이디 또는 비밀번호가 올바르지 않습니다.');
                 }

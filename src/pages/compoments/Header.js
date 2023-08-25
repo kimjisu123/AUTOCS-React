@@ -16,23 +16,13 @@ const Header = () => {
     const loginMember = useSelector(state => state.memberReducer);
     const accessToken = window.localStorage.getItem('accessToken');
 
-    //나중에 지워주자
-    console.log("토큰값 : ", accessToken);
+    //토큰값 확인
+    //console.log("토큰값 : ", accessToken);
 
     const [login, setLogin] = useState(false);
 
     //토큰 정보 추출
     const decodedToken = accessToken ? decodeJwt(accessToken) : null;
-
-    useEffect(() => {
-
-            console.log(loginMember);
-            if(loginMember.status === 200){
-                console.log("[Login] Login SUCCESS ||||||||||||||| {}", loginMember);
-                navigate("/", { replace: true });
-            }
-        }
-        ,[loginMember]);
 
     const activestyle = {
 
