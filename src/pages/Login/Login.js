@@ -23,7 +23,7 @@ function Login({setLogin}) {
             setId(savedId);
             setRememberAccount(true);
         }
-    }, []); // 빈 배열을 넣어 컴포넌트 마운트 시에만 실행되도록 설정
+    }, []);
 
     useEffect(() => {
         if (loginMember.status === 200) {
@@ -38,6 +38,8 @@ function Login({setLogin}) {
         return <Navigate to="/"/>;
     }
 
+    console.log("계정저장 확인>>>>>> : " + setRememberAccount);
+    console.log("로컬스토리지 확인>>>>>> : " + localStorage.getItem('savedId'));
 
     const handlelogin = () => {
         try {
@@ -49,21 +51,14 @@ function Login({setLogin}) {
             console.log('Info to Pass:', loginInfo);
 
             dispatch(callLoginAPI({
-                loginInfo: loginInfo
+                loginInfo: loginInfo,
+                rememberAccount: rememberAccount
             }))
 
             setLogin(false);
             console.log('[LoginModal] Login Process End!!');
 
-            // 계정 저장 체크 시 로컬 스토리지에 아이디 저장
-            if (rememberAccount) {
-                localStorage.setItem('savedId', id);
-            } else {
-                localStorage.removeItem('savedId');
-            }
-
         } catch (error) {
-            window.alert('아이디 또는 비밀번호가 올바르지 않습니다.')
             console.error('Error:', error);
         }
     };
@@ -74,6 +69,10 @@ function Login({setLogin}) {
 
     const handlePwdChange = (event) => {
         setPwd(event.target.value);
+    };
+
+    const handleRememberAccountChange = () => {
+        setRememberAccount(!rememberAccount);
     };
 
     return (
@@ -101,11 +100,11 @@ function Login({setLogin}) {
                                 type="checkbox"
                                 id="accountSave"
                                 name="accountSave"
-                                style={{ marginTop: "3px" }}
+                                style={{ marginTop: '3px' }}
                                 checked={rememberAccount}
-                                onChange={() => setRememberAccount(!rememberAccount)}
+                                onChange={() => handleRememberAccountChange()}
                             />
-                            <h4 style={{marginLeft: "170px"}}>계정 저장</h4>
+                            <h4 style={{ marginLeft: '170px' }}>계정 저장</h4>
                         </div>
                         <Link to="/login/findId" style={{ color: "#1C2C10", marginLeft: "1030px" }}>아이디/비밀번호 찾기</Link>
                     </div>

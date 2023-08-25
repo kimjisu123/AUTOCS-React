@@ -51,7 +51,7 @@ export const callGetEmployeeAPI = () => {
 };
 
 // 로그인
-export const callLoginAPI = ({ loginInfo }) => {
+export const callLoginAPI = ({ loginInfo, rememberAccount }) => {
     const requestURL = 'http://localhost:8080/auth/login';
 
     return async (dispatch, getState) => {
@@ -65,12 +65,20 @@ export const callLoginAPI = ({ loginInfo }) => {
                 body: JSON.stringify(loginInfo),
             }).then(response => response.json());
 
-
                 console.log('[MemberAPICalls] callLoginAPI RESULT : ', result);
                 if(result.status === 200){
                     window.localStorage.setItem('accessToken', result.data.accessToken);
+                    // 체크박스가 체크되어 있다면 아이디를 로컬 스토리지에 저장
+                    if (rememberAccount) {
+                        window.localStorage.setItem('savedId', loginInfo.id);
+                    } else {
+                        // 체크박스가 체크되어 있지 않다면 아이디를 로컬 스토리지에서 제거
+                        window.localStorage.removeItem('savedId');
+                    }
                     window.alert('로그인 되었습니다.');
                    // window.location ="/main"
+                } else {
+        window.alert('아이디 또는 비밀번호가 올바르지 않습니다.');
                 }
             dispatch({ type: GO_LOGIN, payload: result });
 
@@ -81,6 +89,7 @@ export const callLoginAPI = ({ loginInfo }) => {
 export const callLogoutAPI = () => {
 
     return async (dispatch, getState) => {
+        window.localStorage.removeItem('accessToken');
 
         dispatch({ type: GO_LOGIN,  payload: '' });
         console.log('[MemberAPICalls] callLogoutAPI RESULT : SUCCESS');
