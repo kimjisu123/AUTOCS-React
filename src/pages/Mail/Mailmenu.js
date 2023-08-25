@@ -1,5 +1,5 @@
 import styles from './Mail.module.css';
-import { Outlet } from "react-router-dom";
+import { Link , Outlet } from "react-router-dom";
 import { useState } from 'react';
 import MailSend from './MailSend'
 
@@ -17,9 +17,9 @@ function Mailmenu({children}){
             <div className={styles.documentForm}>
                 쪽지함
             </div>
-            <div className={styles.receivedMail}>받은 편지</div>
+            <Link to="/mail"> <div className={styles.receivedMail}>받은 편지</div> </Link>
             <div className={styles.sentMail}>보낸 편지</div>
-            <div className={styles.mailBookMark}>즐겨찾기</div>
+            <Link to="/mailBookmark" > <div className={styles.mailBookMark}>즐겨찾기</div></Link>
             <div style={ modal ? {display:"inline"} : {display: "none"} }>
                 <MailSend setModal = { setModal } />
             </div>

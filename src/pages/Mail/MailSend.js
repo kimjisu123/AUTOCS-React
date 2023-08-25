@@ -3,11 +3,12 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { callSelectEmployeeAPI } from '../../apis/MemberAPICalls'
-import { useState} from 'react'
+import {useEffect, useState} from 'react'
 function MailSend( {setModal} ){
 
     const dispatch = useDispatch();
     const memberData = useSelector(state => state.memberReducer);
+
     const [form, setForm] = useState({
         employeeNo : '',
         name : '',
@@ -20,11 +21,18 @@ function MailSend( {setModal} ){
         memberNo : ''
     })
 
+    useEffect(
+        () =>  {
+            dispatch( callSelectEmployeeAPI(form) );
+        }
+        ,[]
+    );
+
     const onClickClose = () =>{
         setModal(false)
     }
 
-    const onChangeName = async (e) => {
+    const onChangeName = (e) => {
         setForm({
             employeeNo : '',
             name : e.target.value,
@@ -36,8 +44,8 @@ function MailSend( {setModal} ){
             positionCode : '',
             memberNo : ''
         });
-        console.log(form)
         dispatch( callSelectEmployeeAPI(form) );
+        console.log(memberData.data)
     }
 
 
@@ -56,11 +64,11 @@ function MailSend( {setModal} ){
             <form>
                 <input className={styles.title} type="text" placeholder="제목" />
                 <input style={{marginTop : "10px"}} className={styles.title} type="text" placeholder="참석자" onChange={onChangeName} />
-                <div> {memberData.data && memberData.data.map( data =>
-                    <div>
-                        {data.name}
-                    </div>
-                )} </div>
+                <div style={{width:"100px", height: "28px", border:"1px solid black"}}>
+                    {memberData.data && memberData.data.map( data =>
+                        data.name
+                    )}
+                </div>
                 <ReactQuill theme="snow" className={styles.content} />
                 <input type="submit" className={styles.send} value="보내기" />
             </form>

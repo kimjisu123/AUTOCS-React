@@ -19,15 +19,10 @@ const memberReducer = handleActions(
     {
         [GET_EMPLOYEE]: (state, { payload }) => {
             return payload;
-        }
-    },
-    {
+        },
         [GET_SELECT_EMPLOYEE]: (state, { payload }) => {
             return payload;
-        }
-    },
-    {
-        [ADD_EMPLOYEE]: (state, { payload }) => {
+        }, [ADD_EMPLOYEE]: (state, { payload }) => {
             return payload;
         }
     },

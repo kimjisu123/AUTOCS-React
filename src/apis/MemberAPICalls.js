@@ -55,7 +55,11 @@ export const callSelectEmployeeAPI = (paramValue) => {
                 'Accept': 'application/json'
             },
             body: JSON.stringify(paramValue)
-        }).then(response => response.json());
+        }).
+        then(response => response.json())
+        .then(data => {
+            console.log(data); // 서버에서 온 응답 데이터 출력
+        });
 
         dispatch({ type: GET_SELECT_EMPLOYEE, payload: result });
     }

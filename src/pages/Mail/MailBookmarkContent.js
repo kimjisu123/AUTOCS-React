@@ -1,10 +1,10 @@
 import styles from './Mail.module.css';
 import { useState, useEffect } from 'react'
 import axios from 'axios';
-import { callGetMailAPI, callDELETEMailAPI } from '../../apis/MailAPICalls';
+import { callGetMailAPI, callDELETEMailAPI, callPutMailAPI } from '../../apis/MailAPICalls';
 import { useDispatch, useSelector } from 'react-redux';
 
-function MailContent(){
+function MailBookmarkContent(){
 
     const dispatch = useDispatch();
     const mailData = useSelector(state => state.mailReducer);
@@ -15,19 +15,12 @@ function MailContent(){
         alert('성공적으로 삭제가 되었습니다!')
     }
 
-    useEffect(
-         () =>  {
-            dispatch( callGetMailAPI() );
-
-        }
-        ,[]
-    );
 
     return(
         <div className={styles.content}>
             <div className={styles.mainHeader}>
                 <div className={styles.contentHeader}>
-                    받은 쪽지
+                    즐겨찾기
                 </div>
                 <div onClick={onClickMailDelete} className={styles.allDelete}>
                     전체 삭제
@@ -39,11 +32,11 @@ function MailContent(){
                 </form>
             </div>
 
-            <div>
-                {mailData.data && mailData.data.map(mail => (
-                    <MailItem key={mail.id} mail={mail} />
-                ))}
-            </div>
+            {/*<div>*/}
+            {/*    {mailData.data && mailData.data.map(mail => (*/}
+            {/*        <MailItem key={mail.id} mail={mail} />*/}
+            {/*    ))}*/}
+            {/*</div>*/}
         </div>
     )
 }
@@ -52,8 +45,11 @@ function MailItem({ mail }) {
 
     const [bookMark, setBookMark] = useState(false);
 
+    const dispatch = useDispatch();
+    const mailData = useSelector(state => state.mailReducer);
     const onClickBookmark = () => {
         setBookMark(!bookMark);
+        dispatch( callPutMailAPI() )
     };
 
     return (
@@ -80,4 +76,4 @@ function MailItem({ mail }) {
         </div>
     );
 }
-export default  MailContent;
+export default  MailBookmarkContent;

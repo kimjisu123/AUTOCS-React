@@ -1,4 +1,4 @@
-import  { GET_MAIL, DELETE_MAIL}  from '../modules/MailModule'
+import  { GET_MAIL, DELETE_MAIL, PUT_MAIL}  from '../modules/MailModule'
 
 export const callGetMailAPI = () => {
     const requestURL = 'http://localhost:8080/mail';
@@ -27,4 +27,19 @@ export const callDELETEMailAPI = () =>{
         });
         dispatch({ type: DELETE_MAIL, payload: result });
      }
+}
+
+export const callPutMailAPI = (paramValue) =>{
+    const requestURL = 'http://localhost:8080/mail'
+
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(paramValue)
+        });
+        dispatch({ type: PUT_MAIL, payload: result });
+    }
 }

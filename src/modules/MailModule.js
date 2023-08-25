@@ -8,15 +8,19 @@ export const GET_MAIL = 'mail/GET_MAIL';
 
 export const DELETE_MAIL ='mail/DELETE_MAIL';
 
-const actions = createActions({
-    [GET_MAIL]: () =>{},
-});
+export const PUT_MAIL = 'mail/PUT_MAIL';
+
 
 //리듀서
 const mailReducer = handleActions(
     {
         [GET_MAIL]: (state, { payload }) => {
             return payload;
+        }
+    },
+    {
+        [PUT_MAIL] : (state, { payload }) =>{
+            return payload
         }
     },
     {
