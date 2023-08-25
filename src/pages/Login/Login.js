@@ -30,16 +30,20 @@ function Login({setLogin}) {
             console.log("[Login] Login SUCCESS>>>>>>>>>>>>>> {}", loginMember);
             navigate("/", { replace: true });
         }
+        else {
+            console.log("[Login] Login is not authenticated yet");
+        }
     }, [loginMember, navigate]);
 
     useEffect(() => {
         console.log("계정저장 확인>>>>>> : " + rememberAccount);
     }, [rememberAccount]);
 
-    // 로그인 상태일 시 로그인페이지로 접근 방지
-    if(loginMember.length > 0) {
-        console.log("[Login] Login is already authenticated by the server");
-        return <Navigate to="/"/>;
+
+    // 로그인 상태일 시 로그인 페이지로 접근 방지
+    const Token = localStorage.getItem('accessToken');
+    if (Token) {
+        return <Navigate to="/" replace />;
     }
 
     const handlelogin = () => {
@@ -75,6 +79,7 @@ function Login({setLogin}) {
     const handleRememberAccountChange = () => {
         setRememberAccount(!rememberAccount);
     };
+
 
     return (
         <div style={{backgroundColor: "#1C2C10"}}>
