@@ -1,7 +1,7 @@
 import styles from './Mail.module.css';
 import { useState, useEffect } from 'react'
 import axios from 'axios';
-import { callGetMailAPI, callDELETEMailAPI } from '../../apis/MailAPICalls';
+import { callGetMailAPI, callDELETEMailAPI, callPutMailAPI } from '../../apis/MailAPICalls';
 import { useDispatch, useSelector } from 'react-redux';
 
 function MailContent(){
@@ -16,9 +16,8 @@ function MailContent(){
     }
 
     useEffect(
-         () =>  {
+        () =>  {
             dispatch( callGetMailAPI() );
-
         }
         ,[]
     );
@@ -52,14 +51,22 @@ function MailItem({ mail }) {
 
     const [bookMark, setBookMark] = useState(false);
 
+    const dispatch = useDispatch();
+    const mailData = useSelector(state => state.mailReducer);
+
+    useEffect( () => {
+        dispatch( callPutMailAPI(mail) )
+    }, [bookMark] );
+
     const onClickBookmark = () => {
         setBookMark(!bookMark);
+        dispatch( callPutMailAPI(mail) );
     };
 
     return (
         <div className={styles.receivedNote}>
             <div className={styles.bookmark} onClick={onClickBookmark}>
-                {bookMark ? '★' : '☆'}
+                {(mail.status == 'Y')  ? '★' : '☆'}
             </div>
             <div className={styles.noteHeader}>
                 <div style={{ marginBottom: "5px" }}>

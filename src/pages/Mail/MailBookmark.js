@@ -1,6 +1,6 @@
 import Mailmenu from './Mailmenu'
 import MailBookmarkContent from './MailBookmarkContent';
-
+import { decodeJwt } from '../../util/tokenUtils';
 function MailBookmark(){
     
     return (

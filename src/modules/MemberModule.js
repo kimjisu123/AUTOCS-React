@@ -12,7 +12,7 @@ export const GET_SELECT_EMPLOYEE = 'member/GET_SELECT_EMPLOYEE';
 const actions = createActions({
     [GET_EMPLOYEE]: () => {},
     [ADD_EMPLOYEE]: () => {},
-    [GO_LOGIN]: () => {}
+    [GO_LOGIN]: () => {},
     [GET_SELECT_EMPLOYEE]: () => {}
 });
 

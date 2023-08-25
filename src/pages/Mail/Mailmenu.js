@@ -2,7 +2,7 @@ import styles from './Mail.module.css';
 import { Link , Outlet } from "react-router-dom";
 import { useState } from 'react';
 import MailSend from './MailSend'
-
+import { decodeJwt } from '../../util/tokenUtils';
 function Mailmenu({children}){  
     const [modal, setModal] = useState(false);
 

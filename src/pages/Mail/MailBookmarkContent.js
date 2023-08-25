@@ -1,8 +1,9 @@
 import styles from './Mail.module.css';
 import { useState, useEffect } from 'react'
 import axios from 'axios';
-import { callGetMailAPI, callDELETEMailAPI, callPutMailAPI } from '../../apis/MailAPICalls';
+import { callGetMailAPI, callDELETEMailAPI, callPutMailAPI, callGetMailBookmarkAPI } from '../../apis/MailAPICalls';
 import { useDispatch, useSelector } from 'react-redux';
+import { decodeJwt } from '../../util/tokenUtils';
 
 function MailBookmarkContent(){
 
@@ -15,7 +16,13 @@ function MailBookmarkContent(){
         alert('성공적으로 삭제가 되었습니다!')
     }
 
-
+    useEffect(
+        () =>  {
+            dispatch( callGetMailBookmarkAPI() );
+        }
+        ,[]
+    );
+    
     return(
         <div className={styles.content}>
             <div className={styles.mainHeader}>
@@ -32,11 +39,11 @@ function MailBookmarkContent(){
                 </form>
             </div>
 
-            {/*<div>*/}
-            {/*    {mailData.data && mailData.data.map(mail => (*/}
-            {/*        <MailItem key={mail.id} mail={mail} />*/}
-            {/*    ))}*/}
-            {/*</div>*/}
+            <div>
+                {mailData.data && mailData.data.map(mail => (
+                    <MailItem key={mail.id} mail={mail} />
+                ))}
+            </div>
         </div>
     )
 }
@@ -55,7 +62,7 @@ function MailItem({ mail }) {
     return (
         <div className={styles.receivedNote}>
             <div className={styles.bookmark} onClick={onClickBookmark}>
-                {bookMark ? '★' : '☆'}
+                {(mail.status == 'Y') ? '★' : '☆'}
             </div>
             <div className={styles.noteHeader}>
                 <div style={{ marginBottom: "5px" }}>

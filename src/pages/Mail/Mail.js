@@ -1,6 +1,7 @@
 import Mailmenu from './Mailmenu';
 import MailContent from './MailContent';
 import MailSend from './MailSend'
+import { decodeJwt } from '../../util/tokenUtils';
 
 function Mail(){
     return(

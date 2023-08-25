@@ -1,6 +1,8 @@
-import { GET_EMPLOYEE } from '../modules/MemberModule';
-import { GET_SELECT_EMPLOYEE} from '../modules/MemberModule';
-
+import { GET_EMPLOYEE,
+    ADD_EMPLOYEE,
+    GO_LOGIN,
+    GET_SELECT_EMPLOYEE} from '../modules/MemberModule';
+import { decodeJwt } from '../util/tokenUtils';
 
 export const callInsertEmployeeAPI = ({ infoToPass }) => {
     const requestURL = 'http://localhost:8080/member/insertEmployee';
@@ -107,7 +109,7 @@ export const callSelectEmployeeAPI = (paramValue) => {
         }).
         then(response => response.json())
         .then(data => {
-            console.log(data); // 서버에서 온 응답 데이터 출력
+            console.log(data); 
         });
 
         dispatch({ type: GET_SELECT_EMPLOYEE, payload: result });

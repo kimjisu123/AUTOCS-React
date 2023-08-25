@@ -4,6 +4,7 @@ import 'react-quill/dist/quill.snow.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { callSelectEmployeeAPI } from '../../apis/MemberAPICalls'
 import {useEffect, useState} from 'react'
+import { decodeJwt } from '../../util/tokenUtils';
 function MailSend( {setModal} ){
 
     const dispatch = useDispatch();
@@ -20,13 +21,7 @@ function MailSend( {setModal} ){
         positionCode : '',
         memberNo : ''
     })
-
-    useEffect(
-        () =>  {
-            dispatch( callSelectEmployeeAPI(form) );
-        }
-        ,[]
-    );
+    
 
     const onClickClose = () =>{
         setModal(false)

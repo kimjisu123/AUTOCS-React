@@ -6,10 +6,11 @@ const initialState = [];
 //액션
 export const GET_MAIL = 'mail/GET_MAIL';
 
+export const GET_MAILBOOKMARK = "mail/GET_MAILBOOKMARK";
+
 export const DELETE_MAIL ='mail/DELETE_MAIL';
 
 export const PUT_MAIL = 'mail/PUT_MAIL';
-
 
 //리듀서
 const mailReducer = handleActions(
