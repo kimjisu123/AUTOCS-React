@@ -25,7 +25,9 @@ const MainContent = () => {
                 <div className={mainstyle.homeContainer}>
                     <div className={mainstyle.tempBox}>
                         <div className={mainstyle.maintitle}>
-                            <img src={ emp } alt="" className={mainstyle.empInfoImg}/>
+                            <div className={mainstyle.mainImg}>
+                                <img src={ emp } alt="" className={mainstyle.empInfoImg}/>
+                            </div>
                             <div className={mainstyle.maintext}>
                                 <h1>안녕하세요 김사원님</h1>
                                 <h3>오늘 하루도 힘내세요</h3>

@@ -62,13 +62,29 @@ const TodoApp = ({ todoModal , setTodoModal } ) => {
         },[],
     );
 
+    // 더블클릭시 내용 수정 함수
+    const onUpdate = useCallback(
+        id => {
 
+
+            const todoToEdit = todos.find(todo => todo.id === id);
+            const editedText = prompt('수정할 내용을 입력하세요', todoToEdit.text);
+
+            if (editedText !== null) {
+                const modifiedTodos = todos.map(todo =>
+                    todo.id === id ? { ...todo, text: editedText || todo.text } : todo
+                );
+                setTodos(modifiedTodos);
+            }
+        },
+        [todos]
+    );
 
     return(
         <div className="popup" style={{opacity:"1", transform:"scaleX(1)"}}>
             <TodoTemplate todos={todos} >
                 <TodoInsert onInsert={onInsert}/>
-                <TodoList todos={todos} onRemove={ onRemove } onToggle={onToggle}/>
+                <TodoList todos={todos} onRemove={ onRemove } onToggle={onToggle} onUpdate={onUpdate}/>
             </TodoTemplate>
         </div>
     )

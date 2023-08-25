@@ -90,6 +90,10 @@ body {
 }
 
 
+.mainImg {
+    /*background-color: #2a3c1e;*/
+}
+
 .empInfoImg{
 
     height: 100px;
@@ -186,6 +190,7 @@ body {
 .mainTime svg {
     text-align: center;
 }
+
 
 
 

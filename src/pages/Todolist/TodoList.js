@@ -2,7 +2,7 @@ import TodoListItem from "./TodoListItem";
 import styles from './TodoList.module.css'
 import React from 'react';
 
-const TodoList = ({todos, onRemove ,onToggle}) => {
+const TodoList = ({todos, onRemove ,onToggle,onUpdate}) => {
 
     return (
         <div className={styles.TodoList}>
@@ -13,6 +13,7 @@ const TodoList = ({todos, onRemove ,onToggle}) => {
                     key={todo.id}
                     onRemove={ onRemove }
                     onToggle={ onToggle }
+                    onUpdate={onUpdate}
                 />
             ))}
         </div>

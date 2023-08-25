@@ -21,7 +21,7 @@ function MypageEmp() {
     // 생일입력 (Date에 현재 값 가지고 와야함.
     const [birthDate,setBirthDate] =useState(new Date("1994/02/01"));
 
-    // TodoList 모달 값
+    //  모달 값
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     // 사진 파일 전달
@@ -47,6 +47,7 @@ function MypageEmp() {
                                         <h1>사원 정보</h1>
                                     </div>
                                     <div>
+                                        {/* 회원 사진  */}
                                         <div className={empImg}>
                                             <input type="file"
                                                    accept="image/*"
@@ -130,6 +131,7 @@ function MypageEmp() {
                                                         dateFormat="yyyy년 MM월 dd일"
                                                         selected={birthDate}
                                                         onChange={date => setBirthDate(date)}
+
                                                     />
 
                                                 </div>

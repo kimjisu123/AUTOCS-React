@@ -1,5 +1,5 @@
 import MypageEmp from "./MypageEmp";
-import MypageEmpMenubar from "./MypageEmpMenubar";
+import MypageEmpMenubar from "./components/MypageEmpMenubar";
 import MypageStore from "./MypageStore";
 import UpdatePW from "./UpdatePW";
 

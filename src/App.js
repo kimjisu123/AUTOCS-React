@@ -65,6 +65,7 @@ import UpdatePwApp from "./pages/Mypage/UpdatePwApp";
 import MyMemoTemplate from "./pages/mainpage/memo/MyMemoTemplate";
 import Table from "./pages/mainpage/Table";
 import SlideCard from "./pages/mainpage/SlideCard";
+import UpdatePWok from "./pages/Mypage/UpdatePWok";
 // import {ThemeProvider} from "./theme/context/ThemeProvider";
 // import {GlobalStyle} from "./theme/theme/GlobalStyle";
 
@@ -126,11 +127,15 @@ function App() {
                         <Route path='outS' element={<OutSForm/>}/>
 
                         //지은
-                        <Route path='myPage' element={<Mypage/>}/>
+                        <Route path='myPage' element={<Mypage/>}>
+                            <Route path='employee' element={<Mypage/>}/>
+                            <Route path='store' element={<Mypage/>}/>
+                        </Route>
                         <Route path='pw2' element={<UpdatePwApp/>}/>
                         <Route path='home' element={<MainContent/>}/>
                         <Route path='test' element={<MyMemoTemplate/>}/>
-
+                        // 비밀번호 변경 팝업
+                        <Route path='pwpopup' element={<UpdatePWok/>}/>
 
                     </Route>
 
@@ -155,6 +160,8 @@ function App() {
                     //계정 안내(메일)
                     <Route path='/Mmail' element={<Mmail/>}/>
                     <Route path='/Smail' element={<Smail/>}/>
+
+
 
                 </Routes>
             {/*</ThemeProvider>*/}

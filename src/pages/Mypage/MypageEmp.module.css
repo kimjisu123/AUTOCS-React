@@ -170,7 +170,7 @@ body {
 
 .empImg input, .empImg svg{
     color: white;
-    /*z-index: 1;*/
+    z-index: 1;
     position: absolute;
     width: 50px;
     height: 50px;
@@ -210,8 +210,9 @@ body {
 
 .pwButton, .adButton {
 
+    display: flex;
     margin-left: 30px;
-    padding: 10px 20px;
+    padding: 10px;
     border-radius: 9px;
     background-color: #2A3C1E;
     color: white;
@@ -259,4 +260,28 @@ label:hover {
 #infoform{
 
 
+}
+
+
+@media (max-width: 700px) {
+    .mainContainer {
+        display: flex;
+        justify-content: space-between;
+        width: 30%;
+    }
+
+    .wrap{
+
+        width: 90%;
+        height: 90%;
+        border-radius: 30px;
+        background-color: white;
+        box-shadow: 2px 2px 10px #cdcec974;
+        margin: 3% 5%;
+        /*margin-bottom: 30px;*/
+        transition: all 0.5s;
+        transition-delay: 0.4s;
+        display: flex;
+        flex-direction: column;
+    }
 }

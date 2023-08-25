@@ -16,14 +16,35 @@
     padding: 20px;
     display: contents;
     z-index: 999;
+    opacity: 1;
+    transform: scaleX(1);
 
 }
 
 .isOpen {
-    opacity: 1;
-    transform: scaleX(1);
+
 }
 
 
+.ReactModal_Overlay {
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.overlay {
+
+
+
+}
+
+.popup {
+    width: 500px;
+    height: 500px;
+    border-radius: 8px;
+
+
+}
 
