@@ -26,6 +26,7 @@ import OutMForm from "./pages/outForm/outMForm";
 import Mmail from "./pages/emailGuide/Mmail";
 import Smail from "./pages/emailGuide/Smail";
 import AccountCreate from "./pages/createMember/accountCreate";
+import NoAuthority from "./pages/Login/noAuthority"
 
 //지수
 import Management from "./pages/management/Management"
@@ -62,10 +63,7 @@ function App() {
         <Provider store={store}>
             <BrowserRouter>
                 <Routes>
-                    //로그인 먼저
-                    <Route path='/' element={<Login/>}/>
-
-                    <Route path='/main' element={<Layout/>}>
+                    <Route path='/' element={<Layout/>}>
                         //지호
                         <Route path='approval' element={<Approval/>}/>
 
@@ -119,12 +117,16 @@ function App() {
 
                     //해든
                     //아이디비밀번호찾기, 안내등
+                    <Route path='/login' element={<Login/>}/>
                     <Route path='/login/findId' element={<FindId/>}/>
                     <Route path='/login/fIOk' element={<FindIdOk/>}/>
                     <Route path='/login/fIOk/guideId' element={<GuideId/>}/>
                     <Route path='/login/findPwd' element={<FindPwd/>}/>
                     <Route path='/login/fPOk' element={<FindPwdOk/>}/>
                     <Route path='/login/fPOk/guidePwd' element={<GuidePwd/>}/>
+
+                    //NO권한
+                    <Route path='/noAuthority' element={<NoAuthority/>}/>
 
                     //계정신청
                     <Route path='/applyS' element={<ApplySForm/>}/>
