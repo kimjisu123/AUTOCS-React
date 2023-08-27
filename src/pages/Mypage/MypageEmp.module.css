@@ -72,7 +72,7 @@ body {
 
 .empInfoTitle{
     position: relative;
-    width: 15%;
+    width: 40%;
     padding: 20px 50px;
     background-color: #2A3C1E;
     border-radius: 30px 0px 0px 30px;
@@ -93,8 +93,10 @@ body {
     /* border: 5px solid #2A3C1E; */
     position: relative;
 }
+
 .empInfoImg:hover{
 
+    transform: rotateY( 360deg );
     filter: grayscale(100%);
     transition: all 0.3s;
     transition-delay: 0.2s;
@@ -126,7 +128,8 @@ body {
 
 .sections {
     display: flex;
-    justify-content: flex-start;
+    justify-content: left;
+    gap: 10px;
 }
 
 .section1, .section2 .empAddress{
@@ -160,8 +163,10 @@ body {
     color: #7e7b7b;
     font-weight: 700;
     font-family: inherit;
-    display: inline;
+    /*display: inline;*/
     inline-size: auto;
+    margin-left: 40px;
+    border: none;
 
 }
 
@@ -175,7 +180,7 @@ body {
     width: 50px;
     height: 50px;
     border-radius: 50px;
-    top: 35%;
+    top: 43%;
     left:60%;
 
 }
@@ -211,7 +216,7 @@ body {
 .pwButton, .adButton {
 
     display: flex;
-    margin-left: 30px;
+    margin-left: 60px;
     padding: 10px;
     border-radius: 9px;
     background-color: #2A3C1E;
@@ -246,15 +251,23 @@ body {
     justify-content: flex-end
 }
 
-label {
-
+.sections label {
     background-color: white;
+    width: 120px;
+    text-align: left;
+    display: inline-block;
+    margin: 20px 0px;
 }
 
-label:hover {
+.sections label:hover {
     color: #7e7b7b;
     cursor: pointer;
     box-shadow: none;
+}
+
+.labelbox {
+
+    width: 139px;
 }
 
 #infoform{
@@ -263,17 +276,16 @@ label:hover {
 }
 
 
-@media (max-width: 700px) {
+@media (max-width: 1500px) {
     .mainContainer {
         display: flex;
-        justify-content: space-between;
-        width: 30%;
+        width: 70%;
     }
 
     .wrap{
 
-        width: 90%;
-        height: 90%;
+        width: 92%;
+        height:92%;
         border-radius: 30px;
         background-color: white;
         box-shadow: 2px 2px 10px #cdcec974;
@@ -283,5 +295,48 @@ label:hover {
         transition-delay: 0.4s;
         display: flex;
         flex-direction: column;
+        overflow: hidden;
     }
+
+    .infoInput input, .section2 input, .empAddress input,.detailAddress input{
+
+        width: 400px;
+        height: 50px;
+        padding-left: 0px;
+        font-size: 21px;
+        color: #7e7b7b;
+        font-weight: 700;
+        font-family: inherit;
+        /*display: inline;*/
+        inline-size: auto;
+        margin-left: 0px;
+        border: none;
+
+    }
+
+    .empInfoTitle{
+        position: relative;
+        width: auto;
+        padding: 17px 58px;
+        background-color: #2A3C1E;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 0px;
+
+
+    }
+
+    .empImg input, .empImg svg{
+        color: white;
+        z-index: 1;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        top: 50%;
+        left:55%;
+
+    }
+
 }

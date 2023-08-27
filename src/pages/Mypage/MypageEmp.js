@@ -15,7 +15,7 @@ function MypageEmp() {
     const { mainContainer, rightContainer, content, wrap , empInfoTitle, infoTitle,empInfoImg
             ,imgButton , empDepDate ,infoInput, sections, section1,section2 ,pwButton
             ,empAddress,addressButton,adButton, inputAddress, baseAddress, detailAddress
-            ,udButton,updateButton,empImg
+            ,udButton,updateButton,empImg,labelbox ,
     } = MypageCSS;
 
     // 생일입력 (Date에 현재 값 가지고 와야함.
@@ -61,12 +61,15 @@ function MypageEmp() {
                                                 />)}
                                         </div>
                                     </div>
-                                    <br/>
-                                    <span
-                                        style={{color: "white", textAlign: "center"}}>가로200 세로 200<br/>이미지를 넣어주세요</span>
+                                    {/*<br/>*/}
+                                    <small
+                                        style={{color: "white", textAlign: "center"}}>가로200 세로 200<br/>이미지를 넣어주세요</small>
                                     <div className={empDepDate}>
+                                        <br/>
+                                        <br/>
                                         <h3>입사일</h3>
-                                        <h1>23.01.01</h1>
+                                        <br/>
+                                        <h1>2023년01월01일</h1>
                                     </div>
                                 </div>
                                 <div className={infoInput}>
@@ -74,7 +77,7 @@ function MypageEmp() {
                                         <div className={sections}>
                                             <div className={section1}>
                                                 <div className="empId">
-                                                    <label htmlFor="empId">사원ID</label>
+                                                        <label htmlFor="empId">사원ID</label>
                                                     <input type="text" id="empId" name="empId" maxLength="20"
                                                            value="emp01"
                                                            readOnly style={{border: "none"}}/>
@@ -126,14 +129,12 @@ function MypageEmp() {
                                                 </div>
                                                 <div className=" empInfo empDep">
                                                     <label htmlFor="empDep">생일</label>
-                                                    <DatePicker
-                                                        locale={ko}
-                                                        dateFormat="yyyy년 MM월 dd일"
-                                                        selected={birthDate}
-                                                        onChange={date => setBirthDate(date)}
-
-                                                    />
-
+                                                        <DatePicker
+                                                            locale={ko}
+                                                            dateFormat="yyyy년 MM월 dd일"
+                                                            selected={birthDate}
+                                                            onChange={date => setBirthDate(date)}
+                                                        />
                                                 </div>
                                                 <div className=" empInfo empDep">
                                                     <label htmlFor="empDep">근무지</label>
@@ -149,35 +150,35 @@ function MypageEmp() {
                                             </div>
                                         </div>
                                         {/*<fieldset id="adress" style={{border: "none"}}>*/}
-                                        <div className={empAddress}>
-                                            <div className="">
-                                                <div className={addressButton}>
-                                                    <label htmlFor="postcode">주소</label>
-                                                    <div>
-                                                        <button className={adButton} type="button"
-                                                                onClick="sample6_execDaumPostcode()" value="우편번호 찾기">
-                                                        <span><i
-                                                            className="fa-solid fa-magnifying-glass"></i>주소검색</span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div className={inputAddress}>
-                                                    <div className="postCode">
-                                                        <input type="text" name="zipcode" id="postcode"
-                                                               placeholder="우편번호"
-                                                               required style={{border: "none"}}/>
-                                                    </div>
-                                                    <div className={baseAddress}>
-                                                        <input type="text" name="baseAddress" id="aseAddress"
-                                                               placeholder="기본주소" required style={{border: "none"}}/>
-                                                    </div>
-                                                </div>
-                                                <div className={detailAddress}>
-                                                    <input type="text" name="detailAddress" id="detailAddress"
-                                                           placeholder="상세주소" required style={{border: "none"}}/>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {/*<div className={empAddress}>*/}
+                                        {/*    <div className="">*/}
+                                        {/*        <div className={addressButton}>*/}
+                                        {/*            <label htmlFor="postcode">주소</label>*/}
+                                        {/*            <div>*/}
+                                        {/*                <button className={adButton} type="button"*/}
+                                        {/*                        onClick="sample6_execDaumPostcode()" value="우편번호 찾기">*/}
+                                        {/*                <span><i*/}
+                                        {/*                    className="fa-solid fa-magnifying-glass"></i>주소검색</span>*/}
+                                        {/*                </button>*/}
+                                        {/*            </div>*/}
+                                        {/*        </div>*/}
+                                        {/*        <div className={inputAddress}>*/}
+                                        {/*            <div className="postCode">*/}
+                                        {/*                <input type="text" name="zipcode" id="postcode"*/}
+                                        {/*                       placeholder="우편번호"*/}
+                                        {/*                       required style={{border: "none"}}/>*/}
+                                        {/*            </div>*/}
+                                        {/*            <div className={baseAddress}>*/}
+                                        {/*                <input type="text" name="baseAddress" id="aseAddress"*/}
+                                        {/*                       placeholder="기본주소" required style={{border: "none"}}/>*/}
+                                        {/*            </div>*/}
+                                        {/*        </div>*/}
+                                        {/*        <div className={detailAddress}>*/}
+                                        {/*            <input type="text" name="detailAddress" id="detailAddress"*/}
+                                        {/*                   placeholder="상세주소" required style={{border: "none"}}/>*/}
+                                        {/*        </div>*/}
+                                        {/*    </div>*/}
+                                        {/*</div>*/}
                                         {/*</fieldset>*/}
                                         <div className={udButton}>
                                             <div>

@@ -1,0 +1,127 @@
+
+
+.container {
+    width: 500px;
+    height: 500px;
+    margin: 0 auto;
+}
+
+.section {
+    display: flex;
+    flex-direction: column; /* 세로로 정렬 */
+}
+
+
+
+.docuList {
+    display: flex;
+    justify-content: flex-start;
+    /*margin: 0 auto;*/
+}
+
+.docuList ul {
+    list-style-type: none;
+    display: flex;
+    gap: 30px;
+
+
+}
+
+/*글자 사이에 선 */
+.line::after {
+    content: "";
+    display: inline-block;
+    width: 2px;
+    height: 50%;
+    margin: 0 auto;
+    background-color: #ccc;
+    margin: 1em 0.5em;
+}
+
+
+
+/* Effect 15: scale down, reveal */
+
+.docuList a {
+
+    font-weight: 700;
+    color: #2a3c1e;
+}
+
+.docuList li {
+    position:relative;
+    overflow:hidden;
+    transition: background .3s ease;
+    display: block;
+    line-height: 30px;
+    text-align: center;
+    font-size: 1em;
+    color: black;
+    text-decoration: none;
+    margin: 0 auto;
+}
+
+.docuList li::after{
+
+    position:absolute;
+    display:block;
+    content:"";
+    font-weight: 700;
+    width:100%;
+    height:2px;
+    background:#2a3c1e;
+    bottom:0;
+    left:0;
+    transform:translateX(-100%);
+    transition: all .3s ease;
+}
+
+.docuList li:hover::after {
+    transform:translateX(0);
+    font-weight: 700;
+    color: #2a3c1e;
+}
+
+
+/* 테이블 */
+.docuContent {
+    width: 100%;
+    border-collapse: collapse;
+    /*border: 1px solid #ccc;*/
+    border: none;
+    margin-top: 2%;
+    overflow: scroll;
+}
+
+.docuContent th, .docuContent td {
+    padding: 10px;
+    /*border: 1px solid #ccc;*/
+    text-align: center;
+    border: none;
+}
+
+.docuContent tr{
+    white-space: pre-line;
+}
+
+.mainline{
+    background-color: lightgoldenrodyellow;
+}
+
+.docuContent td button {
+
+    background-color: #adb5db;
+    border-radius: 20px;
+    border: none;
+    padding: 5px 15px;
+    color: white;
+}
+
+.docuContent td button:hover {
+
+    background-color: #6d86ff;
+    border-radius: 20px;
+    border: none;
+    padding: 5px 15px;
+    color: white;
+}

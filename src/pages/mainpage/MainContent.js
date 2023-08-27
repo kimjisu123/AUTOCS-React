@@ -9,6 +9,7 @@ import monent from 'moment';
 import {useTheme} from "styled-components";
 import ThemeToggle from "../../theme/context/ThemeToggle";
 import Table from "./Table";
+import YourComponent from "../Mypage/YourComponent";
 
 // 비구조화 할당 문법을 활용한 css내부 값 추출하기 이렇게 쓰면 MypageCSS.mainContatiner를 안써도된다. )
 
@@ -62,15 +63,13 @@ const MainContent = () => {
                         <div className={mainstyle.datelist}>
                             <div className={mainstyle.daliyTitle}>
                                 <h1>일정리스트</h1>
-                                <div className={mainstyle.mainTodo}><TodoApp /></div>
+                                <div className={mainstyle.mainTodo}><YourComponent /></div>
                             </div>
                         </div>
                     </div>
                     <div className={mainstyle.tempBox}>
                         <div className={mainstyle.flexbox}>
                             <h1>todo리스트</h1>
-                            <div className={mainstyle.mainTodo}><TodoApp /></div>
-                            <h1>메모</h1>
                             <div className={mainstyle.mainTodo}><TodoApp /></div>
                         </div>
                     </div>
@@ -83,8 +82,7 @@ const MainContent = () => {
                     <div className={mainstyle.tempBox}>
                         <div className={mainstyle.boradPart}>
                             <h1>게시판</h1>
-                            <div><TodoApp /></div>
-                            <div><TodoApp /></div>
+                            <div><YourComponent /></div>
                         </div>
                     </div>
                 </div>

@@ -1,56 +1,56 @@
-body {
-    font-family: 'Noto Sans KR', sans-serif;
+/*body {*/
+/*    font-family: 'Noto Sans KR', sans-serif;*/
+/*}*/
 
-}
+/*.container {*/
+/*    justify-content: center;*/
+/*    max-width: 90%;*/
+/*    margin: auto;*/
+/*    !*border: 1px solid rgb(199, 199, 199);*!*/
+/*    min-width: 1500px;*/
+/*}*/
 
-.container {
-    justify-content: center;
-    max-width: 90%;
-    margin: auto;
-    /*border: 1px solid rgb(199, 199, 199);*/
-    min-width: 1500px;
-}
+/*.headerContainer {*/
+/*    display: flex;*/
+/*    width: 100%;*/
+/*    justify-content: space-between;*/
+/*}*/
 
-.headerContainer {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-}
-
-.mainContainer {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
+/*.mainContainer {*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    width: 100%;*/
+/*}*/
 
 
-.rightContainer {
-    width: 100%;
-    height: 100%;
-}
+/*.rightContainer {*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*}*/
 
-.paddingContainer {
-    width: 80%;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column; /* 수직 정렬 */
-    /*justify-content: first baseline;*/
-    align-items: center;
-    padding-top: 30px;
-}
+/*.paddingContainer {*/
+/*    width: 80%;*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+/*    flex-direction: column; !* 수직 정렬 *!*/
+/*    !*justify-content: first baseline;*!*/
+/*    align-items: center;*/
+/*    padding-top: 30px;*/
+/*}*/
 
 .homeContainer {
 
     /*width:1500px;*/
-    /*height: 800px;*/
-    /*margin: auto;*/
-    margin-bottom: 69px;
-    transition: all 0.5s;
-    transition-delay: 0.4s;
+    height:100%;
+    margin: auto;
+/*    margin-bottom: 69px;*/
+/*    transition: all 0.5s;*/
+/*    transition-delay: 0.4s;*/
     display: grid;
     grid-template-columns: 70% 30%;
     grid-template-rows: 15% 45% 40% ;
-    gap: 10px;
+    gap: 20px;
+/*    !*background-color: #adb5db;*!*/
 
 }
 
@@ -58,14 +58,11 @@ body {
 
 .tempBox {
     margin: 20px;
-    /*background: yellow;*/
     width: 100%;
     height: 100%;
-    /*font-size: 40px;*/
-    /*text-align: center;*/
-    border-radius: 10px;
+    border-radius: 5px;
     overflow: hidden;
-    box-shadow: 2px 2px 10px #cdcec974; ;
+    box-shadow: 1px 1px 5px #cdcec974; ;
     transition: all 0.5s;
     transition-delay: 0.4s;
 
@@ -126,9 +123,10 @@ body {
 }
 .maintitle {
     display: flex;
-    /*margin-left: 20px;*/
-    /*margin-top: 20px;*/
+    margin-left: 20px;
+    margin-top: 20px;
     justify-content: space-around
+
 }
 
 .maintext {
@@ -212,9 +210,9 @@ body {
     background-color: #fff;
     border-radius: 1.5em;
     user-select: none;
-    /*box-shadow:*/
-    /*        0 0.0625em 0.25em rgba(0,20,50,0.2),*/
-    /*        0 0.5em 0.5em 0.125em rgba(0,20,50,0.1);*/
+    box-shadow:
+            0 0.0625em 0.25em rgba(0,20,50,0.2),
+            0 0.5em 0.5em 0.125em rgba(0,20,50,0.1);
 
 }
 
@@ -230,7 +228,7 @@ body {
     width: 100%;
     height: 100%;
     display: flex;
-    flex: 4;
+    /*flex: 4;*/
 
 
 }
@@ -279,6 +277,8 @@ body {
 
 .flexbox {
     display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .mainTodo {
@@ -315,4 +315,6 @@ body {
 /*게시판 파트*/
 .boradPart {
     display: flex;
+    flex-direction: column;
+    align-items: center;
 }

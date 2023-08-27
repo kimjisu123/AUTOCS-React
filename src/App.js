@@ -66,6 +66,8 @@ import MyMemoTemplate from "./pages/mainpage/memo/MyMemoTemplate";
 import Table from "./pages/mainpage/Table";
 import SlideCard from "./pages/mainpage/SlideCard";
 import UpdatePWok from "./pages/Mypage/UpdatePWok";
+import YourComponent from "./pages/Mypage/YourComponent";
+import MypageStore from "./pages/Mypage/MypageStore";
 // import {ThemeProvider} from "./theme/context/ThemeProvider";
 // import {GlobalStyle} from "./theme/theme/GlobalStyle";
 
@@ -129,14 +131,14 @@ function App() {
                         //지은
                         <Route path='myPage' element={<Mypage/>}>
                             <Route path='employee' element={<Mypage/>}/>
-                            <Route path='store' element={<Mypage/>}/>
+                            <Route path='store' element={<MypageStore/>}/>
                         </Route>
                         <Route path='pw2' element={<UpdatePwApp/>}/>
                         <Route path='home' element={<MainContent/>}/>
                         <Route path='test' element={<MyMemoTemplate/>}/>
                         // 비밀번호 변경 팝업
                         <Route path='pwpopup' element={<UpdatePWok/>}/>
-
+                        <Route path='store' element={<YourComponent/>}/>
                     </Route>
 
                     //미지

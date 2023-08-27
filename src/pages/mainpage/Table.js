@@ -37,6 +37,10 @@ const Table = () => {
                                         href="#" target="_blank" className="text-muted">Bootdey.com LLC.</a></span>
                                     <span className="text-muted d-block"><i className="fa fa-map-marker" aria-hidden="true"></i> USA</span>
                                 </div>
+
+                                <div className="mt-3">
+                                    <a href="#" className="btn btn-primary">View Details</a>
+                                </div>
                             </div>
                         </div>
                     </div>

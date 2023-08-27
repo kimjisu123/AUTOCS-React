@@ -120,7 +120,7 @@ const Header = () => {
                     className={`customModalStyle ${modalIsOpen? 'isOpen':''}`}
                     // contentLabel="Modal"
                 >
-                    <div style={{ width:"500px", height:"500px"}}>
+                    <div style={{ width:"500px", height:"500px", margin:"60px auto"}}>
                         <TodoApp todoModal={ todoModal } setTodoModal={ setTodoModal } />
                     </div>
 
