@@ -56,10 +56,11 @@ function BookmarkItem({ mail }) {
 
     const dispatch = useDispatch();
     const mailData = useSelector(state => state.bookmarkReducer);
-    
+
     const onClickbookmark = () => {
         dispatch( callPutMailAPI(mail) );
         setBookmark( (bookmark == 'Y') ? 'N' : 'Y' );
+        window.location.reload();
     };
 
     return (

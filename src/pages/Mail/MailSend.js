@@ -39,10 +39,11 @@ function MailSend( {setModal} ){
             positionCode : '',
             memberNo : ''
         });
-        dispatch( callSelectEmployeeAPI(form) );
-        console.log(memberData.data)
     }
 
+    useEffect(() => {
+        console.log(form);
+    }, [form]);
 
     return (
         <div className={styles.body}>
@@ -56,17 +57,14 @@ function MailSend( {setModal} ){
             </div>
             
             
-            <form>
-                <input className={styles.title} type="text" placeholder="제목" />
-                <input style={{marginTop : "10px"}} className={styles.title} type="text" placeholder="참석자" onChange={onChangeName} />
-                <div style={{width:"100px", height: "28px", border:"1px solid black"}}>
-                    {memberData.data && memberData.data.map( data =>
-                        data.name
-                    )}
-                </div>
-                <ReactQuill theme="snow" className={styles.content} />
-                <input type="submit" className={styles.send} value="보내기" />
-            </form>
+            <input className={styles.title} type="text" placeholder="제목" />
+            <div style={{display:"flex"}}>
+                <input style={{marginTop : "10px"}} className={styles.title} type="text" placeholder="받는사람" onChange={onChangeName} />
+                <div className={styles.searchName}> 검색 </div>
+            </div>
+            <ReactQuill theme="snow" className={styles.content} />
+            <div onClick={ onChangeName } className={styles.send}> 보내기 </div>
+
         </div>
     )
 }

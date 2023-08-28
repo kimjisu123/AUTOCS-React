@@ -9,17 +9,16 @@ function MailContent(){
     const dispatch = useDispatch();
     const mailData = useSelector(state => state.mailReducer);
 
-    const onClickMailDelete = async () =>{
+    const onClickMailDelete = async () => {
         dispatch( callDELETEMailAPI() );
         window.location.reload();
         alert('성공적으로 삭제가 되었습니다!')
     }
-
     useEffect(
         () =>  {
             dispatch( callGetMailAPI() );
         }
-        ,[dispatch]
+        ,[]
     );
 
     return(
@@ -40,7 +39,7 @@ function MailContent(){
 
             <div>
                 {mailData.data && mailData.data.map(mail => (
-                    <MailItem key={mail.id} mail={mail} />
+                    <MailItem key={mail.mailNo} mail={mail} />
                 ))}
             </div>
         </div>
@@ -54,9 +53,10 @@ function MailItem({ mail }) {
     const dispatch = useDispatch();
     const mailData = useSelector(state => state.mailReducer);
 
-    const onClickbookmark =  () => {
+    const onClickbookmark = () => {
         dispatch( callPutMailAPI(mail) );
         setBookmark( (bookmark == 'Y') ? 'N' : 'Y' );
+        window.location.reload();
     };
 
     return (

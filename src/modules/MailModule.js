@@ -8,7 +8,9 @@ export const GET_MAIL = 'mail/GET_MAIL';
 
 export const GET_MAIL_BOOKMARK = "mail/GET_MAILBOOKMARK";
 
-export const GET_MAIL_SENT = "mail.GET_MAIL_SENT";
+export const GET_MAIL_SENT = "mail/GET_MAIL_SENT";
+
+export const GET_SELECT_EMPLOYEE = "mail/GET_SELECT_EMPLOYEE"
 
 export const DELETE_MAIL ='mail/DELETE_MAIL';
 
