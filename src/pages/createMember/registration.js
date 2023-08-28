@@ -17,7 +17,7 @@ const Registration = () => {
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedDepartment, setSelectedDepartment] = useState('default');
     const [selectedPosition, setSelectedPosition] = useState('default');
-    const [manager, setManager] = useState('');
+    const [upCode, setUpCode] = useState('');
 
     const isFormValid = () => {
         return name !== '' && selectedDate !== null && selectedDepartment !== 'default' && selectedPosition !== 'default';
@@ -36,7 +36,7 @@ const Registration = () => {
                 employeeJoin: selectedDate,
                 departmentCode: selectedDepartment,
                 positionCode: selectedPosition,
-                manager: manager
+                upCode: upCode
             };
 
             console.log('Info to Pass:', infoToPass);
@@ -71,7 +71,7 @@ const Registration = () => {
             managerCode = "null"; // 원하는 값을 설정
         }
 
-        setManager(managerCode);
+        setUpCode(managerCode);
     };
 
 

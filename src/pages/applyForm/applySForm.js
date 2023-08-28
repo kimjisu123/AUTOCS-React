@@ -29,8 +29,10 @@ const ApplySForm = () => {
                 address: address,
                 name: name,
                 license: license,
-                file: file,
-                email: email
+                email: email,
+                file: {
+                    original: file.name
+                }
             };
 
             console.log('Info to Market:', infoToMarket);
