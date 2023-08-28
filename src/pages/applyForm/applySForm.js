@@ -1,8 +1,8 @@
 import img from './loginMain.png'
 import './applySForm.css'
-import {Link} from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {useState} from "react";
+import React, {useState} from "react";
 import {callApplyMarketAPI} from "../../apis/MarketAPICalls";
 
 const ApplySForm = () => {
@@ -11,11 +11,17 @@ const ApplySForm = () => {
     const [address, setAddress] = useState('');
     const [name, setName] = useState('');
     const [license, setLicense] = useState('');
-    const [file, setFile] = useState(null);
     const [email, setEmail] = useState('');
+    const [image, setImage] = useState(null);
     const isFormValid = () => {
-        return address !== '' && name !== '' && license !== '' && file !== null && email !== '';
+        return address !== '' && name !== '' && license !== '' && email !== '';
     };
+
+    // 로그인 상태일 시 영업점 신청폼 페이지로 접근 방지
+    const Token = localStorage.getItem('accessToken');
+    if (Token) {
+        return <Navigate to="/" replace />;
+    }
 
 
     const handleApply = () => {
@@ -30,9 +36,10 @@ const ApplySForm = () => {
             formData.append('name', name);
             formData.append('license', license);
             formData.append('email', email);
-            formData.append('file', file);
 
-            console.log('formData:', formData);
+            if(image){
+                formData.append("fileImage", image);
+            }
 
             callApplyMarketAPI({ formData, dispatch });
 
@@ -55,8 +62,10 @@ const ApplySForm = () => {
     };
 
     const handleFileChange = (event) => {
-        const selectedFile = event.target.files[0];
-        setFile(selectedFile);
+
+        const image = event.target.files[0];
+
+        setImage(image);
     };
 
     const handleEmailChange = (event) => {
@@ -85,7 +94,7 @@ const ApplySForm = () => {
                            onChange={handleLicenseChange} required />
 
                     <h4 style={{ marginBottom: "10px", marginTop: "10px", background: "white" }}>표준가맹계약서</h4>
-                    <input className="lo" type="file" id="file" name="file"
+                    <input className="lo" type="file" id="file" name="file" accept='image/jpg,image/png,image/jpeg,image/gif'
                            onChange={handleFileChange} required />
 
                     <h4 style={{ marginBottom: "10px", marginTop: "10px", background: "white" }}>이메일</h4>
