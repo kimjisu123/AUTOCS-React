@@ -32,6 +32,7 @@ import Department from "./pages/management/Department"
 import HeadOffice from "./pages/management/HeadOffice"
 import Mail from "./pages/Mail/Mail"
 import MailBookmark from "./pages/Mail/MailBookmark"
+import MailSent from "./pages/Mail/MailSent"
 
 //미지
 //재고관리
@@ -72,6 +73,7 @@ function App() {
                         <Route path='department' element={<Department />} />
                         <Route path='headOffice' element={<HeadOffice />} />
                         <Route path='mail' element={<Mail />} />
+                        <Route path='mailSent/:name' element={<MailSent />} />
                         <Route path='mailBookmark' element={<MailBookmark />} />
 
 

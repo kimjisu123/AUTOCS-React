@@ -19,7 +19,7 @@ function MailContent(){
         () =>  {
             dispatch( callGetMailAPI() );
         }
-        ,[]
+        ,[dispatch]
     );
 
     return(
@@ -54,11 +54,10 @@ function MailItem({ mail }) {
     const dispatch = useDispatch();
     const mailData = useSelector(state => state.mailReducer);
 
-    const onClickbookmark = async () => {
-        await dispatch( callPutMailAPI(mail) );
+    const onClickbookmark =  () => {
+        dispatch( callPutMailAPI(mail) );
         setBookmark( (bookmark == 'Y') ? 'N' : 'Y' );
     };
-
 
     return (
         <div className={styles.receivedNote}>

@@ -6,29 +6,44 @@ const initialState = [];
 //액션
 export const GET_MAIL = 'mail/GET_MAIL';
 
-export const GET_MAILBOOKMARK = "mail/GET_MAILBOOKMARK";
+export const GET_MAIL_BOOKMARK = "mail/GET_MAILBOOKMARK";
+
+export const GET_MAIL_SENT = "mail.GET_MAIL_SENT";
 
 export const DELETE_MAIL ='mail/DELETE_MAIL';
 
 export const PUT_MAIL = 'mail/PUT_MAIL';
 
 //리듀서
-const mailReducer = handleActions(
+export const mailReducer = handleActions(
     {
         [GET_MAIL]: (state, { payload }) => {
             return payload;
-        }
-    },
-    {
+        },
         [PUT_MAIL] : (state, { payload }) =>{
             return payload
-        }
-    },
-    {
+        },
         [DELETE_MAIL] : (state, { payload }) =>{
             return payload
         }
     },
     initialState
 );
-export default mailReducer;
+
+export const bookmarkReducer = handleActions(
+    {
+        [GET_MAIL_BOOKMARK]: (state, { payload }) => {
+            return payload;
+        }
+    },
+    initialState
+);
+
+export const mailSentReducer = handleActions(
+    {
+        [GET_MAIL_SENT]: (state, { payload }) => {
+            return payload;
+        }
+    },
+    initialState
+);

@@ -1,14 +1,18 @@
 import styles from './Mail.module.css';
 import { useState, useEffect } from 'react'
 import axios from 'axios';
-import { callGetMailAPI, callDELETEMailAPI, callPutMailAPI, callGetMailBookmarkAPI } from '../../apis/MailAPICalls';
+import { callGetMailAPI, callDELETEMailAPI, callPutMailAPI, callGetMailBookmarkAPI, callGetMailSentAPI } from '../../apis/MailAPICalls';
 import { useDispatch, useSelector } from 'react-redux';
 import { decodeJwt } from '../../util/tokenUtils';
 
-function MailBookmarkContent(){
+function MailkSentContent(){
 
     const dispatch = useDispatch();
-    const mailData = useSelector(state => state.bookmarkReducer);
+    const mailData = useSelector(state => state.mailSentReducer);
+
+    const accessToken = window.localStorage.getItem('accessToken');
+
+    const decodedToken = accessToken ? decodeJwt(accessToken) : null;
 
     const onClickMailDelete = async () =>{
         dispatch( callDELETEMailAPI() );
@@ -18,7 +22,7 @@ function MailBookmarkContent(){
 
     useEffect(
         () =>  {
-            dispatch( callGetMailBookmarkAPI() );
+            dispatch( callGetMailSentAPI(decodedToken.EmployeeNo) );
         }
         ,[]
     );
@@ -27,7 +31,7 @@ function MailBookmarkContent(){
         <div className={styles.content}>
             <div className={styles.mainHeader}>
                 <div className={styles.contentHeader}>
-                    즐겨찾기
+                    보낸 쪽지
                 </div>
                 <div onClick={onClickMailDelete} className={styles.allDelete}>
                     전체 삭제
@@ -41,7 +45,7 @@ function MailBookmarkContent(){
 
             <div>
                 {mailData.data && mailData.data.map(mail => (
-                    <BookmarkItem key={mail.mailNo} mail={mail} />
+                    <MailSentItem key={mail.mailNo} mail={mail} />
                 ))}
 
                 { console.log(mailData.data)}
@@ -50,13 +54,13 @@ function MailBookmarkContent(){
     )
 }
 
-function BookmarkItem({ mail }) {
+function MailSentItem({ mail }) {
 
     const [bookmark, setBookmark] = useState(mail.status);
 
     const dispatch = useDispatch();
     const mailData = useSelector(state => state.bookmarkReducer);
-    
+
     const onClickbookmark = () => {
         dispatch( callPutMailAPI(mail) );
         setBookmark( (bookmark == 'Y') ? 'N' : 'Y' );
@@ -86,4 +90,4 @@ function BookmarkItem({ mail }) {
         </div>
     );
 }
-export default  MailBookmarkContent
+export default  MailkSentContent
