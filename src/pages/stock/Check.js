@@ -1,6 +1,31 @@
 import StockCSS from './Stock.module.css'
+import { useEffect, useState, useRef } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import {Navigate, useNavigate} from "react-router-dom";
+
+import {
+    callIOListWithGroupingAPI,
+} from '../../apis/StockAPICalls'
 
 function Check() {
+
+    /*******************************************************************************/
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+
+    // 입출고 조회
+
+    useEffect(() => {
+        dispatch(callIOListWithGroupingAPI());
+        console.log('callIOListWithGroupingAPI')
+    }, []);
+
+    const ioList = useSelector(state => state.productReducer);
+
+
+    /*******************************************************************************/
+
 
     return (
         <div>
@@ -36,6 +61,15 @@ function Check() {
                         <th>단가</th>
                         <th>비고</th>
                     </tr>
+                    {
+                        Array.isArray(ioList) && ioList.map((io) => (
+                            <tr key={ io.productIoNo }>
+                                <td>{ io.refProductNo}</td>
+                                <td>{ io.io}</td>
+                                <td>{ io.totalQuantity}</td>
+                            </tr>
+                        ))
+                    }
                     <tr>
                         <td>1</td>
                         <td>식품</td>

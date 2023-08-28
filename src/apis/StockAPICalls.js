@@ -2,6 +2,10 @@ import {
     GET_PRODUCT,
     GET_PRODUCTS,
     POST_PRODUCT,
+    PUT_PRODUCT,
+    GET_IO,
+    POST_IO,
+    GET_IO_GROUP,
 } from '../modules/ProductModule';
 import {
     GET_CATEGORIES,
@@ -101,6 +105,26 @@ export const callProductRegistAPI = ({form}) => {
     };
 }
 
+/* 물품 수정 */
+export const callProductUpdateAPI = ({form}) => {
+
+    const requestURL = `http://localhost:8080/stock/productdelete`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "PUT",
+            headers: {
+                "Accept": "*/*",
+            },
+            body: form
+        })
+            .then(response => response.json());
+
+        dispatch({ type: PUT_PRODUCT,  payload: result });
+
+    };
+}
 
 /* 카테고리 조회 */
 export const callCategoryListAPI = () => {
@@ -147,9 +171,6 @@ export const callCategoryListWithPagingAPI = ({currentPage}) => {
 
     };
 }
-
-
-
 
 /* 카테고리 등록 */
 export const callCategoryRegistAPI = ({form}) => {
@@ -372,5 +393,72 @@ export const callUnitUpdateAPI = ({form}) => {
 
         dispatch({ type: PUT_UNIT,  payload: result });
 
+    };
+}
+
+/* 입출고 등록 */
+export const callIoRegistAPI = ({form}) => {
+    const requestURL = `http://localhost:8080/stock/stockio`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "POST",
+            headers: {
+                "Accept": "*/*"
+            },
+            body: form
+        })
+            .then(response => response.json());
+
+        dispatch({ type: POST_IO,  payload: result });
+
+    };
+}
+
+/* 입출고 조회 - 페이징 */
+export const callIoListAPI = ({currentPage}) => {
+
+    let requestURL;
+    if(currentPage !== undefined || currentPage !== null){
+        requestURL = `http://localhost:8080/stock/stockio?offset=${currentPage}`;
+    }else {
+        requestURL = `http://localhost:8080/stock/stockio`;
+    }
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            }
+        })
+            .then(response => response.json());
+        if(result.status === 200){
+            dispatch({ type: GET_IO,  payload: result.data });
+        }
+
+    };
+}
+
+
+/* 입출고 조회 - 그룹화 */
+export const callIOListWithGroupingAPI = () => {
+    let requestURL;
+    requestURL = `http://localhost:8080/stock/check`;
+
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            }
+        })
+            .then(response => response.json());
+        if(result.status === 200){
+            dispatch({ type: GET_IO_GROUP,  payload: result.data });
+        }
     };
 }

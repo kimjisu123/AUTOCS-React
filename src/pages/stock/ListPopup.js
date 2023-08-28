@@ -16,6 +16,7 @@ function ListPopup() {
     const productList = products.data;
 
     const [selectedProductName, setSelectedProductName] = useState(""); // 선택된 물품명
+    const [selectedProductNameInProductDelete, setSelectedProductNameInProductDelete] = useState('');
 
 
     const pageInfo = products.pageInfo;
@@ -75,11 +76,17 @@ function ListPopup() {
     };
 
     // 물품명 셀 클릭 이벤트 핸들러
-    const onProductNameClick = (productNo) => {
-        setSelectedProductName(productNo); // 선택된 물품명 설정
-        console.log(productNo)
+    const onProductNameClick = (productNo, productName, productStandard, productUnit, productStock, productPrice ) => {
+        window.opener.document.getElementById( "parentCodeValue" ).value = productNo;
+        window.opener.document.getElementById( "parentNameValue" ).value = productName;
+        window.opener.document.getElementById( "parentStandardValue" ).value = productStandard;
+        window.opener.document.getElementById( "parentUnitValue" ).value = productUnit;
+        window.opener.document.getElementById( "parentStockValue" ).value = productStock;
+        window.opener.document.getElementById( "parentPriceValue" ).value = productPrice;
+        console.log('선택한 제품 번호:', productNo);
+        console.log('선택한 제품 이름:', productName);
+        window.close();
     };
-
 
     /*******************************************************************************/
 
@@ -104,7 +111,9 @@ function ListPopup() {
                         {
                             Array.isArray(productList) && productList.map((product) => (
                                 <tr key={ product.productNo }
-                                    onClick={() => onProductNameClick(product.productNo)} // 클릭 핸들러 추가
+                                    onClick={() =>
+                                        onProductNameClick(product.productNo, product.name, product.standard.name,
+                                            product.unit.name, product.stock, product.price)} // 선택 핸들러 수정
                                     style={{ cursor: 'pointer' }}
                                 >
                                     <td>{ product.productNo }</td>
