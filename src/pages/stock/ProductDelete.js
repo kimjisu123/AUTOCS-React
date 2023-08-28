@@ -6,9 +6,9 @@ import { Navigate } from "react-router-dom";
 import {
     callProductListAPI
 } from '../../apis/StockAPICalls'
-import Product from "../compoments/stock/Product";
 
-function showPopup() { window.open('/ListPopup', "a", "width=400, height=600, left=100, top=50"); }
+
+function showPopup() { window.open('/ListPopup', "a", "width=400, height=800, left=100, top=50"); }
 
 function ProductDelete() {
 
@@ -17,7 +17,7 @@ function ProductDelete() {
 
     // 리덕스를 이용하기 위한 디스패처, 셀렉터 선언
     const dispatch = useDispatch();
-    const products = useSelector(state => state.stockReducer);
+    const products = useSelector(state => state.productReducer);
     const productList = products.data;
 
     const pageInfo = products.pageInfo;
@@ -101,9 +101,25 @@ function ProductDelete() {
                             <th>불용일</th>
                             <th>사용상태</th>
                         </tr>
-                    {
-                        Array.isArray(productList) && productList.map((product) => (<Product key={ product.productNo } product={ product } />))
-                    }
+
+                        {
+                            Array.isArray(productList) && productList.map((product) => (
+                                <tr key={ product.productNo }>
+                                    <td>{ product.productNo }</td>
+                                    <td>{ product.category.name}</td>
+                                    <td>{ product.name }</td>
+                                    <td>{ product.standard.name}</td>
+                                    <td>{ product.unit.name}</td>
+                                    <td>{ product.stock }</td>
+                                    <td>{ product.price }</td>
+                                    <td>{ product.etc }</td>
+                                    <td>{ product.registDate }</td>
+                                    <td>{ product.unusedDate }</td>
+                                    <td>{ product.status }</td>
+                                </tr>
+                            ))
+                        }
+
                     </table>
                 </div>
 

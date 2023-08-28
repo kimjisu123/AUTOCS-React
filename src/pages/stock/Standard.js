@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import {
-    callStandardListAPI,
+    callStandardListWithPagingAPI,
     callStandardRegistAPI,
     callStandardUpdateAPI
 } from '../../apis/StockAPICalls'
@@ -18,9 +18,11 @@ function Standard() {
 
     // 수정
     const [modifyMode, setModifyMode] = useState(false);
+    const [selectedStandards, setSelectedStandards] = useState([]); // 배열로 선택된 카테고리 저장
+
 
     // 조회
-    const standards = useSelector(state => state.stockReducer);
+    const standards = useSelector(state => state.standardReducer);
     const standardList = standards.data;
     const pageInfo = standards.pageInfo;
 
@@ -37,7 +39,7 @@ function Standard() {
     useEffect(
         () => {
             setStart((currentPage - 1) * 5);
-            dispatch(callStandardListAPI({
+            dispatch(callStandardListWithPagingAPI({
                 currentPage: currentPage
             }));
         }
@@ -86,31 +88,38 @@ function Standard() {
         }
     }
 
+
     // 수정
     const onClickModifyModeHandler = (e) => {    // 수정모드
         setModifyMode(true);
-        setForm({
-            productStandardNo: e.target.value,
-        });
+
+        let inputValue = { productStandardNo: e.target.value };
+        console.log(e.target.value);
+
+        setSelectedStandards(prevSelectedStandards => [...prevSelectedStandards, inputValue]);
+        console.log(selectedStandards);
     }
 
     /* 미사용 핸들러 */
     const onClickUnuseHandler = () => {
         const confirmed = window.confirm('미사용 하시겠습니까?');
         if (confirmed) {
-            const formData = new FormData();
-            formData.append("productStandardNo", form.productStandardNo);
-            formData.append("name", form.name);
-            formData.append("useYn", 'N');
-            console.log(formData);
-            dispatch(callStandardUpdateAPI({	// 상품 정보 업데이트
-                form: formData
-            }));
+            selectedStandards.forEach(form => {
+                const formData = new FormData();
+                formData.append("productStandardNo", form.productStandardNo);
+                formData.append("name", form.name);
+                formData.append("useYn", 'N');
+
+                dispatch(callStandardUpdateAPI({
+                    form: formData
+                }));
+            });
 
             setModifyMode(false);
+            setSelectedStandards([]); // 선택된 카테고리 초기화
 
             alert('수정되었습니다.');
-            navigate('/stock/standard', {replace: true});
+            navigate('/stock/standard', { replace: true });
             window.location.reload();
         }
     }
@@ -119,19 +128,22 @@ function Standard() {
     const onClickUseHandler = () => {
         const confirmed = window.confirm('사용 하시겠습니까?');
         if (confirmed) {
-            const formData = new FormData();
-            formData.append("productStandardNo", form.productStandardNo);
-            formData.append("name", form.name);
-            formData.append("useYn", 'Y');
-            console.log(formData);
-            dispatch(callStandardUpdateAPI({	// 상품 정보 업데이트
-                form: formData
-            }));
+            selectedStandards.forEach(form => {
+                const formData = new FormData();
+                formData.append("productStandardNo", form.productStandardNo);
+                formData.append("name", form.name);
+                formData.append("useYn", 'Y');
+
+                dispatch(callStandardUpdateAPI({
+                    form: formData
+                }));
+            });
 
             setModifyMode(false);
+            setSelectedStandards([]); // 선택된 카테고리 초기화
 
             alert('수정되었습니다.');
-            navigate('/stock/standard', {replace: true});
+            navigate('/stock/standard', { replace: true });
             window.location.reload();
         }
     }
