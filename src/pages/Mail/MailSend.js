@@ -2,48 +2,52 @@ import styles from './MailSend.module.css'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { callSelectEmployeeAPI } from '../../apis/MemberAPICalls'
+import { callGetEmployeeAPI } from '../../apis/MemberAPICalls'
 import {useEffect, useState} from 'react'
-import { decodeJwt } from '../../util/tokenUtils';
 function MailSend( {setModal} ){
-
-    const dispatch = useDispatch();
-    const memberData = useSelector(state => state.memberReducer);
-
-    const [form, setForm] = useState({
-        employeeNo : '',
-        name : '',
-        employeeJoin : '',
-        employeeEmail : '',
-        employeePhone : '',
-        employeeManager : '',
-        departmentCode : '',
-        positionCode : '',
-        memberNo : ''
-    })
-    
 
     const onClickClose = () =>{
         setModal(false)
     }
 
-    const onChangeName = (e) => {
-        setForm({
-            employeeNo : '',
-            name : e.target.value,
-            employeeJoin : '',
-            employeeEmail : '',
-            employeePhone : '',
-            employeeManager : '',
-            departmentCode : '',
-            positionCode : '',
-            memberNo : ''
-        });
+    const dispatch = useDispatch();
+    const memberData = useSelector(state => state.memberReducer);
+
+    useEffect(  ()=>{
+        dispatch(callGetEmployeeAPI());
+    }, []);
+
+    const [select, setSelect] = useState([]);
+    const [resultName, setResultName] = useState([]);
+    const [searchArea, setSearchArea] = useState(false);
+    const [mail, setMail] = useState({});
+
+
+    const handleSearch = (name) => {
+        setSearchArea(true);
+        if(!name){
+            setSearchArea(false);
+        }
+        const filterName = memberData.data.filter( (item) => item.name.includes(name))
+
+        setResultName(filterName);
+    };
+
+    const selectAttendees = (attendee) =>{
+        setSelect(
+            [...select, attendee]
+        );
+        setSearchArea(false);
+        console.log(select);
     }
 
-    useEffect(() => {
-        console.log(form);
-    }, [form]);
+    const deleteAttendees = (attendee) => {
+
+        const updatedSelect = select.filter(item => item !== attendee);
+
+        setSelect(updatedSelect);
+    }
+
 
     return (
         <div className={styles.body}>
@@ -59,12 +63,30 @@ function MailSend( {setModal} ){
             
             <input className={styles.title} type="text" placeholder="제목" />
             <div style={{display:"flex"}}>
-                <input style={{marginTop : "10px"}} className={styles.title} type="text" placeholder="받는사람" onChange={onChangeName} />
-                <div className={styles.searchName}> 검색 </div>
+                <input
+                    className={styles.title}
+                    type="text"
+                    placeholder="받는사람"
+                    onChange={(e) => handleSearch(e.target.value)} />
             </div>
+            <ul style={searchArea? {display:"block"} : {display:"none"}} className={styles.employee}>
+                {resultName && resultName.slice(0,3).map((attendee) => (
+                    <li className={styles.employeeName} key={attendee.employeeNo}>
+                        {attendee.name}
+                        <div className={styles.insert} onClick={ () => selectAttendees(attendee) }> 추가 </div>
+                    </li>
+                ))}
+            </ul>
+            <ul style={{display:"flex"}}>
+                {select && select.map( (name) => (
+                    <li className={styles.select}>
+                        {name.name }
+                        <div className={styles.delete} onClick={ () => deleteAttendees(name) }> x </div>
+                    </li>
+                ) )}
+            </ul>
             <ReactQuill theme="snow" className={styles.content} />
-            <div onClick={ onChangeName } className={styles.send}> 보내기 </div>
-
+            <div className={styles.send}> 보내기 </div>
         </div>
     )
 }
