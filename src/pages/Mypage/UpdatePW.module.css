@@ -5,7 +5,7 @@
 
 /* 메인페이지 */
 .changePwPage{
-    margin: 0px 80px 0px 80px;
+    margin: 0px auto;
     /*margin-left: 143px;*/
     /*float: left;*/
     /*width: 400px;*/
@@ -70,7 +70,7 @@
     padding-bottom: 13px;
 }
 
-.inputBox div label{
+.inputBox label{
 
     display: inline-block;
     margin-bottom: 13px;
@@ -79,6 +79,8 @@
     font-size: 20px;
     width: 200px;
     text-align: left;
+    background-color: white;
+    box-shadow: none;
 }
 
 

@@ -7,6 +7,7 @@ import MyMemoItem from "./MyMemoItem";
             onInsert,
             onUpdate,
             onRemove,
+
         }) => {
         const onSubmit = (e) => {
             e.preventDefault();  // form의 새로고침 방지

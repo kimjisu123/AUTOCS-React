@@ -13,7 +13,9 @@ body{margin-top:20px;}
 }
 .rounded {
     /*border-radius: 5px !important;*/
-    border: 1px solid;
+    line-height: 29px;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 4px;
 }
 .bg-light {
     /*background-color: #f7f8fa !important;*/
@@ -62,7 +64,7 @@ a {
 }
 
 .card {
-    width: 300px;
+    width: 350px;
     height: 100px;
     margin:5px;
 }
@@ -73,4 +75,10 @@ a {
     flex-direction: column;
     justify-content: space-between;
     flex-wrap: nowrap;
+}
+
+.cardDetail {
+    display: flex;
+    justify-content: space-between;
+    margin:5px;
 }

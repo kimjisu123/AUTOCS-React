@@ -8,6 +8,25 @@ import UpdatePWok from "./UpdatePWok";
 function UpdatePW() {
     const navigate = useNavigate();
     const [modalIsOpen, setModalIsOpen] = useState(false);
+
+    const [currentPW, setCurrentPW] = useState(); // 현재 비밀번호 값
+    const [newPW, setNewPW ] = useState(); // 새비밀번호
+    const [ newPwCheck , setNewPwCheck] = useState(); // 새 비밀번호확인
+
+    const [errorMessages, setErrorMEssages] = useState({
+        currentPW:'',
+        newPW:'',
+        newPwCheck:''
+    })
+
+
+    const handlePasswordChange = () => {
+        let errors = {};
+
+        if(currentPW !== )
+    }
+
+
     const handleButtonClick = () => {
          // 페이지 이동
         navigate('/main/pwpopup');
@@ -21,16 +40,19 @@ function UpdatePW() {
                             <input type="hidden" value="비밀번호 변경"/>
                                 <div className={updateCSS.inputBox}>
                                     <div>
-                                        <label htmlFor={updateCSS.userId}>현재 비밀번호</label>
-                                        <input type="password" className={updateCSS.userId} placeholder="현재 비밀번호를 입력해주세요" autoFocus value=""/>
+                                        <label htmlFor="currentPW">현재 비밀번호</label>
+                                        <input type="password" className="currentPW" placeholder="현재 비밀번호를 입력해주세요" autoFocus />
+                                        <span id="password-error" class="error-message"/>
                                     </div>
                                     <div className={updateCSS.boxMargin2}>
-                                        <label htmlFor="">새 비밀번호 입력</label>
-                                        <input type="password" className="newpw" placeholder="새 비밀번호를 입력해주세요" autoComplete="off" value=""/>
+                                        <label htmlFor="newpw">새 비밀번호 입력</label>
+                                        <input type="password" className="newpw" placeholder="새 비밀번호를 입력해주세요" autoComplete="off" />
+                                        <span id="password-error" class="error-message"/>
                                     </div>
                                     <div className={updateCSS.checkMail}>
-                                        <label className="">비밀번호 확인</label>
-                                        <input type="password" className="newPwCheck" placeholder="다시한번 입력해주세요" autoComplete="off" value=""/>
+                                        <label htmlFor="newPwCheck">비밀번호 확인</label>
+                                        <input type="password" className="newPwCheck" placeholder="다시한번 입력해주세요" autoComplete="off" />
+                                        <span id="password-error" class="error-message"/>
                                     </div>
                                     <div className={updateCSS.buttons}>
                                         <div>
