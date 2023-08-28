@@ -7,16 +7,17 @@ import 'react-datepicker/dist/react-datepicker.css';
 import ko from 'date-fns/locale/ko';
 import { useSelector, useDispatch } from 'react-redux';
 import { callInsertEmployeeAPI } from '../../apis/MemberAPICalls';
-import { Link } from 'react-router-dom';
+import {Link, Navigate} from 'react-router-dom';
 
 const Registration = () => {
     const dispatch = useDispatch();
     const regist  = useSelector(state => state.memberReducer);
 
-    const [name, setName] = useState(''); // Declare and initialize name state
-    const [selectedDate, setSelectedDate] = useState(null); // Declare and initialize selectedDate state
+    const [name, setName] = useState('');
+    const [selectedDate, setSelectedDate] = useState(null);
     const [selectedDepartment, setSelectedDepartment] = useState('default');
     const [selectedPosition, setSelectedPosition] = useState('default');
+    const [upCode, setUpCode] = useState('');
 
     const isFormValid = () => {
         return name !== '' && selectedDate !== null && selectedDepartment !== 'default' && selectedPosition !== 'default';
@@ -27,14 +28,15 @@ const Registration = () => {
         try {
             if (!isFormValid()) {
                 window.alert('모든 필드를 입력해주세요.');
-                window.location="/main/registration"
+                window.location="/registration"
             }
 
             const infoToPass = {
                 name: name,
                 employeeJoin: selectedDate,
                 departmentCode: selectedDepartment,
-                positionCode: selectedPosition
+                positionCode: selectedPosition,
+                upCode: upCode
             };
 
             console.log('Info to Pass:', infoToPass);
@@ -52,7 +54,26 @@ const Registration = () => {
 
     const handlePositionChange = (event) => {
         setSelectedPosition(event.target.value);
+
+        // 선택된 직급에 따라 managerCode 값을 업데이트
+        let managerCode = "";
+        if (event.target.value === "i1") { // "인턴"이 선택되었을 때
+            managerCode = "s1"; // 원하는 값을 설정
+        } else if (event.target.value === "s1") { // "사원"이 선택되었을 때
+            managerCode = "d1"; // 원하는 값을 설정
+        } else if (event.target.value === "d1") { // "대리"이 선택되었을 때
+            managerCode = "g1"; // 원하는 값을 설정
+        } else if (event.target.value === "g1") { // "과장"이 선택되었을 때
+            managerCode = "c1"; // 원하는 값을 설정
+        } else if (event.target.value === "c1") { // "차장"이 선택되었을 때
+            managerCode = "b1"; // 원하는 값을 설정
+        } else if (event.target.value === "b1") { // "부장"이 선택되었을 때
+            managerCode = "null"; // 원하는 값을 설정
+        }
+
+        setUpCode(managerCode);
     };
+
 
     const handleNameChange = (event) => {
         setName(event.target.value);
@@ -119,10 +140,10 @@ const Registration = () => {
                     <option value="g1">과장</option>
                     <option value="d1">대리</option>
                     <option value="s1">사원</option>
-                    <option value="I1">인턴</option>
+                    <option value="i1">인턴</option>
                 </select>
 
-                <Link to="/registration/registOk">
+                <Link to="/registOk">
                 <button type="button" className="regist" onClick={handleRegistration}>
                     등록하기
                 </button>
