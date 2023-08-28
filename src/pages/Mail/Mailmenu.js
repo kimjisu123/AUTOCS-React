@@ -1,5 +1,5 @@
 import styles from './Mail.module.css';
-import { Link , Outlet } from "react-router-dom";
+import { Link , Outlet, Navigate } from "react-router-dom";
 import { useState } from 'react';
 import MailSend from './MailSend'
 import { decodeJwt } from '../../util/tokenUtils';

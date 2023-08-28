@@ -22,7 +22,7 @@ function MailBookmarkContent(){
         }
         ,[]
     );
-    
+
     return(
         <div className={styles.content}>
             <div className={styles.mainHeader}>
@@ -41,28 +41,31 @@ function MailBookmarkContent(){
 
             <div>
                 {mailData.data && mailData.data.map(mail => (
-                    <MailItem key={mail.id} mail={mail} />
+                    <BookmarkItem key={mail.mailNo} mail={mail} />
                 ))}
             </div>
         </div>
     )
 }
 
-function MailItem({ mail }) {
+function BookmarkItem({ mail }) {
 
-    const [bookMark, setBookMark] = useState(false);
+    const [bookmark, setBookmark] = useState(mail.status);
 
     const dispatch = useDispatch();
     const mailData = useSelector(state => state.mailReducer);
-    const onClickBookmark = () => {
-        setBookMark(!bookMark);
-        dispatch( callPutMailAPI() )
+
+    const onClickbookmark = () => {
+        dispatch( callPutMailAPI(mail) );
+        setBookmark( (bookmark == 'Y') ? 'N' : 'Y' );
     };
+
+
 
     return (
         <div className={styles.receivedNote}>
-            <div className={styles.bookmark} onClick={onClickBookmark}>
-                {(mail.status == 'Y') ? '★' : '☆'}
+            <div className={styles.bookmark} onClick={onClickbookmark}>
+                {( bookmark == 'Y')  ? '★' : '☆'}
             </div>
             <div className={styles.noteHeader}>
                 <div style={{ marginBottom: "5px" }}>
@@ -83,4 +86,4 @@ function MailItem({ mail }) {
         </div>
     );
 }
-export default  MailBookmarkContent;
+export default  MailBookmarkContent

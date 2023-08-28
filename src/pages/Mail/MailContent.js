@@ -49,24 +49,21 @@ function MailContent(){
 
 function MailItem({ mail }) {
 
-    const [bookMark, setBookMark] = useState(false);
+    const [bookmark, setBookmark] = useState(mail.status);
 
     const dispatch = useDispatch();
     const mailData = useSelector(state => state.mailReducer);
 
-    useEffect( () => {
-        dispatch( callPutMailAPI(mail) )
-    }, [bookMark] );
-
-    const onClickBookmark = () => {
-        setBookMark(!bookMark);
-        dispatch( callPutMailAPI(mail) );
+    const onClickbookmark = async () => {
+        await dispatch( callPutMailAPI(mail) );
+        setBookmark( (bookmark == 'Y') ? 'N' : 'Y' );
     };
+
 
     return (
         <div className={styles.receivedNote}>
-            <div className={styles.bookmark} onClick={onClickBookmark}>
-                {(mail.status == 'Y')  ? '★' : '☆'}
+            <div className={styles.bookmark} onClick={onClickbookmark}>
+                {( bookmark == 'Y')  ? '★' : '☆'}
             </div>
             <div className={styles.noteHeader}>
                 <div style={{ marginBottom: "5px" }}>
