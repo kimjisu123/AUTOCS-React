@@ -25,19 +25,16 @@ const ApplySForm = () => {
                 window.location="/applyS"
             }
 
-            const infoToMarket = {
-                address: address,
-                name: name,
-                license: license,
-                email: email,
-                file: {
-                    original: file.name
-                }
-            };
+            const formData = new FormData();
+            formData.append('address', address);
+            formData.append('name', name);
+            formData.append('license', license);
+            formData.append('email', email);
+            formData.append('file', file);
 
-            console.log('Info to Market:', infoToMarket);
+            console.log('formData:', formData);
 
-            callApplyMarketAPI({ infoToMarket, dispatch });
+            callApplyMarketAPI({ formData, dispatch });
 
         } catch (error) {
             console.error('Error:', error);
