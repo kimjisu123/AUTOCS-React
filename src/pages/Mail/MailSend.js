@@ -3,6 +3,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { callGetEmployeeAPI } from '../../apis/MemberAPICalls'
+import { callPostMailAPI } from '../../apis/MailAPICalls'
 import {useEffect, useState} from 'react'
 function MailSend( {setModal} ){
 
@@ -18,12 +19,23 @@ function MailSend( {setModal} ){
     }, []);
 
     const [select, setSelect] = useState([]);
+    const [titleValue, setTitileValue] = useState('');
+    const [contextValue, setContextValue] = useState('');
+    const [searchValue, setSearchValue] = useState('');
     const [resultName, setResultName] = useState([]);
     const [searchArea, setSearchArea] = useState(false);
-    const [mail, setMail] = useState({});
+    const [mail, setMail] = useState({
+        mailNo : "",
+        receiver : "",
+        title : "",
+        context : "",
+        goDate : "",
+        status : ""
+    });
 
 
     const handleSearch = (name) => {
+        setSearchValue(name);
         setSearchArea(true);
         if(!name){
             setSearchArea(false);
@@ -37,8 +49,11 @@ function MailSend( {setModal} ){
         setSelect(
             [...select, attendee]
         );
+        setMail(
+            {...mail, receiver : attendee.name}
+        )
         setSearchArea(false);
-        console.log(select);
+        setSearchValue('');
     }
 
     const deleteAttendees = (attendee) => {
@@ -48,6 +63,34 @@ function MailSend( {setModal} ){
         setSelect(updatedSelect);
     }
 
+    const writeTitle = (title) => {
+        setMail({
+            ...mail,
+            title:title
+        });
+        setTitileValue(title);
+        console.log(mail);
+    }
+
+    const writeContext = (context) => {
+        setMail({
+            ...mail,
+            context: context
+        });
+        setContextValue(context);
+        console.log(mail);
+    }
+
+    const sendMail = async () =>{
+        await dispatch(callPostMailAPI(mail));
+        alert('성공적으로 쪽지를 보냈습니다!')
+        setModal(false)
+        setTitileValue('');
+        setContextValue('');
+        setSelect([]);
+        setMail({});
+        window.location.reload();
+    }
 
     return (
         <div className={styles.body}>
@@ -61,12 +104,13 @@ function MailSend( {setModal} ){
             </div>
             
             
-            <input className={styles.title} type="text" placeholder="제목" />
+            <input value={titleValue} onChange = { (e) => writeTitle(e.target.value) } className={styles.title} type="text" placeholder="제목" />
             <div style={{display:"flex"}}>
                 <input
                     className={styles.title}
                     type="text"
                     placeholder="받는사람"
+                    value={searchValue}
                     onChange={(e) => handleSearch(e.target.value)} />
             </div>
             <ul style={searchArea? {display:"block"} : {display:"none"}} className={styles.employee}>
@@ -85,8 +129,8 @@ function MailSend( {setModal} ){
                     </li>
                 ) )}
             </ul>
-            <ReactQuill theme="snow" className={styles.content} />
-            <div className={styles.send}> 보내기 </div>
+            <ReactQuill value={contextValue} onChange={writeContext} theme="snow" className={styles.content} />
+            <div onClick={sendMail} className={styles.send}> 보내기 </div>
         </div>
     )
 }

@@ -69,12 +69,12 @@ function App() {
                         <Route path='approval' element={<Approval/>}/>
 
                         //지수
-                        <Route path='management' element={<Management />} />
-                        <Route path='department' element={<Department />} />
-                        <Route path='headOffice' element={<HeadOffice />} />
-                        <Route path='mail' element={<Mail />} />
-                        <Route path='mailSent/:name' element={<MailSent />} />
-                        <Route path='mailBookmark' element={<MailBookmark />} />
+                        <Route path='/management' element={<Management />} />
+                        <Route path='/department' element={<Department />} />
+                        <Route path='/headOffice' element={<HeadOffice />} />
+                        <Route path='/mail' element={<Mail />} />
+                        <Route path='/mailSent/:value' element={<MailSent />} />
+                        <Route path='/mailBookmark' element={<MailBookmark />} />
 
 
 

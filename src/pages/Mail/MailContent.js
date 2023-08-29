@@ -1,11 +1,12 @@
 import styles from './Mail.module.css';
 import { useState, useEffect } from 'react'
 import axios from 'axios';
-import { callGetMailAPI, callDELETEMailAPI, callPutMailAPI } from '../../apis/MailAPICalls';
+import { callGetMailAPI, callDELETEMailAPI, callPutMailAPI, callSeleteDELETEMailAPI } from '../../apis/MailAPICalls';
 import { useDispatch, useSelector } from 'react-redux';
 
 function MailContent(){
 
+    const [search, setSearch] = useState('');
     const dispatch = useDispatch();
     const mailData = useSelector(state => state.mailReducer);
 
@@ -32,13 +33,12 @@ function MailContent(){
                 </div>
                 <form style={{display: "flex", justifyContent:"flex-start"}}>
                     <div className={styles.type}> 제목</div>
-                    <input type="text" className={styles.inputText}/>
-                    <input type="submit" value="검색" className={styles.inputButton}/>
+                    <input value={search} onChange={ (e) => {setSearch(e.target.value)}}  type="text" className={styles.inputText}/>
+                    <div className={styles.inputButton}>검색</div>
                 </form>
             </div>
-
             <div>
-                {mailData.data && mailData.data.map(mail => (
+                { mailData.data && mailData.data.map(mail => (
                     <MailItem key={mail.mailNo} mail={mail} />
                 ))}
             </div>
@@ -51,7 +51,6 @@ function MailItem({ mail }) {
     const [bookmark, setBookmark] = useState(mail.status);
 
     const dispatch = useDispatch();
-    const mailData = useSelector(state => state.mailReducer);
 
     const onClickbookmark = async () => {
         await dispatch( callPutMailAPI(mail) );
@@ -59,7 +58,10 @@ function MailItem({ mail }) {
         window.location.reload();
     };
 
-
+    const onClickSelectDelete = (mail) =>{
+        dispatch( callSeleteDELETEMailAPI(mail) )
+        window.location.reload();
+    }
 
     return (
         <div className={styles.receivedNote}>
@@ -79,7 +81,7 @@ function MailItem({ mail }) {
                     </div>
                 </div>
             </div>
-            <div className={styles.deleteButton}>
+            <div onClick={ () => onClickSelectDelete(mail)} className={styles.deleteButton}>
                 x
             </div>
         </div>

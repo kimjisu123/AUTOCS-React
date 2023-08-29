@@ -1,4 +1,4 @@
-import  { GET_MAIL, GET_MAIL_BOOKMARK, GET_MAIL_SENT, DELETE_MAIL, PUT_MAIL}  from '../modules/MailModule'
+import  { GET_MAIL, GET_MAIL_BOOKMARK, GET_MAIL_SENT, DELETE_MAIL, PUT_MAIL, POST_MAIL_SEND, DELETE_SELECT_MAIL}  from '../modules/MailModule'
 
 export const callGetMailAPI = () => {
     const requestURL = 'http://localhost:8080/mail';
@@ -12,7 +12,7 @@ export const callGetMailAPI = () => {
             },
         }).then(response => response.json());
         dispatch({ type: GET_MAIL, payload: result });
-     }
+    }
 };
 
 export const callGetMailBookmarkAPI = () => {
@@ -61,6 +61,23 @@ export const callDELETEMailAPI = () =>{
      }
 }
 
+export const callSeleteDELETEMailAPI = (paramValue) =>{
+    const requestURL = 'http://localhost:8080/selectMail'
+
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+            method: 'DELETE',
+            headers: {
+                'Accept': '*/*',
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(paramValue)
+        });
+        dispatch({ type: DELETE_SELECT_MAIL, payload: result });
+    }
+}
+
+
 export const callPutMailAPI = (paramValue) =>{
     const requestURL = 'http://localhost:8080/mail'
 
@@ -74,5 +91,22 @@ export const callPutMailAPI = (paramValue) =>{
             body: JSON.stringify(paramValue)
         });
         dispatch({ type: PUT_MAIL, payload: result });
+    }
+}
+
+
+export const callPostMailAPI = (paramValue) =>{
+    const requestURL = 'http://localhost:8080/mail'
+
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(paramValue)
+        });
+        dispatch({ type: POST_MAIL_SEND, payload: result });
     }
 }

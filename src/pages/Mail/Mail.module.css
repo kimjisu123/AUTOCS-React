@@ -57,13 +57,15 @@
 }
 .inputButton{
     margin-top: 3px;
-    border: 0px;
+    background: whitesmoke;
     margin-left: 2px;
     border-radius: 2px;
     cursor: pointer;
     box-sizing: border-box;
     width: 50px;
     height: 28px;
+    text-align: center;
+    line-height: 25px;
 }
 .mainHeader{
     display: flex;
