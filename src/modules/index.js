@@ -1,14 +1,23 @@
 // index.js
 import { combineReducers } from 'redux';
 import memberReducer from './MemberModule';
+import marketReducer from "./MarketModule";
+import productReducer from "./ProductModule";
+import categoryReducer from "./CategoryModule";
+import standardReducer from "./StandardModule";
+import unitReducer from "./UnitModule";
 import chartReducer from './ChartModule';
 import stockReducer from './StockModule';
 import approvalReducer from './ApprovalModule';
 
 const rootReducer = combineReducers({
- // 이 부분을 수정하여 리듀서를 사용할 수 있도록 해야 합니다.
     chartReducer,
     memberReducer,
+    productReducer,
+    categoryReducer,
+    standardReducer,
+    unitReducer,
+    marketReducer
     stockReducer,
     approvalReducer
 });

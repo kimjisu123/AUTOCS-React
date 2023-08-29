@@ -1,16 +1,25 @@
 import {
     GET_PRODUCT,
     GET_PRODUCTS,
+    POST_PRODUCT,
+} from '../modules/ProductModule';
+import {
     GET_CATEGORIES,
     POST_CATEGORY,
     PUT_CATEGORY,
+} from '../modules/CategoryModule';
+import {
     GET_STANDARDS,
     POST_STANDARD,
     PUT_STANDARD,
+} from '../modules/StandardModule';
+import {
+    GET_UNITS,
+    POST_UNIT,
+    PUT_UNIT,
+} from '../modules/UnitModule';
 
-} from '../modules/StockModule';
-
-/* 상품 조회 */
+/* 물품 조회 */
 export const callProductListAPI = ({currentPage}) => {
 
     let requestURL;
@@ -41,8 +50,80 @@ export const callProductListAPI = ({currentPage}) => {
     };
 }
 
+/* 물품 조회 */
+export const callProductListByNameAPI = ({currentPage, s}) => {
+    console.log('시작......')
+
+
+    let requestURL;
+
+    if(currentPage !== undefined || currentPage !== null){
+        requestURL = `http://localhost:8080/ListPopup?offset=${currentPage}&s=${s}`;
+        console.log(s)
+    }else {
+        requestURL = `http://localhost:8080/ListPopup`;
+    }
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            }
+        })
+            .then(response => response.json());
+        if(result.status === 200){
+            dispatch({ type: GET_PRODUCTS,  payload: result.data });
+        }
+
+    };
+}
+
+/* 물품 등록 */
+export const callProductRegistAPI = ({form}) => {
+    const requestURL = `http://localhost:8080/stock/productregist`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "POST",
+            headers: {
+                "Accept": "*/*"
+            },
+            body: form
+        })
+            .then(response => response.json());
+
+        dispatch({ type: POST_PRODUCT,  payload: result });
+
+    };
+}
+
+
 /* 카테고리 조회 */
-export const callCategoryListAPI = ({currentPage}) => {
+export const callCategoryListAPI = () => {
+    let requestURL;
+    requestURL = `http://localhost:8080/stock/category/all`;
+
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            }
+        })
+            .then(response => response.json());
+        if(result.status === 200){
+            dispatch({ type: GET_CATEGORIES,  payload: result.data });  // api를 동시에 사용하는 경우가 아니면 같은 타입을 사용해도 됨
+        }
+    };
+}
+
+/* 카테고리 조회 - 페이징 */
+export const callCategoryListWithPagingAPI = ({currentPage}) => {
 
     let requestURL;
     if(currentPage !== undefined || currentPage !== null){
@@ -66,6 +147,9 @@ export const callCategoryListAPI = ({currentPage}) => {
 
     };
 }
+
+
+
 
 /* 카테고리 등록 */
 export const callCategoryRegistAPI = ({form}) => {
@@ -116,7 +200,27 @@ export const callCategoryUpdateAPI = ({form}) => {
 }
 
 /* 규격 조회 */
-export const callStandardListAPI = ({currentPage}) => {
+export const callStandardListAPI = () => {
+    let requestURL;
+    requestURL = `http://localhost:8080/stock/standard/all`;
+
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            }
+        })
+            .then(response => response.json());
+        if(result.status === 200){
+            dispatch({ type: GET_STANDARDS,  payload: result.data });
+        }
+    };
+}
+
+/* 규격 조회 - 페이징 */
+export const callStandardListWithPagingAPI = ({currentPage}) => {
 
     let requestURL;
     if(currentPage !== undefined || currentPage !== null){
@@ -179,6 +283,94 @@ export const callStandardUpdateAPI = ({form}) => {
             .then(response => response.json());
 
         dispatch({ type: PUT_STANDARD,  payload: result });
+
+    };
+}
+
+/* 단위 조회 */
+export const callUnitListAPI = () => {
+    let requestURL;
+    requestURL = `http://localhost:8080/stock/unit/all`;
+
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            }
+        })
+            .then(response => response.json());
+        if(result.status === 200){
+            dispatch({ type: GET_UNITS,  payload: result.data });
+        }
+    };
+}
+
+/* 단위 조회 - 페이징 */
+export const callUnitListWithPagingAPI = ({currentPage}) => {
+
+    let requestURL;
+    if(currentPage !== undefined || currentPage !== null){
+        requestURL = `http://localhost:8080/stock/unit?offset=${currentPage}`;
+    }else {
+        requestURL = `http://localhost:8080/stock/unit`;
+    }
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            }
+        })
+            .then(response => response.json());
+        if(result.status === 200){
+            dispatch({ type: GET_UNITS,  payload: result.data });
+        }
+
+    };
+}
+
+/* 단위 등록 */
+export const callUnitRegistAPI = ({form}) => {
+
+    const requestURL = `http://localhost:8080/stock/unit`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "POST",
+            headers: {
+                "Accept": "*/*"
+            },
+            body: form
+        })
+            .then(response => response.json());
+
+        dispatch({ type: POST_UNIT,  payload: result });
+
+    };
+}
+
+/* 단위 수정 */
+export const callUnitUpdateAPI = ({form}) => {
+
+    const requestURL = `http://localhost:8080/stock/unit`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "PUT",
+            headers: {
+                "Accept": "*/*",
+            },
+            body: form
+        })
+            .then(response => response.json());
+
+        dispatch({ type: PUT_UNIT,  payload: result });
 
     };
 }

@@ -1,8 +1,16 @@
 import './Mmail.css'
 import img from './loginMain.png'
 import React from 'react';
+import {Navigate} from "react-router-dom";
 
 const Mmail = () => {
+
+    // 로그인 상태일 시 페이지로 접근 방지
+    const Token = localStorage.getItem('accessToken');
+    if (Token) {
+        return <Navigate to="/" replace />;
+    }
+
     return (
         <div style={{backgroundColor: "#1C2C10"}}>
         <div className="border">

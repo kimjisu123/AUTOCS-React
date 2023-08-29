@@ -15,18 +15,13 @@ const actions = createActions({
 });
 
 //리듀서
-const memberReducer = handleActions(
-    {
+const memberReducer = handleActions({
         [GET_EMPLOYEE]: (state, { payload }) => {
             return payload;
-        }
-    },
-    {
+        },
         [GO_LOGIN]: (state, { payload }) => {
             return payload;
-        }
-    },
-    {
+        },
         [ADD_EMPLOYEE]: (state, { payload }) => {
             return payload;
         }

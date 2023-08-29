@@ -10,6 +10,7 @@
     padding-left: 60px;
     margin-bottom: 7px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 /* 컨텐츠 */
@@ -66,13 +67,6 @@
     background-color: lightgray;
 }
 
-.selectbox{
-    width: 100px;
-    height:10px;
-    marginLeft: 10px;
-}
-
-
 
 
 /* 테이블 */
@@ -100,6 +94,7 @@
 /* 팝업창 */
 .listbox {
     display: flex;
+    width: 400px;
     height: auto;
     background-color: #ecead8;
 }
