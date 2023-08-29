@@ -1,22 +1,29 @@
 import StockCSS from './Stock.module.css'
 import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { Navigate } from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
 
 import {
-    callProductListAPI
+    callProductListAPI,
+    callProductUpdateAPI
 } from '../../apis/StockAPICalls'
 
-
-function showPopup() { window.open('/ListPopup', "a", "width=400, height=800, left=100, top=50"); }
+function showPopup()
+{ window.open('/ListPopup', "a", "width=400, height=800, left=100, top=50");
+    document.getElementById( "parentCodeValue" ).value = '';
+    document.getElementById( "parentNameValue" ).value = '';
+}
 
 function ProductDelete() {
 
     /*******************************************************************************/
-
-
-    // 리덕스를 이용하기 위한 디스패처, 셀렉터 선언
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    // 수정
+    const [modifyMode, setModifyMode] = useState(false);
+
+    // 조회
     const products = useSelector(state => state.productReducer);
     const productList = products.data;
 
@@ -43,25 +50,62 @@ function ProductDelete() {
         ,[currentPage]
     );
 
+
+    // 수정
+    const [modifyForm, setModifyForm] = useState({
+        productNo: '',
+        unusedDate: '',
+    });
+
+    // form 데이터 세팅
+    const onChangeHandler = (e) => {
+        setModifyForm({
+            ...modifyForm,
+            [e.target.name]: e.target.value
+        });
+        console.log('--------------------',e.target.value)
+        console.log('====================',document.getElementById( "parentCodeValue" ).value)
+    };
+
+    const onClickRegistHandler = () => {
+        const confirmed = window.confirm('등록 하시겠습니까?');
+        if (confirmed) {
+
+            // 업데이트 로직 적용
+            const formData = new FormData();
+            formData.append("productNo", document.getElementById( "parentCodeValue" ).value);
+            formData.append("unusedDate", modifyForm.unusedDate);
+
+            dispatch(callProductUpdateAPI({
+                form: formData
+            }));
+
+            setModifyMode(false);
+            alert('등록되었습니다.');
+            navigate('/stock/productdelete', { replace: true });
+            window.location.reload();
+        }
+    }
+
+
     /*******************************************************************************/
 
-
-    const onClickRegistHandler= () => {
-        alert('등록하시겠습니까?');
-    }
-    
     return(
         <div>
             <div className={StockCSS.headLine}>물품 불용등록</div>
 
-
             <table className={StockCSS.stockTable}>
                 <tr>
                     <td>
-                        물품명
+                        CODE
                     </td>
                     <td>
-                        <input className={StockCSS.readOnlybox} type="text" placeholder="물품명을 조회하세요" readOnly/>
+                        <input className={StockCSS.readOnlybox}
+                               name='productNo'
+                               type="text"
+                               id="parentCodeValue"
+                               placeholder="물품명을 조회하세요"
+                               readOnly/>
                     </td>
                     <td>
                         <button onClick={()=> showPopup()}>조회</button>
@@ -69,10 +113,21 @@ function ProductDelete() {
                 </tr>
                 <tr>
                     <td>
+                        물품명
+                    </td>
+                    <td>
+                        <input className={StockCSS.readOnlybox}
+                               type="text"
+                               id="parentNameValue"
+                               readOnly/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         불용시작일
                     </td>
                     <td>
-                        <input type="date"/>
+                        <input name='unusedDate' type="date" onChange={onChangeHandler}/>
                     </td>
                     <td>
                         <button onClick={ onClickRegistHandler }>등록</button>
