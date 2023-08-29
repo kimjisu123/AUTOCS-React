@@ -20,7 +20,9 @@ function Modal({setAddPeople}) {
 
                 </div>
             </div>
-            <div className={modal.okBtn}>추가하기</div>
+            <div className={modal.bottom}>
+                <div className={modal.okBtn}>추가하기</div>
+            </div>
         </div>
     )
 }

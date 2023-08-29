@@ -1,6 +1,22 @@
 import style from './ApprovalHome.module.css'
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useState } from "react";
+import {
+    callGetAppLineAPI
+} from '../../apis/ApprovalAPICalls';
 
 function ApprovalHome() {
+
+    const dispatch = useDispatch();
+
+    useEffect(
+        () => {
+            dispatch(callGetAppLineAPI());
+        },
+        []
+    )
+
+    const list = useSelector(state => state.approvalReducer);
 
     return (
         <div className={style.content}>

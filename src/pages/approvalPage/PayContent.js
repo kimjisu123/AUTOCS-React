@@ -113,11 +113,11 @@ function PayContent() {
             </table>
             <br/><br/>
             <div className={styles.file}>
-                <label htmlFor="fileBtn">파일 업로드</label>
+                <label htmlFor="fileBtn" className={styles.fileLabel}>파일 업로드</label>
                 <input type="file" className={styles.fileBtn} name="fileBtn" id="fileBtn"/>
                 <div className={styles.fileshow}></div>
             </div>
-            { addPeople && <Modal setAddPeople={setAddPeople}/>}
+            { addPeople && <Modal setAddPeople={setAddPeople} />}
             <br/><br/>
         </div>
     )

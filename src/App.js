@@ -72,15 +72,14 @@ import MyStatistics from "./pages/stock/MyStatistics";
 
 function App() {
     return (
-        <Provider store={store}>
             <BrowserRouter>
                 <Routes>
                     //로그인 먼저
-                    <Route path='/' element={<Login/>}/>
+                    {/*<Route path='/' element={<Login/>}/>*/}
 
-                    <Route path='/main' element={<Layout/>}>
+                    <Route path='/' element={<Layout/>}>
                         //지호
-                        <Route path='approval' element={<AppHome/>}/>
+                        <Route path='/approval' element={<AppHome/>}/>
                         <Route path='/approval/purchase' element={<Purchase/>}/>
                         <Route path='/approval/vacation' element={<Vacation/>}/>
                         <Route path='/approval/traffic' element={<Traffic/>}/>
@@ -161,7 +160,6 @@ function App() {
                     <Route path='/Smail' element={<Smail/>}/>
               </Routes>
           </BrowserRouter>
-        </Provider>
   );
 }
 

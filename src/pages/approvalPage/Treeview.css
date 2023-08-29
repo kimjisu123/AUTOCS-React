@@ -5,3 +5,7 @@ ul {
 .plus {
     cursor: pointer;
 }
+
+li > div > span {
+    cursor: pointer;
+}
