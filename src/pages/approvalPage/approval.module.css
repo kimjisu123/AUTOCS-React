@@ -10,6 +10,7 @@
 
 main {
     display: flex;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 
 .approval {
@@ -355,6 +356,7 @@ main {
     cursor: pointer;
     background-color: #ecead8;
     margin: 30px 0;
+    padding: 10px;
     width: 120px;
     text-align: center;
     border-radius: 10px;
@@ -367,7 +369,7 @@ main {
 .file {
     border: 3px dashed rgb(202, 202, 202);
     margin: 0 40px;
-    height: 100px;
+    /*height: 100px;*/
     display: flex;
     line-height: 40px;
     justify-content: center;
@@ -376,5 +378,9 @@ main {
 .content {
     border-left: 1px solid rgb(202, 202, 202);
     min-height: 959px;
+    width: 100%;
+}
+
+.fileshow {
     width: 100%;
 }

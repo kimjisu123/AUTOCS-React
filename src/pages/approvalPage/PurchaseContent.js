@@ -1,8 +1,11 @@
 import styles from './approval.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import NewApproval from './NewApproval';
 import Swal from 'sweetalert2';
 import Modal from './Modal'
+import { FileUpload } from 'primereact/fileupload';
+import './input.css'
+
 
 const onClickAddHandler = () => {
     let inputRow = document.getElementsByClassName(styles.inputRow)[0];
@@ -36,6 +39,40 @@ const onClickDelHandler = () => {
 function PurchaseContent() {
 
     const [addPeople, setAddPeople] = useState(false);
+
+    const [file, setFile] = useState(null);
+    const [fileName, setFileName] = useState([]);
+
+    const onChangeFileUpload = (e) => {
+        // console.log(e.target.value);
+        // const uploadFile = e.target.file;
+        // // const uploadFile = e.target.file[0];
+        //
+        // const filename = uploadFile.replace('C:\\fakepath\\', '');
+        //
+        // setFileName(filename);
+
+
+            const files = e.target.files;
+
+            let array = [];
+
+        for (let i = 0; i < files.size; i++) {
+            array.push(e.target.files[i].name);
+        }
+            console.log(array)
+
+            setFileName(array);
+
+
+        // console.log(fileName);
+    };
+
+
+    // useEffect(() => {
+    //
+    // },
+    //     [file]);
 
     const showPeople = () => {
         setAddPeople(true);
@@ -131,9 +168,14 @@ function PurchaseContent() {
             </div>
             <br/><br/><br/>
             <div className={styles.file}>
-                <label htmlFor="fileBtn" className={styles.fileLabel}>파일 업로드</label>
-                <input type="file" className={styles.fileBtn} name="fileBtn" id="fileBtn"/>
-                <div className={styles.fileshow}></div>
+                <div style={{width: "100%", textAlign:"center", margin:"20px 0px"}}>
+                    {/*<label htmlFor="fileBtn" className={styles.fileLabel} >파일 업로드</label>*/}
+                    {/*<input type="file" className={styles.fileBtn} name="fileBtn" id="fileBtn" multiple onChange={onChangeFileUpload}/>*/}
+                    {/*<div className={styles.fileshow}>*/}
+                    {/*    {fileName}*/}
+                    {/*</div>*/}
+                    <FileUpload name="demo[]" url={'/api/upload'} multiple emptyTemplate={<p className="m-0">파일을 첨부하세요</p>} />
+                </div>
             </div>
             { addPeople && <Modal setAddPeople={setAddPeople}/>}
             <br/><br/><br/>
