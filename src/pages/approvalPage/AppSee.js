@@ -1,14 +1,15 @@
-import ApprovalContent from './ApprovalContent';
 import ApprovalMenubar from './ApprovalMenubar';
+import AppSeeContent from './AppSeeContent';
 
-function Approval() {
+function AppSee() {
 
     return (
+
         <div style={{display:"flex"}}>
             <ApprovalMenubar/>
-            <ApprovalContent/>
+            <AppSeeContent/>
         </div>
     )
 }
 
-export default Approval;
+export default AppSee

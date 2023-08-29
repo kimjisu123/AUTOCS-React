@@ -6,14 +6,18 @@ import productReducer from "./ProductModule";
 import categoryReducer from "./CategoryModule";
 import standardReducer from "./StandardModule";
 import unitReducer from "./UnitModule";
+import chartReducer from './ChartModule';
+import approvalReducer from './ApprovalModule';
 
 const rootReducer = combineReducers({
+    chartReducer,
     memberReducer,
     productReducer,
     categoryReducer,
     standardReducer,
     unitReducer,
-    marketReducer
+    marketReducer,
+    approvalReducer
 });
 
 export default rootReducer;

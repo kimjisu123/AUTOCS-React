@@ -5,7 +5,20 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 //지호
-import Approval from './pages/approvalPage/Approval'
+import AppHome from './pages/approvalPage/AppHome'
+import Purchase from './pages/approvalPage/Purchase'
+import Vacation from './pages/approvalPage/Vacation'
+import Traffic from './pages/approvalPage/Traffic'
+import Business from './pages/approvalPage/Business'
+import Pay from './pages/approvalPage/Pay'
+import AppWait from './pages/approvalPage/AppWait'
+import AppSee from './pages/approvalPage/AppSee'
+import MyBusiness from './pages/approvalPage/MyBusiness'
+import MyApp from './pages/approvalPage/MyApp'
+import MySee from './pages/approvalPage/MySee'
+import Receive from './pages/approvalPage/Receive'
+import Send from './pages/approvalPage/Send'
+import OrgChart from './pages/Chart/OrgChart'
 
 //해든
 //로그인 관련
@@ -64,7 +77,20 @@ function App() {
                 <Routes>
                     <Route path='/' element={<Layout/>}>
                         //지호
-                        <Route path='approval' element={<Approval/>}/>
+                        <Route path='/approval' element={<AppHome/>}/>
+                        <Route path='/approval/purchase' element={<Purchase/>}/>
+                        <Route path='/approval/vacation' element={<Vacation/>}/>
+                        <Route path='/approval/traffic' element={<Traffic/>}/>
+                        <Route path='/approval/business' element={<Business/>}/>
+                        <Route path='/approval/pay' element={<Pay/>}/>
+                        <Route path='/approval/appWait' element={<AppWait/>}/>
+                        <Route path='/approval/appSee' element={<AppSee/>}/>
+                        <Route path='/approval/myBusiness' element={<MyBusiness/>}/>
+                        <Route path='/approval/myApp' element={<MyApp/>}/>
+                        <Route path='/approval/mySee' element={<MySee/>}/>
+                        <Route path='/approval/Receive' element={<Receive/>}/>
+                        <Route path='/approval/Send' element={<Send/>}/>
+                        <Route path='chart' element={<OrgChart/>}/>
 
                         //지수
                         <Route path='management' element={<Management />} />
