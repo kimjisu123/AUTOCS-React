@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { MdOutlineToggleOn , MdOutlineToggleOff , MdRemoveCircleOutline } from 'react-icons/md';
 import styles from './TodoListItem.module.css';
 import cn from 'classnames';  // 조건부 스타일링을 위 해 classnames를 사용함.
@@ -9,7 +9,11 @@ const TodoListItem = ({todo, onRemove, onToggle,onUpdate }) => {
     const { id, text , checked } = todo;
 
     return (
+
+
+
         <div className={styles.TodoListItem}>
+
             <div className={cn(styles.checkbox , {[styles.checked]: checked})} onClick={() => onToggle(id)} onDoubleClick={() => onUpdate(todo.id)}>
                 { checked? <MdOutlineToggleOn /> : <MdOutlineToggleOff />}
                 <div className={styles.text}>{ text }</div>

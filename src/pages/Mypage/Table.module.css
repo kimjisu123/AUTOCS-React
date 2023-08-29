@@ -24,10 +24,14 @@
     display: flex;
     gap: 30px;
 
-
 }
 
-/*글자 사이에 선 */
+.docuList ul last-child {
+
+    color: red;
+}
+
+    /*글자 사이에 선 */
 .line::after {
     content: "";
     display: inline-block;
@@ -78,10 +82,12 @@
 
 .docuList li:hover::after {
     transform:translateX(0);
-    font-weight: 700;
-    color: #2a3c1e;
 }
 
+.docuList + .docuContent , tr +tr{
+
+    border-top :1px solid #dee2e6;
+}
 
 /* 테이블 */
 .docuContent {
@@ -125,3 +131,15 @@
     padding: 5px 15px;
     color: white;
 }
+
+.docuList button {
+
+    background-color: #d6ddff;
+    border-radius: 2px;
+    border: none;
+    padding: 1px 1px;
+    margin: 2px;
+    color: white;
+}
+
+

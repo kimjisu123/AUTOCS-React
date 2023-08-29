@@ -13,7 +13,7 @@ body{margin-top:20px;}
 }
 .rounded {
     /*border-radius: 5px !important;*/
-    line-height: 29px;
+    /*line-height: 29px;*/
     border: 1px solid rgb(221, 221, 221);
     border-radius: 4px;
 }
@@ -21,16 +21,60 @@ body{margin-top:20px;}
     /*background-color: #f7f8fa !important;*/
 }
 .bg-primary, .btn-primary, .btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:active, .btn-outline-primary.active, .btn-outline-primary.focus, .btn-outline-primary:not(:disabled):not(.disabled):active, .badge-primary, .nav-pills .nav-link.active, .pagination .active a, .custom-control-input:checked ~ .custom-control-label:before, #preloader #status .spinner > div, .social-icon li a:hover, .back-to-top:hover, .back-to-home a, ::selection, #topnav .navbar-toggle.open span:hover, .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots.clickable .owl-dot:hover span, .watch-video a .play-icon-circle, .sidebar .widget .tagcloud > a:hover, .flatpickr-day.selected, .flatpickr-day.selected:hover, .tns-nav button.tns-nav-active, .form-check-input.form-check-input:checked {
-    background-color: #2A3C1E !important;
+    background-color: #e1e1e1;
+    /*border: 1px solid #1C2C10;*/
 }
 
 .badge {
-    padding: 5px 8px;
-    border-radius: 3px;
-    letter-spacing: 0.5px;
+    position:relative;
+    overflow:hidden;
+    width: 100%;
+    height: 30px;
+    /*padding: 5px 8px;*/
     font-size: 12px;
-    color: white;
+    color: #252524;
+    transition: background .3s ease;
+    line-height: 20px;
+    display: inline-block;
 }
+
+.badge::after {
+    position:absolute;
+    background-color: #ffc95c;
+    /*padding: 2px 8px;*/
+    font-size: 20px;
+    color: #ffc95c;
+    transform:translateX(-100%);
+    transition: all .3s ease;
+    content:"";
+    display: block;
+    width:100%;
+    height:100%;
+    bottom:0;
+    left:0;
+}
+
+.badge:hover {
+    /*background-color: #ffc95c;*/
+    color: #ffffff; /* Change the text color when hovering */
+}
+
+
+.badge:hover::after {
+    transform:translateX(0);
+    color: #ffffff;
+}
+
+.badge-text {
+    position: absolute;
+    font-size: 12px;
+    color: #252524;
+    padding: 5px 8px;
+    color: #3b3a3a;
+    /*visibility: hidden;*/
+}
+
+
 
 .btn-primary, .btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:active, .btn-outline-primary.active, .btn-outline-primary.focus, .btn-outline-primary:not(:disabled):not(.disabled):active {
     box-shadow: 0 0 2px rgb(0 0 0 / 20%) !important;
@@ -39,7 +83,7 @@ body{margin-top:20px;}
     border-color: #2A3C1E !important;
 }
 .bg-primary, .btn-primary, .btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:active, .btn-outline-primary.active, .btn-outline-primary.focus, .btn-outline-primary:not(:disabled):not(.disabled):active, .badge-primary, .nav-pills .nav-link.active, .pagination .active a, .custom-control-input:checked ~ .custom-control-label:before, #preloader #status .spinner > div, .social-icon li a:hover, .back-to-top:hover, .back-to-home a, ::selection, #topnav .navbar-toggle.open span:hover, .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots.clickable .owl-dot:hover span, .watch-video a .play-icon-circle, .sidebar .widget .tagcloud > a:hover, .flatpickr-day.selected, .flatpickr-day.selected:hover, .tns-nav button.tns-nav-active, .form-check-input.form-check-input:checked {
-    background-color: #2A3C1E !important;
+    /*background-color: #2A3C1E !important;*/
 }
 .btn {
     padding: 8px 20px;
@@ -53,7 +97,7 @@ body{margin-top:20px;}
     border-radius: 5px;
 }
 .btn-primary {
-    background-color: #2A3C1E !important;
+    /*background-color: #2A3C1E !important;*/
     border: 1px solid #2A3C1E !important;
     color: #fff !important;
     box-shadow: 0 3px 7px rgb(109 199 122 / 50%);
@@ -77,8 +121,20 @@ a {
     flex-wrap: nowrap;
 }
 
+
+.card-body:hover {
+
+    transition: all 0.5s;
+    transition-delay: 0.4s;
+}
+
 .cardDetail {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     margin:5px;
+}
+
+.detailCard {
+    display: flex;
+    justify-content: space-between;
 }

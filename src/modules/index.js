@@ -11,8 +11,7 @@ const rootReducer = combineReducers({
     productReducer,
     categoryReducer,
     standardReducer,
-    unitReducer,
-
+    unitReducer
 });
 
 export default rootReducer;

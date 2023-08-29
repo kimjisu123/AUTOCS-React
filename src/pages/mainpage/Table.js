@@ -11,156 +11,94 @@ const Table = () => {
                     <div className="card">
                         <div className="card border-0 bg-light rounded shadow">
                             <div className="card-body p-4">
-                                <span className="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">Full time</span>
+                                <span className="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0"></span>
+                                <span className="badge-text">대기중</span>
                                 <div className='cardDetail'>
-                                    <h5>Tester</h5>
-                                    <h5>2023.2.23</h5>
+                                    <span>문서제목</span>
+                                    <div className="detailCard">
+                                        <h5>Tester</h5>
+                                        <h5>2023.2.23</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="card">
+                        <div className="card border-0 bg-light rounded shadow">
+                            <div className="card-body p-4">
+                                <span className="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0"></span>
+                                <span className="badge-text">대기중</span>
+                                <div className='cardDetail'>
+                                    <span>문서제목</span>
+                                    <div className="detailCard">
+                                        <h5>Tester</h5>
+                                        <h5>2023.2.23</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="card">
+                        <div className="card border-0 bg-light rounded shadow">
+                            <div className="card-body p-4">
+                                <span className="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0"></span>
+                                <span className="badge-text">대기중</span>
+                                <div className='cardDetail'>
+                                    <span>문서제목</span>
+                                    <div className="detailCard">
+                                        <h5>Tester</h5>
+                                        <h5>2023.2.23</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="card">
+                        <div className="card border-0 bg-light rounded shadow">
+                            <div className="card-body p-4">
+                                <span className="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0"></span>
+                                <span className="badge-text">대기중</span>
+                                <div className='cardDetail'>
+                                    <span>문서제목</span>
+                                    <div className="detailCard">
+                                        <h5>Tester</h5>
+                                        <h5>2023.2.23</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="card">
+                        <div className="card border-0 bg-light rounded shadow">
+                            <div className="card-body p-4">
+                                <span className="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0"></span>
+                                <span className="badge-text">대기중</span>
+                                <div className='cardDetail'>
+                                    <span>문서제목</span>
+                                    <div className="detailCard">
+                                        <h5>Tester</h5>
+                                        <h5>2023.2.23</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="card">
+                        <div className="card border-0 bg-light rounded shadow">
+                            <div className="card-body p-4">
+                                <span className="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0"></span>
+                                <span className="badge-text">대기중</span>
+                                <div className='cardDetail'>
+                                    <span>문서제목</span>
+                                    <div className="detailCard">
+                                        <h5>Tester</h5>
+                                        <h5>2023.2.23</h5>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-
-                    <div className="card">
-                        <div className="card border-0 bg-light rounded shadow">
-                            <div className="card-body p-4">
-                                <span className="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">Remote</span>
-                                <div className='cardDetail'>
-                                    <h5>Tester</h5>
-                                    <h5>2023.2.23</h5>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div className="card">
-                        <div className="card border-0 bg-light rounded shadow">
-                            <div className="card-body p-4">
-                                <span className="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">Contract</span>
-                                <div className='cardDetail'>
-                                    <h5>Tester</h5>
-                                    <h5>2023.2.23</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div className="card">
-                        <div className="card border-0 bg-light rounded shadow">
-                            <div className="card-body p-4">
-                                <span className="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">WFH</span>
-                                <div className='cardDetail'>
-                                    <h5>Tester</h5>
-                                    <h5>2023.2.23</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div className="card">
-                        <div className="card border-0 bg-light rounded shadow">
-                            <div className="card-body p-4">
-                                <span className="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">Full time</span>
-                                <div className='cardDetail'>
-                                    <h5>Tester</h5>
-                                    <h5>2023.2.23</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div className="card">
-                        <div className="card border-0 bg-light rounded shadow">
-                            <div className="card-body p-4">
-                                <span className="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">Remote</span>
-                                <div className='cardDetail'>
-                                    <h5>Tester</h5>
-                                    <h5>2023.2.23</h5>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="card">
-                        <div className="card border-0 bg-light rounded shadow">
-                            <div className="card-body p-4">
-                                <span className="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">Remote</span>
-                                <div className='cardDetail'>
-                                    <h5>Tester</h5>
-                                    <h5>2023.2.23</h5>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="card">
-                        <div className="card border-0 bg-light rounded shadow">
-                            <div className="card-body p-4">
-                                <span className="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">Remote</span>
-                                <div className='cardDetail'>
-                                    <h5>Tester</h5>
-                                    <h5>2023.2.23</h5>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="card">
-                        <div className="card border-0 bg-light rounded shadow">
-                            <div className="card-body p-4">
-                                <span className="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">Remote</span>
-                                <div className='cardDetail'>
-                                    <h5>Tester</h5>
-                                    <h5>2023.2.23</h5>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="card">
-                        <div className="card border-0 bg-light rounded shadow">
-                            <div className="card-body p-4">
-                                <span className="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">Remote</span>
-                                <h5>Tester</h5>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="card">
-                        <div className="card border-0 bg-light rounded shadow">
-                            <div className="card-body p-4">
-                                <span className="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">Remote</span>
-                                <div className='cardDetail'>
-                                    <h5>Tester</h5>
-                                    <h5>2023.2.23</h5>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="card">
-                        <div className="card border-0 bg-light rounded shadow">
-                            <div className="card-body p-4">
-                                <span className="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">Remote</span>
-                                <div className='cardDetail'>
-                                    <h5>Tester</h5>
-                                    <h5>2023.2.23</h5>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
             </div>

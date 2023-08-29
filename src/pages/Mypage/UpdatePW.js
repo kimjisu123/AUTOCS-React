@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Modal from "react-modal";
 import UpdatePwApp from "./UpdatePwApp";
 import UpdatePWok from "./UpdatePWok";
+import { decodeJwt } from '../../util/tokenUtils';
 
 function UpdatePW() {
     const navigate = useNavigate();
@@ -12,6 +13,8 @@ function UpdatePW() {
     const [currentPW, setCurrentPW] = useState(); // 현재 비밀번호 값
     const [newPW, setNewPW ] = useState(); // 새비밀번호
     const [ newPwCheck , setNewPwCheck] = useState(); // 새 비밀번호확인
+    const accessToken = window.localStorage.getItem('accessToken');
+    console.log("토큰값 : ", accessToken);
 
     const [errorMessages, setErrorMEssages] = useState({
         currentPW:'',
@@ -20,11 +23,13 @@ function UpdatePW() {
     })
 
 
-    const handlePasswordChange = () => {
-        let errors = {};
-
-        if(currentPW !== )
-    }
+    // const handlePasswordChange = () => {
+    //     let errors = {};
+    //     let decodedToken;
+    //     // if(currentPW !== decodedToken.){
+    //
+    //     }
+    // }
 
 
     const handleButtonClick = () => {

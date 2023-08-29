@@ -13,6 +13,7 @@ const MyMemoTemplate = ({
                    }) => {
 
     return (
+        <>
             <MyMemoList
                 input={input}
                 memos={memos}
@@ -21,7 +22,7 @@ const MyMemoTemplate = ({
                 onUpDate={update}
                 onRemve={remove}
             />
-
+        </>
     );
 };
 export default connect(

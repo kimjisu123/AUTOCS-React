@@ -1,15 +1,17 @@
 import emp from "../Mypage/emp.jpg";
 import mainstyle from './MainContent.module.css';
-import {Calendar} from "@fullcalendar/core";
-import {MdAccessTime, MdCoPresent, MdHome, MdOutlineWorkOff, MdOutlineWorkOutline} from "react-icons/md";
 import classNames from "classnames";
 import TodoApp from "../Todolist/TodoApp";
 import MiniCalender from "../compoments/MiniCalender";
 import monent from 'moment';
-import {useTheme} from "styled-components";
-import ThemeToggle from "../../theme/context/ThemeToggle";
+
 import Table from "./Table";
 import YourComponent from "../Mypage/YourComponent";
+import React from "react";
+import DailyList from "./DailyList";
+
+
+
 
 // 비구조화 할당 문법을 활용한 css내부 값 추출하기 이렇게 쓰면 MypageCSS.mainContatiner를 안써도된다. )
 
@@ -40,6 +42,14 @@ const MainContent = () => {
                                         <button>퇴근하기</button>
                                 </div>
                             </div>
+                            <div>
+                                <div className={"searchingbar"}>
+                                    <form id="search-form" className="form-search">
+                                        <input type="text" placeholder="강의 검색" className="form-control"/>
+                                        <span><i className="material-icons ic-search">search</i></span>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className={mainstyle.tempBox}>
@@ -63,13 +73,13 @@ const MainContent = () => {
                         <div className={mainstyle.datelist}>
                             <div className={mainstyle.daliyTitle}>
                                 <h1>일정리스트</h1>
-                                <div className={mainstyle.mainTodo}><YourComponent /></div>
+                                <div className={mainstyle.mainTodo}><DailyList /></div>
                             </div>
                         </div>
                     </div>
                     <div className={mainstyle.tempBox}>
                         <div className={mainstyle.flexbox}>
-                            <h1>todo리스트</h1>
+                            {/*<h1>todo리스트</h1>*/}
                             <div className={mainstyle.mainTodo}><TodoApp /></div>
                         </div>
                     </div>

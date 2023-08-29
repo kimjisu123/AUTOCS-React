@@ -17,8 +17,8 @@ const Header = () => {
     const navigate = useNavigate();
     // 리덕스를 이용하기 위한 디스패처, 셀렉터 선언
     const dispatch = useDispatch();
-    const loginMember = useSelector(state => state.memberReducer);
-    const accessToken = window.localStorage.getItem('accessToken');
+    // const loginMember = useSelector(state => state.memberReducer);
+    // const accessToken = window.localStorage.getItem('accessToken');
 
     //토큰값 확인
     //나중에 지워주자
@@ -27,7 +27,7 @@ const Header = () => {
     const [login, setLogin] = useState(false);
 
     //토큰 정보 추출
-    const decodedToken = accessToken ? decodeJwt(accessToken) : null;
+    //const decodedToken = accessToken ? decodeJwt(accessToken) : null;
 
     const activestyle = {
 
@@ -108,13 +108,13 @@ const Header = () => {
                     <NavLink to="myPage" style={({isActive}) => isActive? activestyle:undefined} className="profile" onClick={ mypageHandler }>
                         <div className="profileImg" onClick={ mypageHandler }>
                         </div>
-                        {decodedToken ? (
-                            <h5 className="userName" style={{ marginTop: "-0.5px", fontSize: "16px" }}>
-                                {decodedToken.Name}님 안녕하세요!
-                            </h5>
-                        ) : (
-                            window.location="/login"
-                        )}
+                        {/*{decodedToken ? (*/}
+                        {/*    <h5 className="userName" style={{ marginTop: "-0.5px", fontSize: "16px" }}>*/}
+                        {/*        {decodedToken.Name}님 안녕하세요!*/}
+                        {/*    </h5>*/}
+                        {/*) : (*/}
+                        {/*    window.location="/login"*/}
+                        {/*)}*/}
                     </NavLink>
                         <button onClick={onClickLogoutHandler} style={{marginRight: "-50px"}} className="logOut">
                             로그아웃

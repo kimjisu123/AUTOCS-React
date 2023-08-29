@@ -1,0 +1,273 @@
+
+
+.container {
+    width: 500px;
+    height: 500px;
+    margin: 0 auto;
+}
+
+.section {
+    display: flex;
+    flex-direction: column; /* 세로로 정렬 */
+}
+
+
+
+.docuList {
+    display: flex;
+    justify-content: flex-start;
+    /*margin: 0 auto;*/
+}
+
+.docuList ul {
+    list-style-type: none;
+    display: flex;
+    gap: 30px;
+
+}
+
+.docuList ul last-child {
+
+    color: red;
+}
+
+/*글자 사이에 선 */
+.line::after {
+    content: "";
+    display: inline-block;
+    width: 2px;
+    height: 50%;
+    margin: 0 auto;
+    background-color: #ccc;
+    margin: 1em 0.5em;
+}
+
+
+
+/* Effect 15: scale down, reveal */
+
+.docuList a {
+
+    font-weight: 700;
+    color: #2a3c1e;
+}
+
+.docuList li {
+    position:relative;
+    overflow:hidden;
+    transition: background .3s ease;
+    display: block;
+    line-height: 30px;
+    text-align: center;
+    font-size: 1em;
+    color: black;
+    text-decoration: none;
+    margin: 0 auto;
+}
+
+.docuList li::after{
+
+    position:absolute;
+    display:block;
+    content:"";
+    font-weight: 700;
+    width:100%;
+    height:2px;
+    background:#2a3c1e;
+    bottom:0;
+    left:0;
+    transform:translateX(-100%);
+    transition: all .3s ease;
+}
+
+.docuList li:hover::after {
+    transform:translateX(0);
+    font-weight: 700;
+    color: #2a3c1e;
+}
+
+
+/* 테이블 */
+.docuContent {
+    width: 100%;
+    border-collapse: collapse;
+    /*border: 1px solid #ccc;*/
+    border: none;
+    margin-top: 2%;
+    overflow: scroll;
+}
+
+.docuContent th, .docuContent td {
+    padding: 10px;
+    /*border: 1px solid #ccc;*/
+    text-align: center;
+    border: none;
+}
+
+.docuContent tr{
+    white-space: pre-line;
+}
+
+.mainline{
+    background-color: lightgoldenrodyellow;
+}
+
+.docuContent td button {
+
+    background-color: #adb5db;
+    border-radius: 20px;
+    border: none;
+    padding: 5px 15px;
+    color: white;
+}
+
+.docuContent td button:hover {
+
+    background-color: #6d86ff;
+    border-radius: 20px;
+    border: none;
+    padding: 5px 15px;
+    color: white;
+}
+
+.docuList button {
+
+    background-color: #d6ddff;
+    border-radius: 2px;
+    border: none;
+    padding: 1px 1px;
+    margin: 2px;
+    color: white;
+}
+
+/* =====================================================*/
+
+a:hover {
+    text-decoration: none; }
+
+ol, ul {
+    padding: 0;
+    list-style: none; }
+
+.card-lecture {
+        margin-top: 0;
+        margin-right: 0.5rem;
+        min-width: 15rem;
+        width: 100%; }
+
+.modal-header {
+    border-bottom: 0; }
+
+.modal-body {
+    padding: 0 2rem 2rem; }
+.modal-body .lectureTitle {
+    font-weight: 600; }
+.modal-body .lecture-info {
+    margin-top: 2rem; }
+.modal-body .lecture-info .ic-lecture-info {
+    margin-right: 0.5rem;
+    font-size: 1.25rem; }
+.modal-body .lecture-info li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.125rem;
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.6;
+    color: #263747; }
+.modal-body .lecture-description, .modal-body .lecture-memo {
+    margin-top: 1rem; }
+.modal-body .lecture-description .txt-description, .modal-body .lecture-memo .txt-description {
+    margin-bottom: 0;
+    font-weight: 400; }
+.modal-body .lecture-description .memo-list, .modal-body .lecture-memo .memo-list {
+    display: flex; }
+.modal-body .lecture-description .memo-list .memo-content, .modal-body .lecture-memo .memo-list .memo-content {
+    max-width: 20rem; }
+.modal-body .lecture-description .memo-list .memo-content .ic-lecture-noti, .modal-body .lecture-memo .memo-list .memo-content .ic-lecture-noti {
+    vertical-align: sub;
+    font-size: 1.25rem; }
+.modal-body .lecture-description .memo-list .memo-content .lecture-noti-title, .modal-body .lecture-memo .memo-list .memo-content .lecture-noti-title {
+    font-size: 1.125rem; }
+.modal-body .lecture-description .memo-list .memo-btn, .modal-body .lecture-memo .memo-list .memo-btn {
+    margin-left: auto; }
+.modal-body .lecture-description .memo-list .memo-btn .ic-lecture-noti, .modal-body .lecture-memo .memo-list .memo-btn .ic-lecture-noti {
+    color: #B2C0CC; }
+.modal-body .lecture-description .memo-list .memo-btn .ic-lecture-noti:hover, .modal-body .lecture-memo .memo-list .memo-btn .ic-lecture-noti:hover {
+    color: #F44336; }
+.modal-body .lecture-description {
+    background-color: #F7F7FB;
+    border-radius: 0.75rem;
+    padding: 1rem; }
+.modal-body .lecture-memo .form-group {
+    margin-bottom: 0; }
+.modal-body .lecture-memo .form-group label {
+    margin-bottom: 0.25rem; }
+.modal-body .lecture-memo .form-group label:hover {
+    cursor: pointer; }
+.modal-body .lecture-memo .form-group label input {
+    margin-right: 0.25rem; }
+.modal-body .lecture-memo .form-group label input:hover {
+    cursor: pointer; }
+
+.modal-footer .left {
+    margin-right: auto; }
+.modal-footer .right {
+    display: flex; }
+.modal-footer .right .btn-danger {
+    margin-left: 0.375rem; }
+.modal-footer .btn {
+    font-weight: 500; }
+.modal-footer .btn-light {
+    background-color: #E9ECF3;
+    border-color: #E9ECF3;
+    font-weight: 500; }
+.modal-footer .btn-light:hover {
+    color: #263747;
+    background-color: #D7E2EB;
+    border-color: #D7E2EB; }
+.modal-footer .btn-light-danger {
+    color: #F44336;
+    background-color: #FFEBEE;
+    border-color: #FFEBEE; }
+.modal-footer .btn-light-danger:hover {
+    color: #D32F2F;
+    background-color: #FFDDE0;
+    border-color: #FFDDE0; }
+.modal-footer .btn-light-primary {
+    color: #0078FF;
+    background-color: #EEEBFF;
+    border-color: #EEEBFF; }
+.modal-footer .btn-light-primary:hover {
+    color: #0053F4;
+    background-color: #D8DDFF;
+    border-color: #D8DDFF; }
+
+.popover-body .schedule-title {
+    margin: 1rem 0 1.5rem; }
+.popover-body .form-group {
+    position: relative;
+    margin-bottom: 0.5rem; }
+.popover-body .form-group .col-form-label {
+    width: 100%; }
+.popover-body .form-group label {
+    font-size: 12px;
+    line-height: 1.5;
+    display: inline-block;
+    margin-bottom: 0.125rem;
+    padding-bottom: 0; }
+.popover-body .form-group .form-control {
+    padding: 0.5rem;
+    height: 2.5rem;
+    border: 0.0625rem solid #D7E2EB;
+    cursor: pointer;
+    background-size: 0.625rem 0.3125rem;
+    background-color: #FBFBFD; }
+.popover-body .form-group input:hover, .popover-body .form-group textarea:hover {
+    cursor: auto; }
+.popover-body .form-group textarea {
+    min-height: 7.5rem; }
+.popover-body .btn-save {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem; }
+

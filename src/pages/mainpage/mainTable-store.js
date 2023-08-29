@@ -1,7 +1,6 @@
 import React from 'react';
 import TableCSS from './Table.module.css';
 import {NavLink} from "react-router-dom";
-import {MdKeyboardDoubleArrowRight} from "react-icons/md";
 
 function YourComponent() {
     return (
@@ -11,13 +10,13 @@ function YourComponent() {
                     <u style={{margin:"auto 0"}}><h3><NavLink to="/stock/myorderlist/detail">문서</NavLink></h3></u>
                     <span className={TableCSS.line}></span>
                     <ul>
-                        <li>결제할 문서<strong>3</strong></li>
+                        <li>대기 문서<strong>3</strong></li>
                         <li>진행중 문서<strong>3</strong></li>
                         <li>수신 문서<strong>3</strong></li>
-                        <NavLink to="/stock/myorderlist/detail"><MdKeyboardDoubleArrowRight/></NavLink>
                     </ul>
+                    <button><NavLink to="/stock/myorderlist/detail">더보기</NavLink></button>
                 </figcaption>
-                <div style={{marginTop: "1%"}}  className={TableCSS.docuContent}>
+                <div style={{marginTop: "1%"}}>
                     <table className={TableCSS.docuContent}>
                         <tr>
                             <th>NO</th>
@@ -30,26 +29,26 @@ function YourComponent() {
                             <td>1</td>
                             <td><NavLink to="/stock/myorderlist/detail">문서제목1</NavLink></td>
                             <td>2023-08-01</td>
-                            <td><button>진행중</button></td>
+                            <td><button>대기</button></td>
 
                         </tr>
                         <tr>
                             <td>2</td>
                             <td><NavLink to="/stock/myorderlist/detail">문서제목2</NavLink></td>
                             <td>2023-08-01</td>
-                            <td><button>결제완료</button></td>
+                            <td><button>반려</button></td>
                         </tr>
                         <tr>
                             <td>2</td>
-                            <td><NavLink to="/stock/myorderlist/detail">문서제목2</NavLink></td>
+                            <td><NavLink to="/stock/myorderlist/detail">문서제목3</NavLink></td>
                             <td>2023-08-01</td>
-                            <td><button>대기중</button></td>
+                            <td><button>승인</button></td>
                         </tr>
                         <tr>
                             <td>2</td>
-                            <td><NavLink to="/stock/myorderlist/detail">문서제목2</NavLink></td>
+                            <td><NavLink to="/stock/myorderlist/detail">문서제목4</NavLink></td>
                             <td>2023-08-01</td>
-                            <td><button>진행중</button></td>
+                            <td><button>완료</button></td>
                         </tr>
                     </table>
                 </div>

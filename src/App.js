@@ -67,6 +67,8 @@ import SlideCard from "./pages/mainpage/SlideCard";
 import UpdatePWok from "./pages/Mypage/UpdatePWok";
 import YourComponent from "./pages/Mypage/YourComponent";
 import MypageStore from "./pages/Mypage/MypageStore";
+import DaliyList from "./pages/mainpage/DailyList";
+import Test from "./pages/mainpage/SlideCard";
 // import {ThemeProvider} from "./theme/context/ThemeProvider";
 // import {GlobalStyle} from "./theme/theme/GlobalStyle";
 
@@ -128,7 +130,7 @@ function App() {
                         </Route>
                         <Route path='pw2' element={<UpdatePwApp/>}/>
                         <Route path='home' element={<MainContent/>}/>
-                        <Route path='test' element={<MyMemoTemplate/>}/>
+                        <Route path='test' element={<Test/>}/>
                         // 비밀번호 변경 팝업
                         <Route path='pwpopup' element={<UpdatePWok/>}/>
                         <Route path='store' element={<YourComponent/>}/>
