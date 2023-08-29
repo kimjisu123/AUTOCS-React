@@ -25,6 +25,7 @@ import OutMForm from "./pages/outForm/outMForm";
 import Mmail from "./pages/emailGuide/Mmail";
 import Smail from "./pages/emailGuide/Smail";
 import NoAuthority from "./pages/Login/noAuthority"
+import ApplyStateW from "./pages/applyForm/applyStateW";
 
 //지수
 import Management from "./pages/management/Management"
@@ -103,6 +104,8 @@ function App() {
                         //계정 비활성화 신청
                         <Route path='outM' element={<OutMForm/>}/>
                         <Route path='outS' element={<OutSForm/>}/>
+                        //영업점 신청 내역 확인
+                        <Route path='applyFormW' element={<ApplyStateW/>}/>
                     </Route>
 
                     //미지
