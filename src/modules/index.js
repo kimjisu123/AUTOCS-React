@@ -7,7 +7,6 @@ import categoryReducer from "./CategoryModule";
 import standardReducer from "./StandardModule";
 import unitReducer from "./UnitModule";
 import chartReducer from './ChartModule';
-import stockReducer from './StockModule';
 import approvalReducer from './ApprovalModule';
 
 const rootReducer = combineReducers({
@@ -18,7 +17,6 @@ const rootReducer = combineReducers({
     standardReducer,
     unitReducer,
     marketReducer,
-    stockReducer,
     approvalReducer
 });
 
