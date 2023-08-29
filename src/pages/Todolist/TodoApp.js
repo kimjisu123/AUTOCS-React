@@ -1,13 +1,17 @@
 import TodoTemplate from "./TodoTemplate";
 import TodoInsert from "./TodoInsert";
 import TodoList from "./TodoList";
-import {useCallback, useRef, useState ,useContext} from "react";
+import {useCallback, useRef, useState, useContext, useEffect} from "react";
 import React from "react";
 import styles from "./TodoApp.module.css"
+import {callGetEmployeeAPI} from "../../apis/MemberAPICalls";
+import { useSelector, useDispatch } from 'react-redux';
 
 
 const TodoApp = ({ todoModal , setTodoModal } ) => {
 
+
+    const dispatch = useDispatch();
     const [todos, setTodos ] = useState([
     // 초기값.
         {
@@ -26,6 +30,13 @@ const TodoApp = ({ todoModal , setTodoModal } ) => {
             checked: false,
         },
     ]);
+
+
+    useEffect(() => {
+        // 컴포넌트가 마운트되었을 때 사원 목록을 가져오도록 API 호출
+        // callGetEmployeeAPI(dispatch);
+        dispatch(callGetEmployeeAPI());
+    }, []);
 
     // 고유 아이디 붙여주기
     const nextId = useRef(4);

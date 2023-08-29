@@ -1,5 +1,5 @@
 import React from 'react';
-import TableCSS from '../Mypage/Table.module.css';
+import TableCSS from './DailyList.module.css';
 import {NavLink} from "react-router-dom";
 import {MdKeyboardDoubleArrowRight} from "react-icons/md";
 
@@ -8,12 +8,13 @@ function DailyList() {
         <div className={TableCSS.container}>
             <div className={TableCSS.section}>
                 <figcaption className={TableCSS.docuList}>
-                    <u style={{margin:"auto 0"}}><h3><NavLink to="/stock/myorderlist/detail">일정</NavLink></h3></u>
-                    <span className={TableCSS.line}></span>
+                    {/*<u style={{margin:"auto 0"}}><h3><NavLink to="/stock/myorderlist/detail">일정</NavLink></h3></u>*/}
+                    {/*<span className={TableCSS.line}></span>*/}
                     <ul>
-                        <li>개인일정<strong>3</strong></li>
-                        <li>부서일정<strong>5</strong></li>
-                        <li>전체일정<strong>3</strong></li>
+                        <li>오늘일정<strong>3</strong></li>
+                        <li>오늘일정<strong>3</strong></li>
+                        <li>한주일정<strong>5</strong></li>
+                        <li>월별일정<strong>3</strong></li>
                         <NavLink to="/stock/myorderlist/detail"><MdKeyboardDoubleArrowRight/></NavLink>
                     </ul>
                 </figcaption>

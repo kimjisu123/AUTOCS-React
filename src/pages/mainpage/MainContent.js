@@ -7,8 +7,11 @@ import monent from 'moment';
 
 import Table from "./Table";
 import YourComponent from "../Mypage/YourComponent";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import DailyList from "./DailyList";
+import {MdKeyboardDoubleArrowRight} from "react-icons/md";
+import {NavLink} from "react-router-dom";
+import moment from "moment-timezone";
 
 
 
@@ -22,6 +25,24 @@ const MainContent = () => {
     const today = String(new Date().toLocaleDateString());
     const formatDate = monent(today).format("MMMM Do YYYY");
     // const [ThemeMode , toggleTheme] = useTheme();
+
+
+    const getCurrentTime = () => {
+        var m = moment().tz("Asia/Seoul"); // ← 이곳이 포인트
+        return m.format("HH:mm:ss");
+    };
+    const [currentTime, setCurrentTime] = useState(getCurrentTime());
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setCurrentTime(getCurrentTime());
+        }, 1000); // 1분(60초)마다 업데이트
+
+        return () => {
+            clearInterval(intervalId);
+        };
+    }, []);
+
+
 
     return (
         <>
@@ -43,12 +64,12 @@ const MainContent = () => {
                                 </div>
                             </div>
                             <div>
-                                <div className={"searchingbar"}>
-                                    <form id="search-form" className="form-search">
-                                        <input type="text" placeholder="강의 검색" className="form-control"/>
-                                        <span><i className="material-icons ic-search">search</i></span>
-                                    </form>
-                                </div>
+                                {/*<div className={"searchingbar"}>*/}
+                                {/*    <form id="search-form" className="form-search">*/}
+                                {/*        <input type="text" placeholder="강의 검색" className="form-control"/>*/}
+                                {/*        <span><i className="material-icons ic-search">search</i></span>*/}
+                                {/*    </form>*/}
+                                {/*</div>*/}
                             </div>
                         </div>
                     </div>
@@ -56,14 +77,15 @@ const MainContent = () => {
                         <div className={mainstyle.timeAndDark}>
                             <div className={mainstyle.mainTime}>
                                 {/*<MdAccessTime />*/}
-                                <h3>Today</h3>
+                                <h3 style={{textAlign:"center"}}>Today</h3>
                                 <h1>{ formatDate }</h1>
+                                <h1 style={{textAlign:"center", fontSize:'60px', margin:'0px'}}>{ currentTime }</h1>
                             </div>
-                            <div className={mainstyle.darkmode}>
-                                {/*<MdAccessTime />*/}
-                                <h3>다크모드</h3>
-                                <button>다크모드버튼</button>
-                            </div>
+                            {/*<div className={mainstyle.darkmode}>*/}
+                            {/*    <MdAccessTime />*/}
+                            {/*    <h3>다크모드</h3>*/}
+                            {/*    <button>다크모드버튼</button>*/}
+                            {/*</div>*/}
                         </div>
                     </div>
                     <div className={mainstyle.tempBox} style={{ display:"flex"}}>
@@ -72,7 +94,7 @@ const MainContent = () => {
                         </div>
                         <div className={mainstyle.datelist}>
                             <div className={mainstyle.daliyTitle}>
-                                <h1>일정리스트</h1>
+                                <h1 style={{textAlign:"center", color:"#696767"}}>일정리스트</h1>
                                 <div className={mainstyle.mainTodo}><DailyList /></div>
                             </div>
                         </div>
@@ -85,13 +107,16 @@ const MainContent = () => {
                     </div>
                     <div className={mainstyle.tempBox}>
                         <div className={mainstyle.documentPart}>
-                            <h1>전자문서 결제</h1>
+                            <div className={mainstyle.docutitle}>
+                                <div><h1 style={{textAlign:"center", color:"#696767"}}>전자문서 결제</h1></div>
+                                <div><NavLink to="/stock/myorderlist/detail"><MdKeyboardDoubleArrowRight/></NavLink></div>
+                            </div>
                             <div><Table /></div>
                         </div>
                     </div>
                     <div className={mainstyle.tempBox}>
                         <div className={mainstyle.boradPart}>
-                            <h1>게시판</h1>
+                            <h1 style={{textAlign:"center", color:"#696767"}}>게시판</h1>
                             <div><YourComponent /></div>
                         </div>
                     </div>

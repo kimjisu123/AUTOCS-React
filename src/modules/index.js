@@ -5,13 +5,15 @@ import productReducer from "./ProductModule";
 import categoryReducer from "./CategoryModule";
 import standardReducer from "./StandardModule";
 import unitReducer from "./UnitModule";
+import todoReducer from "./TodoModule";
 
 const rootReducer = combineReducers({
     memberReducer,
     productReducer,
     categoryReducer,
     standardReducer,
-    unitReducer
+    unitReducer,
+    todoReducer
 });
 
 export default rootReducer;

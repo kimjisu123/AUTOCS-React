@@ -2,10 +2,12 @@ import MypageCSS from './MypageEmp.module.css';
 import emp from './emp.jpg'
 import {MdAccountCircle} from "react-icons/md";
 import DatePicker from "react-datepicker";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { ko } from 'date-fns/esm/locale';
 import Modal from "react-modal";
 import UpdatePwApp from "./UpdatePwApp";
+import {useDispatch, useSelector} from "react-redux";
+import {callGetEmployeeAPI} from "../../apis/MemberAPICalls";
 
 
 
@@ -17,6 +19,19 @@ function MypageEmp() {
             ,empAddress,addressButton,adButton, inputAddress, baseAddress, detailAddress
             ,udButton,updateButton,empImg,labelbox ,
     } = MypageCSS;
+
+    // 회원정보 가지고 오기
+    const dispatch = useDispatch();
+    const employees = useSelector(state => state.memberReducer);
+    const employeeList = employees.data;
+    console.log("employeeList : " + employeeList)
+
+    useEffect(() => {
+        // 컴포넌트가 마운트되었을 때 사원 목록을 가져오도록 API 호출
+        // callGetEmployeeAPI(dispatch);
+        dispatch(callGetEmployeeAPI());
+    }, []);
+    ///////////////////////////////////////////////////
 
     // 생일입력 (Date에 현재 값 가지고 와야함.
     const [birthDate,setBirthDate] =useState(new Date("1994/02/01"));
@@ -36,8 +51,12 @@ function MypageEmp() {
         }
     };
 
+
+
+
         return (
             <>
+            {/*{ employeeList.map((employee) => (*/}
                 <div className={mainContainer}>
                     <div className={rightContainer}>
                         <div className={content}>
@@ -47,6 +66,7 @@ function MypageEmp() {
                                         <h1>사원 정보</h1>
                                     </div>
                                     <div>
+
                                         {/* 회원 사진  */}
                                         <div className={empImg}>
                                             <input type="file"
@@ -83,7 +103,7 @@ function MypageEmp() {
                                                            readOnly style={{border: "none"}}/>
                                                 </div>
                                                 <div className=" empInfo empName kor">
-                                                    <label htmlFor="empNameKor">이름(한글)</label>
+                                                    <label htmlFor="empNameKor">김 사 원</label>
                                                     <input type="text" id="empNameKor" name="empNameKor" maxLength="20"
                                                            value="김사원" readOnly style={{border: "none"}}/>
                                                 </div>
@@ -203,7 +223,7 @@ function MypageEmp() {
                         </div>
                     </div>
                 </div>
-
+            {/*)) }*/}
                 {/*비밀번호 변경 모달창 띄우기 */}
                 {modalIsOpen && (
                     <Modal
@@ -214,6 +234,7 @@ function MypageEmp() {
                         <UpdatePwApp/>
                     </Modal>
                 )}
+
             </>
         )
 }

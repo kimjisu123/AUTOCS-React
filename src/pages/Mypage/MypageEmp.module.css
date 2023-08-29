@@ -5,7 +5,7 @@ body {
 
 .container {
     justify-content: center;
-    max-width: 90%;
+    max-width: 2000px;
     margin: auto;
     border: 1px solid rgb(199, 199, 199);
     min-width: 1500px;
@@ -25,8 +25,9 @@ body {
 
 
 .rightContainer {
-    width: 100%;
+    width: 2000px;
     height: 100%;
+    margin: auto;
 }
 
 .paddingContainer {
@@ -45,8 +46,8 @@ body {
 
 .content{
 
-    border-left: 1px solid rgb(202, 202, 202);
-    min-height: 959px;
+    /*border-left: 1px solid rgb(202, 202, 202);*/
+    /*min-height: 959px;*/
     width: 100%;
 }
 
