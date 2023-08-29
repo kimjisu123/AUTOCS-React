@@ -1,9 +1,11 @@
+import img from './loginMain.png'
 
-function Main() {
+
+const Main = () => {
+
     return (
         <>
-            <Main>
-            </Main>
+        <h1>여기가 메인입니뎌</h1>
         </>
     )
 }

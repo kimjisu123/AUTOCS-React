@@ -1,0 +1,25 @@
+.table1 {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 95.4%;
+    margin-left: 40px;
+}
+
+.td1, .td2 {
+    border: 1px solid black;
+}
+
+.td2 {
+    background: #ecead8;
+    width: 177px;
+}
+
+.td1 {
+    padding: 5px;
+}
+
+#businessTitle, #businessNote {
+    width: 98%;
+    height: 22px;
+    font-size: 1.1em;
+}

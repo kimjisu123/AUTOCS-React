@@ -1,0 +1,64 @@
+/* EmployeeList.css */
+
+.employee-list-container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.employee-list-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.no-employees {
+    color: #888;
+    font-style: italic;
+}
+
+.employee-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    table-layout: fixed;
+}
+
+.employee-table th, .employee-table td {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.employee-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.employee-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* 버튼 스타일링 */
+.employee-table button,
+.employee-table a {
+    color: #6e9150;
+    text-decoration: none;
+    border: 1px solid #6e9150;
+    padding: 5px 8px;
+    border-radius: 3px;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.employee-table button:hover,
+.employee-table a:hover {
+    background-color: #6e9150;
+    color: #fff;
+}

@@ -1,0 +1,110 @@
+.approval {
+    background-color: #8d8a6d;
+}
+
+.newApp {
+    border: 1px solid #8d8a6d;
+    width: 200px;
+    text-align: center;
+    height: 50px;
+    line-height: 49px;
+    border-radius: 8px;
+    font-size: 1.3em;
+    font-weight: 500;
+    margin-left: 25px;
+    cursor: pointer;
+}
+
+.newApp:hover {
+    /* border: 2px solid #8d8a6d; */
+    box-shadow: 0 2px 4px 0 rgb(203, 203, 203);
+}
+
+.documentForm {
+    margin-top: 30px;
+    margin-left: 40px;
+    font-weight: 600;
+}
+
+.goApp, .myDocument {
+    margin-left: 40px;
+    font-weight: 600;
+    margin-top: 23px;
+}
+
+.purchase, .appWait, .myBusiness {
+    margin-top: 10px;
+}
+
+.purchase, .pay, .traffic, .vacation, .business, .appSee, .appSoon, .appWait, .myBusiness, .myApp, .send, .receive, .mySee {
+    padding-left: 60px;
+    margin-bottom: 7px;
+    cursor: pointer;
+}
+
+.content {
+    width: 83.7%;
+    border-left: 1px solid rgb(203, 203, 203);
+}
+
+.table1 {
+    width: 97%;
+    border-collapse: collapse;
+    border: 1px solid rgb(203, 203, 203);
+}
+
+.td1 {
+    cursor: pointer;
+}
+
+.TopTitle {
+    height: 70px;
+    font-size: 1.35em;
+    font-weight: 500;
+    line-height: 70px;
+    padding-left: 40px;
+    border-bottom: 1px solid rgb(203, 203, 203);
+}
+
+.willApp {
+    height: 120px;
+    border-bottom: 1px solid rgb(203, 203, 203);
+    line-height: 120px;
+    text-align: center;
+    color: rgb(203, 203, 203);
+    font-size: 15px;
+}
+
+.waiting, .done {
+    padding-left: 40px;
+    font-size: 1.15em;
+    margin-top: 30px;
+}
+
+.waitingDoc, .doneDoc {
+    margin-top: 20px;
+    margin-left: 40px;
+}
+
+/* .DocInfo {
+    width: 100%;
+    border-bottom: 1px solid rgb(203, 203, 203);
+    border-top: 1px solid rgb(203, 203, 203);
+    padding-left: 20px
+} */
+
+.th {
+    border-bottom: 1px solid rgb(203, 203, 203);
+    padding: 10px;
+    text-align: center;
+}
+
+.td0, .td1 {
+    border-bottom: 1px solid rgb(203, 203, 203);
+    padding: 10px;
+    text-align: center;
+}
+
+.td1 {
+    width: 600px;
+}

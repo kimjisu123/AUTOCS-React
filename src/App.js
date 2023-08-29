@@ -3,10 +3,24 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
+import Main from './pages/main/Main'
+
 import Layout from "./layouts/layout";
 //지호
-
-import Approval from './pages/approvalPage/Approval'
+import AppHome from './pages/approvalPage/AppHome'
+import Purchase from './pages/approvalPage/Purchase'
+import Vacation from './pages/approvalPage/Vacation'
+import Traffic from './pages/approvalPage/Traffic'
+import Business from './pages/approvalPage/Business'
+import Pay from './pages/approvalPage/Pay'
+import AppWait from './pages/approvalPage/AppWait'
+import AppSee from './pages/approvalPage/AppSee'
+import MyBusiness from './pages/approvalPage/MyBusiness'
+import MyApp from './pages/approvalPage/MyApp'
+import MySee from './pages/approvalPage/MySee'
+import Receive from './pages/approvalPage/Receive'
+import Send from './pages/approvalPage/Send'
+import OrgChart from './pages/Chart/OrgChart'
 
 //해든
 //로그인 관련
@@ -23,9 +37,9 @@ import GuidePwd from "./pages/Login/guidePwd";
 import ApplySForm from "./pages/applyForm/applySForm";
 import OutSForm from "./pages/outForm/outSForm";
 import OutMForm from "./pages/outForm/outMForm";
-import Mmail from "./pages/emailGuide/Mmail";
-import Smail from "./pages/emailGuide/Smail";
 import NoAuthority from "./pages/Login/noAuthority"
+import ApplyStateW from "./pages/applyForm/applyStateW";
+import StoreLogin from "./pages/Login/storeLogin";
 
 //지수
 import Management from "./pages/management/Management"
@@ -81,8 +95,23 @@ function App() {
                     {/*<GlobalStyle/>*/}
                 <Routes>
                     <Route path='/' element={<Layout/>}>
+                        //메인
+                        <Route path='/main' element={<Main/>}/>
                         //지호
-                        <Route path='approval' element={<Approval/>}/>
+                        <Route path='/approval' element={<AppHome/>}/>
+                        <Route path='/approval/purchase' element={<Purchase/>}/>
+                        <Route path='/approval/vacation' element={<Vacation/>}/>
+                        <Route path='/approval/traffic' element={<Traffic/>}/>
+                        <Route path='/approval/business' element={<Business/>}/>
+                        <Route path='/approval/pay' element={<Pay/>}/>
+                        <Route path='/approval/appWait' element={<AppWait/>}/>
+                        <Route path='/approval/appSee' element={<AppSee/>}/>
+                        <Route path='/approval/myBusiness' element={<MyBusiness/>}/>
+                        <Route path='/approval/myApp' element={<MyApp/>}/>
+                        <Route path='/approval/mySee' element={<MySee/>}/>
+                        <Route path='/approval/Receive' element={<Receive/>}/>
+                        <Route path='/approval/Send' element={<Send/>}/>
+                        <Route path='chart' element={<OrgChart/>}/>
 
                         //지수
                         <Route path='management' element={<Management />} />
@@ -122,6 +151,8 @@ function App() {
                         //계정 비활성화 신청
                         <Route path='outM' element={<OutMForm/>}/>
                         <Route path='outS' element={<OutSForm/>}/>
+                        //영업점 신청 내역 확인
+                        <Route path='applyFormW' element={<ApplyStateW/>}/>
 
                         //지은
                         <Route path='myPage' element={<Mypage/>}>
@@ -144,6 +175,7 @@ function App() {
                     //해든
                     //아이디비밀번호찾기, 안내등
                     <Route path='/login' element={<Login/>}/>
+                    <Route path='/Slogin' element={<StoreLogin/>}/>
                     <Route path='/login/findId' element={<FindId/>}/>
                     <Route path='/login/fIOk' element={<FindIdOk/>}/>
                     <Route path='/login/fIOk/guideId' element={<GuideId/>}/>
@@ -157,14 +189,7 @@ function App() {
                     //계정신청
                     <Route path='/applyS' element={<ApplySForm/>}/>
                     <Route path='/ApplyOk' element={<ApplyOk/>}/>
-
-                    //계정 안내(메일)
-                    <Route path='/Mmail' element={<Mmail/>}/>
-                    <Route path='/Smail' element={<Smail/>}/>
-
-
-
-                </Routes>
+              </Routes>
             {/*</ThemeProvider>*/}
           </BrowserRouter>
         </Provider>

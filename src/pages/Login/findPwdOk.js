@@ -1,8 +1,16 @@
 import './findIdOk.css'
 import img from './loginMain.png'
-import {Link} from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
+import React from "react";
 
 const FindPwdOk = () => {
+
+    // 로그인 상태일 시 페이지로 접근 방지
+    const Token = localStorage.getItem('accessToken');
+    if (Token) {
+        return <Navigate to="/main" replace />;
+    }
+
     return (
         <div style={{backgroundColor: "#1C2C10"}}>
             <div className="border">

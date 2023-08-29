@@ -1,0 +1,27 @@
+.table1 {
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin-left: 40px;
+    width: 95.4%;
+    margin-top: 10px;
+}
+
+.tr {
+    text-align: center;
+}
+
+.td1 {
+    background-color: #ecead8;
+    border: 1px solid black;
+}
+
+.td {
+    border: 1px solid black;
+    padding: 5px;
+}
+
+
+.td input {
+    width: 95%;
+    height: 22px;
+}

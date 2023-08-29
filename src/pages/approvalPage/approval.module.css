@@ -24,7 +24,7 @@ main {
     height: 50px;
     line-height: 49px;
     border-radius: 8px;
-    font-size: 1.3em;
+    font-size: 1.6em;
     font-weight: 500;
     margin-left: 25px;
     cursor: pointer;
@@ -55,6 +55,11 @@ main {
     padding-left: 60px;
     margin-bottom: 7px;
     cursor: pointer;
+    color: black;
+}
+
+.purchase:hover, .pay:hover, .traffic:hover, .vacation:hover, .business:hover, .appSee:hover, .appSoon:hover, .appWait:hover, .myBusiness:hover, .myApp:hover, .send:hover, .receive:hover, .mySee:hover {
+    color: #95ab85;
 }
 
 .TopTitle {
@@ -97,17 +102,18 @@ main {
     justify-content: space-between;
 }
 
-.table1 {
-    width: 300px;
+.table3 {
+    width: 400px;
     height: 120px;
     border: 1px solid rgb(87, 87, 87);
     border-collapse: collapse;
     margin-left: 40px;
 }
 
-td {
+.td2, .td1 {
     border: 1px solid rgb(150, 150, 150);
     text-align: center;
+    padding: 0px !important;
 }
 
 .td1 {
@@ -270,6 +276,14 @@ td {
 .td3 {
     padding: 2px 5px;
     line-height: 40px;
+    border-right: 1px solid rgb(100, 100, 100);
+    text-align: center;
+}
+
+.tr td {
+    border-bottom: 1px solid rgb(100, 100, 100);
+    text-align: center;
+    border-right: 1px solid rgb(100, 100, 100);
 }
 
 .td3 input {
@@ -278,6 +292,10 @@ td {
     outline: none;
     border: 0.5px solid rgb(220, 220, 220);
     text-align: center;
+}
+
+.inputRow {
+    border-bottom: 1px solid rgb(100,100,100);
 }
 
 .area11 {
@@ -317,6 +335,11 @@ td {
     color: white;
     background-color: #8d8a6d;
     border-radius: 5px;
+    cursor: pointer;
+}
+
+.modify:hover {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.25);
 }
 
 .file {
@@ -328,7 +351,7 @@ td {
     display: none;
 }
 
-label {
+.fileLabel {
     cursor: pointer;
     background-color: #ecead8;
     margin: 30px 0;
@@ -337,7 +360,7 @@ label {
     border-radius: 10px;
 }
 
-label:hover {
+.fileLabel:hover {
     box-shadow: 0 2px 4px 0 rgb(202, 202, 202);
 }
 
