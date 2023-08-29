@@ -1,4 +1,5 @@
 import {APPLY_MARKET, GET_MARKETSTATEW} from '../modules/MarketModule';
+import {GO_LOGIN} from "../modules/MemberModule";
 
 //영업점 신청 폼 전송
 export const callApplyMarketAPI = ({ formData }) => {
@@ -78,4 +79,40 @@ export const callInsertMarketAPI = ({ infoToPass }) => {
         .catch((error) => {
             console.error('Error:', error);
         });
+};
+
+// 영업점로그인
+export const callLoginGOAPI = ({ loginInfo, rememberAccount }) => {
+    const requestURL = 'http://localhost:8080/auth/login2';
+
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*",
+                "Access-Control-Allow-Origin": "*"
+            },
+            body: JSON.stringify(loginInfo),
+        }).then(response => response.json());
+
+        console.log('[MemberAPICalls] callLoginAPI RESULT : ', result);
+        if(result.status === 200){
+            window.localStorage.setItem('accessToken', result.data.accessToken);
+
+            // 체크박스가 체크되어 있다면 아이디를 로컬 스토리지에 저장
+            if (rememberAccount) {
+                window.localStorage.setItem('savedId', loginInfo.id);
+            } else {
+                // 체크박스가 체크되어 있지 않다면 아이디를 로컬 스토리지에서 제거
+                window.localStorage.removeItem('savedId');
+            }
+            window.alert('로그인 되었습니다.');
+
+        } else {
+            window.alert('아이디 또는 비밀번호가 올바르지 않습니다.');
+        }
+        dispatch({ type: GO_LOGIN, payload: result });
+
+    };
 };

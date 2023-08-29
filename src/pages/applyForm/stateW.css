@@ -44,16 +44,21 @@
 }
 
 /* 버튼 스타일링 */
-.employee-table button {
-    background-color: #6e9150;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
+.employee-table button,
+.employee-table a {
+    color: #6e9150;
+    text-decoration: none;
+    border: 1px solid #6e9150;
+    padding: 5px 8px;
     border-radius: 3px;
+    display: inline-block;
+    text-align: center;
     cursor: pointer;
     margin-right: 5px;
 }
 
-.employee-table button:hover {
-    background-color: #58753c;
+.employee-table button:hover,
+.employee-table a:hover {
+    background-color: #6e9150;
+    color: #fff;
 }

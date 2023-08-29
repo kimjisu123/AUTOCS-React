@@ -1,85 +1,96 @@
-body {
-    margin: 0;
-    padding: 0;
-    min-width: 1500px;
+/* Header.css */
+.headerWrapper {
+    background-color: #2a3c1e;
+    color: white;
+    padding: 10px 0;
 }
 
 .topNav {
-    background-color: #2a3c1e;
     display: flex;
-    /* justify-content: space-around; */
-    height: 60px;
-    line-height: 60px;
-    padding: 0 4px;
-    padding-right: 10px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
 }
 
 .gohome {
     display: flex;
-    cursor: pointer;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+}
+
+.logo img {
+    width: 40px;
+    margin-right: 5px;
 }
 
 .officName {
-    color: white;
-    font-size: 1.3em;
-    font-weight: 700;
-    margin-left: 7px;
-}
-
-.home {
-    color: white;
-    font-size: 0.9em;
-    margin-left: 200px;
-    cursor: pointer;
-    /* 선택된 메뉴 색 */
-    /* background-color: #8d8a6e; */
-    width: 80px;
-    text-align: center;
-    margin-right: -15px;
-    height: 100%;
+    font-size: 20px;
     text-decoration: none;
 }
 
-.dashboard, .chart, .approval, .calendar, .management, .todo, .stock {
-    color: white;
-    font-size: 0.9em;
-    margin-left: 50px;
-    cursor: pointer;
-    width:80px;
-    text-align: center;
-    height: 100%;
-    text-decoration: none;
-}
-
-.home:hover, .dashboard:hover, .chart:hover, .approval:hover, .calendar:hover, .management:hover, .todo:hover, .stock:hover, .profile:hover {
-    color: #95ab85;
-}
-.profile {
-    text-decoration: none;
-}
-
-.profile {
-    cursor: pointer;
+.menuContainer {
     display: flex;
-    margin-left: 80px;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-left: 50px; /* 원하는 만큼 조절해보세요 */
+}
 
+.menu {
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.menu:hover {
+    background-color: #8d8a6d;
+    border-radius: 5px;
+}
+
+.profile {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 }
 
 .profileImg {
-    width: 38px;
-    height: 38px;
-    background-color: #d6d6d6;
+    width: 45px;
+    height: 45px;
+    background-color: white;
     border-radius: 50%;
-    margin-right: 10px;
-    margin-top: 10px;
+    margin-right: 20px;
 }
 
-.menubar {
-    width: 250px;
-    height: 623px;
-    /* background-color: #ecead8; */
-    /* height값 임의로 넣어둠 */
-    padding-top: 30px;
+.userName {
+    font-size: 16px;
+    padding-top: 25px;
+    color: white;
+    margin-right: 30px;
+}
+
+.profileAndLogout {
+    display: flex;
+    align-items: center;
+    margin-left: 300px; /* 버튼을 오른쪽으로 밀어냄 */
+    margin-right: 80px; /* 오른쪽 여백 추가 */
+}
+
+
+.logOut {
+    background-color: #6e9150;;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 8px 10px; /* 크기 조정 */
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.logOut:hover {
+    background-color: #58753c;
 }
 
 .foot {
@@ -88,28 +99,4 @@ body {
     color: white;
     height: 50px;
     line-height: 45px;
-}
-
-.userName {
-    color: white;
-    margin-top: 30px;
-    margin-right: 50px;
-}
-
-.logOut {
-    border: none;
-    width: 100px;
-    height: 30px;
-    margin-top: 15px;
-    background-color: #6e9150;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.logOut:hover {
-    background-color: #58753c;
 }

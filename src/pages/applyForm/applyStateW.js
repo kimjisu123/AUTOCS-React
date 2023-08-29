@@ -11,22 +11,6 @@ const ApplyStateW = () => {
     const marketList = market.data;
     console.log("marketList : " + marketList)
 
-
-    // 모달의 열림/닫힘 상태와 이미지 URL을 관리합니다.
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [selectedImageUrl, setSelectedImageUrl] = useState('');
-
-    // 서류 확인 버튼 클릭 시 모달을 열고 이미지 URL을 설정합니다.
-    const handleDocumentView = (imageUrl) => {
-        setSelectedImageUrl(imageUrl);
-        setModalIsOpen(true);
-    };
-
-    // 모달 닫기 함수
-    const closeModal = () => {
-        setModalIsOpen(false);
-    };
-
     //계정 발급하러
     const handleRegistration = (market) => {
         try {
@@ -87,7 +71,7 @@ const ApplyStateW = () => {
                     </thead>
                     <tbody>
                     {sortedMarketList
-                        //.filter(market => market.state === 'W')
+                        .filter(market => market.state === 'W    ')
                         .map(market => (
                         <tr key={market.applyNo}>
                             <td>{market.name}</td>
@@ -96,25 +80,14 @@ const ApplyStateW = () => {
                             <td>{market.email}</td>
                             <td>{market.license}</td>
                             <td>{market.state}</td>
-                            <td><button onClick={() => handleDocumentView(market.fileUrl)}>서류확인</button></td>
+                            <td>
+                                <a href={market.fileUrl} target="_blank" rel="noopener noreferrer" style={{fontSize: "13.5px"}}>서류확인</a>
+                            </td>
                             <td><button onClick={() => handleRegistration(market)}>
                                 계정발급
                             </button></td>
                         </tr>
                     ))}
-                    {/* 모달 */}
-                    <Modal
-                        isOpen={modalIsOpen}
-                        onRequestClose={closeModal}
-                        contentLabel="Document Modal"
-                    >
-                        {/* 이미지 표시 */}
-                        {selectedImageUrl && (
-                            <img src={selectedImageUrl} alt="Document" />
-                        )}
-                        {/* 모달 닫기 버튼 */}
-                        <button onClick={closeModal}>닫기</button>
-                    </Modal>
                     </tbody>
                 </table>
             )}

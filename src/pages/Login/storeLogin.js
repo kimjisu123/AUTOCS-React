@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import React, {useState, useEffect } from 'react';
 import { Link, Navigate  } from 'react-router-dom';
 import {useDispatch, useSelector  } from "react-redux";
-import { callLoginAPI} from "../../apis/MemberAPICalls";
+import { callLoginGOAPI} from "../../apis/MarketAPICalls";
 
 function Login({setLogin}) {
     const dispatch = useDispatch();
@@ -55,7 +55,7 @@ function Login({setLogin}) {
 
             console.log('Info to Pass:', loginInfo);
 
-            dispatch(callLoginAPI({
+            dispatch(callLoginGOAPI({
                 loginInfo: loginInfo,
                 rememberAccount: rememberAccount
             }))
@@ -87,7 +87,7 @@ function Login({setLogin}) {
                 <main>
                     <img src={img} style={{ width: "145px", height: "200px", marginTop: "-150px", marginBottom: "-35px" }} />
 
-                    <h1 style={{ color: "#1C2C10" }}>직원 로그인</h1>
+                    <h1 style={{ color: "#1C2C10" }}>영업점 로그인</h1>
                     <div className="separator" style={{width: "40%"}}></div>
 
                     <h4 style={{ marginBottom: "10px", marginTop: "10px", background: "white"}}>아이디</h4>
@@ -114,7 +114,7 @@ function Login({setLogin}) {
                         </div>
                         <Link to="/login/findId" style={{ color: "#1C2C10", marginLeft: "1030px" }}>아이디/비밀번호 찾기</Link>
                     </div>
-                    <Link to="/Slogin" style={{ color: "#1C2C10", marginLeft: "225px", marginTop: "-10px"}}>영업점 로그인하기</Link>
+                    <Link to="/applyS" style={{ color: "#1C2C10", marginLeft: "225px", marginTop: "-10px"}}>영업점 계정 신청하기</Link>
                 </main>
             </div>
         </div>

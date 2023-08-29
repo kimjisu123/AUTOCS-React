@@ -3,6 +3,7 @@ import Layout from "./pages/layouts/layout";
 import React from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
+import Main from './pages/main/Main'
 
 //지호
 import AppHome from './pages/approvalPage/AppHome'
@@ -35,10 +36,9 @@ import GuidePwd from "./pages/Login/guidePwd";
 import ApplySForm from "./pages/applyForm/applySForm";
 import OutSForm from "./pages/outForm/outSForm";
 import OutMForm from "./pages/outForm/outMForm";
-import Mmail from "./pages/emailGuide/Mmail";
-import Smail from "./pages/emailGuide/Smail";
 import NoAuthority from "./pages/Login/noAuthority"
 import ApplyStateW from "./pages/applyForm/applyStateW";
+import StoreLogin from "./pages/Login/storeLogin";
 
 //지수
 import Management from "./pages/management/Management"
@@ -76,6 +76,8 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<Layout/>}>
+                        //메인
+                        <Route path='/main' element={<Main/>}/>
                         //지호
                         <Route path='/approval' element={<AppHome/>}/>
                         <Route path='/approval/purchase' element={<Purchase/>}/>
@@ -142,6 +144,7 @@ function App() {
                     //해든
                     //아이디비밀번호찾기, 안내등
                     <Route path='/login' element={<Login/>}/>
+                    <Route path='/Slogin' element={<StoreLogin/>}/>
                     <Route path='/login/findId' element={<FindId/>}/>
                     <Route path='/login/fIOk' element={<FindIdOk/>}/>
                     <Route path='/login/fIOk/guideId' element={<GuideId/>}/>
@@ -155,10 +158,6 @@ function App() {
                     //계정신청
                     <Route path='/applyS' element={<ApplySForm/>}/>
                     <Route path='/ApplyOk' element={<ApplyOk/>}/>
-
-                    //계정 안내(메일)
-                    <Route path='/Mmail' element={<Mmail/>}/>
-                    <Route path='/Smail' element={<Smail/>}/>
               </Routes>
           </BrowserRouter>
         </Provider>
