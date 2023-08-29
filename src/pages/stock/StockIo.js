@@ -40,6 +40,7 @@ function StockIo() {
             pageNumber.push(i);
         }
     }
+    console.log(ioList)
 
     useEffect(
         () => {

@@ -12,17 +12,77 @@ function Check() {
     /*******************************************************************************/
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const io = useSelector(state => state.productReducer);
+    const ioList = io.data;
 
+    const pageInfo = io.pageInfo;
+
+    const [start, setStart] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [pageEnd, setPageEnd] = useState(1);
+
+    const pageNumber = [];
+    if(pageInfo){
+        for(let i = 1; i <= pageInfo.pageEnd ; i++){
+            pageNumber.push(i);
+        }
+    }
 
     // 입출고 조회
 
-    useEffect(() => {
-        dispatch(callIOListWithGroupingAPI());
-        console.log('callIOListWithGroupingAPI')
-    }, []);
+    useEffect(
+        () => {
+            setStart((currentPage - 1) * 5);
+            dispatch(callIOListWithGroupingAPI({
+                currentPage: currentPage,
+                s: form.s,
+                startDate: form.startDate,
+                endDate: form.endDate
+            }));
+        }
+        ,[currentPage]
+    );
 
-    const ioList = useSelector(state => state.productReducer);
+    // 물품 조회
+    const [form, setForm] = useState({
+        s: '',
+        startDate: '',
+        endDate: ''
+    });
 
+    // form 데이터 세팅
+    const onChangeHandler = (e) => {
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value
+        });
+        console.log(e.target.value)
+    };
+
+    /* 물품 조회 */
+    const onClickSearchHandler = () => {
+
+        const formData = new FormData();
+
+        formData.append("s", form.s);
+        formData.append("startDate", form.startDate);
+        formData.append("endDate", form.endDate);
+
+        dispatch(callIOListWithGroupingAPI({
+            s: form.s,
+            startDate: form.startDate,
+            endDate: form.endDate,
+            currentPage: 1
+        }));
+        console.log(form.startDate)
+        console.log(form.endDate)
+    }
+
+    const onEnterKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            onClickSearchHandler();
+        }
+    };
 
     /*******************************************************************************/
 
@@ -33,15 +93,29 @@ function Check() {
             <div className={StockCSS.contentsHeader}>
                 <div className={StockCSS.datebox}>
                     <div>조회기간</div>
-                    <input className={StockCSS.dateSelectbox} type="date"/>
+                    <input name='startDate'
+                           className={StockCSS.dateSelectbox}
+                           type="date"
+                           onChange={ onChangeHandler }
+                    />
                     <div>~</div>
-                    <input className={StockCSS.dateSelectbox} type="date"/>
+                    <input name='endDate'
+                           className={StockCSS.dateSelectbox}
+                           type="date"
+                           onChange={ onChangeHandler }
+                    />
                 </div>
 
                 <div className={StockCSS.contentsHeader}>
                     <div>품목명</div>
-                    <input className={StockCSS.searchbox} type="text" placeholder="품목명을 조회하세요"/>
-                        <button>조회</button>
+                    <input className={StockCSS.searchbox}
+                           name='s'
+                           type="text"
+                           placeholder="품목명을 조회하세요"
+                           onChange={ onChangeHandler }
+                           onKeyPress={onEnterKeyPress}
+                    />
+                        <button onClick={onClickSearchHandler}>조회</button>
                 </div>
             </div>
 
@@ -62,43 +136,51 @@ function Check() {
                         <th>비고</th>
                     </tr>
                     {
-                        Array.isArray(ioList) && ioList.map((io) => (
-                            <tr key={ io.productIoNo }>
+                        Array.isArray(ioList) && ioList.map((io, index) => (
+                            <tr key={index}>
                                 <td>{ io.refProductNo}</td>
+                                <td>{ io.categoryName}</td>
+                                <td>{ io.productName}</td>
+                                <td>{ io.standardName}</td>
+                                <td>{ io.unitName}</td>
+                                <td>{ io.stock}</td>
                                 <td>{ io.io}</td>
                                 <td>{ io.totalQuantity}</td>
+                                <td></td>
+                                <td></td>
+                                <td>{ io.price}</td>
+                                <td>{ io.etc}</td>
                             </tr>
                         ))
                     }
-                    <tr>
-                        <td>1</td>
-                        <td>식품</td>
-                        <td>밀가루</td>
-                        <td>10kg</td>
-                        <td>EA</td>
-                        <td>100</td>
-                        <td className={StockCSS.mainline}>70</td>
-                        <td>50</td>
-                        <td>30</td>
-                        <td>-</td>
-                        <td>12,000</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>식품</td>
-                        <td>밀가루</td>
-                        <td>10kg</td>
-                        <td>EA</td>
-                        <td>100</td>
-                        <td className={StockCSS.mainline}>70</td>
-                        <td>50</td>
-                        <td>30</td>
-                        <td>-</td>
-                        <td>12,000</td>
-                        <td>-</td>
-                    </tr>
                 </table>
+                <div style={{ listStyleType: "none", display: "flex", justifyContent: "center", marginTop:"2%"}}>
+                    { Array.isArray(ioList) &&
+                        <button
+                            onClick={() => setCurrentPage(currentPage - 1)}
+                            disabled={currentPage === 1}
+                        >
+                            &lt;
+                        </button>
+                    }
+                    {pageNumber.map((num) => (
+                        <li key={num} onClick={() => setCurrentPage(num)}>
+                            <button
+                                style={ currentPage === num ? {backgroundColor : '#ecead8' } : null}
+                            >
+                                {num}
+                            </button>
+                        </li>
+                    ))}
+                    { Array.isArray(ioList) &&
+                        <button
+                            onClick={() => setCurrentPage(currentPage + 1)}
+                            disabled={currentPage === pageInfo.pageEnd  || pageInfo.total == 0}
+                        >
+                            &gt;
+                        </button>
+                    }
+                </div>
             </div>
         </div>
     )

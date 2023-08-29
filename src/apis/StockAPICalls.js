@@ -58,7 +58,6 @@ export const callProductListAPI = ({currentPage}) => {
 export const callProductListByNameAPI = ({currentPage, s}) => {
     console.log('시작......')
 
-
     let requestURL;
 
     if(currentPage !== undefined || currentPage !== null){
@@ -444,11 +443,19 @@ export const callIoListAPI = ({currentPage}) => {
 
 
 /* 입출고 조회 - 그룹화 */
-export const callIOListWithGroupingAPI = () => {
+export const callIOListWithGroupingAPI = ({currentPage, s, startDate, endDate}) => {
+
     let requestURL;
-    requestURL = `http://localhost:8080/stock/check`;
+
+    if(currentPage !== undefined || currentPage !== null){
+        requestURL = `http://localhost:8080/stock/check?offset=${currentPage}&s=${s}&startDate=${startDate}&endDate=${endDate}`;
+        console.log(s)
+    }else {
+        requestURL = `http://localhost:8080/stock/check`;
+    }
 
     return async (dispatch, getState) => {
+
         const result = await fetch(requestURL, {
             method: "GET",
             headers: {
@@ -460,5 +467,6 @@ export const callIOListWithGroupingAPI = () => {
         if(result.status === 200){
             dispatch({ type: GET_IO_GROUP,  payload: result.data });
         }
+
     };
 }
