@@ -17,7 +17,7 @@ const rootReducer = combineReducers({
     categoryReducer,
     standardReducer,
     unitReducer,
-    marketReducer
+    marketReducer,
     stockReducer,
     approvalReducer
 });
