@@ -1,9 +1,9 @@
 import React from 'react';
-import TableCSS from './Table.module.css';
+import TableCSS from '../Mypage/Table.module.css';
 import {NavLink} from "react-router-dom";
 import {MdKeyboardDoubleArrowRight} from "react-icons/md";
 
-function YourComponent() {
+function DocuList() {
     return (
         <div className={TableCSS.container}>
             <div className={TableCSS.section}>
@@ -58,4 +58,4 @@ function YourComponent() {
     );
 }
 
-export default YourComponent;
+export default DocuList;

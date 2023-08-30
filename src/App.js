@@ -75,16 +75,10 @@ import MyStatistics from "./pages/stock/MyStatistics";
 //지은
 import Mypage from "./pages/Mypage/Mypage";
 import MainContent from "./pages/mainpage/MainContent";
-import UpdatePW from "./pages/Mypage/UpdatePW";
 import UpdatePwApp from "./pages/Mypage/UpdatePwApp";
-import MyMemoTemplate from "./pages/mainpage/memo/MyMemoTemplate";
-import Table from "./pages/mainpage/Table";
-import SlideCard from "./pages/mainpage/SlideCard";
 import UpdatePWok from "./pages/Mypage/UpdatePWok";
-import YourComponent from "./pages/Mypage/YourComponent";
+import YourComponent from "./pages/mainpage/DocuList";
 import MypageStore from "./pages/Mypage/MypageStore";
-import DaliyList from "./pages/mainpage/DailyList";
-import Test from "./pages/mainpage/SlideCard";
 import TodoApp from "./pages/Todolist/TodoApp";
 // import {ThemeProvider} from "./theme/context/ThemeProvider";
 // import {GlobalStyle} from "./theme/theme/GlobalStyle";
@@ -170,7 +164,6 @@ function App() {
                         </Route>
                         <Route path='pw2' element={<UpdatePwApp/>}/>
                         <Route path='home' element={<MainContent/>}/>
-                        <Route path='test' element={<Test/>}/>
                         // 비밀번호 변경 팝업
                         <Route path='pwpopup' element={<UpdatePWok/>}/>
                         <Route path='store' element={<YourComponent/>}/>

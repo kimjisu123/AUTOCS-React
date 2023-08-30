@@ -2,7 +2,7 @@ import CardCSS from './Table.module.css';
 import {NavLink} from "react-router-dom";
 import React from "react";
 
-const Table = () => {
+const ApprovalList = () => {
 
 
     return (
@@ -164,4 +164,4 @@ const Table = () => {
     )
 }
 
-export default Table;
+export default ApprovalList;
