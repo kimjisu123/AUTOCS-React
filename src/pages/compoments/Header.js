@@ -1,7 +1,7 @@
 import './Header.css';
 import img from './logo-black1.png';
 import { useEffect, useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useLocation  } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { decodeJwt } from '../../util/tokenUtils';
 import { callLogoutAPI } from '../../apis/MemberAPICalls';
@@ -12,6 +12,7 @@ const Header = () => {
     const dispatch = useDispatch();
     const accessToken = window.localStorage.getItem('accessToken');
 
+    const location = useLocation();
     const [login, setLogin] = useState(false);
 
     const decodedToken = accessToken ? decodeJwt(accessToken) : null;
@@ -20,7 +21,7 @@ const Header = () => {
 
     //토큰값
     //console.log("토큰값>>>>>>>>>>>>>>>>>" + accessToken);
-    console.log("department>>>>>>>>>>>>>>>>>" + department);
+    //console.log("department>>>>>>>>>>>>>>>>>" + department);
 
     const getMenuItems = (role, department) => {
         let menuItems = [
@@ -40,13 +41,18 @@ const Header = () => {
 
             if (department === "인사부") {
                 menuItems.push({ to: "menu/registration", label: "계정관리" });
+                //나중에 마이페이지 안으로 넣어줘야함
+                menuItems.push({ to: "outM", label: "계정비활성화" });
             }
             if (department === "경영부") {
                 menuItems.push({ to: "stock", label: "재고관리" });
             }
         } else if (role === "STORE") {
             menuItems.push(
-                { to: "stock", label: "재고관리" }
+                { to: "stock", label: "재고관리" },
+                //나중에 마이페이지 안으로 넣어줘야함
+                { to: "outS", label: "계정비활성화" }
+
             );
         }
 
@@ -54,10 +60,6 @@ const Header = () => {
     };
 
     const menuItems = getMenuItems(role, department);
-
-    const activestyle = {
-        backgroundColor: '#8d8a6d'
-    };
 
     const mypageHandler = () => {
         const token = decodeJwt(window.localStorage.getItem("accessToken"));
@@ -96,27 +98,34 @@ const Header = () => {
                     </NavLink>
                     <div className="menuContainer">
                         {menuItems.map((menuItem) => (
-                            <NavLink key={menuItem.to} to={menuItem.to} isActive={(match, location) => match || location.pathname === menuItem.to} style={({ isActive }) => isActive ? activestyle : undefined} className="menu">
+                            <NavLink
+                                key={menuItem.to}
+                                to={menuItem.to}
+                                className={`menu ${menuItem.to === location.pathname ? 'activeMenu' : ''}`}
+                            >
                                 {menuItem.label}
                             </NavLink>
                         ))}
                         <div className="profileAndLogout">
-                        <NavLink to="myPage" isActive={(match, location) => match || location.pathname === '/myPage'} style={({ isActive }) => isActive ? activestyle : undefined} className="profile" onClick={mypageHandler}>
-                            <div className="profileImg" onClick={mypageHandler}></div>
-                            {decodedToken ? (
-                                <h5 className="userName" style={{ marginTop: "-0.5px", fontSize: "16px" }}>
-                                    {decodedToken.Name}님 안녕하세요!
-                                </h5>
-                            ) : (
-                                window.location = "/login"
-                            )}
-                        </NavLink>
-                        <button onClick={onClickLogoutHandler} style={{ marginRight: "-50px" }} className="logOut">
-                            로그아웃
-                        </button>
+                            <NavLink
+                                to="myPage"
+                                className={`profile ${'/myPage' === location.pathname ? 'activeProfile' : ''}`}
+                                onClick={mypageHandler}
+                            >
+                                {decodedToken ? (
+                                    <h5 className="userName" style={{ marginTop: "-0.5px", fontSize: "16px" }}>
+                                        {decodedToken.Name}님 안녕하세요!
+                                    </h5>
+                                ) : (
+                                    window.location = "/login"
+                                )}
+                            </NavLink>
+                            <button onClick={onClickLogoutHandler} style={{ marginRight: "-50px" }} className="logOut">
+                                로그아웃
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
             </div>
         </>
     );
