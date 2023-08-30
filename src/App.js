@@ -45,6 +45,8 @@ import Management from "./pages/management/Management"
 import Department from "./pages/management/Department"
 import HeadOffice from "./pages/management/HeadOffice"
 import Mail from "./pages/Mail/Mail"
+import MailBookmark from "./pages/Mail/MailBookmark"
+import MailSent from "./pages/Mail/MailSent"
 
 //미지
 //재고관리
@@ -69,6 +71,7 @@ import Refund from "./pages/stock/Refund";
 import MyBill from "./pages/stock/MyBill";
 import MyStatistics from "./pages/stock/MyStatistics";
 
+import MailSend from "./pages/Mail/MailSend";
 
 function App() {
     return (
@@ -95,10 +98,14 @@ function App() {
                         <Route path='chart' element={<OrgChart/>}/>
 
                         //지수
-                        <Route path='management' element={<Management />} />
-                        <Route path='department' element={<Department />} />
-                        <Route path='headOffice' element={<HeadOffice />} />
-                        <Route path='mail' element={<Mail />} />
+                        <Route path='/management' element={<Management />} />
+                        <Route path='/department' element={<Department />} />
+                        <Route path='/headOffice' element={<HeadOffice />} />
+                        <Route path='/mail' element={<Mail />} />
+                        <Route path='/mailSent/:value' element={<MailSent />} />
+                        <Route path='/mailBookmark' element={<MailBookmark />} />
+
+
 
                         //미지
                         //재고관리
