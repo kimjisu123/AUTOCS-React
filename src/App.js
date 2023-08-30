@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-// import Layout from "./pages/layouts/layout";
+import Layout from "./pages/layouts/layout";
 import React from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
@@ -46,6 +46,8 @@ import Management from "./pages/management/Management"
 import Department from "./pages/management/Department"
 import HeadOffice from "./pages/management/HeadOffice"
 import Mail from "./pages/Mail/Mail"
+import MailBookmark from "./pages/Mail/MailBookmark"
+import MailSent from "./pages/Mail/MailSent"
 
 //미지
 //재고관리
@@ -87,11 +89,13 @@ import TodoApp from "./pages/Todolist/TodoApp";
 // import {ThemeProvider} from "./theme/context/ThemeProvider";
 // import {GlobalStyle} from "./theme/theme/GlobalStyle";
 
+import MailSend from "./pages/Mail/MailSend";
 
 function App() {
     return (
         <Provider store={store}>
             <BrowserRouter>
+                {/*다크모드적용 예정*/}
                 {/*<ThemeProvider>*/}
                     {/*<GlobalStyle/>*/}
                 <Routes>
@@ -115,10 +119,14 @@ function App() {
                         <Route path='chart' element={<OrgChart/>}/>
 
                         //지수
-                        <Route path='management' element={<Management />} />
-                        <Route path='department' element={<Department />} />
-                        <Route path='headOffice' element={<HeadOffice />} />
-                        <Route path='mail' element={<Mail />} />
+                        <Route path='/management' element={<Management />} />
+                        <Route path='/department' element={<Department />} />
+                        <Route path='/headOffice' element={<HeadOffice />} />
+                        <Route path='/mail' element={<Mail />} />
+                        <Route path='/mailSent/:value' element={<MailSent />} />
+                        <Route path='/mailBookmark' element={<MailBookmark />} />
+
+
 
                         //미지
                         //재고관리

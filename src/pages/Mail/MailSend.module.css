@@ -1,0 +1,89 @@
+.body{
+    width: 950px;
+    height: 700px;
+    border: 1px solid black;
+    position: absolute;
+    left: 50%;
+    margin: -10% 0 0 -25%;
+    background-color : white;
+    position: absolute;
+
+}
+
+.header{
+    display: flex;
+    margin: 0px auto;
+}
+
+.modalTitle{
+    margin-left: 49px;
+}
+
+.close{
+    margin: 17px 40px 0px auto;
+    font-size: 30px;
+    cursor: pointer;
+}
+.title{
+    border: 1px solid #ddd;
+    width: 845px;
+    margin-left: 50px;
+    height: 30px;
+    margin-Top : 10px
+}
+
+.content{
+    margin-left: 50px;
+    width: 850px;
+    height: 250px;
+    margin-top: 30px;
+}
+
+.send{
+    margin-left: 800px;
+    margin-right: 50px;
+    border: 1px solid black;
+    margin-top: 60px;
+    width: 100px;
+    height: 30px;
+    border: 1px solid black;
+    text-align: center;
+    cursor: pointer;
+}
+.searchName {
+    border: 1px solid #ddd;
+    width: 70px;
+    margin-left: 10px;
+    height: 30px;
+    text-align: center;
+    cursor: pointer;
+    line-height: 30px;
+}
+
+.employeeName{
+    margin-left: 10px;
+    outline : 1px solid rgba(212, 212, 212, 0.5);
+    margin-bottom: 3px;
+    display: flex;
+    width: 845px;
+}
+.insert{
+    margin-left: auto;
+}
+.employee{
+    margin-right: 135px;
+    margin-top: 0px;
+    background: white;
+    position: absolute;
+}
+.select{
+    display: flex;
+    margin: 20px 20px 0px 10px;
+    padding: 2px;
+    border: 2px solid #1C2C10;
+    border-radius: 5px;
+    font-size: 15px;
+}
+.delete{
+    cursor:pointer;
+}

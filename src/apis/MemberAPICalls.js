@@ -2,9 +2,11 @@ import { GET_EMPLOYEE,
          ADD_EMPLOYEE,
          GO_LOGIN
         } from '../modules/MemberModule';
+    ADD_EMPLOYEE,
+    GO_LOGIN,
+    GET_SELECT_EMPLOYEE} from '../modules/MemberModule';
+import { decodeJwt } from '../util/tokenUtils';
 
-
-//직원 등록 및 아이디/비번 생성
 export const callInsertEmployeeAPI = ({ infoToPass }) => {
     const requestURL = 'http://localhost:8080/member/insertEmployee';
 
@@ -95,3 +97,24 @@ export const callLogoutAPI = () => {
         console.log('[MemberAPICalls] callLogoutAPI RESULT : SUCCESS');
     };
 }
+
+export const callSelectEmployeeAPI = (paramValue) => {
+    const requestURL = 'http://localhost:8080/member/selectEmployee';
+
+    return async (dispatch) => {
+        const result = await fetch(requestURL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(paramValue)
+        }).
+        then(response => response.json())
+        .then(data => {
+            console.log(data); 
+        });
+
+        dispatch({ type: GET_SELECT_EMPLOYEE, payload: result });
+    }
+};

@@ -26,7 +26,8 @@ export default class DashBoard extends Component {
                                 end: 'prev,next'
                             }
                         }
-                        height={"85vh"}
+                        height={"80vh"}
+                        width={"1000px"}
                         dateClick={this.dateClick}
                         events={[{title:'판매건수 : 23건', date:'2023-05-11',},{title:'판매건수 : 23건',date:'2023-05-13',}]} // ajax데이터를 가져오는 곳
                     />
