@@ -17,7 +17,7 @@ const rootReducer = combineReducers({
     mailReducer,
     memberReducer,
     stockReducer,
-    bookmarkReducer
+    bookmarkReducer,
     productReducer,
     categoryReducer,
     standardReducer,
