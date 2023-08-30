@@ -32,11 +32,11 @@ const TodoApp = ({ todoModal , setTodoModal } ) => {
     ]);
 
 
-    useEffect(() => {
-        // 컴포넌트가 마운트되었을 때 사원 목록을 가져오도록 API 호출
-        // callGetEmployeeAPI(dispatch);
-        dispatch(callGetEmployeeAPI());
-    }, []);
+    // useEffect(() => {
+    //     // 컴포넌트가 마운트되었을 때 사원 목록을 가져오도록 API 호출
+    //     // callGetEmployeeAPI(dispatch);
+    //     dispatch(callGetEmployeeAPI());
+    // }, []);
 
     // 고유 아이디 붙여주기
     const nextId = useRef(4);

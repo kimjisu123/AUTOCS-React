@@ -1,7 +1,7 @@
 import './Header.css';
 import img from './logo-black1.png';
 import { useEffect, useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import {NavLink, useLocation, useNavigate} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { decodeJwt } from '../../util/tokenUtils';
 import { callLogoutAPI } from '../../apis/MemberAPICalls';
@@ -10,6 +10,7 @@ import Modal from 'react-modal';
 import TodoApp from "../Todolist/TodoApp";
 import './CoustomModal.css';
 import { useUserContext } from "../Todolist/TodoContext";
+
 
 const Header = () => {
     const navigate = useNavigate();
@@ -21,10 +22,13 @@ const Header = () => {
     const decodedToken = accessToken ? decodeJwt(accessToken) : null;
     const role = decodedToken ? decodedToken.auth : null;
 
+    //창띄울때  요거 NavLink to 에 location.pathname 넣으면 현재페이지 유지됩니다.
+    const location = useLocation();
+
     const getMenuItems = (role) => {
         if (role === "EMPLOYEE") {
             return [
-                { to: "/", label: "홈" },
+                { to: "/home", label: "홈" },
                 { to: "/dashboard", label: "게시판" },
                 { to: "chart", label: "조직도" },
                 { to: "approval", label: "전자결재" },
@@ -35,7 +39,7 @@ const Header = () => {
             ];
         } else if (role === "STORE") {
             return [
-                { to: "/", label: "홈" },
+                { to: "/home", label: "홈" },
                 { to: "/dashboard", label: "게시판" },
                 { to: "calendar", label: "캘린더" },
                 { to: "todo", label: "+Todo" },
@@ -56,8 +60,7 @@ const Header = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const { todoModal, setTodoModal } = useUserContext(); // Use todos and setTodos from the context
 
-    //창띄울때  요거 NavLink to 에 location.pathname 넣으면 현재페이지 유지됩니다.
-    const location = useLocation();
+
 
     const mypageHandler = () => {
         const token = decodeJwt(window.localStorage.getItem("accessToken"));
@@ -79,6 +82,10 @@ const Header = () => {
         window.location.reload();
     };
 
+    const handleTodoClick = () => {
+        setModalIsOpen(true);
+    };
+
     return (
         <>
             {login ? <login setLoginModal={setLogin} /> : null}
@@ -96,7 +103,7 @@ const Header = () => {
                     </NavLink>
                     <div className="menuContainer">
                         {menuItems.map((menuItem) => (
-                            <NavLink key={menuItem.to} to={menuItem.to} isActive={(match, location) => match || location.pathname === menuItem.to} style={({ isActive }) => isActive ? activestyle : undefined} className="menu">
+                            <NavLink key={menuItem.to} to={menuItem.to} isActive={(match, location) => match || location.pathname === menuItem.to} style={({ isActive }) => isActive ? activestyle : undefined} className="menu"onClick={menuItem.to === "/todo" ? handleTodoClick : undefined}>
                                 {menuItem.label}
                             </NavLink>
                         ))}
@@ -118,6 +125,12 @@ const Header = () => {
                 </div>
                 </div>
             </div>
+
+
+            <NavLink to={ location.pathname } style={({isActive}) => isActive? activestyle:undefined} className="todo"
+                     onClick={()=> setModalIsOpen(true)}>
+                +Todo
+            </NavLink>
 
             {/*투두 리스트 모달창 띄우기 */}
             {modalIsOpen && (

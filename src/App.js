@@ -83,6 +83,7 @@ import YourComponent from "./pages/Mypage/YourComponent";
 import MypageStore from "./pages/Mypage/MypageStore";
 import DaliyList from "./pages/mainpage/DailyList";
 import Test from "./pages/mainpage/SlideCard";
+import TodoApp from "./pages/Todolist/TodoApp";
 // import {ThemeProvider} from "./theme/context/ThemeProvider";
 // import {GlobalStyle} from "./theme/theme/GlobalStyle";
 
@@ -165,6 +166,7 @@ function App() {
                         // 비밀번호 변경 팝업
                         <Route path='pwpopup' element={<UpdatePWok/>}/>
                         <Route path='store' element={<YourComponent/>}/>
+                        <Route path='todo' element={<TodoApp/>}/>
                     </Route>
 
                     //미지
