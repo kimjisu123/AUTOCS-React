@@ -1,7 +1,7 @@
 import './Header.css';
 import img from './logo-black1.png';
 import { useEffect, useState } from 'react';
-import {NavLink, useLocation, useNavigate} from 'react-router-dom';
+import { NavLink, useNavigate, useLocation  } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { decodeJwt } from '../../util/tokenUtils';
 import { callLogoutAPI } from '../../apis/MemberAPICalls';
@@ -21,45 +21,57 @@ const Header = () => {
 
     const decodedToken = accessToken ? decodeJwt(accessToken) : null;
     const role = decodedToken ? decodedToken.auth : null;
+    const department = decodedToken ? decodedToken.Department : null;
+
+    //토큰값
+    //console.log("토큰값>>>>>>>>>>>>>>>>>" + accessToken);
+    //console.log("department>>>>>>>>>>>>>>>>>" + department);
 
     //창띄울때  요거 NavLink to 에 location.pathname 넣으면 현재페이지 유지됩니다.
     const location = useLocation();
 
-    const getMenuItems = (role) => {
+    const getMenuItems = (role, department) => {
+        let menuItems = [
+            { to: "/main", label: "홈" },
+            { to: "/dashboard", label: "게시판" },
+            { to: "calendar", label: "캘린더" },
+            { to: "todo", label: "+Todo" }
+        ];
+
         if (role === "EMPLOYEE") {
-            return [
-                { to: "/home", label: "홈" },
-                { to: "/dashboard", label: "게시판" },
+            menuItems.push(
                 { to: "chart", label: "조직도" },
                 { to: "approval", label: "전자결재" },
-                { to: "calendar", label: "캘린더" },
                 { to: "management", label: "근태관리" },
-                { to: "todo", label: "+Todo" },
                 { to: "mail", label: "쪽지함" }
-            ];
+            );
+
+            if (department === "인사부") {
+                menuItems.push({ to: "menu/registration", label: "계정관리" });
+                //나중에 마이페이지 안으로 넣어줘야함
+                menuItems.push({ to: "outM", label: "계정비활성화" });
+            }
+            if (department === "경영부") {
+                menuItems.push({ to: "stock", label: "재고관리" });
+            }
         } else if (role === "STORE") {
-            return [
-                { to: "/home", label: "홈" },
-                { to: "/dashboard", label: "게시판" },
-                { to: "calendar", label: "캘린더" },
-                { to: "todo", label: "+Todo" },
-                { to: "stock", label: "재고관리" }
-            ];
+            menuItems.push(
+                { to: "stock", label: "재고관리" },
+                //나중에 마이페이지 안으로 넣어줘야함
+                { to: "outS", label: "계정비활성화" }
+
+            );
         }
-        return [];
+
+        return menuItems;
     };
 
-    const menuItems = getMenuItems(role);
-
-    const activestyle = {
-        backgroundColor: '#8d8a6d'
-    };
+    const menuItems = getMenuItems(role, department);
 
 
     // TodoList 모달 값
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const { todoModal, setTodoModal } = useUserContext(); // Use todos and setTodos from the context
-
 
 
     const mypageHandler = () => {
@@ -91,7 +103,7 @@ const Header = () => {
             {login ? <login setLoginModal={setLogin} /> : null}
             <div className="headerWrapper">
                 <div className="topNav">
-                    <NavLink to="/">
+                    <NavLink to="/main">
                         <div className="gohome">
                             <div className="logo">
                                 <img src={img} style={{ width: "40px", marginTop: "6px", marginRight: "5px", marginLeft: "10px" }} />
@@ -103,29 +115,35 @@ const Header = () => {
                     </NavLink>
                     <div className="menuContainer">
                         {menuItems.map((menuItem) => (
-                            <NavLink key={menuItem.to} to={menuItem.to} isActive={(match, location) => match || location.pathname === menuItem.to} style={({ isActive }) => isActive ? activestyle : undefined} className="menu"onClick={menuItem.to === "/todo" ? handleTodoClick : undefined}>
+                            <NavLink
+                                key={menuItem.to}
+                                to={menuItem.to}
+                                className={`menu ${menuItem.to === location.pathname ? 'activeMenu' : ''}`}
+                            >
                                 {menuItem.label}
                             </NavLink>
                         ))}
                         <div className="profileAndLogout">
-                        <NavLink to="myPage" isActive={(match, location) => match || location.pathname === '/myPage'} style={({ isActive }) => isActive ? activestyle : undefined} className="profile" onClick={mypageHandler}>
-                            <div className="profileImg" onClick={mypageHandler}></div>
-                            {decodedToken ? (
-                                <h5 className="userName" style={{ marginTop: "-0.5px", fontSize: "16px" }}>
-                                    {decodedToken.Name}님 안녕하세요!
-                                </h5>
-                            ) : (
-                                window.location = "/login"
-                            )}
-                        </NavLink>
-                        <button onClick={onClickLogoutHandler} style={{ marginRight: "-50px" }} className="logOut">
-                            로그아웃
-                        </button>
+                            <NavLink
+                                to="myPage"
+                                className={`profile ${'/myPage' === location.pathname ? 'activeProfile' : ''}`}
+                                onClick={mypageHandler}
+                            >
+                                {decodedToken ? (
+                                    <h5 className="userName" style={{ marginTop: "-0.5px", fontSize: "16px" }}>
+                                        {decodedToken.Name}님 안녕하세요!
+                                    </h5>
+                                ) : (
+                                    window.location = "/login"
+                                )}
+                            </NavLink>
+                            <button onClick={onClickLogoutHandler} style={{ marginRight: "-50px" }} className="logOut">
+                                로그아웃
+                            </button>
+                        </div>
                     </div>
                 </div>
-                </div>
             </div>
-
 
             <NavLink to={ location.pathname } style={({isActive}) => isActive? activestyle:undefined} className="todo"
                      onClick={()=> setModalIsOpen(true)}>
