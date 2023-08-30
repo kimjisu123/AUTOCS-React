@@ -1,8 +1,8 @@
-import { GET_EMPLOYEE,
-         ADD_EMPLOYEE,
-         GO_LOGIN
-        } from '../modules/MemberModule';
-
+import {
+    GET_EMPLOYEE,
+    ADD_EMPLOYEE,
+    GO_LOGIN, FIND_ID
+} from '../modules/MemberModule';
 
 //직원 등록 및 아이디/비번 생성
 export const callInsertEmployeeAPI = ({ infoToPass }) => {
@@ -95,3 +95,69 @@ export const callLogoutAPI = () => {
         console.log('[MemberAPICalls] callLogoutAPI RESULT : SUCCESS');
     };
 }
+
+// 직원 아이디 찾기
+export const callEmployeeFindIdAPI = (findIdInfo) => {
+    const { name, employeeEmail } = findIdInfo; // 구조 분해 할당을 통해 변수 추출
+
+    // URL에 파라미터를 포함하여 요청을 생성
+    const requestURL = `http://localhost:8080/member/findEmployeeId?name=${name}&employeeEmail=${employeeEmail}`;
+
+    console.log("findIdInfo>>>>>>>>|||||||||||" + JSON.stringify(findIdInfo));
+
+    return async (dispatch) => {
+        try {
+            const response = await fetch(requestURL, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                console.log('response :>>>>>>>>>>>>>>>>', result);
+                dispatch({ type: FIND_ID, payload: result });
+            } else {
+                console.error('Failed to find employee ID');
+                window.alert("정보가 다릅니다.")
+                window.location = '/login/findId';
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+};
+
+//영업점 아이디 찾기
+export const callStoreFindIdAPI = (findIdInfo) => {
+    const { name, employeeEmail } = findIdInfo; // 구조 분해 할당을 통해 변수 추출
+
+    const email = employeeEmail;
+
+    // URL에 파라미터를 포함하여 요청을 생성
+    const requestURL = `http://localhost:8080/market/findStoreId?name=${name}&email=${email}`;
+
+    return async (dispatch) => {
+        try {
+            const response = await fetch(requestURL, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                console.log('response :>>>>>>>>>>>>>>>>', result);
+                dispatch({ type: FIND_ID, payload: result });
+            } else {
+                console.error('Failed to find Store ID');
+                window.alert("정보가 다릅니다.")
+                window.location = '/login/findId';
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+};

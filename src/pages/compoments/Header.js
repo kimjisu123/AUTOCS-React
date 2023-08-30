@@ -16,32 +16,44 @@ const Header = () => {
 
     const decodedToken = accessToken ? decodeJwt(accessToken) : null;
     const role = decodedToken ? decodedToken.auth : null;
+    const department = decodedToken ? decodedToken.Department : null;
 
-    const getMenuItems = (role) => {
+    //토큰값
+    //console.log("토큰값>>>>>>>>>>>>>>>>>" + accessToken);
+    console.log("department>>>>>>>>>>>>>>>>>" + department);
+
+    const getMenuItems = (role, department) => {
+        let menuItems = [
+            { to: "/main", label: "홈" },
+            { to: "/dashboard", label: "게시판" },
+            { to: "calendar", label: "캘린더" },
+            { to: "todo", label: "+Todo" }
+        ];
+
         if (role === "EMPLOYEE") {
-            return [
-                { to: "/", label: "홈" },
-                { to: "/dashboard", label: "게시판" },
+            menuItems.push(
                 { to: "chart", label: "조직도" },
                 { to: "approval", label: "전자결재" },
-                { to: "calendar", label: "캘린더" },
                 { to: "management", label: "근태관리" },
-                { to: "todo", label: "+Todo" },
                 { to: "mail", label: "쪽지함" }
-            ];
+            );
+
+            if (department === "인사부") {
+                menuItems.push({ to: "menu/registration", label: "계정관리" });
+            }
+            if (department === "경영부") {
+                menuItems.push({ to: "stock", label: "재고관리" });
+            }
         } else if (role === "STORE") {
-            return [
-                { to: "/", label: "홈" },
-                { to: "/dashboard", label: "게시판" },
-                { to: "calendar", label: "캘린더" },
-                { to: "todo", label: "+Todo" },
+            menuItems.push(
                 { to: "stock", label: "재고관리" }
-            ];
+            );
         }
-        return [];
+
+        return menuItems;
     };
 
-    const menuItems = getMenuItems(role);
+    const menuItems = getMenuItems(role, department);
 
     const activestyle = {
         backgroundColor: '#8d8a6d'
@@ -72,7 +84,7 @@ const Header = () => {
             {login ? <login setLoginModal={setLogin} /> : null}
             <div className="headerWrapper">
                 <div className="topNav">
-                    <NavLink to="/">
+                    <NavLink to="/main">
                         <div className="gohome">
                             <div className="logo">
                                 <img src={img} style={{ width: "40px", marginTop: "6px", marginRight: "5px", marginLeft: "10px" }} />

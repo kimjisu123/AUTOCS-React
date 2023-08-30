@@ -39,6 +39,9 @@ import OutMForm from "./pages/outForm/outMForm";
 import NoAuthority from "./pages/Login/noAuthority"
 import ApplyStateW from "./pages/applyForm/applyStateW";
 import StoreLogin from "./pages/Login/storeLogin";
+import Menu from "./pages/applyForm/Menu";
+import ApplyStateO from "./pages/applyForm/applyStateO";
+import GuideStoreId from "./pages/Login/guideStoreId";
 
 //지수
 import Management from "./pages/management/Management"
@@ -127,13 +130,17 @@ function App() {
 
                         //해든
                         //사원 등록
+                        <Route path='menu' element={<Menu/>}>
                         <Route path='registration' element={<Registration/>}/>
                         <Route path='registOk' element={<RegistOk/>}/>
+                        //영업점 신청 내역 확인
+                        <Route path='applyFormW' element={<ApplyStateW/>}/>
+                        <Route path='applyFormO' element={<ApplyStateO/>}/>
+                        </Route>
+
                         //계정 비활성화 신청
                         <Route path='outM' element={<OutMForm/>}/>
                         <Route path='outS' element={<OutSForm/>}/>
-                        //영업점 신청 내역 확인
-                        <Route path='applyFormW' element={<ApplyStateW/>}/>
                     </Route>
 
                     //미지
@@ -148,6 +155,7 @@ function App() {
                     <Route path='/login/findId' element={<FindId/>}/>
                     <Route path='/login/fIOk' element={<FindIdOk/>}/>
                     <Route path='/login/fIOk/guideId' element={<GuideId/>}/>
+                    <Route path='/login/fIOk/guideSId' element={<GuideStoreId/>}/>
                     <Route path='/login/findPwd' element={<FindPwd/>}/>
                     <Route path='/login/fPOk' element={<FindPwdOk/>}/>
                     <Route path='/login/fPOk/guidePwd' element={<GuidePwd/>}/>
