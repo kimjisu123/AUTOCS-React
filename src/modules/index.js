@@ -6,6 +6,8 @@ import productReducer from "./ProductModule";
 import categoryReducer from "./CategoryModule";
 import standardReducer from "./StandardModule";
 import unitReducer from "./UnitModule";
+import ioReducer from "./IoModule";
+import ioGroupReducer from "./IoGroupModule";
 import chartReducer from './ChartModule';
 import approvalReducer from './ApprovalModule';
 
@@ -16,6 +18,8 @@ const rootReducer = combineReducers({
     categoryReducer,
     standardReducer,
     unitReducer,
+    ioReducer,
+    ioGroupReducer,
     marketReducer,
     approvalReducer
 });

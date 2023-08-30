@@ -3,9 +3,6 @@ import {
     GET_PRODUCTS,
     POST_PRODUCT,
     PUT_PRODUCT,
-    GET_IO,
-    POST_IO,
-    GET_IO_GROUP,
 } from '../modules/ProductModule';
 import {
     GET_CATEGORIES,
@@ -22,6 +19,13 @@ import {
     POST_UNIT,
     PUT_UNIT,
 } from '../modules/UnitModule';
+import {
+    GET_IO,
+    POST_IO,
+} from '../modules/IoModule';
+import {
+    GET_IO_GROUP,
+} from '../modules/IoGroupModule';
 
 /* 물품 조회 */
 export const callProductListAPI = ({currentPage}) => {
