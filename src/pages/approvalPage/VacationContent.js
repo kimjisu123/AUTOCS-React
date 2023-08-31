@@ -159,6 +159,7 @@ function VacationContent() {
             <div style={{display:"flex", justifyContent:"right", marginRight:"40px"}}>
                 <div className={styles.sendApp} onClick={onClickSendHandler}>결재요청</div>
             </div>
+            <br/><br/>
         </div>
     )
 }

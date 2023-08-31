@@ -12,6 +12,7 @@ import './input.css'
 import { usePurchaseContext } from './appContext/PurchaseContext';
 import { decodeJwt } from '../../util/tokenUtils';
 import AppLine from './AppLine';
+import AddRow from './AddRow';
 
 
 
@@ -21,65 +22,59 @@ function PurchaseContent() {
     // 로그인 사용자 가져올 토큰
     const accessToken = window.localStorage.getItem('accessToken');
     const decodedToken = accessToken ? decodeJwt(accessToken) : null;
+    const myRef = useRef(null)
+    const [total, setTotal] = useState(0);
 
+    // 열 추가
+    const onClickAddRow = () => {
 
-    // 추가 버튼 눌렀을 때 열 추가
-    const onClickAddHandler = () => {
-
-        if(input.productName && input.productSize && input.price && input.amount) {
-
-            setValues([...values, input]);
-
-            console.log(values)
-
-            setInput({
-                productName: '',
-                productSize: '',
-                amount: 0,
-                price: 0,
-                note: ''
-            })
-
-            let inputRow = document.getElementsByClassName(styles.inputRow)[0];
-            let table2 = document.getElementsByClassName(styles.table2)[0].children[0];
-            let clone = inputRow.cloneNode(true);
-            for(let i = 0; i <= 5; i++) {
-                if(i !== 4) {
-                    clone.children[i].children[0].value = '';
-
-                } else if(i === 4) {
-                    clone.children[i].text = ''
-                    console.log(clone.children[i].text)
-
-                }
-                clone.addEventListener('change', (e) => onChangeInputHandler(e));
-            }
-            table2.append(clone);
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: '입력값 부족',
-                text: '입력란을 모두 작성해주세요',
-            })
+        const inputData = {
+            productName: '',
+            productSize: '',
+            amount: 0,
+            price: 0,
+            note: ''
         }
 
-
+        setData(prev => ({...prev, documentContent:[...prev.documentContent, inputData]}))
+        console.log(data)
     }
 
+    // 열 삭제
+    const onClickDelRow = () => {
+        const newData = data.documentContent.splice(0, data.documentContent.length - 1);
+        console.log(newData)
+        setData(prev => ({...prev, documentContent : newData}))
+    }
 
-    // 삭제 버튼 눌렀을 때 열 삭제
-    const onClickDelHandler = () => {
-        let table2 = document.getElementsByClassName(styles.table2)[0].children[0];
-        console.log(table2.lastElementChild);
-        if(table2.childElementCount === 2) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: '더 이상 삭제하실 수 없어요',
-            })
-        } else {
-            table2.lastElementChild.remove();
-        }
+    // 데이터 담아줄 핸들러
+    const onChangeInput = (field, value, index) => {
+        const tempData = [...data.documentContent];
+        tempData[index][field] = value;
+        setData(prev => ({...prev, documentContent: tempData}));
+
+        let totalPrice = 0;
+        [...data.documentContent].map(item => item?.amount * item?.price)
+            .forEach(price => totalPrice += price)
+
+        setTotal(totalPrice);
+    }
+
+    // 제목 핸들러
+    const onChangeTitleHandler = (e) => {
+        setData(prev => ({...prev, [e.target.name] : e.target.value}));
+        console.log(data);
+    }
+
+    // 제출 핸들러
+    const onSubmitHandler = (e) => {
+        e.preventDefault();
+        const formdata = new FormData(e.target);
+
+        formdata.append("files", myRef.current.getFiles())
+
+        for(let pair of formdata)
+            console.log(pair[0], pair[1])
     }
 
     // 오늘 날짜
@@ -92,26 +87,6 @@ function PurchaseContent() {
     const {data, setData} = usePurchaseContext();
 
     const dispatch = useDispatch();
-
-    const [input, setInput] = useState({
-        productName: '',
-        productSize: '',
-        amount: 0,
-        price: 0,
-        note: ''
-    });
-
-
-    // input에 들어가는 값 data에 넣어주기
-
-    const [values, setValues] = useState([]);
-    const totalPrice = useRef();
-    const onChangeInputHandler = (e) => {
-        console.log(e.target);
-        setInput({...input, [e.target.name] : e.target.value});
-
-    }
-
 
     useEffect(
         () => {
@@ -126,17 +101,14 @@ function PurchaseContent() {
 
     const [file, setFile] = useState(null);
     const [fileName, setFileName] = useState([]);
-
-    const onClickSendHandler = () => {
-        console.log(data);
-    }
+    const result = 0;
 
     const showPeople = () => {
         setAddPeople(true);
     }
 
     return (
-        <div className={styles.content}>
+        <form className={styles.content} onSubmit={onSubmitHandler}>
             <div className={styles.modify} onClick={showPeople}>
                 결재선 추가
             </div>
@@ -181,12 +153,12 @@ function PurchaseContent() {
             <br/><br/>
             <div className={styles.docTitle}>
                 <div className={styles.area9}>제목</div>
-                <input type="text" name="docTitle" id={styles.docTitle}/>
+                <input type="text" name="docTitle" id={styles.docTitle} onChange={onChangeTitleHandler}/>
             </div>
             <br/><br/>
             <div className={styles.addDelBtn}>
-                <div className={styles.add} onClick={ onClickAddHandler }>추가</div>
-                <div className={styles.delete} onClick={ onClickDelHandler }>삭제</div>
+                <div className={styles.add} onClick={ onClickAddRow }>추가</div>
+                <div className={styles.delete} onClick={ onClickDelRow }>삭제</div>
             </div>
             <div className={styles.area10}>
                 <table className={styles.table2}>
@@ -199,33 +171,29 @@ function PurchaseContent() {
                             <td className={styles.totalPrice}>금액</td>
                             <td className={styles.note}>비고</td>
                         </tr>
-                        <tr className={styles.inputRow}>
-                            <td className={styles.td3}><input type="text" name="productName" onChange={(e) => onChangeInputHandler(e)}/></td>
-                            <td className={styles.td3}><input type="text" name="productSize" onChange={(e) => onChangeInputHandler(e)}/></td>
-                            <td className={styles.td3}><input type="number" name="amount" onChange={(e) => onChangeInputHandler(e)}/></td>
-                            <td className={styles.td3}><input type="number" name="price" onChange={(e) => onChangeInputHandler(e)}/></td>
-                            <td className={styles.td3}>{input.price * input.amount}원</td>
-                            <td className={styles.td3}><input type="text" name="note" onChange={(e) => onChangeInputHandler(e)}/></td>
-                        </tr>
+                        {data.documentContent && data.documentContent.map((value, index) => (
+                            <AddRow key={index} value={value} onChangeInput={(field, value) => onChangeInput(field, value, index)}/>
+                        ))}
                     </tbody>
                 </table>
                 <div className={styles.area11}>
                     <div className={styles.area12}>합계</div>
-                    <div className={styles.allPrice}>1,000,000</div>
+                    <div className={styles.allPrice}>{total}원</div>
                 </div>
             </div>
             <br/><br/><br/>
             <div className={styles.file}>
                 <div style={{width: "100%", textAlign:"center", margin:"20px 0px"}}>
-                    <FileUpload name="demo[]" url={'/api/upload'} multiple emptyTemplate={<p className="m-0">파일을 첨부하세요</p>} />
+                    <FileUpload ref={myRef} name="demo[]" url={'/api/upload'} multiple emptyTemplate={<p className="m-0">파일을 첨부하세요</p>} />
                 </div>
             </div>
             { addPeople && <Modal setAddPeople={setAddPeople}/>}
             <br/><br/><br/>
             <div style={{display:"flex", justifyContent:"right", marginRight:"40px"}}>
-                <div className={styles.sendApp} onClick={onClickSendHandler}>결재요청</div>
+                <button className={styles.sendApp}>결재요청</button>
             </div>
-        </div>
+            <br/><br/>
+        </form>
     )
 }
 

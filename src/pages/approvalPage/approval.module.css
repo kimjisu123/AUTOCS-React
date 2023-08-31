@@ -263,15 +263,15 @@ main {
 }
 
 .productSize, .amount {
-    width: 100px;
+    width: 150px;
 }
 
 .totalPrice {
-    width: 100px;
+    width: 200px;
 }
 
 .note {
-    width: 450px;
+
 }
 
 .td3 {
@@ -382,7 +382,7 @@ main {
 }
 
 .price {
-
+    width: 200px;
 }
 
 .fileshow {

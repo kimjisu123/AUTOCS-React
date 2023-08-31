@@ -4,7 +4,7 @@ function AppLine({data}) {
 
     return (
         <>
-            {data.allowList.length !== 0 ? data.allowList.map((emp, index) => (
+            {data.allowList?.length !== 0 ? data.allowList?.map((emp, index) => (
                 <span key={index} className={styles.area5}>
                         <div className={styles.area6}>{emp.position}</div>
                         <div className={styles.area7}>{emp.name}</div>

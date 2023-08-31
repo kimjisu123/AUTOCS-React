@@ -9,7 +9,7 @@ export const usePurchaseContext = () => {
 export const PurchaseProvider = ({children}) => {
     const [data, setData] = useState({
         allowList: [],
-        title: [],
+        docTitle: '',
         documentContent: [],
         files: []
     });
