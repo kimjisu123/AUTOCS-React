@@ -1,7 +1,8 @@
 import TreeviewContent from './TreeviewContent'
 import modal from './Modal.module.css'
-function Modal({setAddPeople}) {
 
+function Modal({setAddPeople}) {
+    
     const onClickHandler = () => {
         setAddPeople(false);
     }

@@ -388,3 +388,18 @@ main {
 .fileshow {
     width: 100%;
 }
+
+.sendApp {
+    background: #8a8d6d;
+    width: 100px;
+    text-align: center;
+    height: 40px;
+    color: white;
+    border-radius: 10px;
+    line-height: 38px;
+    cursor: pointer;
+}
+
+.sendApp:hover {
+    box-shadow: 0 2px 4px 0 rgb(203, 203, 203);
+}

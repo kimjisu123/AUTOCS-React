@@ -1,8 +1,8 @@
 import { createContext, useContext, useState } from 'react'
 
-const PurchaseContext = createContext();
+const PurchaseContext = createContext(null);
 
-export const PurchaseContext = () => {
+export const usePurchaseContext = () => {
     return useContext(PurchaseContext);
 };
 

@@ -9,6 +9,7 @@ import {
 } from '../../apis/ApprovalAPICalls';
 import { FileUpload } from 'primereact/fileupload';
 import './input.css'
+import { usePurchaseContext } from './appContext/PurchaseContext';
 
 
 const onClickAddHandler = () => {
@@ -42,6 +43,8 @@ const onClickDelHandler = () => {
 
 function PurchaseContent() {
 
+    const {data, setData} = usePurchaseContext();
+
     const dispatch = useDispatch();
 
     useEffect(
@@ -58,36 +61,9 @@ function PurchaseContent() {
     const [file, setFile] = useState(null);
     const [fileName, setFileName] = useState([]);
 
-    const onChangeFileUpload = (e) => {
-        // console.log(e.target.value);
-        // const uploadFile = e.target.file;
-        // // const uploadFile = e.target.file[0];
-        //
-        // const filename = uploadFile.replace('C:\\fakepath\\', '');
-        //
-        // setFileName(filename);
-
-
-            const files = e.target.files;
-
-            let array = [];
-
-        for (let i = 0; i < files.size; i++) {
-            array.push(e.target.files[i].name);
-        }
-            console.log(array)
-
-            setFileName(array);
-
-
-        // console.log(fileName);
-    };
-
-
-    // useEffect(() => {
-    //
-    // },
-    //     [file]);
+    const onClickSendHandler = () => {
+        setData(prev => ({...prev, allowList:['박지호', '김마야'], files:[1,2,3], purchaseList:[{productName:'test', productSize:'test', amount:5, price: 10000}]}));
+    }
 
     const showPeople = () => {
         setAddPeople(true);
@@ -167,7 +143,7 @@ function PurchaseContent() {
                             <td className={styles.note}>비고</td>
                         </tr>
                         <tr className={styles.inputRow}>
-                            <td className={styles.td3}><input type="text" name="productName"/></td>
+                            <td className={styles.td3}><input type="text" value={data.purchaseList.productName} name="productName"/></td>
                             <td className={styles.td3}><input type="text" name="productSize"/></td>
                             <td className={styles.td3}><input type="text" name="amount"/></td>
                             <td className={styles.td3}><input type="text" name="price"/></td>
@@ -189,6 +165,9 @@ function PurchaseContent() {
             </div>
             { addPeople && <Modal setAddPeople={setAddPeople}/>}
             <br/><br/><br/>
+            <div style={{display:"flex", justifyContent:"right", marginRight:"40px"}}>
+                <div className={styles.sendApp} onClick={onClickSendHandler}>결재요청</div>
+            </div>
         </div>
     )
 }

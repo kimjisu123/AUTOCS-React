@@ -13,12 +13,16 @@ import { AiFillCaretLeft } from "react-icons/ai";
 import { AiOutlineCheck } from "react-icons/ai";
 import Name from './Name'
 import modal from './Modal.module.css'
+import { usePurchaseContext } from './appContext/PurchaseContext';
+
 
 import {
     callGetAppLineAPI
 } from '../../apis/ApprovalAPICalls';
 
 function TreeviewContent() {
+
+    const {data, setData} = usePurchaseContext();
 
     const dispatch = useDispatch();
 
@@ -32,24 +36,28 @@ function TreeviewContent() {
         []
     )
 
+    const onClickAddHandler = (e) => {
+
+    }
+
     const list = useSelector(state => state.approvalReducer);
 
     // 체크된 값을 배열에 담기
     const onChangeHandler = (e) => {
 
-        if(!checkList.includes(e.target.nextSibling.wholeText)) {
-            checkList.push(e.target.nextSibling.wholeText)
+        if(e.target.checked) {
+
+            checkList.push(e.target.nextSibling.wholeText);
         } else {
 
             for(let i = 0; i < checkList.length; i++) {
-
                 if(checkList[i] === e.target.nextSibling.wholeText) {
-                    checkList.splice(i, 1);
+                    checkList.splice(i, 0);
                     i--
                 }
             }
         }
-        console.log(checkList)
+        console.log(checkList);
     }
 
 
