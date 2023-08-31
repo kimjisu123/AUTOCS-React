@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e3749cb-53e5-4119-8b60-f739a5810ded" name="Changes" comment="commit" />
+    <list default="true" id="5e3749cb-53e5-4119-8b60-f739a5810ded" name="Changes" comment="commit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/compoments/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/compoments/Header.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,6 +28,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2Ty3ey3JZ84Gx1v4BMBIQIwxPrU" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>

@@ -145,8 +145,11 @@ const Header = () => {
                 </div>
             </div>
 
-            <NavLink to={ location.pathname } style={({isActive}) => isActive? activestyle:undefined} className="todo"
-                     onClick={()=> setModalIsOpen(true)}>
+            <NavLink
+                to={location.pathname}
+                className={`menu todo ${location.pathname === '/todo' ? 'activeMenu' : ''}`}
+                onClick={() => setModalIsOpen(true)}
+            >
                 +Todo
             </NavLink>
 
