@@ -37,7 +37,6 @@ export const callGetMailBookmarkAPI = () => {
 
 export const callGetMailSentAPI = ({employeeNo}) => {
     const requestURL = `http://localhost:8080/mailSent/${employeeNo}`;
-
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
             method: 'GET',
@@ -45,8 +44,8 @@ export const callGetMailSentAPI = ({employeeNo}) => {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
-        }).then(response => response.json())
-            .then(value => console.log(value));
+        }).then(response => response.json());
+        console.log(result)
         dispatch({ type: GET_MAIL_SENT, payload: result });
     }
 };

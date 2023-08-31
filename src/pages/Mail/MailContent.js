@@ -25,7 +25,7 @@ function MailContent(){
         alert('성공적으로 삭제가 되었습니다!')
     }
 
-    const onClickSearch = () =>{
+    const onClickSearch = async () =>{
         const filterResult =  mailData.data.filter(item =>
             item.toLowerCase().includes(search.toLowerCase())
         );
@@ -45,13 +45,16 @@ function MailContent(){
                 <form style={{display: "flex", justifyContent:"flex-start"}}>
                     <div className={styles.type}> 제목</div>
                     <input value={search} onChange={ (e) => {setSearch(e.target.value)} }  type="text" className={styles.inputText}/>
-                    <div onClick={ onClickSearch } className={styles.inputButton}>검색</div>
+                    <div onClick={ () => onClickSearch() } className={styles.inputButton}>검색</div>
                 </form>
             </div>
             <div>
-                {  mailData.data && mailData.data.map(mail => (
+                {  result  ? result.map(mail=>(
                     <MailItem key={mail.mailNo} mail={mail} />
-                ))
+                    )) :
+                    mailData.data && mailData.data.map(mail => (
+                    <MailItem key={mail.mailNo} mail={mail} />
+                    ))
                 }
             </div>
         </div>
@@ -101,7 +104,7 @@ function MailItem({ mail }) {
                         </div>
                     </div>
                 </div>
-                <div onClick={ ( onClickSearch ) => onClickSelectDelete(mail)} className={styles.deleteButton}>
+                <div onClick={ () => onClickSelectDelete(mail)} className={styles.deleteButton}>
                     x
                 </div>
             </div>
