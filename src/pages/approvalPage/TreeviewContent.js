@@ -14,6 +14,7 @@ import { AiOutlineCheck } from "react-icons/ai";
 import Name from './Name'
 import modal from './Modal.module.css'
 import { usePurchaseContext } from './appContext/PurchaseContext';
+import Swal from 'sweetalert2';
 
 
 import {
@@ -26,9 +27,8 @@ function TreeviewContent() {
 
     const dispatch = useDispatch();
 
-    const [name, setName] = useState([]);
+    const [checkList, setCheckList] = useState([]);
 
-    const checkList = [];
     useEffect(
         () => {
             dispatch(callGetAppLineAPI());
@@ -36,35 +36,49 @@ function TreeviewContent() {
         []
     )
 
-    const onClickAddHandler = (e) => {
+    // 체크된 인원 추가하기
+    const onChangeHandler = (node, e) => {
 
+        // if(checkList.length == 4 ) {
+        //     Swal.fire({
+        //         icon: 'error',
+        //         title: '이미 4명이 추가되었어요',
+        //         text: '더 이상 추가하실 수 없어요',
+        //     })
+        //     setCheckList(checkList.filter(item => item !== node));
+        // } else {
+        //     if(e.target.checked) {
+        //
+        //         setCheckList([...checkList, node]);
+        //     } else {
+        //
+        //         setCheckList(checkList.filter(item => item !== node));
+        //     }
+        // }
+
+        if(e.target.checked) {
+
+            if(checkList.length > 3) {
+                Swal.fire({
+                    icon: 'error',
+                    title: '이미 4명이 추가되었어요',
+                    text: '더 이상 추가하실 수 없어요',
+                })
+                e.target.checked=false;
+            } else {
+                setCheckList([...checkList, node]);
+            }
+        } else {
+            setCheckList(checkList.filter(item => item !== node));
+        }
     }
 
     const list = useSelector(state => state.approvalReducer);
 
-    // 체크된 값을 배열에 담기
-    const onChangeHandler = (e) => {
-
-        if(e.target.checked) {
-
-            checkList.push(e.target.nextSibling.wholeText);
-        } else {
-
-            for(let i = 0; i < checkList.length; i++) {
-                if(checkList[i] === e.target.nextSibling.wholeText) {
-                    checkList.splice(i, 0);
-                    i--
-                }
-            }
-        }
-        console.log(checkList);
-    }
-
-
     // console.log("list : " + list)
 
     const [treeData, setTreeData] = useState(list);
-    const handleDrop = (newTreeData) => setTreeData(newTreeData);
+    // const handleDrop = (newTreeData) => setTreeData(newTreeData);
 
     return (
         <>
@@ -74,7 +88,7 @@ function TreeviewContent() {
                         <Tree
                             tree={treeData}
                             rootId={0}
-                            onDrop={handleDrop}
+                            // onDrop={handleDrop}
                             canDrop={()=>false}
                             initialOpen={true}
                             render={(node, { depth, isOpen, onToggle }) => (
@@ -82,13 +96,13 @@ function TreeviewContent() {
                                     {node.parent === 0 && (
                                         <span onClick={onToggle}>{isOpen ? <AiFillCaretLeft color="#8d8a6d"/> : <AiFillCaretRight color="#8d8a6d"/>}</span>
                                     )}
-                                    {node.parent !== 0 && (<input type="checkbox" name="addLine" id="addLine" onChange={onChangeHandler}/>)} {node.text}
+                                    {node.parent !== 0 && (<input type="checkbox" name="addLine" id="addLine" onChange={e => onChangeHandler(node, e)}/>)} {node.text}
                                 </div>
                             )}
                         />
                     </div>
                 </DndProvider>
-                <Name name={name}/>
+                <Name checkList={checkList}/>
             </div>
             <div className={modal.bottom}>
                 <div className={modal.okBtn}>추가하기</div>
