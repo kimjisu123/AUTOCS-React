@@ -31,7 +31,8 @@ function MailSend( {setModal} ){
         title : "",
         context : "",
         goDate : "",
-        status : ""
+        status : "",
+        position:"",
     });
 
 
@@ -48,15 +49,16 @@ function MailSend( {setModal} ){
         setResultName(filterName);
     };
 
-    const selectAttendees = (attendee) =>{
+    const selectAttendees =  async  (attendee) =>{
         setSelect(
             [...select, attendee]
         );
         setMail(
-            {...mail, receiver : attendee.name}
+            {...mail, receiver : attendee.name,  position: JSON.parse(attendee.position).name}
         )
         setSearchArea(false);
         setSearchValue('');
+        console.log(mail);
     }
 
     const deleteAttendees = (attendee) => {

@@ -11,7 +11,6 @@ import TodoApp from "../Todolist/TodoApp";
 import './CoustomModal.css';
 import { useUserContext } from "../Todolist/TodoContext";
 
-
 const Header = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -43,7 +42,7 @@ const Header = () => {
                 { to: "chart", label: "조직도" },
                 { to: "approval", label: "전자결재" },
                 { to: "management", label: "근태관리" },
-                { to: "mail", label: "쪽지함" }
+                { to: `/mail/${decodedToken.EmployeeNo}`, label: "쪽지함" }
             );
 
             if (department === "인사부") {

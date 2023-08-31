@@ -77,7 +77,7 @@ function BookmarkItem({ mail }) {
                         {mail.goDate}
                     </div>
                     <div style={{ marginLeft: "15px" }}>
-                        {mail.send}
+                        {mail.receiver}
                     </div>
                 </div>
             </div>

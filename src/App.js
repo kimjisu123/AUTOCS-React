@@ -51,7 +51,6 @@ import HeadOffice from "./pages/management/HeadOffice"
 import Mail from "./pages/Mail/Mail"
 import MailBookmark from "./pages/Mail/MailBookmark"
 import MailSent from "./pages/Mail/MailSent"
-
 //미지
 //재고관리
 import Stock from './pages/stock/Stock'
@@ -88,6 +87,8 @@ import TodoApp from "./pages/Todolist/TodoApp";
 
 import MailSend from "./pages/Mail/MailSend";
 
+
+
 function App() {
     return (
         <Provider store={store}>
@@ -119,7 +120,7 @@ function App() {
                         <Route path='/management' element={<Management />} />
                         <Route path='/department' element={<Department />} />
                         <Route path='/headOffice' element={<HeadOffice />} />
-                        <Route path='/mail' element={<Mail />} />
+                        <Route path='/mail/:value' element={<Mail />} />
                         <Route path='/mailSent/:value' element={<MailSent />} />
                         <Route path='/mailBookmark' element={<MailBookmark />} />
 
