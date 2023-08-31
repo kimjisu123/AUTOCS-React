@@ -1,6 +1,5 @@
 import styles from './Mail.module.css';
 import { useState, useEffect } from 'react'
-import axios from 'axios';
 import { callGetMailAPI, callDELETEMailAPI, callPutMailAPI, callSeleteDELETEMailAPI } from '../../apis/MailAPICalls';
 import { useDispatch, useSelector } from 'react-redux';
 import MailDetails from "../../pages/Mail/MailDetails"

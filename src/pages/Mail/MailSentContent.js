@@ -58,6 +58,12 @@ function MailSentItem({ mail }) {
 
     const dispatch = useDispatch();
 
+    const inputDate = mail.goDate;
+    const date = new Date(inputDate);
+
+    const outputDate = date.toISOString().substr(0, 19);
+    const updatedDate = outputDate.replace("T", " ");
+
     const onClickbookmark = () => {
         dispatch( callPutMailAPI(mail) );
         setBookmark( (bookmark == 'Y') ? 'N' : 'Y' );
@@ -74,10 +80,10 @@ function MailSentItem({ mail }) {
                 </div>
                 <div style={{ display: "flex" }}>
                     <div style={{ color: "gray" }}>
-                        {mail.goDate}
+                        {updatedDate}
                     </div>
-                    <div style={{ marginLeft: "15px" }}>
-                        {mail.send}
+                    <div style={{ marginLeft: "15px", color:"gray"}}>
+                        {mail.receiver}
                     </div>
                 </div>
             </div>

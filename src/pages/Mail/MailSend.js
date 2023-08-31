@@ -5,7 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { callSelectEmployeeAPI } from '../../apis/MemberAPICalls'
 import { callPostMailAPI } from '../../apis/MailAPICalls'
 import {useEffect, useState} from 'react'
+import { decodeJwt } from '../../util/tokenUtils';
 function MailSend( {setModal} ){
+
+    const accessToken = window.localStorage.getItem('accessToken');
+    const decodedToken = accessToken ? decodeJwt(accessToken) : null;
 
     const onClickClose = () =>{
         setModal(false)
