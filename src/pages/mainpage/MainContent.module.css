@@ -1,0 +1,293 @@
+@font-face {
+    font-family: 'Cafe24Ssurround';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+.homeContainer {
+    width: 70%;
+    height:100%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-template-rows: 15% 45% 40% ;
+    gap: 20px;
+
+    /*grid-template-columns: 50% 20% 20%;*/
+    /*grid-template-rows: 10% 45% 40% 40%;*/
+    /*gap: 40px;*/
+}
+
+
+
+.tempBox {
+    margin: 20px;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 1px 1px 5px #cdcec974; ;
+    transition: all 0.5s;
+    transition-delay: 0.4s;
+}
+
+.tempBox:hover {
+    width: 99%;
+    height:99%;
+}
+
+
+.empInfoTitle{
+    position: relative;
+    width: 15%;
+    padding: 20px 50px;
+    background-color: #2A3C1E;
+    border-radius: 30px 0px 0px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.empInfoImg{
+    height: 100px;
+    width: 100px;
+    margin-left: 10px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #92aa81;
+    position: relative;
+}
+.empInfoImg:hover{
+    filter: grayscale(100%);
+    transition: all 0.3s;
+    transition-delay: 0.2s;
+}
+
+.infoTitle, .empDepDate{
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    margin: 5px;
+}
+
+.maintitle {
+    display: flex;
+    margin-left: 20px;
+    margin-top: 20px;
+    justify-content: space-around
+
+}
+
+.maintext {
+    flex:7
+}
+
+.maintitle h1, h3{
+    margin :1px;
+    margin-left: 10px;
+}
+
+.workbuttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    flex:2;
+}
+
+.workbuttons button {
+
+    display: block;
+    padding: 10px 37px;
+    text-align: center;
+    border-radius: 9px;
+    color: white;
+    background-color: #2A3C1E;
+    border: 1px solid #2A3C1E;
+
+}
+
+
+.workbuttons button:hover{
+
+    background-color: #4c7522;
+    transition: all 0.3s;
+    transition-delay: 0.2s;
+
+}
+
+/*다크모드와 시간 표시*/
+.timeAndDark {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.mainTime  .darkmode{
+    display: flex;
+    margin:5px;
+    text-align: center;
+    flex-direction: column;
+    align-items: center
+}
+
+.mainTime h3 {
+    color: #909094;
+    font-size: 1.5em;
+}
+
+.mainTime h1  {
+    /*color: #909094;*/
+    font-size: 2em;
+    font-weight: 700;
+    /*margin: 0;*/
+}
+.mainTime svg {
+    text-align: center;
+}
+
+
+
+
+.calendarWrap {
+    width: 100%;
+    padding: 0.75em;
+    margin: auto;
+    /*font-size: 4vw;*/
+    background-color: #fff;
+    border-radius: 1.5em;
+    user-select: none;
+    box-shadow:
+            0 0.0625em 0.25em rgba(0,20,50,0.2),
+            0 0.5em 0.5em 0.125em rgba(0,20,50,0.1);
+
+}
+
+@media (max-width: 2000px) {
+    .calendar-wrap {
+        width: 450px;
+        font-size: 1.25rem;
+    }
+
+
+    .homeContainer {
+        width: 90%;
+        height:100%;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 70% 30%;
+        grid-template-rows: 15% 45% 40% ;
+        gap: 20px;
+
+        /*grid-template-columns: 50% 20% 20%;*/
+        /*grid-template-rows: 10% 45% 40% 40%;*/
+        /*gap: 40px;*/
+    }
+}
+
+.calnederContent {
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex: 9;
+
+
+}
+
+.monthYear {
+    margin-bottom: 0.75em;
+    /*font-weight: normal;*/
+    /*font-size: 1.25em;*/
+    text-align: center;
+}
+
+.calendar {
+    table-layout: fixed;
+    width: 100%;
+    margin-bottom: 0.75em;
+    overflow: hidden;
+    border-collapse: collapse;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.dayTitle {
+    width: 4em;
+    height: 2em;
+    vertical-align: top;
+    font-weight: bold;
+    font-size: 0.75em;
+    text-transform: uppercase;
+    letter-spacing: 0.0625em;
+    /*box-shadow:*/
+    /*        inset 0 -0.875em #fff,*/
+    /*        inset 0 -1em rgba(0,20,50,0.1);*/
+}
+
+.datelist {
+    display: flex;
+    flex: 6;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mainTodo {
+   object-fit: cover;
+    /*display: flex;*/
+    flex: 1;
+}
+
+.flexbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mainTodo {
+
+    height: 100%;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+
+}
+
+
+.TodoTemplate_TodoTemplate {
+
+    height: 100%;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+}
+
+.daliyTitle {
+    /*background-color: #1C2C10;*/
+}
+
+/*문서 파트*/
+.documentPart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.docutitle {
+    display: flex;
+    justify-content: space-evenly;
+    margin: auto 0;
+    align-items: center;
+}
+
+/*게시판 파트*/
+.boradPart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

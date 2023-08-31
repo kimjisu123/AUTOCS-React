@@ -1,10 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Layout from "./pages/layouts/layout";
+// import Layout from "./pages/layouts/layout";
 import React from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
 import Main from './pages/main/Main'
 
+import Layout from "./layouts/layout";
 //지호
 import AppHome from './pages/approvalPage/AppHome'
 import Purchase from './pages/approvalPage/Purchase'
@@ -39,6 +40,9 @@ import OutMForm from "./pages/outForm/outMForm";
 import NoAuthority from "./pages/Login/noAuthority"
 import ApplyStateW from "./pages/applyForm/applyStateW";
 import StoreLogin from "./pages/Login/storeLogin";
+import Menu from "./pages/applyForm/Menu";
+import ApplyStateO from "./pages/applyForm/applyStateO";
+import GuideStoreId from "./pages/Login/guideStoreId";
 
 //지수
 import Management from "./pages/management/Management"
@@ -71,12 +75,26 @@ import Refund from "./pages/stock/Refund";
 import MyBill from "./pages/stock/MyBill";
 import MyStatistics from "./pages/stock/MyStatistics";
 
+//지은
+import Mypage from "./pages/Mypage/Mypage";
+import MainContent from "./pages/mainpage/MainContent";
+import UpdatePwApp from "./pages/Mypage/UpdatePwApp";
+import UpdatePWok from "./pages/Mypage/UpdatePWok";
+import YourComponent from "./pages/mainpage/DocuList";
+import MypageStore from "./pages/Mypage/MypageStore";
+import TodoApp from "./pages/Todolist/TodoApp";
+// import {ThemeProvider} from "./theme/context/ThemeProvider";
+// import {GlobalStyle} from "./theme/theme/GlobalStyle";
+
 import MailSend from "./pages/Mail/MailSend";
 
 function App() {
     return (
         <Provider store={store}>
             <BrowserRouter>
+                {/*다크모드적용 예정*/}
+                {/*<ThemeProvider>*/}
+                    {/*<GlobalStyle/>*/}
                 <Routes>
                     <Route path='/' element={<Layout/>}>
                         //메인
@@ -136,13 +154,31 @@ function App() {
 
                         //해든
                         //사원 등록
+                        <Route path='menu' element={<Menu/>}>
                         <Route path='registration' element={<Registration/>}/>
                         <Route path='registOk' element={<RegistOk/>}/>
+                        //영업점 신청 내역 확인
+                        <Route path='applyFormW' element={<ApplyStateW/>}/>
+                        <Route path='applyFormO' element={<ApplyStateO/>}/>
+                        </Route>
+
                         //계정 비활성화 신청
                         <Route path='outM' element={<OutMForm/>}/>
                         <Route path='outS' element={<OutSForm/>}/>
                         //영업점 신청 내역 확인
                         <Route path='applyFormW' element={<ApplyStateW/>}/>
+
+                        //지은
+                        <Route path='myPage' element={<Mypage/>}>
+                            <Route path='employee' element={<Mypage/>}/>
+                            <Route path='store' element={<MypageStore/>}/>
+                        </Route>
+                        <Route path='pw2' element={<UpdatePwApp/>}/>
+                        <Route path='home' element={<MainContent/>}/>
+                        // 비밀번호 변경 팝업
+                        <Route path='pwpopup' element={<UpdatePWok/>}/>
+                        <Route path='store' element={<YourComponent/>}/>
+                        <Route path='todo' element={<TodoApp/>}/>
                     </Route>
 
                     //미지
@@ -157,6 +193,7 @@ function App() {
                     <Route path='/login/findId' element={<FindId/>}/>
                     <Route path='/login/fIOk' element={<FindIdOk/>}/>
                     <Route path='/login/fIOk/guideId' element={<GuideId/>}/>
+                    <Route path='/login/fIOk/guideSId' element={<GuideStoreId/>}/>
                     <Route path='/login/findPwd' element={<FindPwd/>}/>
                     <Route path='/login/fPOk' element={<FindPwdOk/>}/>
                     <Route path='/login/fPOk/guidePwd' element={<GuidePwd/>}/>
@@ -168,6 +205,7 @@ function App() {
                     <Route path='/applyS' element={<ApplySForm/>}/>
                     <Route path='/ApplyOk' element={<ApplyOk/>}/>
               </Routes>
+            {/*</ThemeProvider>*/}
           </BrowserRouter>
         </Provider>
   );
