@@ -16,7 +16,7 @@ function Modal({setAddPeople}) {
                 </div>
                 <div className={modal.middle}>
                     <div className={modal.left}>
-                        <TreeviewContent/>
+                        <TreeviewContent setAddPeople={setAddPeople}/>
                     </div>
                     {/*<div className={modal.right}>*/}
 

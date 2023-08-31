@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import {
     callGetAppLineAPI
 } from '../../apis/ApprovalAPICalls';
+import { usePurchaseContext } from './appContext/PurchaseContext';
 
 function BusinessContent() {
 
@@ -27,6 +28,13 @@ function BusinessContent() {
 
     const showPeople = () => {
         setAddPeople(true);
+    }
+
+    const {data, setData} = usePurchaseContext();
+
+
+    const onClickSendHandler = () => {
+        setData(prev => ({...prev, allowList:['박지호', '김마야'], files:[1,2,3], purchaseList:[{productName:'test', productSize:'test', amount:5, price: 10000}]}));
     }
 
     return(
@@ -110,7 +118,10 @@ function BusinessContent() {
                 </div>
             </div>
             { addPeople && <Modal setAddPeople={setAddPeople}/>}
-            <br/><br/>
+            <br/><br/><br/>
+            <div style={{display:"flex", justifyContent:"right", marginRight:"40px"}}>
+                <div className={styles.sendApp} onClick={onClickSendHandler}>결재요청</div>
+            </div>
         </div>
     )
 }

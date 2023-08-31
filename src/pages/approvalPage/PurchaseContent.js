@@ -1,5 +1,5 @@
 import styles from './approval.module.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useRef } from 'react';
 import NewApproval from './NewApproval';
 import Swal from 'sweetalert2';
 import Modal from './Modal'
@@ -10,42 +10,108 @@ import {
 import { FileUpload } from 'primereact/fileupload';
 import './input.css'
 import { usePurchaseContext } from './appContext/PurchaseContext';
+import { decodeJwt } from '../../util/tokenUtils';
+import AppLine from './AppLine';
 
 
-const onClickAddHandler = () => {
-    let inputRow = document.getElementsByClassName(styles.inputRow)[0];
-    let table2 = document.getElementsByClassName(styles.table2)[0].children[0];
-    let clone = inputRow.cloneNode(true);
-    console.log(clone.children[3].children[0])
-    for(let i = 0; i <= 5; i++) {
-        if(i !== 4) {
-            clone.children[i].children[0].value = '';
-        }
-    }
-    table2.append(clone);
-}
-
-
-const onClickDelHandler = () => {
-    let table2 = document.getElementsByClassName(styles.table2)[0].children[0];
-    console.log(table2.lastElementChild);
-    if(table2.childElementCount === 2) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: '더 이상 삭제하실 수 없어요',
-        })
-    } else {
-        table2.lastElementChild.remove();
-    }
-}
 
 
 function PurchaseContent() {
 
+    // 로그인 사용자 가져올 토큰
+    const accessToken = window.localStorage.getItem('accessToken');
+    const decodedToken = accessToken ? decodeJwt(accessToken) : null;
+
+
+    // 추가 버튼 눌렀을 때 열 추가
+    const onClickAddHandler = () => {
+
+        if(input.productName && input.productSize && input.price && input.amount) {
+
+            setValues([...values, input]);
+
+            console.log(values)
+
+            setInput({
+                productName: '',
+                productSize: '',
+                amount: 0,
+                price: 0,
+                note: ''
+            })
+
+            let inputRow = document.getElementsByClassName(styles.inputRow)[0];
+            let table2 = document.getElementsByClassName(styles.table2)[0].children[0];
+            let clone = inputRow.cloneNode(true);
+            for(let i = 0; i <= 5; i++) {
+                if(i !== 4) {
+                    clone.children[i].children[0].value = '';
+
+                } else if(i === 4) {
+                    clone.children[i].text = ''
+                    console.log(clone.children[i].text)
+
+                }
+                clone.addEventListener('change', (e) => onChangeInputHandler(e));
+            }
+            table2.append(clone);
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: '입력값 부족',
+                text: '입력란을 모두 작성해주세요',
+            })
+        }
+
+
+    }
+
+
+    // 삭제 버튼 눌렀을 때 열 삭제
+    const onClickDelHandler = () => {
+        let table2 = document.getElementsByClassName(styles.table2)[0].children[0];
+        console.log(table2.lastElementChild);
+        if(table2.childElementCount === 2) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '더 이상 삭제하실 수 없어요',
+            })
+        } else {
+            table2.lastElementChild.remove();
+        }
+    }
+
+    // 오늘 날짜
+    const now = new Date();
+    let year = now.getFullYear();
+    let month = now.getMonth() + 1 < 10 ? "0"+(now.getMonth() + 1) : now.getMonth();
+    let date = now.getDate();
+    let today = year + "-" + month + "-" + date;
+
     const {data, setData} = usePurchaseContext();
 
     const dispatch = useDispatch();
+
+    const [input, setInput] = useState({
+        productName: '',
+        productSize: '',
+        amount: 0,
+        price: 0,
+        note: ''
+    });
+
+
+    // input에 들어가는 값 data에 넣어주기
+
+    const [values, setValues] = useState([]);
+    const totalPrice = useRef();
+    const onChangeInputHandler = (e) => {
+        console.log(e.target);
+        setInput({...input, [e.target.name] : e.target.value});
+
+    }
+
 
     useEffect(
         () => {
@@ -62,7 +128,7 @@ function PurchaseContent() {
     const [fileName, setFileName] = useState([]);
 
     const onClickSendHandler = () => {
-        setData(prev => ({...prev, allowList:['박지호', '김마야'], files:[1,2,3], purchaseList:[{productName:'test', productSize:'test', amount:5, price: 10000}]}));
+        console.log(data);
     }
 
     const showPeople = () => {
@@ -82,15 +148,15 @@ function PurchaseContent() {
                         <tbody>
                         <tr>
                             <td className={styles.td2}>작 성 자</td>
-                            <td className={styles.td1}>박지호</td>
+                            <td className={styles.td1}>{decodedToken.Name}</td>
                         </tr>
                         <tr>
                             <td className={styles.td2}>소 속 부 서</td>
-                            <td className={styles.td1}>영업 1부</td>
+                            <td className={styles.td1}>{decodedToken.Department}</td>
                         </tr>
                         <tr>
                             <td className={styles.td2}>작 성 날 짜</td>
-                            <td className={styles.td1}>2023-08-15</td>
+                            <td className={styles.td1}>{today}</td>
                         </tr>
                         <tr>
                             <td className={styles.td2}>문 서 번 호</td>
@@ -103,21 +169,12 @@ function PurchaseContent() {
                     <div className={styles.approve}>
                         <span className={styles.area4}>요청</span>
                         <span className={styles.area5} style={{marginRight: 20}}>
-                            <div className={styles.area6}>사원</div>
-                            <div className={styles.area7}>박지호</div>
+                            <div className={styles.area6}>{decodedToken.Position}</div>
+                            <div className={styles.area7}>{decodedToken.Name}</div>
                             <div className={styles.area8}></div>
                         </span>
                         <span className={styles.area4}>승인</span>
-                        <span className={styles.area5}>
-                            <div className={styles.area6}>팀장</div>
-                            <div className={styles.area7}>유승제</div>
-                            <div className={styles.area8}></div>
-                        </span>
-                        <span className={styles.area5}>
-                            <div className={styles.area6}>이사</div>
-                            <div className={styles.area7}>김마야</div>
-                            <div className={styles.area8}></div>
-                        </span>
+                        <AppLine data={data}/>
                     </div>
                 </div>
             </div>
@@ -143,12 +200,12 @@ function PurchaseContent() {
                             <td className={styles.note}>비고</td>
                         </tr>
                         <tr className={styles.inputRow}>
-                            <td className={styles.td3}><input type="text" value={data.purchaseList.productName} name="productName"/></td>
-                            <td className={styles.td3}><input type="text" name="productSize"/></td>
-                            <td className={styles.td3}><input type="text" name="amount"/></td>
-                            <td className={styles.td3}><input type="text" name="price"/></td>
-                            <td className={styles.td3}></td>
-                            <td className={styles.td3}><input type="text" name="note"/></td>
+                            <td className={styles.td3}><input type="text" name="productName" onChange={(e) => onChangeInputHandler(e)}/></td>
+                            <td className={styles.td3}><input type="text" name="productSize" onChange={(e) => onChangeInputHandler(e)}/></td>
+                            <td className={styles.td3}><input type="number" name="amount" onChange={(e) => onChangeInputHandler(e)}/></td>
+                            <td className={styles.td3}><input type="number" name="price" onChange={(e) => onChangeInputHandler(e)}/></td>
+                            <td className={styles.td3}>{input.price * input.amount}원</td>
+                            <td className={styles.td3}><input type="text" name="note" onChange={(e) => onChangeInputHandler(e)}/></td>
                         </tr>
                     </tbody>
                 </table>
