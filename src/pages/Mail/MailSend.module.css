@@ -29,14 +29,14 @@
     width: 845px;
     margin-left: 50px;
     height: 30px;
-    margin-Top : 10px
+    margin-Top : 15px;
 }
 
 .content{
     margin-left: 50px;
     width: 850px;
     height: 250px;
-    margin-top: 30px;
+    margin-top: 40px;
 }
 
 .send{
@@ -61,7 +61,7 @@
 }
 
 .employeeName{
-    margin-left: 10px;
+    margin-left: 50px;
     outline : 1px solid rgba(212, 212, 212, 0.5);
     margin-bottom: 3px;
     display: flex;

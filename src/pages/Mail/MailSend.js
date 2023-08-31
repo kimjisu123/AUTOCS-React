@@ -14,6 +14,7 @@ function MailSend( {setModal} ){
     const dispatch = useDispatch();
     const memberData = useSelector(state => state.memberReducer);
 
+
     useEffect(  ()=>{
         dispatch(callSelectEmployeeAPI());
     }, []);
@@ -41,10 +42,10 @@ function MailSend( {setModal} ){
             setSearchArea(false);
         }
 
-        console.log(memberData);
-        // const filterName = memberData.data.filter( (item) => item.name.includes(name))
 
-        // setResultName(filterName);
+        const filterName = memberData.data.filter( (item) => item.name.includes(name))
+
+        setResultName(filterName);
     };
 
     const selectAttendees = (attendee) =>{
@@ -94,6 +95,7 @@ function MailSend( {setModal} ){
         window.location.reload();
     }
 
+
     return (
         <div className={styles.body}>
             <div className={styles.header}>
@@ -119,11 +121,12 @@ function MailSend( {setModal} ){
                 {resultName && resultName.slice(0,3).map((attendee) => (
                     <li className={styles.employeeName} key={attendee.employeeNo}>
                         {attendee.name}
+                        {JSON.parse(attendee.position).name}
                         <div className={styles.insert} onClick={ () => selectAttendees(attendee) }> 추가 </div>
                     </li>
                 ))}
             </ul>
-            <ul style={{display:"flex"}}>
+            <ul style={{display:"flex", marginLeft:"40px"}}>
                 {select && select.map( (name) => (
                     <li className={styles.select}>
                         {name.name }

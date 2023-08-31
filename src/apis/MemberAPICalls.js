@@ -111,7 +111,6 @@ export const callSelectEmployeeAPI = () => {
             }
         }).
         then(response => response.json())
-            .then(data => {console.log(data)});
         dispatch({ type: GET_SELECT_EMPLOYEE, payload: result });
     }
 };

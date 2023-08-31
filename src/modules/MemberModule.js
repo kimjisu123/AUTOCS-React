@@ -33,8 +33,7 @@ const memberReducer = handleActions({
         [GET_SELECT_EMPLOYEE]: (state, { payload }) => {
             return payload;
         },
-        [FIND_ID]: (state, { payload }) => {
-            return payload;
+        [FIND_ID]: (state, { payload }) => {            return payload;
         }
     },
     initialState
