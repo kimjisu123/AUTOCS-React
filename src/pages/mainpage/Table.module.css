@@ -1,0 +1,108 @@
+
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center
+}
+
+
+.bgPrimary {
+    background-color: #e1e1e1;
+
+}
+
+.badge {
+    background-color: #e1e1e1;
+    position:relative;
+    overflow:hidden;
+    width: 100%;
+    height: 30px;
+    /*padding: 5px 8px;*/
+    font-size: 12px;
+    color: #252524;
+    transition: background .3s ease;
+    line-height: 20px;
+    display: inline-block;
+
+
+}
+
+.badge::after {
+    position:absolute;
+    background-color: #ffc95c;
+    /*padding: 2px 8px;*/
+    font-size: 20px;
+    color: #ffc95c;
+    transform:translateX(-100%);
+    transition: all .3s ease;
+    content:"";
+    display: block;
+    width:100%;
+    height:100%;
+    bottom:0;
+    left:0;
+}
+
+.badge:hover {
+    /*background-color: #ffc95c;*/
+    color: #ffffff; /* Change the text color when hovering */
+}
+
+
+.badge:hover::after {
+    transform:translateX(0);
+    color: #ffffff;
+}
+
+.badgeText {
+    position: absolute;
+    font-size: 12px;
+    color: #252524;
+    padding: 5px 8px;
+    color: #3b3a3a;
+    /*visibility: hidden;*/
+}
+
+
+
+
+a {
+    text-decoration:none;
+}
+
+.card {
+    width: 350px;
+    /*height: 100px;*/
+    margin:5px;
+}
+
+.cardBody {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    border: 1px solid #c5c5c5;
+    border-radius: 5px;
+
+}
+
+
+.cardBody:hover {
+
+    transition: all 0.5s;
+    transition-delay: 0.4s;
+}
+
+.cardDetail {
+    display: flex;
+    flex-direction: column;
+    margin:5px;
+}
+
+.detailCard {
+    display: flex;
+    justify-content: space-between;
+
+}

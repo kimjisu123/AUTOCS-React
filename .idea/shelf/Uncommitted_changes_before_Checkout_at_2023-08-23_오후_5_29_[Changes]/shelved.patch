@@ -1,0 +1,17 @@
+Index: src/pages/Mail/MailSend.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import styles from './MailSend.module.css'\r\nimport ReactQuill from 'react-quill';\r\nimport 'react-quill/dist/quill.snow.css';\r\nimport { useState } from 'react'\r\nfunction MailSend( {setModal} ){\r\n\r\n\r\n    const onClickClose = () =>{\r\n        setModal(false)\r\n    }\r\n\r\n    const onChangeName = () => {\r\n        // db에서 가져온 값\r\n    }\r\n\r\n    return (\r\n        <div className={styles.body}>\r\n            <div className={styles.header}>\r\n                <h1 className={styles.modalTitle}>\r\n                    쪽지 보내기\r\n                </h1>\r\n                <div onClick={ onClickClose }  className={styles.close}>\r\n                    x\r\n                </div>\r\n            </div>\r\n            \r\n            \r\n            <form>\r\n                <input className={styles.title} type=\"text\" placeholder=\"제목\" />\r\n                <input style={{marginTop : \"10px\"}} className={styles.title} type=\"text\" placeholder=\"참석자\" onChange={ onChangeName } />\r\n                <ReactQuill theme=\"snow\" className={styles.content} />\r\n                <input type=\"submit\" className={styles.send} value=\"보내기\" />\r\n            </form>\r\n        </div>\r\n    )\r\n}\r\n\r\nexport default MailSend;\r\n\r\n\r\n
+===================================================================
+diff --git a/src/pages/Mail/MailSend.js b/src/pages/Mail/MailSend.js
+--- a/src/pages/Mail/MailSend.js	
++++ b/src/pages/Mail/MailSend.js	
+@@ -10,7 +10,7 @@
+     }
+ 
+     const onChangeName = () => {
+-        // db에서 가져온 값
++        // 디스패치
+     }
+ 
+     return (

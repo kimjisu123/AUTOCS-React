@@ -9,7 +9,7 @@ const ApplyOk = () => {
     // 로그인 상태일 시 페이지로 접근 방지
     const Token = localStorage.getItem('accessToken');
     if (Token) {
-        return <Navigate to="/" replace />;
+        return <Navigate to="/main" replace />;
 
     }
 

@@ -28,7 +28,7 @@ function Login({setLogin}) {
     useEffect(() => {
         if (loginMember.status === 200) {
             console.log("[Login] Login SUCCESS>>>>>>>>>>>>>> {}", loginMember);
-            navigate("/", { replace: true });
+            navigate("/main", { replace: true });
         }
         else {
             console.log("[Login] Login is not authenticated yet");
@@ -43,7 +43,7 @@ function Login({setLogin}) {
     // 로그인 상태일 시 로그인 페이지로 접근 방지
     const Token = localStorage.getItem('accessToken');
     if (Token) {
-        return <Navigate to="/" replace />;
+        return <Navigate to="/main" replace />;
     }
 
     const handlelogin = () => {
@@ -87,8 +87,8 @@ function Login({setLogin}) {
                 <main>
                     <img src={img} style={{ width: "145px", height: "200px", marginTop: "-150px", marginBottom: "-35px" }} />
 
-                    <h1 style={{ color: "#1C2C10" }}>로그인</h1>
-                    <div className="separator" style={{width: "20%"}}></div>
+                    <h1 style={{ color: "#1C2C10" }}>직원 로그인</h1>
+                    <div className="separator" style={{width: "40%"}}></div>
 
                     <h4 style={{ marginBottom: "10px", marginTop: "10px", background: "white"}}>아이디</h4>
                     <input className="lo" type="text" id="id" name="id" value={id} onChange={handleIdChange} required />
@@ -114,7 +114,7 @@ function Login({setLogin}) {
                         </div>
                         <Link to="/login/findId" style={{ color: "#1C2C10", marginLeft: "1030px" }}>아이디/비밀번호 찾기</Link>
                     </div>
-                    <Link to="/applyS" style={{ color: "#1C2C10", marginLeft: "225px", marginTop: "-10px"}}>영업점 계정 신청하기</Link>
+                    <Link to="/Slogin" style={{ color: "#1C2C10", marginLeft: "225px", marginTop: "-10px"}}>영업점 로그인하기</Link>
                 </main>
             </div>
         </div>
