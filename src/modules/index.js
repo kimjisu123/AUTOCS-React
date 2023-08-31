@@ -22,7 +22,8 @@ const rootReducer = combineReducers({
     unitReducer,
     todoReducer,
     marketReducer,
-    approvalReducer
+    approvalReducer,
+    // mailSentReducer
 });
 
 export default rootReducer;

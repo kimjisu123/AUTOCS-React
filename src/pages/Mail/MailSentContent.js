@@ -1,6 +1,5 @@
 import styles from './Mail.module.css';
 import { useState, useEffect } from 'react'
-import axios from 'axios';
 import { callGetMailAPI, callDELETEMailAPI, callPutMailAPI, callGetMailBookmarkAPI, callGetMailSentAPI } from '../../apis/MailAPICalls';
 import { useDispatch, useSelector } from 'react-redux';
 import { decodeJwt } from '../../util/tokenUtils';
@@ -44,11 +43,11 @@ function MailkSentContent(){
             </div>
 
             <div>
-                {/*{mailData.data && mailData.data.map(mail => (*/}
-                {/*    <MailSentItem key={mail.mailNo} mail={mail} />*/}
-                {/*))}*/}
+                {mailData.data && mailData.data.map(mail => (
+                    <MailSentItem key={mail.mailNo} mail={mail} />
+                ))}
 
-                {/*{ console.log(mailData.data)}*/}
+                { console.log(mailData.data)}
             </div>
         </div>
     )

@@ -6,6 +6,8 @@ import { decodeJwt } from '../../util/tokenUtils';
 function Mailmenu({children}){  
     const [modal, setModal] = useState(false);
 
+    const accessToken = window.localStorage.getItem('accessToken');
+    const decodedToken = accessToken ? decodeJwt(accessToken) : null;
     
     const onClickModal = () => {
         setModal(!modal);
@@ -18,7 +20,7 @@ function Mailmenu({children}){
                 쪽지함
             </div>
             <Link to="/mail"> <div className={styles.receivedMail}>받은 편지</div> </Link>
-            <Link to="/mailSent/:value"><div className={styles.sentMail}>보낸 편지</div></Link>
+            <Link to={`/mailSent/${decodedToken.EmployeeNo}`}><div className={styles.sentMail}>보낸 편지</div></Link>
             <Link to="/mailBookmark" > <div className={styles.mailBookMark}>즐겨찾기</div></Link>
             <div style={ modal ? {display:"inline"} : {display: "none"} }>
                 <MailSend setModal = { setModal } />
