@@ -1,3 +1,9 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-width: 1500px;
+    font-family: 'Nanum Gothic', sans-serif;
+}
 /* Header.css */
 .headerWrapper {
     background-color: #2a3c1e;
@@ -43,6 +49,7 @@
     color: white;
     padding: 10px 15px;
     transition: background-color 0.3s ease-in-out;
+    /*margin-left: 40px;*/
 }
 
 .menu:hover {
@@ -75,7 +82,6 @@
 .profileAndLogout {
     display: flex;
     align-items: center;
-    margin-left: 300px; /* 버튼을 오른쪽으로 밀어냄 */
     margin-right: 80px; /* 오른쪽 여백 추가 */
 }
 

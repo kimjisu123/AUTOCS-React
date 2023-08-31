@@ -1,8 +1,16 @@
 import styles from './approval.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import NewApproval from './NewApproval';
 import Swal from 'sweetalert2';
 import Modal from './Modal'
+import { useSelector, useDispatch } from 'react-redux';
+import {
+    callGetAppLineAPI
+} from '../../apis/ApprovalAPICalls';
+import { FileUpload } from 'primereact/fileupload';
+import './input.css'
+import { usePurchaseContext } from './appContext/PurchaseContext';
+
 
 const onClickAddHandler = () => {
     let inputRow = document.getElementsByClassName(styles.inputRow)[0];
@@ -35,7 +43,27 @@ const onClickDelHandler = () => {
 
 function PurchaseContent() {
 
+    const {data, setData} = usePurchaseContext();
+
+    const dispatch = useDispatch();
+
+    useEffect(
+        () => {
+            dispatch(callGetAppLineAPI());
+        },
+        []
+    )
+
+    const list = useSelector(state => state.approvalReducer);
+
     const [addPeople, setAddPeople] = useState(false);
+
+    const [file, setFile] = useState(null);
+    const [fileName, setFileName] = useState([]);
+
+    const onClickSendHandler = () => {
+        setData(prev => ({...prev, allowList:['박지호', '김마야'], files:[1,2,3], purchaseList:[{productName:'test', productSize:'test', amount:5, price: 10000}]}));
+    }
 
     const showPeople = () => {
         setAddPeople(true);
@@ -115,7 +143,7 @@ function PurchaseContent() {
                             <td className={styles.note}>비고</td>
                         </tr>
                         <tr className={styles.inputRow}>
-                            <td className={styles.td3}><input type="text" name="productName"/></td>
+                            <td className={styles.td3}><input type="text" value={data.purchaseList.productName} name="productName"/></td>
                             <td className={styles.td3}><input type="text" name="productSize"/></td>
                             <td className={styles.td3}><input type="text" name="amount"/></td>
                             <td className={styles.td3}><input type="text" name="price"/></td>
@@ -131,12 +159,15 @@ function PurchaseContent() {
             </div>
             <br/><br/><br/>
             <div className={styles.file}>
-                <label htmlFor="fileBtn" className={styles.fileLabel}>파일 업로드</label>
-                <input type="file" className={styles.fileBtn} name="fileBtn" id="fileBtn"/>
-                <div className={styles.fileshow}></div>
+                <div style={{width: "100%", textAlign:"center", margin:"20px 0px"}}>
+                    <FileUpload name="demo[]" url={'/api/upload'} multiple emptyTemplate={<p className="m-0">파일을 첨부하세요</p>} />
+                </div>
             </div>
             { addPeople && <Modal setAddPeople={setAddPeople}/>}
             <br/><br/><br/>
+            <div style={{display:"flex", justifyContent:"right", marginRight:"40px"}}>
+                <div className={styles.sendApp} onClick={onClickSendHandler}>결재요청</div>
+            </div>
         </div>
     )
 }

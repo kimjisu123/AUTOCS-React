@@ -1,0 +1,66 @@
+.p-button > input {
+    display: none;
+}
+
+/*.p-fileupload-choose {*/
+/*    background: #8d8a6d;*/
+/*    padding: 10px;*/
+/*    border-radius: 10px;*/
+/*    color: white;*/
+/*    cursor: pointer;*/
+/*    margin-right: 5px;*/
+/*}*/
+
+/*.p-fileupload-choose:hover {*/
+/*    background: #7a7861;*/
+/*}*/
+
+/*.p-button-label {*/
+/*    font-weight: 600;*/
+/*    margin-left: 5px;*/
+/*}*/
+
+/*.p-component {*/
+/*    padding: 10px;*/
+/*    border-radius: 10px;*/
+/*    margin-right: 5px;*/
+/*    box-shadow: none;*/
+/*}*/
+
+.p-button {
+    padding: 10px;
+    border-radius: 10px;
+    margin-right: 10px;
+    background: #8a8d6d;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.p-button:disabled {
+    background: #e3e3e3;
+    color: grAY;
+    border: 2px solid #e3e3e3;
+    cursor: auto;
+}
+
+.p-fileupload-choose {
+    padding: 8px !important;
+}
+
+.p-button-label {
+    margin-left: 5px;
+}
+
+.p-button-icon-only > .p-icon {
+    margin-right: -8px;
+    margin-bottom: -2px;
+}
+
+.m-0 {
+    color: #bdbdbd;
+}
+
+button[aria-label='Upload'] {
+    display: none;
+}
