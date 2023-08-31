@@ -8,10 +8,15 @@ import Modal from "react-modal";
 import UpdatePwApp from "./UpdatePwApp";
 import {useDispatch, useSelector} from "react-redux";
 import {callGetEmployeeAPI} from "../../apis/MemberAPICalls";
+import {useNavigate} from "react-router-dom";
+import {decodeJwt} from "../../util/tokenUtils";
 
 
 
 function MypageEmp() {
+
+
+
 
     // 비구조화 할당 문법을 활용한 css내부 값 추출하기 이렇게 쓰면 MypageCSS.mainContatiner를 안써도된다. )
     const { mainContainer, rightContainer, content, wrap , empInfoTitle, infoTitle,empInfoImg
@@ -24,24 +29,28 @@ function MypageEmp() {
     const dispatch = useDispatch();
     const employees = useSelector(state => state.memberReducer);
     const employeeList = employees.data;
+    const accessToken = window.localStorage.getItem('accessToken');
     console.log("employeeList : " + employeeList)
+
+    const decodedToken = accessToken ? decodeJwt(accessToken) : null;
+    const role = decodedToken ? decodedToken.auth : null;
 
     useEffect(() => {
         // 컴포넌트가 마운트되었을 때 사원 목록을 가져오도록 API 호출
         // callGetEmployeeAPI(dispatch);
+        console.log("callGetEmployeeAPI : " + callGetEmployeeAPI())
+
         dispatch(callGetEmployeeAPI());
     }, []);
     ///////////////////////////////////////////////////
 
     // 생일입력 (Date에 현재 값 가지고 와야함.
     const [birthDate,setBirthDate] =useState(new Date("1994/02/01"));
-
     //  모달 값
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     // 사진 파일 전달
     const [ selectedImage, setSelectedImage ] = useState(emp);
-
     // 사진 url 전달 함수 ========================================================
     const handleImageChange = (event) => {
         const image = event.target.files[0];
@@ -51,6 +60,8 @@ function MypageEmp() {
         }
     };
 
+
+    console.log(decodedToken);
 
 
 
@@ -89,7 +100,7 @@ function MypageEmp() {
                                         <br/>
                                         <h3>입사일</h3>
                                         <br/>
-                                        <h1>2023년01월01일</h1>
+                                        <h1>{decodedToken.JoinDate}</h1>
                                     </div>
                                 </div>
                                 <div className={infoInput}>
@@ -99,28 +110,28 @@ function MypageEmp() {
                                                 <div className="empId">
                                                         <label htmlFor="empId">사원ID</label>
                                                     <input type="text" id="empId" name="empId" maxLength="20"
-                                                           value="emp01"
+                                                           value={decodedToken.sub}
                                                            readOnly style={{border: "none"}}/>
                                                 </div>
                                                 <div className=" empInfo empName kor">
-                                                    <label htmlFor="empNameKor">김 사 원</label>
+                                                    <label htmlFor="empNameKor">이름(한글)</label>
                                                     <input type="text" id="empNameKor" name="empNameKor" maxLength="20"
-                                                           value="김사원" readOnly style={{border: "none"}}/>
+                                                           value={decodedToken.Name} readOnly style={{border: "none"}}/>
                                                 </div>
                                                 <div className=" empInfo empName Eng">
-                                                    <label htmlFor="empNameEng">이름(영문)</label>
+                                                    <label htmlFor="empNameEng">사원번호</label>
                                                     <input type="text" id="empNameEng" name="empNameEng" maxLength="20"
-                                                           value="KIM SA WON" style={{border: "none"}}/>
+                                                           value={decodedToken.EmployeeNo} style={{border: "none"}}/>
                                                 </div>
                                                 <div className=" empInfo empEmail">
                                                     <label htmlFor="empEmail">이메일</label>
                                                     <input type="email" id="empEmail" name="empEmail" maxLength="20"
-                                                           value="kim@gmail.com" style={{border: "none"}}/>
+                                                           value={decodedToken.Email} style={{border: "none"}}/>
                                                 </div>
                                                 <div className=" empInfo empDuty">
                                                     <label htmlFor="empDuty">직책</label>
                                                     <input type="text" id="empDuty" name="empDuty" maxLength="20"
-                                                           value="사원"
+                                                           value={decodedToken.Position}
                                                            style={{border: "none"}}/>
                                                 </div>
                                                 <div className=" empInfo empDep">

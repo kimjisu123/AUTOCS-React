@@ -10,9 +10,11 @@ import YourComponent from "./DocuList";
 import React, {useEffect, useState} from "react";
 import DailyList from "./DailyList";
 import {MdKeyboardDoubleArrowRight} from "react-icons/md";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import moment from "moment-timezone";
 import DocuList from "./DocuList";
+import {useDispatch} from "react-redux";
+import {decodeJwt} from "../../util/tokenUtils";
 
 
 
@@ -27,12 +29,23 @@ const MainContent = () => {
     const formatDate = monent(today).format("MMMM Do YYYY");
     // const [ThemeMode , toggleTheme] = useTheme();
 
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const accessToken = window.localStorage.getItem('accessToken');
+
+    const [login, setLogin] = useState(false);
+
+    const decodedToken = accessToken ? decodeJwt(accessToken) : null;
+    const role = decodedToken ? decodedToken.auth : null;
+
+
 
     const getCurrentTime = () => {
         var m = moment().tz("Asia/Seoul"); // ← 이곳이 포인트
         return m.format("HH:mm:ss");
     };
     const [currentTime, setCurrentTime] = useState(getCurrentTime());
+
     useEffect(() => {
         const intervalId = setInterval(() => {
             setCurrentTime(getCurrentTime());
@@ -56,7 +69,7 @@ const MainContent = () => {
                                     <img src={ emp } alt="" className={mainstyle.empInfoImg}/>
                                 </div>
                                 <div className={mainstyle.maintext}>
-                                    <h1>안녕하세요 김사원님</h1>
+                                    <h1>안녕하세요 {decodedToken.Name}{decodedToken.Position}님</h1>
                                     <h3>오늘 하루도 힘내세요</h3>
                                 </div>
                                 <div className={mainstyle.workbuttons}>

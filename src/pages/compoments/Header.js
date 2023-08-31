@@ -34,7 +34,7 @@ const Header = () => {
                 { to: "approval", label: "전자결재" },
                 { to: "calendar", label: "캘린더" },
                 { to: "management", label: "근태관리" },
-                { to: "todo", label: "+Todo" },
+                // { to: "todo", label: "+Todo" },
                 { to: "mail", label: "쪽지함" }
             ];
         } else if (role === "STORE") {
@@ -42,7 +42,7 @@ const Header = () => {
                 { to: "/home", label: "홈" },
                 { to: "/dashboard", label: "게시판" },
                 { to: "calendar", label: "캘린더" },
-                { to: "todo", label: "+Todo" },
+                // { to: "todo", label: "+Todo" },
                 { to: "stock", label: "재고관리" }
             ];
         }
@@ -106,7 +106,15 @@ const Header = () => {
                             <NavLink key={menuItem.to} to={menuItem.to} isActive={(match, location) => match || location.pathname === menuItem.to} style={({ isActive }) => isActive ? activestyle : undefined} className="menu"onClick={menuItem.to === "/todo" ? handleTodoClick : undefined}>
                                 {menuItem.label}
                             </NavLink>
+
                         ))}
+                        <NavLink
+                            to={location.pathname}
+                            className={`menu todo ${location.pathname === '/todo' ? 'activeMenu' : ''}`}
+                            onClick={() => setModalIsOpen(true)}
+                        >
+                            +Todo
+                        </NavLink>
                         <div className="profileAndLogout">
                         <NavLink to="myPage" isActive={(match, location) => match || location.pathname === '/myPage'} style={({ isActive }) => isActive ? activestyle : undefined} className="profile" onClick={mypageHandler}>
                             <div className="profileImg" onClick={mypageHandler}></div>
@@ -127,10 +135,11 @@ const Header = () => {
             </div>
 
 
-            <NavLink to={ location.pathname } style={({isActive}) => isActive? activestyle:undefined} className="todo"
-                     onClick={()=> setModalIsOpen(true)}>
-                +Todo
-            </NavLink>
+
+            {/*<NavLink to={ location.pathname } style={({isActive}) => isActive? activestyle:undefined} className="todo"*/}
+            {/*         onClick={()=> setModalIsOpen(true)}>*/}
+            {/*    +Todo*/}
+            {/*</NavLink>*/}
 
             {/*투두 리스트 모달창 띄우기 */}
             {modalIsOpen && (
@@ -138,12 +147,12 @@ const Header = () => {
                     isOpen={modalIsOpen}
                     onRequestClose={() => setModalIsOpen(false)}
                     className={`customModalStyle ${modalIsOpen? 'isOpen':''}`}
-                    // contentLabel="Modal"
+                    overlayClassName="ReactModal__Overlay"
+                    contentLabel="Modal"
                 >
-                    <div style={{ width:"500px", height:"500px", margin:"60px auto"}}>
+                    <div style={{ width:"600px", height:"500px", margin:"60px auto"}}>
                         <TodoApp todoModal={ todoModal } setTodoModal={ setTodoModal } />
                     </div>
-
                 </Modal>
             )}
         </>

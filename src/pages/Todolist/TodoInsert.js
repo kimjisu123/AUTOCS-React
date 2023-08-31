@@ -1,10 +1,21 @@
 import { MdAdd } from 'react-icons/md';
 import styles from './TodoInsert.module.css';
-import {useCallback, useState} from "react";
-
+import {useCallback, useEffect, useState} from "react";
+import {callGetEmployeeAPI} from "../../apis/MemberAPICalls";
+import { useDispatch, useSelector } from 'react-redux';
+import {callInsertTodoAPI} from "../../apis/TodoAPICalls";
 
 const TodoInsert = ({onInsert}) => {
     const [ value , setValue ] = useState('');
+    const dispatch = useDispatch();
+    const memberData = useSelector(state => state.memberReducer);
+
+    // 멤버정보 가지고 오기
+    // useEffect(  ()=>{
+    //     dispatch(callInsertTodoAPI());
+    // }, []);
+
+
 
     // input 입력 이벤트
     const onChnage= useCallback(e => {
@@ -15,14 +26,26 @@ const TodoInsert = ({onInsert}) => {
     // 버튼 클릭 이벤트 ( onSubmit으로 한 이유는 클릭과 enter둘다 사용가능하도록 하기위해 씀. onKeyPress이벤트를 따로 작성하지 않아도 됨.
     const onSubmit = useCallback(
         e=> {
-            onInsert(value);
+            callInsertTodoAPI(value)
+                .then(response => {
+                    // Todo 추가 성공 시 추가 작업 수행
+                    console.log('Todo added:', response);
+                    const todoData = new FormData();
+                    todoData.append(value);
+                })
+                .catch(error => {
+                    // Todo 추가 실패 시 처리
+                    console.error('Error adding Todo:', error);
+                });
             setValue(''); // 값 초기화
 
         //submit이벤트는 브라우저 새로고침을 발생시킨다 이를 방지하기 위해 아래 함수를 호출시킨다.
             e.preventDefault();
 
-        },[onInsert,value],
+        },[value],
     );
+
+
 
 
     return (

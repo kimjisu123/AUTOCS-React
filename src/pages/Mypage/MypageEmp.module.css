@@ -66,10 +66,10 @@ body {
     display: flex;
 }
 
-.wrap:hover {
-        width: 92%;
-        height:92%;
-}
+/*.wrap:hover {*/
+/*        width: 92%;*/
+/*        height:92%;*/
+/*}*/
 
 .empInfoTitle{
     position: relative;

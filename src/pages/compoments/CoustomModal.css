@@ -17,30 +17,26 @@
     display: contents;
     z-index: 999;
     opacity: 1;
-    transform: scaleX(1);
+    background-color: rgba(0, 0, 0, 0.5);
+
+    transform: scale(1);
+    transition: transform 0.3s ease-in-out;
 
 }
 
-.isOpen {
-    transition: all 0.5s;
-    transition-delay: 0.4s;
-}
 
-
-
-
-.ReactModalPortal .ReactModal_Overlay {
-
+.ReactModal__Overlay {
+    position: fixed;
+    top: -478px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /*background-color: rgba(0, 0, 0, 0.75); !* 오버레이 배경색 *!*/
     display: flex;
-    align-items: center;
     justify-content: center;
-    /*background-color: rgba(0,0,0,0.5);*/
-}
-
-.overlay {
-
-
-
+    align-items: center;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
 }
 
 .popup {
@@ -50,4 +46,16 @@
     border-radius: 8px;
 
 
+}
+
+
+
+.ReactModal__Overlay.ReactModal__Overlay--after-open {
+    opacity: 1;
+}
+
+
+
+.isOpen.customModalStyle {
+    transform: scale(1.5); /* 모달 창이 커지는 효과를 주는 스타일 */
 }

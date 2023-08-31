@@ -3,40 +3,38 @@ import TodoInsert from "./TodoInsert";
 import TodoList from "./TodoList";
 import {useCallback, useRef, useState, useContext, useEffect} from "react";
 import React from "react";
-import styles from "./TodoApp.module.css"
-import {callGetEmployeeAPI} from "../../apis/MemberAPICalls";
 import { useSelector, useDispatch } from 'react-redux';
+import {callGetTodoAPI} from "../../apis/TodoAPICalls";
+
 
 
 const TodoApp = ({ todoModal , setTodoModal } ) => {
 
 
     const dispatch = useDispatch();
+    const todoData = useSelector(state => state.todoReducer);
+
     const [todos, setTodos ] = useState([
     // 초기값.
-        {
-            id:1,
-            text:'내일 까지 보고 하기 ',
-            checked: true,
-        },
-        {
-            id:2,
-            text:'8월 30일 까지 제안서 제출',
-            checked: true,
-        },
-        {
-            id:3,
-            text:'영업부에 내용전달',
-            checked: false,
-        },
+    //     {
+    //         memberNo:1,
+    //         text:'내일 까지 보고 하기 ',
+    //         checked: true,
+    //     },
+    //     {
+    //         id:2,
+    //         text:'8월 30일 까지 제안서 제출',
+    //         checked: true,
+    //     },
+    //     {
+    //         id:3,
+    //         text:'영업부에 내용전달',
+    //         checked: false,
+    //     },
     ]);
 
 
-    // useEffect(() => {
-    //     // 컴포넌트가 마운트되었을 때 사원 목록을 가져오도록 API 호출
-    //     // callGetEmployeeAPI(dispatch);
-    //     dispatch(callGetEmployeeAPI());
-    // }, []);
+
 
     // 고유 아이디 붙여주기
     const nextId = useRef(4);
@@ -93,10 +91,15 @@ const TodoApp = ({ todoModal , setTodoModal } ) => {
 
     return(
         <div className="popup" style={{opacity:"1", transform:"scaleX(1)"}}>
-            <TodoTemplate todos={todos} >
+            {/*{ todoData.data && todoData.data.map( todo => (*/}
+            <React.StrictMode>
+            <TodoTemplate todos={todos} key={todos.id}>
                 <TodoInsert onInsert={onInsert}/>
                 <TodoList todos={todos} onRemove={ onRemove } onToggle={onToggle} onUpdate={onUpdate}/>
             </TodoTemplate>
+            </React.StrictMode>
+            {/*))}*/}
+
         </div>
     )
 
