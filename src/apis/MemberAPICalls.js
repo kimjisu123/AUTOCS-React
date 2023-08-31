@@ -2,7 +2,7 @@ import {
     GET_EMPLOYEE,
     ADD_EMPLOYEE,
     GET_SELECT_EMPLOYEE,
-    GO_LOGIN, FIND_ID
+    GO_LOGIN, FIND_ID, FIND_PWD
 } from '../modules/MemberModule';
 
 import { decodeJwt } from '../util/tokenUtils';
@@ -180,6 +180,101 @@ export const callStoreFindIdAPI = (findIdInfo) => {
                 console.error('Failed to find Store ID');
                 window.alert("정보가 다릅니다.")
                 window.location = '/login/findId';
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+};
+
+// 직원 비밀번호 찾기
+export const callEmployeeFindPwdAPI = (findIdInfo) => {
+    const { name, id, employeeEmail } = findIdInfo; // 구조 분해 할당을 통해 변수 추출
+
+    // URL에 파라미터를 포함하여 요청을 생성
+    const requestURL = `http://localhost:8080/member/findEmployeePwd?name=${name}&id=${id}&employeeEmail=${employeeEmail}`;
+
+    console.log("findIdInfo>>>>>>>>|||||||||||" + JSON.stringify(findIdInfo));
+
+    return async (dispatch) => {
+        try {
+            const response = await fetch(requestURL, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                console.log('response :>>>>>>>>>>>>>>>>', result);
+                dispatch({ type: FIND_PWD, payload: result });
+            } else {
+                console.error('Failed to find employee ID');
+                window.alert("정보가 다릅니다.")
+                return
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+};
+
+//영업점 비밀번호 찾기
+export const callStoreFindPwdAPI = (findIdInfo) => {
+    const { name, id, employeeEmail } = findIdInfo; // 구조 분해 할당을 통해 변수 추출
+
+    // URL에 파라미터를 포함하여 요청을 생성
+    const requestURL = `http://localhost:8080/market/findStorePwd?name=${name}&id=${id}&employeeEmail=${employeeEmail}`;
+
+    return async (dispatch) => {
+        try {
+            const response = await fetch(requestURL, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                console.log('response :>>>>>>>>>>>>>>>>', result);
+                dispatch({ type: FIND_PWD, payload: result });
+            } else {
+                console.error('Failed to find Store ID');
+                window.alert("정보가 다릅니다.")
+                window.location = '/login/findPwd';
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+};
+
+//임시 비밀번호 발급 및 비밀번호 업데이트
+export const callChangePwdAPI = (changInfo) => {
+    const { Id, email, name } = changInfo;
+
+    console.log("changInfo>>>>>>>>|||||||||||" + JSON.stringify(changInfo));
+
+    // URL에 파라미터를 포함하여 요청을 생성
+    const requestURL = `http://localhost:8080/auth/ChangePwd?Id=${Id}&email=${email}&name=${name}`;
+
+    return async () => {
+        try {
+            const response = await fetch(requestURL, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                console.log('response :>>>>>>>>>>>>>>>>', result);
+            } else {
+                console.error('Failed to find Store ID');
+                window.location = '/login/fPOk';
             }
         } catch (error) {
             console.error('Error:', error);
