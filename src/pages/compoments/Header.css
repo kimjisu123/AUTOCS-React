@@ -1,5 +1,6 @@
 /* Header.css */
 .headerWrapper {
+    min-width: 1700px;
     background-color: #2a3c1e;
     color: white;
     padding: 10px 0;
@@ -99,4 +100,5 @@
     color: white;
     height: 50px;
     line-height: 45px;
+    min-width: 1700px;
 }

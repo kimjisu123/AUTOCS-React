@@ -4,15 +4,14 @@ import axios from 'axios';
 import { callGetMailAPI, callDELETEMailAPI, callPutMailAPI, callGetMailBookmarkAPI, callGetMailSentAPI } from '../../apis/MailAPICalls';
 import { useDispatch, useSelector } from 'react-redux';
 import { decodeJwt } from '../../util/tokenUtils';
+import { useParams } from 'react-router-dom';
 
 function MailkSentContent(){
 
     const dispatch = useDispatch();
     const mailData = useSelector(state => state.mailSentReducer);
 
-    const accessToken = window.localStorage.getItem('accessToken');
-
-    const decodedToken = accessToken ? decodeJwt(accessToken) : null;
+    const { employeeNo } = useParams();
 
     const onClickMailDelete = async () =>{
         dispatch( callDELETEMailAPI() );
@@ -22,7 +21,7 @@ function MailkSentContent(){
 
     useEffect(
         () =>  {
-            dispatch( callGetMailSentAPI(decodedToken.EmployeeNo) );
+            dispatch( callGetMailSentAPI(employeeNo) );
         }
         ,[]
     );
@@ -47,7 +46,6 @@ function MailkSentContent(){
                 {/*{mailData.data && mailData.data.map(mail => (*/}
                 {/*    <MailSentItem key={mail.mailNo} mail={mail} />*/}
                 {/*))}*/}
-
                 {/*{ console.log(mailData.data)}*/}
             </div>
         </div>

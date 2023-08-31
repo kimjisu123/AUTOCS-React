@@ -1,10 +1,8 @@
 import { GET_EMPLOYEE,
          ADD_EMPLOYEE,
-         GO_LOGIN
+         GO_LOGIN,
+         GET_SELECT_EMPLOYEE
         } from '../modules/MemberModule';
-    ADD_EMPLOYEE,
-    GO_LOGIN,
-    GET_SELECT_EMPLOYEE} from '../modules/MemberModule';
 import { decodeJwt } from '../util/tokenUtils';
 
 export const callInsertEmployeeAPI = ({ infoToPass }) => {
