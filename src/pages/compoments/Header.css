@@ -48,6 +48,7 @@ body {
     color: white;
     padding: 10px 15px;
     transition: background-color 0.3s ease-in-out;
+    /*margin-left: 40px;*/
 }
 
 .menu:hover {
@@ -80,7 +81,6 @@ body {
 .profileAndLogout {
     display: flex;
     align-items: center;
-    margin-left: 300px; /* 버튼을 오른쪽으로 밀어냄 */
     margin-right: 80px; /* 오른쪽 여백 추가 */
 }
 
