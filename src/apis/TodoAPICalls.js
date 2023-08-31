@@ -32,7 +32,7 @@ export const callGetMemberTodoAPI = (memberNo) => {
             }
         }).then(response => response.json());
 
-        console.log('TodoInsert >>>>>>', result);
+        console.log('회원값가지고오기 결과 >>>>>>', result);
         dispatch({type: GET_TODO_MEMBER, payload: result});
     }
 };
@@ -46,7 +46,7 @@ export const callInsertTodoAPI = () => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Accept': 'application/json'
+                'Accept': '*/*'
             }
         }).then(response => response.json());
 
