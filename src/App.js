@@ -120,10 +120,8 @@ function App() {
                         <Route path='/department' element={<Department />} />
                         <Route path='/headOffice' element={<HeadOffice />} />
                         <Route path='/mail' element={<Mail />} />
-                        <Route path='/mailSent/:employeeNo' element={<MailSent />} />
+                        <Route path='/mailSent/:value' element={<MailSent />} />
                         <Route path='/mailBookmark' element={<MailBookmark />} />
-                        
-
 
 
 

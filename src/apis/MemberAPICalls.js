@@ -99,7 +99,6 @@ export const callLogoutAPI = () => {
     };
 }
 
-//멤버 번호 조회
 export const callSelectEmployeeAPI = (paramValue) => {
     const requestURL = 'http://localhost:8080/member/selectEmployee';
 
