@@ -99,23 +99,19 @@ export const callLogoutAPI = () => {
     };
 }
 
-export const callSelectEmployeeAPI = (paramValue) => {
+export const callSelectEmployeeAPI = () => {
     const requestURL = 'http://localhost:8080/member/selectEmployee';
 
     return async (dispatch) => {
         const result = await fetch(requestURL, {
-            method: 'POST',
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
-            },
-            body: JSON.stringify(paramValue)
+            }
         }).
         then(response => response.json())
-            .then(data => {
-                console.log(data);
-            });
-
+            .then(data => {console.log(data)});
         dispatch({ type: GET_SELECT_EMPLOYEE, payload: result });
     }
 };

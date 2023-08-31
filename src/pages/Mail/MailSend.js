@@ -2,7 +2,7 @@ import styles from './MailSend.module.css'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { callGetEmployeeAPI } from '../../apis/MemberAPICalls'
+import { callSelectEmployeeAPI } from '../../apis/MemberAPICalls'
 import { callPostMailAPI } from '../../apis/MailAPICalls'
 import {useEffect, useState} from 'react'
 function MailSend( {setModal} ){
@@ -15,7 +15,7 @@ function MailSend( {setModal} ){
     const memberData = useSelector(state => state.memberReducer);
 
     useEffect(  ()=>{
-        dispatch(callGetEmployeeAPI());
+        dispatch(callSelectEmployeeAPI());
     }, []);
 
     const [select, setSelect] = useState([]);
@@ -40,9 +40,11 @@ function MailSend( {setModal} ){
         if(!name){
             setSearchArea(false);
         }
-        const filterName = memberData.data.filter( (item) => item.name.includes(name))
 
-        setResultName(filterName);
+        console.log(memberData);
+        // const filterName = memberData.data.filter( (item) => item.name.includes(name))
+
+        // setResultName(filterName);
     };
 
     const selectAttendees = (attendee) =>{

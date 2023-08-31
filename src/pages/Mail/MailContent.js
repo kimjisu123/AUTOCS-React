@@ -9,7 +9,7 @@ import MailDetails from "../../pages/Mail/MailDetails"
 function MailContent(){
 
     const [search, setSearch] = useState('');
-    const [result, setResult] = useState([]);
+    const [result, setResult] = useState(null);
     const dispatch = useDispatch();
     const mailData = useSelector(state => state.mailReducer);
 
@@ -26,13 +26,16 @@ function MailContent(){
     }
 
     const onClickSearch = async () =>{
-        const filterResult =  mailData.data.filter(item =>
-            item.toLowerCase().includes(search.toLowerCase())
+        const filterResult =  mailData.data.filter(item => {
+
+            return item.title.toLowerCase().includes(search.toLowerCase())
+        }
         );
+        console.log(filterResult)
         setResult(filterResult);
     }
 
-
+    console.log('result', result)
     return(
         <div className={styles.content}>
             <div className={styles.mainHeader}>
@@ -42,14 +45,14 @@ function MailContent(){
                 <div onClick={onClickMailDelete} className={styles.allDelete}>
                     전체 삭제
                 </div>
-                <form style={{display: "flex", justifyContent:"flex-start"}}>
+                <div style={{display: "flex", justifyContent:"flex-start"}}>
                     <div className={styles.type}> 제목</div>
                     <input value={search} onChange={ (e) => {setSearch(e.target.value)} }  type="text" className={styles.inputText}/>
                     <div onClick={ () => onClickSearch() } className={styles.inputButton}>검색</div>
-                </form>
+                </div>
             </div>
             <div>
-                {  result  ? result.map(mail=>(
+                {  result !== null  ? result.map(mail=>(
                     <MailItem key={mail.mailNo} mail={mail} />
                     )) :
                     mailData.data && mailData.data.map(mail => (
