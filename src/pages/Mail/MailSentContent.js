@@ -2,16 +2,14 @@ import styles from './Mail.module.css';
 import { useState, useEffect } from 'react'
 import { callGetMailAPI, callDELETEMailAPI, callPutMailAPI, callGetMailBookmarkAPI, callGetMailSentAPI } from '../../apis/MailAPICalls';
 import { useDispatch, useSelector } from 'react-redux';
-import { decodeJwt } from '../../util/tokenUtils';
+import { useParams } from 'react-router-dom';
 
 function MailkSentContent(){
 
     const dispatch = useDispatch();
     const mailData = useSelector(state => state.mailSentReducer);
 
-    const accessToken = window.localStorage.getItem('accessToken');
-
-    const decodedToken = accessToken ? decodeJwt(accessToken) : null;
+    const { employeeNo } = useParams();
 
     const onClickMailDelete = async () =>{
         dispatch( callDELETEMailAPI() );
@@ -21,7 +19,7 @@ function MailkSentContent(){
 
     useEffect(
         () =>  {
-            dispatch( callGetMailSentAPI(decodedToken.EmployeeNo) );
+            dispatch( callGetMailSentAPI(employeeNo) );
         }
         ,[]
     );
@@ -43,19 +41,10 @@ function MailkSentContent(){
             </div>
 
             <div>
-<<<<<<< HEAD
                 {mailData.data && mailData.data.map(mail => (
                     <MailSentItem key={mail.mailNo} mail={mail} />
                 ))}
-
                 { console.log(mailData.data)}
-=======
-                {/*{mailData.data && mailData.data.map(mail => (*/}
-                {/*    <MailSentItem key={mail.mailNo} mail={mail} />*/}
-                {/*))}*/}
-
-                {/*{ console.log(mailData.data)}*/}
->>>>>>> parent of 61da93b (중간커밋)
             </div>
         </div>
     )
@@ -66,7 +55,6 @@ function MailSentItem({ mail }) {
     const [bookmark, setBookmark] = useState(mail.status);
 
     const dispatch = useDispatch();
-    const mailData = useSelector(state => state.bookmarkReducer);
 
     const onClickbookmark = () => {
         dispatch( callPutMailAPI(mail) );

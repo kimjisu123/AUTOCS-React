@@ -1,9 +1,14 @@
 import  { GET_MAIL, GET_MAIL_BOOKMARK, GET_MAIL_SENT, DELETE_MAIL, PUT_MAIL, POST_MAIL_SEND, DELETE_SELECT_MAIL}  from '../modules/MailModule'
+import { decodeJwt } from '../../src/util/tokenUtils';
+
+const accessToken = window.localStorage.getItem('accessToken');
+const decodedToken = accessToken ? decodeJwt(accessToken) : null;
+
 
 export const callGetMailAPI = () => {
     const requestURL = 'http://localhost:8080/mail';
 
-     return async (dispatch, getState) => {
+    return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
             method: 'GET',
             headers: {
@@ -58,7 +63,7 @@ export const callDELETEMailAPI = () =>{
             },
         });
         dispatch({ type: DELETE_MAIL, payload: result });
-     }
+    }
 }
 
 export const callSeleteDELETEMailAPI = (paramValue) =>{

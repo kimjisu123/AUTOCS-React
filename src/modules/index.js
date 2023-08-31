@@ -1,8 +1,7 @@
 // index.js
 import { combineReducers } from 'redux';
 import memberReducer from './MemberModule';
-import { bookmarkReducer ,mailReducer } from './MailModule';
-import stockReducer from './StockModule';
+import { bookmarkReducer ,mailReducer, mailSentReducer } from './MailModule';
 import marketReducer from "./MarketModule";
 import productReducer from "./ProductModule";
 import categoryReducer from "./CategoryModule";
@@ -16,8 +15,7 @@ const rootReducer = combineReducers({
     chartReducer,
     mailReducer,
     memberReducer,
-    stockReducer,
-    bookmarkReducer
+    bookmarkReducer,
     productReducer,
     categoryReducer,
     standardReducer,
@@ -25,7 +23,7 @@ const rootReducer = combineReducers({
     todoReducer,
     marketReducer,
     approvalReducer,
-    // mailSentReducer
+    mailSentReducer
 });
 
 export default rootReducer;
