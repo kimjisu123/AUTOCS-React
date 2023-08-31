@@ -10,6 +10,7 @@ import Modal from 'react-modal';
 import TodoApp from "../Todolist/TodoApp";
 import './CoustomModal.css';
 import { useUserContext } from "../Todolist/TodoContext";
+import Swal from 'sweetalert2';
 
 
 const Header = () => {
@@ -113,11 +114,15 @@ const Header = () => {
 
     const onClickLogoutHandler = () => {
         window.localStorage.removeItem('accessToken');
-        dispatch(callLogoutAPI());
 
-        alert('로그인 화면으로 이동합니다.');
+        Swal.fire({
+            icon: 'info',
+            title: 'Loout...',
+            text: '로그인 화면으로 이동합니다.',
+        })
+
+        dispatch(callLogoutAPI());
         navigate("/login", { replace: true });
-        window.location.reload();
     };
 
     const handleTodoClick = () => {

@@ -1,5 +1,6 @@
 import {APPLY_MARKET, GET_MARKETSTATEW} from '../modules/MarketModule';
 import {GO_LOGIN} from "../modules/MemberModule";
+import Swal from 'sweetalert2';
 
 //영업점 신청 폼 전송
 export const callApplyMarketAPI = ({ formData }) => {
@@ -107,10 +108,18 @@ export const callLoginGOAPI = ({ loginInfo, rememberAccount }) => {
                 // 체크박스가 체크되어 있지 않다면 아이디를 로컬 스토리지에서 제거
                 window.localStorage.removeItem('savedId');
             }
-            window.alert('로그인 되었습니다.');
+            Swal.fire({
+                icon: 'success',
+                title: 'Login...',
+                text: '로그인 되었습니다.',
+            })
 
         } else {
-            window.alert('아이디 또는 비밀번호가 올바르지 않습니다.');
+            Swal.fire({
+                icon: 'error',
+                title: 'error...',
+                text: '아이디 또는 비밀번호가 올바르지 않습니다.',
+            })
         }
         dispatch({ type: GO_LOGIN, payload: result });
 
