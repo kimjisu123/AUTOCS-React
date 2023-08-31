@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {
     GET_EMPLOYEE,
     ADD_EMPLOYEE,
@@ -5,6 +6,15 @@ import {
     GO_LOGIN, FIND_ID
 } from '../modules/MemberModule';
 
+=======
+import { GET_EMPLOYEE,
+         ADD_EMPLOYEE,
+         GO_LOGIN
+        } from '../modules/MemberModule';
+    ADD_EMPLOYEE,
+    GO_LOGIN,
+    GET_SELECT_EMPLOYEE} from '../modules/MemberModule';
+>>>>>>> parent of 61da93b (중간커밋)
 import { decodeJwt } from '../util/tokenUtils';
 
 //직원 등록 및 아이디/비번 생성

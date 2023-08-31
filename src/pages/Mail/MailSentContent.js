@@ -43,11 +43,19 @@ function MailkSentContent(){
             </div>
 
             <div>
+<<<<<<< HEAD
                 {mailData.data && mailData.data.map(mail => (
                     <MailSentItem key={mail.mailNo} mail={mail} />
                 ))}
 
                 { console.log(mailData.data)}
+=======
+                {/*{mailData.data && mailData.data.map(mail => (*/}
+                {/*    <MailSentItem key={mail.mailNo} mail={mail} />*/}
+                {/*))}*/}
+
+                {/*{ console.log(mailData.data)}*/}
+>>>>>>> parent of 61da93b (중간커밋)
             </div>
         </div>
     )
