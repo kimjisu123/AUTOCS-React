@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e5e69753-cc39-4812-8b5e-965ae83abd38" name="Changes" comment="화면단 수정중 (투두리스트 모달 수정 및 세부 디자인 수정중 23/8/31" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="jieun" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="744ef3bb-8e72-45f7-ae86-87c6976528d6" />
+        <option name="url" value="https://github.com/Crumble-Strawberry-Scone/AUTOCS-React.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/extensions/AUTOCS-react/src/App.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/apis/TodoAPICalls.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/pages/approvalPage/approval.module.css" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/pages/stock/ProductRegist.js" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2U8pmH9ONDZQRUBvUomMvSewWeO" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "TODO_SCOPE": "All Places",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/jieun/developer/final-project/frontend/AUTOCS-react",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.1.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "oracle"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\jieun\developer\final-project\frontend\AUTOCS-react\src\pages\mainpage" />
+      <recent name="C:\jieun\developer\final-project\frontend\AUTOCS-react\src\pages\main" />
+      <recent name="C:\jieun\developer\final-project\frontend\AUTOCS-react\src\pages\Mypage" />
+      <recent name="C:\jieun\developer\final-project\frontend\AUTOCS-react\public\image" />
+      <recent name="C:\jieun\developer\final-project\frontend\AUTOCS-react\src\components\common" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\jieun\developer\final-project\frontend\AUTOCS-react\src\pages\mainpage" />
+      <recent name="C:\jieun\developer\final-project\frontend\AUTOCS-react\src\pages\Mypage\components" />
+      <recent name="C:\jieun\developer\final-project\frontend\AUTOCS-react\src\pages\mainpage\memo" />
+      <recent name="C:\jieun\developer\final-project\frontend\AUTOCS-react\src\modules" />
+      <recent name="C:\jieun\developer\final-project\frontend\AUTOCS-react\src\pages\Mypage" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="finalreact" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="finalreact" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e5e69753-cc39-4812-8b5e-965ae83abd38" name="Changes" comment="" />
+      <created>1692331221305</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1692331221305</updated>
+      <workItem from="1692331222070" duration="236209000" />
+      <workItem from="1693364952973" duration="19396000" />
+      <workItem from="1693414472967" duration="11050000" />
+    </task>
+    <task id="LOCAL-00001" summary="첫번째 커밋">
+      <created>1692332083730</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1692332083730</updated>
+    </task>
+    <task id="LOCAL-00002" summary="첫번째 커밋">
+      <created>1692350864902</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1692350864902</updated>
+    </task>
+    <task id="LOCAL-00003" summary="마이페이지 수정중">
+      <created>1692419361835</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1692419361835</updated>
+    </task>
+    <task id="LOCAL-00004" summary="TodoList 리액트 작업 중 (스타일링 기초 완)">
+      <created>1692583689965</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1692583689965</updated>
+    </task>
+    <task id="LOCAL-00005" summary="TodoList 리액트 기능 작업(insert기능완)">
+      <created>1692585708171</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1692585708171</updated>
+    </task>
+    <task id="LOCAL-00006" summary="TodoList 리액트 기능 작업(기능구현완 - 세부 스타일링 작업 진행중)">
+      <created>1692586440579</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1692586440579</updated>
+    </task>
+    <task id="LOCAL-00007" summary="TodoList 리액트 기능 작업(기능구현완 - 세부 스타일링 작업 진행중) insert 버튼 디자인수정">
+      <created>1692588243656</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1692588243656</updated>
+    </task>
+    <task id="LOCAL-00008" summary="TodoList 리액트 화면단 작업(기능구현완 - 세부 스타일링 작업 진행중) 스타일 작업 완 -&gt; 팝업창으로 전환 예정">
+      <created>1692601622331</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1692601622331</updated>
+    </task>
+    <task id="LOCAL-00009" summary="TodoList 리액트 화면단 이동작업(마이페이지 수정중 회원/매장/관리)">
+      <created>1692609961110</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1692609961110</updated>
+    </task>
+    <task id="LOCAL-00010" summary="TodoList 리액트 화면단 이동작업(메인 /todo모달창 전역작업진행중)">
+      <created>1692681510433</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1692681510433</updated>
+    </task>
+    <task id="LOCAL-00011" summary="TodoList 리액트 화면단 이동작업(메인 /todo모달창 전역작업진행중)">
+      <created>1692696568884</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1692696568884</updated>
+    </task>
+    <task id="LOCAL-00012" summary="TodoList 리액트 화면단 이동작업(메인 /todo모달창 전역작업완료)">
+      <created>1692758030567</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1692758030567</updated>
+    </task>
+    <task id="LOCAL-00013" summary="main 화면단 작업 진행 중">
+      <created>1692775341707</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1692775341707</updated>
+    </task>
+    <task id="LOCAL-00014" summary="main 화면단 작업 진행 중 23/08/23 커밋">
+      <created>1692782644222</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1692782644222</updated>
+    </task>
+    <task id="LOCAL-00015" summary="main 화면단 작업 진행 중 23/08/24 커밋">
+      <created>1692856426835</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1692856426835</updated>
+    </task>
+    <task id="LOCAL-00016" summary="마이페이지 사진 파일 넣기 url">
+      <created>1692862422894</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1692862422894</updated>
+    </task>
+    <task id="LOCAL-00017" summary="마이페이지 수정중">
+      <created>1692948773763</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1692948773763</updated>
+    </task>
+    <task id="LOCAL-00018" summary="메인페이지 수정 작업 중 23/8/25">
+      <created>1692955200891</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1692955200891</updated>
+    </task>
+    <task id="LOCAL-00019" summary="메인페이지 수정 작업 중 23/8/27">
+      <created>1693125776677</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1693125776677</updated>
+    </task>
+    <task id="LOCAL-00020" summary="비밀번호 찾기 유효성검사 진행중 23/8/28">
+      <created>1693193282017</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1693193282017</updated>
+    </task>
+    <task id="LOCAL-00021" summary="메인페이지 화면단 수정중 23/8/29">
+      <created>1693290828213</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1693290828213</updated>
+    </task>
+    <task id="LOCAL-00022" summary="메인페이지 화면단 수정중  23/8/29">
+      <created>1693325453709</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1693325453709</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Todo모달창 적용되도록수정해야함 23/8/30">
+      <created>1693358479072</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1693358479072</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Todo모달창 적용되도록수정해야함 23/8/30">
+      <created>1693358825354</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1693358825354</updated>
+    </task>
+    <task id="LOCAL-00025" summary="머지중 23/8/30">
+      <created>1693359577639</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1693359577639</updated>
+    </task>
+    <task id="LOCAL-00026" summary="화면단 병합 23/8/30">
+      <created>1693364676842</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1693364676842</updated>
+    </task>
+    <task id="LOCAL-00027" summary="화면단 수정중 (투두리스트 모달 수정 및 세부 디자인 수정중 23/8/31">
+      <created>1693453500864</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1693453500864</updated>
+    </task>
+    <task id="LOCAL-00028" summary="화면단 수정중 (투두리스트 모달 수정 및 세부 디자인 수정중 23/8/31">
+      <created>1693454837190</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1693454837190</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="jieun" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="첫번째 커밋" />
+    <MESSAGE value="TodoList 리액트 작업 중 (스타일링 기초 완)" />
+    <MESSAGE value="TodoList 리액트 기능 작업(insert기능완)" />
+    <MESSAGE value="TodoList 리액트 기능 작업(기능구현완 - 세부 스타일링 작업 진행중)" />
+    <MESSAGE value="TodoList 리액트 기능 작업(기능구현완 - 세부 스타일링 작업 진행중) insert 버튼 디자인수정" />
+    <MESSAGE value="TodoList 리액트 화면단 작업(기능구현완 - 세부 스타일링 작업 진행중) 스타일 작업 완 -&gt; 팝업창으로 전환 예정" />
+    <MESSAGE value="TodoList 리액트 화면단 이동작업(마이페이지 수정중 회원/매장/관리)" />
+    <MESSAGE value="TodoList 리액트 화면단 이동작업(메인 /todo모달창 전역작업진행중)" />
+    <MESSAGE value="TodoList 리액트 화면단 이동작업(메인 /todo모달창 전역작업완료)" />
+    <MESSAGE value="main 화면단 작업 진행 중" />
+    <MESSAGE value="main 화면단 작업 진행 중 23/08/23 커밋" />
+    <MESSAGE value="main 화면단 작업 진행 중 23/08/24 커밋" />
+    <MESSAGE value="마이페이지 사진 파일 넣기 url" />
+    <MESSAGE value="마이페이지 수정중" />
+    <MESSAGE value="메인페이지 수정 작업 중 23/8/25" />
+    <MESSAGE value="메인페이지 수정 작업 중 23/8/27" />
+    <MESSAGE value="비밀번호 찾기 유효성검사 진행중 23/8/28" />
+    <MESSAGE value="메인페이지 화면단 수정중 23/8/29" />
+    <MESSAGE value="메인페이지 화면단 수정중  23/8/29" />
+    <MESSAGE value="Todo모달창 적용되도록수정해야함 23/8/30" />
+    <MESSAGE value="머지중 23/8/30" />
+    <MESSAGE value="화면단 병합 23/8/30" />
+    <MESSAGE value="화면단 수정중 (투두리스트 모달 수정 및 세부 디자인 수정중 23/8/31" />
+    <option name="LAST_COMMIT_MESSAGE" value="화면단 수정중 (투두리스트 모달 수정 및 세부 디자인 수정중 23/8/31" />
+  </component>
+</project>
