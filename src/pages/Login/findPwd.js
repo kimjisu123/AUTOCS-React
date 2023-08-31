@@ -30,6 +30,8 @@ const FindPwd = () => {
                     <input className="lo" type="text" id="email" name="email" required />
 
                     <Link to="/login/fPOk" type="button" className="find">비밀번호 찾기</Link>
+
+                    <h6 style={{color: "red"}}>마이페이지에 입력하신 이메일을 입력해주세요.</h6>
                 </main>
             </div>
         </div>

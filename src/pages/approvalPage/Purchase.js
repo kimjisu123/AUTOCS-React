@@ -1,12 +1,15 @@
 import PurchaseContent from './PurchaseContent';
 import ApprovalMenubar from './ApprovalMenubar';
+import {PurchaseProvider} from './appContext/PurchaseContext'
 
 function Purchase() {
 
     return (
         <div style={{display:"flex"}}>
             <ApprovalMenubar/>
-            <PurchaseContent/>
+            <PurchaseProvider>
+                <PurchaseContent/>
+            </PurchaseProvider>
         </div>
     )
 }
