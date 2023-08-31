@@ -2,24 +2,27 @@ import styles from './Mail.module.css';
 import { useState, useEffect } from 'react'
 import { callGetMailAPI, callDELETEMailAPI, callPutMailAPI, callGetMailBookmarkAPI, callGetMailSentAPI } from '../../apis/MailAPICalls';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { decodeJwt } from '../../util/tokenUtils';
 
 function MailkSentContent(){
 
     const dispatch = useDispatch();
     const mailData = useSelector(state => state.mailSentReducer);
 
-    const { employeeNo } = useParams();
+    const accessToken = window.localStorage.getItem('accessToken');
+    const decodedToken = accessToken ? decodeJwt(accessToken) : null;
+
 
     const onClickMailDelete = async () =>{
         dispatch( callDELETEMailAPI() );
-        window.location.reload();
+        // window.location.reload();
         alert('성공적으로 삭제가 되었습니다!')
+        console.log(decodedToken.EmployeeNo);
     }
 
     useEffect(
         () =>  {
-            dispatch( callGetMailSentAPI(employeeNo) );
+            dispatch( callGetMailSentAPI({employeeNo: decodedToken.EmployeeNo}) );
         }
         ,[]
     );
@@ -40,12 +43,12 @@ function MailkSentContent(){
                 </form>
             </div>
 
-            <div>
-                {mailData.data && mailData.data.map(mail => (
-                    <MailSentItem key={mail.mailNo} mail={mail} />
-                ))}
-                { console.log(mailData.data)}
-            </div>
+            {/*<div>*/}
+            {/*    {mailData.data && mailData.data.map(mail => (*/}
+            {/*        <MailSentItem key={mail.mailNo} mail={mail} />*/}
+            {/*    ))}*/}
+            {/*    { console.log(mailData.data)}*/}
+            {/*</div>*/}
         </div>
     )
 }

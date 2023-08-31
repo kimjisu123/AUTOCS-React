@@ -49,11 +49,7 @@ function MailContent(){
                 </form>
             </div>
             <div>
-                { result ?
-                    result.map(mail=>(
-                        <MailItem key={mail.mailNo} mail={mail} />
-                    ))
-                    : mailData.data && mailData.data.map(mail => (
+                {  mailData.data && mailData.data.map(mail => (
                     <MailItem key={mail.mailNo} mail={mail} />
                 ))
                 }

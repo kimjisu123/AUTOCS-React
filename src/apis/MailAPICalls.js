@@ -35,7 +35,7 @@ export const callGetMailBookmarkAPI = () => {
     }
 };
 
-export const callGetMailSentAPI = (employeeNo) => {
+export const callGetMailSentAPI = ({employeeNo}) => {
     const requestURL = `http://localhost:8080/mailSent/${employeeNo}`;
 
     return async (dispatch, getState) => {
