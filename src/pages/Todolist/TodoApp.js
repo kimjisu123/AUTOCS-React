@@ -4,7 +4,13 @@ import TodoList from "./TodoList";
 import {useCallback, useRef, useState, useContext, useEffect} from "react";
 import React from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import {callDeleteTodoAPI, callGetTodoAPI, callInsertTodoAPI, callUpdateToggleAPI} from "../../apis/TodoAPICalls";
+import {
+    callDeleteTodoAPI,
+    callGetTodoAPI,
+    callInsertTodoAPI,
+    callUpdateTodoAPI,
+    callUpdateToggleAPI
+} from "../../apis/TodoAPICalls";
 import {decodeJwt} from "../../util/tokenUtils";
 
 
@@ -78,7 +84,7 @@ const TodoApp = ( ) => {
 
     // 할일 체크 함수
     const onToggle = useCallback(
-        (todo) => {
+        todo => {
             const todoData = {
 
                 todoStatus: todo.todoStatus,
@@ -99,20 +105,29 @@ const TodoApp = ( ) => {
 
     // 더블클릭시 내용 수정 함수
     const onUpdate = useCallback(
-        id => {
-
-
-            const todoToEdit = todos.find(todo => todo.id === id);
-            const editedText = prompt('수정할 내용을 입력하세요', todoToEdit.text);
-
+        todo => {
+            setTodos({
+                ...todo,
+                content: todo.content
+            })
+           ;
+            const editedText = prompt('수정할 내용을 입력하세요', todo.content);
+            const currentDate = new Date();
             if (editedText !== null) {
-                const modifiedTodos = todos.map(todo =>
-                    todo.id === id ? { ...todo, text: editedText || todo.text } : todo
-                );
-                setTodos(modifiedTodos);
+                const todoData = {
+                    content: editedText,
+                    memberNo: decodedToken.MemberNo,
+                    todoNo:todo.todoNo,
+                    upDate: currentDate
+
+                };
+                console.log(" onUpdate todoNo {}" , todo.todoNo);
+                console.log(" onUpdate todoData {}" , todoData);
+                console.log(" onUpdate todos.content {}" , editedText);
+                dispatch(callUpdateTodoAPI(todoData));
             }
-        },
-        [todos]
+
+        },[dispatch, callUpdateTodoAPI, decodedToken.MemberNo],
     );
 
 

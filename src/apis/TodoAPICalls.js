@@ -118,3 +118,34 @@ export const callUpdateToggleAPI = (todoData) => {
         }
     }
 }
+
+//투두 내용 수정
+
+export const callUpdateTodoAPI = (todoData) => {
+
+    console.info("callUpdateTodoAPI 초기값3 {}",todoData);
+    const requestURL = 'http://localhost:8080/todo/updateTodo';
+    console.info(" callUpdateTodoAPI 초기값4 {}",todoData);
+
+    return async (dispatch) => {
+        try {
+            const result = await fetch(requestURL, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(todoData) // content를 JSON 형식으로 변환하여 전송
+            })
+            console.info(" callUpdateTodoAPI 초기값5 {}",todoData)
+            if(result.ok) {
+                console.log(' callUpdateTodoAPI result >>>>>> {} ', result);
+                dispatch({type: PUT_TODO_STATUS, payload:result});
+            } else {
+                console.error('Error adding Todo:', result.status);
+            }
+        } catch (error) {
+            console.error('Error adding Todo:', error);
+        }
+    }
+}

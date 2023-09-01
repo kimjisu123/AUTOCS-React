@@ -15,7 +15,7 @@ const TodoListItem = ({ todo, onRemove, onToggle,onUpdate }) => {
         // {[styles.checked]: checked, [styles.someOtherClass]: todoStatus === 'N'}
 
         <div className={styles.TodoListItem}>
-            <div className={cn(styles.checkbox , {[styles.checked]: todoStatus === 'Y'})} onClick={() => onToggle(todo)} onDoubleClick={() => onUpdate(todo.todoNo)}>
+            <div className={cn(styles.checkbox , {[styles.checked]: todoStatus === 'Y'})} onClick={() => onToggle(todo)} onDoubleClick={() => onUpdate(todo)}>
                 { todoStatus === 'N'? <MdOutlineToggleOn /> : <MdOutlineToggleOff />}
                 <div className={styles.text}>{ content }</div>
             </div>

@@ -10,6 +10,7 @@ export const POST_TODO = 'todo/POST_TODO';
 export const GET_TODO_MEMBER = 'todo/GET_TODO_MEMBER';
 export const DELETE_TODO = 'todo/DELETE_TODO';
 export const PUT_TODO_STATUS = 'todo/PUT_TODO_STATUS';
+export const PUT_TODO_CONTENT = 'todo/PUT_TODO_CONTENT';
 
 
 const actions = createActions({
@@ -18,6 +19,7 @@ const actions = createActions({
     [GET_TODO_MEMBER]: () => {},
     [DELETE_TODO]: () => {},
     [PUT_TODO_STATUS]: () => {},
+    [PUT_TODO_CONTENT]: () => {},
 });
 
 //리듀서
@@ -35,6 +37,9 @@ const todoReducer = handleActions({
             return payload;
         },
         [PUT_TODO_STATUS]: (state,{payload}) => {
+            return payload;
+        },
+        [PUT_TODO_CONTENT]: (state,{payload}) => {
             return payload;
         },
     },
