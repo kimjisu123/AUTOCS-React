@@ -42,6 +42,8 @@ import StoreLogin from "./pages/Login/storeLogin";
 import Menu from "./pages/applyForm/Menu";
 import ApplyStateO from "./pages/applyForm/applyStateO";
 import GuideStoreId from "./pages/Login/guideStoreId";
+import OutE from "./pages/outForm/outE";
+import OutOKM from "./pages/outForm/outOKM";
 
 //지수
 import Management from "./pages/management/Management"
@@ -155,6 +157,10 @@ function App() {
                         <Route path='menu' element={<Menu/>}>
                         <Route path='registration' element={<Registration/>}/>
                         <Route path='registOk' element={<RegistOk/>}/>
+                        //계정 비활성화 내역 확인
+                        <Route path='outE' element={<OutE/>}/>
+                        //계정 비활성화 완료 직원들
+                        <Route path='outEOK' element={<OutOKM/>}/>
                         //영업점 신청 내역 확인
                         <Route path='applyFormW' element={<ApplyStateW/>}/>
                         <Route path='applyFormO' element={<ApplyStateO/>}/>
