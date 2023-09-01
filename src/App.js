@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-// import Layout from "./pages/layouts/layout";
+//import Layout from "./pages/layouts/lyout";
 import React from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
@@ -27,7 +27,6 @@ import OrgChart from './pages/Chart/OrgChart'
 import Login from "./pages/Login/Login";
 import FindId from "./pages/Login/findId";
 import FindPwd from "./pages/Login/findPwd";
-import FindIdOk from "./pages/Login/findIdOk";
 import Registration from "./pages/createMember/registration";
 import RegistOk from "./pages/createMember/registOk";
 import ApplyOk from "./pages/applyForm/applyOk";
@@ -190,7 +189,6 @@ function App() {
                     <Route path='/login' element={<Login/>}/>
                     <Route path='/Slogin' element={<StoreLogin/>}/>
                     <Route path='/login/findId' element={<FindId/>}/>
-                    <Route path='/login/fIOk' element={<FindIdOk/>}/>
                     <Route path='/login/fIOk/guideId' element={<GuideId/>}/>
                     <Route path='/login/fIOk/guideSId' element={<GuideStoreId/>}/>
                     <Route path='/login/findPwd' element={<FindPwd/>}/>

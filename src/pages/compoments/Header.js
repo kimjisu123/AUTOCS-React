@@ -10,6 +10,7 @@ import Modal from 'react-modal';
 import TodoApp from "../Todolist/TodoApp";
 import './CoustomModal.css';
 import { useUserContext } from "../Todolist/TodoContext";
+import Swal from 'sweetalert2';
 
 const Header = () => {
     const navigate = useNavigate();
@@ -67,6 +68,32 @@ const Header = () => {
 
     const menuItems = getMenuItems(role, department);
 
+    //시간 지나면 로그인 만료(토큰 비우기)
+    const handleTokenExpiration = () => {
+        const accessToken = window.localStorage.getItem('accessToken');
+        if (accessToken) {
+            const decodedToken = decodeJwt(accessToken);
+            if (decodedToken.exp * 1000 < Date.now()) {
+                // 토큰이 만료되었으면 로그아웃 처리
+                window.localStorage.removeItem('accessToken');
+                dispatch(callLogoutAPI());
+                alert('세션이 만료되어 로그아웃됩니다.');
+                navigate('/login', { replace: true });
+                window.location.reload();
+            }
+        }
+    };
+
+    useEffect(() => {
+        // 매 분마다 토큰 만료 체크
+        const interval = setInterval(() => {
+            handleTokenExpiration();
+        }, 60000); // 1분마다 체크
+
+        return () => clearInterval(interval);
+    }, []);
+
+
 
     // TodoList 모달 값
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -86,11 +113,15 @@ const Header = () => {
 
     const onClickLogoutHandler = () => {
         window.localStorage.removeItem('accessToken');
-        dispatch(callLogoutAPI());
 
-        alert('로그인 화면으로 이동합니다.');
+        Swal.fire({
+            icon: 'info',
+            title: 'Loout...',
+            text: '로그인 화면으로 이동합니다.',
+        })
+
+        dispatch(callLogoutAPI());
         navigate("/login", { replace: true });
-        window.location.reload();
     };
 
     const handleTodoClick = () => {
