@@ -9,9 +9,10 @@ const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
 
 root.render(
-    <React.StrictMode>
+    // 엄격모드 해제 - 미지
+    // <React.StrictMode>
         <Provider store={store}>
             <App />
         </Provider>
-    </React.StrictMode>
+    // </React.StrictMode>
 );
