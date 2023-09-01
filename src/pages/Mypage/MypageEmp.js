@@ -8,7 +8,6 @@ import Modal from "react-modal";
 import UpdatePwApp from "./UpdatePwApp";
 import {useDispatch, useSelector} from "react-redux";
 import {callGetEmployeeAPI} from "../../apis/MemberAPICalls";
-import {useNavigate} from "react-router-dom";
 import {decodeJwt} from "../../util/tokenUtils";
 
 
@@ -39,8 +38,8 @@ function MypageEmp() {
         // 컴포넌트가 마운트되었을 때 사원 목록을 가져오도록 API 호출
         // callGetEmployeeAPI(dispatch);
         console.log("callGetEmployeeAPI : " + callGetEmployeeAPI())
-
         dispatch(callGetEmployeeAPI());
+
     }, []);
     ///////////////////////////////////////////////////
 
@@ -61,13 +60,13 @@ function MypageEmp() {
     };
 
 
-    console.log(decodedToken);
+
 
 
 
         return (
             <>
-            {/*{ employeeList.map((employee) => (*/}
+            { employeeList && employeeList.map((employee) => (
                 <div className={mainContainer}>
                     <div className={rightContainer}>
                         <div className={content}>
@@ -100,7 +99,7 @@ function MypageEmp() {
                                         <br/>
                                         <h3>입사일</h3>
                                         <br/>
-                                        <h1>{decodedToken.JoinDate}</h1>
+                                        <h1>{employee.employeeJoin.split('T')[0].replace(/-/g, '/')}</h1>
                                     </div>
                                 </div>
                                 <div className={infoInput}>
@@ -234,7 +233,7 @@ function MypageEmp() {
                         </div>
                     </div>
                 </div>
-            {/*)) }*/}
+            )) }
                 {/*비밀번호 변경 모달창 띄우기 */}
                 {modalIsOpen && (
                     <Modal

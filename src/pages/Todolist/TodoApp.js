@@ -4,70 +4,91 @@ import TodoList from "./TodoList";
 import {useCallback, useRef, useState, useContext, useEffect} from "react";
 import React from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import {callGetTodoAPI} from "../../apis/TodoAPICalls";
+import {callDeleteTodoAPI, callGetTodoAPI, callInsertTodoAPI, callUpdateToggleAPI} from "../../apis/TodoAPICalls";
+import {decodeJwt} from "../../util/tokenUtils";
 
 
 
-const TodoApp = ({ todoModal , setTodoModal } ) => {
+const TodoApp = ( ) => {
 
-
+    const accessToken = window.localStorage.getItem('accessToken');
+    const decodedToken = accessToken ? decodeJwt(accessToken) : null;
     const dispatch = useDispatch();
-    const todoData = useSelector(state => state.todoReducer);
-
-    const [todos, setTodos ] = useState([
-    // 초기값.
-    //     {
-    //         memberNo:1,
-    //         text:'내일 까지 보고 하기 ',
-    //         checked: true,
-    //     },
-    //     {
-    //         id:2,
-    //         text:'8월 30일 까지 제안서 제출',
-    //         checked: true,
-    //     },
-    //     {
-    //         id:3,
-    //         text:'영업부에 내용전달',
-    //         checked: false,
-    //     },
-    ]);
-
-
-
+    const [todos, setTodos ] = useState({
+        todoNo:'',
+    });
+    const [ value , setValue ] = useState('');
+    // console.log("decodedToken.MemberNo1 {}",decodedToken.MemberNo);
 
     // 고유 아이디 붙여주기
-    const nextId = useRef(4);
+    // const nextId = useRef(4);
 
     // 입력 값 전달.
-    const onInsert = useCallback(   // 값을 보낼때는 useCallback을 사용하여 성능 향상
-        text => {
-            const todo = {
-                id:nextId.current,
-                text,
-                checked: false,
+    const onInsert = useCallback(
+        async value => {
+
+            const todoData = {
+                todoNo: null,
+                content: value,
+                todoStatus: "N",
+                // regDate: formattedDate,
+                // upDate: null,
+                memberNo: decodedToken.MemberNo,
+                url: null
             };
-            setTodos(todos => todos.concat(todo)); // 객체 추가
-            nextId.current += 1; // id에 1씩 더하기
-        }
+
+            try {
+
+                console.info("초기값2 {}",todoData);
+                // Todo 추가 API 호출
+                dispatch(callInsertTodoAPI(todoData));
+
+                // Todo 추가 성공 시 추가 작업 수행
+
+                // 값 초기화
+                setValue('');
+            } catch (error) {
+                // Todo 추가 실패 시 처리
+                console.error('Error adding Todo:', error);
+            }
+
+            window.location.reload();
+        },[value]
 
     );
 
     //  할일 지우기 함수 filter 사용
     const onRemove = useCallback(
-        id => {
-            setTodos(todos => todos.filter(todo => todo.id !== id));
-        },[],
+        memberTodoList => {
+            console.log("투두 삭제 시작~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+            console.log("id {}" , memberTodoList);
+            // setTodos(todos => todos.filter(todo => todo.id !== id));
+            dispatch(callDeleteTodoAPI(memberTodoList)); // 할일 삭제 API 호출
+            window.location.reload();
+        },[dispatch],
+
+
     );
 
     // 할일 체크 함수
     const onToggle = useCallback(
-        id => {
-            setTodos(todos=>
-                todos.map(todo =>
-                todo.id === id? { ...todo, checked: !todo.checked} : todo,
-                ),
-            );
+        (todo) => {
+            const todoData = {
+
+                todoStatus: todo.todoStatus,
+                memberNo: decodedToken.MemberNo,
+                todoNo:todo.todoNo,
+                checked:todo.checked
+
+
+            };
+            console.log("todoNo {}" , todo.todoNo);
+            console.log("todoData {}" , todoData);
+            console.log("todo.memberNo {}" , todo.memberNo);
+
+            dispatch(callUpdateToggleAPI(todoData));
+
+            window.location.reload();
         },[],
     );
 
@@ -92,12 +113,12 @@ const TodoApp = ({ todoModal , setTodoModal } ) => {
     return(
         <div className="popup" style={{opacity:"1", transform:"scaleX(1)"}}>
             {/*{ todoData.data && todoData.data.map( todo => (*/}
-            <React.StrictMode>
+            {/*<React.StrictMode>*/}
             <TodoTemplate todos={todos} key={todos.id}>
                 <TodoInsert onInsert={onInsert}/>
                 <TodoList todos={todos} onRemove={ onRemove } onToggle={onToggle} onUpdate={onUpdate}/>
             </TodoTemplate>
-            </React.StrictMode>
+            {/*</React.StrictMode>*/}
             {/*))}*/}
 
         </div>

@@ -1,48 +1,66 @@
 import { MdAdd } from 'react-icons/md';
 import styles from './TodoInsert.module.css';
 import {useCallback, useEffect, useState} from "react";
-import {callGetEmployeeAPI} from "../../apis/MemberAPICalls";
 import { useDispatch, useSelector } from 'react-redux';
-import {callInsertTodoAPI} from "../../apis/TodoAPICalls";
+import {callGetMemberTodoAPI, callInsertTodoAPI} from "../../apis/TodoAPICalls";
+import {decodeJwt} from "../../util/tokenUtils";
+
+
+
 
 const TodoInsert = ({onInsert}) => {
+
+    const accessToken = window.localStorage.getItem('accessToken');
+    const decodedToken = accessToken ? decodeJwt(accessToken) : null;
     const [ value , setValue ] = useState('');
     const dispatch = useDispatch();
-    const memberData = useSelector(state => state.memberReducer);
+    const memberTodoList = useSelector(state => state.todoReducer);
 
     // 멤버정보 가지고 오기
-    // useEffect(  ()=>{
-    //     dispatch(callInsertTodoAPI());
-    // }, []);
+    useEffect(() => {
 
+
+        // const todoData = {
+        //     todoNo: null,
+        //     content: value,
+        //     todoStatus: "N",
+        //     regDate: new Date().getTime().toLocaleString(),
+        //     upDate: null,
+        //     memberNo: decodedToken.MemberNo,
+        //     url: null
+        // };
+        console.log("decodedToken.MemberNo1 {}",decodedToken.MemberNo);
+        // if (decodedToken) {
+        //     dispatch(callGetMemberTodoAPI(decodedToken.MemberNo));
+        //
+        // }
+    }, []);
 
 
     // input 입력 이벤트
-    const onChnage= useCallback(e => {
+    const onChange= useCallback(e => {
+
         setValue(e.target.value);
+        console.info(e.target.value);
     },[]);  // use콜백 및 사용해서 쓸데없이 함수를 반복해서 불러오지 않기 성능 최적화를 위해
 
 
     // 버튼 클릭 이벤트 ( onSubmit으로 한 이유는 클릭과 enter둘다 사용가능하도록 하기위해 씀. onKeyPress이벤트를 따로 작성하지 않아도 됨.
     const onSubmit = useCallback(
-        e=> {
-            callInsertTodoAPI(value)
-                .then(response => {
-                    // Todo 추가 성공 시 추가 작업 수행
-                    console.log('Todo added:', response);
-                    const todoData = new FormData();
-                    todoData.append(value);
-                })
-                .catch(error => {
-                    // Todo 추가 실패 시 처리
-                    console.error('Error adding Todo:', error);
-                });
-            setValue(''); // 값 초기화
-
-        //submit이벤트는 브라우저 새로고침을 발생시킨다 이를 방지하기 위해 아래 함수를 호출시킨다.
+        async e=> {
+            try {
+                console.table("초기값211111 {}",value);
+                // Todo 추가 API 호출
+                onInsert(value);
+                // 값 초기화
+                setValue('');
+            } catch (error) {
+                // Todo 추가 실패 시 처리
+                console.error('Error adding Todo:', error);
+            }
             e.preventDefault();
-
-        },[value],
+        },
+        [onInsert, value]
     );
 
 
@@ -55,7 +73,7 @@ const TodoInsert = ({onInsert}) => {
                 className={styles.todoinput}
                 placeholder='할일을 입력하세요'
                 value={ value }
-                onChange={onChnage}
+                onChange={onChange}
             />
 
             <button type='submit'>

@@ -35,7 +35,7 @@ const Header = () => {
             { to: "/main", label: "홈" },
             { to: "/dashboard", label: "게시판" },
             { to: "calendar", label: "캘린더" },
-            { to: "todo", label: "+Todo" }
+            // { to: "todo", label: "+Todo" }
         ];
 
         if (role === "EMPLOYEE") {
