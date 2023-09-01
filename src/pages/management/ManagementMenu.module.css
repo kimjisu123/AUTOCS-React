@@ -1,15 +1,13 @@
-.newApp {
-    width: 200px;
-    height: 50px;
-}
-
 .modal{
     display: none;
 }
-
+.app {
+    width: 200px;
+    height: 50px;
+}
 .contentHeader{
     text-align: left;
-    margin: 50px 0px 0px 40px;
+    margin: 50px 0px 0px 70px;
     font-size: 30px;
     font-weight: bolder;
 }
@@ -48,7 +46,6 @@
     width : 65px;
     line-height: 36px;
 }
-
 .statusContainer{
     border: 1.5px solid rgb(187, 187, 187, 0.3);
     height: 70px;
@@ -72,98 +69,90 @@
 
 .weekStatus{
     display: flex;
+    justify-content: flex-start;
+    margin-top: 15px;
     padding-bottom: 5px;
     text-align: left;
     font-size: 18px;
     font-weight: bolder;
-
+    border-bottom: 1.5px solid rgb(187, 187, 187, 0.3);
 }
 .infoHeader{
     display: flex;
     border-bottom: 1.5px solid rgb(187, 187, 187, 0.3);
     padding-bottom: 5px;
+    text-align: center;
 }
 
 .statusInfoBox1{
     margin-left: 25px;
-    width: 220px;
+    width: 120px;
     height: 100%;
-    text-align: center;
 }
 .statusInfoBox2{
-    width: 220px;
+    width: 240px;
     height: 100%;
-    text-align: center;
 }
 .statusInfoBox3{
-    width: 220px;
+    width: 240px;
     height: 100%;
-    text-align: center;
 }
 .statusInfoBox4{
-    width: 220px;
+    width: 240px;
     height: 100%;
-    text-align: center;
 }
 .statusInfoBox5{
-    width: 220px;
+    width: 500px;
     height: 100%;
-    text-align: center;
-}
-.statusInfoBox6{
-    width: 220px;
-    height: 100%;
-    text-align: center;
-}
-.statusInfoBox7{
-    width: 220px;
-    height: 100%;
-    text-align: center;
 }
 
 .infoContent{
     display: flex;
     margin-top: 13px;
-}
-
-.type{
-
-    border: 1px solid rgb(187, 187, 187);
-    font-size: 14px;
-    line-height: 24px;
-    width: 50px;
     text-align: center;
-    border-radius: 2px;
-    margin-right: 7px;
-    margin-bottom: 13px;
+    margin-bottom: 20px;
 }
-.inputText{
-    width: 200px;
-    height: 28px;
-    box-sizing: border-box;
-    border: 1px solid rgb(187, 187, 187);
-    border-radius: 2px;
+.weeks{
+    margin-left: 60px;
+    margin-right: auto;
+    margin-bottom: 5px;
 }
-.inputButton{
-    border: 0px;
-    margin-left: 2px;
-    border-radius: 2px;
-    box-sizing: border-box;
-    width: 50px;
-    height: 28px;
+.statusTime{
+    text-align: center;
+}
+.workStatus, .departmentContainer, .headOffice{
+    padding-left: 60px;
+    margin-bottom: 7px;
     cursor: pointer;
+    width: 200px;
 }
 
-.statusValue{
-    text-align: center;
+.department{
+    padding-left: 70px;
+    margin-bottom: 7px;
+    cursor: pointer;
+    width: 200px;
+}
+.workStatus {
+    margin-top: 10px;
+}
+.totalTime{
+    display: flex;
+    margin-right: 40px;
+}
+
+.menubar {
+    width: 245px;
+    height: 960px;
+    border-right: 1px solid rgba(212, 212, 212, 0.5);
 }
 .content {
-    width:auto;
+    width: 83.7%;
+    min-height: 1000px;
 }
-.selectBox{
-    margin-left: auto;
-    width: 40px;
-    height: 30px;
-    padding:0px;
-    margin-right:40px;
+.documentForm{
+    margin-top: 10px;
+    margin-left: 40px;
+    font-weight: 600;
+    margin-bottom: 10px;
 }

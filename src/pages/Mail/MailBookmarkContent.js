@@ -7,6 +7,9 @@ import { decodeJwt } from '../../util/tokenUtils';
 
 function MailBookmarkContent(){
 
+    const [search, setSearch] = useState('');
+    const [result, setResult] = useState(null);
+
     const dispatch = useDispatch();
     const mailData = useSelector(state => state.bookmarkReducer);
 
@@ -14,6 +17,15 @@ function MailBookmarkContent(){
         dispatch( callDELETEMailAPI() );
         window.location.reload();
         alert('성공적으로 삭제가 되었습니다!')
+    }
+
+    const onClickSearch = async () =>{
+        const filterResult =  mailData.data.filter(item => {
+
+                return item.title.toLowerCase().includes(search.toLowerCase())
+            }
+        );
+        setResult(filterResult);
     }
 
     useEffect(
@@ -34,17 +46,16 @@ function MailBookmarkContent(){
                 </div>
                 <form style={{display: "flex", justifyContent:"flex-start"}}>
                     <div className={styles.type}> 제목</div>
-                    <input type="text" className={styles.inputText}/>
-                    <input type="submit" value="검색" className={styles.inputButton}/>
+                    <input value={search} onChange={ (e) => {setSearch(e.target.value)} }  type="text" className={styles.inputText}/>
+                    <input onClick={ () => onClickSearch() } type="submit" value="검색" className={styles.inputButton}/>
                 </form>
             </div>
-
             <div>
-                {mailData.data && mailData.data.map(mail => (
-                    <BookmarkItem key={mail.mailNo} mail={mail} />
-                ))}
-
-                { console.log(mailData.data)}
+                {
+                    mailData.data && mailData.data.map(mail => (
+                        <BookmarkItem key={mail.mailNo} mail={mail} />
+                    ))
+                }
             </div>
         </div>
     )

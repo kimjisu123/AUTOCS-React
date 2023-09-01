@@ -82,10 +82,11 @@
     border-bottom: 1.5px solid rgb(187, 187, 187, 0.3);
     padding-bottom: 5px;
     text-align: center;
+    margin-top:60px
 }
 
 .statusInfoBox1{
-    margin-left: 25px;
+    margin-left: 110px;
     width: 120px;
     height: 100%;
 }
@@ -140,6 +141,5 @@
 }
 .content {
     width: 83.7%;
-    border-left: 1px solid rgb(203, 203, 203);
     min-height: 1000px;
 }

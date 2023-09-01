@@ -50,6 +50,7 @@ import HeadOffice from "./pages/management/HeadOffice"
 import Mail from "./pages/Mail/Mail"
 import MailBookmark from "./pages/Mail/MailBookmark"
 import MailSent from "./pages/Mail/MailSent"
+import Calendar from "./pages/Calendar/Calendar"
 //미지
 //재고관리
 import Stock from './pages/stock/Stock'
@@ -122,6 +123,9 @@ function App() {
                         <Route path='/mail/:value' element={<Mail />} />
                         <Route path='/mailSent/:value' element={<MailSent />} />
                         <Route path='/mailBookmark' element={<MailBookmark />} />
+                        <Route path='/calendar' element={<Calendar />} />
+
+
 
 
 

@@ -36,7 +36,6 @@ function MailContent(){
         setResult(filterResult);
     }
 
-    console.log('result', result)
     return(
         <div className={styles.content}>
             <div className={styles.mainHeader}>

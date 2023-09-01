@@ -46,7 +46,6 @@ function MailkSentContent(){
                 {mailData.data && mailData.data.map(mail => (
                     <MailSentItem key={mail.mailNo} mail={mail} />
                 ))}
-                { console.log(mailData.data)}
             </div>
         </div>
     )
