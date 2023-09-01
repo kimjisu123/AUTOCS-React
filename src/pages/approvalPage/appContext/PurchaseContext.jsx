@@ -11,7 +11,8 @@ export const PurchaseProvider = ({children}) => {
         allowList: [],
         docTitle: '',
         documentContent: [],
-        files: []
+        files: [],
+        receiveList: [],
     });
 
     return (

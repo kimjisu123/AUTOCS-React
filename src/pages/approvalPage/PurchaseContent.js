@@ -2,10 +2,12 @@ import styles from './approval.module.css';
 import { useState, useEffect,useRef } from 'react';
 import NewApproval from './NewApproval';
 import Swal from 'sweetalert2';
-import Modal from './Modal'
 import { useSelector, useDispatch } from 'react-redux';
+import Modal from './Modal'
+import Modal1 from './Modal1'
 import {
-    callGetAppLineAPI
+    callGetAppLineAPI,
+    callPostPurchaseAPI
 } from '../../apis/ApprovalAPICalls';
 import { FileUpload } from 'primereact/fileupload';
 import './input.css'
@@ -13,9 +15,9 @@ import { usePurchaseContext } from './appContext/PurchaseContext';
 import { decodeJwt } from '../../util/tokenUtils';
 import AppLine from './AppLine';
 import AddRow from './AddRow';
-
-
-
+import { NoArg } from "./functionList/FuntionList";
+import {useNavigate} from "react-router-dom";
+import ReceiveLine from './ReceiveLine'
 
 function PurchaseContent() {
 
@@ -24,6 +26,7 @@ function PurchaseContent() {
     const decodedToken = accessToken ? decodeJwt(accessToken) : null;
     const myRef = useRef(null)
     const [total, setTotal] = useState(0);
+    const navigate = useNavigate();
 
     // 열 추가
     const onClickAddRow = () => {
@@ -71,10 +74,33 @@ function PurchaseContent() {
         e.preventDefault();
         const formdata = new FormData(e.target);
 
-        formdata.append("files", myRef.current.getFiles())
+        for(let i = 0; i < myRef.current.getFiles().length; i++) {
+            formdata.append("files", myRef.current.getFiles()[i]);
+        }
 
-        for(let pair of formdata)
-            console.log(pair[0], pair[1])
+        for(let i = 0; i < data.allowList.length; i++) {
+            // console.log(data.allowList[i]);
+            formdata.append("allow", data.allowList[i].empNo);
+        }
+
+        for(let i = 0; i < data.receiveList.length; i++) {
+
+            formdata.append("receive", data.receiveList[i].empNo);
+        }
+
+        let keys = [];
+        let values = [];
+
+        for(let param of formdata) {
+            keys.push(param[0]);
+            values.push(param[1]);
+        }
+
+        NoArg(keys, values, formdata, dispatch, navigate);
+
+        for(let param of formdata) {
+            console.log(param[0], param[1]);
+        }
     }
 
     // 오늘 날짜
@@ -98,6 +124,7 @@ function PurchaseContent() {
     const list = useSelector(state => state.approvalReducer);
 
     const [addPeople, setAddPeople] = useState(false);
+    const [addReceive, setAddReceive] = useState(false);
 
     const [file, setFile] = useState(null);
     const [fileName, setFileName] = useState([]);
@@ -107,10 +134,19 @@ function PurchaseContent() {
         setAddPeople(true);
     }
 
+    const showReceiver = () => {
+        setAddReceive(true);
+    }
+
     return (
         <form className={styles.content} onSubmit={onSubmitHandler}>
-            <div className={styles.modify} onClick={showPeople}>
-                결재선 추가
+            <div style={{display:"flex"}}>
+                <div className={styles.modify} onClick={showPeople}>
+                    결재선 추가
+                </div>
+                <div className={styles.modify} onClick={showReceiver}>
+                    수신자 추가
+                </div>
             </div>
             <div className={styles.area1}>구 매 요 청</div>
             <br/><br/>
@@ -147,6 +183,8 @@ function PurchaseContent() {
                         </span>
                         <span className={styles.area4}>승인</span>
                         <AppLine data={data}/>
+                        <span className={styles.area4} style={{marginLeft:"20px"}}>수신</span>
+                        <ReceiveLine data={data}/>
                     </div>
                 </div>
             </div>
@@ -176,6 +214,8 @@ function PurchaseContent() {
                         ))}
                     </tbody>
                 </table>
+                <input type="hidden" name="empNo" value={decodedToken.EmployeeNo}/>
+                <input type="hidden" name="empName" value={decodedToken.Name}/>
                 <div className={styles.area11}>
                     <div className={styles.area12}>합계</div>
                     <div className={styles.allPrice}>{total}원</div>
@@ -188,6 +228,7 @@ function PurchaseContent() {
                 </div>
             </div>
             { addPeople && <Modal setAddPeople={setAddPeople}/>}
+            { addReceive && <Modal1 setAddReceive={setAddReceive}/>}
             <br/><br/><br/>
             <div style={{display:"flex", justifyContent:"right", marginRight:"40px"}}>
                 <button className={styles.sendApp}>결재요청</button>
