@@ -1,6 +1,7 @@
 // index.js
 import { combineReducers } from 'redux';
 import memberReducer from './MemberModule';
+import { bookmarkReducer ,mailReducer, mailSentReducer } from './MailModule';
 import marketReducer from "./MarketModule";
 import productReducer from "./ProductModule";
 import categoryReducer from "./CategoryModule";
@@ -11,10 +12,13 @@ import ioGroupReducer from "./IoGroupModule";
 import orderReducer from "./OrderModule";
 import chartReducer from './ChartModule';
 import approvalReducer from './ApprovalModule';
+import todoReducer from "./TodoModule";
 
 const rootReducer = combineReducers({
     chartReducer,
+    mailReducer,
     memberReducer,
+    bookmarkReducer,
     productReducer,
     categoryReducer,
     standardReducer,
@@ -22,8 +26,10 @@ const rootReducer = combineReducers({
     ioReducer,
     ioGroupReducer,
     orderReducer,
+    todoReducer,
     marketReducer,
-    approvalReducer
+    approvalReducer,
+    mailSentReducer
 });
 
 export default rootReducer;
