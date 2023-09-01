@@ -15,7 +15,11 @@ const TodoApp = ( ) => {
     const decodedToken = accessToken ? decodeJwt(accessToken) : null;
     const dispatch = useDispatch();
     const [todos, setTodos ] = useState({
-        todoNo:'',
+        todoNo: "",
+        content: "",
+        todoStatus: "",
+        memberNo: "",
+        url: ""
     });
     const [ value , setValue ] = useState('');
     // console.log("decodedToken.MemberNo1 {}",decodedToken.MemberNo);
@@ -31,8 +35,6 @@ const TodoApp = ( ) => {
                 todoNo: null,
                 content: value,
                 todoStatus: "N",
-                // regDate: formattedDate,
-                // upDate: null,
                 memberNo: decodedToken.MemberNo,
                 url: null
             };
@@ -52,8 +54,8 @@ const TodoApp = ( ) => {
                 console.error('Error adding Todo:', error);
             }
 
-            window.location.reload();
-        },[value]
+            // window.location.reload();
+        },[dispatch, callInsertTodoAPI, value]
 
     );
 
@@ -62,10 +64,14 @@ const TodoApp = ( ) => {
         memberTodoList => {
             console.log("투두 삭제 시작~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
             console.log("id {}" , memberTodoList);
+            setTodos({
+                ...memberTodoList,
+                memberNo: memberTodoList.memberNo
+            });
             // setTodos(todos => todos.filter(todo => todo.id !== id));
             dispatch(callDeleteTodoAPI(memberTodoList)); // 할일 삭제 API 호출
-            window.location.reload();
-        },[dispatch],
+            // window.location.reload();
+        },[dispatch, callDeleteTodoAPI],
 
 
     );
@@ -88,8 +94,7 @@ const TodoApp = ( ) => {
 
             dispatch(callUpdateToggleAPI(todoData));
 
-            window.location.reload();
-        },[],
+        },[dispatch, callUpdateToggleAPI, decodedToken.MemberNo],
     );
 
     // 더블클릭시 내용 수정 함수
@@ -110,15 +115,18 @@ const TodoApp = ( ) => {
         [todos]
     );
 
+
+
+
     return(
         <div className="popup" style={{opacity:"1", transform:"scaleX(1)"}}>
             {/*{ todoData.data && todoData.data.map( todo => (*/}
-            {/*<React.StrictMode>*/}
+            <React.StrictMode>
             <TodoTemplate todos={todos} key={todos.id}>
                 <TodoInsert onInsert={onInsert}/>
                 <TodoList todos={todos} onRemove={ onRemove } onToggle={onToggle} onUpdate={onUpdate}/>
             </TodoTemplate>
-            {/*</React.StrictMode>*/}
+            </React.StrictMode>
             {/*))}*/}
 
         </div>

@@ -13,6 +13,11 @@ const TodoList = ({todos, onRemove ,onToggle,onUpdate}) => {
     const memberTodoList = useSelector(state => state.todoReducer);
     const [shouldFetchData, setShouldFetchData] = useState(true);
 
+    const sortedTodoList = memberTodoList.data ? memberTodoList.data.slice().sort((a, b) => {
+        return new Date(b.todoNo) - new Date(a.todoNo);
+    }) : [];
+
+
     useEffect(() => {
         if (shouldFetchData) {
             const decodedToken = decodeJwt(
@@ -23,13 +28,13 @@ const TodoList = ({todos, onRemove ,onToggle,onUpdate}) => {
             }
             setShouldFetchData(false);
         }
-    }, [dispatch, shouldFetchData]);
+    }, [dispatch,callGetMemberTodoAPI, shouldFetchData]);
 
 
     return (
         <div className={styles.TodoList}>
             {/*투두 리스트 map으로 넘겨주기*/}
-            {memberTodoList.data ? memberTodoList.data.map( todo => (
+            {sortedTodoList ? sortedTodoList.map( todo => (
                 <React.StrictMode>
                 <TodoListItem
                     todo={todo}
@@ -43,4 +48,4 @@ const TodoList = ({todos, onRemove ,onToggle,onUpdate}) => {
         </div>
     )
 }
-export default React.memo(TodoList); // 성능 최적화
+export default TodoList; // 성능 최적화

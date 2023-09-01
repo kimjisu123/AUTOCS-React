@@ -26,9 +26,8 @@ const TodoTemplate = ({ children , todos }) => {
     return (
         <div className={styles.TodoTemplate}>
             <div className={styles.appTitle}>TODOLIST<span className={styles.todoCount}>{todoCount}</span></div>
-            {
             <div className={styles.content}>{ children }</div>
-            }
+
         </div>
     )
 

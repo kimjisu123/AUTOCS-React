@@ -11,7 +11,7 @@ const TodoListItem = ({ todo, onRemove, onToggle,onUpdate }) => {
     const { todoNo, content , todoStatus } = todo;
 
     return (
-
+        // cn은 [변경될 클래스명] : 조건 값 에 따라 본래 클래스 명이 변경된다!
         // {[styles.checked]: checked, [styles.someOtherClass]: todoStatus === 'N'}
 
         <div className={styles.TodoListItem}>
@@ -25,6 +25,6 @@ const TodoListItem = ({ todo, onRemove, onToggle,onUpdate }) => {
         </div>
     );
 };
-export default React.memo(TodoListItem);  // 성능최적화를 위해 리랜더링을 방지하려 React.memo를 사용함. 컴포넌트의 props가 바뀌지 않은면 리랜더링 하지 않음.
+export default TodoListItem;  // 성능최적화를 위해 리랜더링을 방지하려 React.memo를 사용함. 컴포넌트의 props가 바뀌지 않은면 리랜더링 하지 않음.
 
 
