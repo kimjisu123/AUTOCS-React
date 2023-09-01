@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { callGetEmployeeAPI } from '../../apis/MemberAPICalls';
-import memberReducer from "../../modules/MemberModule";
-import './registOk.css'
+import { callGetEmployeeAPI, callOutEmployeeOkAPI } from '../../apis/MemberAPICalls';
+import '../createMember/registOk.css'
+import {callInsertMarketAPI} from "../../apis/MarketAPICalls";
 
 const RegistOk = () => {
     const dispatch = useDispatch();
@@ -21,8 +21,26 @@ const RegistOk = () => {
         return <div>Loading...</div>;
     }
 
+    //계정 정지하러
+    const handleOutEmployeeOk = (employee) => {
+        try {
+            const infoToPass = {
+                employeeNo: employee.employeeNo,
+                name: employee.name
+            };
+
+            console.log('Info to Pass:', infoToPass);
+
+            // API 호출을 통해 데이터를 서버로 전송합니다.
+            callOutEmployeeOkAPI({ infoToPass, dispatch });
+
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
     const sortedEmployeeList = employeeList
-        .filter(employee => !employee.employeeOut && !employee.reason)
+        .filter(employee => employee.employeeOut && employee.reason && employee.state === "Y    ")
         .sort((a, b) => {
             const dateA = new Date(a.employeeJoin);
             const dateB = new Date(b.employeeJoin);
@@ -31,7 +49,7 @@ const RegistOk = () => {
 
     return (
         <div className="employee-list-container">
-            <h2 className="employee-list-title">직원 목록</h2>
+            <h2 className="employee-list-title">계정 비활성화 신청(직원)</h2>
             {sortedEmployeeList.length === 0 ? (
                 <div className="no-employees">No employees found.</div>
             ) : (
@@ -40,8 +58,11 @@ const RegistOk = () => {
                     <tr>
                         <th>이름</th>
                         <th>입사일</th>
+                        <th>퇴사일</th>
                         <th>부서</th>
                         <th>직급</th>
+                        <th>퇴사사유</th>
+                        <th>계정정지</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -49,8 +70,13 @@ const RegistOk = () => {
                         <tr key={employee.employeeNo}>
                             <td>{employee.name}</td>
                             <td>{employee.employeeJoin.split('T')[0].replace(/-/g, '/')}</td>
+                            <td>{employee.employeeOut.split('T')[0].replace(/-/g, '/')}</td>
                             <td>{employee.department}</td>
                             <td>{employee.position}</td>
+                            <td>{employee.reason}</td>
+                            <td><button onClick={() => handleOutEmployeeOk(employee)}>
+                                계정정지
+                            </button></td>
                         </tr>
                     ))}
                     </tbody>

@@ -2,9 +2,13 @@ import img from './loginMain.png'
 import './outMForm.css'
 import {Link} from "react-router-dom";
 import React from "react";
+import {decodeJwt} from "../../util/tokenUtils";
 
 
 const OutSForm = () => {
+
+    const accessToken = window.localStorage.getItem('accessToken');
+    const decodedToken = accessToken ? decodeJwt(accessToken) : null;
 
     return (
             <div className="border">
