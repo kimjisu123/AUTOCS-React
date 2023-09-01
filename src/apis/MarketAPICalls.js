@@ -125,3 +125,38 @@ export const callLoginGOAPI = ({ loginInfo, rememberAccount }) => {
 
     };
 };
+
+//영업점 계정 비활성화 폼 전송
+export const callStoreOutAPI = ({ formData }) => {
+    const requestURL = 'http://localhost:8080/market/StoreOut';
+
+    console.log("formData=========>" + formData);
+    for (const entry of formData.entries()) {
+        console.log(entry[0], entry[1]);
+    }
+    console.log("formData======================");
+
+
+    return fetch(requestURL, {
+        method: 'POST',
+        headers: {
+            "Accept": "*/*",
+            //"Access-Control-Allow-Origin": "*"
+        },
+        body: formData,
+    })
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                console.error('Error out market');
+                throw new Error('Error out market');
+            }
+        })
+        .then(() => {
+            window.alert('계정 비활성화 신청이 완료되었습니다.');
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+};
