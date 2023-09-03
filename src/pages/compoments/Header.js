@@ -42,7 +42,7 @@ const Header = () => {
             menuItems.push(
                 { to: "chart", label: "조직도" },
                 { to: "approval", label: "전자결재" },
-                { to: "management", label: "근태관리" },
+                { to: "workstatus", label: "근태관리" },
                 { to: `/mail/${decodedToken.EmployeeNo}`, label: "쪽지함" }
             );
 

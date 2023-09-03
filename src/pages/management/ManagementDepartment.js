@@ -1,5 +1,12 @@
 import styles from './Department.module.css';
-function DepartmentContent (){
+function ManagementDepartment (){
+
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();    // 현재 년 (2023)
+    const month = currentDate.getMonth() + 1;  // 현재 월
+    const day = currentDate.getDate();         // 현재 날짜(일)
+
+    const toDayDate ="<"+ year + "년 " + month + "월 " + day+"일" + ">";
     return (
         <>
             <div className={styles.content}>
@@ -7,10 +14,10 @@ function DepartmentContent (){
                     <div>
                         <div>
                             <div className={styles.contentHeader}>
-                                부서 근태 통계
+                                경영부
                             </div>
                             <div className={styles.today}>
-                            {'<'} 2023-08-20 {'>'}
+                                {toDayDate}
                             </div>
                         </div>
 
@@ -166,4 +173,4 @@ function DepartmentContent (){
         </>
     )
 }
-export default DepartmentContent;
+export default ManagementDepartment;

@@ -5,7 +5,7 @@ import {callGetWorkStatusAPI}  from "../../apis/WorkStatusAPICalls";
 import moment from 'moment';
 import 'moment/locale/ko';
 
-function ManagementContent (){
+function WorkStatusContent (){
     const [message, setMessage] = useState({});
 
 
@@ -262,4 +262,4 @@ function ManagementContent (){
     )
 }
 
-export default ManagementContent;
+export default WorkStatusContent;

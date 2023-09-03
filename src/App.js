@@ -44,13 +44,20 @@ import ApplyStateO from "./pages/applyForm/applyStateO";
 import GuideStoreId from "./pages/Login/guideStoreId";
 
 //지수
-import Management from "./pages/management/Management"
 import Department from "./pages/management/Department"
 import HeadOffice from "./pages/management/HeadOffice"
 import Mail from "./pages/Mail/Mail"
 import MailBookmark from "./pages/Mail/MailBookmark"
 import MailSent from "./pages/Mail/MailSent"
 import Calendar from "./pages/Calendar/Calendar"
+import Personnel from "./pages/management/Personnel"
+import Accounting from "./pages/management/Accounting"
+import Management from "./pages/management/Management"
+import Marketing from "./pages/management/Marketing"
+import Sales from "./pages/management/Sales"
+import Service from "./pages/management/Service"
+import WorkStatus from  "./pages/management/WorkStatus"
+
 //미지
 //재고관리
 import Stock from './pages/stock/Stock'
@@ -117,16 +124,19 @@ function App() {
                         <Route path='chart' element={<OrgChart/>}/>
 
                         //지수
-                        <Route path='/management' element={<Management />} />
+                        <Route path='/workstatus' element={<WorkStatus />} />
                         <Route path='/department' element={<Department />} />
                         <Route path='/headOffice' element={<HeadOffice />} />
                         <Route path='/mail/:value' element={<Mail />} />
                         <Route path='/mailSent/:value' element={<MailSent />} />
                         <Route path='/mailBookmark' element={<MailBookmark />} />
                         <Route path='/calendar' element={<Calendar />} />
-
-
-
+                        <Route path='/personnel' element={<Personnel />} />
+                        <Route path='/accounting' element={<Accounting />} />
+                        <Route path='/management' element={<Management />} />
+                        <Route path='/marketing' element={<Marketing />} />
+                        <Route path='/sales' element={<Sales />} />
+                        <Route path='/service' element={<Service />} />
 
 
                         //미지
