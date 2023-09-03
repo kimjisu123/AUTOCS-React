@@ -7,10 +7,10 @@ function DepartmentContent (){
                     <div>
                         <div>
                             <div className={styles.contentHeader}>
-                                부서 근태 통계
+                                서비스부
                             </div>
                             <div className={styles.today}>
-                            {'<'} 2023-08-20 {'>'}
+                                {'<'} 2023-08-20 {'>'}
                             </div>
                         </div>
 

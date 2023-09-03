@@ -8,7 +8,6 @@ function Department(){
             <ManagementMenu />
             <div>
                 <DepartmentContent />
-                <DepartmentDetails />
             </div>
         </div>
     )
