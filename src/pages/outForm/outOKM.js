@@ -1,10 +1,24 @@
-import React, { useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { callGetEmployeeAPI, callOutEmployeeOkAPI } from '../../apis/MemberAPICalls';
 import '../createMember/registOk.css'
 import {callInsertMarketAPI} from "../../apis/MarketAPICalls";
+import Modal from "react-modal";
 
 const RegistOk = () => {
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalContent, setModalContent] = useState('');
+    // 클릭 시 모달 열기
+    const openModal = (content) => {
+        setModalContent(content);
+        setModalIsOpen(true);
+    };
+
+    // 모달 닫기
+    const closeModal = () => {
+        setModalIsOpen(false);
+    };
+
     const dispatch = useDispatch();
     const employees = useSelector(state => state.memberReducer);
     const employeeList = employees.data;
@@ -40,7 +54,7 @@ const RegistOk = () => {
     };
 
     const sortedEmployeeList = employeeList
-        .filter(employee => employee.employeeOut && employee.reason)
+        .filter(employee => employee.employeeOut && employee.reason && employee.memberState === "N    ")
         .sort((a, b) => {
             const dateA = new Date(a.employeeJoin);
             const dateB = new Date(b.employeeJoin);
@@ -72,10 +86,28 @@ const RegistOk = () => {
                             <td>{employee.employeeOut.split('T')[0].replace(/-/g, '/')}</td>
                             <td>{employee.department}</td>
                             <td>{employee.position}</td>
-                            <td>{employee.reason}</td>
+                            <td onClick={() => openModal(employee.reason)}>{employee.reason}</td>
                         </tr>
                     ))}
                     </tbody>
+                    <Modal
+                        isOpen={modalIsOpen}
+                        onRequestClose={closeModal}
+                        style={{
+                            content: {
+                                width: '20%',
+                                height: '5vh',
+                                margin: 'auto',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+                                alignItems: 'center'
+                            },
+                        }}
+                    >
+                        <div>{modalContent}</div>
+                        <button onClick={closeModal} style={{marginTop: "5px"}}>닫기</button>
+                    </Modal>
                 </table>
             )}
         </div>

@@ -22,15 +22,9 @@ const Header = () => {
     const decodedToken = accessToken ? decodeJwt(accessToken) : null;
     const role = decodedToken ? decodedToken.auth : null;
     const department = decodedToken ? decodedToken.Department : null;
-    // const state = decodedToken ? decodedToken.state : null;
-    //
-    // //비활성화 계정 접근 금지
-    // if (state === 'N    ') {
-    //     navigate('/login');
-    // }
 
     //토큰값
-    //console.log("토큰값>>>>>>>>>>>>>>>>>" + accessToken);
+    console.log("토큰값>>>>>>>>>>>>>>>>>" + accessToken);
     //console.log("accessToken>>>>>>>>>>>>>>>>>" + accessToken.iat);
     //console.log("decodedToken>>>>>>>>>>>>>>>>>" + decodedToken.iat);
 
@@ -52,13 +46,13 @@ const Header = () => {
                 { to: "chart", label: "조직도" },
                 { to: "approval", label: "전자결재" },
                 { to: "management", label: "근태관리" },
-                { to: `/mail/${decodedToken.EmployeeNo}`, label: "쪽지함" }
+                { to: `/mail/${decodedToken.EmployeeNo}`, label: "쪽지함" },
+                //나중에 마이페이지 안으로 넣어줘야함
+                { to: "outM", label: "계정비활성화" }
             );
 
             if (department === "인사부") {
                 menuItems.push({ to: "menu/registration", label: "계정관리" });
-                //나중에 마이페이지 안으로 넣어줘야함
-                menuItems.push({ to: "outM", label: "계정비활성화" });
             }
             if (department === "경영부") {
                 menuItems.push({ to: "stock", label: "재고관리" });

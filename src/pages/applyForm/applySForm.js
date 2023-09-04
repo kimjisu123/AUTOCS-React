@@ -2,13 +2,16 @@ import img from './loginMain.png'
 import './applySForm.css'
 import {Link, Navigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import React, {useState} from "react";
+import React, { useState, useEffect } from 'react';
 import {callApplyMarketAPI} from "../../apis/MarketAPICalls";
 
 const ApplySForm = () => {
     const dispatch = useDispatch();
 
     const [address, setAddress] = useState('');
+    const [detailAddress, setDetailAddress] = useState('');
+    const [postcode, setPostcode] = useState('');
+    const [guide, setGuide] = useState('');
     const [name, setName] = useState('');
     const [license, setLicense] = useState('');
     const [email, setEmail] = useState('');
@@ -17,11 +20,52 @@ const ApplySForm = () => {
         return address !== '' && name !== '' && license !== '' && email !== '';
     };
 
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = 'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
+        script.async = true;
+        document.body.appendChild(script);
+
+    }, []);
+
     // 로그인 상태일 시 영업점 신청폼 페이지로 접근 방지
     const Token = localStorage.getItem('accessToken');
     if (Token) {
         return <Navigate to="/main" replace />;
     }
+
+    //주소 API
+    const handlePostcodeSearch = () => {
+        if (window.daum && window.daum.Postcode) {
+            new window.daum.Postcode({
+                oncomplete: (data) => {
+                    const roadAddr = data.roadAddress;
+                    const jibunAddr = data.jibunAddress;
+
+                    const combinedAddress = `${roadAddr} ${jibunAddr}`;
+
+                    setAddress(combinedAddress);
+                    setPostcode(data.zonecode);
+                    setDetailAddress('');
+
+                    let guideText = '';
+                    if (data.autoRoadAddress) {
+                        const expRoadAddr = data.autoRoadAddress;
+                        guideText = `(예상 도로명 주소: ${expRoadAddr})`;
+                    } else if (data.autoJibunAddress) {
+                        const expJibunAddr = data.autoJibunAddress;
+                        guideText = `(예상 지번 주소: ${expJibunAddr})`;
+                    } else {
+                        guideText = '';
+                    }
+
+                    setGuide(guideText);
+                },
+            }).open();
+        } else {
+            console.error('Daum Postcode library is not loaded.');
+        }
+    };
 
 
     const handleApply = () => {
@@ -33,6 +77,7 @@ const ApplySForm = () => {
 
             const formData = new FormData();
             formData.append('address', address);
+            formData.append('detailAddress', detailAddress);
             formData.append('name', name);
             formData.append('license', license);
             formData.append('email', email);
@@ -46,11 +91,6 @@ const ApplySForm = () => {
         } catch (error) {
             console.error('Error:', error);
         }
-    };
-
-
-    const handleAddressChange = (event) => {
-        setAddress(event.target.value);
     };
 
     const handleNameChange = (event) => {
@@ -75,15 +115,34 @@ const ApplySForm = () => {
     return (
         <div style={{backgroundColor: "#1C2C10"}}>
             <div className="border">
-                <main>
+                <main style={{paddingTop: "60px"}}>
                     <img src={img} style={{ width: "145px", height: "200px", marginTop: "-150px", marginBottom: "-35px" }} />
 
                     <h1 style={{ color: "#1C2C10" }}>계정 생성 신청</h1>
                     <div className="separator" style={{width: "40%"}}></div>
 
-                    <h4 style={{ marginBottom: "10px", marginTop: "10px", background: "white" }}>영업점 주소</h4>
-                    <input className="lo" type="text" id="address" name="address" value={address}
-                           onChange={handleAddressChange} required />
+                    <button className="address-button" onClick={handlePostcodeSearch} style={{marginTop: "10px"}} >
+                        주소 검색
+                    </button>
+                    <div className="address-section">
+                        <input
+                            className="lo"
+                            type="text"
+                            value={address}
+                            placeholder="주소"
+                            readOnly
+                        />
+                    </div>
+
+                    <h4 style={{ marginBottom: '10px', marginTop: '-10px', background: 'white' }}>상세주소</h4>
+                    <input
+                        className="lo"
+                        type="text"
+                        id="sample4_detailAddress"
+                        value={detailAddress}
+                        placeholder="상세주소"
+                        onChange={(e) => setDetailAddress(e.target.value)}
+                    />
 
                     <h4 style={{ marginBottom: "10px", marginTop: "10px", background: "white" }}>대표자명</h4>
                     <input className="lo" type="text" id="name" name="name" value={name}

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {callGetMarketStateWAPI, callInsertMarketAPI} from '../../apis/MarketAPICalls';
-import './stateW.css'
-import marketReducer from "../../modules/MarketModule";
-import Modal from 'react-modal';
+import {callGetOutMarketStateWAPI, callOutGoMarketAPI} from '../../apis/MarketAPICalls';
+import '../applyForm/stateW.css'
+import Modal from "react-modal";
 
 const ApplyStateW = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -24,33 +23,11 @@ const ApplyStateW = () => {
     const marketList = market.data;
     console.log("marketList : " + marketList)
 
-    //계정 발급하러
-    const handleRegistration = (market) => {
-        try {
-            const infoToPass = {
-                applyNo: market.applyNo,
-                name: market.name,
-                address: market.address,
-                detailAddress: market.detailAddress,
-                license: market.license,
-                email: market.email
-            };
-
-            console.log('Info to Pass:', infoToPass);
-
-            // API 호출을 통해 데이터를 서버로 전송합니다.
-            callInsertMarketAPI({ infoToPass, dispatch });
-
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    };
-
 
     useEffect(() => {
         // 컴포넌트가 마운트되었을 때 목록을 가져오도록 API 호출
         // callGetEmployeeAPI(dispatch);
-        dispatch(callGetMarketStateWAPI());
+        dispatch(callGetOutMarketStateWAPI());
     }, []);
 
     // employeeList가 아직 로드되지 않은 경우 로딩 중 메시지 표시
@@ -66,7 +43,7 @@ const ApplyStateW = () => {
 
     return (
         <div className="employee-list-container">
-            <h2 className="employee-list-title">영업점 계정 생성 대기</h2>
+            <h2 className="employee-list-title">비활성화 영업점 목록</h2>
             {sortedMarketList.length === 0 ? (
                 <div className="no-employees">No market found.</div>
             ) : (
@@ -80,15 +57,14 @@ const ApplyStateW = () => {
                         <th>이메일</th>
                         <th>사업자등록번호</th>
                         <th>상태</th>
-                        <th>표준가맹계약서</th>
-                        <th>계정발급</th>
+                        <th>계약종료/해지확인서</th>
                     </tr>
                     </thead>
                     <tbody>
                     {sortedMarketList
-                        .filter(market => market.state === 'W    ')
+                        .filter(market => market.state === 'X')
                         .map(market => (
-                        <tr key={market.applyNo}>
+                        <tr key={market.storeNo}>
                             <td className="can">{market.name}</td>
                             <td className="can" onClick={() => openModal(market.address)}>{market.address}</td>
                             <td className="can" onClick={() => openModal(market.detailAddress)}>{market.detailAddress}</td>
@@ -99,9 +75,6 @@ const ApplyStateW = () => {
                             <td>
                                 <a href={market.fileUrl} target="_blank" rel="noopener noreferrer" style={{fontSize: "13.5px"}}>서류확인</a>
                             </td>
-                            <td><button onClick={() => handleRegistration(market)}>
-                                계정발급
-                            </button></td>
                         </tr>
                     ))}
                     </tbody>

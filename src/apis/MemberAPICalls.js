@@ -29,6 +29,7 @@ export const callInsertEmployeeAPI = ({ infoToPass }) => {
         })
         .then(() => {
             window.alert('사원 등록이 완료되었습니다.');
+            window.location="/menu/registration";
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -357,6 +358,7 @@ export const callOutEmployeeOkAPI = ({ infoToPass }) => {
         })
         .then(() => {
             window.alert('계정 비활성화가 완료되었습니다.');
+            window.location="/menu/outE";
         })
         .catch((error) => {
             console.error('Error:', error);

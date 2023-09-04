@@ -18,6 +18,7 @@ const Registration = () => {
     const [selectedDepartment, setSelectedDepartment] = useState('default');
     const [selectedPosition, setSelectedPosition] = useState('default');
     const [upCode, setUpCode] = useState('');
+    const [email, setEmail] = useState('');
 
     const isFormValid = () => {
         return name !== '' && selectedDate !== null && selectedDepartment !== 'default' && selectedPosition !== 'default';
@@ -36,7 +37,8 @@ const Registration = () => {
                 employeeJoin: selectedDate,
                 departmentCode: selectedDepartment,
                 positionCode: selectedPosition,
-                upCode: upCode
+                upCode: upCode,
+                employeeEmail: email
             };
 
             console.log('Info to Pass:', infoToPass);
@@ -77,6 +79,10 @@ const Registration = () => {
 
     const handleNameChange = (event) => {
         setName(event.target.value);
+    };
+
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
     };
 
 
@@ -142,6 +148,19 @@ const Registration = () => {
                     <option value="s1">사원</option>
                     <option value="i1">인턴</option>
                 </select>
+
+                <h4 style={{ marginBottom: "-23px", marginTop: "20px", background: "white" }}>이메일</h4>
+                <h6 style={{color: "red"}}>아이디와 임시비밀번호는 입력하신 이메일로 발송됩니다.</h6>
+                <input
+                    className="lo"
+                    type="text"
+                    id="email"
+                    name="email"
+                    value={email}
+                    style={{marginTop: "-13px"}}
+                    onChange={handleEmailChange}
+                    required
+                />
 
                 <Link to="/registOk">
                 <button type="button" className="regist" onClick={handleRegistration}>
