@@ -1,6 +1,5 @@
 import styles from './TodoTemplate.module.css';
 import {useEffect, useState} from "react";
-import {callGetMemberTodoAPI} from "../../apis/TodoAPICalls";
 import {useDispatch, useSelector} from "react-redux";
 import {decodeJwt} from "../../util/tokenUtils";
 

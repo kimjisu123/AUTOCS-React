@@ -10,6 +10,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {callGetEmployeeAPI} from "../../apis/MemberAPICalls";
 import {decodeJwt} from "../../util/tokenUtils";
 import {callGetMemberTodoAPI} from "../../apis/TodoAPICalls";
+import {callGetMemberInfoAPI} from "../../apis/MypageAPICalls";
+import myPageReducer from "../../modules/MypageModule";
 
 
 
@@ -25,24 +27,33 @@ function MypageEmp() {
             ,udButton,updateButton,empImg,labelbox ,
     } = MypageCSS;
 
+
     // 회원정보 가지고 오기
     const dispatch = useDispatch();
-    const employees = useSelector(state => state.memberReducer);
-    const employeeList = employees.data;
+    const employees = useSelector(state => state.myPageReducer);
+    // const employeeList = employees.data;
     const accessToken = window.localStorage.getItem('accessToken');
-    console.log("employeeList : " + employeeList)
-
+    // console.log("employeeList : " , employeeList);
     const decodedToken = accessToken ? decodeJwt(accessToken) : null;
     const role = decodedToken ? decodedToken.auth : null;
 
+
     useEffect(() => {
-        // 컴포넌트가 마운트되었을 때 사원 목록을 가져오도록 API 호출
-        // callGetEmployeeAPI(dispatch);
-        console.log("callGetEmployeeAPI : " + callGetEmployeeAPI())
-        // dispatch(callGetMemberTodoAPI());
+
+        console.log("callGetMemberInfoAPI : {} " + callGetMemberInfoAPI(decodedToken.MemberNo))
+        dispatch(callGetMemberInfoAPI(decodedToken.MemberNo));
+        // console.log("employees : {} ", employees);
+
+        if (employees.data && employees.data.name) {
+            // 'name' 속성에 접근할 수 있습니다.
+            console.log("employeeList.name {}" ,employees.data.name);
+            // 이제 name을 사용할 수 있습니다.
+        } else {
+            // 객체나 'name' 속성이 없는 경우에 대한 처리를 여기에 추가합니다.
+        }
+
 
     }, []);
-    ///////////////////////////////////////////////////
 
     // 생일입력 (Date에 현재 값 가지고 와야함.
     const [birthDate,setBirthDate] =useState(new Date("1994/02/01"));
@@ -58,18 +69,18 @@ function MypageEmp() {
             const imageUrl = URL.createObjectURL(image);
             setSelectedImage(imageUrl);
             console.log("imgURL {}" ,imageUrl);
+
+
         }
     };
 
-
-
-
+    // const { employeeNo ,id } = employees.data;
 
 
         return (
             <>
-            {/*{ employeeList && employeeList.map((employee) => (*/}
-                <div className={mainContainer}>
+            { employees.data && employees.data ? (
+                <div className={mainContainer} >
                     <div className={rightContainer}>
                         <div className={content}>
                             <div className={wrap}>
@@ -109,36 +120,36 @@ function MypageEmp() {
                                         <div className={sections}>
                                             <div className={section1}>
                                                 <div className="empId">
-                                                        <label htmlFor="empId">사원ID</label>
+                                                        <label htmlFor="empId">아이디</label>
                                                     <input type="text" id="empId" name="empId" maxLength="20"
-                                                           value={decodedToken.sub}
+                                                           value={employees.data.memberId}
                                                            readOnly style={{border: "none"}}/>
                                                 </div>
                                                 <div className=" empInfo empName kor">
-                                                    <label htmlFor="empNameKor">이름(한글)</label>
+                                                    <label htmlFor="empNameKor">이름</label>
                                                     <input type="text" id="empNameKor" name="empNameKor" maxLength="20"
-                                                           value={decodedToken.Name} readOnly style={{border: "none"}}/>
+                                                           value={employees.data.name} readOnly style={{border: "none"}}/>
                                                 </div>
                                                 <div className=" empInfo empName Eng">
                                                     <label htmlFor="empNameEng">사원번호</label>
                                                     <input type="text" id="empNameEng" name="empNameEng" maxLength="20"
-                                                           value={decodedToken.EmployeeNo} style={{border: "none"}}/>
+                                                           value={employees.data.employeeNo} style={{border: "none"}}/>
                                                 </div>
                                                 <div className=" empInfo empEmail">
                                                     <label htmlFor="empEmail">이메일</label>
                                                     <input type="email" id="empEmail" name="empEmail" maxLength="20"
-                                                           value={decodedToken.Email} style={{border: "none"}}/>
+                                                           value={employees.data.employeeEmail} style={{border: "none"}}/>
                                                 </div>
                                                 <div className=" empInfo empDuty">
                                                     <label htmlFor="empDuty">직책</label>
                                                     <input type="text" id="empDuty" name="empDuty" maxLength="20"
-                                                           value={decodedToken.Position}
+                                                           value={employees.data.position}
                                                            style={{border: "none"}}/>
                                                 </div>
                                                 <div className=" empInfo empDep">
                                                     <label htmlFor="empDep">부서명</label>
                                                     <input type="text" id="empDep" name="empDep" maxLength="20"
-                                                           value="영업1팀"
+                                                           value={employees.data.department}
                                                            style={{border: "none"}}/>
                                                 </div>
                                             </div>
@@ -152,12 +163,12 @@ function MypageEmp() {
                                                 <div className=" empInfo empDep">
                                                     <label htmlFor="empDep">휴대 전화</label>
                                                     <input type="tel" id="empDep" name="empDep" maxLength="20"
-                                                           value="010-1234-1234" style={{border: "none"}}/>
+                                                           value={employees.data.employeePhone} style={{border: "none"}}/>
                                                 </div>
                                                 <div className=" empInfo empDep">
                                                     <label htmlFor="empDep">내선 번호</label>
                                                     <input type="tel" id="empDep" name="empDep" maxLength="20"
-                                                           value="02-123-1234~5" style={{border: "none"}}/>
+                                                           value={employees.data.employeePhone} style={{border: "none"}}/>
                                                 </div>
                                                 <div className=" empInfo empDep">
                                                     <label htmlFor="empDep">생일</label>
@@ -235,7 +246,7 @@ function MypageEmp() {
                         </div>
                     </div>
                 </div>
-            {/*)) }*/}
+            ):(<h1>값이 없습니다.</h1>) }
                 {/*비밀번호 변경 모달창 띄우기 */}
                 {modalIsOpen && (
                     <Modal
