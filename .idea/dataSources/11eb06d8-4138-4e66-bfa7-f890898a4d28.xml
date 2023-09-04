@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="@C##AUTOCSS">
+  <database-model serializer="dbm" dbms="ORACLE" family-id="ORACLE" format-version="4.48">
+    <root id="1">
+      <ServerVersion>18.0.0.0.0</ServerVersion>
+    </root>
+    <schema id="2" parent="1" name="C##AUTOCSS">
+      <Current>1</Current>
+    </schema>
+    <schema id="3" parent="1" name="CTXSYS"/>
+    <schema id="4" parent="1" name="DVF"/>
+    <schema id="5" parent="1" name="DVSYS"/>
+    <schema id="6" parent="1" name="GSMADMIN_INTERNAL"/>
+    <schema id="7" parent="1" name="LBACSYS"/>
+    <schema id="8" parent="1" name="MDSYS"/>
+    <schema id="9" parent="1" name="OLAPSYS"/>
+    <schema id="10" parent="1" name="ORDDATA"/>
+    <schema id="11" parent="1" name="ORDPLUGINS"/>
+    <schema id="12" parent="1" name="ORDSYS"/>
+    <schema id="13" parent="1" name="SYS"/>
+    <schema id="14" parent="1" name="SYSTEM"/>
+    <schema id="15" parent="1" name="WMSYS"/>
+    <schema id="16" parent="1" name="XDB"/>
+  </database-model>
+</dataSource>

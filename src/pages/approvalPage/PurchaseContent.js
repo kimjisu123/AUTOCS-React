@@ -107,7 +107,7 @@ function PurchaseContent() {
     const now = new Date();
     let year = now.getFullYear();
     let month = now.getMonth() + 1 < 10 ? "0"+(now.getMonth() + 1) : now.getMonth();
-    let date = now.getDate();
+    let date = now.getDate() < 10? "0"+(now.getDate()) : now.getDate();
     let today = year + "-" + month + "-" + date;
 
     const {data, setData} = usePurchaseContext();

@@ -1,12 +1,16 @@
 import TrafficContent from './TrafficContent';
 import ApprovalMenubar from './ApprovalMenubar';
+import {PurchaseProvider} from "./appContext/PurchaseContext";
 
 function Traffic() {
 
     return (
         <div style={{display:"flex"}}>
             <ApprovalMenubar/>
-            <TrafficContent/>
+            <PurchaseProvider>
+                <TrafficContent/>
+            </PurchaseProvider>
+
         </div>
     )
 }
