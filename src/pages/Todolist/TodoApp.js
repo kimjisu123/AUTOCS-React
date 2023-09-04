@@ -5,7 +5,7 @@ import {useCallback, useRef, useState, useContext, useEffect} from "react";
 import React from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import {
-    callDeleteTodoAPI,
+    callDeleteTodoAPI, callGetMemberTodoAPI,
     callInsertTodoAPI,
     callUpdateTodoAPI,
     callUpdateToggleAPI
@@ -20,15 +20,32 @@ const TodoApp = ( ) => {
     const accessToken = window.localStorage.getItem('accessToken');
     const decodedToken = accessToken ? decodeJwt(accessToken) : null;
     const dispatch = useDispatch();
-    const [todos, setTodos ] = useState({
+    const memberTodoList = useSelector(state => state.todoReducer);
+    const [todos, setTodos ] = useState([{
 
         todoNo: "",
         content: "",
         todoStatus: "",
         memberNo: "",
         url: ""
-    });
-    const [ value , setValue ] = useState('');
+    }]);
+
+
+    const [ change , setChange ] = useState(0);
+
+    useEffect(() => {
+        // if (shouldFetchData) {
+        const decodedToken = decodeJwt(
+            window.localStorage.getItem('accessToken')
+        );
+        if (decodedToken) {
+            dispatch(callGetMemberTodoAPI(decodedToken.MemberNo));
+        }
+        console.log('memberTodoList check : ', memberTodoList.data);
+        setTodos(memberTodoList);
+        // setShouldFetchData(true);
+        // }
+    }, [todos]);
 
     // 입력 값 전달.
     const onInsert = useCallback(
@@ -49,16 +66,20 @@ const TodoApp = ( ) => {
                 // Todo 추가 API 호출
                 dispatch(callInsertTodoAPI(todoData));
 
+                setTodos({
+                    ...memberTodoList,
+                    memberNo: decodedToken.MemberNo,
+                    content: value,
+
+                });
                 // Todo 추가 성공 시 추가 작업 수행
 
                 // 값 초기화
-                setValue('');
             } catch (error) {
                 // Todo 추가 실패 시 처리
                 console.error('Error adding Todo:', error);
             }
 
-            // window.location.reload();
         },[]
 
     );
@@ -76,21 +97,19 @@ const TodoApp = ( ) => {
             dispatch(callDeleteTodoAPI(memberTodoList)); // 할일 삭제 API 호출
             // window.location.reload();
         },[],
-
-
     );
 
     // 할일 체크 함수
     const onToggle = useCallback(
-        todo => {
-            const todoData = {
-                ...todo,
-                todoStatus: todo.todoStatus,
+        memberTodoList => {
+            setTodos ( {
+                ...memberTodoList,
+                todoStatus: memberTodoList.todoStatus,
                 memberNo: decodedToken.MemberNo,
-                todoNo:todo.todoNo,
-                checked:todo.checked
-            };
-            dispatch(callUpdateToggleAPI(todoData));
+                todoNo:memberTodoList.todoNo,
+                checked:memberTodoList.checked
+            });
+            dispatch(callUpdateToggleAPI(memberTodoList));
         },[dispatch, callUpdateToggleAPI, decodedToken.MemberNo],
     );
 
@@ -121,9 +140,9 @@ const TodoApp = ( ) => {
         <div className="popup" style={{opacity:"1", transform:"scaleX(1)"}}>
             {/*{ todoData.data && todoData.data.map( todo => (*/}
             <React.StrictMode>
-            <TodoTemplate todos={todos} key={todos.id}>
+            <TodoTemplate>
                 <TodoInsert onInsert={onInsert}/>
-                <TodoList todos={todos} onRemove={ onRemove } onToggle={onToggle} onUpdate={onUpdate}/>
+                <TodoList todos={memberTodoList} onRemove={ onRemove } onToggle={onToggle} onUpdate={onUpdate}/>
             </TodoTemplate>
             </React.StrictMode>
             {/*))}*/}

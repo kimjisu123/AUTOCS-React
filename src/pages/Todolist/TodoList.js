@@ -6,31 +6,13 @@ import {decodeJwt} from "../../util/tokenUtils";
 import {callGetMemberTodoAPI} from "../../apis/TodoAPICalls";
 
 
-const TodoList = ({ onRemove ,onToggle,onUpdate}) => {
-
+const TodoList = ({todos, onRemove ,onToggle,onUpdate}) => {
+    console.log('check todo', todos);
     const dispatch = useDispatch();
-    // 투두 리스트 가져오기
-    const memberTodoList = useSelector(state => state.todoReducer);
-    const [shouldFetchData, setShouldFetchData] = useState(true);
 
-
-    const sortedTodoList = memberTodoList.data ? memberTodoList.data.slice().sort((a, b) => {
+    const sortedTodoList = todos.data ? todos.data.slice().sort((a, b) => {
         return new Date(b.todoNo) - new Date(a.todoNo);
     }) : [];
-
-
-    useEffect(() => {
-        // if (shouldFetchData) {
-            const decodedToken = decodeJwt(
-                window.localStorage.getItem('accessToken')
-            );
-            if (decodedToken) {
-                dispatch(callGetMemberTodoAPI(decodedToken.MemberNo));
-            }
-            setShouldFetchData(false);
-        // }
-    }, [memberTodoList]);
-
 
     return (
         <div className={styles.TodoList}>

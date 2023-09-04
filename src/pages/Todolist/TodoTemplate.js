@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {decodeJwt} from "../../util/tokenUtils";
 
 
-const TodoTemplate = ({ children , todos }) => {
+const TodoTemplate = ({ children}) => {
 
     const [ todoCount , setTodoCount] = useState(0);
     const dispatch = useDispatch();
@@ -16,11 +16,12 @@ const TodoTemplate = ({ children , todos }) => {
 
     // memberTodoList의 data 길이를 todoCount로 설정
     useEffect(() => {
+        console.log('--------------',memberTodoList.data);
         if (memberTodoList.data) {
             setTodoCount(memberTodoList.data.length);
-            console.log("memberTodoList {}", memberTodoList.data)
+            console.log("memberTodoList {}", memberTodoList.data);
         }
-    }, [memberTodoList.data]);
+    }, []);
 
     return (
         <div className={styles.TodoTemplate}>

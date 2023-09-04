@@ -1,9 +1,11 @@
 import { MdAdd } from 'react-icons/md';
 import styles from './TodoInsert.module.css';
-import {useCallback, useEffect, useState} from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import {useCallback,useEffect, useRef, useState} from "react";
+import { useDispatch , useSelector } from 'react-redux';
 import {callGetMemberTodoAPI, callInsertTodoAPI} from "../../apis/TodoAPICalls";
 import {decodeJwt} from "../../util/tokenUtils";
+import {useNavigate} from "react-router-dom";
+
 
 
 
@@ -15,24 +17,23 @@ const TodoInsert = ({onInsert}) => {
     const [ value , setValue ] = useState('');
     const dispatch = useDispatch();
     const memberTodoList = useSelector(state => state.todoReducer);
-
+    const naviage = useNavigate();
     // 멤버정보 가지고 오기
-    useEffect(() => {
-
-        console.log("decodedToken.MemberNo1 {}",decodedToken.MemberNo);
-
-    }, []);
+    // useEffect(() => {
+    //
+    //     console.log("decodedToken.MemberNo1 {}",decodedToken.MemberNo);
+    //
+    // }, []);
 
 
     // input 입력 이벤트
+    const inputRef = useRef(null);
+
     const onChange= useCallback(e => {
-        const inputValue = e.target.value.trim();
-        if (inputValue === '') {
-            alert("값을 입력하세요");
-        } else {
+        const inputValue = e.target.value;
             setValue(inputValue);
             console.info(inputValue);
-        }
+
     },[]);  // use콜백 및 사용해서 쓸데없이 함수를 반복해서 불러오지 않기 성능 최적화를 위해
 
 
@@ -40,7 +41,7 @@ const TodoInsert = ({onInsert}) => {
     const onSubmit = useCallback(
         async e=> {
 
-            if(e !== null){
+            if(value !== null){
 
                 try {
                     console.table("초기값211111 {}",value);
@@ -54,7 +55,9 @@ const TodoInsert = ({onInsert}) => {
                 }
                 e.preventDefault();
             } else {
-                document.getElementById('inputElement').focus();
+                if (inputRef.current) {
+                    inputRef.current.focus();
+                }
             }
 
         },
@@ -72,6 +75,7 @@ const TodoInsert = ({onInsert}) => {
                 placeholder='할일을 입력하세요'
                 value={ value }
                 onChange={onChange}
+                ref={inputRef} // ref 설정
             />
 
             <button type='submit'>

@@ -46,15 +46,15 @@ const MainContent = () => {
     };
     const [currentTime, setCurrentTime] = useState(getCurrentTime());
 
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            setCurrentTime(getCurrentTime());
-        }, 1000); // 1분(60초)마다 업데이트
-
-        return () => {
-            clearInterval(intervalId);
-        };
-    }, []);
+    // useEffect(() => {
+    //     const intervalId = setInterval(() => {
+    //         setCurrentTime(getCurrentTime());
+    //     }, 1000); // 1분(60초)마다 업데이트
+    //
+    //     return () => {
+    //         clearInterval(intervalId);
+    //     };
+    // }, []);
 
 
 

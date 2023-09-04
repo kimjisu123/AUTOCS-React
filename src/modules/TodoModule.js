@@ -28,7 +28,8 @@ const todoReducer = handleActions({
             return payload;
         },
         [POST_TODO]: (state, { payload }) => {
-            return [...state, payload];
+            // return [...state, payload];
+            return payload;
         },
         [GET_TODO_MEMBER]: (state,{payload}) => {
             return payload;

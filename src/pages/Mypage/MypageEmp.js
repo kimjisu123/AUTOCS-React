@@ -12,6 +12,7 @@ import {decodeJwt} from "../../util/tokenUtils";
 import {callGetMemberTodoAPI} from "../../apis/TodoAPICalls";
 import {callGetMemberInfoAPI} from "../../apis/MypageAPICalls";
 import myPageReducer from "../../modules/MypageModule";
+import {format} from "date-fns";
 
 
 
@@ -74,7 +75,8 @@ function MypageEmp() {
         }
     };
 
-    // const { employeeNo ,id } = employees.data;
+
+
 
 
         return (
@@ -112,7 +114,7 @@ function MypageEmp() {
                                         <br/>
                                         <h3>입사일</h3>
                                         <br/>
-                                        <h1>2021/2/21</h1>
+                                        <h1 >{format(new Date(employees.data.employeeJoin), 'yyyy/MM/dd')}</h1>
                                     </div>
                                 </div>
                                 <div className={infoInput}>
