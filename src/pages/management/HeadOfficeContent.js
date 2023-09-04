@@ -1,5 +1,12 @@
 import styles from './HeadOffice.module.css'
 
+const currentDate = new Date();
+const year = currentDate.getFullYear();    // 현재 년 (2023)
+const month = currentDate.getMonth() + 1;  // 현재 월
+const day = currentDate.getDate();         // 현재 날짜(일)
+
+const toDayDate ="<"+ year + "년 " + month + "월 " + day+"일" + ">";
+
 function HeadOfficeContent(){
     return(
         <div className={styles.content}>
@@ -10,7 +17,7 @@ function HeadOfficeContent(){
                             본사 근태 현황
                         </div>
                         <div className={styles.today}>
-                            2023-07-17 ~ 2023-07-23
+                            {toDayDate}
                         </div>
                     </div>
                     <div>
@@ -51,8 +58,14 @@ function HeadOfficeContent(){
                             </div>
                         </div>
                         <div className={styles.infoContent}>
+
                             <div className={styles.statusInfoBox1}>
-                                김지수
+                                <div>
+                                    김지수
+                                </div>
+                                <div>
+                                    인사팀 (대리)
+                                </div>
                             </div>
                             <div className={styles.statusInfoBox2}>
                                 <div className={styles.cumulativeTime}>
