@@ -27,10 +27,17 @@ import {
     GET_IO_GROUP,
 } from '../modules/IoGroupModule';
 import {
-    GET_LAST_ORDER_NO,
     GET_ORDERS,
     POST_ORDER,
 } from '../modules/OrderModule';
+import {
+    GET_LAST_ORDER_NO,
+} from '../modules/OrderNumberModule';
+import {
+    POST_ORDER_PRODUCT,
+    PUT_ORDER,
+    // PUT_ORDER_PRODUCT,
+} from '../modules/OrderProductModule';
 
 /* 물품 조회 */
 export const callProductListAPI = ({currentPage}) => {
@@ -550,3 +557,66 @@ export const callOrderRegistAPI = ({form}) => {
 
     };
 }
+
+/* 주문번호 수정 */
+export const callOrderUpdateAPI = ({form}) => {
+
+    const requestURL = `http://localhost:8080/stock/order/update`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "PUT",
+            headers: {
+                "Accept": "*/*",
+            },
+            body: form
+        })
+            .then(response => response.json());
+
+        dispatch({ type: PUT_ORDER,  payload: result });
+
+    };
+}
+
+
+/* 주문물품 등록 */
+export const callOrderProductRegistAPI = ({form}) => {
+    const requestURL = `http://localhost:8080/stock/order/product`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "POST",
+            headers: {
+                "Accept": "*/*"
+            },
+            body: form
+        })
+            .then(response => response.json());
+
+        dispatch({ type: POST_ORDER_PRODUCT,  payload: result });
+
+    };
+}
+
+/* 주문물품 수정 */
+// export const callOrderProductUpdateAPI = ({form}) => {
+//
+//     const requestURL = `http://localhost:8080/stock/orderlist`;
+//
+//     return async (dispatch, getState) => {
+//
+//         const result = await fetch(requestURL, {
+//             method: "PUT",
+//             headers: {
+//                 "Accept": "*/*",
+//             },
+//             body: form
+//         })
+//             .then(response => response.json());
+//
+//         dispatch({ type: PUT_ORDER_PRODUCT,  payload: result });
+//
+//     };
+// }

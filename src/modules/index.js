@@ -10,6 +10,8 @@ import unitReducer from "./UnitModule";
 import ioReducer from "./IoModule";
 import ioGroupReducer from "./IoGroupModule";
 import orderReducer from "./OrderModule";
+import orderNumberReducer from "./OrderNumberModule";
+import orderProductReducer from "./OrderProductModule";
 import chartReducer from './ChartModule';
 import approvalReducer from './ApprovalModule';
 import todoReducer from "./TodoModule";
@@ -26,6 +28,8 @@ const rootReducer = combineReducers({
     ioReducer,
     ioGroupReducer,
     orderReducer,
+    orderNumberReducer,
+    orderProductReducer,
     todoReducer,
     marketReducer,
     approvalReducer,

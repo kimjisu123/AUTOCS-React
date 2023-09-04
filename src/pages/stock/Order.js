@@ -4,9 +4,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import {
-    callOrderListAPI,
     callOrderRegistAPI,
     callLastOrderAPI,
+    callOrderUpdateAPI,
+    callOrderProductRegistAPI,
 } from '../../apis/StockAPICalls'
 import {decodeJwt} from "../../util/tokenUtils";
 
@@ -40,15 +41,24 @@ function showPopup()
     },[]);
 
     /* 마지막 주문번호 조회 함수 */
-    const lastOrderNo = useSelector(state => state.orderReducer);
+    const lastOrderNo = useSelector(state => state.orderNumberReducer);
     console.log(lastOrderNo);
 
 
 
-    /* 물품 등록 */
+    /* 주문물품 등록 및 주문상태 업데이트 */
     const onClickRegistHandler = async () => {
         const confirmed = window.confirm('등록하시겠습니까?');
         if (confirmed) {
+
+            // 주문상태 업데이트
+            const formData = new FormData();
+            formData.append("orderNo", lastOrderNo);
+            formData.append("status", "Y");
+
+            dispatch(callOrderUpdateAPI({
+                form: formData
+            }));
 
             // const formData = new FormData();
             // formData.append("storeInfoNo", decodedToken.StoreNo);
