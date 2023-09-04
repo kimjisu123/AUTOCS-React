@@ -13,6 +13,7 @@ const TodoList = ({todos, onRemove ,onToggle,onUpdate}) => {
     const memberTodoList = useSelector(state => state.todoReducer);
     const [shouldFetchData, setShouldFetchData] = useState(true);
 
+
     const sortedTodoList = memberTodoList.data ? memberTodoList.data.slice().sort((a, b) => {
         return new Date(b.todoNo) - new Date(a.todoNo);
     }) : [];

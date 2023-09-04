@@ -1,5 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import { MdOutlineToggleOn , MdOutlineToggleOff , MdRemoveCircleOutline } from 'react-icons/md';
+import {
+    MdOutlineToggleOn,
+    MdOutlineToggleOff,
+    MdRemoveCircleOutline,
+    MdOutlineCheckBoxOutlineBlank, MdOutlineCheckBox, MdModeEditOutline
+} from 'react-icons/md';
 import styles from './TodoListItem.module.css';
 import cn from 'classnames';
 
@@ -16,8 +21,11 @@ const TodoListItem = ({ todo, onRemove, onToggle,onUpdate }) => {
 
         <div className={styles.TodoListItem}>
             <div className={cn(styles.checkbox , {[styles.checked]: todoStatus === 'Y'})} onClick={() => onToggle(todo)} onDoubleClick={() => onUpdate(todo)}>
-                { todoStatus === 'N'? <MdOutlineToggleOn /> : <MdOutlineToggleOff />}
+                { todoStatus === 'N'? <MdOutlineCheckBoxOutlineBlank /> : <MdOutlineCheckBox/>}
                 <div className={styles.text}>{ content }</div>
+            </div>
+            <div className={styles.modi} onClick={() => onUpdate(todo)}>
+                <MdModeEditOutline />
             </div>
             <div className={styles.remove} onClick={() => onRemove(todo)}>
                 <MdRemoveCircleOutline/>

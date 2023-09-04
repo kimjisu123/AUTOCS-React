@@ -1,22 +1,33 @@
 .TodoInsert {
 
     display: flex;
-    background: ghostwhite ;
+    /*background: ghostwhite ;*/
     flex: 1;
 
 }
 
 .todoinput {
 
-    background: ghostwhite ;
+    /*background: ghostwhite ;*/
+    /*outline: none;*/
+    /*border: none;*/
+    /*padding: 1.5rem;*/
+    /*font-size: 1.125rem;*/
+    /*line-height: 1.5;*/
+    /*color: gray;*/
+    /*flex: 1;*/
+
+    background: ghostwhite;
     outline: none;
-    border: none;
-    padding: 0.5rem;
+    border: 1px solid;
+    padding: 1.5rem;
     font-size: 1.125rem;
     line-height: 1.5;
     color: gray;
-    flex: 1;
-    margin-bottom: 0;
+    flex: 1 1;
+    border-radius: 10px;
+    margin-left: 15px;
+
 
 }
 
@@ -26,23 +37,44 @@
 }
 
 .TodoInsert button {
+    /*background: none;*/
+    /*outline: none;*/
+    /*border: none;*/
+    /*background: #4c7522;*/
+    /*color: white;*/
+    /*padding-left: 0.5rem;*/
+    /*padding-right: 0.5rem;*/
+    /*font-size: 1.5rem;*/
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*cursor: pointer;*/
+    /*transition: 0.1s background ease-in;*/
+    /*border-radius: 5px;*/
+    /*margin: 0.5rem;*/
+
     background: none;
     outline: none;
     border: none;
-    background: #4c7522;
+    /* background: #c5c5c5; */
     color: white;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-    font-size: 1.5rem;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
     display: flex;
     align-items: center;
     cursor: pointer;
     transition: 0.1s background ease-in;
-    border-radius: 5px;
-    margin: 0.5rem;
+    border-radius: 50px;
+    margin-right: 1rem;
 
 }
 
 button:hover {
-    background: #adb5db;
+    /*background: #adb5db;*/
+    transform: scaleX(1);
+}
+
+
+.TodoInsert svg {
+
+    color: black;
 }

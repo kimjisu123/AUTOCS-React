@@ -6,12 +6,12 @@ import React from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import {
     callDeleteTodoAPI,
-    callGetTodoAPI,
     callInsertTodoAPI,
     callUpdateTodoAPI,
     callUpdateToggleAPI
 } from "../../apis/TodoAPICalls";
 import {decodeJwt} from "../../util/tokenUtils";
+import Modal from "react-modal";
 
 
 
@@ -21,6 +21,7 @@ const TodoApp = ( ) => {
     const decodedToken = accessToken ? decodeJwt(accessToken) : null;
     const dispatch = useDispatch();
     const [todos, setTodos ] = useState({
+
         todoNo: "",
         content: "",
         todoStatus: "",
@@ -28,16 +29,13 @@ const TodoApp = ( ) => {
         url: ""
     });
     const [ value , setValue ] = useState('');
-    // console.log("decodedToken.MemberNo1 {}",decodedToken.MemberNo);
-
-    // 고유 아이디 붙여주기
-    // const nextId = useRef(4);
 
     // 입력 값 전달.
     const onInsert = useCallback(
         async value => {
 
             const todoData = {
+                ...todos,
                 todoNo: null,
                 content: value,
                 todoStatus: "N",
@@ -47,7 +45,7 @@ const TodoApp = ( ) => {
 
             try {
 
-                console.info("초기값2 {}",todoData);
+                console.info("초기값2 {}", todoData);
                 // Todo 추가 API 호출
                 dispatch(callInsertTodoAPI(todoData));
 
@@ -86,39 +84,25 @@ const TodoApp = ( ) => {
     const onToggle = useCallback(
         todo => {
             const todoData = {
-
+                ...todo,
                 todoStatus: todo.todoStatus,
                 memberNo: decodedToken.MemberNo,
                 todoNo:todo.todoNo,
                 checked:todo.checked
-
-
             };
-            console.log("todoNo {}" , todo.todoNo);
-            console.log("todoData {}" , todoData);
-            console.log("todo.memberNo {}" , todo.memberNo);
-
             dispatch(callUpdateToggleAPI(todoData));
-
         },[dispatch, callUpdateToggleAPI, decodedToken.MemberNo],
     );
 
     // 더블클릭시 내용 수정 함수
     const onUpdate = useCallback(
         todo => {
-            setTodos({
-                ...todo,
-                content: todo.content
-            })
-           ;
-            const editedText = prompt('수정할 내용을 입력하세요', todo.content);
-            const currentDate = new Date();
+            const editedText = <Modal>{prompt('수정할 내용을 입력하세요', todo.content)}</Modal>;
             if (editedText !== null) {
                 const todoData = {
                     content: editedText,
                     memberNo: decodedToken.MemberNo,
                     todoNo:todo.todoNo,
-                    upDate: currentDate
 
                 };
                 console.log(" onUpdate todoNo {}" , todo.todoNo);

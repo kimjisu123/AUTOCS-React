@@ -1,9 +1,20 @@
 import CardCSS from './Table.module.css';
 import {NavLink} from "react-router-dom";
-import React from "react";
+import React, {useEffect} from "react";
+import {callGetAppLineAPI} from "../../apis/ApprovalAPICalls";
+import { useSelector, useDispatch } from 'react-redux';
 
 const ApprovalList = () => {
 
+    const dispatch = useDispatch();
+    useEffect(
+        () => {
+            dispatch(callGetAppLineAPI());
+        },
+        []
+    )
+
+    const list = useSelector(state => state.approvalReducer);
 
     return (
         <>
@@ -16,11 +27,11 @@ const ApprovalList = () => {
                                 <span className={CardCSS.badge}></span>
                                 <span className={CardCSS.badgeText}><strong>대기중</strong></span>
                                 <div className={CardCSS.cardDetail}>
-                                    <small>품의서</small>
-                                    <span><NavLink to="/stock/myorderlist/detail">영업1부 품의서입니다.</NavLink></span>
+                                    <small>업무보고</small>
+                                    <span><NavLink to="/stock/myorderlist/detail">2023년 8월 첫 째주 업무보고</NavLink></span>
                                     <div className={CardCSS.detailCard}>
                                         <h5>김 사 원</h5>
-                                        <h5>2023.2.23</h5>
+                                        <h5>2023-08-14</h5>
                                     </div>
                                 </div>
                             </div>

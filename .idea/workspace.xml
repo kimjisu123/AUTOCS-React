@@ -4,12 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="157f9457-97ad-4bcb-ada0-2b69963deafb" name="Changes" comment="todo리스트(오름차순 구현 , 오류 해결중) 23/9/1">
+    <list default="true" id="157f9457-97ad-4bcb-ada0-2b69963deafb" name="Changes" comment="todo리스트(todo수정기능 완료, 리랜더링 오류 해결중) 23/9/1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/apis/TodoAPICalls.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apis/TodoAPICalls.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/TodoModule.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/TodoModule.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Mypage/MypageEmp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mypage/MypageEmp.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Todolist/TodoApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Todolist/TodoApp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Todolist/TodoInsert.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Todolist/TodoInsert.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Todolist/TodoInsert.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Todolist/TodoInsert.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Todolist/TodoList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Todolist/TodoList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Todolist/TodoListItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Todolist/TodoListItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Todolist/TodoListItem.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Todolist/TodoListItem.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/compoments/CoustomModal.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/compoments/CoustomModal.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/compoments/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/compoments/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/mainpage/ApprovalList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mainpage/ApprovalList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/mainpage/Table.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mainpage/Table.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,7 +167,7 @@
       <updated>1692331221305</updated>
       <workItem from="1692331222070" duration="236209000" />
       <workItem from="1693364952973" duration="19396000" />
-      <workItem from="1693414472967" duration="57051000" />
+      <workItem from="1693414472967" duration="68646000" />
     </task>
     <task id="LOCAL-00001" summary="첫번째 커밋">
       <created>1692332083730</created>
@@ -377,7 +386,14 @@
       <option name="project" value="LOCAL" />
       <updated>1693573528337</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="todo리스트(todo수정기능 완료, 리랜더링 오류 해결중) 23/9/1">
+      <created>1693577333862</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1693577333862</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -407,7 +423,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="TodoList 리액트 작업 중 (스타일링 기초 완)" />
     <MESSAGE value="TodoList 리액트 기능 작업(insert기능완)" />
     <MESSAGE value="TodoList 리액트 기능 작업(기능구현완 - 세부 스타일링 작업 진행중)" />
     <MESSAGE value="TodoList 리액트 기능 작업(기능구현완 - 세부 스타일링 작업 진행중) insert 버튼 디자인수정" />
@@ -432,7 +447,8 @@
     <MESSAGE value="깃 수정중 23/8/31" />
     <MESSAGE value="todo리스트(입력,출력,삭제,토글기능 구현완) 23/9/1" />
     <MESSAGE value="todo리스트(오름차순 구현 , 오류 해결중) 23/9/1" />
-    <option name="LAST_COMMIT_MESSAGE" value="todo리스트(오름차순 구현 , 오류 해결중) 23/9/1" />
+    <MESSAGE value="todo리스트(todo수정기능 완료, 리랜더링 오류 해결중) 23/9/1" />
+    <option name="LAST_COMMIT_MESSAGE" value="todo리스트(todo수정기능 완료, 리랜더링 오류 해결중) 23/9/1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
