@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="157f9457-97ad-4bcb-ada0-2b69963deafb" name="Changes" comment="todo리스트(todo수정기능 완료, 리랜더링 오류 해결중)&#10;too리스트 디자인 변경 23/9/3">
-      <change afterPath="$PROJECT_DIR$/src/apis/MypageAPICalls.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modules/MypageModule.js" afterDir="false" />
+    <list default="true" id="157f9457-97ad-4bcb-ada0-2b69963deafb" name="Changes" comment="마이페이지 값 조회중 23/9/3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mypage/Mypage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mypage/Mypage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mypage/MypageEmp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mypage/MypageEmp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Todolist/TodoTemplate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Todolist/TodoTemplate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Todolist/TodoApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Todolist/TodoApp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Todolist/TodoList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Todolist/TodoList.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +163,7 @@
       <updated>1692331221305</updated>
       <workItem from="1692331222070" duration="236209000" />
       <workItem from="1693364952973" duration="19396000" />
-      <workItem from="1693414472967" duration="75157000" />
+      <workItem from="1693414472967" duration="76294000" />
     </task>
     <task id="LOCAL-00001" summary="첫번째 커밋">
       <created>1692332083730</created>
@@ -400,7 +396,14 @@
       <option name="project" value="LOCAL" />
       <updated>1693788735632</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="마이페이지 값 조회중 23/9/3">
+      <created>1693811618798</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1693811618798</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -430,7 +433,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="TodoList 리액트 기능 작업(기능구현완 - 세부 스타일링 작업 진행중)" />
     <MESSAGE value="TodoList 리액트 기능 작업(기능구현완 - 세부 스타일링 작업 진행중) insert 버튼 디자인수정" />
     <MESSAGE value="TodoList 리액트 화면단 작업(기능구현완 - 세부 스타일링 작업 진행중) 스타일 작업 완 -&gt; 팝업창으로 전환 예정" />
     <MESSAGE value="TodoList 리액트 화면단 이동작업(마이페이지 수정중 회원/매장/관리)" />
@@ -455,7 +457,8 @@
     <MESSAGE value="todo리스트(오름차순 구현 , 오류 해결중) 23/9/1" />
     <MESSAGE value="todo리스트(todo수정기능 완료, 리랜더링 오류 해결중) 23/9/1" />
     <MESSAGE value="todo리스트(todo수정기능 완료, 리랜더링 오류 해결중)&#10;too리스트 디자인 변경 23/9/3" />
-    <option name="LAST_COMMIT_MESSAGE" value="todo리스트(todo수정기능 완료, 리랜더링 오류 해결중)&#10;too리스트 디자인 변경 23/9/3" />
+    <MESSAGE value="마이페이지 값 조회중 23/9/3" />
+    <option name="LAST_COMMIT_MESSAGE" value="마이페이지 값 조회중 23/9/3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

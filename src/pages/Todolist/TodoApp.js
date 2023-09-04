@@ -59,7 +59,7 @@ const TodoApp = ( ) => {
             }
 
             // window.location.reload();
-        },[dispatch, callInsertTodoAPI, value]
+        },[]
 
     );
 
@@ -75,7 +75,7 @@ const TodoApp = ( ) => {
             // setTodos(todos => todos.filter(todo => todo.id !== id));
             dispatch(callDeleteTodoAPI(memberTodoList)); // 할일 삭제 API 호출
             // window.location.reload();
-        },[dispatch, callDeleteTodoAPI],
+        },[],
 
 
     );
@@ -97,7 +97,7 @@ const TodoApp = ( ) => {
     // 더블클릭시 내용 수정 함수
     const onUpdate = useCallback(
         todo => {
-            const editedText = <Modal>{prompt('수정할 내용을 입력하세요', todo.content)}</Modal>;
+            const editedText = prompt('수정할 내용을 입력하세요', todo.content);
             if (editedText !== null) {
                 const todoData = {
                     content: editedText,
@@ -111,7 +111,7 @@ const TodoApp = ( ) => {
                 dispatch(callUpdateTodoAPI(todoData));
             }
 
-        },[dispatch, callUpdateTodoAPI, decodedToken.MemberNo],
+        },[],
     );
 
 

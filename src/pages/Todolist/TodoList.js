@@ -1,12 +1,12 @@
 import TodoListItem from "./TodoListItem";
 import styles from './TodoList.module.css'
-import React, {useEffect, useState} from 'react';
+import React, {memo, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {decodeJwt} from "../../util/tokenUtils";
 import {callGetMemberTodoAPI} from "../../apis/TodoAPICalls";
 
 
-const TodoList = ({todos, onRemove ,onToggle,onUpdate}) => {
+const TodoList = ({ onRemove ,onToggle,onUpdate}) => {
 
     const dispatch = useDispatch();
     // 투두 리스트 가져오기
@@ -20,7 +20,7 @@ const TodoList = ({todos, onRemove ,onToggle,onUpdate}) => {
 
 
     useEffect(() => {
-        if (shouldFetchData) {
+        // if (shouldFetchData) {
             const decodedToken = decodeJwt(
                 window.localStorage.getItem('accessToken')
             );
@@ -28,8 +28,8 @@ const TodoList = ({todos, onRemove ,onToggle,onUpdate}) => {
                 dispatch(callGetMemberTodoAPI(decodedToken.MemberNo));
             }
             setShouldFetchData(false);
-        }
-    }, [dispatch,callGetMemberTodoAPI, shouldFetchData]);
+        // }
+    }, [memberTodoList]);
 
 
     return (
@@ -49,4 +49,4 @@ const TodoList = ({todos, onRemove ,onToggle,onUpdate}) => {
         </div>
     )
 }
-export default TodoList; // 성능 최적화
+export default memo(TodoList); // 성능 최적화
