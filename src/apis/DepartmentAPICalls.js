@@ -20,7 +20,7 @@ export const callGetDepartmentAPI = () => {
 };
 
 export const callGetPersonnelAPI = () => {
-    const requestURL = "http://localhost:8080personnel";
+    const requestURL = "http://localhost:8080/personnel";
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -30,13 +30,14 @@ export const callGetPersonnelAPI = () => {
                 'Accept': '*/*'
             },
         }).then(response => response.json())
-        dispatch({ type: GET_PERSONNEL, payload: result });
+        dispatch({ type: GET_PERSONNEL, payload: result })
+
     }
 };
 
 
 export const callGetAccountingAPI = () => {
-    const requestURL = "http://localhost:8080accounting";
+    const requestURL = "http://localhost:8080/accounting";
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -52,7 +53,7 @@ export const callGetAccountingAPI = () => {
 
 
 export const callGetManagementAPI = () => {
-    const requestURL = "http://localhost:8080management";
+    const requestURL = "http://localhost:8080/management";
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -68,7 +69,7 @@ export const callGetManagementAPI = () => {
 
 
 export const callGetMarketingAPI = () => {
-    const requestURL = "http://localhost:8080marketing";
+    const requestURL = "http://localhost:8080/marketing";
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -84,7 +85,7 @@ export const callGetMarketingAPI = () => {
 
 
 export const callGetSalesAPI = () => {
-    const requestURL = "http://localhost:8080sales";
+    const requestURL = "http://localhost:8080/sales";
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -100,7 +101,7 @@ export const callGetSalesAPI = () => {
 
 
 export const callGetServiceAPI = () => {
-    const requestURL = "http://localhost:8080service";
+    const requestURL = "http://localhost:8080/service";
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {

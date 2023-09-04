@@ -11,6 +11,7 @@ import chartReducer from './ChartModule';
 import approvalReducer from './ApprovalModule';
 import todoReducer from "./TodoModule";
 import {workStatusReducer} from"./WorkStatusModule";
+import { departmentReducer, personnelReducer, accountingReducer, managementReducer, marketingReducer, salesReducer, serviceReducer  } from "./DepartmentModule";
 
 const rootReducer = combineReducers({
     chartReducer,
@@ -25,7 +26,14 @@ const rootReducer = combineReducers({
     marketReducer,
     approvalReducer,
     mailSentReducer,
-    workStatusReducer
+    workStatusReducer,
+    departmentReducer,
+    personnelReducer,
+    accountingReducer,
+    managementReducer,
+    marketingReducer,
+    salesReducer,
+    serviceReducer
 });
 
 export default rootReducer;

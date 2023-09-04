@@ -20,7 +20,7 @@ export const departmentReducer = handleActions(
     initialState
 );
 
-export const departmentReducer = handleActions(
+export const personnelReducer = handleActions(
     {
         [GET_PERSONNEL]: (state, { payload }) => {
 
@@ -30,7 +30,7 @@ export const departmentReducer = handleActions(
     initialState
 );
 
-export const departmentReducer = handleActions(
+export const accountingReducer = handleActions(
     {
         [GET_ACCOUNTING]: (state, { payload }) => {
 
@@ -40,7 +40,7 @@ export const departmentReducer = handleActions(
     initialState
 );
 
-export const departmentReducer = handleActions(
+export const managementReducer = handleActions(
     {
         [GET_MANAGEMENT]: (state, { payload }) => {
 
@@ -50,7 +50,7 @@ export const departmentReducer = handleActions(
     initialState
 );
 
-export const departmentReducer = handleActions(
+export const marketingReducer = handleActions(
     {
         [GET_MARKETING]: (state, { payload }) => {
 
@@ -60,7 +60,7 @@ export const departmentReducer = handleActions(
     initialState
 );
 
-export const departmentReducer = handleActions(
+export const salesReducer = handleActions(
     {
         [GET_SALES]: (state, { payload }) => {
 
@@ -70,7 +70,7 @@ export const departmentReducer = handleActions(
     initialState
 );
 
-export const departmentReducer = handleActions(
+export const serviceReducer = handleActions(
     {
         [GET_SERIVCE]: (state, { payload }) => {
 
