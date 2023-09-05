@@ -6,6 +6,19 @@ import marketReducer from "../../modules/MarketModule";
 import Modal from 'react-modal';
 
 const ApplyStateO = () => {
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalContent, setModalContent] = useState('');
+    // 클릭 시 모달 열기
+    const openModal = (content) => {
+        setModalContent(content);
+        setModalIsOpen(true);
+    };
+
+    // 모달 닫기
+    const closeModal = () => {
+        setModalIsOpen(false);
+    };
+
     const dispatch = useDispatch();
     const market = useSelector(state => state.marketReducer);
     const marketList = market.data;
@@ -40,6 +53,7 @@ const ApplyStateO = () => {
                     <tr>
                         <th>대표자명</th>
                         <th>주소</th>
+                        <th>상세주소</th>
                         <th>신청일</th>
                         <th>이메일</th>
                         <th>사업자등록번호</th>
@@ -52,18 +66,37 @@ const ApplyStateO = () => {
                         .filter(market => market.state === 'O    ')
                         .map(market => (
                         <tr key={market.applyNo}>
-                            <td>{market.name}</td>
-                            <td>{market.address}</td>
-                            <td>{market.registDate.split('T')[0].replace(/-/g, '/')}</td>
-                            <td>{market.email}</td>
-                            <td>{market.license}</td>
-                            <td>{market.state}</td>
+                            <td className="can">{market.name}</td>
+                            <td className="can" onClick={() => openModal(market.address)}>{market.address}</td>
+                            <td className="can" onClick={() => openModal(market.detailAddress)}>{market.detailAddress}</td>
+                            <td className="can">{market.registDate.split('T')[0].replace(/-/g, '/')}</td>
+                            <td className="can" onClick={() => openModal(market.email)}>{market.email}</td>
+                            <td className="can">{market.license}</td>
+                            <td className="can">{market.state}</td>
                             <td>
                                 <a href={market.fileUrl} target="_blank" rel="noopener noreferrer" style={{fontSize: "13.5px"}}>서류확인</a>
                             </td>
                         </tr>
                     ))}
                     </tbody>
+                    <Modal
+                        isOpen={modalIsOpen}
+                        onRequestClose={closeModal}
+                        style={{
+                            content: {
+                                width: '20%',
+                                height: '5vh',
+                                margin: 'auto',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+                                alignItems: 'center'
+                            },
+                        }}
+                    >
+                        <div>{modalContent}</div>
+                        <button onClick={closeModal} style={{marginTop: "5px"}}>닫기</button>
+                    </Modal>
                 </table>
             )}
         </div>

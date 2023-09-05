@@ -3,9 +3,6 @@ import {
     GET_PRODUCTS,
     POST_PRODUCT,
     PUT_PRODUCT,
-    GET_IO,
-    POST_IO,
-    GET_IO_GROUP,
 } from '../modules/ProductModule';
 import {
     GET_CATEGORIES,
@@ -22,6 +19,18 @@ import {
     POST_UNIT,
     PUT_UNIT,
 } from '../modules/UnitModule';
+import {
+    GET_IO,
+    POST_IO,
+} from '../modules/IoModule';
+import {
+    GET_IO_GROUP,
+} from '../modules/IoGroupModule';
+import {
+    GET_LAST_ORDER_NO,
+    GET_ORDERS,
+    POST_ORDER,
+} from '../modules/OrderModule';
 
 /* 물품 조회 */
 export const callProductListAPI = ({currentPage}) => {
@@ -54,7 +63,7 @@ export const callProductListAPI = ({currentPage}) => {
     };
 }
 
-/* 물품 조회 */
+/* 물품 조회 이름검색*/
 export const callProductListByNameAPI = ({currentPage, s}) => {
     console.log('시작......')
 
@@ -467,6 +476,77 @@ export const callIOListWithGroupingAPI = ({currentPage, s, startDate, endDate}) 
         if(result.status === 200){
             dispatch({ type: GET_IO_GROUP,  payload: result.data });
         }
+
+    };
+}
+
+/* 주문번호 조회 */
+export const callOrderListAPI = ({currentPage}) => {
+
+    let requestURL;
+
+    if(currentPage !== undefined || currentPage !== null){
+        requestURL = `http://localhost:8080/stock/order?offset=${currentPage}`;
+    }else {
+        requestURL = `http://localhost:8080/stock/order`;
+    }
+
+    console.log('[StockAPICalls] requestURL : ', requestURL);
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            }
+        })
+            .then(response => response.json());
+        if(result.status === 200){
+            dispatch({ type: GET_ORDERS,  payload: result.data });
+        }
+
+    };
+}
+
+/* 마지막주문번호 조회 */
+export const callLastOrderAPI = () => {
+
+    let requestURL;
+
+    requestURL = `http://localhost:8080/stock/order/findLast`;
+
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            }
+        })
+            .then(response => response.json());
+        if(result.status === 200){
+            dispatch({ type: GET_LAST_ORDER_NO,  payload: result.data });
+        }
+    };
+}
+/* 주문번호 등록 */
+export const callOrderRegistAPI = ({form}) => {
+    const requestURL = `http://localhost:8080/stock/order`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "POST",
+            headers: {
+                "Accept": "*/*"
+            },
+            body: form
+        })
+            .then(response => response.json());
+
+        dispatch({ type: POST_ORDER,  payload: result });
 
     };
 }
