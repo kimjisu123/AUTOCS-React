@@ -1,4 +1,5 @@
 import styles from './Department.module.css';
+
 function DepartmentContent (){
 
     const currentDate = new Date();

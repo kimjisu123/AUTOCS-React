@@ -29,6 +29,7 @@ function WorkStatusContent (){
 
     // 현재 날짜에서 월요일까지의 날짜 차이 계산
     const daysUntilMonday = (currentWeek === 0 ? 7 : currentWeek) - 1;
+
     mondayDate.setDate(mondayDate.getDate() - daysUntilMonday);
 
     mondayDate.setHours(0, 0, 0, 0);
@@ -116,25 +117,26 @@ function WorkStatusContent (){
     }
 
     // 밀리초 값을 시간, 분, 초로 변환
+    // 이번주 누적 근로 시간
     const totalSeconds = Math.floor(weekTotalTime / 1000); // 전체 초
     const hours = Math.floor(totalSeconds / 3600); // 시간
     const minutes = Math.floor((totalSeconds % 3600) / 60); // 분
     const seconds = totalSeconds % 60; // 초
 
-    // 밀리초 값을 시간, 분, 초로 변환
+    // 이번주 연장 근로 시간
     const totalSeconds2 = Math.floor(weekOvertime / 1000); // 전체 초
     const hours2 = Math.floor(totalSeconds2 / 3600); // 시간
     const minutes2 = Math.floor((totalSeconds2 % 3600) / 60); // 분
     const seconds2 = totalSeconds2 % 60; // 초
 
-    // 밀리초 값을 시간, 분, 초로 변환
+    // 이번달 누적 근로 시간
     const totalSeconds3 = Math.floor(monthTotalTime / 1000); // 전체 초
     const days3 = Math.floor(totalSeconds3 / (3600 * 24)); // 일
     const hours3 = Math.floor((totalSeconds3 % (3600 * 24)) / 3600); // 시간
     const minutes3 = Math.floor((totalSeconds3 % 3600) / 60); // 분
     const seconds3 = totalSeconds3 % 60; // 초
 
-    // 밀리초 값을 시간, 분, 초로 변환
+    // 이번달 연장 근로 시간
     const totalSeconds4 = Math.floor(monthOvertime / 1000); // 전체 초
     const days4 = Math.floor(totalSeconds4 / (3600 * 24)); // 일
     const hours4 = Math.floor((totalSeconds4 % (3600 * 24)) / 3600); // 시간
@@ -153,7 +155,7 @@ function WorkStatusContent (){
 
     // 테스트용 ( 테스트 끝나면 지우기)
     const onClickTest = () => {
-        console.log(monthData);
+        console.log(mondayDate);
     }
     return (
         <>
