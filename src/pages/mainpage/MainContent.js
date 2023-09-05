@@ -15,14 +15,14 @@ import moment from "moment-timezone";
 import DocuList from "./DocuList";
 import {useDispatch} from "react-redux";
 import {decodeJwt} from "../../util/tokenUtils";
-
-
+import {callPostAttendanceAPI, callPutQuittingAPI} from "../../apis/WorkStatusAPICalls";
 
 
 // 비구조화 할당 문법을 활용한 css내부 값 추출하기 이렇게 쓰면 MypageCSS.mainContatiner를 안써도된다. )
 
 
 const MainContent = () => {
+
 
     const combineClass = classNames('tempBox' , 'three')
     const today = String(new Date().toLocaleDateString());
@@ -37,6 +37,11 @@ const MainContent = () => {
 
     const decodedToken = accessToken ? decodeJwt(accessToken) : null;
     const role = decodedToken ? decodedToken.auth : null;
+
+
+    const onClickAttendance= () =>  dispatch( callPostAttendanceAPI() )
+    const onClickQuitting = () => dispatch( callPutQuittingAPI() )
+
 
 
 
@@ -73,8 +78,8 @@ const MainContent = () => {
                                     <h3>오늘 하루도 힘내세요</h3>
                                 </div>
                                 <div className={mainstyle.workbuttons}>
-                                        <button>출근하기</button>
-                                        <button>퇴근하기</button>
+                                        <button onClick={onClickAttendance}>출근하기</button>
+                                        <button onClick={onClickQuitting}>퇴근하기</button>
                                 </div>
                             </div>
                             <div>

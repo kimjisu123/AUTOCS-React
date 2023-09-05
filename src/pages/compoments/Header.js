@@ -47,7 +47,7 @@ const Header = () => {
                 { to: "approval", label: "전자결재" },
                 //나중에 마이페이지 안으로 넣어줘야함
                 { to: "outM", label: "계정비활성화" },
-                { to: "workstatus", label: "근태관리" },
+                { to: `/workstatus`, label: "근태관리" },
                 { to: `/mail/${decodedToken.EmployeeNo}`, label: "쪽지함" }
             );
 

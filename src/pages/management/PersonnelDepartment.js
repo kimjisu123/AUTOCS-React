@@ -2,7 +2,6 @@ import styles from './Department.module.css';
 import {useEffect} from "react";
 import {callGetPersonnelAPI} from "../../apis/DepartmentAPICalls";
 import {useSelector, useDispatch} from "react-redux";
-import {departmentReducer, personnelReducer} from "../../modules/DepartmentModule";
 
 function PersonnelDepartment (){
 
@@ -23,23 +22,37 @@ function PersonnelDepartment (){
         dispatch( callGetPersonnelAPI() )
     }, [])
 
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+
+    const todayFilter = data.data && data.data.filter(item => {
+        // quittingTime 속성을 Date 객체로 변환합니다.
+        const quittingTime = new Date(item.quittingTime);
+        quittingTime.setHours(0, 0, 0, 0); // quittingTime의 시간을 00:00:00:000으로 설정
+
+        // 오늘과 quittingTime을 비교하여 필터링합니다.
+        return today.getTime() === quittingTime.getTime();
+    });
+
+
     // 출근 미체크
-    const attendanceTime = data.data && data.data.filter(item=>
+    const attendanceTime = todayFilter&& todayFilter.filter(item=>
         item.attendanceTime === null
     )
 
     // 퇴근 미체크
-    const quittingTime = data.data && data.data.filter(item=>
+    const quittingTime = todayFilter && todayFilter.filter(item=>
         item.quittingTime === null
     )
 
     // 늦은 출근 ( 지각 )
-    const beingLate = data.data && data.data.filter(item=>
+    const beingLate = todayFilter && todayFilter.filter(item=>
         beingLateTest(item.attendanceTime)
     )
 
     // 휴가
-    const vacationStatus = data.data && data.data.filter(item=>
+    const vacationStatus = todayFilter && todayFilter.filter(item=>
         item.vacationStatus === 'Y'
     )
 
@@ -59,9 +72,37 @@ function PersonnelDepartment (){
         return hours >= 9;
     }
 
+    function getYearMonthDay(dateString) {
+        const dateObj = new Date(dateString);
+
+        const year = dateObj.getFullYear();
+        const month = dateObj.getMonth() + 1; // 월은 0부터 시작하므로 1을 더합니다.
+        const day = dateObj.getDate();
+
+        const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+
+        return formattedDate;
+    }
+
+    function formatTimeComponent(component) {
+        return component < 10 ? '0' + component : component;
+    }
+
+
+    function formatTime(timeString) {
+        const components = timeString.split(':');
+        const hours = formatTimeComponent(parseInt(components[0], 10));
+        const minutes = formatTimeComponent(parseInt(components[1], 10));
+        const seconds = formatTimeComponent(parseInt(components[2], 10));
+
+        return `${hours}:${minutes}:${seconds}`;
+    }
+
+
+
     // 테스트용 쓰고 지우기
     const onClickTest = () =>{
-        console.log()
+        console.log(data.data[0].quittingTime)
     }
     return (
         <>
@@ -151,7 +192,7 @@ function PersonnelDepartment (){
                         </div>
                     </div>
                     <div>
-                        {data.data && data.data.length > 0 && data.data.map(item =>(
+                        {todayFilter && todayFilter.length > 0 && todayFilter.map(item =>(
                             <div>
                                 <div className={styles.infoContent}>
                                     <div className={styles.statusInfoBox1}>
@@ -161,13 +202,13 @@ function PersonnelDepartment (){
                                         {item.workStatusLists[0].employee.department.name}
                                     </div>
                                     <div className={styles.statusInfoBox3}>
-                                        { toDay }
+                                        { getYearMonthDay(item.quittingTime)  }
                                     </div>
                                     <div className={styles.statusInfoBox4}>
-                                        { item.attendanceTime ? formatFunction(item.attendanceTime) : '미등록'  }
+                                        { item.attendanceTime ? formatTime(formatFunction(item.attendanceTime)) : '미등록'  }
                                     </div>
                                     <div className={styles.statusInfoBox5}>
-                                        { item.quittingTime ? formatFunction(item.quittingTime) : '미등록' }
+                                        { item.quittingTime ? formatTime(formatFunction(item.quittingTime)) : '미등록' }
                                     </div>
                                     <div className={styles.statusInfoBox6}>
                                         { item.vacationStatus}
