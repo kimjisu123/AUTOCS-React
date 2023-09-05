@@ -38,13 +38,13 @@ const Header = () => {
 
         let menuItems = [
             { to: "/main", label: "홈" },
-            { to: "/dashboard", label: "게시판" },
             { to: "calendar", label: "캘린더" },
             { to: "todo", label: "+Todo" }
         ];
 
         if (role === "EMPLOYEE") {
             menuItems.push(
+                { to: "/board/notieE", label: "게시판" },
                 { to: "chart", label: "조직도" },
                 { to: "approval", label: "전자결재" },
                 { to: "management", label: "근태관리" },
@@ -54,13 +54,14 @@ const Header = () => {
             );
 
             if (department === "인사부") {
-                menuItems.push({ to: "menu/registration", label: "계정관리" });
+                menuItems.push({ to: "menu/registration", label: "인사관리" });
             }
             if (department === "경영부") {
                 menuItems.push({ to: "stock", label: "재고관리" });
             }
         } else if (role === "STORE") {
             menuItems.push(
+                { to: "/board/notieM", label: "게시판" },
                 { to: "stock", label: "재고관리" },
                 //나중에 마이페이지 안으로 넣어줘야함
                 { to: "outS", label: "계정비활성화" }
