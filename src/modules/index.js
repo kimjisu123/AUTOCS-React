@@ -7,10 +7,14 @@ import productReducer from "./ProductModule";
 import categoryReducer from "./CategoryModule";
 import standardReducer from "./StandardModule";
 import unitReducer from "./UnitModule";
+import ioReducer from "./IoModule";
+import ioGroupReducer from "./IoGroupModule";
+import orderReducer from "./OrderModule";
 import chartReducer from './ChartModule';
 import approvalReducer from './ApprovalModule';
 import todoReducer from "./TodoModule";
 import myPageReducer from "./MypageModule";
+import boardReducer from "./BoardModule";
 
 const rootReducer = combineReducers({
     chartReducer,
@@ -29,6 +33,7 @@ const rootReducer = combineReducers({
     approvalReducer,
     mailSentReducer,
     myPageReducer,
+    boardReducer
 });
 
 export default rootReducer;
