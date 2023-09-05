@@ -11,6 +11,7 @@ import TodoApp from "../Todolist/TodoApp";
 import './CoustomModal.css';
 import { useUserContext } from "../Todolist/TodoContext";
 import Swal from 'sweetalert2';
+import Login from "../Login/Login";
 
 const Header = () => {
     const navigate = useNavigate();
@@ -23,11 +24,12 @@ const Header = () => {
     const role = decodedToken ? decodedToken.auth : null;
     const department = decodedToken ? decodedToken.Department : null;
 
-    //토큰값
-    console.log("토큰값>>>>>>>>>>>>>>>>>" + accessToken);
-    //console.log("accessToken>>>>>>>>>>>>>>>>>" + accessToken.iat);
-    //console.log("decodedToken>>>>>>>>>>>>>>>>>" + decodedToken.iat);
+    //로그인 세션만료 관련
+    const iatTimestamp = decodedToken ? decodedToken.exp * 1000 : null;
+    const currentTimestamp = Date.now();
 
+    //토큰값
+    //console.log("토큰값>>>>>>>>>>>>>>>>>" + accessToken);
 
     //창띄울때  요거 NavLink to 에 location.pathname 넣으면 현재페이지 유지됩니다.
     const location = useLocation();
@@ -76,40 +78,35 @@ const Header = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const { todoModal, setTodoModal } = useUserContext();
 
-    // //시간 지나면 로그인 만료(토큰 비우기)
-    // const handleTokenExpiration = () => {
-    //     const fifteenSecondsLater = decodedToken.iat * 1000 + (15 * 1000);
-    //
-    //     if (decodedToken.exp * 1000 < Date.now()) {
-    //         setLoginModal(true);
-    //     } else if (fifteenSecondsLater < Date.now()) {
-    //         // 토큰이 15초가 지나면 로그아웃 처리
-    //         window.localStorage.removeItem('accessToken');
-    //         dispatch(callLogoutAPI());
-    //         alert('세션이 만료되어 로그아웃됩니다.');
-    //         navigate('/login', { replace: true });
-    //     }
-    // };
-    //
-    // useEffect(() => {
-    //     console.log(decodedToken.iat);
-    //     const interval = setInterval(() => {
-    //         handleTokenExpiration();
-    //     }, 3000); // 3초마다 체크
-    //
-    //     return () => clearInterval(interval);
-    // }, []);
+    useEffect(() => {
+        const interval = setInterval(() => {
+            handleTokenExpiration();
+        }, 14 * 60 * 60 * 1000);
+        return () => clearInterval(interval);
+    }, [currentTimestamp]);
 
+    // 로그인 만료(토큰 비우기)
+    const handleTokenExpiration = () => {
+
+        if (currentTimestamp > iatTimestamp) {
+            dispatch(callLogoutAPI());
+            alert('세션이 만료되어 로그아웃됩니다.');
+            navigate('/login', { replace: true });
+        } else {
+            setLoginModal(true);
+        }
+    };
 
     const mypageHandler = () => {
-        // const token = decodeJwt(window.localStorage.getItem("accessToken"));
-        //
-        // if (token.exp * 1000 < Date.now()) {
-        //     setLoginModal(true);
-        //     return;
-        // }
 
-        navigate("/마이페이지경로", { replace: true });
+        if (currentTimestamp > iatTimestamp) {
+            dispatch(callLogoutAPI());
+            alert('세션이 만료되어 로그아웃됩니다.');
+            navigate('/login', { replace: true });
+        } else {
+            setLoginModal(true);
+            navigate("/마이페이지경로", { replace: true });
+        }
     };
 
     const onClickLogoutHandler = () => {
@@ -131,7 +128,7 @@ const Header = () => {
 
     return (
         <>
-            {login ? <login setLoginModal={setLoginModal} /> : null}
+            {login ? <Login setLoginModal={setLoginModal} /> : null}
             <div className="headerWrapper">
                 <div className="topNav">
                     <NavLink to="/main">
