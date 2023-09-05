@@ -160,7 +160,7 @@ function WorkStatusContent (){
     let weekSecond = 0;
 
 
-    weekOverTime.forEach(item => {
+    weekOverTime && weekOverTime.length >0 &&  weekOverTime.forEach(item => {
         const timeParts = item.split(':'); // 일(day), 시(hour), 분(minute), 초(second)를 배열로 분리
         const hoursValue = parseInt(timeParts[0]);
         const minutesValue = parseInt(timeParts[1]);
@@ -202,7 +202,7 @@ function WorkStatusContent (){
     let totalMinutes = 0;
     let totalSecond = 0;
 
-    monthOverTime.forEach(item => {
+    monthOverTime && monthOverTime.length >0 && monthOverTime.forEach(item => {
         const timeParts = item.split(':'); // 일(day), 시(hour), 분(minute), 초(second)를 배열로 분리
         const hoursValue = parseInt(timeParts[0]);
         const minutesValue = parseInt(timeParts[1]);

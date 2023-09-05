@@ -28,7 +28,7 @@ function PersonnelDepartment (){
 
     const todayFilter = data.data && data.data.filter(item => {
         // quittingTime 속성을 Date 객체로 변환합니다.
-        const quittingTime = new Date(item.quittingTime);
+        const quittingTime = new Date(item.attendanceTime);
         quittingTime.setHours(0, 0, 0, 0); // quittingTime의 시간을 00:00:00:000으로 설정
 
         // 오늘과 quittingTime을 비교하여 필터링합니다.
@@ -102,7 +102,7 @@ function PersonnelDepartment (){
 
     // 테스트용 쓰고 지우기
     const onClickTest = () =>{
-        console.log(data.data[0].quittingTime)
+        console.log(todayFilter)
     }
     return (
         <>
@@ -202,7 +202,7 @@ function PersonnelDepartment (){
                                         {item.workStatusLists[0].employee.department.name}
                                     </div>
                                     <div className={styles.statusInfoBox3}>
-                                        { getYearMonthDay(item.quittingTime)  }
+                                        { getYearMonthDay(new Date())  }
                                     </div>
                                     <div className={styles.statusInfoBox4}>
                                         { item.attendanceTime ? formatTime(formatFunction(item.attendanceTime)) : '미등록'  }
