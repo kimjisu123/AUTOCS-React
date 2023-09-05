@@ -38,7 +38,7 @@ const Header = () => {
             { to: "/main", label: "홈" },
             { to: "/dashboard", label: "게시판" },
             { to: "calendar", label: "캘린더" },
-            { to: "todo", label: "+Todo" }
+            // { to: "todo", label: "+Todo" }
         ];
 
         if (role === "EMPLOYEE") {
@@ -158,7 +158,15 @@ const Header = () => {
                             >
                                 {menuItem.label}
                             </NavLink>
+
                         ))}
+                        <NavLink
+                            to={location.pathname}
+                            className={`menu todo ${location.pathname === '/todo' ? 'activeMenu' : ''}`}
+                            onClick={() => setModalIsOpen(true)}
+                        >
+                            +Todo
+                        </NavLink>
                         <div className="profileAndLogout">
                             <NavLink
                                 to="myPage"
@@ -195,12 +203,12 @@ const Header = () => {
                     isOpen={modalIsOpen}
                     onRequestClose={() => setModalIsOpen(false)}
                     className={`customModalStyle ${modalIsOpen? 'isOpen':''}`}
-                    // contentLabel="Modal"
+                    overlayClassName="ReactModal__Overlay"
+                    contentLabel="Modal"
                 >
                     <div style={{ width:"500px", height:"500px", margin:"60px auto"}}>
                         <TodoApp todoModal={ todoModal } setTodoModal={ setTodoModal } />
                     </div>
-
                 </Modal>
             )}
         </>

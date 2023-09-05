@@ -13,6 +13,7 @@ import orderReducer from "./OrderModule";
 import chartReducer from './ChartModule';
 import approvalReducer from './ApprovalModule';
 import todoReducer from "./TodoModule";
+import myPageReducer from "./MypageModule";
 import {workStatusReducer} from"./WorkStatusModule";
 import { departmentReducer, personnelReducer, accountingReducer, managementReducer, marketingReducer, salesReducer, serviceReducer  } from "./DepartmentModule";
 
@@ -32,6 +33,7 @@ const rootReducer = combineReducers({
     marketReducer,
     approvalReducer,
     mailSentReducer,
+    myPageReducer,
     workStatusReducer,
     departmentReducer,
     personnelReducer,
