@@ -1,7 +1,9 @@
 import {
     GET_APPLINE, POST_BUSINESS,
-    POST_PURCHASE, POST_TRAFFIC, POST_VACATION
+    POST_PURCHASE, POST_TRAFFIC, POST_VACATION,
+    GET_VACATION, GET_APP_HOME, GET_SEND
 } from '../modules/ApprovalModule'
+import {decodeJwt} from "../util/tokenUtils";
 
 /* 결재선 트리뷰 불러오기 */
 export const callGetAppLineAPI = () => {
@@ -97,6 +99,96 @@ export const callPostVacationAPI = (formdata) => {
             .then(response => response)
         if(result.status === 201) {
             dispatch({type: POST_VACATION, payload : result});
+        }
+    }
+}
+
+/* 비용 청구 insert */
+export const callPostPayAPI = (formdata) => {
+
+    const requestURL = "http://localhost:8080/approval/pay";
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "POST",
+            body: formdata
+        })
+            .then(response => response)
+        if(result.status === 201) {
+            dispatch({type: POST_VACATION, payload : result});
+        }
+    }
+}
+
+const accessToken = window.localStorage.getItem('accessToken');
+const decodedToken = accessToken ? decodeJwt(accessToken) : null;
+
+export const callGetVacationAPI = () => {
+
+    console.log("들어왔습니다!!");
+
+    const requestURL = `http://localhost:8080/approval/getVacation/${decodedToken.EmployeeNo}`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            }
+        })
+            .then(response => response.json())
+        if(result.status === 200) {
+            dispatch({type: GET_VACATION, payload : result});
+        }
+    }
+}
+
+/* 전자결재 홈 */
+export const callGetAppHomeAPI = () => {
+
+    const requestURL = `http://localhost:8080/approval/${decodedToken.EmployeeNo}`;
+
+    console.log("callGetAppHomeAPI ", decodedToken.EmployeeNo);
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            }
+        })
+            .then(response => response.json()).catch(response => console.log(response));
+        if(result.status === 200) {
+            dispatch({type: GET_APP_HOME, payload : result.data});
+        }
+    }
+}
+
+/* 발신 문서함 */
+export const callGetSendAPI = () => {
+
+    const requestURL = `http://localhost:8080/approval/send/${decodedToken.EmployeeNo}`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            }
+        })
+            .then(response => response.json());
+        if(result.status === 200) {
+            dispatch({type: GET_SEND, payload : result.data});
         }
     }
 }

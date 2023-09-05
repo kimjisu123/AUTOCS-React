@@ -25,8 +25,8 @@ function PurchaseContent() {
     const accessToken = window.localStorage.getItem('accessToken');
     const decodedToken = accessToken ? decodeJwt(accessToken) : null;
     const myRef = useRef(null)
-    const [total, setTotal] = useState(0);
     const navigate = useNavigate();
+    const [total, setTotal] = useState(0);
 
     // 열 추가
     const onClickAddRow = () => {
@@ -191,7 +191,7 @@ function PurchaseContent() {
             <br/><br/>
             <div className={styles.docTitle}>
                 <div className={styles.area9}>제목</div>
-                <input type="text" name="docTitle" id={styles.docTitle} onChange={onChangeTitleHandler}/>
+                <input type="text" name="documentTitle" id={styles.docTitle} onChange={onChangeTitleHandler}/>
             </div>
             <br/><br/>
             <div className={styles.addDelBtn}>
@@ -218,7 +218,7 @@ function PurchaseContent() {
                 <input type="hidden" name="empName" value={decodedToken.Name}/>
                 <div className={styles.area11}>
                     <div className={styles.area12}>합계</div>
-                    <div className={styles.allPrice}>{total}원</div>
+                    <div className={styles.allPrice}>{total.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</div>
                 </div>
             </div>
             <br/><br/><br/>

@@ -8,9 +8,8 @@ import categoryReducer from "./CategoryModule";
 import standardReducer from "./StandardModule";
 import unitReducer from "./UnitModule";
 import chartReducer from './ChartModule';
-import approvalReducer from './ApprovalModule';
 import todoReducer from "./TodoModule";
-import vacationReducer from "./VacationModule";
+import {approvalHomeReducer, approvalReducer, approvalSendReducer, vacationReducer} from "./ApprovalModule";
 
 const rootReducer = combineReducers({
     chartReducer,
@@ -24,7 +23,9 @@ const rootReducer = combineReducers({
     todoReducer,
     marketReducer,
     approvalReducer,
-    vacationReducer
+    vacationReducer,
+    approvalHomeReducer,
+    approvalSendReducer
 });
 
 export default rootReducer;

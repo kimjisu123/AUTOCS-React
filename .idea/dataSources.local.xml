@@ -10,6 +10,7 @@
       <secret-storage>forget</secret-storage>
       <user-name>C##AUTOCSS</user-name>
       <schema-mapping />
+      <introspection-level>3</introspection-level>
     </data-source>
   </component>
 </project>

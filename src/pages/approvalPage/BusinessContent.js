@@ -146,7 +146,7 @@ function BusinessContent() {
                 <tr className={business.tr}>
                     <td className={business.td2}>제목</td>
                     <td className={business.td1}>
-                        <input type="text" name="businessTitle" id={business.businessTitle}/>
+                        <input type="text" name="documentTitle" id={business.businessTitle}/>
                     </td>
                 </tr>
                 <tr className={business.tr}>

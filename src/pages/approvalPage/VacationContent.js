@@ -6,7 +6,7 @@ import './input.css'
 import { useSelector, useDispatch } from 'react-redux';
 import {useEffect, useRef, useState} from "react";
 import {
-    callGetAppLineAPI
+    callGetAppLineAPI, callGetVacationAPI
 } from '../../apis/ApprovalAPICalls';
 import { usePurchaseContext } from './appContext/PurchaseContext';
 import {decodeJwt} from "../../util/tokenUtils";
@@ -15,7 +15,7 @@ import AppLine from "./AppLine";
 import ReceiveLine from "./ReceiveLine";
 import Modal1 from "./Modal1";
 import {VacationCheck} from "./functionList/FuntionList";
-import {callGetVacationAPI} from "../../apis/VacationAPICalls";
+import {vacationReducer} from "../../modules/ApprovalModule";
 
 
 function VacationContent() {
@@ -154,6 +154,11 @@ function VacationContent() {
                 </div>
             </div>
             <br/><br/>
+            <div className={styles.docTitle}>
+                <div className={styles.area9}>제목</div>
+                <input type="text" name="documentTitle" id={styles.docTitle}/>
+            </div>
+            <br/><br/>
             <table className={vaca.table1}>
                 <tbody>
                 <tr className={vaca.tr}>
@@ -187,7 +192,7 @@ function VacationContent() {
                     <td className={vaca.td}>
                         <input type="radio" name="half" value="AM" onChange={e => onChangeHandler(e)}/>오전
                         <input type="radio" name="half" value="PM" onChange={e => onChangeHandler(e)}/>오후
-                        <input type="radio" name="half" value="none" checked="checked" onChange={e => onChangeHandler(e)}/>사용 안함
+                        <input type="radio" name="half" value="none" onChange={e => onChangeHandler(e)}/>사용 안함
                     </td>
                 </tr>
                 <tr className={vaca.tr}>
@@ -218,6 +223,8 @@ function VacationContent() {
                 </tr>
                 </tbody>
             </table>
+            <input type="hidden" name="empNo" value={decodedToken.EmployeeNo}/>
+            <input type="hidden" name="empName" value={decodedToken.Name}/>
             <br/><br/>
             <div className={styles.file}>
                 <div style={{width: "100%", textAlign:"center", margin:"20px 0px"}}>

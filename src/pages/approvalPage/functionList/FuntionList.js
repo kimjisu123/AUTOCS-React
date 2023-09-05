@@ -1,7 +1,7 @@
 import Swal from 'sweetalert2';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-    callPostBusinessAPI,
+    callPostBusinessAPI, callPostPayAPI,
     callPostPurchaseAPI,
     callPostTrafficAPI,
     callPostVacationAPI
@@ -564,7 +564,7 @@ export const VacationCheck = (keys, values, formdata, dispatch, navigate, result
                     // 만약 Promise리턴을 받으면,
                     if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
 
-                        dispatch(callPostBusinessAPI(formdata));
+                        dispatch(callPostVacationAPI(formdata));
 
                         Swal.fire('제출이 완료되었습니다.', '전자결재 홈으로 돌아갑니다', 'success');
                         navigate('/approval', {replace: true});
@@ -594,7 +594,137 @@ export const VacationCheck = (keys, values, formdata, dispatch, navigate, result
             // 만약 Promise리턴을 받으면,
             if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
 
-                dispatch(callPostBusinessAPI(formdata));
+                dispatch(callPostVacationAPI(formdata));
+
+                Swal.fire('제출이 완료되었습니다.', '전자결재 홈으로 돌아갑니다', 'success');
+                navigate('/approval', {replace: true});
+            }
+        })
+    }
+}
+
+export const PayCheck = (keys, values, formdata, dispatch, navigate) => {
+
+    if(!keys.includes('allow')) {
+
+        Swal.fire({
+            icon: 'info',
+            title: '결재 라인 없음',
+            text: '결재 라인을 추가해주세요',
+        })
+        return;
+    }
+
+    if(!keys.includes('payPrice')) {
+
+        Swal.fire({
+            icon: 'info',
+            title: '입력값 없음',
+            text: '적어도 하나의 열을 추가해주세요',
+        })
+        return;
+    }
+
+    for(let i = 0; i < keys.length; i++) {
+
+        if(keys[i] == 'payDate' && values[i] == '') {
+
+            Swal.fire({
+                icon: 'info',
+                title: '날짜 없음',
+                text: '날짜를 입력해주세요',
+            })
+            return;
+        }
+
+        if(keys[i] == 'payReason' && values[i] == '') {
+
+            Swal.fire({
+                icon: 'info',
+                title: '용무 없음',
+                text: '용무를 입력해주세요',
+            })
+            return;
+        }
+
+        if(keys[i] == 'payPrice' && values[i] == '') {
+
+            Swal.fire({
+                icon: 'info',
+                title: '금액 없음',
+                text: '금액을 입력해주세요',
+            })
+            return;
+        }
+    }
+
+    if(!keys.includes('files')) {
+
+        Swal.fire({
+            title: '첨부파일이 없습니다.',
+            text: '이대로 계속 진행하시겠습니까?',
+            icon: 'question',
+
+            showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+            confirmButtonColor: 'rgba(0,125,0,0.5)', // confrim 버튼 색깔 지정
+            cancelButtonColor: 'rgba(125,0,0,0.5)', // cancel 버튼 색깔 지정
+            confirmButtonText: '승인', // confirm 버튼 텍스트 지정
+            cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+
+            reverseButtons: false, // 버튼 순서 거꾸로
+
+        }).then(result => {
+            // 만약 Promise리턴을 받으면,
+            if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+
+                Swal.fire({
+                    title: '제출 확인',
+                    text: '제출하시겠습니까?',
+                    icon: 'question',
+
+                    showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+                    confirmButtonColor: 'rgba(0,125,0,0.5)', // confrim 버튼 색깔 지정
+                    cancelButtonColor: 'rgba(125,0,0,0.5)', // cancel 버튼 색깔 지정
+                    confirmButtonText: '승인', // confirm 버튼 텍스트 지정
+                    cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+
+                    reverseButtons: false, // 버튼 순서 거꾸로
+
+                }).then(result => {
+                    // 만약 Promise리턴을 받으면,
+                    if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+
+                        dispatch(callPostPayAPI(formdata));
+
+                        Swal.fire('제출이 완료되었습니다.', '전자결재 홈으로 돌아갑니다', 'success');
+                        navigate('/approval', {replace: true});
+                    }
+                })
+
+            }
+        });
+    }
+
+    if(keys.includes('files')) {
+
+        Swal.fire({
+            title: '제출 확인',
+            text: '제출하시겠습니까?',
+            icon: 'question',
+
+            showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+            confirmButtonColor: 'rgba(0,125,0,0.5)', // confrim 버튼 색깔 지정
+            cancelButtonColor: 'rgba(125,0,0,0.5)', // cancel 버튼 색깔 지정
+            confirmButtonText: '승인', // confirm 버튼 텍스트 지정
+            cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+
+            reverseButtons: false, // 버튼 순서 거꾸로
+
+        }).then(result => {
+            // 만약 Promise리턴을 받으면,
+            if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+
+                dispatch(callPostPayAPI(formdata));
 
                 Swal.fire('제출이 완료되었습니다.', '전자결재 홈으로 돌아갑니다', 'success');
                 navigate('/approval', {replace: true});

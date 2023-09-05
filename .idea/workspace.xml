@@ -5,22 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="157f9457-97ad-4bcb-ada0-2b69963deafb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/apis/VacationAPICalls.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modules/VacationModule.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/approvalPage/TrafficAddRow.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/approvalPage/PayAddRow.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/11eb06d8-4138-4e66-bfa7-f890898a4d28.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/11eb06d8-4138-4e66-bfa7-f890898a4d28.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/apis/ApprovalAPICalls.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apis/ApprovalAPICalls.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/apis/VacationAPICalls.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modules/ApprovalModule.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/ApprovalModule.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/VacationModule.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modules/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/approvalPage/Business.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/approvalPage/Business.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/approvalPage/AppWait.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/approvalPage/AppWait.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/approvalPage/ApprovalHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/approvalPage/ApprovalHome.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/approvalPage/BusinessContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/approvalPage/BusinessContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/approvalPage/Modal.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/approvalPage/Modal.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/approvalPage/Pay.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/approvalPage/Pay.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/approvalPage/PayContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/approvalPage/PayContent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/approvalPage/PurchaseContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/approvalPage/PurchaseContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/approvalPage/Tiny.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/approvalPage/Tiny.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/approvalPage/Traffic.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/approvalPage/Traffic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/approvalPage/SendContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/approvalPage/SendContent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/approvalPage/TrafficContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/approvalPage/TrafficContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/approvalPage/Vacation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/approvalPage/Vacation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/approvalPage/VacationContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/approvalPage/VacationContent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/approvalPage/functionList/FuntionList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/approvalPage/functionList/FuntionList.js" afterDir="false" />
     </list>
@@ -86,7 +87,8 @@
       <workItem from="1693527040076" duration="13504000" />
       <workItem from="1693545703776" duration="4375000" />
       <workItem from="1693559176724" duration="177000" />
-      <workItem from="1693786679848" duration="21517000" />
+      <workItem from="1693786679848" duration="21625000" />
+      <workItem from="1693873564760" duration="19010000" />
     </task>
     <servers />
   </component>

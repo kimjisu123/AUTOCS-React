@@ -1,8 +1,39 @@
 import style from './ApprovalHome.module.css'
 import AppWait from './AppWait.module.css'
 import { AiOutlineSearch } from "react-icons/ai"
+import { useSelector, useDispatch } from 'react-redux';
+import {useEffect, useState} from "react";
+import {callGetSendAPI} from "../../apis/ApprovalAPICalls";
+import {approvalSendReducer} from "../../modules/ApprovalModule";
 
 function SendContent() {
+
+    const dispatch = useDispatch();
+    const result = useSelector(state => state.approvalSendReducer);
+    const sendList = result.data;
+
+    const pageInfo = result.pageInfo;
+
+    const [start, setStart] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [end, setEnd] = useState(1);
+
+    const pageNumber = [];
+    if(pageInfo) {
+        for(let i = 1; i <= pageInfo.end; i++) {
+            pageNumber.push(i);
+        }
+    }
+
+    useEffect(
+        () => {
+            setStart((currentPage - 1) * 5);
+            dispatch(callGetSendAPI({
+                currentPage: currentPage
+            }));
+        },
+        [currentPage]
+    )
 
     return (
         <div className={style.content}>
@@ -162,15 +193,25 @@ function SendContent() {
             </div>
             <br/>
             <div className={AppWait.paging}>
-                <div className={AppWait.first}>«</div>
-                <div className={AppWait.before}>‹</div>
-                <div className={AppWait.one}>1</div>
-                <div className={AppWait.two}>2</div>
-                <div className={AppWait.three}>3</div>
-                <div className={AppWait.four}>4</div>
-                <div className={AppWait.five}>5</div>
-                <div className={AppWait.after}>›</div>
-                <div className={AppWait.last}>»</div>
+                <button
+                    onClick={() => setCurrentPage(currentPage - 1)}
+                    disabled={currentPage === 1}
+                    className={AppWait.before}
+                >‹</button>
+                {pageNumber.map((num) => (
+                    <li key={num} onClick={() => setCurrentPage(num)}>
+                        <button
+                            className={ AppWait.pagingBtn }
+                        >
+                            {num}
+                        </button>
+                    </li>
+                ))}
+                <button
+                    onClick={() => setCurrentPage(currentPage + 1)}
+                    disabled={currentPage === pageInfo.end || pageInfo.total == 0}
+                    className={AppWait.after}
+                >›</button>
             </div>
         </div>
     )

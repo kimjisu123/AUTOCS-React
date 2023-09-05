@@ -182,6 +182,11 @@ function TrafficContent() {
                 </div>
             </div>
             <br/><br/>
+            <div className={styles.docTitle}>
+                <div className={styles.area9}>제목</div>
+                <input type="text" name="documentTitle" id={styles.docTitle}/>
+            </div>
+            <br/><br/>
             <div className={styles.addDelBtn}>
                 <div className={styles.add} onClick={ onClickAddRow }>추가</div>
                 <div className={styles.delete} onClick={ onClickDelRow }>삭제</div>
@@ -206,8 +211,8 @@ function TrafficContent() {
             <input type="hidden" name="empNo" value={decodedToken.EmployeeNo}/>
             <input type="hidden" name="empName" value={decodedToken.Name}/>
             <div style={{display: "flex", justifyContent: "space-between", marginLeft: "40px", border: "1px solid gray", marginRight: "37px", height: "30px"}}>
-                <div style={{borderRight: "1px solid black", fontSize: "1.2em", width: "141px", textAlign: "center"}}>합계</div>
-                <div style={{textAlign:"right", fontSize:"1.2em"}}>{total}원</div>
+                <div style={{borderRight: "1px solid black", fontSize: "1.2em", width: "153px", textAlign: "center"}}>합계</div>
+                <div style={{textAlign:"right", fontSize:"1.2em"}}>{total.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</div>
             </div>
             <br/><br/>
             <div className={styles.file}>
