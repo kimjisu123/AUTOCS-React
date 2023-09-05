@@ -2,7 +2,7 @@ import {
     GET_EMPLOYEE,
     ADD_EMPLOYEE,
     GET_SELECT_EMPLOYEE,
-    GO_LOGIN, FIND_ID, FIND_PWD
+    GO_LOGIN, FIND_ID, FIND_PWD, OUT_EMPLOYEE
 } from '../modules/MemberModule';
 import Swal from 'sweetalert2';
 
@@ -29,6 +29,7 @@ export const callInsertEmployeeAPI = ({ infoToPass }) => {
         })
         .then(() => {
             window.alert('사원 등록이 완료되었습니다.');
+            window.location="/menu/registration";
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -72,6 +73,15 @@ export const callLoginAPI = ({ loginInfo, rememberAccount }) => {
         if(result.status === 200){
             window.localStorage.setItem('accessToken', result.data.accessToken);
 
+            //비활성화 계정 접근 금지
+            const accessToken = window.localStorage.getItem('accessToken');
+            const decodedToken = accessToken ? decodeJwt(accessToken) : null;
+            if (decodedToken.state === 'N    ') {
+                window.alert("비활성화 계정입니다.")
+                window.localStorage.removeItem('accessToken');
+                return;
+            }
+
             // 체크박스가 체크되어 있다면 아이디를 로컬 스토리지에 저장
             if (rememberAccount) {
                 window.localStorage.setItem('savedId', loginInfo.id);
@@ -79,6 +89,7 @@ export const callLoginAPI = ({ loginInfo, rememberAccount }) => {
                 // 체크박스가 체크되어 있지 않다면 아이디를 로컬 스토리지에서 제거
                 window.localStorage.removeItem('savedId');
             }
+
             Swal.fire({
                 icon: 'success',
                 title: 'Login...',
@@ -284,3 +295,74 @@ export const callChangePwdAPI = (changInfo) => {
         }
     };
 };
+
+//비활성화(직원)
+export const callEmployeeOutAPI = (outInfo) => {
+    const requestURL = 'http://localhost:8080/member/employeeOut';
+    console.log("outInfo>>>>>>>>>>>>>>>>>>", outInfo)
+
+    return async (dispatch) => {
+        const result = await fetch(requestURL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(outInfo)
+        }).
+        then(response => response.json())
+            .then(data => {
+                console.log(data);
+                dispatch({ type: OUT_EMPLOYEE, payload: data });
+                window.alert('계정 비활성화 신청이 완료되었습니다.');
+                window.location="/main"
+            });
+    }
+};
+
+// // 비활성화(직원) 진짜 하러 가기
+// export const callOutEmployeeOkAPI = (no) => {
+//     const requestURL = 'http://localhost:8080/member/employeeOutGo';
+//     console.log("employeeNo>>>>>>>>>>>>>>>>>>", no);
+//
+//     return async () => {
+//         const result = await fetch(requestURL, {
+//             method: 'GET',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 'Accept': 'application/json'
+//             },
+//             body: JSON.stringify(no)
+//         }).then(response => response.json());
+//     }
+// };
+
+// 비활성화(직원) 진짜 하러 가기
+export const callOutEmployeeOkAPI = ({ infoToPass }) => {
+    const requestURL = 'http://localhost:8080/member/employeeOutGo';
+
+    return fetch(requestURL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(infoToPass),
+    })
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                console.error('Error inserting market');
+                throw new Error('Error inserting market');
+            }
+        })
+        .then(() => {
+            window.alert('계정 비활성화가 완료되었습니다.');
+            window.location="/menu/outE";
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+};
+
+

@@ -59,6 +59,28 @@ input.reson{
     height: 70px;
 }
 
+/*주소 css*/
+.address-section {
+    background: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
 
+.address-button {
+    background-color: #26361B;
+    color: #FFF;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    padding: 1px 14px;
+    text-align: center;
+    height: 40px;
+    margin-left: 5px;
+    margin-bottom: 13px;
+}
 
-
+.address-button:hover {
+    background-color: #1C2716;
+}

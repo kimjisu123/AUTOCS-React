@@ -62,3 +62,10 @@
     background-color: #6e9150;
     color: #fff;
 }
+
+.can {
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}

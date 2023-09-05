@@ -98,7 +98,7 @@ a {
 .cardDetail {
     display: flex;
     flex-direction: column;
-    margin:5px;
+    margin:-8px 12px;
 }
 
 .detailCard {

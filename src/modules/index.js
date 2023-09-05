@@ -15,6 +15,8 @@ import orderProductReducer from "./OrderProductModule";
 import chartReducer from './ChartModule';
 import approvalReducer from './ApprovalModule';
 import todoReducer from "./TodoModule";
+import myPageReducer from "./MypageModule";
+import boardReducer from "./BoardModule";
 
 const rootReducer = combineReducers({
     chartReducer,
@@ -33,7 +35,9 @@ const rootReducer = combineReducers({
     todoReducer,
     marketReducer,
     approvalReducer,
-    mailSentReducer
+    mailSentReducer,
+    myPageReducer,
+    boardReducer
 });
 
 export default rootReducer;
