@@ -6,16 +6,30 @@ import {Navigate, useNavigate} from "react-router-dom";
 import {
     callIOListWithGroupingAPI,
 } from '../../apis/StockAPICalls'
+import ioGroupReducer from "../../modules/IoGroupModule";
+
+function getFirstDayOfMonth() {
+    const now = new Date();
+    console.log(now)
+    return new Date(now.getFullYear(), now.getMonth(), 1).toISOString().split('T')[0];
+}
+
+// 오늘 날짜를 가져오는 함수
+function getCurrentDate() {
+    const now = new Date();
+    return now.toISOString().split('T')[0];
+}
 
 function Check() {
 
     /*******************************************************************************/
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const io = useSelector(state => state.productReducer);
-    const ioList = io.data;
 
-    const pageInfo = io.pageInfo;
+    const ioGroup = useSelector(state => state.ioGroupReducer);
+    const ioGroupList = ioGroup.data;
+
+    const pageInfo = ioGroup.pageInfo;
 
     const [start, setStart] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
@@ -35,9 +49,9 @@ function Check() {
             setStart((currentPage - 1) * 5);
             dispatch(callIOListWithGroupingAPI({
                 currentPage: currentPage,
-                s: form.s,
-                startDate: form.startDate,
-                endDate: form.endDate
+                s: '',
+                startDate: getFirstDayOfMonth(), // 이번 달의 첫째 날로 초기화
+                endDate: getCurrentDate() // 오늘 날짜로 초기화
             }));
         }
         ,[currentPage]
@@ -96,12 +110,14 @@ function Check() {
                     <input name='startDate'
                            className={StockCSS.dateSelectbox}
                            type="date"
+                           defaultValue={getFirstDayOfMonth()}
                            onChange={ onChangeHandler }
                     />
                     <div>~</div>
                     <input name='endDate'
                            className={StockCSS.dateSelectbox}
                            type="date"
+                           defaultValue={getCurrentDate()}
                            onChange={ onChangeHandler }
                     />
                 </div>
@@ -136,26 +152,27 @@ function Check() {
                         <th>비고</th>
                     </tr>
                     {
-                        Array.isArray(ioList) && ioList.map((io, index) => (
-                            <tr key={index}>
-                                <td>{ io.refProductNo}</td>
-                                <td>{ io.categoryName}</td>
-                                <td>{ io.productName}</td>
-                                <td>{ io.standardName}</td>
-                                <td>{ io.unitName}</td>
-                                <td>{ io.stock}</td>
-                                <td>{ io.io}</td>
-                                <td>{ io.totalQuantity}</td>
+                        Array.isArray(ioGroupList) && ioGroupList.map((ioGroup) => (
+                            <tr key={ioGroup.refProductNo}>
+                                <td>{ ioGroup.refProductNo}</td>
+                                <td>{ ioGroup.categoryName}</td>
+                                <td>{ ioGroup.productName}</td>
+                                <td>{ ioGroup.standardName}</td>
+                                <td>{ ioGroup.unitName}</td>
+                                <td>{ ioGroup.stock}</td>
+                                <td></td>
+                                <td>{ ioGroup.totalQuantityIn}</td>
+                                <td>{ ioGroup.totalQuantityOut}</td>
                                 <td></td>
                                 <td></td>
-                                <td>{ io.price}</td>
-                                <td>{ io.etc}</td>
+                                <td>{ ioGroup.price}</td>
+                                <td>{ ioGroup.etc}</td>
                             </tr>
                         ))
                     }
                 </table>
                 <div style={{ listStyleType: "none", display: "flex", justifyContent: "center", marginTop:"2%"}}>
-                    { Array.isArray(ioList) &&
+                    { Array.isArray(ioGroupList) &&
                         <button
                             onClick={() => setCurrentPage(currentPage - 1)}
                             disabled={currentPage === 1}
@@ -172,7 +189,7 @@ function Check() {
                             </button>
                         </li>
                     ))}
-                    { Array.isArray(ioList) &&
+                    { Array.isArray(ioGroupList) &&
                         <button
                             onClick={() => setCurrentPage(currentPage + 1)}
                             disabled={currentPage === pageInfo.pageEnd  || pageInfo.total == 0}

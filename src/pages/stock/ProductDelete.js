@@ -135,6 +135,13 @@ function ProductDelete() {
                 </tr>
             </table>
 
+            <div style={{visibility: "none"}}>
+                <input style={{display: "none"}} type="text" id="parentStandardValue"/>
+                <input style={{display: "none"}} type="text" id="parentUnitValue"/>
+                <input style={{display: "none"}} type="text" id="parentStockValue"/>
+                <input style={{display: "none"}} type="text" id="parentPriceValue"/>
+            </div>
+
             <div style={{marginTop: "5%"}}>
 
                 <div className={StockCSS.middleLine}>

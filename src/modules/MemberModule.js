@@ -10,6 +10,7 @@ export const GO_LOGIN = 'member/GO_LOGIN';
 export const GET_SELECT_EMPLOYEE = 'member/GET_SELECT_EMPLOYEE';
 export const FIND_ID = 'member/FIND_ID';
 export const FIND_PWD = 'member/FIND_PWD';
+export const OUT_EMPLOYEE = 'member/OUT_EMPLOYEE';
 
 
 const actions = createActions({
@@ -18,7 +19,8 @@ const actions = createActions({
     [GO_LOGIN]: () => {},
     [GET_SELECT_EMPLOYEE]: () => {},
     [FIND_ID]: () => {},
-    [FIND_PWD]: () => {}
+    [FIND_PWD]: () => {},
+    [OUT_EMPLOYEE]: () => {}
 });
 
 //리듀서
@@ -39,6 +41,9 @@ const memberReducer = handleActions({
             return payload;
         },
         [FIND_PWD]: (state, { payload }) => {
+            return payload;
+        },
+        [OUT_EMPLOYEE]: (state, { payload }) => {
             return payload;
         }
     },

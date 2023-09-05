@@ -7,6 +7,7 @@ import {
     callIoListAPI,
     callIoRegistAPI,
 } from '../../apis/StockAPICalls'
+import ioReducer from "../../modules/IoModule";
 
 function showPopup()
 { window.open('/ListPopup', "a", "width=400, height=800, left=100, top=50");
@@ -25,7 +26,7 @@ function StockIo() {
 
 
     // 입출고 조회
-    const io = useSelector(state => state.productReducer);
+    const io = useSelector(state => state.ioReducer);
     const ioList = io.data;
 
     const pageInfo = io.pageInfo;
