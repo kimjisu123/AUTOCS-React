@@ -1,8 +1,14 @@
 import styles from './approval.module.css';
 import traffic from './Traffic.module.css';
 import Swal from 'sweetalert2';
-import {useState} from "react";
 import Modal from './Modal'
+import { FileUpload } from 'primereact/fileupload';
+import './input.css'
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useState } from "react";
+import {
+    callGetAppLineAPI
+} from '../../apis/ApprovalAPICalls';
 
 
 const onClickAddHandler = () => {
@@ -33,6 +39,17 @@ const onClickDelHandler = () => {
 }
 
 function TrafficContent() {
+
+    const dispatch = useDispatch();
+
+    useEffect(
+        () => {
+            dispatch(callGetAppLineAPI());
+        },
+        []
+    )
+
+    const list = useSelector(state => state.approvalReducer);
 
     const [addPeople, setAddPeople] = useState(false);
 
@@ -123,9 +140,9 @@ function TrafficContent() {
             </table>
             <br/><br/>
             <div className={styles.file}>
-                <label htmlFor="fileBtn" className={styles.fileLabel}>파일 업로드</label>
-                <input type="file" className={styles.fileBtn} name="fileBtn" id="fileBtn"/>
-                <div className={styles.fileshow}></div>
+                <div style={{width: "100%", textAlign:"center", margin:"20px 0px"}}>
+                    <FileUpload name="demo[]" url={'/api/upload'} multiple emptyTemplate={<p className="m-0">파일을 첨부하세요</p>} />
+                </div>
             </div>
             { addPeople && <Modal setAddPeople={setAddPeople}/>}
             <br/><br/><br/>

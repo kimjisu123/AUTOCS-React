@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-// import Layout from "./pages/layouts/layout";
+//import Layout from "./pages/layouts/lyout";
 import React from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
@@ -27,7 +27,6 @@ import OrgChart from './pages/Chart/OrgChart'
 import Login from "./pages/Login/Login";
 import FindId from "./pages/Login/findId";
 import FindPwd from "./pages/Login/findPwd";
-import FindIdOk from "./pages/Login/findIdOk";
 import Registration from "./pages/createMember/registration";
 import RegistOk from "./pages/createMember/registOk";
 import ApplyOk from "./pages/applyForm/applyOk";
@@ -40,6 +39,13 @@ import OutMForm from "./pages/outForm/outMForm";
 import NoAuthority from "./pages/Login/noAuthority"
 import ApplyStateW from "./pages/applyForm/applyStateW";
 import StoreLogin from "./pages/Login/storeLogin";
+import Menu from "./pages/applyForm/Menu";
+import ApplyStateO from "./pages/applyForm/applyStateO";
+import GuideStoreId from "./pages/Login/guideStoreId";
+import OutE from "./pages/outForm/outE";
+import OutOKM from "./pages/outForm/outOKM";
+import OutStateW from "./pages/outForm/OutStateW";
+import OutS from "./pages/outForm/OutS"
 
 //지수
 import Management from "./pages/management/Management"
@@ -48,7 +54,6 @@ import HeadOffice from "./pages/management/HeadOffice"
 import Mail from "./pages/Mail/Mail"
 import MailBookmark from "./pages/Mail/MailBookmark"
 import MailSent from "./pages/Mail/MailSent"
-
 //미지
 //재고관리
 import Stock from './pages/stock/Stock'
@@ -85,6 +90,8 @@ import TodoApp from "./pages/Todolist/TodoApp";
 
 import MailSend from "./pages/Mail/MailSend";
 
+
+
 function App() {
     return (
         <Provider store={store}>
@@ -116,7 +123,7 @@ function App() {
                         <Route path='/management' element={<Management />} />
                         <Route path='/department' element={<Department />} />
                         <Route path='/headOffice' element={<HeadOffice />} />
-                        <Route path='/mail' element={<Mail />} />
+                        <Route path='/mail/:value' element={<Mail />} />
                         <Route path='/mailSent/:value' element={<MailSent />} />
                         <Route path='/mailBookmark' element={<MailBookmark />} />
 
@@ -149,13 +156,23 @@ function App() {
 
                         //해든
                         //사원 등록
+                        <Route path='menu' element={<Menu/>}>
                         <Route path='registration' element={<Registration/>}/>
                         <Route path='registOk' element={<RegistOk/>}/>
+                        //계정 비활성화 내역 확인
+                        <Route path='outE' element={<OutE/>}/>
+                        //계정 비활성화 완료 직원들
+                        <Route path='outEOK' element={<OutOKM/>}/>
+                        //영업점 신청 내역 확인
+                        <Route path='applyFormW' element={<ApplyStateW/>}/>
+                        <Route path='applyFormO' element={<ApplyStateO/>}/>
+                        <Route path='outFormW' element={<OutStateW/>}/>
+                        <Route path='outSOK' element={<OutS/>}/>
+                        </Route>
+
                         //계정 비활성화 신청
                         <Route path='outM' element={<OutMForm/>}/>
                         <Route path='outS' element={<OutSForm/>}/>
-                        //영업점 신청 내역 확인
-                        <Route path='applyFormW' element={<ApplyStateW/>}/>
 
                         //지은
                         <Route path='myPage' element={<Mypage/>}>
@@ -180,8 +197,8 @@ function App() {
                     <Route path='/login' element={<Login/>}/>
                     <Route path='/Slogin' element={<StoreLogin/>}/>
                     <Route path='/login/findId' element={<FindId/>}/>
-                    <Route path='/login/fIOk' element={<FindIdOk/>}/>
                     <Route path='/login/fIOk/guideId' element={<GuideId/>}/>
+                    <Route path='/login/fIOk/guideSId' element={<GuideStoreId/>}/>
                     <Route path='/login/findPwd' element={<FindPwd/>}/>
                     <Route path='/login/fPOk' element={<FindPwdOk/>}/>
                     <Route path='/login/fPOk/guidePwd' element={<GuidePwd/>}/>

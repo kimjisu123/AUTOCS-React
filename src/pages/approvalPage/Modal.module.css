@@ -6,6 +6,8 @@
     top: 33%;
     left: 36%;
     z-index: 100;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .top {
@@ -20,11 +22,14 @@
 }
 
 .bottom {
-    border: 1px solid #2a3c1e;
+    border: 1px solid white;
     border-top: 0.5px solid rgba(0,0,0,.15);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-
+    display: flex;
+    justify-content: right;
+    background: white;
+    width: 596px;
 }
 
 .text {
@@ -60,11 +65,11 @@
     background: #ecead8;
     text-align: center;
     width: 80px;
-    margin-left: 500px;
     border-radius: 8px;
     margin-top: 10px;
     cursor: pointer;
     margin-bottom: 10px;
+    margin-right: 10px;
 }
 
 .okBtn:hover {
@@ -72,8 +77,31 @@
 }
 
 .left {
-    overflow: auto;
-    width: 300px;
+    /*overflow: auto;*/
+    width: 100%;
 }
 
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+}
 
+.goBtn {
+    padding: 5px;
+    background: #ecead8;
+    text-align: center;
+    width: 80px;
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    margin-left: 180px;
+}
+
+.goBtn:hover {
+    box-shadow: 0 2px 4px 0 #dcdcdc;
+}

@@ -1,6 +1,5 @@
 import styles from './Mail.module.css';
 import { useState, useEffect } from 'react'
-import axios from 'axios';
 import { callGetMailAPI, callDELETEMailAPI, callPutMailAPI, callGetMailBookmarkAPI, callGetMailSentAPI } from '../../apis/MailAPICalls';
 import { useDispatch, useSelector } from 'react-redux';
 import { decodeJwt } from '../../util/tokenUtils';
@@ -11,8 +10,8 @@ function MailkSentContent(){
     const mailData = useSelector(state => state.mailSentReducer);
 
     const accessToken = window.localStorage.getItem('accessToken');
-
     const decodedToken = accessToken ? decodeJwt(accessToken) : null;
+
 
     const onClickMailDelete = async () =>{
         dispatch( callDELETEMailAPI() );
@@ -22,7 +21,7 @@ function MailkSentContent(){
 
     useEffect(
         () =>  {
-            dispatch( callGetMailSentAPI(decodedToken.EmployeeNo) );
+            dispatch( callGetMailSentAPI({employeeNo: decodedToken.EmployeeNo}));
         }
         ,[]
     );
@@ -44,11 +43,10 @@ function MailkSentContent(){
             </div>
 
             <div>
-                {/*{mailData.data && mailData.data.map(mail => (*/}
-                {/*    <MailSentItem key={mail.mailNo} mail={mail} />*/}
-                {/*))}*/}
-
-                {/*{ console.log(mailData.data)}*/}
+                {mailData.data && mailData.data.map(mail => (
+                    <MailSentItem key={mail.mailNo} mail={mail} />
+                ))}
+                { console.log(mailData.data)}
             </div>
         </div>
     )
@@ -59,7 +57,12 @@ function MailSentItem({ mail }) {
     const [bookmark, setBookmark] = useState(mail.status);
 
     const dispatch = useDispatch();
-    const mailData = useSelector(state => state.bookmarkReducer);
+
+    const inputDate = mail.goDate;
+    const date = new Date(inputDate);
+
+    const outputDate = date.toISOString().substr(0, 19);
+    const updatedDate = outputDate.replace("T", " ");
 
     const onClickbookmark = () => {
         dispatch( callPutMailAPI(mail) );
@@ -77,10 +80,10 @@ function MailSentItem({ mail }) {
                 </div>
                 <div style={{ display: "flex" }}>
                     <div style={{ color: "gray" }}>
-                        {mail.goDate}
+                        {updatedDate}
                     </div>
-                    <div style={{ marginLeft: "15px" }}>
-                        {mail.send}
+                    <div style={{ marginLeft: "15px", color:"gray"}}>
+                        {mail.receiver}
                     </div>
                 </div>
             </div>

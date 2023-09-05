@@ -21,11 +21,13 @@ const RegistOk = () => {
         return <div>Loading...</div>;
     }
 
-    const sortedEmployeeList = employeeList.sort((a, b) => {
-        const dateA = new Date(a.employeeJoin);
-        const dateB = new Date(b.employeeJoin);
-        return dateB - dateA; // 최신 입사일 순으로 정렬
-    });
+    const sortedEmployeeList = employeeList
+        .filter(employee => !employee.employeeOut && !employee.reason)
+        .sort((a, b) => {
+            const dateA = new Date(a.employeeJoin);
+            const dateB = new Date(b.employeeJoin);
+            return dateB - dateA; // 최신 입사일 순으로 정렬
+        });
 
     return (
         <div className="employee-list-container">
