@@ -9,8 +9,17 @@
 .menuContents {
     padding-left: 60px;
     margin-bottom: 7px;
-    cursor: pointer;
+    /*cursor: pointer;*/
+    /*text-decoration: none;*/
+}
+
+.navContents {
     text-decoration: none;
+    color: black;
+}
+
+.navContents:hover {
+    color: #95ab85;
 }
 
 /* 컨텐츠 */
@@ -65,6 +74,11 @@
 
 .readOnlybox{
     background-color: lightgray;
+}
+
+.selectOption{
+    width: 170px;
+    height: 20px;
 }
 
 

@@ -26,24 +26,24 @@ function StockMenubar() {
     return(
             <div style={{width: "295px",  height: "959px", paddingTop: "30px"}}>
                 <div className={StockCSS.menuHeader}>재고관리</div>
-                <div className={StockCSS.menuContents}><NavLink to="/stock/check" style={{textDecoration: "none" , color:"black"}} >재고조회</NavLink></div>
-                <div className={StockCSS.menuContents}><NavLink to="/stock/orderlist" style={{textDecoration: "none" , color:"black"}}>신청내역관리</NavLink></div>
-                <div className={StockCSS.menuContents}><NavLink to="/stock/bill" style={{textDecoration: "none" , color:"black"}}>세금계산서</NavLink></div>
-                <div className={StockCSS.menuContents}><NavLink to="/stock/statistics" style={{textDecoration: "none" , color:"black"}}>매출통계</NavLink></div>
-                <div className={StockCSS.menuContents}><NavLink to="/stock/stockio" style={{textDecoration: "none" , color:"black"}}>입고 폐기 등록</NavLink></div>
+                <div className={StockCSS.menuContents}><NavLink to="/stock/check" className={StockCSS.navContents} >재고조회</NavLink></div>
+                <div className={StockCSS.menuContents}><NavLink to="/stock/orderlist" className={StockCSS.navContents}>신청내역관리</NavLink></div>
+                <div className={StockCSS.menuContents}><NavLink to="/stock/bill" className={StockCSS.navContents}>세금계산서</NavLink></div>
+                <div className={StockCSS.menuContents}><NavLink to="/stock/statistics" className={StockCSS.navContents}>매출통계</NavLink></div>
+                <div className={StockCSS.menuContents}><NavLink to="/stock/stockio" className={StockCSS.navContents}>입고 폐기 등록</NavLink></div>
 
                 <div className={StockCSS.menuHeader}>물품관리</div>
-                <div className={StockCSS.menuContents}><NavLink to="/stock/productregist" style={{textDecoration: "none" , color:"black"}}>물품 신규등록</NavLink></div>
-                <div className={StockCSS.menuContents}><NavLink to="/stock/productdelete" style={{textDecoration: "none" , color:"black"}}>물품 불용등록</NavLink></div>
-                <div className={StockCSS.menuContents}><NavLink to="/stock/category" style={{textDecoration: "none" , color:"black"}}>카테고리 관리</NavLink></div>
-                <div className={StockCSS.menuContents}><NavLink to="/stock/standard" style={{textDecoration: "none" , color:"black"}}>규격 관리</NavLink></div>
-                <div className={StockCSS.menuContents}><NavLink to="/stock/unit" style={{textDecoration: "none" , color:"black"}}>단위 관리</NavLink></div>
+                <div className={StockCSS.menuContents}><NavLink to="/stock/productregist" className={StockCSS.navContents}>물품 신규등록</NavLink></div>
+                <div className={StockCSS.menuContents}><NavLink to="/stock/productdelete" className={StockCSS.navContents}>물품 불용등록</NavLink></div>
+                <div className={StockCSS.menuContents}><NavLink to="/stock/category" className={StockCSS.navContents}>카테고리 관리</NavLink></div>
+                <div className={StockCSS.menuContents}><NavLink to="/stock/standard" className={StockCSS.navContents}>규격 관리</NavLink></div>
+                <div className={StockCSS.menuContents}><NavLink to="/stock/unit" className={StockCSS.navContents}>단위 관리</NavLink></div>
 
                 <div className={StockCSS.menuHeader}>발주관리</div>
-                <div className={StockCSS.menuContents}><NavLink to="/stock/order" style={{textDecoration: "none" , color:"black"}}>발주신청</NavLink></div>
-                <div className={StockCSS.menuContents}><NavLink to="/stock/myorderlist" style={{textDecoration: "none" , color:"black"}}>신청내역관리</NavLink></div>
-                <div className={StockCSS.menuContents}><NavLink to="/stock/mybill" style={{textDecoration: "none" , color:"black"}}>세금계산서</NavLink></div>
-                <div className={StockCSS.menuContents}><NavLink to="/stock/mystatistics" style={{textDecoration: "none" , color:"black"}}>발주통계</NavLink></div>
+                <div className={StockCSS.menuContents}><NavLink to="/stock/order" className={StockCSS.navContents}>발주신청</NavLink></div>
+                <div className={StockCSS.menuContents}><NavLink to="/stock/myorderlist" className={StockCSS.navContents}>신청내역관리</NavLink></div>
+                <div className={StockCSS.menuContents}><NavLink to="/stock/mybill" className={StockCSS.navContents}>세금계산서</NavLink></div>
+                <div className={StockCSS.menuContents}><NavLink to="/stock/mystatistics" className={StockCSS.navContents}>발주통계</NavLink></div>
             </div>
     )
 }

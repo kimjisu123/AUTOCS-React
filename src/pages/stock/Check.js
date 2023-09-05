@@ -144,7 +144,7 @@ function Check() {
                         <th>규격</th>
                         <th>단위</th>
                         <th>적정<br/>재고</th>
-                        <th className={StockCSS.mainline}>현재<br/>재고</th>
+                        <th className={StockCSS.mainline}>기간<br/>재고</th>
                         <th>기간<br/>입고</th>
                         <th>기간<br/>출고</th>
                         <th>기간<br/>폐기</th>
@@ -160,11 +160,10 @@ function Check() {
                                 <td>{ ioGroup.standardName}</td>
                                 <td>{ ioGroup.unitName}</td>
                                 <td>{ ioGroup.stock}</td>
-                                <td></td>
+                                <td className={StockCSS.mainline}>{ ioGroup.totalQuantityIn - ioGroup.totalQuantityOut}</td>
                                 <td>{ ioGroup.totalQuantityIn}</td>
+                                <td></td>
                                 <td>{ ioGroup.totalQuantityOut}</td>
-                                <td></td>
-                                <td></td>
                                 <td>{ ioGroup.price}</td>
                                 <td>{ ioGroup.etc}</td>
                             </tr>

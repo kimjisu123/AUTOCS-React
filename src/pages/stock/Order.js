@@ -31,7 +31,7 @@ function showPopup()
 
     // 주문번호 등록
     const [form, setForm] = useState({
-        storeInfoNo: decodedToken.StoreNo
+        // storeInfoNo: decodedToken.StoreNo
     });
 
     // 페이지 로드되면 자동으로 주문번호 생성
@@ -42,8 +42,11 @@ function showPopup()
 
     /* 마지막 주문번호 조회 함수 */
     const lastOrderNo = useSelector(state => state.orderNumberReducer);
+    const storeNo = parseInt(decodedToken.StoreNo, 10)
     console.log(lastOrderNo);
+    console.log('정보',parseInt(decodedToken.StoreNo, 10))
 
+    const [orderItems, setOrderItems] = useState([]); // 주문된 물품들을 저장하는 배열
 
 
     /* 주문물품 등록 및 주문상태 업데이트 */
@@ -54,11 +57,26 @@ function showPopup()
             // 주문상태 업데이트
             const formData = new FormData();
             formData.append("orderNo", lastOrderNo);
+            formData.append("storeInfoNo", storeNo);
             formData.append("status", "Y");
 
             dispatch(callOrderUpdateAPI({
                 form: formData
             }));
+
+            // 주문된 물품 업데이트
+            for (const item of orderItems) {
+                const itemFormData = new FormData();
+                itemFormData.append('refOrderNo', lastOrderNo);
+                itemFormData.append('refProductNo', item.refProductNo); // 물품 코드 또는 ID
+                itemFormData.append('quantity', item.quantity);
+
+                dispatch(
+                    callOrderProductRegistAPI({
+                        form: itemFormData,
+                    })
+                );
+            }
 
             // const formData = new FormData();
             // formData.append("storeInfoNo", decodedToken.StoreNo);
@@ -85,7 +103,7 @@ function showPopup()
         const orderQuantity = document.getElementById("orderQuantity").value;
         const button =  document.createElement("button");
         button.textContent="삭제";
-        button.onclick=onClickRemoveHandler;
+        button.onclick= onClickRemoveHandler;
 
         const newRow = document.createElement("tr");
         const codeCell = document.createElement("td");
@@ -106,17 +124,35 @@ function showPopup()
         newRow.appendChild(quantityCell);
         newRow.appendChild(deleteButton);
 
+        // // 새로운 주문 아이템 생성
+        // const newItem = {
+        //     refProductNo: parentCodeValue,
+        //     quantity: orderQuantity,
+        // };
+        //
+        // // 현재 주문 아이템 배열에 추가
+        // setOrderItems([...orderItems, newItem]);
+
         document.getElementById("orderTable").appendChild(newRow);
     }
 
     /* 행삭제 핸들러*/
-    const onClickRemoveHandler = (e) => {
+    const onClickRemoveHandler = (e, index) => {
         const trElement = e.target.closest("tr");
 
         if (trElement) {
             trElement.parentNode.removeChild(trElement);
         }
-    }
+
+        // 선택한 주문 아이템 제거
+        // const updatedItems = [...orderItems];
+        // orderItems.splice(index, 1);
+        // setOrderItems(updatedItems);
+        // console.log('updatedItems',orderItems)
+        // console.log('index',index)
+    };
+    // console.log('dada',document.getElementById("orderTable"));
+    // console.log('11111',orderItems)
 
     /********************************************************************/
 
