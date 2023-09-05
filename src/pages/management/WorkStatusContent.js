@@ -26,7 +26,6 @@ function WorkStatusContent (){
 
     const toDayDate ="<"+ year + "년 " + month + "월 " + day+"일" + ">";
 
-
     // 현재 날짜에서 월요일까지의 날짜 차이 계산
     const daysUntilMonday = (currentWeek === 0 ? 7 : currentWeek) - 1;
 
@@ -34,10 +33,18 @@ function WorkStatusContent (){
 
     mondayDate.setHours(0, 0, 0, 0);
 
-    // 이번 주의 근태 정보
+    const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토", "일"];
+
+
+
+
+
+
+
+    // 이번 주의 근태 정보 (수정 완료)
     const weekData =  workData.data && workData.data.length >0 ? workData.data.filter(item => {
 
-            const endDate = new Date(item.quittingTime)
+            const endDate = new Date(item.attendanceTime)
 
             console.log("endDate : " + endDate, "mondayDate : " + mondayDate,"currentDate : " + currentDate )
 
@@ -45,7 +52,7 @@ function WorkStatusContent (){
         }
     ) : 0;
     
-    // 이번달의 근태 정보
+    // 이번달의 근태 정보 (수정 완료) 출근을 기준으로 조회
     const monthData = workData.data && workData.data.length != 0 && workData.data.filter(item => {
         const itemDate = new Date(item.attendanceTime)
         const itemYear = itemDate.getFullYear();
@@ -54,8 +61,20 @@ function WorkStatusContent (){
     });
 
 
+
+
+    // 하단 조회용 포맷
+    const resultData = monthData && monthData.map(item => ({
+        day : new Date(item.attendanceTime).getDate(),
+        workingDate :  daysOfWeek[new Date(item.attendanceTime).getDay()],
+        attendanceTime: formatFunction(item.attendanceTime),
+        quittingTime: item.quittingTime !== null ? formatFunction(item.quittingTime) : '미등록',
+        extensionTime : extensionTimeFormat(item.extensionTime)
+    }));
+
+
     // weekOvertime는 시분초밀리초의 값을 따로 구해 밀리초로 반환을 해야함
-    // 이번주 누적 근로 시간
+    // 이번주 누적 근로 시간 (문제 없음)
     const weekTotalTime = weekData && weekData.length > 0 ? weekData.reduce((total, item) => {
 
         const overTime = new Date(item.extensionTime);
@@ -70,6 +89,16 @@ function WorkStatusContent (){
         return total += result;
     }, 0) : 0;
 
+    // 밀리초 값을 시간, 분, 초로 변환
+    // 이번주 누적 근로 시간
+    const totalSeconds = Math.floor(weekTotalTime / 1000); // 전체 초
+    const hours = Math.floor(totalSeconds / 3600); // 시간
+    const minutes = Math.floor((totalSeconds % 3600) / 60); // 분
+    const seconds = totalSeconds % 60; // 초
+
+
+    // 이번달 누적 근로시간
+    // (문제 없음)
     const monthTotalTime = monthData && monthData.length > 0 ? monthData.reduce((total, item) => {
 
         const overTime = new Date(item.extensionTime);
@@ -84,66 +113,14 @@ function WorkStatusContent (){
         return total += result;
     }, 0) : 0;
 
-
-    // 날짜 포맷 변경
-    function formatFunction (data) {
-        const date = new Date(data);
-        const hours = date.getHours();
-        const minutes = date.getMinutes();
-        const seconds = date.getSeconds();
-        return `${hours}:${minutes}:${seconds}`;
-    }
-
-    function extensionTimeFormat (data) {
-        const date = new Date(data);
-        const hours = date.getHours()-9;
-        const minutes = date.getMinutes();
-        const seconds = date.getSeconds();
-        return `${hours}:${minutes}:${seconds}`;
-    }
-
-
     // 밀리초 값을 시간, 분, 초로 변환
-    // 이번주 누적 근로 시간
-    const totalSeconds = Math.floor(weekTotalTime / 1000); // 전체 초
-    const hours = Math.floor(totalSeconds / 3600); // 시간
-    const minutes = Math.floor((totalSeconds % 3600) / 60); // 분
-    const seconds = totalSeconds % 60; // 초
-
+    // 이번달 누적 근로 시간
     const monthTotalSeconds = Math.floor(monthTotalTime / 1000); // 전체 초
     const monthDays = Math.floor(monthTotalSeconds / 86400); // 일
     const remainingSeconds = monthTotalSeconds % 86400; // 남은 초
 
-    const monthHours = Math.floor(remainingSeconds / 3600); // 시간
-    const monthMinutes = Math.floor((remainingSeconds % 3600) / 60); // 분
-    const monthSeconds = remainingSeconds % 60; // 초
 
-
-
-    const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토", "일"];
-
-    const resultData = monthData && monthData.map(item => ({
-        day : new Date(item.attendanceTime).getDate(),
-        workingDate :  daysOfWeek[new Date(item.attendanceTime).getDay()],
-        attendanceTime: formatFunction(item.attendanceTime),
-        quittingTime: formatFunction(item.quittingTime),
-        extensionTime : extensionTimeFormat(item.extensionTime)
-    }));
-
-
-    function formatTimeComponent(component) {
-        return component < 10 ? '0' + component : component;
-    }
-
-    function formatTime(timeString) {
-        const components = timeString.split(':');
-        const hours = formatTimeComponent(parseInt(components[0], 10));
-        const minutes = formatTimeComponent(parseInt(components[1], 10));
-        const seconds = formatTimeComponent(parseInt(components[2], 10));
-
-        return `${hours}:${minutes}:${seconds}`;
-    }
-
+    // 8총 근무시간에서 8시간을 빼주는 함수
     function format(timeString){
 
         const subString = timeString.substring(0, 2);
@@ -163,6 +140,161 @@ function WorkStatusContent (){
         }
     }
 
+    // 이번주 연장 근로 시간 조회 포맷
+    const weekResultData = weekData && weekData.map(item => ({
+        day : new Date(item.attendanceTime).getDate(),
+        workingDate :  daysOfWeek[new Date(item.attendanceTime).getDay()],
+        attendanceTime: formatFunction(item.attendanceTime),
+        quittingTime: formatFunction(item.quittingTime),
+        extensionTime : extensionTimeFormat(item.extensionTime)
+    }));
+
+
+    // 주 연장 근로시간
+    const weekOverTime = weekResultData && weekResultData.map(item =>{
+        return format(formatTime(item.extensionTime))
+    })
+
+    let weekHours = 0;
+    let weekMinutes = 0;
+    let weekSecond = 0;
+
+
+    weekOverTime.forEach(item => {
+        const timeParts = item.split(':'); // 일(day), 시(hour), 분(minute), 초(second)를 배열로 분리
+        const hoursValue = parseInt(timeParts[0]);
+        const minutesValue = parseInt(timeParts[1]);
+        const secondsValue = parseInt(timeParts[2]);
+
+
+        // 초, 분, 시간, 일 단위로 캐리(Carry) 처리
+        weekSecond += secondsValue;
+        weekMinutes += minutesValue;
+        weekHours += hoursValue;
+
+        if (weekSecond >= 60) {
+            const carryMinutes = Math.floor(weekSecond / 60);
+            weekMinutes += carryMinutes;
+            weekSecond %= 60;
+        }
+        if (weekMinutes >= 60) {
+            const carryHours = Math.floor(weekMinutes / 60);
+            weekHours += carryHours;
+            weekMinutes %= 60;
+        }
+        if (weekHours >= 24) {
+            const carryDays = Math.floor(weekHours / 24);
+            weekHours %= 24;
+        }
+    });
+
+    // 결과를 "일(day) 시(hour) 분(minute) 초(second)" 형식으로 포맷팅
+    const weekReusltTime = `${weekHours}시간 ${weekMinutes}분 ${weekSecond}초`;
+
+
+    // 월 연장 근로 시간
+    const monthOverTime = resultData && resultData.length > 0 && resultData.map(item =>{
+        return format(formatTime(item.extensionTime))
+    })
+
+    let totalDays = 0;
+    let totalHours = 0;
+    let totalMinutes = 0;
+    let totalSecond = 0;
+
+    monthOverTime.forEach(item => {
+        const timeParts = item.split(':'); // 일(day), 시(hour), 분(minute), 초(second)를 배열로 분리
+        const hoursValue = parseInt(timeParts[0]);
+        const minutesValue = parseInt(timeParts[1]);
+        const secondsValue = parseInt(timeParts[2]);
+
+
+        // 초, 분, 시간, 일 단위로 캐리(Carry) 처리
+        totalSecond += secondsValue;
+        totalMinutes += minutesValue;
+        totalHours += hoursValue;
+
+        if (totalSecond >= 60) {
+            const carryMinutes = Math.floor(totalSecond / 60);
+            totalMinutes += carryMinutes;
+            totalSecond %= 60;
+        }
+        if (totalMinutes >= 60) {
+            const carryHours = Math.floor(totalMinutes / 60);
+            totalHours += carryHours;
+            totalMinutes %= 60;
+        }
+        if (totalHours >= 24) {
+            const carryDays = Math.floor(totalHours / 24);
+            totalDays += carryDays;
+            totalHours %= 24;
+        }
+    });
+
+    // 결과를 "일(day) 시(hour) 분(minute) 초(second)" 형식으로 포맷팅
+    const formattedTime = `${totalDays}일 ${totalHours}시간 ${totalMinutes}분 ${totalSecond}초`;
+
+
+
+
+    // 날짜 포맷 변경 ( 이번달 누적 근로 시간 )
+    function formatFunction (data) {
+        const date = new Date(data);
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+        const seconds = date.getSeconds();
+        return `${hours}:${minutes}:${seconds}`;
+    }
+
+    function extensionTimeFormat (data) {
+        const date = new Date(data);
+        const hours = date.getHours()-9;
+        const minutes = date.getMinutes();
+        const seconds = date.getSeconds();
+        return `${hours}:${minutes}:${seconds}`;
+    }
+
+    const monthHours = Math.floor(remainingSeconds / 3600); // 시간
+    const monthMinutes = Math.floor((remainingSeconds % 3600) / 60); // 분
+    const monthSeconds = remainingSeconds % 60; // 초
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // 기본 근무 시간 포맷
+    function formatTimeComponent(component) {
+        return component < 10 ? '0' + component : component;
+    }
+
+    function formatTime(timeString) {
+        if(timeString !== '미등록'){
+            const components = timeString.split(':');
+            const hours = formatTimeComponent(parseInt(components[0], 10));
+            const minutes = formatTimeComponent(parseInt(components[1], 10));
+            const seconds = formatTimeComponent(parseInt(components[2], 10));
+
+            return `${hours}:${minutes}:${seconds}`;
+        } else{
+            return '미등록'
+        }
+
+    }
+
     function defaultTime(timeString) {
         const components = timeString.split(':');
         const hours = parseInt(components[0], 10);
@@ -174,50 +306,23 @@ function WorkStatusContent (){
     }
 
 
-    function formatDate(ISOString) {
-        const regex = /T(\d{2}:\d{2}:\d{2})\.\d{3}\+\d{2}:\d{2}/;
-        const match = ISOString.match(regex);
 
-        if (match) {
-            return match[1]; // 시간 부분 추출
-        } else {
-            return null; // 일치하는 부분이 없는 경우
-        }
-    }
 
-    function processTimeArray(timeArray) {
-        let totalMilliseconds = 0;
 
-        for (const timeString of timeArray) {
-            const [hours, minutes, seconds] = timeString.split(':').map(Number);
-            const milliseconds = (hours * 3600 + minutes * 60 + seconds) * 1000;
 
-            if (milliseconds >= 8 * 3600 * 1000) {
-                totalMilliseconds += milliseconds - 8 * 3600 * 1000;
-            }
-        }
-
-        // 결과를 시간 문자열로 변환
-        const totalSeconds = totalMilliseconds / 1000;
-        const resultHours = Math.floor(totalSeconds / 3600);
-        const resultMinutes = Math.floor((totalSeconds % 3600) / 60);
-        const resultSeconds = Math.floor(totalSeconds % 60);
-
-        return `${String(resultHours).padStart(2, '0')}시간 ${String(resultMinutes).padStart(2, '0')}분 ${String(resultSeconds).padStart(2, '0')}초`;
-    }
-
-    const resultTime = weekData.length > 0 && weekData.map(item=>{
-        return formatDate(item.attendanceTime)
-    })
-
-    const totalTime = monthData.length > 0 && monthData.map(item=>{
-        return formatDate(item.attendanceTime)
-    })
 
     // 테스트용 ( 테스트 끝나면 지우기)
     const onClickTest = () => {
-        console.log(resultTime);
+        console.log(resultData);
     }
+
+
+
+
+
+
+
+
     return (
         <>
             <div className={styles.content}>
@@ -255,7 +360,7 @@ function WorkStatusContent (){
                                 이번주 연장 근로 시간
                             </div>
                             <div className={styles.statusTime}>
-                                { processTimeArray(resultTime)}
+                                {weekReusltTime}
                             </div>
                         </div>
                         <div className={styles.statusBox}>
@@ -271,7 +376,7 @@ function WorkStatusContent (){
                                 이번달 연장 근로 시간
                             </div>
                             <div className={styles.statusTime}>
-                                { processTimeArray(totalTime)}
+                                {formattedTime}
                             </div>
                         </div>
                     </div>
@@ -294,7 +399,7 @@ function WorkStatusContent (){
                             </div>
                         </div>
                         <div>
-                            {resultData && resultData.map(data => (
+                            {resultData && resultData.length > 0 && resultData.map(data => (
                                 <div>
                                     <div className={styles.infoContent}>
                                         <div className={styles.statusInfoBox1}>
@@ -307,7 +412,7 @@ function WorkStatusContent (){
                                             { formatTime(data.quittingTime) }
                                         </div>
                                         <div className={styles.statusInfoBox4}>
-                                            { formatTime(data.extensionTime) }
+                                            { formatTime(data.extensionTime)=== '00:00:00'? '미등록' : formatTime(data.extensionTime)}
                                         </div>
                                         <div className={styles.statusInfoBox5}>
                                             기본 {defaultTime(formatTime(data.extensionTime)) } / 연장 {  format(formatTime(data.extensionTime)) }
