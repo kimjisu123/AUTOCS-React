@@ -17,6 +17,7 @@ function UpdatePW(resultMessage) {
     const [checkPw, setCheckPw ] = useState(''); // 새비밀번호
     const [checkResult, setCheckResult] = useState(null);
     const [ newPwCheck , setNewPwCheck] = useState(''); // 새 비밀번호확인
+    const [ableinput , setAbleinput] = useState('true');
     const accessToken = window.localStorage.getItem('accessToken');
     const decodedToken = accessToken ? decodeJwt(accessToken) : null;
     const memberTodoList = useSelector(state => state.myPageReducer);
@@ -29,9 +30,6 @@ function UpdatePW(resultMessage) {
         const decodedToken = decodeJwt(
             window.localStorage.getItem('accessToken')
         );
-        console.info("토큰값",decodedToken.memberNo);
-        console.info("리스트",memberTodoList.data.memberNo);
-
 
     }, []);
 
@@ -49,15 +47,9 @@ function UpdatePW(resultMessage) {
         if(memberNo !== null && checkPw) {
             try{
                 const response = await callPostPwdCheckAPI(memberNo,checkPw);
-
                 setCheckResult(response);
-
-                    console.info("메세지. {} ", checkResult );
-                    // setCheckResult(resultMessage); // 서버에서 받은 결과 메시지를 상태에 설정
-                // } else {
-                //     throw new Error("서버 응답 오류: 메시지 없음");
-
-
+                if(response === "true"){setAbleinput()};
+                console.info("메세지. {} ", checkResult );
             } catch (error) {
                 // 오류 처리
                 console.error("비밀번호 확인 오류:", error);
@@ -84,18 +76,24 @@ function UpdatePW(resultMessage) {
                                     <div>
                                         <label htmlFor="currentPW">현재 비밀번호</label>
                                         <input type="password" className="currentPW" placeholder="현재 비밀번호를 입력해주세요" autoFocus onChange={onChange} value={checkPw}/>
-                                        {console.log("checkResult==========================",checkResult)}
+                                        {/*비밀번호 확인 */}
                                         {checkResult && checkResult == "true"? <p style={{color:"green"}}>비밀번호가 일치합니다.</p> : checkResult == "false"? <p style={{color:"red"}}>비밀번호가 일치하지 않습니다.</p> : ''}
                                         {/*<span id="password-error" class="error-message"/>*/}
                                     </div>
                                     <div className={updateCSS.boxMargin2}>
                                         <label htmlFor="newpw">새 비밀번호 입력</label>
-                                        <input type="password" className="newpw" placeholder="새 비밀번호를 입력해주세요" autoComplete="off" />
+                                        {/*비밀번호 가 일치하지 않으면 입력창이 활성화 되지 않는다.*/}
+                                        <input
+                                            disabled={ableinput}
+                                            type="password" className="newpw" placeholder="새 비밀번호를 입력해주세요" autoComplete="off"
+                                        />
                                         <span id="password-error" class="error-message"/>
                                     </div>
                                     <div className={updateCSS.checkMail}>
                                         <label htmlFor="newPwCheck">비밀번호 확인</label>
-                                        <input type="password" className="newPwCheck" placeholder="다시한번 입력해주세요" autoComplete="off" />
+                                        <input
+                                            disabled={ableinput} type="password" className="newPwCheck" placeholder="다시한번 입력해주세요" autoComplete="off"
+                                        />
                                         <span id="password-error" class="error-message"/>
                                     </div>
                                     <div className={updateCSS.buttons}>
