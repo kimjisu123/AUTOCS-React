@@ -8,11 +8,14 @@ const initialState = [];
 export const GET_MEMBERINFO = 'memberInfo/GET_MEMBER_INFO';
 export const POST_MEMBERINFO = 'memberInfo/POST_MEMBERINFO';
 
+export const POST_CHECKPWD = 'memberInfo/POST_CHECKPWD';
+
 
 
 const actions = createActions({
     [GET_MEMBERINFO]: () => {},
     [POST_MEMBERINFO]: () => {},
+    [POST_CHECKPWD]: () => {},
 
 });
 
@@ -24,6 +27,9 @@ const myPageReducer= handleActions({
         [POST_MEMBERINFO]: (state, { payload }) => {
             return [...state, payload];
         },
+        [POST_CHECKPWD]: (state, { payload }) => {
+            return [...state, payload];
+        }
 
     },
     initialState

@@ -2,17 +2,18 @@ import MypageCSS from './MypageEmp.module.css';
 import emp from './emp.jpg'
 import {MdAccountCircle} from "react-icons/md";
 import DatePicker from "react-datepicker";
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import { ko } from 'date-fns/esm/locale';
 import Modal from "react-modal";
 import UpdatePwApp from "./UpdatePwApp";
 import {useDispatch, useSelector} from "react-redux";
 import {callGetEmployeeAPI} from "../../apis/MemberAPICalls";
 import {decodeJwt} from "../../util/tokenUtils";
-import {callGetMemberTodoAPI} from "../../apis/TodoAPICalls";
+import {callGetMemberTodoAPI, callUpdateTodoAPI} from "../../apis/TodoAPICalls";
 import {callGetMemberInfoAPI} from "../../apis/MypageAPICalls";
 import myPageReducer from "../../modules/MypageModule";
 import {format} from "date-fns";
+
 
 
 
@@ -75,7 +76,28 @@ function MypageEmp() {
         }
     };
 
+    // 더블클릭시 내용 수정 함수
+    const onChangeInfo = useCallback(
+        todo => {
+            // const editedText = prompt('수정할 내용을 입력하세요', todo.content);
 
+            // console.log("editedText {}", editedText.then());
+            // console.log("editedText {}", );
+            // if (editedText !== null) {
+            //     const todoData = {
+            //         content: editedText,
+            //         memberNo: decodedToken.MemberNo,
+            //         todoNo:todo.todoNo,
+
+            // };
+            // console.log(" onUpdate todoNo {}" , todo.todoNo);
+            // console.log(" onUpdate todoData {}" , todoData);
+            // console.log(" onUpdate todos.content {}" , editedText);
+            // dispatch(callUpdateTodoAPI(todoData));
+            // }
+
+        },[],
+    );
 
 
 
@@ -118,7 +140,7 @@ function MypageEmp() {
                                     </div>
                                 </div>
                                 <div className={infoInput}>
-                                    <form id="infoform" action="" method="post">
+                                    <form id="infoform" action="" method="post" onClick={ () => onChangeInfo(employees.data) }>
                                         <div className={sections}>
                                             <div className={section1}>
                                                 <div className="empId">
@@ -231,8 +253,7 @@ function MypageEmp() {
                                                         onClick={() => {
                                                             const confirmResult = window.confirm('정말로 수정하시겠습니까?');
                                                             if (confirmResult) {
-                                                                // 예 버튼이 클릭된 경우에 실행할 코드
-                                                                // 예를 들어 회원정보 수정 함수 호출 등
+                                                                onChangeInfo(employees.data)
                                                             } else {
                                                                 // 아니오 버튼이 클릭된 경우에 실행할 코드
                                                             }

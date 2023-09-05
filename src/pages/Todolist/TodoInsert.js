@@ -18,12 +18,7 @@ const TodoInsert = ({onInsert}) => {
     const dispatch = useDispatch();
     const memberTodoList = useSelector(state => state.todoReducer);
     const naviage = useNavigate();
-    // 멤버정보 가지고 오기
-    // useEffect(() => {
-    //
-    //     console.log("decodedToken.MemberNo1 {}",decodedToken.MemberNo);
-    //
-    // }, []);
+
 
 
     // input 입력 이벤트

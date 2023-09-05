@@ -7,20 +7,10 @@
 }
 
 .todoinput {
-
-    /*background: ghostwhite ;*/
-    /*outline: none;*/
-    /*border: none;*/
-    /*padding: 1.5rem;*/
-    /*font-size: 1.125rem;*/
-    /*line-height: 1.5;*/
-    /*color: gray;*/
-    /*flex: 1;*/
-
     background: ghostwhite;
     outline: none;
     border: 1px solid;
-    padding: 1.5rem;
+    padding: 1.2rem;
     font-size: 1.125rem;
     line-height: 1.5;
     color: gray;
@@ -28,7 +18,11 @@
     border-radius: 10px;
     margin-left: 15px;
 
+}
 
+.todoinput:focus {
+
+    border:3px solid #80a16b;
 }
 
 .todoinput::placeholder {
