@@ -1,28 +1,70 @@
 import { MdAdd } from 'react-icons/md';
 import styles from './TodoInsert.module.css';
-import {useCallback, useState} from "react";
+import {useCallback,useEffect, useRef, useState} from "react";
+import { useDispatch , useSelector } from 'react-redux';
+import {callGetMemberTodoAPI, callInsertTodoAPI} from "../../apis/TodoAPICalls";
+import {decodeJwt} from "../../util/tokenUtils";
+import {useNavigate} from "react-router-dom";
+
+
+
 
 
 const TodoInsert = ({onInsert}) => {
+
+    const accessToken = window.localStorage.getItem('accessToken');
+    const decodedToken = accessToken ? decodeJwt(accessToken) : null;
     const [ value , setValue ] = useState('');
+    const dispatch = useDispatch();
+    const memberTodoList = useSelector(state => state.todoReducer);
+    const naviage = useNavigate();
+    // 멤버정보 가지고 오기
+    // useEffect(() => {
+    //
+    //     console.log("decodedToken.MemberNo1 {}",decodedToken.MemberNo);
+    //
+    // }, []);
+
 
     // input 입력 이벤트
-    const onChnage= useCallback(e => {
-        setValue(e.target.value);
+    const inputRef = useRef(null);
+
+    const onChange= useCallback(e => {
+        const inputValue = e.target.value;
+            setValue(inputValue);
+            console.info(inputValue);
+
     },[]);  // use콜백 및 사용해서 쓸데없이 함수를 반복해서 불러오지 않기 성능 최적화를 위해
 
 
     // 버튼 클릭 이벤트 ( onSubmit으로 한 이유는 클릭과 enter둘다 사용가능하도록 하기위해 씀. onKeyPress이벤트를 따로 작성하지 않아도 됨.
     const onSubmit = useCallback(
-        e=> {
-            onInsert(value);
-            setValue(''); // 값 초기화
+        async e=> {
 
-        //submit이벤트는 브라우저 새로고침을 발생시킨다 이를 방지하기 위해 아래 함수를 호출시킨다.
-            e.preventDefault();
+            if(value !== null){
 
-        },[onInsert,value],
+                try {
+                    console.table("초기값211111 {}",value);
+                    // Todo 추가 API 호출
+                    onInsert(value);
+                    // 값 초기화
+                    setValue('');
+                } catch (error) {
+                    // Todo 추가 실패 시 처리
+                    console.error('Error adding Todo:', error);
+                }
+                e.preventDefault();
+            } else {
+                if (inputRef.current) {
+                    inputRef.current.focus();
+                }
+            }
+
+        },
+        [onInsert, value]
     );
+
+
 
 
     return (
@@ -32,7 +74,8 @@ const TodoInsert = ({onInsert}) => {
                 className={styles.todoinput}
                 placeholder='할일을 입력하세요'
                 value={ value }
-                onChange={onChnage}
+                onChange={onChange}
+                ref={inputRef} // ref 설정
             />
 
             <button type='submit'>
