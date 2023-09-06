@@ -15,7 +15,7 @@ import approvalReducer from './ApprovalModule';
 import todoReducer from "./TodoModule";
 import myPageReducer from "./MypageModule";
 import {workStatusReducer} from"./WorkStatusModule";
-import { departmentReducer, personnelReducer, accountingReducer, managementReducer, marketingReducer, salesReducer, serviceReducer  } from "./DepartmentModule";
+import { departmentReducer, personnelReducer, accountingReducer, managementReducer, marketingReducer, salesReducer, serviceReducer, headOfficeReducer  } from "./DepartmentModule";
 
 const rootReducer = combineReducers({
     chartReducer,
@@ -41,7 +41,9 @@ const rootReducer = combineReducers({
     managementReducer,
     marketingReducer,
     salesReducer,
-    serviceReducer
+    serviceReducer,
+    headOfficeReducer,
+
 });
 
 export default rootReducer;

@@ -1,7 +1,8 @@
 import styles from './HeadOffice.module.css'
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {callGetDepartmentAPI} from "../../apis/DepartmentAPICalls";
+import { callGetHeadOfficeAPI} from "../../apis/DepartmentAPICalls";
+import {headOfficeReducer} from "../../modules/DepartmentModule";
 
 
 
@@ -15,10 +16,10 @@ function HeadOfficeContent(){
     const day = currentDate.getDate();         // 현재 날짜(일)
 
     const dispatch = useDispatch();
-    const data = useSelector(state => state.departmentReducer);
+    const data = useSelector(state => state.headOfficeReducer);
 
     useEffect(() => {
-        dispatch( callGetDepartmentAPI() )
+        dispatch( callGetHeadOfficeAPI() )
     },[])
 
     const days = ["일", "월", "화", "수", "목", "금", "토"];
@@ -35,15 +36,29 @@ function HeadOfficeContent(){
 
     const toDayDate ="<"+ year + "년 " + month + "월 " + monday+"일" + ' ~ ' + year + "년 " + month + "월 " + sunday+"일" +">";
 
-    const filterdData = data.data && data.data.length > 0 && data.data.filter(item =>{
-        const filter = new Date(item.quittingTime)
-        return  mondayDate < filter  && filter < new Date();
-    })
+    // 중복된 값 제거
+    const uniqueData = data.data && data.data.length >0 &&data.data.filter((obj, index, self) => {
+        return index === self.findIndex((t) => t.employeeNo === obj.employeeNo);
+    });
+
+    // // 이번주에 해당하는 값 필터
+    // const filteredData = uniqueData && uniqueData.length >0  && uniqueData.filter(item =>{
+    //
+    //     // 출근 시간
+    //     const attendacnceTime = item.workStatusLists.map(item2=> item2.attendanceTime)
+    //
+    //
+    //     const resultTime = attendacnceTime && attendacnceTime.filter(item=>{
+    //         return mondayDate < new Date(item) && new Date(item) < new Date()
+    //     })
+    //
+    //     return resultTime;
+    // })
 
 
     // 테스트용 쓰고 나서 지우기
     const onClickTest =() =>{
-        console.log(filterdData[0].workStatusLists[0].employee.name)
+        console.log()
     }
     return(
         <div className={styles.content}>
@@ -95,123 +110,32 @@ function HeadOfficeContent(){
                             </div>
                         </div>
                         <div>
-                            {filterdData && filterdData.length > 0 && filterdData.map(item => (
-                                <div className={styles.infoContent}>
+                            {/*{filterdData && filterdData.length > 0 && filterdData.map(item => (*/}
+                            {/*    <div className={styles.infoContent}>*/}
 
-                                    <div className={styles.statusInfoBox1}>
-                                        <div>
-                                            {item.workStatusLists[0].employee.name}
-                                        </div>
-                                        <div>
-                                            {item.workStatusLists[0].employee.department.name + "("+ item.workStatusLists[0].employee.position.name + ")"}
-                                        </div>
-                                    </div>
-                                    <div className={styles.statusInfoBox2}>
-                                        <div className={styles.cumulativeTime}>
-                                            10h 23m 21s
-                                        </div>
-                                        <div className={styles.hoursDuty}>
-                                            <div>
-                                                기본 : 2h 00m 00s
-                                            </div>
-                                            <div>
-                                                연장 : 0h 00m 00s
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className={styles.statusInfoBox3}>
-                                        <div className={styles.cumulativeTime}>
-                                            2h 00m 00s
-                                        </div>
-                                        <div className={styles.hoursDuty}>
-                                            <div>
-                                                기본 : 2h 00m 00s
-                                            </div>
-                                            <div>
-                                                연장 : 0h 00m 00s
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className={styles.statusInfoBox4}>
-                                        <div className={styles.cumulativeTime}>
-                                            2h 00m 00s
-                                        </div>
-                                        <div className={styles.hoursDuty}>
-                                            <div>
-                                                기본 : 2h 00m 00s
-                                            </div>
-                                            <div>
-                                                연장 : 0h 00m 00s
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className={styles.statusInfoBox5}>
-                                        <div className={styles.cumulativeTime}>
-                                            2h 00m 00s
-                                        </div>
-                                        <div className={styles.hoursDuty}>
-                                            <div>
-                                                기본 : 2h 00m 00s
-                                            </div>
-                                            <div>
-                                                연장 : 0h 00m 00s
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className={styles.statusInfoBox6}>
-                                        <div className={styles.cumulativeTime}>
-                                            2h 00m 00s
-                                        </div>
-                                        <div className={styles.hoursDuty}>
-                                            <div>
-                                                기본 : 2h 00m 00s
-                                            </div>
-                                            <div>
-                                                연장 : 0h 00m 00s
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className={styles.statusInfoBox7}>
-                                        <div className={styles.cumulativeTime}>
-                                            2h 00m 00s
-                                        </div>
-                                        <div className={styles.hoursDuty}>
-                                            <div>
-                                                기본 : 2h 00m 00s
-                                            </div>
-                                            <div>
-                                                연장 : 0h 00m 00s
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className={styles.statusInfoBox8}>
-                                        <div className={styles.cumulativeTime}>
-                                            2h 00m 00s
-                                        </div>
-                                        <div className={styles.hoursDuty}>
-                                            <div>
-                                                기본 : 2h 00m 00s
-                                            </div>
-                                            <div>
-                                                연장 : 0h 00m 00s
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className={styles.statusInfoBox9}>
-                                        <div className={styles.cumulativeTime}>
-                                            2h 00m 00s
-                                        </div>
-                                        <div className={styles.hoursDuty}>
-                                            <div>
-                                                기본 : 2h 00m 00s
-                                            </div>
-                                            <div>
-                                                연장 : 0h 00m 00s
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
+                            {/*        <div className={styles.statusInfoBox1}>*/}
+                            {/*            <div>*/}
+                            {/*                {item.workStatusLists[0].employee.name}*/}
+                            {/*            </div>*/}
+                            {/*            <div>*/}
+                            {/*                {item.workStatusLists[0].employee.department.name + "("+ item.workStatusLists[0].employee.position.name + ")"}*/}
+                            {/*            </div>*/}
+                            {/*        </div>*/}
+                            {/*        <div className={styles.statusInfoBox2}>*/}
+                            {/*            <div className={styles.cumulativeTime}>*/}
+                            {/*                10h 23m 21s*/}
+                            {/*            </div>*/}
+                            {/*            <div className={styles.hoursDuty}>*/}
+                            {/*                <div>*/}
+                            {/*                    기본 : 2h 00m 00s*/}
+                            {/*                </div>*/}
+                            {/*                <div>*/}
+                            {/*                    연장 : 0h 00m 00s*/}
+                            {/*                </div>*/}
+                            {/*            </div>*/}
+                            {/*        </div>*/}
+                            {/*    </div>*/}
+                            {/*))}*/}
                         </div>
                     </div>
                 </div>

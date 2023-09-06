@@ -9,6 +9,7 @@ export const GET_MANAGEMENT= 'deapartment/GET_MANAGEMENT';
 export const GET_MARKETING= 'deapartment/GET_MARKETING';
 export const GET_SALES= 'deapartment/GET_SALES';
 export const GET_SERIVCE= 'deapartment/GET_SERIVCE';
+export const GET_HEAD_OFFICE = "department/GET_HEAD_OFFICE"
 
 export const departmentReducer = handleActions(
     {
@@ -73,6 +74,16 @@ export const salesReducer = handleActions(
 export const serviceReducer = handleActions(
     {
         [GET_SERIVCE]: (state, { payload }) => {
+
+            return payload;
+        },
+    },
+    initialState
+);
+
+export const headOfficeReducer = handleActions(
+    {
+        [GET_HEAD_OFFICE]: (state, { payload }) => {
 
             return payload;
         },

@@ -2,7 +2,7 @@ import
 { GET_DEPARTMENT
 ,GET_ACCOUNTING,GET_MANAGEMENT,GET_MARKETING
 ,GET_PERSONNEL,GET_SALES
-,GET_SERIVCE,} from '../modules/DepartmentModule'
+,GET_SERIVCE,GET_HEAD_OFFICE} from '../modules/DepartmentModule'
 
 export const callGetDepartmentAPI = () => {
     const requestURL = "http://localhost:8080/department";
@@ -114,4 +114,17 @@ export const callGetServiceAPI = () => {
         dispatch({ type: GET_SERIVCE, payload: result });
     }
 };
+export const callGetHeadOfficeAPI = () => {
+    const requestURL = "http://localhost:8080/headOffice";
 
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': '*/*'
+            },
+        }).then(response => response.json());
+        dispatch({ type: GET_HEAD_OFFICE, payload: result });
+    }
+};

@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="edd449e3-8f7f-41fd-8d85-7a0014586861" name="Changes" comment="2023-09-05 commit&#10;중간 커밋">
+    <list default="true" id="edd449e3-8f7f-41fd-8d85-7a0014586861" name="Changes" comment="2023-09-05 commit&#10;커밋">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/11eb06d8-4138-4e66-bfa7-f890898a4d28.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/11eb06d8-4138-4e66-bfa7-f890898a4d28.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/apis/WorkStatusAPICalls.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apis/WorkStatusAPICalls.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/WorkStatusModule.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/WorkStatusModule.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/compoments/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/compoments/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mainpage/MainContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mainpage/MainContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/management/PersonnelDepartment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/management/PersonnelDepartment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/management/WorkStatusContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/management/WorkStatusContent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/apis/DepartmentAPICalls.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apis/DepartmentAPICalls.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/DepartmentModule.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/DepartmentModule.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/management/HeadOfficeContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/management/HeadOfficeContent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/management/Personnel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/management/Personnel.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,9 +26,28 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Uzy8NQ5TplmVew8mf9Cruof5aH" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/CSS final/SpringProject",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.JavaScript",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -37,7 +56,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1693874147789</updated>
-      <workItem from="1693874149218" duration="23360000" />
+      <workItem from="1693874149218" duration="23380000" />
+      <workItem from="1693956544844" duration="8329000" />
+      <workItem from="1693985260425" duration="4630000" />
     </task>
     <task id="LOCAL-00001" summary="2023-09-05 commit&#10;중간 커밋">
       <created>1693884733862</created>
@@ -46,7 +67,14 @@
       <option name="project" value="LOCAL" />
       <updated>1693884733862</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="2023-09-05 commit&#10;커밋">
+      <created>1693914885610</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1693914885610</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -54,6 +82,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="2023-09-05 commit&#10;중간 커밋" />
-    <option name="LAST_COMMIT_MESSAGE" value="2023-09-05 commit&#10;중간 커밋" />
+    <MESSAGE value="2023-09-05 commit&#10;커밋" />
+    <option name="LAST_COMMIT_MESSAGE" value="2023-09-05 commit&#10;커밋" />
   </component>
 </project>
