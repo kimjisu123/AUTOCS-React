@@ -2,24 +2,34 @@ import updateCSS from './UpdatePW.module.css';
 import React, {useCallback, useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Modal from "react-modal";
-import UpdatePwApp from "./UpdatePwApp";
 import UpdatePWok from "./UpdatePWok";
 import { decodeJwt } from '../../util/tokenUtils';
 import {POST_CHECKPWD} from "../../modules/MypageModule";
 import {callPostPwdCheckAPI} from "../../apis/MypageAPICalls";
-import {callGetMemberTodoAPI} from "../../apis/TodoAPICalls";
+
 import {useSelector} from "react-redux";
 
 function UpdatePW(resultMessage) {
     const navigate = useNavigate();
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
-    const [checkPw, setCheckPw ] = useState(''); // 새비밀번호
-    const [checkResult, setCheckResult] = useState(null);
-    const [ newPwCheck , setNewPwCheck] = useState(''); // 새 비밀번호확인
+    //비밀번호 입력 값
+    const [checkPw, setCheckPw ] = useState(''); // 기존비밀번호 입력
+    const [checkResult, setCheckResult] = useState(null); // 기존 비밀번호의 결과값
+    const [newPwd, setNewPwd] = useState('');  // 새 비밀번호
+    const [newPwCheck , setNewPwCheck] = useState(''); // 새 비밀번호확인
     const [ableinput , setAbleinput] = useState('true');
+
+    // 메세지 확인 오류 메세지 저장
+    const [passwordMessage, setPasswordMessage] = useState('');
+    const [passwordConfirmMessage, setPasswordConfirmMessage] = useState('');
+
+    //유효성 검사
+    const [isPassword, setIsPassword] = useState(false);
+    const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
+
+    // 회원 정보 가지고 오기
     const accessToken = window.localStorage.getItem('accessToken');
-    const decodedToken = accessToken ? decodeJwt(accessToken) : null;
     const memberTodoList = useSelector(state => state.myPageReducer);
     const memberNo = memberTodoList.data.memberNo;
 
@@ -36,6 +46,7 @@ function UpdatePW(resultMessage) {
 
 
 
+    // 비밀번호 확인 확인 함수
     const onChange= useCallback(
         async e => {
         const checkPw = e.target.value;
@@ -66,6 +77,56 @@ function UpdatePW(resultMessage) {
         navigate('/main/pwpopup');
     };
 
+    // 새비밀번호 유효성 검사
+    const onNewpwd = useCallback(  e=> {
+        const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/
+        const newPw = e.target.value;
+        setNewPwd(newPw);
+        console.info("newPw  ", newPw );
+        if(!passwordRegex.test(newPw)){
+            setPasswordMessage('숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요');
+            setIsPassword(false);
+            console.info("새 비밀번호 입력 실패 {} ");
+        } else {
+            setPasswordMessage('안전한 비밀번호 입니다. ');
+            setIsPassword(true);
+
+            console.info("새 비밀번호 입력 성공 ");
+        }
+    },[])
+
+
+    // 새 비밀번호 확인
+    const onNewPwdConfirm = useCallback(e => {
+        const newPwConfirm = e.target.value;
+        setNewPwCheck(newPwConfirm);
+        console.info("newPwd", newPwd);
+        console.info("newPwConfirm ", newPwConfirm);
+        if(newPwd === newPwConfirm) {
+            setPasswordConfirmMessage('비밀번호가 일치합니다. ');
+            setIsPasswordConfirm(true)
+            console.info("비밀번호 일치 {} ");
+        } else {
+            setPasswordConfirmMessage('비밀번호가 일치하지 않습니다.');
+            setIsPasswordConfirm(false);
+            console.info("비밀번호가 일치하지 않습니다. ");
+        }
+
+    },[newPwd])
+
+
+
+    // 비밀번호 변경 제출
+    const onSubmit = useCallback( async e => {
+
+        e.preventDefault();
+        try {
+            // await  API
+        } catch (error){
+
+        }
+    })
+
     return (
         <>
             <div className={updateCSS.updatePwModal}>
@@ -85,16 +146,31 @@ function UpdatePW(resultMessage) {
                                         {/*비밀번호 가 일치하지 않으면 입력창이 활성화 되지 않는다.*/}
                                         <input
                                             disabled={ableinput}
-                                            type="password" className="newpw" placeholder="새 비밀번호를 입력해주세요" autoComplete="off"
+                                            onChange= { onNewpwd }
+                                            type="password"
+                                            className="newpw"
+                                            placeholder="새 비밀번호를 입력해주세요"
+                                            autoComplete="off"
                                         />
-                                        <span id="password-error" class="error-message"/>
+                                        {newPwd.length > 0 && (
+                                            <p className={`message ${isPassword ? 'success' : 'error'}`} style={isPassword? {color:"green"} : {color:"red"}}>{passwordMessage}</p>
+                                        )}
+                                        {/*<span id="password-error" class="error-message"/>*/}
                                     </div>
                                     <div className={updateCSS.checkMail}>
                                         <label htmlFor="newPwCheck">비밀번호 확인</label>
                                         <input
-                                            disabled={ableinput} type="password" className="newPwCheck" placeholder="다시한번 입력해주세요" autoComplete="off"
+                                            onChange={ onNewPwdConfirm }
+                                            disabled={ableinput}
+                                            type="password"
+                                            className="newPwCheck"
+                                            placeholder="다시한번 입력해주세요"
+                                            autoComplete="off"
                                         />
-                                        <span id="password-error" class="error-message"/>
+                                        {newPwCheck.length > 0 && (
+                                            <p className={`message ${isPasswordConfirm ? '.success' : '.error'}`} style={isPasswordConfirm? {color:"green"} : {color:"red"}}>{passwordConfirmMessage}</p>
+                                        )}
+                                        {/*<span id="password-error" class="error-message"/>*/}
                                     </div>
                                     <div className={updateCSS.buttons}>
                                         <div>

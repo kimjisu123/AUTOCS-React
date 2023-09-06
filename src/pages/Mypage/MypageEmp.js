@@ -174,7 +174,8 @@ function MypageEmp() {
                                                     <label htmlFor="empDep">부서명</label>
                                                     <input type="text" id="empDep" name="empDep" maxLength="20"
                                                            value={employees.data.department}
-                                                           style={{border: "none"}}/>
+                                                           style={{border: "none"}} readOnly/>
+
                                                 </div>
                                             </div>
                                             <div className={section2}>
@@ -184,33 +185,33 @@ function MypageEmp() {
                                                             onClick={() => setModalIsOpen(true)}>비밀번호 변경
                                                     </button>
                                                 </div>
-                                                <div className=" empInfo empDep">
-                                                    <label htmlFor="empDep">휴대 전화</label>
-                                                    <input type="tel" id="empDep" name="empDep" maxLength="20"
+                                                <div className=" empInfo empPhone">
+                                                    <label htmlFor="empPhone">휴대 전화</label>
+                                                    <input type="tel" id="empPhone" name="empPhone" maxLength="20"
                                                            value={employees.data.employeePhone} style={{border: "none"}}/>
                                                 </div>
-                                                <div className=" empInfo empDep">
-                                                    <label htmlFor="empDep">내선 번호</label>
-                                                    <input type="tel" id="empDep" name="empDep" maxLength="20"
-                                                           value={employees.data.employeePhone} style={{border: "none"}}/>
+                                                <div className=" empInfo empnum">
+                                                    <label htmlFor="empnum">내선 번호</label>
+                                                    <input type="tel" id="empnum" name="empnum" maxLength="20"
+                                                           value="112~1" style={{border: "none"}}/>
                                                 </div>
-                                                <div className=" empInfo empDep">
-                                                    <label htmlFor="empDep">생일</label>
-                                                        <DatePicker
-                                                            locale={ko}
-                                                            dateFormat="yyyy년 MM월 dd일"
-                                                            selected={birthDate}
-                                                            onChange={date => setBirthDate(date)}
-                                                        />
-                                                </div>
-                                                <div className=" empInfo empDep">
-                                                    <label htmlFor="empDep">근무지</label>
-                                                    <input type="text" id="empDep" name="empDep" maxLength="20"
+                                                {/*<div className=" empInfo empDep">*/}
+                                                {/*    <label htmlFor="empDep">생일</label>*/}
+                                                {/*        <DatePicker*/}
+                                                {/*            locale={ko}*/}
+                                                {/*            dateFormat="yyyy년 MM월 dd일"*/}
+                                                {/*            selected={birthDate}*/}
+                                                {/*            onChange={date => setBirthDate(date)}*/}
+                                                {/*        />*/}
+                                                {/*</div>*/}
+                                                <div className=" empInfo empwhere">
+                                                    <label htmlFor="empwhere">근무지</label>
+                                                    <input type="text" id="empwhere" name="empwhere" maxLength="20"
                                                            value="서울 본사" style={{border: "none"}}/>
                                                 </div>
-                                                <div className=" empInfo empDep">
-                                                    <label htmlFor="empDep">고용 형태</label>
-                                                    <input type="text" id="empDep" name="empDep" maxLength="20"
+                                                <div className=" empInfo empstate">
+                                                    <label htmlFor="empstate">고용 형태</label>
+                                                    <input type="text" id="empstate" name="empstate" maxLength="20"
                                                            value="정직원"
                                                            style={{border: "none"}}/>
                                                 </div>
