@@ -1,8 +1,42 @@
 import style from './ApprovalHome.module.css'
 import AppWait from './AppWait.module.css'
 import { AiOutlineSearch } from "react-icons/ai"
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect, useState} from "react";
+import {callGetAppWaitAPI, callGetMyBusinessAPI} from "../../apis/ApprovalAPICalls";
 
 function AppWaitContent() {
+
+    const dispatch = useDispatch();
+    const result = useSelector(state => state.approvalAppWaitReducer);
+    const sendList = result.data;
+
+    const pageInfo = result.pageInfo;
+
+    const [start, setStart] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [pageEnd, setPageEnd] = useState(1);
+
+    const pageNumber = [];
+    if(pageInfo) {
+        for(let i = 1; i <= pageInfo.pageEnd; i++) {
+            pageNumber.push(i);
+        }
+    }
+
+    useEffect(
+        () => {
+            setStart((currentPage - 1) * 5);
+            dispatch(callGetAppWaitAPI({
+                currentPage: currentPage
+            }));
+        },
+        [currentPage]
+    )
+
+    const onClickHandler = (e) => {
+        console.log(e.target.nextSibling.value);
+    }
 
     return (
         <div className={style.content}>
@@ -17,140 +51,29 @@ function AppWaitContent() {
                 <input type="checkBox" name={AppWait.allCheck} className={AppWait.checkAll}/> 전체선택
                 <div className={AppWait.delete}> 삭제하기 </div>
             </div>
+            <br/>
             <div className={style.waitingDoc}>
                 <table className={style.table1}>
                     <thead>
                     <tr>
                         <th className={style.th}>수신일</th>
-                        <th className={style.th}>결재양식</th>
                         <th className={style.th}>제목</th>
-                        <th className={style.th}>첨부</th>
+                        <th className={style.th}>결재양식</th>
                         <th className={style.th}>결재상태</th>
                         <th className={style.th}>발신자</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-
-                        <td className={style.td0}><input type="checkbox" name={AppWait.checkOne} className={AppWait.checkOne}/>2023-08-14</td>
-                        <td className={style.td0}>업무보고</td>
-                        <td className={style.td1}>2023년 8월 첫 째주 업무보고</td>
-                        <td className={style.td0}>1</td>
-                        <td className={style.td0}>대기중</td>
-                        <td className={style.td0}>박지호</td>
-                    </tr>
-                    <tr>
-                        <td className={style.td0}><input type="checkbox" name={AppWait.checkOne} className={AppWait.checkOne}/>2023-07-14</td>
-                        <td className={style.td0}>업무보고</td>
-                        <td className={style.td1}>2023년 7월 첫 째주 업무보고</td>
-                        <td className={style.td0}>1</td>
-                        <td className={style.td0}>대기중</td>
-                        <td className={style.td0}>박지호</td>
-                    </tr>
-                    <tr>
-                        <td className={style.td0}><input type="checkbox" name={AppWait.checkOne} className={AppWait.checkOne}/>2023-07-28</td>
-                        <td className={style.td0}>업무보고</td>
-                        <td className={style.td1}>2023년 7월 셋 째주 업무보고</td>
-                        <td className={style.td0}>1</td>
-                        <td className={style.td0}>대기중</td>
-                        <td className={style.td0}>박지호</td>
-                    </tr>
-                    <tr>
-                        <td className={style.td0}><input type="checkbox" name={AppWait.checkOne} className={AppWait.checkOne}/>2023-07-28</td>
-                        <td className={style.td0}>업무보고</td>
-                        <td className={style.td1}>2023년 7월 셋 째주 업무보고</td>
-                        <td className={style.td0}>1</td>
-                        <td className={style.td0}>대기중</td>
-                        <td className={style.td0}>박지호</td>
-                    </tr>
-                    <tr>
-                        <td className={style.td0}><input type="checkbox" name={AppWait.checkOne} className={AppWait.checkOne}/>2023-07-28</td>
-                        <td className={style.td0}>업무보고</td>
-                        <td className={style.td1}>2023년 7월 셋 째주 업무보고</td>
-                        <td className={style.td0}>1</td>
-                        <td className={style.td0}>대기중</td>
-                        <td className={style.td0}>박지호</td>
-                    </tr>
-                    <tr>
-                        <td className={style.td0}><input type="checkbox" name={AppWait.checkOne} className={AppWait.checkOne}/>2023-07-28</td>
-                        <td className={style.td0}>업무보고</td>
-                        <td className={style.td1}>2023년 7월 셋 째주 업무보고</td>
-                        <td className={style.td0}>1</td>
-                        <td className={style.td0}>대기중</td>
-                        <td className={style.td0}>박지호</td>
-                    </tr>
-                    <tr>
-                        <td className={style.td0}><input type="checkbox" name={AppWait.checkOne} className={AppWait.checkOne}/>2023-07-28</td>
-                        <td className={style.td0}>업무보고</td>
-                        <td className={style.td1}>2023년 7월 셋 째주 업무보고</td>
-                        <td className={style.td0}>1</td>
-                        <td className={style.td0}>대기중</td>
-                        <td className={style.td0}>박지호</td>
-                    </tr>
-                    <tr>
-                        <td className={style.td0}><input type="checkbox" name={AppWait.checkOne} className={AppWait.checkOne}/>2023-07-28</td>
-                        <td className={style.td0}>업무보고</td>
-                        <td className={style.td1}>2023년 7월 셋 째주 업무보고</td>
-                        <td className={style.td0}>1</td>
-                        <td className={style.td0}>대기중</td>
-                        <td className={style.td0}>박지호</td>
-                    </tr>
-                    <tr>
-                        <td className={style.td0}><input type="checkbox" name={AppWait.checkOne} className={AppWait.checkOne}/>2023-07-28</td>
-                        <td className={style.td0}>업무보고</td>
-                        <td className={style.td1}>2023년 7월 셋 째주 업무보고</td>
-                        <td className={style.td0}>1</td>
-                        <td className={style.td0}>대기중</td>
-                        <td className={style.td0}>박지호</td>
-                    </tr>
-                    <tr>
-                        <td className={style.td0}><input type="checkbox" name={AppWait.checkOne} className={AppWait.checkOne}/>2023-07-28</td>
-                        <td className={style.td0}>업무보고</td>
-                        <td className={style.td1}>2023년 7월 셋 째주 업무보고</td>
-                        <td className={style.td0}>1</td>
-                        <td className={style.td0}>대기중</td>
-                        <td className={style.td0}>박지호</td>
-                    </tr>
-                    <tr>
-                        <td className={style.td0}><input type="checkbox" name={AppWait.checkOne} className={AppWait.checkOne}/>2023-07-28</td>
-                        <td className={style.td0}>업무보고</td>
-                        <td className={style.td1}>2023년 7월 셋 째주 업무보고</td>
-                        <td className={style.td0}>1</td>
-                        <td className={style.td0}>대기중</td>
-                        <td className={style.td0}>박지호</td>
-                    </tr>
-                    <tr>
-                        <td className={style.td0}><input type="checkbox" name={AppWait.checkOne} className={AppWait.checkOne}/>2023-07-28</td>
-                        <td className={style.td0}>업무보고</td>
-                        <td className={style.td1}>2023년 7월 셋 째주 업무보고</td>
-                        <td className={style.td0}>1</td>
-                        <td className={style.td0}>대기중</td>
-                        <td className={style.td0}>박지호</td>
-                    </tr>
-                    <tr>
-                        <td className={style.td0}><input type="checkbox" name={AppWait.checkOne} className={AppWait.checkOne}/>2023-07-28</td>
-                        <td className={style.td0}>업무보고</td>
-                        <td className={style.td1}>2023년 7월 셋 째주 업무보고</td>
-                        <td className={style.td0}>1</td>
-                        <td className={style.td0}>대기중</td>
-                        <td className={style.td0}>박지호</td>
-                    </tr>
-                    <tr>
-                        <td className={style.td0}><input type="checkbox" name={AppWait.checkOne} className={AppWait.checkOne}/>2023-07-28</td>
-                        <td className={style.td0}>업무보고</td>
-                        <td className={style.td1}>2023년 7월 셋 째주 업무보고</td>
-                        <td className={style.td0}>1</td>
-                        <td className={style.td0}>대기중</td>
-                        <td className={style.td0}>박지호</td>
-                    </tr>
-                    <tr>
-                        <td className={style.td0}><input type="checkbox" name={AppWait.checkOne} className={AppWait.checkOne}/>2023-07-28</td>
-                        <td className={style.td0}>업무보고</td>
-                        <td className={style.td1}>2023년 7월 셋 째주 업무보고</td>
-                        <td className={style.td0}>1</td>
-                        <td className={style.td0}>대기중</td>
-                        <td className={style.td0}>박지호</td>
-                    </tr>
+                    {sendList && sendList.map(list => (
+                        <tr>
+                            <td className={style.td0}><input type="checkbox" name={AppWait.checkOne} className={AppWait.checkOne}/>{list.document && list.document.applicationDate.toString().substring(0,10)}</td>
+                            <td className={style.td1} onClick={e => onClickHandler(e)}>{list.document && list.document.documentTitle}</td>
+                            <input type="hidden" value={list.document.documentCode}/>
+                            <td className={style.td0}>{list.document && list.document.documentType}</td>
+                            <td className={style.td0}>{list.status && list.status}</td>
+                            <td className={style.td0}>{list.document && list.document.employee.name}</td>
+                        </tr>
+                    ))}
                     </tbody>
                 </table>
             </div>
@@ -163,15 +86,25 @@ function AppWaitContent() {
             </div>
             <br/>
             <div className={AppWait.paging}>
-                <div className={AppWait.first}>«</div>
-                <div className={AppWait.before}>‹</div>
-                <div className={AppWait.one}>1</div>
-                <div className={AppWait.two}>2</div>
-                <div className={AppWait.three}>3</div>
-                <div className={AppWait.four}>4</div>
-                <div className={AppWait.five}>5</div>
-                <div className={AppWait.after}>›</div>
-                <div className={AppWait.last}>»</div>
+                <div
+                    onClick={() => setCurrentPage(currentPage - 1)}
+                    style={currentPage === 1 ? {display:"none"} : null}
+                    className={AppWait.before}
+                >‹</div>
+                {pageNumber.map((num) => (
+                    <li key={num} onClick={() => setCurrentPage(num)} style={{listStyle: "none", marginLeft: "5px", marginRight: "5px"}}>
+                        <div
+                            className={ AppWait.pagingBtn }
+                        >
+                            {num}
+                        </div>
+                    </li>
+                ))}
+                <div
+                    onClick={() => setCurrentPage(currentPage + 1)}
+                    style={pageInfo && (currentPage === pageInfo.pageEnd || pageInfo.total == 0)? {display:"none"} : null}
+                    className={AppWait.after}
+                >›</div>
             </div>
         </div>
     )

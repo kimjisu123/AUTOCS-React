@@ -36,7 +36,6 @@ function ApprovalMenubar() {
             <Link to='/approval/myBusiness' style={{textDecoration:"none"}}><div className={style.myBusiness}>업무 문서함</div></Link>
             <Link to='/approval/myApp' style={{textDecoration:"none"}}><div className={style.myApp}>결재 문서함</div></Link>
             <Link to='/approval/mySee' style={{textDecoration:"none"}}><div className={style.mySee}>참조/열람 문서함</div></Link>
-            <Link to='/approval/receive' style={{textDecoration:"none"}}><div className={style.receive}>수신 문서함</div></Link>
             <Link to='/approval/send' style={{textDecoration:"none"}}><div className={style.send}>발신 문서함</div></Link>
             </div>
                 {newApp && <NewApproval setNewApp={setNewApp}/>}

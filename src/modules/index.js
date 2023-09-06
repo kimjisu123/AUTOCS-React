@@ -9,7 +9,14 @@ import standardReducer from "./StandardModule";
 import unitReducer from "./UnitModule";
 import chartReducer from './ChartModule';
 import todoReducer from "./TodoModule";
-import {approvalHomeReducer, approvalReducer, approvalSendReducer, vacationReducer} from "./ApprovalModule";
+import {
+    approvalAppWaitReducer,
+    approvalHomeReducer, approvalMyAppReducer,
+    approvalMyBusinessReducer, approvalMySeeReducer,
+    approvalReducer, approvalSeeWaitReducer,
+    approvalSendReducer,
+    vacationReducer
+} from "./ApprovalModule";
 
 const rootReducer = combineReducers({
     chartReducer,
@@ -25,7 +32,12 @@ const rootReducer = combineReducers({
     approvalReducer,
     vacationReducer,
     approvalHomeReducer,
-    approvalSendReducer
+    approvalSendReducer,
+    approvalMyBusinessReducer,
+    approvalAppWaitReducer,
+    approvalSeeWaitReducer,
+    approvalMyAppReducer,
+    approvalMySeeReducer
 });
 
 export default rootReducer;
