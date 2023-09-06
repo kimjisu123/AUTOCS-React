@@ -62,13 +62,19 @@
 
 }
 
-button:hover {
+.TodoInsert button:hover {
     /*background: #adb5db;*/
     transform: scaleX(1);
+    color: #ff4545;
 }
 
 
 .TodoInsert svg {
 
     color: black;
+}
+
+.TodoInsert svg:hover {
+    transition: 0.1s background ease-in;
+    color: #ff4545;
 }

@@ -1,17 +1,12 @@
 import MypageCSS from './MypageEmp.module.css';
 import emp from './emp.jpg'
 import {MdAccountCircle} from "react-icons/md";
-import DatePicker from "react-datepicker";
 import React, {useCallback, useEffect, useState} from "react";
-import { ko } from 'date-fns/esm/locale';
 import Modal from "react-modal";
 import UpdatePwApp from "./UpdatePwApp";
 import {useDispatch, useSelector} from "react-redux";
-import {callGetEmployeeAPI} from "../../apis/MemberAPICalls";
 import {decodeJwt} from "../../util/tokenUtils";
-import {callGetMemberTodoAPI, callUpdateTodoAPI} from "../../apis/TodoAPICalls";
-import {callGetMemberInfoAPI} from "../../apis/MypageAPICalls";
-import myPageReducer from "../../modules/MypageModule";
+import {callChangeInfoAPI, callGetMemberInfoAPI, callGetPofileAPI} from "../../apis/MypageAPICalls";
 import {format} from "date-fns";
 
 
@@ -33,28 +28,40 @@ function MypageEmp() {
     // 회원정보 가지고 오기
     const dispatch = useDispatch();
     const employees = useSelector(state => state.myPageReducer);
-    // const employeeList = employees.data;
     const accessToken = window.localStorage.getItem('accessToken');
     // console.log("employeeList : " , employeeList);
     const decodedToken = accessToken ? decodeJwt(accessToken) : null;
     const role = decodedToken ? decodedToken.auth : null;
 
+    const [memberNo , setMemberNo] = useState(0);
+    const [image, setImage] = useState(null);
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+
 
     useEffect(() => {
 
-        console.log("callGetMemberInfoAPI : {} " + callGetMemberInfoAPI(decodedToken.MemberNo))
-        dispatch(callGetMemberInfoAPI(decodedToken.MemberNo));
-        // console.log("employees : {} ", employees);
+        async function fetchData() {
+            try {
 
-        if (employees.data && employees.data.name) {
-            // 'name' 속성에 접근할 수 있습니다.
-            console.log("employeeList.name {}" ,employees.data.name);
-            // 이제 name을 사용할 수 있습니다.
-        } else {
-            // 객체나 'name' 속성이 없는 경우에 대한 처리를 여기에 추가합니다.
+                console.log("callGetMemberInfoAPI : {} " + callGetMemberInfoAPI(decodedToken.MemberNo))
+                const memeberInfo = await dispatch(callGetMemberInfoAPI(decodedToken.MemberNo));
+                // const profileInfo = await dispatch(callGetPofileAPI(decodedToken.MemberNo));
+
+                if (employees.data && employees.data.name) {
+                    // 'name' 속성에 접근할 수 있습니다.
+                    console.log("employeeList.name {}" ,employees.data.name);
+                    setMemberNo(employees.data.memberNo);
+                    console.log("employeeList.name {}" ,memberNo);
+                    // 이제 name을 사용할 수 있습니다.
+                }
+
+
+            } catch (error) {
+                console.error('API 호출 오류:', error);
+            }
         }
-
-
+        fetchData();
     }, []);
 
     // 생일입력 (Date에 현재 값 가지고 와야함.
@@ -64,9 +71,36 @@ function MypageEmp() {
 
     // 사진 파일 전달
     const [ selectedImage, setSelectedImage ] = useState(emp);
+
+
+    const onChangeInfo = () => {
+        try {
+
+            const formData = new FormData();
+            formData.append('employeePhone', phone);
+            formData.append('employeeEmail', email);
+            console.log("회원번호 {}" ,memberNo);
+            console.log("전화 {}" ,phone);
+            console.log("이메일 {}" ,email);
+            formData.append('memberNo', memberNo);
+
+            if(image){
+                formData.append("fileImage", image);
+            }
+
+            callChangeInfoAPI({ formData, dispatch });
+
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+
     // 사진 url 전달 함수 ========================================================
     const handleImageChange = (event) => {
         const image = event.target.files[0];
+        setImage(image);
+        console.log('image :', image);
         if(image) {
             const imageUrl = URL.createObjectURL(image);
             setSelectedImage(imageUrl);
@@ -74,34 +108,23 @@ function MypageEmp() {
 
 
         }
+
     };
+    const handlePhoneChange = (e) => {
+        if(e !== ''){
+            setPhone(e.target.value);
+            console.log("phone",e.target.value);
+        }
 
-    // 더블클릭시 내용 수정 함수
-    const onChangeInfo = useCallback(
-        todo => {
-            // const editedText = prompt('수정할 내용을 입력하세요', todo.content);
+    }
+    const handleEmailChange= (e) => {
+        if(e !== ''){
+        setEmail(e.target.value);
+        console.log("email",e.target.value);
+        }
+    }
 
-            // console.log("editedText {}", editedText.then());
-            // console.log("editedText {}", );
-            // if (editedText !== null) {
-            //     const todoData = {
-            //         content: editedText,
-            //         memberNo: decodedToken.MemberNo,
-            //         todoNo:todo.todoNo,
-
-            // };
-            // console.log(" onUpdate todoNo {}" , todo.todoNo);
-            // console.log(" onUpdate todoData {}" , todoData);
-            // console.log(" onUpdate todos.content {}" , editedText);
-            // dispatch(callUpdateTodoAPI(todoData));
-            // }
-
-        },[],
-    );
-
-
-
-        return (
+    return (
             <>
             { employees.data && employees.data ? (
                 <div className={mainContainer} >
@@ -117,10 +140,14 @@ function MypageEmp() {
                                         {/* 회원 사진  */}
                                         <div className={empImg}>
                                             <input type="file"
+                                                   id="file"
+                                                   name="file"
                                                    accept='image/jpg,image/png,image/jpeg,image/gif'
                                                    onChange={handleImageChange}/><MdAccountCircle/>
                                             {selectedImage && (
                                                 <img
+                                                    id="file"
+                                                    name="file"
                                                     // src={ emp }
                                                     className={empInfoImg}
                                                     src={ selectedImage }
@@ -140,7 +167,7 @@ function MypageEmp() {
                                     </div>
                                 </div>
                                 <div className={infoInput}>
-                                    <form id="infoform" action="" method="post" onClick={ () => onChangeInfo(employees.data) }>
+                                    {/*<form id="infoform" action="" method="post" onClick={ () => onChangeInfo(employees.data) }>*/}
                                         <div className={sections}>
                                             <div className={section1}>
                                                 <div className="empId">
@@ -155,14 +182,14 @@ function MypageEmp() {
                                                            value={employees.data.name} readOnly style={{border: "none"}}/>
                                                 </div>
                                                 <div className=" empInfo empName Eng">
-                                                    <label htmlFor="empNameEng">사원번호</label>
-                                                    <input type="text" id="empNameEng" name="empNameEng" maxLength="20"
-                                                           value={employees.data.employeeNo} style={{border: "none"}}/>
+                                                    <label htmlFor="memberNo">사원번호</label>
+                                                    <input type="text" id="memberNo" name="memberNo" maxLength="20"
+                                                           value={memberNo} style={{border: "none"}}/>
                                                 </div>
                                                 <div className=" empInfo empEmail">
                                                     <label htmlFor="empEmail">이메일</label>
                                                     <input type="email" id="empEmail" name="empEmail" maxLength="20"
-                                                           value={employees.data.employeeEmail} style={{border: "none"}}/>
+                                                           onChange={handleEmailChange} value={employees.data.employeeEmail} style={{border: "none"}}/>
                                                 </div>
                                                 <div className=" empInfo empDuty">
                                                     <label htmlFor="empDuty">직책</label>
@@ -188,7 +215,7 @@ function MypageEmp() {
                                                 <div className=" empInfo empPhone">
                                                     <label htmlFor="empPhone">휴대 전화</label>
                                                     <input type="tel" id="empPhone" name="empPhone" maxLength="20"
-                                                           value={employees.data.employeePhone} style={{border: "none"}}/>
+                                                           onChange={handlePhoneChange} value={employees.data.employeePhone} style={{border: "none"}}/>
                                                 </div>
                                                 <div className=" empInfo empnum">
                                                     <label htmlFor="empnum">내선 번호</label>
@@ -217,54 +244,24 @@ function MypageEmp() {
                                                 </div>
                                             </div>
                                         </div>
-                                        {/*<fieldset id="adress" style={{border: "none"}}>*/}
-                                        {/*<div className={empAddress}>*/}
-                                        {/*    <div className="">*/}
-                                        {/*        <div className={addressButton}>*/}
-                                        {/*            <label htmlFor="postcode">주소</label>*/}
-                                        {/*            <div>*/}
-                                        {/*                <button className={adButton} type="button"*/}
-                                        {/*                        onClick="sample6_execDaumPostcode()" value="우편번호 찾기">*/}
-                                        {/*                <span><i*/}
-                                        {/*                    className="fa-solid fa-magnifying-glass"></i>주소검색</span>*/}
-                                        {/*                </button>*/}
-                                        {/*            </div>*/}
-                                        {/*        </div>*/}
-                                        {/*        <div className={inputAddress}>*/}
-                                        {/*            <div className="postCode">*/}
-                                        {/*                <input type="text" name="zipcode" id="postcode"*/}
-                                        {/*                       placeholder="우편번호"*/}
-                                        {/*                       required style={{border: "none"}}/>*/}
-                                        {/*            </div>*/}
-                                        {/*            <div className={baseAddress}>*/}
-                                        {/*                <input type="text" name="baseAddress" id="aseAddress"*/}
-                                        {/*                       placeholder="기본주소" required style={{border: "none"}}/>*/}
-                                        {/*            </div>*/}
-                                        {/*        </div>*/}
-                                        {/*        <div className={detailAddress}>*/}
-                                        {/*            <input type="text" name="detailAddress" id="detailAddress"*/}
-                                        {/*                   placeholder="상세주소" required style={{border: "none"}}/>*/}
-                                        {/*        </div>*/}
-                                        {/*    </div>*/}
-                                        {/*</div>*/}
-                                        {/*</fieldset>*/}
                                         <div className={udButton}>
                                             <div>
-                                                <button className={updateButton} type="submit"
-                                                        onClick={() => {
-                                                            const confirmResult = window.confirm('정말로 수정하시겠습니까?');
-                                                            if (confirmResult) {
-                                                                onChangeInfo(employees.data)
-                                                            } else {
-                                                                // 아니오 버튼이 클릭된 경우에 실행할 코드
-                                                            }
-                                                        }}
+                                                <button className={updateButton} type="button"
+                                                        onClick={onChangeInfo}
+                                                        // onClick={() => {
+                                                        //     const confirmResult = window.confirm('정말로 수정하시겠습니까?');
+                                                        //     if (confirmResult) {
+                                                        //         {changeInfo}
+                                                        //     } else {
+                                                        //         // 아니오 버튼이 클릭된 경우에 실행할 코드
+                                                        //     }
+                                                        // }}
                                                 >
                                                     회원정보 수정
                                                 </button>
                                             </div>
                                         </div>
-                                    </form>
+                                    {/*</form>*/}
                                 </div>
                             </div>
                         </div>

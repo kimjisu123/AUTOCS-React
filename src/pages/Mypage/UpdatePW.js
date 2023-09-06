@@ -5,7 +5,7 @@ import Modal from "react-modal";
 import UpdatePWok from "./UpdatePWok";
 import { decodeJwt } from '../../util/tokenUtils';
 import {POST_CHECKPWD} from "../../modules/MypageModule";
-import {callPostPwdCheckAPI} from "../../apis/MypageAPICalls";
+import {callPostPwdCheckAPI, callPutChangePwdAPI} from "../../apis/MypageAPICalls";
 
 import {useSelector} from "react-redux";
 
@@ -32,6 +32,7 @@ function UpdatePW(resultMessage) {
     const accessToken = window.localStorage.getItem('accessToken');
     const memberTodoList = useSelector(state => state.myPageReducer);
     const memberNo = memberTodoList.data.memberNo;
+
 
     console.log("토큰값 : ", accessToken);
 
@@ -71,11 +72,6 @@ function UpdatePW(resultMessage) {
 
     },[memberNo]);
 
-
-    const handleButtonClick = () => {
-         // 페이지 이동
-        navigate('/main/pwpopup');
-    };
 
     // 새비밀번호 유효성 검사
     const onNewpwd = useCallback(  e=> {
@@ -117,21 +113,26 @@ function UpdatePW(resultMessage) {
 
 
     // 비밀번호 변경 제출
-    const onSubmit = useCallback( async e => {
+    const onChangePwd = useCallback( async e => {
 
         e.preventDefault();
-        try {
-            // await  API
-        } catch (error){
-
-        }
-    })
+        // if(memberNo !== null && newPwd){
+            try {
+                const response = await callPutChangePwdAPI(memberNo,newPwd);
+                setCheckResult(response);
+                if(response === "true"){setAbleinput()};
+                console.info("메세지. {} ", checkResult );
+            } catch (error){
+                console.error(error)
+            }
+        // }
+    },[])
 
     return (
         <>
             <div className={updateCSS.updatePwModal}>
                     <div className={updateCSS.changePwPage}>
-                        <form className="" onSubmit="">
+                        {/*<form className="" onSubmit={ onChangePwd }>*/}
                             <input type="hidden" value="비밀번호 변경"/>
                                 <div className={updateCSS.inputBox}>
                                     <div>
@@ -139,7 +140,6 @@ function UpdatePW(resultMessage) {
                                         <input type="password" className="currentPW" placeholder="현재 비밀번호를 입력해주세요" autoFocus onChange={onChange} value={checkPw}/>
                                         {/*비밀번호 확인 */}
                                         {checkResult && checkResult == "true"? <p style={{color:"green"}}>비밀번호가 일치합니다.</p> : checkResult == "false"? <p style={{color:"red"}}>비밀번호가 일치하지 않습니다.</p> : ''}
-                                        {/*<span id="password-error" class="error-message"/>*/}
                                     </div>
                                     <div className={updateCSS.boxMargin2}>
                                         <label htmlFor="newpw">새 비밀번호 입력</label>
@@ -155,7 +155,6 @@ function UpdatePW(resultMessage) {
                                         {newPwd.length > 0 && (
                                             <p className={`message ${isPassword ? 'success' : 'error'}`} style={isPassword? {color:"green"} : {color:"red"}}>{passwordMessage}</p>
                                         )}
-                                        {/*<span id="password-error" class="error-message"/>*/}
                                     </div>
                                     <div className={updateCSS.checkMail}>
                                         <label htmlFor="newPwCheck">비밀번호 확인</label>
@@ -170,20 +169,27 @@ function UpdatePW(resultMessage) {
                                         {newPwCheck.length > 0 && (
                                             <p className={`message ${isPasswordConfirm ? '.success' : '.error'}`} style={isPasswordConfirm? {color:"green"} : {color:"red"}}>{passwordConfirmMessage}</p>
                                         )}
-                                        {/*<span id="password-error" class="error-message"/>*/}
                                     </div>
                                     <div className={updateCSS.buttons}>
                                         <div>
-                                            <button type='button' className={updateCSS.findingButton} onClick={() => setModalIsOpen(true)}>
+                                            <button
+                                                // 비밀번호 유효성이 확인이 되어야 버튼 활성화가 된다.
+                                                style={isPassword && isPasswordConfirm ? {background:"#2A3C1E"} : {background:"gray"}}
+                                                // disabled={!(isPassword && isPasswordConfirm)}
+                                                type='submit' className={updateCSS.findingButton}
+                                                onClick={ onChangePwd }
+                                            >
                                                 <span className={ updateCSS.longinName }>비밀번호 변경</span>
                                             </button>
                                         </div>
                                     </div>
                                 </div>
-                        </form>
+                        {/*</form>*/}
                     </div>
             </div>
 
+
+            {/*onClick={() => setModalIsOpen(true)}*/}
             {/*비밀번호 변경 모달창 띄우기 */}
             {modalIsOpen && (
                 <Modal
