@@ -64,8 +64,23 @@ function showPopup()
                 form: formData
             }));
 
+            // 테이블에서 첫 번째와 네 번째 td 요소를 배열에 담기
+            const table = document.getElementById("orderTable");
+            const trElements = table.querySelectorAll("tr");
+            const tdArray = [];
+
+            trElements.forEach((tr) => {
+                const tdElements = tr.querySelectorAll("td");
+                if (tdElements.length >= 4) {
+                    const refProductNo = tdElements[0].textContent;
+                    const quantity = tdElements[3].textContent;
+                    tdArray.push({ refProductNo, quantity });
+                }
+            });
+
+
             // 주문된 물품 업데이트
-            for (const item of orderItems) {
+            for (const item of tdArray) {
                 const itemFormData = new FormData();
                 itemFormData.append('refOrderNo', lastOrderNo);
                 itemFormData.append('refProductNo', item.refProductNo); // 물품 코드 또는 ID
