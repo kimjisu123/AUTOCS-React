@@ -1,4 +1,5 @@
 import { GET_BOARD } from "../modules/BoardModule";
+import { NUM_BOARD } from "../modules/BoardModule";
 
 // 모든 게시물 불러오기
 export const callGetBoardAllAPI = () => {
@@ -50,4 +51,23 @@ export const callWritingInsertAPI = ({ formData }) => {
         .catch((error) => {
             console.error('Error:', error);
         });
+};
+
+// 특정 게시물 불러오기
+export const callFindBoardNumAPI = (boardNoAsInt) => {
+    const boardNo = boardNoAsInt;
+    const requestURL = `http://localhost:8080/board/getBoardNum?boardNo=${boardNo}`;
+
+    return async (dispatch) => {
+        const result = await fetch(requestURL, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+        }).then(response => response.json());
+
+        console.log('response :>>>>>>>>>>>>>>>>', result);
+        dispatch({ type: NUM_BOARD, payload: result });
+    };
 };

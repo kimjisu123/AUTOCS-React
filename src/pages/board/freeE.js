@@ -8,7 +8,7 @@ const FreeE = () => {
 
     const dispatch = useDispatch();
     const board = useSelector(state => state.boardReducer);
-    const boardList = board.data;
+    const boardList = Array.isArray(board.data) ? board.data : [];
     console.log("boardList : " + boardList)
 
     // categoryNo가 6인 항목만 필터링
@@ -27,7 +27,7 @@ const FreeE = () => {
 
     return (
         <div className="notice-employee">
-            <h1 style={{marginBottom: "30px", marginTop: "-20px", marginRight: "45px"}}>자유게시판</h1>
+            <h1 style={{marginBottom: "30px", marginTop: "-20px", marginRight: "-30px"}}>자유게시판</h1>
             <div className="board-container">
                 {filteredBoardData.map((item, index) => (
                     <div key={index} className="board-item">

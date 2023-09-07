@@ -13,7 +13,7 @@ const NoticeMarket = () => {
 
     const dispatch = useDispatch();
     const board = useSelector(state => state.boardReducer);
-    const boardList = board.data;
+    const boardList = Array.isArray(board.data) ? board.data : [];
     console.log("boardList : " + boardList)
 
     // categoryNo가 7인 항목만 필터링

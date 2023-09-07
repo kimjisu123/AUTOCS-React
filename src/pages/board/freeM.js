@@ -9,7 +9,7 @@ const FreeM = () => {
     //영업점 정보긴한데 직원이랑 작성자 다르게 보여주는 부분 필요
     const dispatch = useDispatch();
     const board = useSelector(state => state.boardReducer);
-    const boardList = board.data;
+    const boardList = Array.isArray(board.data) ? board.data : [];
     console.log("boardList : " + boardList)
 
     // categoryNo가 9인 항목만 필터링
