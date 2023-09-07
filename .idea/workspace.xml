@@ -4,6 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+    <list default="true" id="157f9457-97ad-4bcb-ada0-2b69963deafb" name="Changes" comment="마이페이지 회원 조회 / 이미지 불러오기 및 정보 및 비밀번호 수정 진행해야함.23/9/4">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <list default="true" id="5e3749cb-53e5-4119-8b60-f739a5810ded" name="Changes" comment="commit">
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-08-23__5_29__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-08-23__5_29__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -103,6 +106,36 @@
   &quot;keyToString&quot;: {
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="9c2eefaa-97c1-4346-a250-079780263df9" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/pages/compoments/Header.css" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
 }</component>
     <component name="TaskManager">
@@ -127,8 +160,72 @@
     <option name="localTasksCounter" value="2" />
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="jieun" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="머지위한 커밋" />
     <option name="LAST_COMMIT_MESSAGE" value="머지위한 커밋" />
+    <MESSAGE value="TodoList 리액트 화면단 이동작업(마이페이지 수정중 회원/매장/관리)" />
+    <MESSAGE value="TodoList 리액트 화면단 이동작업(메인 /todo모달창 전역작업진행중)" />
+    <MESSAGE value="TodoList 리액트 화면단 이동작업(메인 /todo모달창 전역작업완료)" />
+    <MESSAGE value="main 화면단 작업 진행 중" />
+    <MESSAGE value="main 화면단 작업 진행 중 23/08/23 커밋" />
+    <MESSAGE value="main 화면단 작업 진행 중 23/08/24 커밋" />
+    <MESSAGE value="마이페이지 사진 파일 넣기 url" />
+    <MESSAGE value="마이페이지 수정중" />
+    <MESSAGE value="메인페이지 수정 작업 중 23/8/25" />
+    <MESSAGE value="메인페이지 수정 작업 중 23/8/27" />
+    <MESSAGE value="비밀번호 찾기 유효성검사 진행중 23/8/28" />
+    <MESSAGE value="메인페이지 화면단 수정중 23/8/29" />
+    <MESSAGE value="메인페이지 화면단 수정중  23/8/29" />
+    <MESSAGE value="Todo모달창 적용되도록수정해야함 23/8/30" />
+    <MESSAGE value="머지중 23/8/30" />
+    <MESSAGE value="화면단 병합 23/8/30" />
+    <MESSAGE value="화면단 수정중 (투두리스트 모달 수정 및 세부 디자인 수정중 23/8/31" />
+    <MESSAGE value="깃 수정중 23/8/31" />
+    <MESSAGE value="todo리스트(입력,출력,삭제,토글기능 구현완) 23/9/1" />
+    <MESSAGE value="todo리스트(오름차순 구현 , 오류 해결중) 23/9/1" />
+    <MESSAGE value="todo리스트(todo수정기능 완료, 리랜더링 오류 해결중) 23/9/1" />
+    <MESSAGE value="todo리스트(todo수정기능 완료, 리랜더링 오류 해결중)&#10;too리스트 디자인 변경 23/9/3" />
+    <MESSAGE value="마이페이지 값 조회중 23/9/3" />
+    <MESSAGE value="todo리스트 리랜더링 문제 해결 무한반복문제해결해야함.23/9/4" />
+    <MESSAGE value="마이페이지 회원 조회 / 이미지 불러오기 및 정보 및 비밀번호 수정 진행해야함.23/9/4" />
+    <option name="LAST_COMMIT_MESSAGE" value="마이페이지 회원 조회 / 이미지 불러오기 및 정보 및 비밀번호 수정 진행해야함.23/9/4" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/modules/index.js</url>
+          <line>1</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

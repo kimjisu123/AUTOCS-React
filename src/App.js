@@ -40,12 +40,23 @@ import NoAuthority from "./pages/Login/noAuthority"
 import ApplyStateW from "./pages/applyForm/applyStateW";
 import StoreLogin from "./pages/Login/storeLogin";
 import Menu from "./pages/applyForm/Menu";
+import BoardMenu from "./pages/board/Menu";
 import ApplyStateO from "./pages/applyForm/applyStateO";
 import GuideStoreId from "./pages/Login/guideStoreId";
 import OutE from "./pages/outForm/outE";
 import OutOKM from "./pages/outForm/outOKM";
 import OutStateW from "./pages/outForm/OutStateW";
 import OutS from "./pages/outForm/OutS"
+import NoticeEmployee from "./pages/board/noticeEmployee"
+import Rules from "./pages/board/rules";
+import News from "./pages/board/news";
+import DepartmentNews from "./pages/board/departmentNews";
+import SuggestionE from "./pages/board/suggestionE";
+import FreeE from "./pages/board/freeE";
+import NoticeMarket from "./pages/board/noticeMarket";
+import SuggestionM from "./pages/board/suggestionM";
+import FreeM from "./pages/board/freeM";
+import Writing from "./pages/board/writing";
 
 //지수
 import Management from "./pages/management/Management"
@@ -173,6 +184,22 @@ function App() {
                         //계정 비활성화 신청
                         <Route path='outM' element={<OutMForm/>}/>
                         <Route path='outS' element={<OutSForm/>}/>
+
+                        //직원 게시판
+                        <Route path='board' element={<BoardMenu/>}>
+                            <Route path='notieE' element={<NoticeEmployee/>}/>
+                            <Route path='rule' element={<Rules />}/>
+                            <Route path='news' element={<News />}/>
+                            <Route path='departmentNews' element={<DepartmentNews />}/>
+                            <Route path='suggestionE' element={<SuggestionE />}/>
+                            <Route path='freeE' element={<FreeE />}/>
+                            //영업점 게시판
+                            <Route path='notieM' element={<NoticeMarket />}/>
+                            <Route path='suggestionM' element={<SuggestionM />}/>
+                            <Route path='freeM' element={<FreeM />}/>
+                            //글작성
+                            <Route path='writing' element={<Writing />}/>
+                        </Route>
 
                         //지은
                         <Route path='myPage' element={<Mypage/>}>
