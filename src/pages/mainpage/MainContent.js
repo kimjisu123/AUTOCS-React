@@ -78,12 +78,12 @@ const MainContent = () => {
                                 </div>
                             </div>
                             <div className={mainstyle.fastButtons}>
-                               <button>받은 쪽지함</button>
-                                <button>받은 쪽지함</button>
-                                <button>받은 쪽지함</button>
-                                <button>휴가 신청</button>
-                                <button>휴가 신청</button>
-                                <button><NavLink to="/menu/registOk"></NavLink>휴가 신청</button>
+                                <NavLink to="/approval/purchase"><button>구매 요청</button></NavLink>
+                                <NavLink to="/approval/business"><button>업무 보고</button></NavLink>
+                                <NavLink to="/approval/vacation"><button>휴가 요청</button></NavLink>
+                                <NavLink to={`/mail/${decodedToken.EmployeeNo}`}><button>받은 쪽지</button></NavLink>
+                                <NavLink to="/menu/applyFormO"><button>영업점 목록</button></NavLink>
+                                <NavLink to="/menu/registOk"><button>직원 목록</button></NavLink>
                             </div>
                         </div>
                     </div>

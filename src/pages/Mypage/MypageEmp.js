@@ -37,7 +37,8 @@ function MypageEmp() {
     const [image, setImage] = useState(null);
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
-
+    // 사진 파일 전달
+    const [ selectedImage, setSelectedImage ] = useState('');
 
     useEffect(() => {
 
@@ -54,6 +55,8 @@ function MypageEmp() {
                     setMemberNo(employees.data.memberNo);
                     console.log("employeeList.name {}" ,memberNo);
                     // 이제 name을 사용할 수 있습니다.
+                    setSelectedImage(employees.data.memberFile);
+                    console.log("employees.data.memberFile {}" ,employees.data.memberFile);
                 }
 
 
@@ -69,8 +72,7 @@ function MypageEmp() {
     //  모달 값
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
-    // 사진 파일 전달
-    const [ selectedImage, setSelectedImage ] = useState(emp);
+
 
 
     const onChangeInfo = () => {
@@ -105,8 +107,8 @@ function MypageEmp() {
             const imageUrl = URL.createObjectURL(image);
             setSelectedImage(imageUrl);
             console.log("imgURL {}" ,imageUrl);
-
-
+        } else {
+            setSelectedImage(employees.data.memberFile);
         }
 
     };

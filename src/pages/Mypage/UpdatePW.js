@@ -175,7 +175,7 @@ function UpdatePW(resultMessage) {
                                             <button
                                                 // 비밀번호 유효성이 확인이 되어야 버튼 활성화가 된다.
                                                 style={isPassword && isPasswordConfirm ? {background:"#2A3C1E"} : {background:"gray"}}
-                                                // disabled={!(isPassword && isPasswordConfirm)}
+                                                disabled={!(isPassword && isPasswordConfirm)}
                                                 type='submit' className={updateCSS.findingButton}
                                                 onClick={ onChangePwd }
                                             >
