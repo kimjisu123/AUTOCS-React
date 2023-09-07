@@ -1,8 +1,61 @@
 import StockCSS from './Stock.module.css'
+import { useEffect, useRef, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+
+import {
+    callOrderProductListAPI
+} from '../../apis/StockAPICalls'
+import orderProductReducer from "../../modules/OrderProductModule";
 
 function showPopup() { window.open('/ListPopup', "a", "width=400, height=600, left=100, top=50"); }
 
 function OrderList() {
+
+    /********************************************************************/
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const orderProduct = useSelector(state => state.orderProductReducer);
+    const orderProductList = orderProduct.data;
+
+    const pageInfo = orderProduct.pageInfo;
+
+    const [start, setStart] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [pageEnd, setPageEnd] = useState(1);
+
+    const pageNumber = [];
+    if(pageInfo){
+        for(let i = 1; i <= pageInfo.pageEnd ; i++){
+            pageNumber.push(i);
+        }
+    }
+
+    // 주문물품 조회
+    useEffect(
+        () => {
+            setStart((currentPage - 1) * 5);
+            dispatch(callOrderProductListAPI({
+                currentPage: currentPage,
+                // s: '',
+                // startDate: getFirstDayOfMonth(), // 이번 달의 첫째 날로 초기화
+                // endDate: getCurrentDate() // 오늘 날짜로 초기화
+            }));
+        }
+        ,[currentPage]
+    );
+
+
+
+
+
+
+
+
+
+
+
 
     const onClickPermitHandler= () => {
         alert('승인하시겠습니까?');
@@ -56,38 +109,55 @@ function OrderList() {
                         <th>상태</th>
                         <th>상태<br/>변경</th>
                     </tr>
-                    <tr>
-                        <td>20201234</td>
-                        <td>종로점</td>
-                        <td>1</td>
-                        <td>밀가루</td>
-                        <td>10kg</td>
-                        <td>EA</td>
-                        <td>12,000</td>
-                        <td>5</td>
-                        <td>-</td>
-                        <td>2023-08-01</td>
-                        <td>대기</td>
-                        <td><input type="checkbox"/></td>
-                    </tr>
-                    <tr>
-                        <td>20201234</td>
-                        <td>종로점</td>
-                        <td>1</td>
-                        <td>밀가루</td>
-                        <td>10kg</td>
-                        <td>EA</td>
-                        <td>12,000</td>
-                        <td>5</td>
-                        <td>-</td>
-                        <td>2023-08-01</td>
-                        <td>대기</td>
-                        <td><input type="checkbox"/></td>
-                    </tr>
+                    {
+                        Array.isArray(orderProductList) && orderProductList.map((orderProduct) => (
+                            <tr key={orderProduct.refOrderNo}>
+                                <td>{ orderProduct.refOrderNo.orderNo}</td>
+                                <td>{ orderProduct.refOrderNo.storeInfoNo.name}</td>
+                                <td>{ orderProduct.refProductNo.category.name}</td>
+                                <td>{ orderProduct.refProductNo.name}</td>
+                                <td>{ orderProduct.refProductNo.unit.name}</td>
+                                <td>{ orderProduct.refProductNo.standard.name}</td>
+                                <td>{ orderProduct.refProductNo.price}</td>
+                                <td>{ orderProduct.quantity}</td>
+                                <td>{ orderProduct.refProductNo.etc}</td>
+                                <td>{ orderProduct.registDate}</td>
+                                <td>{ orderProduct.status}</td>
+                                <td><input value={orderProduct.orderProductNo} type="checkbox"/></td>
+                            </tr>
+                        ))
+                    }
                 </table>
                 <div style={{display: "flex", justifyContent: "flex-end", marginTop: "1%"}}>
                     <button style={{marginRight: "10px"}} onClick={ onClickPermitHandler }>승인</button>
                     <button onClick={ onClickRejectHandler }>반려</button>
+                </div>
+                <div style={{ listStyleType: "none", display: "flex", justifyContent: "center", marginTop:"2%"}}>
+                    { Array.isArray(orderProductList) &&
+                        <button
+                            onClick={() => setCurrentPage(currentPage - 1)}
+                            disabled={currentPage === 1}
+                        >
+                            &lt;
+                        </button>
+                    }
+                    {pageNumber.map((num) => (
+                        <li key={num} onClick={() => setCurrentPage(num)}>
+                            <button
+                                style={ currentPage === num ? {backgroundColor : '#ecead8' } : null}
+                            >
+                                {num}
+                            </button>
+                        </li>
+                    ))}
+                    { Array.isArray(orderProductList) &&
+                        <button
+                            onClick={() => setCurrentPage(currentPage + 1)}
+                            disabled={currentPage === pageInfo.pageEnd  || pageInfo.total == 0}
+                        >
+                            &gt;
+                        </button>
+                    }
                 </div>
             </div>
         </div>

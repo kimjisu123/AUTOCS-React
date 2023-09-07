@@ -34,6 +34,7 @@ import {
     GET_LAST_ORDER_NO,
 } from '../modules/OrderNumberModule';
 import {
+    GET_ORDER_PRODUCT,
     POST_ORDER_PRODUCT,
     PUT_ORDER,
     // PUT_ORDER_PRODUCT,
@@ -596,6 +597,36 @@ export const callOrderProductRegistAPI = ({form}) => {
             .then(response => response.json());
 
         dispatch({ type: POST_ORDER_PRODUCT,  payload: result });
+
+    };
+}
+
+/* 주문물품 조회 */
+export const callOrderProductListAPI = ({currentPage}) => {
+
+    let requestURL;
+
+    if(currentPage !== undefined || currentPage !== null){
+        requestURL = `http://localhost:8080/stock/orderlist?offset=${currentPage}`;
+    }else {
+        requestURL = `http://localhost:8080/stock/orderlist`;
+    }
+
+    console.log('[StockAPICalls] requestURL : ', requestURL);
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            }
+        })
+            .then(response => response.json());
+        if(result.status === 200){
+            dispatch({ type: GET_ORDER_PRODUCT,  payload: result.data });
+        }
 
     };
 }

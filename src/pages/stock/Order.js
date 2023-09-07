@@ -51,7 +51,7 @@ function showPopup()
 
     /* 주문물품 등록 및 주문상태 업데이트 */
     const onClickRegistHandler = async () => {
-        const confirmed = window.confirm('등록하시겠습니까?');
+        const confirmed = window.confirm('신청하시겠습니까?');
         if (confirmed) {
 
             // 주문상태 업데이트
@@ -93,20 +93,9 @@ function showPopup()
                 );
             }
 
-            // const formData = new FormData();
-            // formData.append("storeInfoNo", decodedToken.StoreNo);
-            // dispatch(callOrderRegistAPI({
-            //     form: formData
-            // }));
-
-
-            // 마지막 주문번호 조회
-            // dispatch(callLastOrderAPI());
-            // const lastOrderNo = useSelector(state => state.orderReducer);
-
-            alert('등록되었습니다. 마지막 주문번호: ' + lastOrderNo);
-            // navigate('/stock/productregist', {replace: true});
-            // window.location.reload();
+            alert('신청되었습니다. 주문번호: ' + lastOrderNo);
+            navigate('/stock/order', {replace: true});
+            window.location.reload();
         }
     }
 
@@ -139,14 +128,6 @@ function showPopup()
         newRow.appendChild(quantityCell);
         newRow.appendChild(deleteButton);
 
-        // // 새로운 주문 아이템 생성
-        // const newItem = {
-        //     refProductNo: parentCodeValue,
-        //     quantity: orderQuantity,
-        // };
-        //
-        // // 현재 주문 아이템 배열에 추가
-        // setOrderItems([...orderItems, newItem]);
 
         document.getElementById("orderTable").appendChild(newRow);
     }
@@ -159,15 +140,8 @@ function showPopup()
             trElement.parentNode.removeChild(trElement);
         }
 
-        // 선택한 주문 아이템 제거
-        // const updatedItems = [...orderItems];
-        // orderItems.splice(index, 1);
-        // setOrderItems(updatedItems);
-        // console.log('updatedItems',orderItems)
-        // console.log('index',index)
     };
-    // console.log('dada',document.getElementById("orderTable"));
-    // console.log('11111',orderItems)
+
 
     /********************************************************************/
 
