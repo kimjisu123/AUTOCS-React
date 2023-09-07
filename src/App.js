@@ -87,6 +87,8 @@ import TodoApp from "./pages/Todolist/TodoApp";
 // import {GlobalStyle} from "./theme/theme/GlobalStyle";
 
 import MailSend from "./pages/Mail/MailSend";
+import PurchaseContent from "./pages/approvalPage/PurchaseContent";
+import ApprovalDocument from "./pages/approvalPage/ApprovalDocument";
 
 function App() {
     return (
@@ -114,6 +116,7 @@ function App() {
                         <Route path='/approval/Receive' element={<Receive/>}/>
                         <Route path='/approval/Send' element={<Send/>}/>
                         <Route path='chart' element={<OrgChart/>}/>
+                        <Route path='/approval/document' element={<ApprovalDocument/>}/>
 
                         //지수
                         <Route path='/management' element={<Management />} />

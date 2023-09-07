@@ -59,7 +59,7 @@ function BusinessContent() {
         e.preventDefault();
         const formdata = new FormData(e.target);
 
-        formdata.append("business", data.business);
+        formdata.append("businessContent", data.business);
 
         for(let i = 0; i < myRef.current.getFiles().length; i++) {
             formdata.append("files", myRef.current.getFiles()[i]);

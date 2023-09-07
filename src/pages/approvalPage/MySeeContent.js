@@ -4,12 +4,14 @@ import { AiOutlineSearch } from "react-icons/ai"
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {callGetAppWaitAPI, callGetMySeeAPI} from "../../apis/ApprovalAPICalls";
+import {useNavigate} from "react-router-dom";
 
 function MySeeContent() {
 
     const dispatch = useDispatch();
     const result = useSelector(state => state.approvalMySeeReducer);
     const sendList = result.data;
+    const navigate = useNavigate();
 
     const pageInfo = result.pageInfo;
 
@@ -33,6 +35,13 @@ function MySeeContent() {
         },
         [currentPage]
     )
+
+    const onClickHandler = (e) => {
+        // console.log(e.target.nextSibling.nextSibling.innerText)
+        const documentCode = e.target.nextSibling.value;
+        const type = e.target.nextSibling.nextSibling.innerText;
+        navigate('/approval/document', {state:{documentCode : documentCode, type : type}});
+    }
 
     return (
         <div className={style.content}>
@@ -63,7 +72,8 @@ function MySeeContent() {
                     {sendList && sendList.map(list => (
                         <tr>
                             <td className={style.td0}><input type="checkbox" name={AppWait.checkOne} className={AppWait.checkOne}/>{list.document && list.document.applicationDate.toString().substring(0,10)}</td>
-                            <td className={style.td1}>{list.document && list.document.documentTitle}</td>
+                            <td className={style.td1} onClick={e => onClickHandler(e)}>{list.document && list.document.documentTitle}</td>
+                            <input type="hidden" value={list.document.documentCode}/>
                             <td className={style.td0}>{list.document && list.document.documentType}</td>
                             <td className={style.td0}>{list.status && list.status}</td>
                             <td className={style.td0}>{list.document && list.document.employee.name}</td>

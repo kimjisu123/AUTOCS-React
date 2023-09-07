@@ -166,12 +166,12 @@ function VacationContent() {
                     <td>
                         <select style={{textAlign:"center"}} name="vacationType">
                             <option value="nope" disabled selected>연차 종류를 선택해주세요.</option>
-                            <option value="annual">연차</option>
-                            <option value="lateness">지각</option>
-                            <option value="earlyLeave">조퇴</option>
-                            <option value="familyEvent">경조사</option>
-                            <option value="public">공가</option>
-                            <option value="sick">병가</option>
+                            <option value="연차">연차</option>
+                            <option value="지각">지각</option>
+                            <option value="조퇴">조퇴</option>
+                            <option value="경조사">경조사</option>
+                            <option value="공가">공가</option>
+                            <option value="병가">병가</option>
                         </select>
                     </td>
                 </tr>

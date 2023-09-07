@@ -398,8 +398,26 @@ main {
     border-radius: 10px;
     line-height: 38px;
     cursor: pointer;
+    margin-left: 20px;
 }
 
 .sendApp:hover {
     box-shadow: 0 2px 4px 0 rgb(203, 203, 203);
+}
+
+.files {
+    cursor: pointer;
+}
+
+.files:hover {
+    font-weight: 700;
+}
+
+.title {
+    width: 100%;
+    font-size: 1.2em;
+    padding: 0 10px;
+    border: 0.8px solid rgb(150, 150, 150);
+    outline: none;
+    line-height: 38px;
 }

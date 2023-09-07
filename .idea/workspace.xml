@@ -5,18 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="157f9457-97ad-4bcb-ada0-2b69963deafb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/pages/approvalPage/ApprovalDocument.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/approvalPage/ApprovalDocumentType/BusinessType.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/approvalPage/ApprovalDocumentType/PayType.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/approvalPage/ApprovalDocumentType/PurchaseType.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/approvalPage/ApprovalDocumentType/TrafficType.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/approvalPage/ApprovalDocumentType/VacationType.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/approvalPage/DocumentAppLine.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/approvalPage/DocumentReceiveLine.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/approvalPage/PayDocRow.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/approvalPage/PurchaseDocumentRow.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/approvalPage/TrafficDocumentRow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-08-31__10_36__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-08-31_오전_10_36_[Changes]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/apis/ApprovalAPICalls.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apis/ApprovalAPICalls.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modules/ApprovalModule.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/ApprovalModule.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modules/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/approvalPage/AppSeeContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/approvalPage/AppSeeContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/approvalPage/AppWait.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/approvalPage/AppWait.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/approvalPage/AppWaitContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/approvalPage/AppWaitContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/approvalPage/ApprovalMenubar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/approvalPage/ApprovalMenubar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/approvalPage/Business.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/approvalPage/Business.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/approvalPage/BusinessContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/approvalPage/BusinessContent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/approvalPage/MyAppContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/approvalPage/MyAppContent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/approvalPage/MyBusinessContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/approvalPage/MyBusinessContent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/approvalPage/MySeeContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/approvalPage/MySeeContent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/approvalPage/SendContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/approvalPage/SendContent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/approvalPage/VacationContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/approvalPage/VacationContent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/approvalPage/approval.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/approvalPage/approval.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +71,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/dev/autocs-css/AUTOCS-React/src/pages/approvalPage&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -65,6 +82,9 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\dev\autocs-css\AUTOCS-React\src\pages\approvalPage" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\dev\autocs-css\AUTOCS-React\src\pages\approvalPage" />
     </key>
@@ -82,7 +102,11 @@
       <workItem from="1693559176724" duration="177000" />
       <workItem from="1693786679848" duration="21625000" />
       <workItem from="1693873564760" duration="19080000" />
-      <workItem from="1693959376237" duration="15564000" />
+      <workItem from="1693959376237" duration="20710000" />
+      <workItem from="1694046257127" duration="3136000" />
+      <workItem from="1694057010689" duration="122000" />
+      <workItem from="1694057826260" duration="9258000" />
+      <workItem from="1694070978512" duration="9109000" />
     </task>
     <servers />
   </component>

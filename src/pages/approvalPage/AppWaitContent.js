@@ -4,12 +4,14 @@ import { AiOutlineSearch } from "react-icons/ai"
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {callGetAppWaitAPI, callGetMyBusinessAPI} from "../../apis/ApprovalAPICalls";
+import {useNavigate} from "react-router-dom";
 
 function AppWaitContent() {
 
     const dispatch = useDispatch();
     const result = useSelector(state => state.approvalAppWaitReducer);
     const sendList = result.data;
+    const navigate = useNavigate();
 
     const pageInfo = result.pageInfo;
 
@@ -35,7 +37,10 @@ function AppWaitContent() {
     )
 
     const onClickHandler = (e) => {
-        console.log(e.target.nextSibling.value);
+        // console.log(e.target.nextSibling.nextSibling.innerText)
+        const documentCode = e.target.nextSibling.value;
+        const type = e.target.nextSibling.nextSibling.innerText;
+        navigate('/approval/document', {state:{documentCode : documentCode, type : type}});
     }
 
     return (

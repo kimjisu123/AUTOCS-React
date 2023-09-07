@@ -4,12 +4,14 @@ import { AiOutlineSearch } from "react-icons/ai"
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {callGetAppWaitAPI, callGetMyAppAPI} from "../../apis/ApprovalAPICalls";
+import {useNavigate} from "react-router-dom";
 
 function MyAppContent() {
 
     const dispatch = useDispatch();
     const result = useSelector(state => state.approvalMyAppReducer);
     const sendList = result.data;
+    const navigate = useNavigate();
 
     const pageInfo = result.pageInfo;
 
@@ -34,8 +36,11 @@ function MyAppContent() {
         [currentPage]
     )
 
-    const onClickHandler = () => {
-        console.log(result);
+    const onClickHandler = (e) => {
+        // console.log(e.target.nextSibling.nextSibling.innerText)
+        const documentCode = e.target.nextSibling.value;
+        const type = e.target.nextSibling.nextSibling.innerText;
+        navigate('/approval/document', {state:{documentCode : documentCode, type : type}});
     }
 
     return (
@@ -44,7 +49,7 @@ function MyAppContent() {
                 전자결재
             </div>
             <br/>
-            <div className={style.waiting} onClick={onClickHandler}>
+            <div className={style.waiting}>
                 요청 받은 결재
             </div>
             <div className={AppWait.allCheck}>
@@ -67,7 +72,8 @@ function MyAppContent() {
                     {sendList && sendList.map(list => (
                         <tr>
                             <td className={style.td0}><input type="checkbox" name={AppWait.checkOne} className={AppWait.checkOne}/>{list.document && list.document.applicationDate.toString().substring(0,10)}</td>
-                            <td className={style.td1}>{list.document && list.document.documentTitle}</td>
+                            <td className={style.td1} onClick={e => onClickHandler(e)}>{list.document && list.document.documentTitle}</td>
+                            <input type="hidden" value={list.document.documentCode}/>
                             <td className={style.td0}>{list.document && list.document.documentType}</td>
                             <td className={style.td0}>{list.status && list.status}</td>
                             <td className={style.td0}>{list.document && list.document.employee.name}</td>

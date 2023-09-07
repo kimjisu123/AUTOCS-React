@@ -4,7 +4,7 @@ import { AiOutlineSearch } from "react-icons/ai"
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {callGetMyBusinessAPI, callGetSendAPI} from "../../apis/ApprovalAPICalls";
-
+import {useNavigate} from "react-router-dom";
 function MyBusinessContent() {
 
     const dispatch = useDispatch();
@@ -12,7 +12,7 @@ function MyBusinessContent() {
     const sendList = result.data;
 
     const pageInfo = result.pageInfo;
-
+    const navigate = useNavigate();
     const [start, setStart] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     const [pageEnd, setPageEnd] = useState(1);
@@ -35,7 +35,10 @@ function MyBusinessContent() {
     )
 
     const onClickHandler = (e) => {
-        console.log(e.target.nextSibling.value);
+        // console.log(e.target.nextSibling.nextSibling.innerText)
+        const documentCode = e.target.nextSibling.value;
+        const type = e.target.nextSibling.nextSibling.innerText;
+        navigate('/approval/document', {state:{documentCode : documentCode, type : type}});
     }
 
     return (

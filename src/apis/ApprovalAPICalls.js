@@ -1,7 +1,18 @@
 import {
-    GET_APPLINE, POST_BUSINESS,
-    POST_PURCHASE, POST_TRAFFIC, POST_VACATION,
-    GET_VACATION, GET_APP_HOME, GET_SEND, GET_MY_BUSINESS, GET_APP_WAIT, GET_SEE_WAIT, GET_MY_APP, GET_MY_SEE
+    GET_APPLINE,
+    POST_BUSINESS,
+    POST_PURCHASE,
+    POST_TRAFFIC,
+    POST_VACATION,
+    GET_VACATION,
+    GET_APP_HOME,
+    GET_SEND,
+    GET_MY_BUSINESS,
+    GET_APP_WAIT,
+    GET_SEE_WAIT,
+    GET_MY_APP,
+    GET_MY_SEE,
+    GET_BUSINESS_DOC, GET_TRAFFIC_DOC, GET_PURCHASE_DOC, GET_VACATION_DOC, GET_PAY_DOC
 } from '../modules/ApprovalModule'
 import {decodeJwt} from "../util/tokenUtils";
 
@@ -87,6 +98,8 @@ export const callPostBusinessAPI = (formdata) => {
 /* 휴가 신청 insert */
 
 export const callPostVacationAPI = (formdata) => {
+
+    console.log(".vacation")
 
     const requestURL = "http://localhost:8080/approval/vacation";
 
@@ -332,6 +345,108 @@ export const callGetMySeeAPI = ({currentPage}) => {
             .then(response => response.json());
         if(result.status === 200) {
             dispatch({type: GET_MY_SEE, payload : result.data});
+        }
+    }
+}
+
+export const callGetBusinessDocAPI = ({documentCode}) => {
+
+    const requestURL = `http://localhost:8080/approval/document/business/${documentCode}`;
+
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            }
+        })
+            .then(response => response.json())
+        if(result.status === 200) {
+            dispatch({type: GET_BUSINESS_DOC, payload : result.data});
+        }
+    }
+}
+
+export const callGetTrafficDocAPI = ({documentCode}) => {
+
+    const requestURL = `http://localhost:8080/approval/document/traffic/${documentCode}`;
+
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            }
+        })
+            .then(response => response.json())
+        if(result.status === 200) {
+            dispatch({type: GET_TRAFFIC_DOC, payload : result.data});
+        }
+    }
+}
+
+export const callGetPurchaseDocAPI = ({documentCode}) => {
+
+    console.log("hello")
+
+    const requestURL = `http://localhost:8080/approval/document/purchase/${documentCode}`;
+
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            }
+        })
+            .then(response => response.json())
+        if(result.status === 200) {
+            dispatch({type: GET_PURCHASE_DOC, payload : result.data});
+        }
+    }
+}
+
+export const callGetVacationDocAPI = ({documentCode}) => {
+
+    const requestURL = `http://localhost:8080/approval/document/vacation/${documentCode}`;
+
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            }
+        })
+            .then(response => response.json())
+        if(result.status === 200) {
+            dispatch({type: GET_VACATION_DOC, payload : result.data});
+        }
+    }
+}
+
+export const callGetPayDocAPI = ({documentCode}) => {
+
+    const requestURL = `http://localhost:8080/approval/document/pay/${documentCode}`;
+
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            }
+        })
+            .then(response => response.json())
+        if(result.status === 200) {
+            dispatch({type: GET_PAY_DOC, payload : result.data});
         }
     }
 }

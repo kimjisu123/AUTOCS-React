@@ -16,6 +16,11 @@ export const GET_APP_WAIT = "approval/GET_APP_WAIT";
 export const GET_SEE_WAIT = "approval/GET_SEE_WAIT";
 export const GET_MY_APP = "approval/GET_MY_APP";
 export const GET_MY_SEE = "approval/GET_MY_SEE";
+export const GET_BUSINESS_DOC = "approval/GET_BUSINESS_DOC";
+export const GET_TRAFFIC_DOC = "approval/GET_TRAFFIC_DOC";
+export const GET_PURCHASE_DOC = "approval/GET_PURCHASE_DOC";
+export const GET_VACATION_DOC = "approval/GET_VACATION_DOC";
+export const GET_PAY_DOC = "approval/GET_PAY_DOC";
 
 const actions = createActions({
     [GET_APPLINE]: () => {},
@@ -32,6 +37,11 @@ const actions = createActions({
     [GET_SEE_WAIT]: () => {},
     [GET_MY_APP]: () => {},
     [GET_MY_SEE]: () => {},
+    [GET_BUSINESS_DOC]: () => {},
+    [GET_TRAFFIC_DOC]: () => {},
+    [GET_PURCHASE_DOC]: () => {},
+    [GET_VACATION_DOC]: () => {},
+    [GET_PAY_DOC]: () => {},
 });
 
 export const approvalReducer = handleActions(
@@ -126,6 +136,51 @@ export const approvalMySeeReducer = handleActions(
     {
         [GET_MY_SEE]: (state, { payload }) => {
             return payload
+        }
+    },
+    initialState
+)
+
+export const approvalBusinessDocReducer = handleActions(
+    {
+        [GET_BUSINESS_DOC]: (state, { payload }) => {
+            return payload
+        }
+    },
+    initialState
+)
+
+export const approvalTrafficDocReducer = handleActions(
+    {
+        [GET_TRAFFIC_DOC]: (state, { payload }) => {
+            return payload
+        }
+    },
+    initialState
+)
+
+export const approvalPurchaseDocReducer = handleActions(
+    {
+        [GET_PURCHASE_DOC]: (state, { payload }) => {
+            return payload;
+        }
+    },
+    initialState
+)
+
+export const approvalVacationDocReducer = handleActions(
+    {
+        [GET_VACATION_DOC]: (state, { payload }) => {
+            return payload;
+        }
+    },
+    initialState
+)
+
+export const approvalPayDocReducer = handleActions(
+    {
+        [GET_PAY_DOC]: (state, { payload }) => {
+            return payload;
         }
     },
     initialState

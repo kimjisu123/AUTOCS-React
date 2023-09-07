@@ -5,12 +5,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import {useEffect, useState} from "react";
 import {callGetSendAPI} from "../../apis/ApprovalAPICalls";
 import {approvalSendReducer} from "../../modules/ApprovalModule";
+import {useNavigate} from "react-router-dom";
 
 function SendContent() {
 
     const dispatch = useDispatch();
     const result = useSelector(state => state.approvalSendReducer);
     const sendList = result.data;
+    const navigate = useNavigate();
 
     const pageInfo = result.pageInfo;
 
@@ -25,11 +27,6 @@ function SendContent() {
         }
     }
 
-    const onClickHandler = () => {
-
-        console.log(result);
-    }
-
     useEffect(
         () => {
             setStart((currentPage - 1) * 5);
@@ -39,6 +36,13 @@ function SendContent() {
         },
         [currentPage]
     )
+
+    const onClickHandler = (e) => {
+        // console.log(e.target.nextSibling.nextSibling.innerText)
+        const documentCode = e.target.nextSibling.value;
+        const type = e.target.nextSibling.nextSibling.innerText;
+        navigate('/approval/document', {state:{documentCode : documentCode, type : type}});
+    }
 
     return (
         <div className={style.content}>
@@ -70,7 +74,8 @@ function SendContent() {
                     { sendList && sendList.map(send => (
                         <tr>
                             <td className={style.td0}><input type="checkbox" name={AppWait.checkOne} className={AppWait.checkOne}/>{send.applicationDate.toString().substring(0,10)}</td>
-                            <td className={style.td1}>{send.documentTitle}</td>
+                            <td className={style.td1} onClick={e => onClickHandler(e)}>{send.documentTitle}</td>
+                            <input type="hidden" value={send.documentCode}/>
                             <td className={style.td0}>{send.documentType}</td>
                             <td className={style.td0}>{send.status}</td>
                         </tr>
