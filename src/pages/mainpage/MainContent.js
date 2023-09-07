@@ -13,8 +13,9 @@ import {MdKeyboardDoubleArrowRight} from "react-icons/md";
 import {NavLink, useNavigate} from "react-router-dom";
 import moment from "moment-timezone";
 import DocuList from "./DocuList";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {decodeJwt} from "../../util/tokenUtils";
+import {callGetMemberInfoAPI} from "../../apis/MypageAPICalls";
 
 
 
@@ -29,15 +30,23 @@ const MainContent = () => {
     const formatDate = monent(today).format("MMMM Do YYYY");
     // const [ThemeMode , toggleTheme] = useTheme();
 
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     const accessToken = window.localStorage.getItem('accessToken');
 
-    const [login, setLogin] = useState(false);
 
     const decodedToken = accessToken ? decodeJwt(accessToken) : null;
-    const role = decodedToken ? decodedToken.auth : null;
 
+
+
+
+    // 회원정보 가지고 오기
+    const employees = useSelector(state => state.myPageReducer);
+    const [memberNo , setMemberNo] = useState(0);
+    const [image, setImage] = useState(null);
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    // 사진 파일 전달
+    const [ selectedImage, setSelectedImage ] = useState('');
 
 
     const getCurrentTime = () => {
@@ -56,6 +65,33 @@ const MainContent = () => {
     //     };
     // }, []);
 
+    // 회원 정보 불러오기
+    useEffect(() => {
+
+        async function fetchData() {
+            try {
+
+                console.log("callGetMemberInfoAPI : {} " + callGetMemberInfoAPI(decodedToken.MemberNo))
+                const memeberInfo = await dispatch(callGetMemberInfoAPI(decodedToken.MemberNo));
+                // const profileInfo = await dispatch(callGetPofileAPI(decodedToken.MemberNo));
+
+                if (employees.data && employees.data.name) {
+                    // 'name' 속성에 접근할 수 있습니다.
+                    console.log("employeeList.name {}" ,employees.data.name);
+                    setMemberNo(employees.data.memberNo);
+                    console.log("employeeList.name {}" ,memberNo);
+                    // 이제 name을 사용할 수 있습니다.
+                    setSelectedImage(employees.data.memberFile);
+                    console.log("employees.data.memberFile {}" ,employees.data.memberFile);
+                }
+
+
+            } catch (error) {
+                console.error('API 호출 오류:', error);
+            }
+        }
+        fetchData();
+    }, []);
 
 
     return (
@@ -66,7 +102,7 @@ const MainContent = () => {
                         <div className={mainstyle.titleContainer}>
                             <div className={mainstyle.maintitle}>
                                 <div className={mainstyle.mainImg}>
-                                    <img src={ emp } alt="" className={mainstyle.empInfoImg}/>
+                                    <img src={ selectedImage } alt="" className={mainstyle.empInfoImg}/>
                                 </div>
                                 <div className={mainstyle.maintext}>
                                     <h1>안녕하세요 {decodedToken.Name}{decodedToken.Position}님</h1>

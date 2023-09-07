@@ -49,7 +49,7 @@ const Header = () => {
                 { to: "approval", label: "전자결재" },
                 { to: "management", label: "근태관리" },
                 { to: `/mail/${decodedToken.EmployeeNo}`, label: "쪽지함" },
-                //나중에 마이페이지 안으로 넣어줘야함
+                { to: `/myPage`, label: "마이페이지" },
                 { to: "outM", label: "계정비활성화" }
             );
 
@@ -106,7 +106,7 @@ const Header = () => {
             navigate('/login', { replace: true });
         } else {
             setLoginModal(true);
-            navigate("/마이페이지경로", { replace: true });
+            navigate("/myPage", { replace: true });
         }
     };
 
