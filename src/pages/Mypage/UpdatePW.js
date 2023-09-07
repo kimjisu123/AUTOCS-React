@@ -139,7 +139,7 @@ function UpdatePW(resultMessage) {
                                         <label htmlFor="currentPW">현재 비밀번호</label>
                                         <input type="password" className="currentPW" placeholder="현재 비밀번호를 입력해주세요" autoFocus onChange={onChange} value={checkPw}/>
                                         {/*비밀번호 확인 */}
-                                        {checkResult && checkResult == "true"? <p style={{color:"green"}}>비밀번호가 일치합니다.</p> : checkResult == "false"? <p style={{color:"red"}}>비밀번호가 일치하지 않습니다.</p> : ''}
+                                        {checkResult && checkResult == "true"? <p style={{color:"green",margin:"3px"}}>비밀번호가 일치합니다.</p> : checkResult == "false"? <p style={{color:"red",margin:"3px"}}>비밀번호가 일치하지 않습니다.</p> : ''}
                                     </div>
                                     <div className={updateCSS.boxMargin2}>
                                         <label htmlFor="newpw">새 비밀번호 입력</label>
@@ -153,7 +153,7 @@ function UpdatePW(resultMessage) {
                                             autoComplete="off"
                                         />
                                         {newPwd.length > 0 && (
-                                            <p className={`message ${isPassword ? 'success' : 'error'}`} style={isPassword? {color:"green"} : {color:"red"}}>{passwordMessage}</p>
+                                            <p className={`message ${isPassword ? 'success' : 'error'}`} style={isPassword? {color:"green",margin:"3px"} : {color:"red",margin:"3px"}}>{passwordMessage}</p>
                                         )}
                                     </div>
                                     <div className={updateCSS.checkMail}>
@@ -167,7 +167,7 @@ function UpdatePW(resultMessage) {
                                             autoComplete="off"
                                         />
                                         {newPwCheck.length > 0 && (
-                                            <p className={`message ${isPasswordConfirm ? '.success' : '.error'}`} style={isPasswordConfirm? {color:"green"} : {color:"red"}}>{passwordConfirmMessage}</p>
+                                            <p className={`message ${isPasswordConfirm ? '.success' : '.error'}`} style={isPasswordConfirm? {color:"green",margin:"3px"} : {color:"red",margin:"3px"}}>{passwordConfirmMessage}</p>
                                         )}
                                     </div>
                                     <div className={updateCSS.buttons}>

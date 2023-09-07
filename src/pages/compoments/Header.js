@@ -173,7 +173,7 @@ const Header = () => {
                     overlayClassName="ReactModal__Overlay"
                     contentLabel="Modal"
                 >
-                    <div style={{ width:"500px", height:"500px", margin:"60px auto",boxShadow:"2px 2px 10px #cdcec974"} }>
+                    <div style={{ width:"650px", margin:"60px auto",boxShadow:"2px 2px 10px #cdcec974"} }>
                         <TodoApp todoModal={ todoModal } setTodoModal={ setTodoModal } />
                     </div>
                 </Modal>

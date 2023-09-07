@@ -86,85 +86,85 @@ const ApprovalList = () => {
                         </div>
                     </div>
                 {/*    */}
-                    <div className={CardCSS.card}>
-                        <div className={`${CardCSS.card} border-0 bg-light rounded shadow`}>
-                            <div className={`${CardCSS.cardBody } p-4`}>
-                                <span className={CardCSS.badge}></span>
-                                <span className={CardCSS.badgeText}>대기중</span>
-                                <div className={CardCSS.cardDetail}>
-                                    <span><NavLink to="/stock/myorderlist/detail">문서제목1</NavLink></span>
-                                    <div className={CardCSS.detailCard}>
-                                        <h5>Tester</h5>
-                                        <h5>2023.2.23</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {/*    */}
-                    <div className={CardCSS.card}>
-                        <div className={`${CardCSS.card} border-0 bg-light rounded shadow`}>
-                            <div className={`${CardCSS.cardBody } p-4`}>
-                                <span className={CardCSS.badge}></span>
-                                <span className={CardCSS.badgeText}>대기중</span>
-                                <div className={CardCSS.cardDetail}>
-                                    <span><NavLink to="/stock/myorderlist/detail">문서제목1</NavLink></span>
-                                    <div className={CardCSS.detailCard}>
-                                        <h5>Tester</h5>
-                                        <h5>2023.2.23</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {/*    */}
-                    <div className={CardCSS.card}>
-                        <div className={`${CardCSS.card} border-0 bg-light rounded shadow`}>
-                            <div className={`${CardCSS.cardBody } p-4`}>
-                                <span className={CardCSS.badge}></span>
-                                <span className={CardCSS.badgeText}>대기중</span>
-                                <div className={CardCSS.cardDetail}>
-                                    <span><NavLink to="/stock/myorderlist/detail">문서제목1</NavLink></span>
-                                    <div className={CardCSS.detailCard}>
-                                        <h5>Tester</h5>
-                                        <h5>2023.2.23</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {/*    */}
-                    <div className={CardCSS.card}>
-                        <div className={`${CardCSS.card} border-0 bg-light rounded shadow`}>
-                            <div className={`${CardCSS.cardBody } p-4`}>
-                                <span className={CardCSS.badge}></span>
-                                <span className={CardCSS.badgeText}>대기중</span>
-                                <div className={CardCSS.cardDetail}>
-                                    <span><NavLink to="/stock/myorderlist/detail">문서제목1</NavLink></span>
-                                    <div className={CardCSS.detailCard}>
-                                        <h5>Tester</h5>
-                                        <h5>2023.2.23</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {/*    */}
-                    <div className={CardCSS.card}>
-                        <div className={`${CardCSS.card} border-0 bg-light rounded shadow`}>
-                            <div className={`${CardCSS.cardBody } p-4`}>
-                                <span className={CardCSS.badge}></span>
-                                <span className={CardCSS.badgeText}>대기중</span>
-                                <div className={CardCSS.cardDetail}>
-                                    <span><NavLink to="/stock/myorderlist/detail">문서제목1</NavLink></span>
-                                    <div className={CardCSS.detailCard}>
-                                        <h5>Tester</h5>
-                                        <h5>2023.2.23</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                {/*    <div className={CardCSS.card}>*/}
+                {/*        <div className={`${CardCSS.card} border-0 bg-light rounded shadow`}>*/}
+                {/*            <div className={`${CardCSS.cardBody } p-4`}>*/}
+                {/*                <span className={CardCSS.badge}></span>*/}
+                {/*                <span className={CardCSS.badgeText}>대기중</span>*/}
+                {/*                <div className={CardCSS.cardDetail}>*/}
+                {/*                    <span><NavLink to="/stock/myorderlist/detail">문서제목1</NavLink></span>*/}
+                {/*                    <div className={CardCSS.detailCard}>*/}
+                {/*                        <h5>Tester</h5>*/}
+                {/*                        <h5>2023.2.23</h5>*/}
+                {/*                    </div>*/}
+                {/*                </div>*/}
+                {/*            </div>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*/!*    *!/*/}
+                {/*    <div className={CardCSS.card}>*/}
+                {/*        <div className={`${CardCSS.card} border-0 bg-light rounded shadow`}>*/}
+                {/*            <div className={`${CardCSS.cardBody } p-4`}>*/}
+                {/*                <span className={CardCSS.badge}></span>*/}
+                {/*                <span className={CardCSS.badgeText}>대기중</span>*/}
+                {/*                <div className={CardCSS.cardDetail}>*/}
+                {/*                    <span><NavLink to="/stock/myorderlist/detail">문서제목1</NavLink></span>*/}
+                {/*                    <div className={CardCSS.detailCard}>*/}
+                {/*                        <h5>Tester</h5>*/}
+                {/*                        <h5>2023.2.23</h5>*/}
+                {/*                    </div>*/}
+                {/*                </div>*/}
+                {/*            </div>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*    /!*    *!/*/}
+                {/*    <div className={CardCSS.card}>*/}
+                {/*        <div className={`${CardCSS.card} border-0 bg-light rounded shadow`}>*/}
+                {/*            <div className={`${CardCSS.cardBody } p-4`}>*/}
+                {/*                <span className={CardCSS.badge}></span>*/}
+                {/*                <span className={CardCSS.badgeText}>대기중</span>*/}
+                {/*                <div className={CardCSS.cardDetail}>*/}
+                {/*                    <span><NavLink to="/stock/myorderlist/detail">문서제목1</NavLink></span>*/}
+                {/*                    <div className={CardCSS.detailCard}>*/}
+                {/*                        <h5>Tester</h5>*/}
+                {/*                        <h5>2023.2.23</h5>*/}
+                {/*                    </div>*/}
+                {/*                </div>*/}
+                {/*            </div>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*    /!*    *!/*/}
+                {/*    <div className={CardCSS.card}>*/}
+                {/*        <div className={`${CardCSS.card} border-0 bg-light rounded shadow`}>*/}
+                {/*            <div className={`${CardCSS.cardBody } p-4`}>*/}
+                {/*                <span className={CardCSS.badge}></span>*/}
+                {/*                <span className={CardCSS.badgeText}>대기중</span>*/}
+                {/*                <div className={CardCSS.cardDetail}>*/}
+                {/*                    <span><NavLink to="/stock/myorderlist/detail">문서제목1</NavLink></span>*/}
+                {/*                    <div className={CardCSS.detailCard}>*/}
+                {/*                        <h5>Tester</h5>*/}
+                {/*                        <h5>2023.2.23</h5>*/}
+                {/*                    </div>*/}
+                {/*                </div>*/}
+                {/*            </div>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*    /!*    *!/*/}
+                {/*    <div className={CardCSS.card}>*/}
+                {/*        <div className={`${CardCSS.card} border-0 bg-light rounded shadow`}>*/}
+                {/*            <div className={`${CardCSS.cardBody } p-4`}>*/}
+                {/*                <span className={CardCSS.badge}></span>*/}
+                {/*                <span className={CardCSS.badgeText}>대기중</span>*/}
+                {/*                <div className={CardCSS.cardDetail}>*/}
+                {/*                    <span><NavLink to="/stock/myorderlist/detail">문서제목1</NavLink></span>*/}
+                {/*                    <div className={CardCSS.detailCard}>*/}
+                {/*                        <h5>Tester</h5>*/}
+                {/*                        <h5>2023.2.23</h5>*/}
+                {/*                    </div>*/}
+                {/*                </div>*/}
+                {/*            </div>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
 
 
                 </div>

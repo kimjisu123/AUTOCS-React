@@ -16,6 +16,7 @@ import DocuList from "./DocuList";
 import {useDispatch, useSelector} from "react-redux";
 import {decodeJwt} from "../../util/tokenUtils";
 import {callGetMemberInfoAPI} from "../../apis/MypageAPICalls";
+import Spinner from "./Spinner-1s-200px.gif";
 
 
 
@@ -58,7 +59,7 @@ const MainContent = () => {
     // useEffect(() => {
     //     const intervalId = setInterval(() => {
     //         setCurrentTime(getCurrentTime());
-    //     }, 1000); // 1분(60초)마다 업데이트
+    //     }, 1000); // (60초)마다 업데이트
     //
     //     return () => {
     //         clearInterval(intervalId);
@@ -93,6 +94,12 @@ const MainContent = () => {
         fetchData();
     }, []);
 
+    if (!selectedImage) {
+        return <div className={mainstyle.loading}>
+                    Loading...
+                    <img src={Spinner} alt="로딩중" width="5%" />
+                </div>;
+    }
 
     return (
         <>
@@ -164,13 +171,21 @@ const MainContent = () => {
                                 <div><h1 style={{textAlign:"center", color:"#696767"}}>전자문서 결제</h1></div>
                                 <div><NavLink to="/stock/myorderlist/detail"><MdKeyboardDoubleArrowRight/></NavLink></div>
                             </div>
-                            <div><ApprovalList /></div>
+                            <div className={mainstyle.doculist}>
+                                <DocuList />
+                                <DocuList />
+                                <DocuList />
+                                <DocuList />
+                            </div>
+
+                            {/*<div><ApprovalList /></div>*/}
                         </div>
                     </div>
                     <div className={mainstyle.tempBox}>
                         <div className={mainstyle.boradPart}>
-                            <h1 style={{textAlign:"center", color:"#696767"}}>게시판</h1>
-                            <div><DocuList /></div>
+                            <h1 style={{textAlign:"center", color:"#696767"}}>공지사항</h1>
+                            {/*<div><DocuList /></div>*/}
+                            <div><ApprovalList /></div>
                         </div>
                     </div>
                 </div>

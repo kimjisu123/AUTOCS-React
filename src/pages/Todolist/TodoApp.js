@@ -137,21 +137,6 @@ const TodoApp = ( ) => {
                     }
                 });
 
-            // console.log("editedText {}", editedText.then());
-            // console.log("editedText {}", );
-            // if (editedText !== null) {
-            //     const todoData = {
-            //         content: editedText,
-            //         memberNo: decodedToken.MemberNo,
-            //         todoNo:todo.todoNo,
-
-                // };
-                // console.log(" onUpdate todoNo {}" , todo.todoNo);
-                // console.log(" onUpdate todoData {}" , todoData);
-                // console.log(" onUpdate todos.content {}" , editedText);
-                // dispatch(callUpdateTodoAPI(todoData));
-            // }
-
         },[],
     );
 

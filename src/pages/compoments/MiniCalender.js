@@ -29,7 +29,7 @@ export const MiniCalender = ({ user }) => {
         if (dayList.find((day) => day === moment(date).format('YYYY-MM-DD'))) {
             contents.push(
                 <>
-                     <div className="dot" style={{width:"2px", height:"2px", margin:"auto 20px"}}><span>●</span></div>
+                     <div className="dot" style={{ height:"2px", margin:"auto"}}><span>●</span></div>
                     {/*<MdStarRate*/}
                     {/*    className="diaryImg"*/}
                     {/*    width="10px"*/}
