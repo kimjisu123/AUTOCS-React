@@ -98,18 +98,6 @@ const Header = () => {
         }
     };
 
-    const mypageHandler = () => {
-
-        if (currentTimestamp > iatTimestamp) {
-            dispatch(callLogoutAPI());
-            alert('세션이 만료되어 로그아웃됩니다.');
-            navigate('/login', { replace: true });
-        } else {
-            setLoginModal(true);
-            navigate("/myPage", { replace: true });
-        }
-    };
-
     const onClickLogoutHandler = () => {
         window.localStorage.removeItem('accessToken');
 
@@ -161,11 +149,6 @@ const Header = () => {
                             +Todo
                         </NavLink>
                         <div className="profileAndLogout">
-                            <NavLink
-                                to="myPage"
-                                className={`profile ${'/myPage' === location.pathname ? 'activeProfile' : ''}`}
-                                onClick={mypageHandler}
-                            >
                                 {decodedToken ? (
                                     <h5 className="userName" style={{ marginTop: "-0.5px", fontSize: "16px" }}>
                                         {decodedToken.Name}님 안녕하세요!
@@ -173,7 +156,6 @@ const Header = () => {
                                 ) : (
                                     window.location = "/login"
                                 )}
-                            </NavLink>
                             <button onClick={onClickLogoutHandler} style={{ marginRight: "-50px" }} className="logOut">
                                 로그아웃
                             </button>
