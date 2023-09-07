@@ -77,13 +77,13 @@ const MainContent = () => {
                                         <button>퇴근하기</button>
                                 </div>
                             </div>
-                            <div>
-                                {/*<div className={"searchingbar"}>*/}
-                                {/*    <form id="search-form" className="form-search">*/}
-                                {/*        <input type="text" placeholder="강의 검색" className="form-control"/>*/}
-                                {/*        <span><i className="material-icons ic-search">search</i></span>*/}
-                                {/*    </form>*/}
-                                {/*</div>*/}
+                            <div className={mainstyle.fastButtons}>
+                               <button>받은 쪽지함</button>
+                                <button>받은 쪽지함</button>
+                                <button>받은 쪽지함</button>
+                                <button>휴가 신청</button>
+                                <button>휴가 신청</button>
+                                <button>휴가 신청</button>
                             </div>
                         </div>
                     </div>
@@ -103,8 +103,11 @@ const MainContent = () => {
                         </div>
                     </div>
                     <div className={mainstyle.tempBox} style={{ display:"flex"}}>
-                        <div className={mainstyle.calnederContent}>
-                            <MiniCalender/>
+                        <div className={mainstyle.datelist}>
+                            <h1 style={{textAlign:"center", color:"#696767"}}>Calender</h1>
+                            <div className={mainstyle.calnederContent}>
+                                <MiniCalender/>
+                            </div>
                         </div>
                         <div className={mainstyle.datelist}>
                             <div className={mainstyle.daliyTitle}>

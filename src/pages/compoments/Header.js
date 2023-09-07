@@ -184,14 +184,6 @@ const Header = () => {
                 </div>
             </div>
 
-            <NavLink
-                to={location.pathname}
-                className={`menu todo ${location.pathname === '/todo' ? 'activeMenu' : ''}`}
-                onClick={() => setModalIsOpen(true)}
-            >
-                +Todo
-            </NavLink>
-
             {/*투두 리스트 모달창 띄우기 */}
             {modalIsOpen && (
                 <Modal
@@ -201,7 +193,7 @@ const Header = () => {
                     overlayClassName="ReactModal__Overlay"
                     contentLabel="Modal"
                 >
-                    <div style={{ width:"500px", height:"500px", margin:"60px auto"}}>
+                    <div style={{ width:"500px", height:"500px", margin:"60px auto",boxShadow:"2px 2px 10px #cdcec974"} }>
                         <TodoApp todoModal={ todoModal } setTodoModal={ setTodoModal } />
                     </div>
                 </Modal>

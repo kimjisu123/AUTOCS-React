@@ -12,7 +12,7 @@
     min-height: 1300px;
     width: 90%;
     /* height: 100%; */
-    margin: auto;
+    margin: 30px auto;
     display: grid;
     grid-template-columns: 70% 30%;
     /* grid-template-rows: 15% 45% 40%; */
@@ -37,7 +37,7 @@
 
 
 .tempBox {
-    margin: 20px;
+    /*margin: 20px;*/
     width: 100%;
     height: 100%;
     border-radius: 5px;
@@ -48,8 +48,8 @@
 }
 
 .tempBox:hover {
-    width: 99%;
-    height:99%;
+    width: 98%;
+    height:98%;
 }
 
 
@@ -75,9 +75,39 @@
     position: relative;
 }
 .empInfoImg:hover{
+    transform: rotateY( 360deg );
     filter: grayscale(100%);
     transition: all 0.3s;
     transition-delay: 0.2s;
+}
+
+.fastButtons {
+
+    display: flex;
+    margin: 20px auto;
+    justify-content: space-evenly;
+
+
+}
+
+.fastButtons button {
+    margin-top: 20px;
+    background: none;
+    border-radius: 10px;
+    border: 1px solid #92aa81;
+    width: 150px;
+    height: 50px;
+    /* padding: 20px 41px; */
+    color: #92aa81;
+    font-weight: 700;
+}
+
+.fastButtons button:hover {
+    border: none;
+    background-color: #92aa81;
+    color: white;
+    transition: all 0.3s;
+    /*transition-delay: 0.2s;*/
 }
 
 .infoTitle, .empDepDate{
@@ -96,7 +126,8 @@
 }
 
 .maintext {
-    flex:7
+    flex:7;
+    margin: auto;
 }
 
 .maintitle h1, h3{
