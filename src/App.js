@@ -57,6 +57,7 @@ import NoticeMarket from "./pages/board/noticeMarket";
 import SuggestionM from "./pages/board/suggestionM";
 import FreeM from "./pages/board/freeM";
 import Writing from "./pages/board/writing";
+import PostDetail from "./pages/board/PostDetail";
 
 //지수
 import Management from "./pages/management/Management"
@@ -199,6 +200,8 @@ function App() {
                             <Route path='freeM' element={<FreeM />}/>
                             //글작성
                             <Route path='writing' element={<Writing />}/>
+                            //글 내용 확인
+                            <Route path='detail/:boardNo' element={<PostDetail />} />
                         </Route>
 
                         //지은

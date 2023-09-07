@@ -2,6 +2,7 @@ import "./board.css";
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect} from "react";
 import {callGetBoardAllAPI} from "../../apis/BoardAPICalls";
+import {Link} from "react-router-dom";
 
 const FreeE = () => {
 
@@ -26,13 +27,17 @@ const FreeE = () => {
 
     return (
         <div className="notice-employee">
-            <h1 style={{marginBottom: "30px", marginTop: "-20px", marginRight: "40px"}}>자유게시판</h1>
+            <h1 style={{marginBottom: "30px", marginTop: "-20px", marginRight: "45px"}}>자유게시판</h1>
             <div className="board-container">
                 {filteredBoardData.map((item, index) => (
                     <div key={index} className="board-item">
                         <div className="registt">{item.regist}</div>
-                        <h2>{item.title}</h2>
-                        <div className="author">{item.department} {item.employeeName} {item.position} </div>
+                        <h2>
+                            <Link to={`/board/detail/${item.boardNo}`}>{item.title}</Link>
+                        </h2>
+                        <div className="author">
+                            {item.anonymity === 'N' ? `${item.department} ${item.employeeName} ${item.position}` : '익명'}
+                        </div>
                     </div>
                 ))}
             </div>

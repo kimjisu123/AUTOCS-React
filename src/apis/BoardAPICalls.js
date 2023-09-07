@@ -31,8 +31,7 @@ export const callWritingInsertAPI = ({ formData }) => {
     return fetch(requestURL, {
         method: 'POST',
         headers: {
-            "Accept": "*/*",
-            // "Access-Control-Allow-Origin": "*"
+            "Accept": "*/*"
         },
         body: formData,
     })
@@ -46,7 +45,7 @@ export const callWritingInsertAPI = ({ formData }) => {
         })
         .then(() => {
             window.alert('게시물이 업로드 되었습니다.');
-            //window.location="/board/notieE";
+            window.location="/board/notieE";
         })
         .catch((error) => {
             console.error('Error:', error);

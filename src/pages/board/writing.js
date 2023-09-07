@@ -16,6 +16,8 @@ const Writing = () => {
     const [categoryNo, setcategoryNo] = useState(0);
     const [editorContent, setEditorContent] = useState(null);
     const [image, setImage] = useState(null);
+    const [isAnonymous, setIsAnonymous] = useState(false);
+
 
     // EditorState 객체를 텍스트로 변환
     const editorStateToText = (editorState) => {
@@ -40,17 +42,20 @@ const Writing = () => {
             formData.append('refMemberNo', decodedToken.MemberNo);
             formData.append('title', title);
             formData.append('refCategoryNo', categoryNo);
+            formData.append('anonymity', isAnonymous ? 'Y' : 'N');
 
             const editorContentText = editorStateToText(editorContent);
             formData.append('content', editorContentText);
 
-            formData.append("fileImage", image || null);
+            if(image) {
+                image.forEach((file, index) => {
+                    formData.append(`fileImages`, file);
+                });
+            }
+            //파일 있을수도 있고 없을 수도 있음
+            console.log("image>>>>>>>>>>>>>>{}", image)
+            console.log("image>>>>>>>>>>>>>>1{}", formData.get('fileImages'))
 
-            // console.log("formData=========>" + formData);
-            // for (const entry of formData.entries()) {
-            //     console.log(entry[0], entry[1]);
-            // }
-            // console.log("formData======================");
             callWritingInsertAPI({ formData, dispatch });
 
         } catch (error) {
@@ -74,6 +79,18 @@ const Writing = () => {
         setImage(file);
     };
 
+    const handleAnonymousChange = (event) => {
+        if (categoryNo == 5 || categoryNo == 6 || categoryNo == 8 || categoryNo == 9) {
+            setIsAnonymous(event.target.checked);
+        }
+        else {
+            // 카테고리가 다른 경우, 익명 옵션을 선택할 수 없도록 만듦
+            setIsAnonymous(false);
+            alert('이 카테고리에서는 익명으로 작성할 수 없습니다.');
+            return;
+        }
+    };
+
     return (
             <div>
                 <button className="writeGo" onClick={handleWriting}>작성</button>
@@ -87,7 +104,14 @@ const Writing = () => {
                     placeholder="제목"
                     required
                 />
-
+                <div>
+                    <label>
+                        <input type="checkbox" style={{marginLeft: "1500px"}}
+                            checked={isAnonymous}
+                            onChange={handleAnonymousChange}
+                        />
+                        익명
+                    </label>
             <select id="categorySelect" name="categorySelect" className="categorySelect" value={categoryNo}
                     onChange={handleCategoryNoChange}>
                 <option value="default">카테고리를 선택하세요</option>
@@ -101,6 +125,7 @@ const Writing = () => {
                 <option value={8}>건의 및 의견</option>
                 <option value={9}>자유게시판</option>
             </select>
+                </div>
                 <MyEditor
                     onUploadFileChange={uploadImageCallback}
                     onEditorStateChange={handleEditorStateChange}

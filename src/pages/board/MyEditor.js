@@ -20,12 +20,6 @@ class MyEditor extends Component {
     };
 
     uploadImageCallBack = (file) => {
-        console.log("!파일 확인");
-        console.log("파일: " + file); // 파일 이름 출력
-        console.log("파일: " + file.file); // 파일 이름 출력
-        console.log("파일 이름: " + file.name); // 파일 이름 출력
-        console.log("파일 크기: " + file.size + " 바이트"); // 파일 크기 출력
-        console.log("파일 유형: " + file.type); // 파일 유형(MIME 타입) 출력
 
         let uploadedImages = this.state.uploadedImages;
         const imageObject = {

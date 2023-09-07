@@ -2,6 +2,7 @@ import "./board.css";
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect} from "react";
 import {callGetBoardAllAPI} from "../../apis/BoardAPICalls";
+import {Link} from "react-router-dom";
 
 const Rules = () => {
 
@@ -31,7 +32,9 @@ const Rules = () => {
                 {filteredBoardData.map((item, index) => (
                     <div key={index} className="board-item">
                         <div className="registt">{item.regist}</div>
-                        <h2>{item.title}</h2>
+                        <h2>
+                            <Link to={`/board/detail/${item.boardNo}`}>{item.title}</Link>
+                        </h2>
                         <div className="author">{item.department} {item.employeeName} {item.position} </div>
                     </div>
                 ))}
