@@ -12,6 +12,7 @@ import {
 } from "../../apis/TodoAPICalls";
 import {decodeJwt} from "../../util/tokenUtils";
 import Modal from "react-modal";
+import swal from 'sweetalert';
 
 
 
@@ -116,19 +117,40 @@ const TodoApp = ( ) => {
     // 더블클릭시 내용 수정 함수
     const onUpdate = useCallback(
         todo => {
-            const editedText = prompt('수정할 내용을 입력하세요', todo.content);
-            if (editedText !== null) {
-                const todoData = {
-                    content: editedText,
-                    memberNo: decodedToken.MemberNo,
-                    todoNo:todo.todoNo,
+            // const editedText = prompt('수정할 내용을 입력하세요', todo.content);
+            const editedText = swal("수정할 내용을 입력해주세요:", {
+                content: "input",
+            })
+                .then((value) => {
+                    if(value !== null && value !== " "){
+                    swal("수정이 완료 되었습니다.");
+                    const todoData = {
+                        content: value,
+                        memberNo: decodedToken.MemberNo,
+                        todoNo:todo.todoNo,
+                    };
+                    console.log(" onUpdate value {}" , value);
+                    dispatch(callUpdateTodoAPI(todoData));
+                    } else {
+                        swal("입력된 값이 없습니다.");
 
-                };
-                console.log(" onUpdate todoNo {}" , todo.todoNo);
-                console.log(" onUpdate todoData {}" , todoData);
-                console.log(" onUpdate todos.content {}" , editedText);
-                dispatch(callUpdateTodoAPI(todoData));
-            }
+                    }
+                });
+
+            // console.log("editedText {}", editedText.then());
+            // console.log("editedText {}", );
+            // if (editedText !== null) {
+            //     const todoData = {
+            //         content: editedText,
+            //         memberNo: decodedToken.MemberNo,
+            //         todoNo:todo.todoNo,
+
+                // };
+                // console.log(" onUpdate todoNo {}" , todo.todoNo);
+                // console.log(" onUpdate todoData {}" , todoData);
+                // console.log(" onUpdate todos.content {}" , editedText);
+                // dispatch(callUpdateTodoAPI(todoData));
+            // }
 
         },[],
     );

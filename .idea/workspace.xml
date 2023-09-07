@@ -4,23 +4,48 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+    <list default="true" id="826319ae-5fbf-4cc5-921f-3746c7ac60dc" name="Changes" comment="머지를 위한 커밋(메인 수정중)  23/9/7">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-08-31__10_36__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-08-31__10_36__Changes_.xml" afterDir="false" />
+    </list>
+    <list default="true" id="157f9457-97ad-4bcb-ada0-2b69963deafb" name="Changes" comment="" />
     <list default="true" id="157f9457-97ad-4bcb-ada0-2b69963deafb" name="Changes" comment="마이페이지 회원 조회 / 이미지 불러오기 및 정보 및 비밀번호 수정 진행해야함.23/9/4">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
-    <list default="true" id="5e3749cb-53e5-4119-8b60-f739a5810ded" name="Changes" comment="commit">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-08-23__5_29__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-08-23__5_29__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mail/MailSentContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mail/MailSentContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/compoments/Header.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/compoments/Header.css" afterDir="false" />
-    </list>
-    <list default="true" id="157f9457-97ad-4bcb-ada0-2b69963deafb" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="9c2eefaa-97c1-4346-a250-079780263df9" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/pages/compoments/Header.css" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -76,122 +101,23 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
-      </map>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="jieun" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  <component name="GithubDefaultAccount">
-    <option name="defaultAccountId" value="9c2eefaa-97c1-4346-a250-079780263df9" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/pages/compoments/Header.css" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
-  </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
-  }
-}</component>
-    <component name="TaskManager">
-      <servers />
-    </component>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;
   }
-}</component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="744ef3bb-8e72-45f7-ae86-87c6976528d6" />
-        <option name="url" value="https://github.com/Crumble-Strawberry-Scone/AUTOCS-React.git" />
-      </UrlAndAccount>
-    </option>
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/extensions/AUTOCS-react/src/App.js" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/apis/TodoAPICalls.js" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/pages/approvalPage/approval.module.css" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/pages/stock/ProductRegist.js" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProjectId" id="2U8pmH9ONDZQRUBvUomMvSewWeO" />
-  <component name="ProjectViewState">
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/jieun/developer/final-project/frontend/AUTOCS-react&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.1.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;oracle&quot;
-    ]
-  }
-}</component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\jieun\developer\final-project\frontend\AUTOCS-react\src\pages\mainpage" />
-      <recent name="C:\jieun\developer\final-project\frontend\AUTOCS-react\src\pages\main" />
-      <recent name="C:\jieun\developer\final-project\frontend\AUTOCS-react\src\pages\Mypage" />
-      <recent name="C:\jieun\developer\final-project\frontend\AUTOCS-react\public\image" />
-      <recent name="C:\jieun\developer\final-project\frontend\AUTOCS-react\src\components\common" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\jieun\developer\final-project\frontend\AUTOCS-react\src\pages\mainpage" />
-      <recent name="C:\jieun\developer\final-project\frontend\AUTOCS-react\src\pages\Mypage\components" />
-      <recent name="C:\jieun\developer\final-project\frontend\AUTOCS-react\src\pages\mainpage\memo" />
-      <recent name="C:\jieun\developer\final-project\frontend\AUTOCS-react\src\modules" />
-      <recent name="C:\jieun\developer\final-project\frontend\AUTOCS-react\src\pages\Mypage" />
-    </key>
-  </component>
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="finalreact" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="finalreact" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+}]]></component>
   <component name="TaskManager">
+    <task id="LOCAL-00001" summary="비밀번호 중복확인 유효성검사 완 23/9/5">
+      <created>1693904222317</created>
+    <task id="LOCAL-00001" summary="머지위한 커밋">
+      <created>1693874594256</created>
     <task active="true" id="Default" summary="Default task">
       <changelist id="e5e69753-cc39-4812-8b5e-965ae83abd38" name="Changes" comment="" />
       <created>1692331221305</created>
@@ -204,9 +130,48 @@
     </task>
     <task id="LOCAL-00001" summary="첫번째 커밋">
       <created>1692332083730</created>
+    <task id="LOCAL-00001" summary="머지위한 커밋">
+      <created>1693874594256</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
+      <updated>1693904222317</updated>
+    </task>
+    <task id="LOCAL-00002" summary="비밀번호 중복확인 유효성검사 와 현재 비밀번호와 일치해야만 새 비밀번호 input창이 활성화됨 &#10;새 비밀번호 변경 작업 진행해야함 23/9/5">
+      <created>1693906151887</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1693906151887</updated>
+    </task>
+    <task id="LOCAL-00003" summary="비밀번호 유효성 검사 진행 완료 이제 api로 값을 넘겨야함.  23/9/6">
+      <created>1693967812125</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1693967812125</updated>
+    </task>
+    <task id="LOCAL-00004" summary="todo리스트 추가 수정 / 마이페이지 넘긴값 가져오기  23/9/6">
+      <created>1694015359384</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1694015359384</updated>
+    </task>
+    <task id="LOCAL-00005" summary="메인페이지 레이아웃 정리  23/9/7">
+      <created>1694050613352</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1694050613352</updated>
+    </task>
+    <task id="LOCAL-00006" summary="메인페이지 레이아웃 정리  23/9/7">
+      <created>1694052206776</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1694052206776</updated>
+      <updated>1693874594256</updated>
       <updated>1692332083730</updated>
     </task>
     <task id="LOCAL-00002" summary="첫번째 커밋">
@@ -243,7 +208,9 @@
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
       <updated>1692586440579</updated>
+      <updated>1693874594256</updated>
     </task>
+    <option name="localTasksCounter" value="2" />
     <task id="LOCAL-00007" summary="TodoList 리액트 기능 작업(기능구현완 - 세부 스타일링 작업 진행중) insert 버튼 디자인수정">
       <created>1692588243656</created>
       <option name="number" value="00007" />
@@ -455,35 +422,29 @@
       <updated>1693828757912</updated>
     </task>
     <option name="localTasksCounter" value="37" />
+    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00007" summary="머지를 위한 커밋(메인 수정중)  23/9/7">
+      <created>1694065116230</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1694065116230</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="jieun" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="비밀번호 중복확인 유효성검사 완 23/9/5" />
+    <MESSAGE value="비밀번호 중복확인 유효성검사 와 현재 비밀번호와 일치해야만 새 비밀번호 input창이 활성화됨 &#10;새 비밀번호 변경 작업 진행해야함 23/9/5" />
+    <MESSAGE value="비밀번호 유효성 검사 진행 완료 이제 api로 값을 넘겨야함.  23/9/6" />
+    <MESSAGE value="todo리스트 추가 수정 / 마이페이지 넘긴값 가져오기  23/9/6" />
+    <MESSAGE value="메인페이지 레이아웃 정리  23/9/7" />
+    <MESSAGE value="머지를 위한 커밋(메인 수정중)  23/9/7" />
+    <option name="LAST_COMMIT_MESSAGE" value="머지를 위한 커밋(메인 수정중)  23/9/7" />
+    <MESSAGE value="머지위한 커밋" />
+    <option name="LAST_COMMIT_MESSAGE" value="머지위한 커밋" />
+    <MESSAGE value="머지위한 커밋" />
+    <option name="LAST_COMMIT_MESSAGE" value="머지위한 커밋" />
     <MESSAGE value="TodoList 리액트 화면단 이동작업(마이페이지 수정중 회원/매장/관리)" />
     <MESSAGE value="TodoList 리액트 화면단 이동작업(메인 /todo모달창 전역작업진행중)" />
     <MESSAGE value="TodoList 리액트 화면단 이동작업(메인 /todo모달창 전역작업완료)" />
