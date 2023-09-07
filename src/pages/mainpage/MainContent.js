@@ -83,7 +83,7 @@ const MainContent = () => {
                                 <button>받은 쪽지함</button>
                                 <button>휴가 신청</button>
                                 <button>휴가 신청</button>
-                                <button>휴가 신청</button>
+                                <button><NavLink to="/menu/registOk"></NavLink>휴가 신청</button>
                             </div>
                         </div>
                     </div>
