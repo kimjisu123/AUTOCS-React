@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="edd449e3-8f7f-41fd-8d85-7a0014586861" name="Changes" comment="2023-09-05 commit&#10;커밋">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/11eb06d8-4138-4e66-bfa7-f890898a4d28.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/11eb06d8-4138-4e66-bfa7-f890898a4d28.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-08-31__10_36__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-08-31_오전_10_36_[Changes]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/apis/DepartmentAPICalls.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apis/DepartmentAPICalls.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/DepartmentModule.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/DepartmentModule.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/management/HeadOfficeContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/management/HeadOfficeContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/management/Personnel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/management/Personnel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/management/WorkStatusContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/management/WorkStatusContent.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +36,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/CSS final/SpringProject",
+    "last_opened_file_path": "C:/CSS final/react",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -59,6 +57,8 @@
       <workItem from="1693874149218" duration="23380000" />
       <workItem from="1693956544844" duration="8329000" />
       <workItem from="1693985260425" duration="4630000" />
+      <workItem from="1694049206074" duration="11918000" />
+      <workItem from="1694079036880" duration="2218000" />
     </task>
     <task id="LOCAL-00001" summary="2023-09-05 commit&#10;중간 커밋">
       <created>1693884733862</created>

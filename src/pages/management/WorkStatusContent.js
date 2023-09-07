@@ -36,11 +36,6 @@ function WorkStatusContent (){
     const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토", "일"];
 
 
-
-
-
-
-
     // 이번 주의 근태 정보 (수정 완료)
     const weekData =  workData.data && workData.data.length >0 ? workData.data.filter(item => {
 
@@ -74,7 +69,6 @@ function WorkStatusContent (){
 
 
     // weekOvertime는 시분초밀리초의 값을 따로 구해 밀리초로 반환을 해야함
-    // 이번주 누적 근로 시간 (문제 없음)
     const weekTotalTime = weekData && weekData.length > 0 ? weekData.reduce((total, item) => {
 
         const overTime = new Date(item.extensionTime);
@@ -98,7 +92,6 @@ function WorkStatusContent (){
 
 
     // 이번달 누적 근로시간
-    // (문제 없음)
     const monthTotalTime = monthData && monthData.length > 0 ? monthData.reduce((total, item) => {
 
         const overTime = new Date(item.extensionTime);
@@ -120,7 +113,7 @@ function WorkStatusContent (){
     const remainingSeconds = monthTotalSeconds % 86400; // 남은 초
 
 
-    // 8총 근무시간에서 8시간을 빼주는 함수
+    // 총 근무시간에서 8시간을 빼주는 함수(연장근무)
     function format(timeString){
 
         const subString = timeString.substring(0, 2);
@@ -295,6 +288,7 @@ function WorkStatusContent (){
 
     }
 
+    // 연장 근무가 있을시 기본 근무시간을 구하는 함수
     function defaultTime(timeString) {
         const components = timeString.split(':');
         const hours = parseInt(components[0], 10);
