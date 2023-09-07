@@ -4,7 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import {
-    callOrderProductListAPI
+    callOrderProductListAPI,
+    callOrderProductUpdateAPI,
 } from '../../apis/StockAPICalls'
 import orderProductReducer from "../../modules/OrderProductModule";
 
@@ -16,6 +17,11 @@ function OrderList() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    // 수정
+    const [modifyMode, setModifyMode] = useState(false);
+    const [selectedOrders, setSelectedOrders] = useState([]); // 배열로 선택된 주문물품 저장
+
+    // 조회
     const orderProduct = useSelector(state => state.orderProductReducer);
     const orderProductList = orderProduct.data;
 
@@ -38,32 +44,76 @@ function OrderList() {
             setStart((currentPage - 1) * 5);
             dispatch(callOrderProductListAPI({
                 currentPage: currentPage,
-                // s: '',
-                // startDate: getFirstDayOfMonth(), // 이번 달의 첫째 날로 초기화
-                // endDate: getCurrentDate() // 오늘 날짜로 초기화
+                stat: 'WAITING',
+                search: '',
+                startDate: '20230907',
+                endDate: '20230908'
             }));
         }
         ,[currentPage]
     );
 
+    // 수정
+    const [modifyForm, setModifyForm] = useState({
+        orderProductNo: '',
+        status: '',
+    });
 
-
-
-
-
-
-
-
-
-
-
-    const onClickPermitHandler= () => {
-        alert('승인하시겠습니까?');
+    // 수정
+    const onClickModifyModeHandler = (e) => {    // 수정모드
+        setModifyMode(true);
+        let inputValue = { orderProductNo: e.target.value };
+        setSelectedOrders(prevSelectedOrders => [...prevSelectedOrders, inputValue]);
     }
 
-    const onClickRejectHandler= () => {
-        alert('반려하시겠습니까?');
+    console.log(selectedOrders)
+
+    /* 승인 핸들러 */
+    const onClickPermitHandler = () => {
+        const confirmed = window.confirm('승인하시겠습니까?');
+        if (confirmed) {
+            selectedOrders.forEach(form => {
+                const formData = new FormData();
+                formData.append("orderProductNo", form.orderProductNo);
+                formData.append("status", 'PERMIT');
+
+                dispatch(callOrderProductUpdateAPI({
+                    form: formData
+                }));
+            });
+
+            setModifyMode(false);
+            setSelectedOrders([]); // 선택된 카테고리 초기화
+
+            alert('승인되었습니다.');
+            navigate('/stock/orderlist', { replace: true });
+            window.location.reload();
+        }
     }
+
+    /* 반려 핸들러 */
+    const onClickRejectHandler = () => {
+        const confirmed = window.confirm('반려하시겠습니까?');
+        if (confirmed) {
+            selectedOrders.forEach(form => {
+                const formData = new FormData();
+                formData.append("orderProductNo", form.orderProductNo);
+                formData.append("status", 'REJECT');
+
+                dispatch(callOrderProductUpdateAPI({
+                    form: formData
+                }));
+            });
+
+            setModifyMode(false);
+            setSelectedOrders([]); // 선택된 카테고리 초기화
+
+            alert('반려되었습니다.');
+            navigate('/stock/orderlist', { replace: true });
+            window.location.reload();
+        }
+    }
+
 
     return (
         <div>
@@ -111,19 +161,22 @@ function OrderList() {
                     </tr>
                     {
                         Array.isArray(orderProductList) && orderProductList.map((orderProduct) => (
-                            <tr key={orderProduct.refOrderNo}>
-                                <td>{ orderProduct.refOrderNo.orderNo}</td>
-                                <td>{ orderProduct.refOrderNo.storeInfoNo.name}</td>
-                                <td>{ orderProduct.refProductNo.category.name}</td>
-                                <td>{ orderProduct.refProductNo.name}</td>
-                                <td>{ orderProduct.refProductNo.unit.name}</td>
-                                <td>{ orderProduct.refProductNo.standard.name}</td>
-                                <td>{ orderProduct.refProductNo.price}</td>
+                            <tr key={orderProduct.orderNo}>
+                                <td>{ orderProduct.orderNo}</td>
+                                <td>{ orderProduct.storeInfoName}</td>
+                                <td>{ orderProduct.categoryName}</td>
+                                <td>{ orderProduct.productName}</td>
+                                <td>{ orderProduct.unitName}</td>
+                                <td>{ orderProduct.standardName}</td>
+                                <td>{ orderProduct.price}</td>
                                 <td>{ orderProduct.quantity}</td>
                                 <td>{ orderProduct.refProductNo.etc}</td>
                                 <td>{ orderProduct.registDate}</td>
                                 <td>{ orderProduct.status}</td>
-                                <td><input value={orderProduct.orderProductNo} type="checkbox"/></td>
+                                <td><input
+                                           type="checkbox"
+                                           value={orderProduct.orderProductNo}
+                                           onClick={onClickModifyModeHandler}/></td>
                             </tr>
                         ))
                     }

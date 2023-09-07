@@ -5,14 +5,14 @@ const initialState = [];
 
 
 /* 액션 */
-export const GET_ORDER_PRODUCT           = 'stock/GET_ORDER_PRODUCT';
 export const PUT_ORDER           = 'stock/PUT_ORDER';
+export const GET_ORDER_PRODUCT           = 'stock/GET_ORDER_PRODUCT';
 export const POST_ORDER_PRODUCT           = 'stock/POST_ORDER_PRODUCT';
 export const PUT_ORDER_PRODUCT           = 'stock/PUT_ORDER_PRODUCT';
 
 const actions = createActions({
-    [GET_ORDER_PRODUCT]: () => {},
     [PUT_ORDER]: () => {},
+    [GET_ORDER_PRODUCT]: () => {},
     [POST_ORDER_PRODUCT]: () => {},
     [PUT_ORDER_PRODUCT]: () => {},
 });
@@ -20,11 +20,11 @@ const actions = createActions({
 /* 리듀서 */
 const orderProductReducer = handleActions(
     {
-        [GET_ORDER_PRODUCT]: (state, { payload }) => {
+        [PUT_ORDER]: (state, { payload }) => {
 
             return payload;
         },
-        [PUT_ORDER]: (state, { payload }) => {
+        [GET_ORDER_PRODUCT]: (state, { payload }) => {
 
             return payload;
         },
@@ -32,10 +32,10 @@ const orderProductReducer = handleActions(
 
             return payload;
         },
-        // [PUT_ORDER_PRODUCT]: (state, { payload }) => {
-        //
-        //     return payload;
-        // },
+        [PUT_ORDER_PRODUCT]: (state, { payload }) => {
+
+            return payload;
+        },
     },
     initialState
 );

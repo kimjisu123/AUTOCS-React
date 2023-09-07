@@ -8,6 +8,7 @@ import {
     callUnitRegistAPI,
     callUnitUpdateAPI
 } from '../../apis/StockAPICalls'
+import {GET_IO_GROUP} from "../../modules/IoGroupModule";
 
 function Unit() {
 
@@ -190,7 +191,9 @@ function Unit() {
                                 <td>{unit.productUnitNo}</td>
                                 <td>{unit.name}</td>
                                 <td>{unit.useYn}</td>
-                                <td><input type="checkbox" value={unit.productUnitNo} onClick={onClickModifyModeHandler} /></td>
+                                <td><input type="checkbox"
+                                           value={unit.productUnitNo}
+                                           onClick={onClickModifyModeHandler} /></td>
                             </tr>
                         ))
                     }

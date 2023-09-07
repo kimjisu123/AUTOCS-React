@@ -37,7 +37,7 @@ import {
     GET_ORDER_PRODUCT,
     POST_ORDER_PRODUCT,
     PUT_ORDER,
-    // PUT_ORDER_PRODUCT,
+    PUT_ORDER_PRODUCT,
 } from '../modules/OrderProductModule';
 
 /* 물품 조회 */
@@ -602,12 +602,12 @@ export const callOrderProductRegistAPI = ({form}) => {
 }
 
 /* 주문물품 조회 */
-export const callOrderProductListAPI = ({currentPage}) => {
+export const callOrderProductListAPI = ({currentPage, stat, search, startDate, endDate}) => {
 
     let requestURL;
 
     if(currentPage !== undefined || currentPage !== null){
-        requestURL = `http://localhost:8080/stock/orderlist?offset=${currentPage}`;
+        requestURL = `http://localhost:8080/stock/orderlist?offset=${currentPage}&status=${stat}&search=${search}&startDate=${startDate}&endDate=${endDate}`;
     }else {
         requestURL = `http://localhost:8080/stock/orderlist`;
     }
@@ -632,22 +632,22 @@ export const callOrderProductListAPI = ({currentPage}) => {
 }
 
 /* 주문물품 수정 */
-// export const callOrderProductUpdateAPI = ({form}) => {
-//
-//     const requestURL = `http://localhost:8080/stock/orderlist`;
-//
-//     return async (dispatch, getState) => {
-//
-//         const result = await fetch(requestURL, {
-//             method: "PUT",
-//             headers: {
-//                 "Accept": "*/*",
-//             },
-//             body: form
-//         })
-//             .then(response => response.json());
-//
-//         dispatch({ type: PUT_ORDER_PRODUCT,  payload: result });
-//
-//     };
-// }
+export const callOrderProductUpdateAPI = ({form}) => {
+    console.log('업데이트')
+    const requestURL = `http://localhost:8080/stock/orderlist`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "PUT",
+            headers: {
+                "Accept": "*/*",
+            },
+            body: form
+        })
+            .then(response => response.json());
+
+        dispatch({ type: PUT_ORDER_PRODUCT,  payload: result });
+
+    };
+}
