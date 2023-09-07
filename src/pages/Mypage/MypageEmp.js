@@ -1,18 +1,14 @@
 import MypageCSS from './MypageEmp.module.css';
 import emp from './emp.jpg'
 import {MdAccountCircle} from "react-icons/md";
-import DatePicker from "react-datepicker";
-import React, {useEffect, useState} from "react";
-import { ko } from 'date-fns/esm/locale';
+import React, {useCallback, useEffect, useState} from "react";
 import Modal from "react-modal";
 import UpdatePwApp from "./UpdatePwApp";
 import {useDispatch, useSelector} from "react-redux";
-import {callGetEmployeeAPI} from "../../apis/MemberAPICalls";
 import {decodeJwt} from "../../util/tokenUtils";
-import {callGetMemberTodoAPI} from "../../apis/TodoAPICalls";
-import {callGetMemberInfoAPI} from "../../apis/MypageAPICalls";
-import myPageReducer from "../../modules/MypageModule";
+import {callChangeInfoAPI, callGetMemberInfoAPI, callGetPofileAPI} from "../../apis/MypageAPICalls";
 import {format} from "date-fns";
+
 
 
 
@@ -32,28 +28,43 @@ function MypageEmp() {
     // 회원정보 가지고 오기
     const dispatch = useDispatch();
     const employees = useSelector(state => state.myPageReducer);
-    // const employeeList = employees.data;
     const accessToken = window.localStorage.getItem('accessToken');
     // console.log("employeeList : " , employeeList);
     const decodedToken = accessToken ? decodeJwt(accessToken) : null;
     const role = decodedToken ? decodedToken.auth : null;
 
+    const [memberNo , setMemberNo] = useState(0);
+    const [image, setImage] = useState(null);
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    // 사진 파일 전달
+    const [ selectedImage, setSelectedImage ] = useState('');
 
     useEffect(() => {
 
-        console.log("callGetMemberInfoAPI : {} " + callGetMemberInfoAPI(decodedToken.MemberNo))
-        dispatch(callGetMemberInfoAPI(decodedToken.MemberNo));
-        // console.log("employees : {} ", employees);
+        async function fetchData() {
+            try {
 
-        if (employees.data && employees.data.name) {
-            // 'name' 속성에 접근할 수 있습니다.
-            console.log("employeeList.name {}" ,employees.data.name);
-            // 이제 name을 사용할 수 있습니다.
-        } else {
-            // 객체나 'name' 속성이 없는 경우에 대한 처리를 여기에 추가합니다.
+                console.log("callGetMemberInfoAPI : {} " + callGetMemberInfoAPI(decodedToken.MemberNo))
+                const memeberInfo = await dispatch(callGetMemberInfoAPI(decodedToken.MemberNo));
+                // const profileInfo = await dispatch(callGetPofileAPI(decodedToken.MemberNo));
+
+                if (employees.data && employees.data.name) {
+                    // 'name' 속성에 접근할 수 있습니다.
+                    console.log("employeeList.name {}" ,employees.data.name);
+                    setMemberNo(employees.data.memberNo);
+                    console.log("employeeList.name {}" ,memberNo);
+                    // 이제 name을 사용할 수 있습니다.
+                    setSelectedImage(employees.data.memberFile);
+                    console.log("employees.data.memberFile {}" ,employees.data.memberFile);
+                }
+
+
+            } catch (error) {
+                console.error('API 호출 오류:', error);
+            }
         }
-
-
+        fetchData();
     }, []);
 
     // 생일입력 (Date에 현재 값 가지고 와야함.
@@ -61,25 +72,61 @@ function MypageEmp() {
     //  모달 값
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
-    // 사진 파일 전달
-    const [ selectedImage, setSelectedImage ] = useState(emp);
-    // 사진 url 전달 함수 ========================================================
-    const handleImageChange = (event) => {
-        const image = event.target.files[0];
-        if(image) {
-            const imageUrl = URL.createObjectURL(image);
-            setSelectedImage(imageUrl);
-            console.log("imgURL {}" ,imageUrl);
 
 
+
+    const onChangeInfo = () => {
+        try {
+
+            const formData = new FormData();
+            formData.append('employeePhone', phone);
+            formData.append('employeeEmail', email);
+            console.log("회원번호 {}" ,memberNo);
+            console.log("전화 {}" ,phone);
+            console.log("이메일 {}" ,email);
+            formData.append('memberNo', memberNo);
+
+            if(image){
+                formData.append("fileImage", image);
+            }
+
+            callChangeInfoAPI({ formData, dispatch });
+
+        } catch (error) {
+            console.error('Error:', error);
         }
     };
 
 
+    // 사진 url 전달 함수 ========================================================
+    const handleImageChange = (event) => {
+        const image = event.target.files[0];
+        setImage(image);
+        console.log('image :', image);
+        if(image) {
+            const imageUrl = URL.createObjectURL(image);
+            setSelectedImage(imageUrl);
+            console.log("imgURL {}" ,imageUrl);
+        } else {
+            setSelectedImage(employees.data.memberFile);
+        }
 
+    };
+    const handlePhoneChange = (e) => {
+        if(e !== ''){
+            setPhone(e.target.value);
+            console.log("phone",e.target.value);
+        }
 
+    }
+    const handleEmailChange= (e) => {
+        if(e !== ''){
+        setEmail(e.target.value);
+        console.log("email",e.target.value);
+        }
+    }
 
-        return (
+    return (
             <>
             { employees.data && employees.data ? (
                 <div className={mainContainer} >
@@ -95,10 +142,14 @@ function MypageEmp() {
                                         {/* 회원 사진  */}
                                         <div className={empImg}>
                                             <input type="file"
+                                                   id="file"
+                                                   name="file"
                                                    accept='image/jpg,image/png,image/jpeg,image/gif'
                                                    onChange={handleImageChange}/><MdAccountCircle/>
                                             {selectedImage && (
                                                 <img
+                                                    id="file"
+                                                    name="file"
                                                     // src={ emp }
                                                     className={empInfoImg}
                                                     src={ selectedImage }
@@ -118,7 +169,7 @@ function MypageEmp() {
                                     </div>
                                 </div>
                                 <div className={infoInput}>
-                                    <form id="infoform" action="" method="post">
+                                    {/*<form id="infoform" action="" method="post" onClick={ () => onChangeInfo(employees.data) }>*/}
                                         <div className={sections}>
                                             <div className={section1}>
                                                 <div className="empId">
@@ -133,14 +184,14 @@ function MypageEmp() {
                                                            value={employees.data.name} readOnly style={{border: "none"}}/>
                                                 </div>
                                                 <div className=" empInfo empName Eng">
-                                                    <label htmlFor="empNameEng">사원번호</label>
-                                                    <input type="text" id="empNameEng" name="empNameEng" maxLength="20"
-                                                           value={employees.data.employeeNo} style={{border: "none"}}/>
+                                                    <label htmlFor="memberNo">사원번호</label>
+                                                    <input type="text" id="memberNo" name="memberNo" maxLength="20"
+                                                           value={memberNo} style={{border: "none"}}/>
                                                 </div>
                                                 <div className=" empInfo empEmail">
                                                     <label htmlFor="empEmail">이메일</label>
                                                     <input type="email" id="empEmail" name="empEmail" maxLength="20"
-                                                           value={employees.data.employeeEmail} style={{border: "none"}}/>
+                                                           onChange={handleEmailChange} value={employees.data.employeeEmail} style={{border: "none"}}/>
                                                 </div>
                                                 <div className=" empInfo empDuty">
                                                     <label htmlFor="empDuty">직책</label>
@@ -152,7 +203,8 @@ function MypageEmp() {
                                                     <label htmlFor="empDep">부서명</label>
                                                     <input type="text" id="empDep" name="empDep" maxLength="20"
                                                            value={employees.data.department}
-                                                           style={{border: "none"}}/>
+                                                           style={{border: "none"}} readOnly/>
+
                                                 </div>
                                             </div>
                                             <div className={section2}>
@@ -162,87 +214,56 @@ function MypageEmp() {
                                                             onClick={() => setModalIsOpen(true)}>비밀번호 변경
                                                     </button>
                                                 </div>
-                                                <div className=" empInfo empDep">
-                                                    <label htmlFor="empDep">휴대 전화</label>
-                                                    <input type="tel" id="empDep" name="empDep" maxLength="20"
-                                                           value={employees.data.employeePhone} style={{border: "none"}}/>
+                                                <div className=" empInfo empPhone">
+                                                    <label htmlFor="empPhone">휴대 전화</label>
+                                                    <input type="tel" id="empPhone" name="empPhone" maxLength="20"
+                                                           onChange={handlePhoneChange} value={employees.data.employeePhone} style={{border: "none"}}/>
                                                 </div>
-                                                <div className=" empInfo empDep">
-                                                    <label htmlFor="empDep">내선 번호</label>
-                                                    <input type="tel" id="empDep" name="empDep" maxLength="20"
-                                                           value={employees.data.employeePhone} style={{border: "none"}}/>
+                                                <div className=" empInfo empnum">
+                                                    <label htmlFor="empnum">내선 번호</label>
+                                                    <input type="tel" id="empnum" name="empnum" maxLength="20"
+                                                           value="112~1" style={{border: "none"}}/>
                                                 </div>
-                                                <div className=" empInfo empDep">
-                                                    <label htmlFor="empDep">생일</label>
-                                                        <DatePicker
-                                                            locale={ko}
-                                                            dateFormat="yyyy년 MM월 dd일"
-                                                            selected={birthDate}
-                                                            onChange={date => setBirthDate(date)}
-                                                        />
-                                                </div>
-                                                <div className=" empInfo empDep">
-                                                    <label htmlFor="empDep">근무지</label>
-                                                    <input type="text" id="empDep" name="empDep" maxLength="20"
+                                                {/*<div className=" empInfo empDep">*/}
+                                                {/*    <label htmlFor="empDep">생일</label>*/}
+                                                {/*        <DatePicker*/}
+                                                {/*            locale={ko}*/}
+                                                {/*            dateFormat="yyyy년 MM월 dd일"*/}
+                                                {/*            selected={birthDate}*/}
+                                                {/*            onChange={date => setBirthDate(date)}*/}
+                                                {/*        />*/}
+                                                {/*</div>*/}
+                                                <div className=" empInfo empwhere">
+                                                    <label htmlFor="empwhere">근무지</label>
+                                                    <input type="text" id="empwhere" name="empwhere" maxLength="20"
                                                            value="서울 본사" style={{border: "none"}}/>
                                                 </div>
-                                                <div className=" empInfo empDep">
-                                                    <label htmlFor="empDep">고용 형태</label>
-                                                    <input type="text" id="empDep" name="empDep" maxLength="20"
+                                                <div className=" empInfo empstate">
+                                                    <label htmlFor="empstate">고용 형태</label>
+                                                    <input type="text" id="empstate" name="empstate" maxLength="20"
                                                            value="정직원"
                                                            style={{border: "none"}}/>
                                                 </div>
                                             </div>
                                         </div>
-                                        {/*<fieldset id="adress" style={{border: "none"}}>*/}
-                                        {/*<div className={empAddress}>*/}
-                                        {/*    <div className="">*/}
-                                        {/*        <div className={addressButton}>*/}
-                                        {/*            <label htmlFor="postcode">주소</label>*/}
-                                        {/*            <div>*/}
-                                        {/*                <button className={adButton} type="button"*/}
-                                        {/*                        onClick="sample6_execDaumPostcode()" value="우편번호 찾기">*/}
-                                        {/*                <span><i*/}
-                                        {/*                    className="fa-solid fa-magnifying-glass"></i>주소검색</span>*/}
-                                        {/*                </button>*/}
-                                        {/*            </div>*/}
-                                        {/*        </div>*/}
-                                        {/*        <div className={inputAddress}>*/}
-                                        {/*            <div className="postCode">*/}
-                                        {/*                <input type="text" name="zipcode" id="postcode"*/}
-                                        {/*                       placeholder="우편번호"*/}
-                                        {/*                       required style={{border: "none"}}/>*/}
-                                        {/*            </div>*/}
-                                        {/*            <div className={baseAddress}>*/}
-                                        {/*                <input type="text" name="baseAddress" id="aseAddress"*/}
-                                        {/*                       placeholder="기본주소" required style={{border: "none"}}/>*/}
-                                        {/*            </div>*/}
-                                        {/*        </div>*/}
-                                        {/*        <div className={detailAddress}>*/}
-                                        {/*            <input type="text" name="detailAddress" id="detailAddress"*/}
-                                        {/*                   placeholder="상세주소" required style={{border: "none"}}/>*/}
-                                        {/*        </div>*/}
-                                        {/*    </div>*/}
-                                        {/*</div>*/}
-                                        {/*</fieldset>*/}
                                         <div className={udButton}>
                                             <div>
-                                                <button className={updateButton} type="submit"
-                                                        onClick={() => {
-                                                            const confirmResult = window.confirm('정말로 수정하시겠습니까?');
-                                                            if (confirmResult) {
-                                                                // 예 버튼이 클릭된 경우에 실행할 코드
-                                                                // 예를 들어 회원정보 수정 함수 호출 등
-                                                            } else {
-                                                                // 아니오 버튼이 클릭된 경우에 실행할 코드
-                                                            }
-                                                        }}
+                                                <button className={updateButton} type="button"
+                                                        onClick={onChangeInfo}
+                                                        // onClick={() => {
+                                                        //     const confirmResult = window.confirm('정말로 수정하시겠습니까?');
+                                                        //     if (confirmResult) {
+                                                        //         {changeInfo}
+                                                        //     } else {
+                                                        //         // 아니오 버튼이 클릭된 경우에 실행할 코드
+                                                        //     }
+                                                        // }}
                                                 >
                                                     회원정보 수정
                                                 </button>
                                             </div>
                                         </div>
-                                    </form>
+                                    {/*</form>*/}
                                 </div>
                             </div>
                         </div>

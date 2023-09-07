@@ -49,7 +49,7 @@ const Header = () => {
                 { to: "approval", label: "전자결재" },
                 { to: "management", label: "근태관리" },
                 { to: `/mail/${decodedToken.EmployeeNo}`, label: "쪽지함" },
-                //나중에 마이페이지 안으로 넣어줘야함
+                { to: `/myPage`, label: "마이페이지" },
                 { to: "outM", label: "계정비활성화" }
             );
 
@@ -95,18 +95,6 @@ const Header = () => {
             navigate('/login', { replace: true });
         } else {
             setLoginModal(true);
-        }
-    };
-
-    const mypageHandler = () => {
-
-        if (currentTimestamp > iatTimestamp) {
-            dispatch(callLogoutAPI());
-            alert('세션이 만료되어 로그아웃됩니다.');
-            navigate('/login', { replace: true });
-        } else {
-            setLoginModal(true);
-            navigate("/마이페이지경로", { replace: true });
         }
     };
 
@@ -161,11 +149,6 @@ const Header = () => {
                             +Todo
                         </NavLink>
                         <div className="profileAndLogout">
-                            <NavLink
-                                to="myPage"
-                                className={`profile ${'/myPage' === location.pathname ? 'activeProfile' : ''}`}
-                                onClick={mypageHandler}
-                            >
                                 {decodedToken ? (
                                     <h5 className="userName" style={{ marginTop: "-0.5px", fontSize: "16px" }}>
                                         {decodedToken.Name}님 안녕하세요!
@@ -173,7 +156,6 @@ const Header = () => {
                                 ) : (
                                     window.location = "/login"
                                 )}
-                            </NavLink>
                             <button onClick={onClickLogoutHandler} style={{ marginRight: "-50px" }} className="logOut">
                                 로그아웃
                             </button>
@@ -181,14 +163,6 @@ const Header = () => {
                     </div>
                 </div>
             </div>
-
-            <NavLink
-                to={location.pathname}
-                className={`menu todo ${location.pathname === '/todo' ? 'activeMenu' : ''}`}
-                onClick={() => setModalIsOpen(true)}
-            >
-                +Todo
-            </NavLink>
 
             {/*투두 리스트 모달창 띄우기 */}
             {modalIsOpen && (
@@ -199,7 +173,7 @@ const Header = () => {
                     overlayClassName="ReactModal__Overlay"
                     contentLabel="Modal"
                 >
-                    <div style={{ width:"500px", height:"500px", margin:"60px auto"}}>
+                    <div style={{ width:"500px", height:"500px", margin:"60px auto",boxShadow:"2px 2px 10px #cdcec974"} }>
                         <TodoApp todoModal={ todoModal } setTodoModal={ setTodoModal } />
                     </div>
                 </Modal>
