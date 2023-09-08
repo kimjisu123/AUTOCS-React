@@ -145,7 +145,7 @@ function HeadOfficeContent(){
     }
 
     // 날짜 형식 포맷
-    function formatTimeString(dateTimeString) {
+    function formatTimeString (dateTimeString) {
         const date = new Date(dateTimeString);
         const hours = date.getUTCHours().toString().padStart(2, '0');
         const minutes = date.getUTCMinutes().toString().padStart(2, '0');
@@ -162,7 +162,7 @@ function HeadOfficeContent(){
 
     // 테스트용 쓰고 나서 지우기
     const onClickTest =() =>{
-        console.log(filteredData)
+        console.log(data.data.data)
     }
     return(
         <div className={styles.content}>
@@ -189,7 +189,7 @@ function HeadOfficeContent(){
                                 이름
                             </div>
                             <div className={styles.statusInfoBox2}>
-                                누적 근무 시간
+                                부서명
                             </div>
                             <div className={styles.statusInfoBox3} >
                                 {  mondayDate.getDate() + '(' + days[mondayDate.getDay()] + ')' }
@@ -218,24 +218,11 @@ function HeadOfficeContent(){
                                 <div className={styles.infoContent}>
                                     <div className={styles.statusInfoBox1}>
                                         <div>
-                                            {item.name}
-                                        </div>
-                                        <div>
-                                            {item.department.name + "("+ item.position.name + ")"}
+                                            {item.name + "("+ item.position.name + ")"}
                                         </div>
                                     </div>
                                     <div className={styles.statusInfoBox2}>
-                                        <div className={styles.cumulativeTime}>
-                                            00:00:00
-                                        </div>
-                                        <div className={styles.hoursDuty}>
-                                            <div>
-                                                기본 :0:00:00
-                                            </div>
-                                            <div>
-                                                연장 : 0:00:00
-                                            </div>
-                                        </div>
+                                        {item.department.name}
                                     </div>
                                     {item.workStatusLists.map(item=>(
                                         item.workStatus.workStatusCode !== null ?
@@ -246,10 +233,10 @@ function HeadOfficeContent(){
                                                 </div>
                                                 <div className={styles.hoursDuty}>
                                                     <div>
-                                                        기본 : {defaultTime(item.workStatus.extensionTime)}
+                                                        기본 : { item.workStatus.extensionTime && defaultTime(item.workStatus.extensionTime)}
                                                     </div>
                                                     <div>
-                                                        연장 : {formatAndAdjustTime( formatTimeString(item.workStatus.extensionTime) )}
+                                                        연장 : {item.workStatus.extensionTime && formatAndAdjustTime( formatTimeString(item.workStatus.extensionTime) )}
                                                     </div>
                                                 </div>
                                             </div>

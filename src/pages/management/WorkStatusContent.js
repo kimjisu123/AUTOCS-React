@@ -332,14 +332,15 @@ function WorkStatusContent (){
                     <div>
 
                     </div>
-                    <div className={styles.downloadHeader} style={{display: "flex"}}>
-                        <div className={styles.download}>
-                            목록 다운로드
-                        </div>
-                        <div className={styles.print} style={{margin:"0px 40px"}}>
-                            인쇄
-                        </div>
-                    </div>
+                    {/*<div className={styles.downloadHeader} style={{display: "flex"}}>*/}
+                    {/*    <div className={styles.download}>*/}
+                    {/*        목록 다운로드*/}
+                    {/*    </div>*/}
+                    {/*    <div className={styles.print} style={{margin:"0px 40px"}}>*/}
+                    {/*        인쇄*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
+
                     <div className={styles.statusContainer}>
                         <div className={styles.statusBox}>
                             <div className={styles.statusContent}>
