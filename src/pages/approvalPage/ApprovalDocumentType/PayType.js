@@ -1,7 +1,7 @@
 import {decodeJwt} from "../../../util/tokenUtils";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {callGetPayDocAPI, callGetPurchaseDocAPI} from "../../../apis/ApprovalAPICalls";
+import {callGetAppYNAPI, callGetPayDocAPI, callGetPurchaseDocAPI} from "../../../apis/ApprovalAPICalls";
 import styles from "../approval.module.css";
 import AppLine from "../AppLine";
 import ReceiveLine from "../ReceiveLine";
@@ -10,6 +10,8 @@ import DocumentReceiveLine from "../DocumentReceiveLine";
 import pay from "../PayContent.module.css";
 import PayAddRow from "../PayAddRow";
 import PayDocRow from "../PayDocRow";
+import {delDoc} from "../functionList/FuntionList";
+import {useNavigate} from "react-router-dom";
 
 function PayType({documentCode}) {
 
@@ -39,8 +41,15 @@ function PayType({documentCode}) {
 
     data && data.pay?.map(pay => (total += pay.price))
 
-    const onClickModify = () => {
+    const yn = useSelector(state => state.approvalDocumentAppYNReducer);
+    const navigate = useNavigate();
 
+    const onClickDelete = () => {
+        dispatch(callGetAppYNAPI({
+            documentCode : documentCode
+        }))
+
+        delDoc(yn, documentCode, navigate, dispatch);
     }
 
     return(
@@ -129,8 +138,7 @@ function PayType({documentCode}) {
                 <div style={{display:"flex", justifyContent:"right", marginRight:"40px"}}>
                     {/*<div className={styles.sendApp}>승인</div>*/}
                     {/*<div className={styles.sendApp}>반려</div>*/}
-                    <div className={styles.sendApp}>수정</div>
-                    <div className={styles.sendApp}>취소</div>
+                    <div className={styles.sendApp} onClick={onClickDelete}>삭제</div>
                 </div>}
         </div>
     )

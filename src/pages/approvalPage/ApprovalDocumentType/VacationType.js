@@ -2,12 +2,14 @@ import styles from "../approval.module.css";
 import {decodeJwt} from "../../../util/tokenUtils";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {callGetPurchaseDocAPI, callGetVacationDocAPI} from "../../../apis/ApprovalAPICalls";
+import {callGetAppYNAPI, callGetPurchaseDocAPI, callGetVacationDocAPI} from "../../../apis/ApprovalAPICalls";
 import AppLine from "../AppLine";
 import ReceiveLine from "../ReceiveLine";
 import vaca from "../VacationContent.module.css";
 import DocumentAppLine from "../DocumentAppLine";
 import DocumentReceiveLine from "../DocumentReceiveLine";
+import {useNavigate} from "react-router-dom";
+import {delDoc} from "../functionList/FuntionList";
 
 function VacationType({documentCode}) {
 
@@ -33,6 +35,17 @@ function VacationType({documentCode}) {
 
     const onClickFile = e => {
         console.log(e.target.nextSibling.value)
+    }
+
+    const yn = useSelector(state => state.approvalDocumentAppYNReducer);
+    const navigate = useNavigate();
+
+    const onClickDelete = () => {
+        dispatch(callGetAppYNAPI({
+            documentCode : documentCode
+        }))
+
+        delDoc(yn, documentCode, navigate, dispatch);
     }
 
     return (
@@ -144,10 +157,7 @@ function VacationType({documentCode}) {
                     {/*<div className={styles.sendApp}>취소</div>*/}
                 </div> :
                 <div style={{display:"flex", justifyContent:"right", marginRight:"40px"}}>
-                    {/*<div className={styles.sendApp}>승인</div>*/}
-                    {/*<div className={styles.sendApp}>반려</div>*/}
-                    <div className={styles.sendApp}>수정</div>
-                    <div className={styles.sendApp}>취소</div>
+                    <div className={styles.sendApp} onClick={onClickDelete}>삭제</div>
                 </div>}
             <br/><br/>
         </div>

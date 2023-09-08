@@ -15,7 +15,7 @@ import todoReducer from "./TodoModule";
 import myPageReducer from "./MypageModule";
 import boardReducer from "./BoardModule";
 import {
-    approvalAppWaitReducer, approvalBusinessDocReducer,
+    approvalAppWaitReducer, approvalBusinessDocReducer, approvalDeleteDocumentReducer, approvalDocumentAppYNReducer,
     approvalHomeReducer, approvalMyAppReducer,
     approvalMyBusinessReducer, approvalMySeeReducer, approvalPayDocReducer, approvalPurchaseDocReducer,
     approvalReducer, approvalSeeWaitReducer,
@@ -37,7 +37,6 @@ const rootReducer = combineReducers({
     orderReducer,
     todoReducer,
     marketReducer,
-    approvalReducer,
     mailSentReducer,
     myPageReducer,
     boardReducer,
@@ -54,7 +53,9 @@ const rootReducer = combineReducers({
     approvalTrafficDocReducer,
     approvalPurchaseDocReducer,
     approvalVacationDocReducer,
-    approvalPayDocReducer
+    approvalPayDocReducer,
+    approvalDocumentAppYNReducer,
+    approvalDeleteDocumentReducer
 });
 
 export default rootReducer;

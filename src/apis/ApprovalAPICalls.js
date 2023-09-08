@@ -12,7 +12,7 @@ import {
     GET_SEE_WAIT,
     GET_MY_APP,
     GET_MY_SEE,
-    GET_BUSINESS_DOC, GET_TRAFFIC_DOC, GET_PURCHASE_DOC, GET_VACATION_DOC, GET_PAY_DOC
+    GET_BUSINESS_DOC, GET_TRAFFIC_DOC, GET_PURCHASE_DOC, GET_VACATION_DOC, GET_PAY_DOC, GET_APP_YN, PUT_APPROVAL
 } from '../modules/ApprovalModule'
 import {decodeJwt} from "../util/tokenUtils";
 
@@ -447,6 +447,61 @@ export const callGetPayDocAPI = ({documentCode}) => {
             .then(response => response.json())
         if(result.status === 200) {
             dispatch({type: GET_PAY_DOC, payload : result.data});
+        }
+    }
+}
+
+export const callGetAppYNAPI = ({documentCode}) => {
+
+    const requestURL = `http://localhost:8080/approval/document/appYN/${documentCode}`;
+
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            }
+        })
+            .then(response => response.json())
+        if(result.status === 200) {
+            dispatch({type:GET_APP_YN, payload : result.data});
+        }
+    }
+}
+
+export const deleteDocumentAPI = ({documentCode}) => {
+
+    console.log("delete ", documentCode)
+
+    const requestURL = `http://localhost:8080/approval/delete/${documentCode}`;
+
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+
+            method: "DELETE",
+        })
+            .then(response => response.json())
+        if(result.status === 200) {
+            dispatch({type:GET_APP_YN, payload : result.data});
+        }
+    }
+}
+
+export const putApprovalAPI = ({documentCode, employeeNo}) => {
+
+    const requestURL = `http://localhost:8080/approval/${documentCode}/${employeeNo}`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+
+            method : "PUT",
+        })
+            .then(response => response.json())
+        if(result.status === 200) {
+            dispatch({type: PUT_APPROVAL, payload : result.data});
         }
     }
 }

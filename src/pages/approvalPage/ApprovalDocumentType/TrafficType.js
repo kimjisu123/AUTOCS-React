@@ -3,10 +3,12 @@ import traffic from "../Traffic.module.css";
 import {decodeJwt} from "../../../util/tokenUtils";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {callGetTrafficDocAPI} from "../../../apis/ApprovalAPICalls";
+import {callGetAppYNAPI, callGetTrafficDocAPI} from "../../../apis/ApprovalAPICalls";
 import TrafficDocumentRow from "../TrafficDocumentRow";
 import DocumentAppLine from "../DocumentAppLine";
 import DocumentReceiveLine from "../DocumentReceiveLine";
+import {useNavigate} from "react-router-dom";
+import {delDoc} from "../functionList/FuntionList";
 
 function TrafficType({documentCode}) {
 
@@ -34,6 +36,17 @@ function TrafficType({documentCode}) {
     }
 
     data && data.traffic?.map(m => total += m.price);
+
+    const yn = useSelector(state => state.approvalDocumentAppYNReducer);
+    const navigate = useNavigate();
+
+    const onClickDelete = () => {
+        dispatch(callGetAppYNAPI({
+            documentCode : documentCode
+        }))
+
+        delDoc(yn, documentCode, navigate, dispatch);
+    }
 
     return (
         <div className={styles.content}>
@@ -124,10 +137,7 @@ function TrafficType({documentCode}) {
                     {/*<div className={styles.sendApp}>취소</div>*/}
                 </div> :
                 <div style={{display:"flex", justifyContent:"right", marginRight:"40px"}}>
-                    {/*<div className={styles.sendApp}>승인</div>*/}
-                    {/*<div className={styles.sendApp}>반려</div>*/}
-                    <div className={styles.sendApp}>수정</div>
-                    <div className={styles.sendApp}>취소</div>
+                    <div className={styles.sendApp} onClick={onClickDelete}>삭제</div>
                 </div>}
         </div>
     )
