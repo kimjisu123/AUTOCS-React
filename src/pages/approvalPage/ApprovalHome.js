@@ -6,10 +6,12 @@ import {
     callGetAppLineAPI
 } from '../../apis/ApprovalAPICalls';
 import {approvalHomeReducer} from "../../modules/ApprovalModule";
+import {useNavigate} from "react-router-dom";
 
 function ApprovalHome() {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(
         () => {
@@ -29,17 +31,20 @@ function ApprovalHome() {
 
     const list = useSelector(state => state.approvalReducer);
 
-    const onClickHandler = () => {
-        console.log(result);
-    }
-
     const passData1 = result.length > 0 && result[0][0];
     const passData2 = result.length > 0 && result[1][0];
     const passData3 = result.length > 0 && result[2][0][0];
 
+    const onClickHandler = (e) => {
+        // console.log(e.target.nextSibling.nextSibling.innerText)
+        const documentCode = e.target.nextSibling.value;
+        const type = e.target.nextSibling.nextSibling.innerText;
+        navigate('/approval/document', {state:{documentCode : documentCode, type : type}});
+    }
+
     return (
         <div className={style.content}>
-            <div className={style.TopTitle} onClick={onClickHandler}>
+            <div className={style.TopTitle}>
                 전자결재
             </div>
             {passData3 === 0? <div className={style.willApp}>
@@ -65,8 +70,9 @@ function ApprovalHome() {
                     {passData1?.length > 0 && passData1.map(doc =>
                         <tr>
                             <td className={style.td0}>{doc.applicationDate.substring(0,10)}</td>
+                            <td className={style.td1} onClick={e => onClickHandler(e)}>{doc.documentTitle}</td>
+                            <input type="hidden" value={doc.documentCode}/>
                             <td className={style.td0}>{doc.documentType}</td>
-                            <td className={style.td1}>{doc.documentTitle}</td>
                             <td className={style.td0}>{doc.fileNum}</td>
                             <td className={style.td0}>{doc.status}</td>
                         </tr>
@@ -83,8 +89,8 @@ function ApprovalHome() {
 
                     <tr>
                         <th className={style.th}>발신일</th>
-                        <th className={style.th}>결재양식</th>
                         <th className={style.th}>제목</th>
+                        <th className={style.th}>결재양식</th>
                         <th className={style.th}>첨부</th>
                         <th className={style.th}>결재상태</th>
                     </tr>
@@ -93,8 +99,9 @@ function ApprovalHome() {
                     {passData2?.length > 0 && passData2.map(doc =>
                         <tr>
                             <td className={style.td0}>{doc.applicationDate.substring(0,10)}</td>
+                            <td className={style.td1} onClick={e => onClickHandler(e)}>{doc.documentTitle}</td>
+                            <input type="hidden" value={doc.documentCode}/>
                             <td className={style.td0}>{doc.documentType}</td>
-                            <td className={style.td1}>{doc.documentTitle}</td>
                             <td className={style.td0}>{doc.fileNum}</td>
                             <td className={style.td0}>{doc.status}</td>
                         </tr>

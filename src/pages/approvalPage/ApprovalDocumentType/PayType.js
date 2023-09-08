@@ -39,6 +39,10 @@ function PayType({documentCode}) {
 
     data && data.pay?.map(pay => (total += pay.price))
 
+    const onClickModify = () => {
+
+    }
+
     return(
         <div className={styles.content} onClick={onClick}>
             <div className={styles.area1}>비 용 청 구</div>
