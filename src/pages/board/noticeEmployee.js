@@ -27,7 +27,7 @@ const NoticeEmployee = () => {
 
     return (
         <div className="notice-employee">
-            <h1 style={{ marginBottom: '30px', marginTop: '-20px', marginRight: '40px'}}>공지사항</h1>
+            <h1 style={{ marginBottom: '30px', marginTop: '10px'}}>공지사항</h1>
             <div className="board-container">
                 {filteredBoardData.map((item, index) => (
                     <div key={index} className="board-item">

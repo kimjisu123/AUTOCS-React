@@ -53,6 +53,69 @@ export const callWritingInsertAPI = ({ formData }) => {
         });
 };
 
+// 게시판 update
+export const callUpdateBoardAPI = ({ formData }) => {
+    const requestURL = 'http://localhost:8080/board/updateBoard';
+
+    console.log("formData=========>" + formData);
+    for (const entry of formData.entries()) {
+        console.log(entry[0], entry[1]);
+    }
+    console.log("formData======================");
+
+    return fetch(requestURL, {
+        method: 'POST',
+        headers: {
+            "Accept": "*/*"
+        },
+        body: formData,
+    })
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                console.error('Error board update');
+                throw new Error('Error board update');
+            }
+        })
+        .then(() => {
+            window.alert('게시물이 수정 되었습니다.');
+            window.location="/board/notieE";
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+};
+
+// 게시판 delete
+export const callDeleteBoardAPI = (boardNo) => {
+
+    console.log("boardNo=========>" + boardNo);
+    const requestURL = `http://localhost:8080/board/deleteBoard?boardNo=${boardNo}`;
+
+    return fetch(requestURL, {
+        method: 'POST',
+        headers: {
+            "Accept": "*/*"
+        },
+    })
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                console.error('Error board delete');
+                throw new Error('Error board delete');
+            }
+        })
+        .then(() => {
+            window.alert('게시물이 삭제 되었습니다.');
+            window.location="/board/notieE";
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+};
+
 // 특정 게시물 불러오기
 export const callFindBoardNumAPI = (boardNoAsInt) => {
     const boardNo = boardNoAsInt;

@@ -27,7 +27,7 @@ const Rules = () => {
 
     return (
         <div className="notice-employee">
-            <h1 style={{marginBottom: "30px", marginTop: "-20px", marginRight: "40px"}}>업무 규정 및 규칙</h1>
+            <h1 style={{marginBottom: "30px", marginTop: "10px"}}>업무 규정 및 규칙</h1>
             <div className="board-container">
                 {filteredBoardData.map((item, index) => (
                     <div key={index} className="board-item">

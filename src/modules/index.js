@@ -37,7 +37,6 @@ const rootReducer = combineReducers({
     orderReducer,
     todoReducer,
     marketReducer,
-    approvalReducer,
     mailSentReducer,
     myPageReducer,
     boardReducer,
