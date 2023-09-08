@@ -35,3 +35,40 @@ margin-right: 10px;
 .boardButtons1:hover {
     background-color: #58753c;
 }
+
+/*댓글 창 css*/
+.comment-form {
+    display: flex;
+    align-items: center;
+    max-width: 900px;
+    margin: auto;
+    padding: 10px;
+    background-color: #e7efe4;
+    border-radius: 5px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+    flex-grow: 1;
+    margin-right: -295px;
+}
+
+.form-control {
+    width: calc(100% - 8px); /* 8px은 padding 값 */
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: none;
+}
+
+.btn-primary {
+    background-color: #334b1b;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+}

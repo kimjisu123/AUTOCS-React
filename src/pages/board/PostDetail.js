@@ -78,7 +78,7 @@ const PostDetail = () => {
                 {board.anonymity === 'Y'
                     ? '익명'
                     : role === 'STORE'
-                        ? board.storeName
+                        ? board.storeName || "AUTOCS"
                         : `${board.department} ${board.employeeName} ${board.position}`
                 }
             </div>
@@ -129,6 +129,22 @@ const PostDetail = () => {
             <Editor
                 editorState={editorState}
             />
+                <div style={{borderBottom: "1px solid #2a3c1e",  width: "80%", marginLeft: "150px"}}></div>
+                <div style={{marginTop: "60px"}}/>
+            {/*댓글 입력란*/}
+                <form className="comment-form">
+                    <div className="form-group">
+        <textarea
+            className="form-control"
+            placeholder="댓글을 입력하세요..."
+            rows="2"
+            required
+        />
+                    </div>
+                    <div className="form-group">
+                        <button type="submit" className="btn btn-primary">댓글 작성</button>
+                    </div>
+                </form>
             </div>
         </div>
     );
