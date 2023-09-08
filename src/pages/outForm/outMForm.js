@@ -1,15 +1,72 @@
 import img from './loginMain.png'
 import './outMForm.css'
-import {Link} from "react-router-dom";
-
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import ko from 'date-fns/locale/ko';
+import {decodeJwt} from "../../util/tokenUtils";
+import {callEmployeeOutAPI} from "../../apis/MemberAPICalls";
+import {useDispatch, useSelector} from "react-redux";
 
 const OutMForm = () => {
 
+    const accessToken = window.localStorage.getItem('accessToken');
+    const decodedToken = accessToken ? decodeJwt(accessToken) : null;
+    const dispatch = useDispatch();
+
+    const [reason, setReason] = useState('');
     const [selectedDate, setSelectedDate] = useState(null);
+
+    // const apply = useSelector(state => state.memberReducer) || null;
+    // console.log("apply>>>>>>>>>>>>>", apply);
+
+    // if (apply && apply.data) {
+    //     console.log("applydata>>>>>>>>>>>>>", apply.data);
+    //     console.log("applydata>>>>>>>>>>>>>", apply.data.reason);
+    //
+    //     if (apply.data.reason) {
+    //         window.alert('이미 신청하신 이력이 있습니다.');
+    //         window.location = "/main";
+    //     }
+    // }
+
+
+    //신청
+    const handleEOut = () => {
+
+        if (!reason || !selectedDate) {
+            window.alert('퇴사일과 사유를 입력해주세요.');
+            return;
+        }
+
+        try {
+            const outInfo = {
+                "employee": {
+                    "name": decodedToken.Name,
+                    "department": decodedToken.Department,
+                    "position": decodedToken.Position,
+                    "employeeOut": selectedDate,
+                    "reason": reason,
+                },
+                "member": {
+                    "no": decodedToken.MemberNo
+                }
+            };
+
+            console.log('Info to Pass:', outInfo);
+
+            dispatch(callEmployeeOutAPI(outInfo))
+
+            console.log('Employee Out Process End!!');
+
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+    const handleReasonChange = (event) => {
+        setReason(event.target.value);
+    };
 
     return (
             <div className="border">
@@ -20,9 +77,9 @@ const OutMForm = () => {
                     <div className="separator" style={{width: "50%"}}></div>
 
                     <h4 style={{ marginBottom: "10px", marginTop: "10px", background: "white" }}>이름</h4>
-                    <input className="lo" type="text" id="name" name="name" required />
+                    <input className="lo" type="text" id="name" name="name" value={decodedToken.Name} readOnly required />
 
-                    <h4 style={{ marginBottom: "10px", marginTop: "5px", background: "white" }}>퇴사일</h4>
+                    <h4 style={{ marginBottom: "10px", marginTop: "5px", background: "white" }}>퇴사일(선택)</h4>
                     <DatePicker
                         selected={selectedDate}
                         onChange={date => setSelectedDate(date)}
@@ -35,32 +92,27 @@ const OutMForm = () => {
                     />
 
                     <h4 style={{ marginBottom: "10px", marginTop: "10px", background: "white" }}>부서</h4>
-                    <select id="pos" name="department">
-                        <option value="default">부서를 선택하세요</option>
-                        <option value="H1">인사부</option>
-                        <option value="F1">재무/회계부</option>
-                        <option value="M1">경영부</option>
-                        <option value="M2">마케팅부</option>
-                        <option value="S1">영업부</option>
-                        <option value="S2">서비스부</option>
-                    </select>
+                    <input className="lo" type="text" id="department" department="name" value={decodedToken.Department} readOnly required />
+
 
                     <h4 style={{ marginBottom: "10px", marginTop: "20px", background: "white"}}>직급</h4>
-                    <select id="pos" name="position">
-                        <option value="default">직급을 선택하세요</option>
-                        <option value="b1">부장</option>
-                        <option value="c1">차장</option>
-                        <option value="g1">과장</option>
-                        <option value="d1">대리</option>
-                        <option value="s1">사원</option>
-                        <option value="I1">인턴</option>
-                    </select>
+                    <input className="lo" type="text" id="position" department="position" value={decodedToken.Position} readOnly required />
 
-                    <h4 style={{ marginBottom: "10px", marginTop: "10px", background: "white" }}>퇴사 사유</h4>
-                    <input className="reson" type="text" id="reson" name="reson" required />
 
-                    {/*신청 되었다는 알림 띄워주기 */}
-                    <button type="button" className="regist">신청하기</button>
+                    <h4 style={{ marginBottom: "10px", marginTop: "10px", background: "white" }}>퇴사 사유(작성)</h4>
+                    <input
+                        className="reson"
+                        type="text"
+                        id="reason"
+                        name="reason"
+                        value={reason}
+                        onChange={handleReasonChange}
+                        required
+                    />
+
+                    <button type="button" className="regist" onClick={handleEOut}>
+                        신청하기
+                    </button>
                 </main>
             </div>
     )

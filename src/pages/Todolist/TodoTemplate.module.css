@@ -2,13 +2,11 @@
 
 .TodoTemplate {
 
-    border-radius: 10px;
+    border-radius: 5px;
     overflow: hidden;
-    box-shadow: 2px 2px 10px #cdcec974;
-
-    transition: all 0.5s;
-    transition-delay: 0.4s;
+    /*box-shadow: 2px 2px 10px #cdcec974;*/
     background: white;
+    min-height: 600px;
 }
 
 .appTitle {

@@ -1,9 +1,14 @@
 import  { GET_MAIL, GET_MAIL_BOOKMARK, GET_MAIL_SENT, DELETE_MAIL, PUT_MAIL, POST_MAIL_SEND, DELETE_SELECT_MAIL}  from '../modules/MailModule'
+import { decodeJwt } from '../../src/util/tokenUtils';
+
+const accessToken = window.localStorage.getItem('accessToken');
+const decodedToken = accessToken ? decodeJwt(accessToken) : null;
+
 
 export const callGetMailAPI = () => {
-    const requestURL = 'http://localhost:8080/mail';
+    const requestURL = `http://localhost:8080/mail/${decodedToken.EmployeeNo}`;
 
-     return async (dispatch, getState) => {
+    return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
             method: 'GET',
             headers: {
@@ -30,9 +35,8 @@ export const callGetMailBookmarkAPI = () => {
     }
 };
 
-export const callGetMailSentAPI = (employeeNo) => {
+export const callGetMailSentAPI = ({employeeNo}) => {
     const requestURL = `http://localhost:8080/mailSent/${employeeNo}`;
-
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
             method: 'GET',
@@ -40,8 +44,8 @@ export const callGetMailSentAPI = (employeeNo) => {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
-        }).then(response => response.json())
-            .then(value => console.log(value));
+        }).then(response => response.json());
+        console.log(result)
         dispatch({ type: GET_MAIL_SENT, payload: result });
     }
 };
@@ -58,7 +62,7 @@ export const callDELETEMailAPI = () =>{
             },
         });
         dispatch({ type: DELETE_MAIL, payload: result });
-     }
+    }
 }
 
 export const callSeleteDELETEMailAPI = (paramValue) =>{
@@ -96,7 +100,7 @@ export const callPutMailAPI = (paramValue) =>{
 
 
 export const callPostMailAPI = (paramValue) =>{
-    const requestURL = 'http://localhost:8080/mail'
+    const requestURL = `http://localhost:8080/mail/${decodedToken.EmployeeNo}`
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {

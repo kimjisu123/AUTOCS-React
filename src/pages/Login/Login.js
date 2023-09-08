@@ -5,6 +5,7 @@ import React, {useState, useEffect } from 'react';
 import { Link, Navigate  } from 'react-router-dom';
 import {useDispatch, useSelector  } from "react-redux";
 import { callLoginAPI} from "../../apis/MemberAPICalls";
+import Swal from "sweetalert2";
 
 function Login({setLogin}) {
     const dispatch = useDispatch();
@@ -35,10 +36,6 @@ function Login({setLogin}) {
         }
     }, [loginMember, navigate]);
 
-    useEffect(() => {
-        console.log("계정저장 확인>>>>>> : " + rememberAccount);
-    }, [rememberAccount]);
-
 
     // 로그인 상태일 시 로그인 페이지로 접근 방지
     const Token = localStorage.getItem('accessToken');
@@ -46,7 +43,7 @@ function Login({setLogin}) {
         return <Navigate to="/main" replace />;
     }
 
-    const handlelogin = () => {
+    const handleLogin = () => {
         try {
             const loginInfo = {
                 id: id,
@@ -60,7 +57,6 @@ function Login({setLogin}) {
                 rememberAccount: rememberAccount
             }))
 
-            setLogin(false);
             console.log('[LoginModal] Login Process End!!');
 
         } catch (error) {
@@ -96,7 +92,7 @@ function Login({setLogin}) {
                     <h4 style={{ marginBottom: "10px", marginTop: "5px", background: "white" }}>비밀번호</h4>
                     <input className="lo" type="password" id="pwd" name="pwd" value={pwd} onChange={handlePwdChange} required />
 
-                    <button type="login" onClick={handlelogin}>
+                    <button type="login" onClick={handleLogin}>
                         로그인
                     </button>
 

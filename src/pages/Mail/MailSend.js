@@ -2,10 +2,14 @@ import styles from './MailSend.module.css'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { callGetEmployeeAPI } from '../../apis/MemberAPICalls'
+import { callSelectEmployeeAPI } from '../../apis/MemberAPICalls'
 import { callPostMailAPI } from '../../apis/MailAPICalls'
 import {useEffect, useState} from 'react'
+import { decodeJwt } from '../../util/tokenUtils';
 function MailSend( {setModal} ){
+
+    const accessToken = window.localStorage.getItem('accessToken');
+    const decodedToken = accessToken ? decodeJwt(accessToken) : null;
 
     const onClickClose = () =>{
         setModal(false)
@@ -14,8 +18,9 @@ function MailSend( {setModal} ){
     const dispatch = useDispatch();
     const memberData = useSelector(state => state.memberReducer);
 
+
     useEffect(  ()=>{
-        dispatch(callGetEmployeeAPI());
+        dispatch(callSelectEmployeeAPI());
     }, []);
 
     const [select, setSelect] = useState([]);
@@ -30,7 +35,8 @@ function MailSend( {setModal} ){
         title : "",
         context : "",
         goDate : "",
-        status : ""
+        status : "",
+        position:"",
     });
 
 
@@ -40,20 +46,23 @@ function MailSend( {setModal} ){
         if(!name){
             setSearchArea(false);
         }
+
+
         const filterName = memberData.data.filter( (item) => item.name.includes(name))
 
         setResultName(filterName);
     };
 
-    const selectAttendees = (attendee) =>{
+    const selectAttendees =  async  (attendee) =>{
         setSelect(
             [...select, attendee]
         );
         setMail(
-            {...mail, receiver : attendee.name}
+            {...mail, receiver : attendee.name,  position: JSON.parse(attendee.position).name}
         )
         setSearchArea(false);
         setSearchValue('');
+        console.log(mail);
     }
 
     const deleteAttendees = (attendee) => {
@@ -92,6 +101,7 @@ function MailSend( {setModal} ){
         window.location.reload();
     }
 
+
     return (
         <div className={styles.body}>
             <div className={styles.header}>
@@ -117,11 +127,12 @@ function MailSend( {setModal} ){
                 {resultName && resultName.slice(0,3).map((attendee) => (
                     <li className={styles.employeeName} key={attendee.employeeNo}>
                         {attendee.name}
+                        {JSON.parse(attendee.position).name}
                         <div className={styles.insert} onClick={ () => selectAttendees(attendee) }> 추가 </div>
                     </li>
                 ))}
             </ul>
-            <ul style={{display:"flex"}}>
+            <ul style={{display:"flex", marginLeft:"40px"}}>
                 {select && select.map( (name) => (
                     <li className={styles.select}>
                         {name.name }

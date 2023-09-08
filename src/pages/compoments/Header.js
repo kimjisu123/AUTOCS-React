@@ -1,8 +1,8 @@
 import './Header.css';
 import img from './logo-black1.png';
 import { useEffect, useState } from 'react';
-import { NavLink, useNavigate, useLocation  } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { decodeJwt } from '../../util/tokenUtils';
 import { callLogoutAPI } from '../../apis/MemberAPICalls';
 import login from '../Login/Login';
@@ -10,53 +10,61 @@ import Modal from 'react-modal';
 import TodoApp from "../Todolist/TodoApp";
 import './CoustomModal.css';
 import { useUserContext } from "../Todolist/TodoContext";
-
+import Swal from 'sweetalert2';
+import Login from "../Login/Login";
 
 const Header = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const accessToken = window.localStorage.getItem('accessToken');
 
-    const [login, setLogin] = useState(false);
+    const [login, setLoginModal] = useState(false);
 
     const decodedToken = accessToken ? decodeJwt(accessToken) : null;
     const role = decodedToken ? decodedToken.auth : null;
     const department = decodedToken ? decodedToken.Department : null;
 
+    //로그인 세션만료 관련
+    const iatTimestamp = decodedToken ? decodedToken.exp * 1000 : null;
+    const currentTimestamp = Date.now();
+
     //토큰값
     //console.log("토큰값>>>>>>>>>>>>>>>>>" + accessToken);
-    //console.log("department>>>>>>>>>>>>>>>>>" + department);
 
     //창띄울때  요거 NavLink to 에 location.pathname 넣으면 현재페이지 유지됩니다.
     const location = useLocation();
 
     const getMenuItems = (role, department) => {
+
         let menuItems = [
             { to: "/main", label: "홈" },
-            { to: "/dashboard", label: "게시판" },
             { to: "calendar", label: "캘린더" },
-            { to: "todo", label: "+Todo" }
+            // { to: "todo", label: "+Todo" }
         ];
 
         if (role === "EMPLOYEE") {
             menuItems.push(
+                { to: "/board/notieE", label: "게시판" },
                 { to: "chart", label: "조직도" },
                 { to: "approval", label: "전자결재" },
                 { to: "management", label: "근태관리" },
-                { to: "mail", label: "쪽지함" }
+                { to: `/mail/${decodedToken.EmployeeNo}`, label: "쪽지함" },
+                { to: `/myPage`, label: "마이페이지" },
+                { to: "outM", label: "계정비활성화" }
             );
 
             if (department === "인사부") {
-                menuItems.push({ to: "menu/registration", label: "계정관리" });
-                //나중에 마이페이지 안으로 넣어줘야함
-                menuItems.push({ to: "outM", label: "계정비활성화" });
+                menuItems.push({ to: "menu/registration", label: "인사관리" });
             }
             if (department === "경영부") {
                 menuItems.push({ to: "stock", label: "재고관리" });
             }
         } else if (role === "STORE") {
             menuItems.push(
+                { to: "/board/notieM", label: "게시판" },
                 { to: "stock", label: "재고관리" },
+                //영업점 마이페이지 경로로 바꿔야함
+                //{ to: `/myPage`, label: "마이페이지" },
                 //나중에 마이페이지 안으로 넣어줘야함
                 { to: "outS", label: "계정비활성화" }
 
@@ -71,27 +79,38 @@ const Header = () => {
 
     // TodoList 모달 값
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const { todoModal, setTodoModal } = useUserContext(); // Use todos and setTodos from the context
+    const { todoModal, setTodoModal } = useUserContext();
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            handleTokenExpiration();
+        }, 14 * 60 * 60 * 1000);
+        return () => clearInterval(interval);
+    }, [currentTimestamp]);
 
-    const mypageHandler = () => {
-        const token = decodeJwt(window.localStorage.getItem("accessToken"));
+    // 로그인 만료(토큰 비우기)
+    const handleTokenExpiration = () => {
 
-        if (token.exp * 1000 < Date.now()) {
-            setLogin(true);
-            return;
+        if (currentTimestamp > iatTimestamp) {
+            dispatch(callLogoutAPI());
+            alert('세션이 만료되어 로그아웃됩니다.');
+            navigate('/login', { replace: true });
+        } else {
+            setLoginModal(true);
         }
-
-        navigate("/마이페이지경로", { replace: true });
     };
 
     const onClickLogoutHandler = () => {
         window.localStorage.removeItem('accessToken');
-        dispatch(callLogoutAPI());
 
-        alert('로그인 화면으로 이동합니다.');
+        Swal.fire({
+            icon: 'info',
+            title: 'Loout...',
+            text: '로그인 화면으로 이동합니다.',
+        })
+
+        dispatch(callLogoutAPI());
         navigate("/login", { replace: true });
-        window.location.reload();
     };
 
     const handleTodoClick = () => {
@@ -100,7 +119,7 @@ const Header = () => {
 
     return (
         <>
-            {login ? <login setLoginModal={setLogin} /> : null}
+            {login ? <Login setLoginModal={setLoginModal} /> : null}
             <div className="headerWrapper">
                 <div className="topNav">
                     <NavLink to="/main">
@@ -122,13 +141,16 @@ const Header = () => {
                             >
                                 {menuItem.label}
                             </NavLink>
+
                         ))}
+                        <NavLink
+                            to={location.pathname}
+                            className={`menu todo ${location.pathname === '/todo' ? 'activeMenu' : ''}`}
+                            onClick={() => setModalIsOpen(true)}
+                        >
+                            +Todo
+                        </NavLink>
                         <div className="profileAndLogout">
-                            <NavLink
-                                to="myPage"
-                                className={`profile ${'/myPage' === location.pathname ? 'activeProfile' : ''}`}
-                                onClick={mypageHandler}
-                            >
                                 {decodedToken ? (
                                     <h5 className="userName" style={{ marginTop: "-0.5px", fontSize: "16px" }}>
                                         {decodedToken.Name}님 안녕하세요!
@@ -136,7 +158,6 @@ const Header = () => {
                                 ) : (
                                     window.location = "/login"
                                 )}
-                            </NavLink>
                             <button onClick={onClickLogoutHandler} style={{ marginRight: "-50px" }} className="logOut">
                                 로그아웃
                             </button>
@@ -145,26 +166,18 @@ const Header = () => {
                 </div>
             </div>
 
-            <NavLink
-                to={location.pathname}
-                className={`menu todo ${location.pathname === '/todo' ? 'activeMenu' : ''}`}
-                onClick={() => setModalIsOpen(true)}
-            >
-                +Todo
-            </NavLink>
-
             {/*투두 리스트 모달창 띄우기 */}
             {modalIsOpen && (
                 <Modal
                     isOpen={modalIsOpen}
                     onRequestClose={() => setModalIsOpen(false)}
                     className={`customModalStyle ${modalIsOpen? 'isOpen':''}`}
-                    // contentLabel="Modal"
+                    overlayClassName="ReactModal__Overlay"
+                    contentLabel="Modal"
                 >
-                    <div style={{ width:"500px", height:"500px", margin:"60px auto"}}>
+                    <div style={{ width:"500px", height:"500px", margin:"60px auto",boxShadow:"2px 2px 10px #cdcec974"} }>
                         <TodoApp todoModal={ todoModal } setTodoModal={ setTodoModal } />
                     </div>
-
                 </Modal>
             )}
         </>
