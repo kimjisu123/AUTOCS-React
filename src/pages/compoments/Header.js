@@ -50,7 +50,7 @@ const Header = () => {
                 { to: "management", label: "근태관리" },
                 { to: `/mail/${decodedToken.EmployeeNo}`, label: "쪽지함" },
                 { to: `/myPage`, label: "마이페이지" },
-                { to: "outM", label: "계정비활성화" }
+                //{ to: "outM", label: "계정비활성화" }
             );
 
             if (department === "인사부") {
@@ -66,7 +66,7 @@ const Header = () => {
                 //영업점 마이페이지 경로로 바꿔야함
                 //{ to: `/myPage`, label: "마이페이지" },
                 //나중에 마이페이지 안으로 넣어줘야함
-                { to: "outS", label: "계정비활성화" }
+                //{ to: "outS", label: "계정비활성화" }
 
             );
         }
