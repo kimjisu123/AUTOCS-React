@@ -63,6 +63,8 @@ const Header = () => {
             menuItems.push(
                 { to: "/board/notieM", label: "게시판" },
                 { to: "stock", label: "재고관리" },
+                //영업점 마이페이지 경로로 바꿔야함
+                //{ to: `/myPage`, label: "마이페이지" },
                 //나중에 마이페이지 안으로 넣어줘야함
                 { to: "outS", label: "계정비활성화" }
 
