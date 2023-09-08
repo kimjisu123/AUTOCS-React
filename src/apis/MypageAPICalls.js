@@ -1,5 +1,5 @@
 
-import {GET_MEMBERINFO, GET_PROFILE, POST_CHECKPWD} from "../modules/MypageModule";
+import {GET_MEMBERINFO, GET_PROFILE, GET_STOREINFO, POST_CHECKPWD} from "../modules/MypageModule";
 import Swal from 'sweetalert2';
 
 
@@ -21,6 +21,27 @@ export const callGetMemberInfoAPI = (memberNo) => {
         dispatch({type: GET_MEMBERINFO, payload: result});
     }
 };
+
+
+// 매장 정보 확인하기 API
+export const callGetSToreInfoAPI = (memberNo) => {
+    const requestURL = `http://localhost:8080/member/store/${memberNo}`;
+
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        }).then(response => response.json());
+
+        console.log('마이페이지에 매장 정보가지고오기 결과 >>>>>>', result);
+        dispatch({type: GET_STOREINFO, payload: result});
+    }
+};
+
+
 
 
 // 비밀번호 확인 API
@@ -59,7 +80,7 @@ export const callPostPwdCheckAPI = (memberNo,checkPw) => {
 // 비밀번호 변경 API
     export const callPutChangePwdAPI = (memberNo,newPwd) => {
 
-        const requestURL = `http://localhost:8080/mypage/changepwd?memberNo=${memberNo}&newpw=${newPwd}`;
+        const requestURL = `http://localhost:8080/mypage/changepwd`;
         console.log('새  패스워드 변경  API진입? >>>>>>');
         console.log('새 패스워드 >>>>>>', newPwd);
         console.log('멤버번호 >>>>>>', memberNo);
@@ -69,7 +90,7 @@ export const callPostPwdCheckAPI = (memberNo,checkPw) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({memberNo: memberNo, newpw: newPwd}),
+            body: JSON.stringify({no: memberNo, pwd: newPwd}),
         })
             .then((response) => {
                 if (response.ok) {

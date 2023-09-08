@@ -17,6 +17,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {decodeJwt} from "../../util/tokenUtils";
 import {callGetMemberInfoAPI} from "../../apis/MypageAPICalls";
 import Spinner from "./Spinner-1s-200px.gif";
+import logo from "../compoments/LOGO.png";
+import Clock from "./Clock";
 
 
 
@@ -37,7 +39,11 @@ const MainContent = () => {
 
     const decodedToken = accessToken ? decodeJwt(accessToken) : null;
 
-
+    // 출퇴근 시간 보이기
+    const [isStartWorkTimeVisible, setIsStartWorkTimeVisible] = useState(false);
+    const [isFinishWorkTimeVisible, setIsFinishWorkTimeVisible] = useState(false);
+    const [workTime, setWorkTime] = useState(null);
+    const [workFinishTime, setWorkFinishTime] = useState(null);
 
 
     // 회원정보 가지고 오기
@@ -50,11 +56,11 @@ const MainContent = () => {
     const [ selectedImage, setSelectedImage ] = useState('');
 
 
-    const getCurrentTime = () => {
-        var m = moment().tz("Asia/Seoul"); // ← 이곳이 포인트
-        return m.format("HH:mm:ss");
-    };
-    const [currentTime, setCurrentTime] = useState(getCurrentTime());
+    // const getCurrentTime = () => {
+    //     var m = moment().tz("Asia/Seoul"); // ← 이곳이 포인트
+    //     return m.format("HH:mm:ss");
+    // };
+    // const [currentTime, setCurrentTime] = useState(getCurrentTime());
 
     // useEffect(() => {
     //     const intervalId = setInterval(() => {
@@ -68,7 +74,6 @@ const MainContent = () => {
 
     // 회원 정보 불러오기
     useEffect(() => {
-
         async function fetchData() {
             try {
 
@@ -94,12 +99,52 @@ const MainContent = () => {
         fetchData();
     }, []);
 
-    if (!selectedImage) {
+    // 로딩화면
+    if (!employees) {
         return <div className={mainstyle.loading}>
                     Loading...
                     <img src={Spinner} alt="로딩중" width="5%" />
                 </div>;
     }
+
+        // 출근시간 표시
+        const startWork = () => {
+        if (!isStartWorkTimeVisible) {
+            // 출근 버튼 클릭 시 현재 시간 가져오기
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+
+            // 현재 시간을 시:분 형식으로 표시
+            const formattedTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+
+            // 현재 시간을 상태에 저장
+            setWorkTime(formattedTime);
+            setIsStartWorkTimeVisible(true); // 오늘 출근을 했다고 표시
+        } else {
+            alert('오늘 이미 출근했습니다.');
+        }
+    };
+
+    //퇴근시간 표시
+    const finishWork = () => {
+        if (!isFinishWorkTimeVisible) {
+            // 출근 버튼 클릭 시 현재 시간 가져오기
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+
+            // 현재 시간을 시:분 형식으로 표시
+            const formattedTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+
+            // 현재 시간을 상태에 저장
+            setWorkFinishTime(formattedTime);
+            setIsFinishWorkTimeVisible(true); // 오늘 출근을 했다고 표시
+        } else {
+            alert('오늘 이미 퇴근했습니다.');
+        }
+    };
+
 
     return (
         <>
@@ -109,15 +154,43 @@ const MainContent = () => {
                         <div className={mainstyle.titleContainer}>
                             <div className={mainstyle.maintitle}>
                                 <div className={mainstyle.mainImg}>
-                                    <img src={ selectedImage } alt="" className={mainstyle.empInfoImg}/>
+                                    {/*<img src={ selectedImage } alt="" className={mainstyle.empInfoImg}/>*/}
+                                    {selectedImage? (
+                                        <img
+                                            // src={ emp }
+                                            className={mainstyle.empInfoImg}
+                                            src={ selectedImage }
+                                            alt="Selected"
+                                        />):(<img
+                                        // src={ emp }
+                                        className={mainstyle.empInfoImg}
+                                        src={ logo }
+                                        alt="Selected"
+                                    />)}
                                 </div>
                                 <div className={mainstyle.maintext}>
                                     <h1>안녕하세요 {decodedToken.Name}{decodedToken.Position}님</h1>
                                     <h3>오늘 하루도 힘내세요</h3>
                                 </div>
+                                <div className={mainstyle.worktimes}>
+                                    {workTime && (
+                                        <div>
+                                            <p>출근시간</p>
+                                            <h1>{workTime}</h1>
+                                        </div>
+                                    )}
+                                    {workFinishTime && (
+                                        <div>
+                                            <p>퇴근시간</p>
+                                            <h1>{workFinishTime}</h1>
+                                        </div>
+                                    )}
+                                </div>
                                 <div className={mainstyle.workbuttons}>
-                                        <button>출근하기</button>
-                                        <button>퇴근하기</button>
+                                        <button  className="startWorkTime"
+                                                 onClick={startWork}
+                                        >출근하기</button>
+                                        <button className="finishWorkTime"onClick={finishWork} >퇴근하기</button>
                                 </div>
                             </div>
                             <div className={mainstyle.fastButtons}>
@@ -136,13 +209,9 @@ const MainContent = () => {
                                 {/*<MdAccessTime />*/}
                                 <h3 style={{textAlign:"center"}}>Today</h3>
                                 <h1>{ formatDate }</h1>
-                                <h1 style={{textAlign:"center", fontSize:'60px', margin:'0px'}}>{ currentTime }</h1>
+                                <Clock/>
+                                {/*<h1 style={{textAlign:"center", fontSize:'60px', margin:'0px'}}>{ currentTime }</h1>*/}
                             </div>
-                            {/*<div className={mainstyle.darkmode}>*/}
-                            {/*    <MdAccessTime />*/}
-                            {/*    <h3>다크모드</h3>*/}
-                            {/*    <button>다크모드버튼</button>*/}
-                            {/*</div>*/}
                         </div>
                     </div>
                     <div className={mainstyle.tempBox} style={{ display:"flex"}}>
@@ -161,15 +230,14 @@ const MainContent = () => {
                     </div>
                     <div className={mainstyle.tempBox}>
                         <div className={mainstyle.flexbox}>
-                            {/*<h1>todo리스트</h1>*/}
                             <div className={mainstyle.mainTodo}><TodoApp /></div>
                         </div>
                     </div>
                     <div className={mainstyle.tempBox}>
                         <div className={mainstyle.documentPart}>
                             <div className={mainstyle.docutitle}>
-                                <div><h1 style={{textAlign:"center", color:"#696767"}}>전자문서 결제</h1></div>
-                                <div><NavLink to="/stock/myorderlist/detail"><MdKeyboardDoubleArrowRight/></NavLink></div>
+                                <div><h1 style={{textAlign:"center", color:"#696767"}}>게시판</h1></div>
+                                {/*<div><NavLink to="/stock/myorderlist/detail"><MdKeyboardDoubleArrowRight/></NavLink></div>*/}
                             </div>
                             <div className={mainstyle.doculist}>
                                 <DocuList />
@@ -183,7 +251,10 @@ const MainContent = () => {
                     </div>
                     <div className={mainstyle.tempBox}>
                         <div className={mainstyle.boradPart}>
-                            <h1 style={{textAlign:"center", color:"#696767"}}>공지사항</h1>
+                            <div className={mainstyle.docutitle}>
+                            <h1 style={{textAlign:"center", color:"#696767"}}>전자문서</h1>
+                            <div><NavLink to="/stock/myorderlist/detail"><MdKeyboardDoubleArrowRight/></NavLink></div>
+                            </div>
                             {/*<div><DocuList /></div>*/}
                             <div><ApprovalList /></div>
                         </div>

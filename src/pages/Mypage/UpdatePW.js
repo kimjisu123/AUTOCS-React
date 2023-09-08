@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import Modal from "react-modal";
 import UpdatePWok from "./UpdatePWok";
 import { decodeJwt } from '../../util/tokenUtils';
-import {POST_CHECKPWD} from "../../modules/MypageModule";
 import {callPostPwdCheckAPI, callPutChangePwdAPI} from "../../apis/MypageAPICalls";
 
 import {useSelector} from "react-redux";
@@ -41,7 +40,7 @@ function UpdatePW(resultMessage) {
         const decodedToken = decodeJwt(
             window.localStorage.getItem('accessToken')
         );
-
+        console.info("memberTodoList =========== {} ", memberTodoList);
     }, []);
 
 
@@ -77,6 +76,9 @@ function UpdatePW(resultMessage) {
     const onNewpwd = useCallback(  e=> {
         const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/
         const newPw = e.target.value;
+        console.log(e.target);
+        console.log(e.target.value)
+        console.log('------------- ', newPwd)
         setNewPwd(newPw);
         console.info("newPw  ", newPw );
         if(!passwordRegex.test(newPw)){
@@ -89,13 +91,14 @@ function UpdatePW(resultMessage) {
 
             console.info("새 비밀번호 입력 성공 ");
         }
-    },[])
+    },[newPwd])
 
 
     // 새 비밀번호 확인
     const onNewPwdConfirm = useCallback(e => {
         const newPwConfirm = e.target.value;
         setNewPwCheck(newPwConfirm);
+
         console.info("newPwd", newPwd);
         console.info("newPwConfirm ", newPwConfirm);
         if(newPwd === newPwConfirm) {
@@ -113,20 +116,18 @@ function UpdatePW(resultMessage) {
 
 
     // 비밀번호 변경 제출
-    const onChangePwd = useCallback( async e => {
-
-        e.preventDefault();
-        // if(memberNo !== null && newPwd){
-            try {
-                const response = await callPutChangePwdAPI(memberNo,newPwd);
-                setCheckResult(response);
-                if(response === "true"){setAbleinput()};
-                console.info("메세지. {} ", checkResult );
-            } catch (error){
-                console.error(error)
-            }
-        // }
-    },[])
+    const onChangePwd = async () => {
+            console.log('NewPwCheck ====>', newPwCheck)
+            console.log('newPwd =======>', newPwd);
+        try {
+            const response = await callPutChangePwdAPI(memberNo,newPwd);
+            setCheckResult(response);
+            if(response === "true"){setAbleinput()};
+            console.info("메세지. {} ", checkResult );
+        } catch (error){
+            console.error(error)
+        }
+    }
 
     return (
         <>

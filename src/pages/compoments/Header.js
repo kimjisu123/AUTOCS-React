@@ -50,7 +50,7 @@ const Header = () => {
                 { to: "management", label: "근태관리" },
                 { to: `/mail/${decodedToken.EmployeeNo}`, label: "쪽지함" },
                 { to: `/myPage`, label: "마이페이지" },
-                { to: "outM", label: "계정비활성화" }
+                // { to: "outM", label: "계정비활성화" }
             );
 
             if (department === "인사부") {
@@ -63,8 +63,8 @@ const Header = () => {
             menuItems.push(
                 { to: "/board/notieM", label: "게시판" },
                 { to: "stock", label: "재고관리" },
-                //나중에 마이페이지 안으로 넣어줘야함
-                { to: "outS", label: "계정비활성화" }
+                { to: `/mypagestore`, label: "마이페이지" },
+                // { to: "outS", label: "계정비활성화" }
 
             );
         }

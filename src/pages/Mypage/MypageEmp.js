@@ -1,5 +1,5 @@
 import MypageCSS from './MypageEmp.module.css';
-import emp from './emp.jpg'
+import logo from "../compoments/LOGO.png"
 import {MdAccountCircle} from "react-icons/md";
 import React, {useCallback, useEffect, useState} from "react";
 import Modal from "react-modal";
@@ -11,6 +11,7 @@ import {format} from "date-fns";
 import swal from "sweetalert";
 import mainstyle from "../mainpage/MainContent.module.css";
 import Spinner from "../mainpage/Spinner-1s-200px.gif";
+import {NavLink} from "react-router-dom";
 
 
 
@@ -24,7 +25,7 @@ function MypageEmp() {
     const { mainContainer, rightContainer, content, wrap , empInfoTitle, infoTitle,empInfoImg
             ,imgButton , empDepDate ,infoInput, sections, section1,section2 ,pwButton
             ,empAddress,addressButton,adButton, inputAddress, baseAddress, detailAddress
-            ,udButton,updateButton,empImg,labelbox ,
+            ,udButton,updateButton,empImg,labelbox , ousSButton
     } = MypageCSS;
 
 
@@ -37,7 +38,7 @@ function MypageEmp() {
     const role = decodedToken ? decodedToken.auth : null;
 
     const [memberNo , setMemberNo] = useState(0);
-    const [image, setImage] = useState(null);
+    const [image, setImage] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     // 사진 파일 전달
@@ -162,12 +163,12 @@ function MypageEmp() {
     };
 
 
-    if (!selectedImage) {
-        return <div className={mainstyle.loading}>
-            Loading...
-            <img src={Spinner} alt="로딩중" width="5%" />
-        </div>;
-    }
+    // if (!employees) {
+    //     return <div className={mainstyle.loading}>
+    //         Loading...
+    //         <img src={Spinner} alt="로딩중" width="5%" />
+    //     </div>;
+    // }
 
 
     return (
@@ -190,7 +191,7 @@ function MypageEmp() {
                                                    name="file"
                                                    accept='image/jpg,image/png,image/jpeg,image/gif'
                                                    onChange={handleImageChange}/><MdAccountCircle/>
-                                            {selectedImage && (
+                                            {selectedImage? (
                                                 <img
                                                     id="file"
                                                     name="file"
@@ -198,7 +199,14 @@ function MypageEmp() {
                                                     className={empInfoImg}
                                                     src={ selectedImage }
                                                     alt="Selected"
-                                                />)}
+                                                />):(<img
+                                                id="file"
+                                                name="file"
+                                                // src={ emp }
+                                                className={empInfoImg}
+                                                src={ logo }
+                                                alt="Selected"
+                                            />)}
                                         </div>
                                     </div>
                                     {/*<br/>*/}
@@ -210,6 +218,9 @@ function MypageEmp() {
                                         <h3>입사일</h3>
                                         <br/>
                                         <h1 >{format(new Date(employees.data.employeeJoin), 'yyyy/MM/dd')}</h1>
+                                    </div>
+                                    <div className={ousSButton}>
+                                        <NavLink to="/outM"><button>계정 비활성화</button></NavLink>
                                     </div>
                                 </div>
                                 <div className={infoInput}>
@@ -316,7 +327,10 @@ function MypageEmp() {
                         </div>
                     </div>
                 </div>
-            ):(<h1>값이 없습니다.</h1>) }
+            ):<div className={mainstyle.loading}>
+                Loading...
+                <img src={Spinner} alt="로딩중" width="5%" />
+              </div> }
                 {/*비밀번호 변경 모달창 띄우기 */}
                 {modalIsOpen && (
                     <Modal
