@@ -145,6 +145,41 @@ const MainContent = () => {
         }
     };
 
+    //로컬스토리지 구현
+    // useEffect(() => {
+    //     // 로컬 스토리지에서 마지막 출근 일자 가져오기
+    //     const lastWorkedDate = localStorage.getItem('lastWorkedDate');
+    //     const today = new Date().toLocaleDateString();
+    //
+    //     if (lastWorkedDate === today) {
+    //         setIsWorkedToday(true);
+    //         // 마지막 출근 일자가 오늘인 경우 버튼 비활성화
+    //     } else {
+    //         setIsWorkedToday(false);
+    //     }
+    // }, []);
+    //
+    // const startWork = () => {
+    //     if (!isWorkedToday) {
+    //         // 출근 버튼 클릭 시 현재 시간 가져오기
+    //         const now = new Date();
+    //         const hours = now.getHours();
+    //         const minutes = now.getMinutes();
+    //
+    //         // 현재 시간을 시:분 형식으로 표시
+    //         const formattedTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+    //
+    //         // 현재 시간을 상태에 저장
+    //         setCurrentTime(formattedTime);
+    //
+    //         // 오늘 출근을 했다고 표시하고 로컬 스토리지에 저장
+    //         setIsWorkedToday(true);
+    //         localStorage.setItem('lastWorkedDate', new Date().toLocaleDateString());
+    //     } else {
+    //         alert('오늘 이미 출근했습니다.');
+    //     }
+    // };
+    //
 
     return (
         <>
@@ -194,7 +229,7 @@ const MainContent = () => {
                                 </div>
                             </div>
                             <div className={mainstyle.fastButtons}>
-                                <NavLink to="/approval/purchase"><button>구매 요청</button></NavLink>
+                                <NavLink to="/approval/purchase"><span className={mainstyle.color}></span><button>구매 요청</button></NavLink>
                                 <NavLink to="/approval/business"><button>업무 보고</button></NavLink>
                                 <NavLink to="/approval/vacation"><button>휴가 요청</button></NavLink>
                                 <NavLink to={`/mail/${decodedToken.EmployeeNo}`}><button>받은 쪽지</button></NavLink>

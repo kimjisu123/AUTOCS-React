@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {decodeJwt} from "../../util/tokenUtils";
 import {
     callChangeInfoAPI,
-    callGetSToreInfoAPI
+    callGetSToreInfoAPI, callPutSToreInfoAPI
 } from "../../apis/MypageAPICalls";
 
 import swal from "sweetalert";
@@ -27,7 +27,7 @@ function MypageStore() {
     // 비구조화 할당 문법을 활용한 css내부 값 추출하기 이렇게 쓰면 MypageCSS.mainContatiner를 안써도된다. )
     const { mainContainer, rightContainer, content, wrap , empInfoTitle, infoTitle,empInfoImg
             ,imgButton , empDepDate ,infoInput, sections, section1,section2 ,pwButton
-            ,empAddress,addressButton,adButton, inputAddress, baseAddress, detailAddress
+            ,empAddress,addressButton,adButton, inputAddress, baseAddress, detailAddress2
             ,udButton,updateButton,empImg,labelbox , ousSButton
     } = MypageCSS;
 
@@ -41,9 +41,14 @@ function MypageStore() {
     const role = decodedToken ? decodedToken.auth : null;
 
     const [memberNo , setMemberNo] = useState(0);
-    const [image, setImage] = useState(null);
+    const [storeNo , setStoreNo] = useState(0);
+
     const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
+    const [phone, setPhone] = useState(0);
+    const [address, setAddress] = useState('');
+    const [detailAddress, setDetailAddress] = useState('');
+    const [postcode, setPostcode] = useState('');
+    const [guide, setGuide] = useState('');
 
     // 사진 파일 전달
     const [ selectedImage, setSelectedImage ] = useState('');
@@ -56,7 +61,6 @@ function MypageStore() {
     const [phoneMessage, setPhoneMessage] = useState('')
 
     useEffect(() => {
-
         async function fetchData() {
             try {
 
@@ -68,10 +72,10 @@ function MypageStore() {
                     // 'name' 속성에 접근할 수 있습니다.
                     console.log("employeeList.name {}" ,employees.data.name);
                     setMemberNo(employees.data.memberNo);
-                    console.log("employeeList.name {}" ,memberNo);
+                    setStoreNo(employees.data.storeNo);
+                    console.log("employeeList.name {}" ,employees.data.memberNo);
+                    console.log("employeeList.name {}" ,employees.data.storeNo);
                     // 이제 name을 사용할 수 있습니다.
-                    setSelectedImage(employees.data.memberFile);
-                    console.log("employees.data.memberFile {}" ,employees.data.memberFile);
                 }
 
 
@@ -79,6 +83,13 @@ function MypageStore() {
                 console.error('API 호출 오류:', error);
             }
         }
+
+
+        const script = document.createElement('script');
+        script.src = 'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
+        script.async = true;
+        document.body.appendChild(script);
+
         fetchData();
     }, []);
 
@@ -93,18 +104,19 @@ function MypageStore() {
         try {
 
             const formData = new FormData();
-            formData.append('employeePhone', phone);
-            formData.append('employeeEmail', email);
+            formData.append('phone', phone);
+            formData.append('email', email);
+            formData.append('address', address);
+            formData.append('detailAddress',detailAddress);
             console.log("회원번호 {}" ,memberNo);
             console.log("전화 {}" ,phone);
             console.log("이메일 {}" ,email);
+            console.log("baseAddress {}" ,address);
+            console.log("detailAddress) {}" ,detailAddress);
             formData.append('memberNo', memberNo);
+            formData.append('storeNo', storeNo)
 
-            if(image){
-                formData.append("fileImage", image);
-            }
-
-            callChangeInfoAPI({ formData, dispatch });
+            callPutSToreInfoAPI({ formData, dispatch });
 
         } catch (error) {
             console.error('Error:', error);
@@ -112,20 +124,6 @@ function MypageStore() {
     };
 
 
-    // 사진 url 전달 함수 ========================================================
-    const handleImageChange = (event) => {
-        const image = event.target.files[0];
-        setImage(image);
-        console.log('image :', image);
-        if(image) {
-            const imageUrl = URL.createObjectURL(image);
-            setSelectedImage(imageUrl);
-            console.log("imgURL {}" ,imageUrl);
-        } else {
-            setSelectedImage(employees.data.memberFile);
-        }
-
-    };
 
     // 휴대전화 유효성 검사 및 전달
     const handlePhoneChange = useCallback((e) => {
@@ -173,6 +171,39 @@ function MypageStore() {
         </div>;
     }
 
+    //주소 API
+    const handlePostcodeSearch = () => {
+        if (window.daum && window.daum.Postcode) {
+            new window.daum.Postcode({
+                oncomplete: (data) => {
+                    const roadAddr = data.roadAddress;
+                    const jibunAddr = data.jibunAddress;
+
+                    const combinedAddress = `${roadAddr} ${jibunAddr}`;
+
+                    setAddress(combinedAddress);
+                    console.log("주소 값 확인하기 : {} ", address)
+                    setPostcode(data.zonecode);
+                    setDetailAddress('');
+
+                    let guideText = '';
+                    if (data.autoRoadAddress) {
+                        const expRoadAddr = data.autoRoadAddress;
+                        guideText = `(예상 도로명 주소: ${expRoadAddr})`;
+                    } else if (data.autoJibunAddress) {
+                        const expJibunAddr = data.autoJibunAddress;
+                        guideText = `(예상 지번 주소: ${expJibunAddr})`;
+                    } else {
+                        guideText = '';
+                    }
+
+                    setGuide(guideText);
+                },
+            }).open();
+        } else {
+            console.error('Daum Postcode library is not loaded.');
+        }
+    };
 
     return (
             <>
@@ -264,7 +295,7 @@ function MypageStore() {
                                                         </div>
                                                         <div className=" empInfo empPhone">
                                                             <label htmlFor="empPhone">휴대 전화</label>
-                                                            <input type="tel" id="empPhone" name="empPhone" maxLength="20"
+                                                            <input type="tel" id="empPhone" name="phone" maxLength="20"
                                                                    onChange={handlePhoneChange} placeholder={employees.data.phone} style={{border: "none"}}/>
                                                             {phone.length > 0 && <p className={`message ${isPhone ? 'success' : 'error'}`}style={isPhone? {fontSize:"0.7em",color:"green",fontWeight:"500", marginTop:"5px"} : {fontSize:"0.7em",color:"red",fontWeight:"500",marginTop:"5px"}}>{phoneMessage}</p>}
                                                         </div>
@@ -281,7 +312,7 @@ function MypageStore() {
                                                             <label htmlFor="postcode">주소</label>
                                                             <div>
                                                                 <button className={adButton} type="button"
-                                                                        onClick="sample6_execDaumPostcode()" value="우편번호 찾기">
+                                                                        onClick={handlePostcodeSearch} value="우편번호 찾기">
                                                                     <span><i
                                                                         className="fa-solid fa-magnifying-glass"></i>주소검색</span>
                                                                 </button>
@@ -289,12 +320,13 @@ function MypageStore() {
                                                         </div>
                                                         <div className={inputAddress}>
                                                             <div className={baseAddress}>
-                                                                <input type="text" name="baseAddress" id="aseAddress"
-                                                                       placeholder={employees.data.address} required style={{border: "none"}}/>
+                                                                <input className="lo" type="text" name="baseAddress" id="aseAddress" placeholder={employees.data.address}
+                                                                        value={address} style={{border: "none"}}/>
                                                             </div>
                                                         </div>
-                                                        <div className={detailAddress}>
-                                                            <input type="text" name="detailAddress" id="detailAddress"
+                                                        <div className={detailAddress2}>
+                                                            <input className="lo" type="text" name="detailAddress" id="sample4_detailAddress"
+                                                                   onChange={(e) => setDetailAddress(e.target.value)}
                                                                    placeholder={employees.data.detailAddress} required style={{border: "none"}}/>
                                                         </div>
                                                     </div>
@@ -304,10 +336,10 @@ function MypageStore() {
                                                         <button className={updateButton} type="button"
                                                                 onClick={() => {
                                                                     // 필요한 입력 필드의 값을 확인
-                                                                    if (!phone || !email || !memberNo) {
-                                                                        swal("필수 정보를 입력하세요.");
-                                                                        return; // 필수 정보가 누락된 경우 함수를 중단
-                                                                    }
+                                                                    // if (!phone || !email || !baseAddress || !detailAddress) {
+                                                                    //     swal("필수 정보를 입력하세요.");
+                                                                    //     return; // 필수 정보가 누락된 경우 함수를 중단
+                                                                    // }
                                                                     onChangeInfo(); // 필수 정보가 모두 입력된 경우에만 변경 요청 보내기
                                                                 }}
                                                         >

@@ -163,12 +163,12 @@ function MypageEmp() {
     };
 
 
-    // if (!employees) {
-    //     return <div className={mainstyle.loading}>
-    //         Loading...
-    //         <img src={Spinner} alt="로딩중" width="5%" />
-    //     </div>;
-    // }
+    if (!employees) {
+        return <div className={mainstyle.loading}>
+            Loading...
+            <img src={Spinner} alt="로딩중" width="5%" />
+        </div>;
+    }
 
 
     return (
@@ -213,7 +213,6 @@ function MypageEmp() {
                                     <small
                                         style={{color: "white", textAlign: "center"}}>가로200 세로 200<br/>이미지를 넣어주세요</small>
                                     <div className={empDepDate}>
-                                        <br/>
                                         <br/>
                                         <h3>입사일</h3>
                                         <br/>

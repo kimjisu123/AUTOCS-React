@@ -27,6 +27,7 @@ export const callGetMemberInfoAPI = (memberNo) => {
 export const callGetSToreInfoAPI = (memberNo) => {
     const requestURL = `http://localhost:8080/member/store/${memberNo}`;
 
+    console.log('요청 URL:', requestURL); // URL 출력
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
             method: 'GET',
@@ -109,7 +110,7 @@ export const callPostPwdCheckAPI = (memberNo,checkPw) => {
                         title: '비밀번호 변경',
                         text: '비밀번호가 변경되었습니다.',
                     }).then((value) => {
-                        window.location="/main";
+                        window.location="/login";
                         }
                     )
                 } else {
@@ -178,4 +179,54 @@ export const callPostPwdCheckAPI = (memberNo,checkPw) => {
             dispatch({type: GET_PROFILE, payload: result});
         }
     };
+
+
+
+// 매장 정보 변경 API
+export const callPutSToreInfoAPI = ({formData}) => {
+
+    const requestURL = `http://localhost:8080/mypage/updatestoreinfo`;
+    console.log('새  매장정보 변경  API진입? >>>>>>');
+    console.log("formData=========>" + formData);
+
+
+    // formData 내용 출력
+    for (const pair of formData.entries()) {
+        console.log(`${pair[0]}: ${pair[1]}`);
+    }
+
+    return fetch(requestURL, {
+        method: 'PUT',
+        headers: {
+            // 'Content-Type': 'application/json',
+        },
+        body: formData,
+    })
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                console.error('Error  매장정보 수정 에러');
+                throw new Error('Error 매장정보 수정 에러');
+            }
+        })
+        .then(()=> {
+
+                Swal.fire({
+                    icon: 'success',
+                    title: '매장 정보 변경',
+                    text: '매장정보가 변경되었습니다.',
+                })
+        })
+        .catch((error) => {
+            Swal.fire({
+                icon: 'error',
+                title: '매장 정보 변경.',
+                text: '매장 정보 변경에 실패했습니다.',
+            })
+            console.error('Error:', error);
+        });
+
+};
+
 
