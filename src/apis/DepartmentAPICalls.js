@@ -125,6 +125,6 @@ export const callGetHeadOfficeAPI = () => {
                 'Accept': '*/*'
             },
         }).then(response => response.json());
-        dispatch({ type: GET_HEAD_OFFICE, payload: result });
+        dispatch({ type: GET_HEAD_OFFICE, payload: result.data });
     }
 };

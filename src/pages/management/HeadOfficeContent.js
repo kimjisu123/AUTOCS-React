@@ -36,7 +36,7 @@ function HeadOfficeContent(){
 
     const toDayDate ="<"+ year + "년 " + month + "월 " + monday+"일" + ' ~ ' + year + "년 " + month + "월 " + sunday+"일" +">";
 
-    // data 배열 내의 각 요소를 순회하며 필터링
+    // // data 배열 내의 각 요소를 순회하며 필터링
     const filteredData = data.data && data.data.length >0 && data.data.map(item => {
         const filteredWorkStatusLists = item.workStatusLists.filter(workStatusItem => {
             const attendanceTime = new Date(workStatusItem.workStatus.quittingTime);
@@ -94,7 +94,7 @@ function HeadOfficeContent(){
         }
     ) : 0;
 
-    // weekOvertime는 시분초밀리초의 값을 따로 구해 밀리초로 반환을 해야함
+    // // weekOvertime는 시분초밀리초의 값을 따로 구해 밀리초로 반환을 해야함
     const weekTotalTime = data && data.length > 0 ? data.reduce((total, item) => {
 
         const overTime = new Date(item.extensionTime);
@@ -162,7 +162,7 @@ function HeadOfficeContent(){
 
     // 테스트용 쓰고 나서 지우기
     const onClickTest =() =>{
-        console.log(data.data.data)
+        console.log(data.data)
     }
     return(
         <div className={styles.content}>
