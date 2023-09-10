@@ -1,7 +1,12 @@
 import { NavLink } from 'react-router-dom';
 import StockCSS from './Stock.module.css'
+import { useEffect, useRef, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
 
-function showPopup() { window.open('/ListPopup', "a", "width=400, height=600, left=100, top=50"); }
+import {
+    callBillListWithPagingAPI,
+} from '../../apis/StockAPICalls'
 
 function Bill() {
 

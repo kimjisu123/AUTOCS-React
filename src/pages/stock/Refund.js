@@ -22,15 +22,15 @@ function Refund() {
 
 
     // 주문물품 조회
-    // useEffect(
-    //     () => {
+    useEffect(
+        () => {
             dispatch(callMyOrderProductForRefundAPI({
                     myOrderProductNo: myOrderProductNo
             }
             ));
-    //     }
-    //     ,[myOrderProductNo]
-    // );
+        }
+        ,[myOrderProductNo]
+    );
 
     // 조회
     const orderProduct= useSelector(state => state.refundReducer);
@@ -53,7 +53,7 @@ function Refund() {
                     <td>
                         <input className={StockCSS.readOnlybox}
                                type="text"
-                               // value={orderProduct.refOrderNo.orderNo}
+                               value={orderProduct.refOrderNo.orderNo}
                                readOnly/>
                     </td>
                 </tr>
@@ -64,7 +64,7 @@ function Refund() {
                     <td>
                         <input className={StockCSS.readOnlybox}
                                type="text"
-                               // value={orderProduct.refProductNo.name}
+                               value={orderProduct.refProductNo.name}
                                readOnly/>
                     </td>
                 </tr>
@@ -75,7 +75,7 @@ function Refund() {
                     <td>
                         <input className={StockCSS.readOnlybox}
                                type="text"
-                               // value={orderProduct.refProductNo.standard.name}
+                               value={orderProduct.refProductNo.standard.name}
                                readOnly/>
                     </td>
                 </tr>
@@ -86,7 +86,7 @@ function Refund() {
                     <td>
                         <input className={StockCSS.readOnlybox}
                                type="text"
-                               // value={orderProduct.refProductNo.unit.name}
+                               value={orderProduct.refProductNo.unit.name}
                                readOnly/>
                     </td>
                 </tr>
@@ -97,7 +97,7 @@ function Refund() {
                     <td>
                         <input className={StockCSS.readOnlybox}
                                type="text"
-                               // value={orderProduct.quantity}
+                               value={orderProduct.quantity}
                                readOnly/>
                     </td>
                 </tr>

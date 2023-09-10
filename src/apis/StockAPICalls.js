@@ -39,9 +39,10 @@ import {
     PUT_ORDER,
     PUT_ORDER_PRODUCT,
 } from '../modules/OrderProductModule';
-import {GET_MY_ORDERS} from "../modules/MyOrderModule";
+import {GET_MY_ORDERS, POST_BILL} from "../modules/MyOrderModule";
 import {GET_MY_ORDER_PRODUCT} from "../modules/MyOrderProductModule";
 import {GET_REFUND} from "../modules/RefundModule";
+import {GET_BILL, GET_BILLS} from "../modules/BillModule";
 
 /* 물품 조회 */
 export const callProductListAPI = ({currentPage}) => {
@@ -718,8 +719,6 @@ export const callMyOrderProductListAPI = ({currentPage, myOrderNo}) => {
 /* 주문물품 조회 - 환불용 */
 export const callMyOrderProductForRefundAPI = ({myOrderProductNo}) => {
 
-    console.log('호출되냐???????????')
-
     let requestURL;
 
         requestURL = `http://localhost:8080/stock/refund?myOrderProductNo=${myOrderProductNo}`;
@@ -736,6 +735,52 @@ export const callMyOrderProductForRefundAPI = ({myOrderProductNo}) => {
             .then(response => response.json());
         if(result.status === 200){
             dispatch({ type: GET_REFUND,  payload: result.data });
+        }
+
+    };
+}
+
+/* 계산서 등록 */
+export const callBillRegistAPI = ({form}) => {
+    const requestURL = `http://localhost:8080/stock/myorderlist`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "POST",
+            headers: {
+                "Accept": "*/*"
+            },
+            body: form
+        })
+            .then(response => response.json());
+
+        dispatch({ type: POST_BILL,  payload: result });
+
+    };
+}
+
+/* 계산서 조회 - 페이징 */
+export const callBillListWithPagingAPI = ({currentPage}) => {
+
+    let requestURL;
+    if(currentPage !== undefined || currentPage !== null){
+        requestURL = `http://localhost:8080/stock/bill?offset=${currentPage}`;
+    }else {
+        requestURL = `http://localhost:8080/stock/bill`;
+    }
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            }
+        })
+            .then(response => response.json());
+        if(result.status === 200){
+            dispatch({ type: GET_BILLS,  payload: result.data });
         }
 
     };

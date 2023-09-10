@@ -6,6 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import {
     callMyOrderListAPI,
+    callBillRegistAPI,
 } from '../../apis/StockAPICalls'
 import {decodeJwt} from "../../util/tokenUtils";
 
@@ -80,6 +81,12 @@ function MyOrderList() {
         endDate: ''
     });
 
+    // // 계산서 등록
+    const [registForm, setRegistForm] = useState({
+        refStoreInfoNo: storeNo,
+        refOrderNo: '',
+    });
+
     // form 데이터 세팅
     const onChangeHandler = (e) => {
         setForm({
@@ -88,6 +95,29 @@ function MyOrderList() {
         });
         console.log(e.target.value)
     };
+
+    /* 계산서 등록 */
+    const onClickRegistHandler = (e) => {
+
+        const confirmed = window.confirm('계산서 발행하시겠습니까?');
+        if (confirmed) {
+
+            const formData = new FormData();
+
+            formData.append("refStoreInfoNo", storeNo);
+            formData.append("refOrderNo", e.target.value);
+            console.log(storeNo)
+            console.log(e.target.value)
+
+
+            dispatch(callBillRegistAPI({
+                form: formData
+            }));
+
+            alert('발행되었습니다.');
+            window.location.reload();
+        }
+    }
 
     /* 주문 조회 핸들러 */
     const onClickSearchHandler = (e) => {
@@ -184,7 +214,9 @@ function MyOrderList() {
                                 </td>
                                 <td>{ order.registDate}</td>
                                 <td>{ order.status}</td>
-                                <td><button>발행</button></td>
+                                <td><button onClick={onClickRegistHandler}
+                                            name='refOrderNo'
+                                            value={order.orderNo}>발행</button></td>
                             </tr>
                         ))
                     }
