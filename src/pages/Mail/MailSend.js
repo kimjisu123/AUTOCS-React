@@ -31,13 +31,16 @@ function MailSend( {setModal} ){
     const [searchArea, setSearchArea] = useState(false);
     const [mail, setMail] = useState({
         mailNo : "",
-        receiver : "",
+        receiver : [],
         title : "",
         context : "",
         goDate : "",
         status : "",
         position:"",
     });
+
+
+
 
 
     const handleSearch = (name) => {
@@ -57,9 +60,11 @@ function MailSend( {setModal} ){
         setSelect(
             [...select, attendee]
         );
-        setMail(
-            {...mail, receiver : attendee.name,  position: JSON.parse(attendee.position).name}
-        )
+        setMail(prevMail => ({
+            ...prevMail,
+            receiver: [...prevMail.receiver ,attendee.name],
+            position: JSON.parse(attendee.position).name
+        }));
         setSearchArea(false);
         setSearchValue('');
         console.log(mail);
@@ -102,10 +107,14 @@ function MailSend( {setModal} ){
     }
 
 
+    const onClickTest= () =>{
+        console.log()
+    }
+
     return (
         <div className={styles.body}>
             <div className={styles.header}>
-                <h1 className={styles.modalTitle}>
+                <h1 onClick = {onClickTest} className={styles.modalTitle}>
                     쪽지 보내기
                 </h1>
                 <div onClick={ onClickClose }  className={styles.close}>

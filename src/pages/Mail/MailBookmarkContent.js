@@ -4,6 +4,7 @@ import axios from 'axios';
 import { callGetMailAPI, callDELETEMailAPI, callPutMailAPI, callGetMailBookmarkAPI } from '../../apis/MailAPICalls';
 import { useDispatch, useSelector } from 'react-redux';
 import { decodeJwt } from '../../util/tokenUtils';
+import MailDetails from "./MailDetails";
 
 function MailBookmarkContent(){
 
@@ -12,6 +13,7 @@ function MailBookmarkContent(){
 
     const dispatch = useDispatch();
     const mailData = useSelector(state => state.bookmarkReducer);
+
 
     const onClickMailDelete = async () =>{
         dispatch( callDELETEMailAPI() );
@@ -65,6 +67,7 @@ function BookmarkItem({ mail }) {
 
     const [bookmark, setBookmark] = useState(mail.status);
     const dispatch = useDispatch();
+    const [modal, setModal] = useState(false);
 
 
     const inputDate = mail.goDate;
@@ -72,6 +75,11 @@ function BookmarkItem({ mail }) {
 
     const outputDate = date.toISOString().substr(0, 19);
     const updatedDate = outputDate.replace("T", " ");
+
+    const onClickModal = () => {
+        setModal(!modal);
+    }
+
 
     const onClickbookmark = () => {
         dispatch( callPutMailAPI(mail) );
@@ -84,7 +92,7 @@ function BookmarkItem({ mail }) {
             <div className={styles.bookmark} onClick={onClickbookmark}>
                 {( bookmark == 'Y')  ? '★' : '☆'}
             </div>
-            <div className={styles.noteHeader}>
+            <div onClick={ () => onClickModal() } className={styles.noteHeader}>
                 <div style={{ marginBottom: "5px" }}>
                     {mail.title}
                 </div>
@@ -100,7 +108,12 @@ function BookmarkItem({ mail }) {
             <div className={styles.deleteButton}>
                 x
             </div>
+
+            <div style={ modal ? {display:"inline"} : {display: "none"} }>
+                <MailDetails setModal = { setModal  } mail={ mail } />
+            </div>
         </div>
+
     );
 }
 export default  MailBookmarkContent

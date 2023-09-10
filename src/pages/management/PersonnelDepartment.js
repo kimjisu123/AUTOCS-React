@@ -102,7 +102,7 @@ function PersonnelDepartment (){
 
     // 테스트용 쓰고 지우기
     const onClickTest = () =>{
-        console.log(todayFilter)
+        console.log(todayFilter.length)
     }
     return (
         <>
@@ -133,7 +133,7 @@ function PersonnelDepartment (){
                                     출근 미체크
                                 </div>
                                 <div className={styles.statusValue}>
-                                    {attendanceTime && attendanceTime.length !== 0 ?  attendanceTime.length : '0'}
+                                    {todayFilter && data.data[0].totalCount -todayFilter.length}
                                 </div>
                             </div>
                             <div className={styles.statusBox}>

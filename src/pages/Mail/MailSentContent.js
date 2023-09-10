@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { callGetMailAPI, callDELETEMailAPI, callPutMailAPI, callGetMailBookmarkAPI, callGetMailSentAPI } from '../../apis/MailAPICalls';
 import { useDispatch, useSelector } from 'react-redux';
 import { decodeJwt } from '../../util/tokenUtils';
+import MailDetails from "./MailDetails";
 
 function MailkSentContent(){
 
@@ -54,7 +55,7 @@ function MailkSentContent(){
 function MailSentItem({ mail }) {
 
     const [bookmark, setBookmark] = useState(mail.status);
-
+    const [modal, setModal] = useState(false);
     const dispatch = useDispatch();
 
     const inputDate = mail.goDate;
@@ -68,12 +69,17 @@ function MailSentItem({ mail }) {
         setBookmark( (bookmark == 'Y') ? 'N' : 'Y' );
     };
 
+    const onClickModal = () => {
+        setModal(!modal);
+    }
+
+
     return (
         <div className={styles.receivedNote}>
             <div className={styles.bookmark} onClick={onClickbookmark}>
                 {( bookmark == 'Y')  ? '★' : '☆'}
             </div>
-            <div className={styles.noteHeader}>
+            <div onClick={ () => onClickModal() } className={styles.noteHeader}>
                 <div style={{ marginBottom: "5px" }}>
                     {mail.title}
                 </div>
@@ -88,6 +94,10 @@ function MailSentItem({ mail }) {
             </div>
             <div className={styles.deleteButton}>
                 x
+            </div>
+
+            <div style={ modal ? {display:"inline"} : {display: "none"} }>
+                <MailDetails setModal = { setModal  } mail={ mail } />
             </div>
         </div>
     );

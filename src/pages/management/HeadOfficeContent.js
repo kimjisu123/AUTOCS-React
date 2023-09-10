@@ -1,12 +1,74 @@
 import styles from './HeadOffice.module.css'
-import {useEffect} from "react";
+import {useEffect, useState, useCallback, useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { callGetHeadOfficeAPI} from "../../apis/DepartmentAPICalls";
-import {headOfficeReducer} from "../../modules/DepartmentModule";
+import { FixedSizeList } from 'react-window';
 
 
 
 function HeadOfficeContent(){
+
+
+    // let options = {
+    //     root: null, // 타켓 요소가 "어디에" 들어왔을때 콜백함수를 실행할 것인지 결정합니다. null이면 viewport가 root로 지정됩니다.
+    //     //root: document.querySelector('#scrollArea'), => 특정 요소를 선택할 수도 있습니다.
+    //     rootMargin: '0px', // root에 마진값을 주어 범위를 확장 가능합니다.
+    //     threshold: 1.0 // 타겟 요소가 얼마나 들어왔을때 백함수를 실행할 것인지 결정합니다. 1이면 타겟 요소 전체가 들어와야 합니다.
+    // }
+    //
+    // const callback = () => {
+    //     console.log("관측되었습니다.")
+    //     if(target.current){
+    //         setCurrentPage((page) => page + 1);
+    //     }
+    // }
+    //
+    // // 첫 번째 인자로 관측되었을 경우 실행할 콜백함수를 넣습니다.
+    // // 두 번째 인자로 관측에 대한 옵션을 지정합니다.
+    // let observer = new IntersectionObserver(callback, options);
+    //
+    //
+    //
+    // // React에서는 useRef를 활용하여 DOM을 선택합니다.
+    // let target = useRef(null);
+    //
+    // useEffect(() => {
+    //     observer.observe(target.current);
+    // }, []);
+
+
+
+
+    const [items, setItems] = useState([]);
+    const dispatch = useDispatch();
+    const data = useSelector(state => state.headOfficeReducer);
+    const [start, setStart] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [pageEnd, setPageEnd] = useState(1);
+
+    const pageInfo = data.pageInfo;
+
+    useEffect(() => {
+        // 초기 데이터 로드
+        dispatch( callGetHeadOfficeAPI(currentPage)) ;
+    }, []);
+
+    const pageNumber = [];
+    if(pageInfo){
+        for(let i = 1; i <= pageInfo.pageEnd ; i++){
+            pageNumber.push(i);
+        }
+    }
+
+
+    useEffect(
+        () => {
+            setStart((currentPage - 1) * 5);
+            dispatch(callGetHeadOfficeAPI(currentPage))
+        }
+        ,[currentPage]
+    );
+
 
     const currentDate = new Date();
     const mondayDate = new Date()
@@ -14,13 +76,6 @@ function HeadOfficeContent(){
     const month = currentDate.getMonth() + 1;  // 현재 월
     const currentWeek = currentDate.getDay();  // 현재 요일
     const day = currentDate.getDate();         // 현재 날짜(일)
-
-    const dispatch = useDispatch();
-    const data = useSelector(state => state.headOfficeReducer);
-
-    useEffect(() => {
-        dispatch( callGetHeadOfficeAPI() )
-    },[])
 
     const days = ["일", "월", "화", "수", "목", "금", "토"];
 
@@ -162,8 +217,10 @@ function HeadOfficeContent(){
 
     // 테스트용 쓰고 나서 지우기
     const onClickTest =() =>{
-        console.log(data.data)
+        console.log(currentPage)
     }
+
+
     return(
         <div className={styles.content}>
             <div className={styles.contentsbox}>
@@ -213,7 +270,7 @@ function HeadOfficeContent(){
                                 {  mondayDate.getDate()+6 + '(' + days[mondayDate.getDay()-1] + ')' }
                             </div>
                         </div>
-                        <div>
+                        <div style={{width:"auto", height:"675px"}}>
                             {filteredData && filteredData.length > 0 && filteredData.map(item => (
                                 <div className={styles.infoContent}>
                                     <div className={styles.statusInfoBox1}>
@@ -226,42 +283,71 @@ function HeadOfficeContent(){
                                     </div>
                                     {item.workStatusLists.map(item=>(
                                         item.workStatus.workStatusCode !== null ?
-                                        <div>
-                                            <div className={styles.statusInfoBox3}>
-                                                <div className={styles.cumulativeTime}>
-                                                    {formatTimeString(item.workStatus.extensionTime)}
-                                                </div>
-                                                <div className={styles.hoursDuty}>
-                                                    <div>
-                                                        기본 : { item.workStatus.extensionTime && defaultTime(item.workStatus.extensionTime)}
-                                                    </div>
-                                                    <div>
-                                                        연장 : {item.workStatus.extensionTime && formatAndAdjustTime( formatTimeString(item.workStatus.extensionTime) )}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                            :
-                                        <div>
                                             <div>
                                                 <div className={styles.statusInfoBox3}>
                                                     <div className={styles.cumulativeTime}>
-                                                        0:00:00
+                                                        {formatTimeString(item.workStatus.extensionTime)}
                                                     </div>
                                                     <div className={styles.hoursDuty}>
                                                         <div>
-                                                            기본 : 0:00:00
+                                                            기본 : { item.workStatus.extensionTime && defaultTime(item.workStatus.extensionTime)}
                                                         </div>
                                                         <div>
-                                                            연장 : 0:00:00
+                                                            연장 : {item.workStatus.extensionTime && formatAndAdjustTime( formatTimeString(item.workStatus.extensionTime) )}
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                            :
+                                            <div>
+                                                <div>
+                                                    <div className={styles.statusInfoBox3}>
+                                                        <div className={styles.cumulativeTime}>
+                                                            0:00:00
+                                                        </div>
+                                                        <div className={styles.hoursDuty}>
+                                                            <div>
+                                                                기본 : 0:00:00
+                                                            </div>
+                                                            <div>
+                                                                연장 : 0:00:00
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                     ))}
                                 </div>
                             ))}
+                        </div>
+                        {/*<div ref={target} style={{width:"auto", height:"100px", border:"1px solid black"}}>*/}
+                        {/*</div>*/}
+                        <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
+                            { Array.isArray(data.data) &&
+                                <button
+                                    onClick={() => setCurrentPage(currentPage - 1)}
+                                    disabled={currentPage === 1}
+                                >
+                                    &lt;
+                                </button>
+                            }
+                            {pageNumber.map((num) => (
+                                <li key={num} onClick={() => setCurrentPage(num)}>
+                                    <button
+                                        style={ currentPage === num ? {backgroundColor : 'orange' } : null}
+                                    >
+                                        {num}
+                                    </button>
+                                </li>
+                            ))}
+                            { Array.isArray(data.data) &&
+                                <button
+                                    onClick={() => {return setCurrentPage(currentPage + 1)}}
+                                    disabled={currentPage === pageInfo.pageEnd || pageInfo.total == 0}
+                                >
+                                    &gt;
+                                </button>
+                            }
                         </div>
                     </div>
                 </div>

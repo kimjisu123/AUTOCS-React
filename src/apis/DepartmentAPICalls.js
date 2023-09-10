@@ -114,8 +114,8 @@ export const callGetServiceAPI = () => {
         dispatch({ type: GET_SERIVCE, payload: result });
     }
 };
-export const callGetHeadOfficeAPI = () => {
-    const requestURL = "http://localhost:8080/headOffice";
+export const callGetHeadOfficeAPI = (page) => {
+    const requestURL = `http://localhost:8080/headOffice/${page}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {

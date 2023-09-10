@@ -82,6 +82,7 @@
 
 .noteHeader{
     margin-right: auto;
+    cursor: pointer;
 }
 .deleteButton{
     font-size: 25px;
