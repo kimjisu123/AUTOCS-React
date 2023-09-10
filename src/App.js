@@ -164,8 +164,8 @@ function App() {
                             //영업점 발주관리
                             <Route path='order' element={<Order/>}/>
                             <Route path='myorderlist' element={<MyOrderList/>}/>
-                            <Route path='myorderlist/detail' element={<MyOrderListDetail/>}/>
-                            <Route path='refund' element={<Refund/>}/>
+                            <Route path='myorderlist/detail/:myOrderNo' element={<MyOrderListDetail/>}/>
+                            <Route path='refund/:myOrderProductNo' element={<Refund/>}/>
                             <Route path='mybill' element={<MyBill/>}/>
                             <Route path='mystatistics' element={<MyStatistics/>}/>
                         </Route>

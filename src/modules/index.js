@@ -10,8 +10,11 @@ import unitReducer from "./UnitModule";
 import ioReducer from "./IoModule";
 import ioGroupReducer from "./IoGroupModule";
 import orderReducer from "./OrderModule";
+import myOrderReducer from "./MyOrderModule";
+import refundReducer from "./RefundModule";
 import orderNumberReducer from "./OrderNumberModule";
 import orderProductReducer from "./OrderProductModule";
+import myOrderProductReducer from "./MyOrderProductModule";
 import chartReducer from './ChartModule';
 import todoReducer from "./TodoModule";
 import myPageReducer from "./MypageModule";
@@ -37,8 +40,11 @@ const rootReducer = combineReducers({
     ioReducer,
     ioGroupReducer,
     orderReducer,
+    myOrderReducer,
+    refundReducer,
     orderNumberReducer,
     orderProductReducer,
+    myOrderProductReducer,
     todoReducer,
     marketReducer,
     mailSentReducer,

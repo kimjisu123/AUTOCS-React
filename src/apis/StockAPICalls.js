@@ -39,6 +39,9 @@ import {
     PUT_ORDER,
     PUT_ORDER_PRODUCT,
 } from '../modules/OrderProductModule';
+import {GET_MY_ORDERS} from "../modules/MyOrderModule";
+import {GET_MY_ORDER_PRODUCT} from "../modules/MyOrderProductModule";
+import {GET_REFUND} from "../modules/RefundModule";
 
 /* 물품 조회 */
 export const callProductListAPI = ({currentPage}) => {
@@ -603,11 +606,13 @@ export const callOrderProductRegistAPI = ({form}) => {
 
 /* 주문물품 조회 */
 export const callOrderProductListAPI = ({currentPage, stat, search, startDate, endDate}) => {
+// export const callOrderProductListAPI = ({currentPage, stat, search}) => {
 
     let requestURL;
 
     if(currentPage !== undefined || currentPage !== null){
         requestURL = `http://localhost:8080/stock/orderlist?offset=${currentPage}&status=${stat}&search=${search}&startDate=${startDate}&endDate=${endDate}`;
+        // requestURL = `http://localhost:8080/stock/orderlist?offset=${currentPage}&status=${stat}&search=${search}`;
     }else {
         requestURL = `http://localhost:8080/stock/orderlist`;
     }
@@ -648,6 +653,90 @@ export const callOrderProductUpdateAPI = ({form}) => {
             .then(response => response.json());
 
         dispatch({ type: PUT_ORDER_PRODUCT,  payload: result });
+
+    };
+}
+
+/* 주문 조회 - 영업점별 */
+export const callMyOrderListAPI = ({currentPage, store, startDate, endDate}) => {
+
+    let requestURL;
+
+    if(currentPage !== undefined || currentPage !== null){
+        requestURL = `http://localhost:8080/stock/myorderlist?offset=${currentPage}&store=${store}&startDate=${startDate}&endDate=${endDate}`;
+    }else {
+        requestURL = `http://localhost:8080/stock/myorderlist`;
+    }
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            }
+        })
+            .then(response => response.json());
+        if(result.status === 200){
+            dispatch({ type: GET_MY_ORDERS,  payload: result.data });
+        }
+
+    };
+}
+
+/* 주문물품 조회 - 주문번호별 */
+export const callMyOrderProductListAPI = ({currentPage, myOrderNo}) => {
+
+    let requestURL;
+
+    if(currentPage !== undefined || currentPage !== null){
+        // requestURL = `http://localhost:8080/stock/myorderlist/detail?offset=${currentPage}&myOrderNo=${myOrderNo}`;
+        requestURL = `http://localhost:8080/stock/myorderlist/detail?myOrderNo=${myOrderNo}&offset=${currentPage}`;
+
+    }else {
+        requestURL = `http://localhost:8080/stock/myorderlist/detail?myOrderNo${myOrderNo}`;
+    }
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            }
+        })
+            .then(response => response.json());
+        if(result.status === 200){
+            dispatch({ type: GET_MY_ORDER_PRODUCT,  payload: result.data });
+        }
+
+    };
+}
+
+/* 주문물품 조회 - 환불용 */
+export const callMyOrderProductForRefundAPI = ({myOrderProductNo}) => {
+
+    console.log('호출되냐???????????')
+
+    let requestURL;
+
+        requestURL = `http://localhost:8080/stock/refund?myOrderProductNo=${myOrderProductNo}`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            }
+        })
+            .then(response => response.json());
+        if(result.status === 200){
+            dispatch({ type: GET_REFUND,  payload: result.data });
+        }
 
     };
 }

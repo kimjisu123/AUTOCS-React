@@ -11,12 +11,19 @@ import ioGroupReducer from "../../modules/IoGroupModule";
 function getFirstDayOfMonth() {
     const now = new Date();
     console.log(now)
-    return new Date(now.getFullYear(), now.getMonth(), 1).toISOString().split('T')[0];
+    return new Date(now.getFullYear(), now.getMonth(), 2).toISOString().split('T')[0];
 }
 
 // 오늘 날짜를 가져오는 함수
 function getCurrentDate() {
     const now = new Date();
+    return now.toISOString().split('T')[0];
+}
+
+function getCurrentDatePlusOneDay() {
+    const now = new Date();
+    // 현재 날짜에 1을 더해 하루를 더합니다.
+    now.setDate(now.getDate() + 1);
     return now.toISOString().split('T')[0];
 }
 
@@ -51,7 +58,7 @@ function Check() {
                 currentPage: currentPage,
                 s: '',
                 startDate: getFirstDayOfMonth(), // 이번 달의 첫째 날로 초기화
-                endDate: getCurrentDate() // 오늘 날짜로 초기화
+                endDate: getCurrentDatePlusOneDay() // 오늘 날짜로 초기화
             }));
         }
         ,[currentPage]
@@ -78,14 +85,31 @@ function Check() {
 
         const formData = new FormData();
 
+        let selectedStartDate = '';
+        let selectedEndDate = '';
+
+        if(form.startDate === ''){
+            selectedStartDate =getFirstDayOfMonth();
+        } else {
+            selectedStartDate= form.startDate;
+        }
+
+        if(form.endDate === ''){
+            selectedEndDate =getCurrentDatePlusOneDay();
+        } else if(form.endDate === getCurrentDate()){
+            selectedStartDate = getCurrentDatePlusOneDay();
+        }else {
+            selectedEndDate= form.endDate;
+        }
+
         formData.append("s", form.s);
-        formData.append("startDate", form.startDate);
-        formData.append("endDate", form.endDate);
+        formData.append("startDate", selectedStartDate);
+        formData.append("endDate", selectedEndDate);
 
         dispatch(callIOListWithGroupingAPI({
             s: form.s,
-            startDate: form.startDate,
-            endDate: form.endDate,
+            startDate: selectedStartDate,
+            endDate: selectedEndDate,
             currentPage: 1
         }));
         console.log(form.startDate)

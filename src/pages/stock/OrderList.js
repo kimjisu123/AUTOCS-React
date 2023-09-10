@@ -4,10 +4,30 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import {
+    callIOListWithGroupingAPI,
     callOrderProductListAPI,
     callOrderProductUpdateAPI,
 } from '../../apis/StockAPICalls'
 import orderProductReducer from "../../modules/OrderProductModule";
+
+function getFirstDayOfMonth() {
+    const now = new Date();
+    console.log(now)
+    return new Date(now.getFullYear(), now.getMonth(), 2).toISOString().split('T')[0];
+}
+
+// 오늘 날짜를 가져오는 함수
+function getCurrentDate() {
+    const now = new Date();
+    return now.toISOString().split('T')[0];
+}
+
+function getCurrentDatePlusOneDay() {
+    const now = new Date();
+    // 현재 날짜에 1을 더해 하루를 더합니다.
+    now.setDate(now.getDate() + 1);
+    return now.toISOString().split('T')[0];
+}
 
 function showPopup() { window.open('/ListPopup', "a", "width=400, height=600, left=100, top=50"); }
 
@@ -46,12 +66,80 @@ function OrderList() {
                 currentPage: currentPage,
                 stat: 'WAITING',
                 search: '',
-                startDate: '20230907',
-                endDate: '20230908'
+                startDate: getFirstDayOfMonth(),
+                endDate: getCurrentDatePlusOneDay()
             }));
         }
         ,[currentPage]
     );
+
+    // 주문물품 조회
+    const [form, setForm] = useState({
+        search: '',
+        stat:'',
+        startDate: '',
+        endDate: ''
+    });
+
+    // form 데이터 세팅
+    const onChangeHandler = (e) => {
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value
+        });
+        console.log(e.target.value)
+    };
+
+    /* 주문물품 조회 핸들러 */
+    const onClickSearchHandler = (e) => {
+
+        // 상태 변경시 orderProductList 초기화
+        dispatch({ type: 'CLEAR_ORDER_PRODUCT_LIST' }); // 또는 적절한 액션을 사용
+
+
+        const formData = new FormData();
+
+        const selectedStat = e.target.value;
+
+        setForm({
+            ...form,
+            stat: selectedStat,
+        });
+
+        let selectedStartDate = '';
+        let selectedEndDate = '';
+
+        if(form.startDate === ''){
+            selectedStartDate = getFirstDayOfMonth();
+        }
+        else {
+            selectedStartDate= form.startDate;
+        }
+
+        if(form.endDate === ''){
+            selectedEndDate =getCurrentDatePlusOneDay();
+        } else if(form.endDate === getCurrentDate()){
+            selectedStartDate = getCurrentDatePlusOneDay();
+        }else {
+            selectedEndDate= form.endDate;
+        }
+
+        formData.append("search", form.search);
+        formData.append("stat", selectedStat);
+        formData.append("startDate", selectedStartDate);
+        formData.append("endDate", selectedEndDate);
+
+        dispatch(callOrderProductListAPI({
+            search: form.search,
+            stat: selectedStat,
+            startDate: selectedStartDate,
+            endDate: selectedEndDate,
+            currentPage: 1
+        }));
+        console.log(form.startDate)
+        console.log(form.endDate)
+        console.log(form.search)
+    }
 
     // 수정
     const [modifyForm, setModifyForm] = useState({
@@ -114,6 +202,11 @@ function OrderList() {
         }
     }
 
+    const onEnterKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            onClickSearchHandler();
+        }
+    };
 
     return (
         <div>
@@ -121,24 +214,40 @@ function OrderList() {
             <div className={StockCSS.contentsHeader}>
                 <div className={StockCSS.datebox}>
                     <div>조회기간</div>
-                    <input className={StockCSS.dateSelectbox} type="date"/>
+                    <input name='startDate'
+                           className={StockCSS.dateSelectbox}
+                           type="date"
+                           defaultValue={getFirstDayOfMonth()}
+                           onChange={ onChangeHandler }
+                    />
                     <div>~</div>
-                    <input className={StockCSS.dateSelectbox} type="date"/>
+                    <input name='endDate'
+                           className={StockCSS.dateSelectbox}
+                           type="date"
+                           defaultValue={getCurrentDate()}
+                           onChange={ onChangeHandler }
+                    />
                 </div>
 
                 <div className={StockCSS.contentsHeader}>
                     <div>영업점</div>
-                    <input className={StockCSS.searchbox} type="text" placeholder="영업점을 조회하세요"/>
-                    <button>조회</button>
+                    <input className={StockCSS.searchbox}
+                           name='search'
+                           type="text"
+                           placeholder="영업점을 조회하세요"
+                           onChange={ onChangeHandler }
+                           onKeyPress={onEnterKeyPress}
+                    />
+                    <button onClick={onClickSearchHandler}>조회</button>
                 </div>
                 <div className={StockCSS.contentsHeader}>
                     <div>상태</div>
-                    <select>
-                        <option value="wait">대기</option>
-                        <option value="cancel">취소</option>
-                        <option value="reject">반려</option>
-                        <option value="permit">승인</option>
-                        <option value="complete">완료</option>
+                    <select name='stat' onChange={ onClickSearchHandler }>
+                        <option value="WAITING">대기</option>
+                        <option value="CANCEL">취소</option>
+                        <option value="REJECT">반려</option>
+                        <option value="PERMIT">승인</option>
+                        <option value="COMPLETE">완료</option>
                     </select>
                 </div>
             </div>
@@ -161,7 +270,7 @@ function OrderList() {
                     </tr>
                     {
                         Array.isArray(orderProductList) && orderProductList.map((orderProduct) => (
-                            <tr key={orderProduct.orderNo}>
+                            <tr >
                                 <td>{ orderProduct.orderNo}</td>
                                 <td>{ orderProduct.storeInfoName}</td>
                                 <td>{ orderProduct.categoryName}</td>
@@ -170,7 +279,7 @@ function OrderList() {
                                 <td>{ orderProduct.standardName}</td>
                                 <td>{ orderProduct.price}</td>
                                 <td>{ orderProduct.quantity}</td>
-                                <td>{ orderProduct.refProductNo.etc}</td>
+                                <td>{ orderProduct.etc}</td>
                                 <td>{ orderProduct.registDate}</td>
                                 <td>{ orderProduct.status}</td>
                                 <td><input
