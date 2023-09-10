@@ -51,10 +51,6 @@ function AppSeeContent() {
             <div className={style.waiting}>
                 참조/열람 대기 문서
             </div>
-            <div className={AppWait.allCheck}>
-                <input type="checkBox" name={AppWait.allCheck} className={AppWait.checkAll}/> 전체선택
-                <div className={AppWait.delete}> 삭제하기 </div>
-            </div>
             <br/>
             <div className={style.waitingDoc}>
                 <table className={style.table1}>
@@ -82,12 +78,6 @@ function AppSeeContent() {
                 </table>
             </div>
             <br/>
-            <div className={AppWait.search}>
-                <input type="text" className={AppWait.searchBar} name={AppWait.searchBar} placeholder='검색하실 제목을 입력해주세요.'/>
-                <button className={AppWait.searchButton}>
-                    <span className={AppWait.searchIcon}><AiOutlineSearch/></span>
-                </button>
-            </div>
             <br/>
             <div className={AppWait.paging}>
                 <div

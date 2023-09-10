@@ -4,7 +4,7 @@ import {
     callPostBusinessAPI, callPostPayAPI,
     callPostPurchaseAPI,
     callPostTrafficAPI,
-    callPostVacationAPI, deleteDocumentAPI, putApprovalAPI
+    callPostVacationAPI, deleteDocumentAPI, putApprovalAPI, putBackApprovalAPI, putVacationAPI
 } from '../../../apis/ApprovalAPICalls';
 import approvalReducer from "../../../modules/ApprovalModule";
 import { useNavigate } from "react-router-dom";
@@ -735,6 +735,8 @@ export const PayCheck = (keys, values, formdata, dispatch, navigate) => {
 
 export const delDoc = (yn, documentCode, navigate, dispatch) => {
 
+    console.log(yn)
+
     if(!yn) {
         Swal.fire({
             icon: 'error',
@@ -771,7 +773,7 @@ export const delDoc = (yn, documentCode, navigate, dispatch) => {
 
 export const appLineCheck = (myPosiCode, appPosiCode, dispatch, documentCode, employeeNo, navigate) => {
 
-    console.log(myPosiCode)
+    console.log(appPosiCode)
 
     if(myPosiCode == '부장') {
         if((appPosiCode[0]?.employee.position.name =='인턴' || appPosiCode[0]?.employee.position.name =='사원' || appPosiCode[0]?.employee.position.name =='대리' || appPosiCode[0]?.employee.position.name =='과장' || appPosiCode[0]?.employee.position.name =='차장') && appPosiCode[0]?.status == '결재요청') {
@@ -998,4 +1000,300 @@ export const appLineCheck = (myPosiCode, appPosiCode, dispatch, documentCode, em
         navigate('/approval', {replace: true});
     }
 
+}
+
+export const vacationAppLineCheck = (myPosiCode, appPosiCode, dispatch, documentCode, employeeNo, useDate, navigate) => {
+
+    console.log(appPosiCode)
+
+    if(myPosiCode == '부장') {
+        if((appPosiCode[0]?.employee.position.name =='인턴' || appPosiCode[0]?.employee.position.name =='사원' || appPosiCode[0]?.employee.position.name =='대리' || appPosiCode[0]?.employee.position.name =='과장' || appPosiCode[0]?.employee.position.name =='차장') && appPosiCode[0]?.status == '결재요청') {
+            Swal.fire({
+                icon: 'error',
+                title: '승인 차례가 오지 않았습니다.',
+                text: '승인이 불가능합니다.',
+            })
+            return;
+        }
+        if((appPosiCode[1]?.employee.position.name =='인턴' || appPosiCode[1]?.employee.position.name =='사원' || appPosiCode[1]?.employee.position.name =='대리' || appPosiCode[1]?.employee.position.name =='과장' || appPosiCode[1]?.employee.position.name =='차장') && appPosiCode[1]?.status == '결재요청') {
+            Swal.fire({
+                icon: 'error',
+                title: '승인 차례가 오지 않았습니다.',
+                text: '승인이 불가능합니다.',
+            })
+            return;
+        }
+        if((appPosiCode[2]?.employee.position.name == '인턴' ||appPosiCode[2]?.employee.position.name =='사원' ||appPosiCode[2]?.employee.position.name =='대리' ||appPosiCode[2]?.employee.position.name =='과장' ||appPosiCode[2]?.employee.position.name =='차장') && appPosiCode[2]?.status == '결재요청') {
+            Swal.fire({
+                icon: 'error',
+                title: '승인 차례가 오지 않았습니다.',
+                text: '승인이 불가능합니다.',
+            })
+            return;
+        }
+        if((appPosiCode[3]?.employee.position.name == '인턴' ||appPosiCode[3]?.employee.position.name =='사원' ||appPosiCode[3]?.employee.position.name =='대리' ||appPosiCode[3]?.employee.position.name =='과장' ||appPosiCode[3]?.employee.position.name =='차장') && appPosiCode[3]?.status == '결재요청') {
+            Swal.fire({
+                icon: 'error',
+                title: '승인 차례가 오지 않았습니다.',
+                text: '승인이 불가능합니다.',
+            })
+            return;
+        }
+        dispatch(putApprovalAPI({
+            documentCode: documentCode,
+            employeeNo: employeeNo
+        }))
+        dispatch(putVacationAPI({
+            documentCode: documentCode,
+            useDate : useDate
+        }))
+        Swal.fire({
+            icon: 'success',
+            title: '승인 성공',
+            text: '승인하셨습니다',
+        })
+        navigate('/approval', {replace: true});
+    }
+
+    if(myPosiCode =='차장') {
+        if((appPosiCode[0]?.employee.position.name == '인턴' ||appPosiCode[0]?.employee.position.name =='사원' ||appPosiCode[0]?.employee.position.name =='대리' ||appPosiCode[0]?.employee.position.name =='과장') && appPosiCode[0]?.status == '결재요청') {
+            Swal.fire({
+                icon: 'error',
+                title: '승인 차례가 오지 않았습니다.',
+                text: '승인이 불가능합니다.',
+            })
+            return;
+        }
+        if((appPosiCode[1]?.employee.position.name == '인턴' ||appPosiCode[1]?.employee.position.name =='사원' ||appPosiCode[1]?.employee.position.name =='대리' ||appPosiCode[1]?.employee.position.name =='과장') && appPosiCode[1]?.status == '결재요청') {
+            Swal.fire({
+                icon: 'error',
+                title: '승인 차례가 오지 않았습니다.',
+                text: '승인이 불가능합니다.',
+            })
+            return;
+        }
+        if((appPosiCode[2]?.employee.position.name == '인턴' ||appPosiCode[2]?.employee.position.name =='사원' ||appPosiCode[2]?.employee.position.name =='대리' ||appPosiCode[2]?.employee.position.name =='과장') && appPosiCode[2]?.status == '결재요청') {
+            Swal.fire({
+                icon: 'error',
+                title: '승인 차례가 오지 않았습니다.',
+                text: '승인이 불가능합니다.',
+            })
+            return;
+        }
+        if((appPosiCode[3]?.employee.position.name == '인턴' ||appPosiCode[3]?.employee.position.name =='사원' ||appPosiCode[3]?.employee.position.name =='대리' ||appPosiCode[3]?.employee.position.name =='과장') && appPosiCode[3]?.status == '결재요청') {
+            Swal.fire({
+                icon: 'error',
+                title: '승인 차례가 오지 않았습니다.',
+                text: '승인이 불가능합니다.',
+            })
+            return;
+        }
+        dispatch(putApprovalAPI({
+            documentCode: documentCode,
+            employeeNo: employeeNo
+        }))
+        dispatch(putVacationAPI({
+            documentCode: documentCode,
+            useDate : useDate
+        }))
+        Swal.fire({
+            icon: 'success',
+            title: '승인 성공',
+            text: '승인하셨습니다',
+        })
+        navigate('/approval', {replace: true});
+    }
+
+    if(myPosiCode =='과장') {
+        if(appPosiCode[0]?.employee.position.name == '인턴' || appPosiCode[0]?.employee.position.name =='사원' || appPosiCode[0]?.employee.position.name =='대리' && appPosiCode[0]?.status == '결재요청') {
+            Swal.fire({
+                icon: 'error',
+                title: '승인 차례가 오지 않았습니다.',
+                text: '승인이 불가능합니다.',
+            })
+            return;
+        }
+        if((appPosiCode[1]?.employee.position.name == '인턴' ||appPosiCode[1]?.employee.position.name =='사원' ||appPosiCode[1]?.employee.position.name =='대리') && appPosiCode[1]?.status == '결재요청') {
+            Swal.fire({
+                icon: 'error',
+                title: '승인 차례가 오지 않았습니다.',
+                text: '승인이 불가능합니다.',
+            })
+            return;
+        }
+        if((appPosiCode[2]?.employee.position.name == '인턴' ||appPosiCode[2]?.employee.position.name =='사원' ||appPosiCode[2]?.employee.position.name =='대리') && appPosiCode[2]?.status == '결재요청') {
+            Swal.fire({
+                icon: 'error',
+                title: '승인 차례가 오지 않았습니다.',
+                text: '승인이 불가능합니다.',
+            })
+            return;
+        }
+        if((appPosiCode[3]?.employee.position.name == '인턴' ||appPosiCode[3]?.employee.position.name =='사원' ||appPosiCode[3]?.employee.position.name =='대리') && appPosiCode[3]?.status == '결재요청') {
+            Swal.fire({
+                icon: 'error',
+                title: '승인 차례가 오지 않았습니다.',
+                text: '승인이 불가능합니다.',
+            })
+            return;
+        }
+        dispatch(putApprovalAPI({
+            documentCode: documentCode,
+            employeeNo: employeeNo
+        }))
+        dispatch(putVacationAPI({
+            documentCode: documentCode,
+            useDate : useDate
+        }))
+        Swal.fire({
+            icon: 'success',
+            title: '승인 성공',
+            text: '승인하셨습니다',
+        })
+        navigate('/approval', {replace: true});
+    }
+
+    if(myPosiCode =='대리') {
+        if((appPosiCode[0]?.employee.position.name == '인턴' || appPosiCode[0]?.employee.position.name =='사원') && appPosiCode[0]?.status == '결재요청') {
+            Swal.fire({
+                icon: 'error',
+                title: '승인 차례가 오지 않았습니다.',
+                text: '승인이 불가능합니다.',
+            })
+            return;
+        }
+        if((appPosiCode[1]?.employee.position.name == '인턴' ||appPosiCode[1]?.employee.position.name =='사원') && appPosiCode[1]?.status == '결재요청') {
+            Swal.fire({
+                icon: 'error',
+                title: '승인 차례가 오지 않았습니다.',
+                text: '승인이 불가능합니다.',
+            })
+            return;
+        }
+        if((appPosiCode[2]?.employee.position.name == '인턴' ||appPosiCode[2]?.employee.position.name =='사원') && appPosiCode[2]?.status == '결재요청') {
+            Swal.fire({
+                icon: 'error',
+                title: '승인 차례가 오지 않았습니다.',
+                text: '승인이 불가능합니다.',
+            })
+            return;
+        }
+        if((appPosiCode[3]?.employee.position.name == '인턴' ||appPosiCode[3]?.employee.position.name =='사원') && appPosiCode[3]?.status == '결재요청') {
+            Swal.fire({
+                icon: 'error',
+                title: '승인 차례가 오지 않았습니다.',
+                text: '승인이 불가능합니다.',
+            })
+            return;
+        }
+        dispatch(putApprovalAPI({
+            documentCode: documentCode,
+            employeeNo: employeeNo
+        }))
+        dispatch(putVacationAPI({
+            documentCode: documentCode,
+            useDate : useDate
+        }))
+        Swal.fire({
+            icon: 'success',
+            title: '승인 성공',
+            text: '승인하셨습니다',
+        })
+        navigate('/approval', {replace: true});
+    }
+
+    if(myPosiCode =='사원') {
+        if((appPosiCode[0]?.employee.position.name == '인턴') && appPosiCode[0]?.status == '결재요청') {
+            Swal.fire({
+                icon: 'error',
+                title: '승인 차례가 오지 않았습니다.',
+                text: '승인이 불가능합니다.',
+            })
+            return;
+        }
+        if((appPosiCode[1]?.employee.position.name == '인턴') && appPosiCode[1]?.status == '결재요청') {
+            Swal.fire({
+                icon: 'error',
+                title: '승인 차례가 오지 않았습니다.',
+                text: '승인이 불가능합니다.',
+            })
+            return;
+        }
+        if((appPosiCode[2]?.employee.position.name == '인턴') && appPosiCode[2]?.status == '결재요청') {
+            Swal.fire({
+                icon: 'error',
+                title: '승인 차례가 오지 않았습니다.',
+                text: '승인이 불가능합니다.',
+            })
+            return;
+        }
+        if((appPosiCode[3]?.employee.position.name == '인턴') && appPosiCode[3]?.status == '결재요청') {
+            Swal.fire({
+                icon: 'error',
+                title: '승인 차례가 오지 않았습니다.',
+                text: '승인이 불가능합니다.',
+            })
+            return;
+        }
+        dispatch(putApprovalAPI({
+            documentCode: documentCode,
+            employeeNo: employeeNo
+        }))
+        dispatch(putVacationAPI({
+            documentCode: documentCode,
+            useDate : useDate
+        }))
+        Swal.fire({
+            icon: 'success',
+            title: '승인 성공',
+            text: '승인하셨습니다',
+        })
+        navigate('/approval', {replace: true});
+    }
+
+}
+
+export const backDocument = (documentCode, employeeNo, dispatch, navigate) => {
+
+        Swal.fire({
+        title: 'Comment',
+        text: '코멘트를 입력해주세요',
+        input: 'text',
+        showCancelButton: true,
+        confirmButtonText: '입력하기',
+        preConfirm : (comment) => {
+
+            if(!comment) {
+                Swal.fire({
+                    icon: 'info',
+                    title: '코멘트 미입력',
+                    text: '코멘트를 작성해주세요',
+                })
+            } else {
+                Swal.fire({
+                    title: '반려 확인',
+                    text: '반려하시겠습니까?',
+                    icon: 'question',
+
+                    showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+                    confirmButtonColor: 'rgba(0,125,0,0.5)', // confrim 버튼 색깔 지정
+                    cancelButtonColor: 'rgba(125,0,0,0.5)', // cancel 버튼 색깔 지정
+                    confirmButtonText: '승인', // confirm 버튼 텍스트 지정
+                    cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+
+                    reverseButtons: false, // 버튼 순서 거꾸로
+
+                }).then(result => {
+                    // 만약 Promise리턴을 받으면,
+                    if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+
+                        dispatch(putBackApprovalAPI({documentCode, comment, employeeNo}));
+
+                        Swal.fire('반려가 완료되었습니다.', '전자결재 홈으로 돌아갑니다', 'success');
+                        navigate('/approval', {replace: true});
+                    }
+                })
+            }
+        }
+    })
 }

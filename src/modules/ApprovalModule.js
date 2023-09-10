@@ -24,6 +24,10 @@ export const GET_PAY_DOC = "approval/GET_PAY_DOC";
 export const GET_APP_YN = "approval/GET_APP_YN";
 export const DELETE_DOCUMENT = "approval/DELETE_DOCUMENT";
 export const PUT_APPROVAL = "approval/PUT_APPROVAL";
+export const PUT_BACK_APPROVAL = "approval/PUT_BACK_APPROVAL";
+export const PUT_VACATION = "approval/PUT_VACATION";
+export const GET_FILE = "approval/GET_FILE";
+export const PUT_RECEIVER = "approval/PUT_RECEIVER";
 
 const actions = createActions({
     [GET_APPLINE]: () => {},
@@ -48,7 +52,9 @@ const actions = createActions({
     [GET_APP_YN]: () => {},
     [DELETE_DOCUMENT]: () => {},
     [PUT_APPROVAL]: () => {},
-
+    [PUT_BACK_APPROVAL]: () => {},
+    [PUT_VACATION]: () => {},
+    [PUT_RECEIVER]: () => {},
 });
 
 export const approvalReducer = handleActions(
@@ -78,6 +84,18 @@ export const approvalReducer = handleActions(
         },
 
         [PUT_APPROVAL]: (state, { payload }) => {
+            return payload;
+        },
+
+        [PUT_BACK_APPROVAL]: (state, { payload }) => {
+            return payload;
+        },
+
+        [PUT_VACATION]: (state, { payload }) => {
+            return payload;
+        },
+
+        [PUT_RECEIVER]: (state, { payload }) => {
             return payload;
         }
     },
@@ -210,6 +228,15 @@ export const approvalDeleteDocumentReducer = handleActions(
     {
         [DELETE_DOCUMENT]: (state, { payload }) => {
 
+        }
+    },
+    initialState
+)
+
+export const approvalGetFileReducer = handleActions(
+    {
+        [GET_FILE]: (state, { payload }) => {
+            return payload;
         }
     },
     initialState

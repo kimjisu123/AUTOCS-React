@@ -12,7 +12,14 @@ import {
     GET_SEE_WAIT,
     GET_MY_APP,
     GET_MY_SEE,
-    GET_BUSINESS_DOC, GET_TRAFFIC_DOC, GET_PURCHASE_DOC, GET_VACATION_DOC, GET_PAY_DOC, GET_APP_YN, PUT_APPROVAL
+    GET_BUSINESS_DOC,
+    GET_TRAFFIC_DOC,
+    GET_PURCHASE_DOC,
+    GET_VACATION_DOC,
+    GET_PAY_DOC,
+    GET_APP_YN,
+    PUT_APPROVAL,
+    PUT_BACK_APPROVAL, GET_FILE
 } from '../modules/ApprovalModule'
 import {decodeJwt} from "../util/tokenUtils";
 
@@ -503,5 +510,80 @@ export const putApprovalAPI = ({documentCode, employeeNo}) => {
         if(result.status === 200) {
             dispatch({type: PUT_APPROVAL, payload : result.data});
         }
+    }
+}
+
+export const putBackApprovalAPI = ({documentCode, comment, employeeNo}) => {
+
+    console.log(comment)
+
+    const requestURL = `http://localhost:8080/approval/back/${documentCode}/${employeeNo}`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "PUT",
+            body : comment
+        })
+        //     .then(response => response.json())
+        // if(result.status === 200) {
+        //     dispatch({type: PUT_BACK_APPROVAL, payload : result.data});
+        // }
+    }
+}
+
+export const putVacationAPI = ({documentCode, useDate}) => {
+
+    const requestURL = `http://localhost:8080/approval/putVacation/${documentCode}/${useDate}`
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "PUT",
+        })
+    }
+}
+
+export const getFileAPI = ({fileCode}) => {
+    const requestURL = `http://localhost:8080/approval/download/${fileCode}`;
+
+    return async (dispatch, getState) => {
+        try {
+            const response = await fetch(requestURL, {
+                method: "GET",
+                mode : 'cors',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            if (response.ok) {
+                // Blob으로 응답 받기 때문에 .blob() 메서드를 사용하여 데이터 추출
+                const blob = await response.blob();
+
+                // 다운로드 링크 생성
+                const url = window.URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'downloaded-file');
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        } catch (error) {
+            console.error('파일 다운로드 중 오류 발생:', error);
+        }
+    };
+};
+
+export const putReceiverAPI = ({employeeNo, documentCode}) => {
+
+    const requestURL = `http://localhost:8080/approval/putReceiver/${documentCode}/${employeeNo}`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "PUT"
+        })
     }
 }

@@ -2,12 +2,12 @@ import styles from "../approval.module.css";
 import business from "../Business.module.css";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {callGetAppYNAPI, callGetBusinessDocAPI} from "../../../apis/ApprovalAPICalls";
+import {callGetAppYNAPI, callGetBusinessDocAPI, getFileAPI, putReceiverAPI} from "../../../apis/ApprovalAPICalls";
 import DocumentAppLine from "../DocumentAppLine";
 import DocumentReceiveLine from "../DocumentReceiveLine";
 import {decodeJwt} from "../../../util/tokenUtils";
 import {useNavigate} from "react-router-dom";
-import {delDoc} from "../functionList/FuntionList";
+import {appLineCheck, backDocument, delDoc} from "../functionList/FuntionList";
 function BusinessType({documentCode}) {
 
     const accessToken = window.localStorage.getItem('accessToken');
@@ -23,6 +23,7 @@ function BusinessType({documentCode}) {
         []
     )
 
+
     const onClick = () => {
         console.log(data)
     }
@@ -30,16 +31,44 @@ function BusinessType({documentCode}) {
     const data = useSelector(state => state.approvalBusinessDocReducer);
     const yn = useSelector(state => state.approvalDocumentAppYNReducer);
 
+    useEffect(() => {
+            dispatch(callGetAppYNAPI({
+                documentCode : documentCode
+            }))
+        },
+        []
+    )
+
     const onClickDelete = () => {
-        dispatch(callGetAppYNAPI({
-            documentCode : documentCode
-        }))
 
         delDoc(yn, documentCode, navigate, dispatch);
     }
 
     const onClickFile = e => {
         console.log(e.target.nextSibling.value)
+        dispatch(getFileAPI(
+            {fileCode: e.target.nextSibling.value}
+        ))
+    }
+
+    const myPosiCode = decodedToken.Position;
+    const appPosiCode = data.appEmp;
+    const employeeNo = decodedToken.EmployeeNo;
+
+    const onClickApproval = () => {
+        appLineCheck(myPosiCode, appPosiCode, dispatch, documentCode, employeeNo, navigate);
+    }
+
+    const onClickBack = () => {
+        backDocument(documentCode, employeeNo, dispatch, navigate)
+    }
+
+    const onClickReceiver = () => {
+
+        dispatch(putReceiverAPI({
+            employeeNo : employeeNo,
+            documentCode : documentCode
+        }))
     }
 
     return (
@@ -116,14 +145,11 @@ function BusinessType({documentCode}) {
             <br/>
             {decodedToken.EmployeeNo !== data.employee?.employeeNo?
                 <div style={{display:"flex", justifyContent:"right", marginRight:"40px"}}>
-                    <div className={styles.sendApp}>승인</div>
-                    <div className={styles.sendApp}>반려</div>
-                    {/*<div className={styles.sendApp}>수정</div>*/}
-                    {/*<div className={styles.sendApp}>취소</div>*/}
+                    <div className={styles.sendApp} onClick={onClickApproval}>승인</div>
+                    <div className={styles.sendApp} onClick={onClickBack}>반려</div>
+                    <div className={styles.sendApp} onClick={onClickReceiver}>확인</div>                    {/*<div className={styles.sendApp}>수정</div>*/}
                 </div> :
                 <div style={{display:"flex", justifyContent:"right", marginRight:"40px"}}>
-                    {/*<div className={styles.sendApp}>승인</div>*/}
-                    {/*<div className={styles.sendApp}>반려</div>*/}
                     <div className={styles.sendApp} onClick={onClickDelete}>삭제</div>
                 </div>}
             <br/><br/>

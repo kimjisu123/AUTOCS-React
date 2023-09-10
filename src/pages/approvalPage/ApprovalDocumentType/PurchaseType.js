@@ -2,13 +2,19 @@ import styles from "../approval.module.css";
 import {decodeJwt} from "../../../util/tokenUtils";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {callGetAppYNAPI, callGetPurchaseDocAPI, putApprovalAPI} from "../../../apis/ApprovalAPICalls";
+import {
+    callGetAppYNAPI,
+    callGetPurchaseDocAPI,
+    getFileAPI,
+    putApprovalAPI,
+    putReceiverAPI
+} from "../../../apis/ApprovalAPICalls";
 import {approvalPurchaseDocReducer} from "../../../modules/ApprovalModule";
 import DocumentAppLine from "../DocumentAppLine";
 import DocumentReceiveLine from "../DocumentReceiveLine";
 import PurchaseDocumentRow from "../PurchaseDocumentRow";
 import {useNavigate} from "react-router-dom";
-import {appLineCheck, delDoc} from "../functionList/FuntionList";
+import {appLineCheck, backDocument, delDoc} from "../functionList/FuntionList";
 
 function PurchaseType({documentCode}) {
 
@@ -34,6 +40,9 @@ function PurchaseType({documentCode}) {
 
     const onClickFile = e => {
         console.log(e.target.nextSibling.value)
+        dispatch(getFileAPI(
+            {fileCode: e.target.nextSibling.value}
+        ))
     }
 
     data && data.purchase?.map(m => total += (m.unitPrice * m.amount));
@@ -42,10 +51,15 @@ function PurchaseType({documentCode}) {
     const navigate = useNavigate();
     const myPosiCode = decodedToken.Position;
     const appPosiCode = data.appEmp;
+    useEffect(() => {
+            dispatch(callGetAppYNAPI({
+                documentCode : documentCode
+            }))
+        },
+        []
+    )
+
     const onClickDelete = () => {
-        dispatch(callGetAppYNAPI({
-            documentCode : documentCode
-        }))
 
         delDoc(yn, documentCode, navigate, dispatch);
     }
@@ -53,6 +67,18 @@ function PurchaseType({documentCode}) {
     const employeeNo = decodedToken.EmployeeNo;
     const onClickApproval = () => {
         appLineCheck(myPosiCode, appPosiCode, dispatch, documentCode, employeeNo, navigate);
+    }
+
+    const onClickReceiver = () => {
+
+        dispatch(putReceiverAPI({
+            employeeNo : employeeNo,
+            documentCode : documentCode
+        }))
+    }
+
+    const onClickBack = () => {
+        backDocument(documentCode, employeeNo, dispatch, navigate)
     }
     return (
         <div className={styles.content} onClick={onClick}>
@@ -138,7 +164,8 @@ function PurchaseType({documentCode}) {
             {decodedToken.EmployeeNo !== data.employee?.employeeNo?
                 <div style={{display:"flex", justifyContent:"right", marginRight:"40px"}}>
                     <div className={styles.sendApp} onClick={onClickApproval}>승인</div>
-                    <div className={styles.sendApp}>반려</div>
+                    <div className={styles.sendApp} onClick={onClickBack}>반려</div>
+                    <div className={styles.sendApp} onClick={onClickReceiver}>확인</div>                    {/*<div className={styles.sendApp}>수정</div>*/}
                 </div> :
                 <div style={{display:"flex", justifyContent:"right", marginRight:"40px"}}>
                     <div className={styles.sendApp} onClick={onClickDelete}>삭제</div>

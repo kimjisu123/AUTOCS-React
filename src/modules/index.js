@@ -15,11 +15,22 @@ import todoReducer from "./TodoModule";
 import myPageReducer from "./MypageModule";
 import boardReducer from "./BoardModule";
 import {
-    approvalAppWaitReducer, approvalBusinessDocReducer, approvalDeleteDocumentReducer, approvalDocumentAppYNReducer,
-    approvalHomeReducer, approvalMyAppReducer,
-    approvalMyBusinessReducer, approvalMySeeReducer, approvalPayDocReducer, approvalPurchaseDocReducer,
-    approvalReducer, approvalSeeWaitReducer,
-    approvalSendReducer, approvalTrafficDocReducer, approvalVacationDocReducer,
+    approvalAppWaitReducer,
+    approvalBusinessDocReducer,
+    approvalDeleteDocumentReducer,
+    approvalDocumentAppYNReducer,
+    approvalGetFileReducer,
+    approvalHomeReducer,
+    approvalMyAppReducer,
+    approvalMyBusinessReducer,
+    approvalMySeeReducer,
+    approvalPayDocReducer,
+    approvalPurchaseDocReducer,
+    approvalReducer,
+    approvalSeeWaitReducer,
+    approvalSendReducer,
+    approvalTrafficDocReducer,
+    approvalVacationDocReducer,
     vacationReducer
 } from "./ApprovalModule";
 
@@ -55,7 +66,8 @@ const rootReducer = combineReducers({
     approvalVacationDocReducer,
     approvalPayDocReducer,
     approvalDocumentAppYNReducer,
-    approvalDeleteDocumentReducer
+    approvalDeleteDocumentReducer,
+    approvalGetFileReducer
 });
 
 export default rootReducer;
