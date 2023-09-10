@@ -5,8 +5,8 @@ const accessToken = window.localStorage.getItem('accessToken');
 const decodedToken = accessToken ? decodeJwt(accessToken) : null;
 
 
-export const callGetMailAPI = () => {
-    const requestURL = `http://localhost:8080/mail/${decodedToken.EmployeeNo}`;
+export const callGetMailAPI = (currentPage, result) => {
+    const requestURL = `http://localhost:8080/mail/${decodedToken.EmployeeNo}/${currentPage}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -16,12 +16,12 @@ export const callGetMailAPI = () => {
                 'Accept': 'application/json'
             },
         }).then(response => response.json());
-        dispatch({ type: GET_MAIL, payload: result });
+        dispatch({ type: GET_MAIL, payload: result.data });
     }
 };
 
-export const callGetMailBookmarkAPI = () => {
-    const requestURL = 'http://localhost:8080/mailBookmark';
+export const callGetMailBookmarkAPI = (currentPage, search) => {
+    const requestURL = `http://localhost:8080/mailBookmark/${currentPage}/${search}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -31,12 +31,12 @@ export const callGetMailBookmarkAPI = () => {
                 'Accept': 'application/json'
             },
         }).then(response => response.json());
-        dispatch({ type: GET_MAIL_BOOKMARK, payload: result });
+        dispatch({ type: GET_MAIL_BOOKMARK, payload: result.data });
     }
 };
 
-export const callGetMailSentAPI = ({employeeNo}) => {
-    const requestURL = `http://localhost:8080/mailSent/${employeeNo}`;
+export const callGetMailSentAPI = ( {employeeNo}, currentPage) => {
+    const requestURL = `http://localhost:8080/mailSent/${employeeNo}/${currentPage}`;
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
             method: 'GET',
@@ -46,7 +46,7 @@ export const callGetMailSentAPI = ({employeeNo}) => {
             },
         }).then(response => response.json());
         console.log(result)
-        dispatch({ type: GET_MAIL_SENT, payload: result });
+        dispatch({ type: GET_MAIL_SENT, payload: result.data });
     }
 };
 

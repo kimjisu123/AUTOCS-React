@@ -1,6 +1,12 @@
 import styles from './Mail.module.css';
 import { useState, useEffect } from 'react'
-import { callGetMailAPI, callDELETEMailAPI, callPutMailAPI, callSeleteDELETEMailAPI } from '../../apis/MailAPICalls';
+import {
+    callGetMailAPI,
+    callDELETEMailAPI,
+    callPutMailAPI,
+    callSeleteDELETEMailAPI,
+    callGetMailBookmarkAPI
+} from '../../apis/MailAPICalls';
 import { useDispatch, useSelector } from 'react-redux';
 import MailDetails from "../../pages/Mail/MailDetails"
 
@@ -12,11 +18,29 @@ function MailContent(){
     const dispatch = useDispatch();
     const mailData = useSelector(state => state.mailReducer);
 
+    // 페이징 처리
+    const [start, setStart] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [pageEnd, setPageEnd] = useState(1);
+    useEffect(
+        () => {
+            setStart((currentPage - 1) * 5);
+            dispatch(callGetMailAPI(currentPage))
+        }
+        ,[currentPage]
+    );
+    const pageNumber = [];
+    const pageInfo = mailData.pageInfo;
+    if(pageInfo){
+        for(let i = 1; i <= pageInfo.pageEnd ; i++){
+            pageNumber.push(i);
+        }
+    }
 
 
     useEffect(
         () =>  {
-            dispatch( callGetMailAPI() );
+            dispatch( callGetMailAPI(currentPage, search) );
         }
         ,[]
     );
@@ -58,6 +82,33 @@ function MailContent(){
                     mailData.data && mailData.data.map(mail => (
                     <MailItem key={mail.mailNo} mail={mail} />
                     ))
+                }
+            </div>
+            <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
+                { Array.isArray(mailData.data) &&
+                    <button
+                        onClick={() => setCurrentPage(currentPage - 1)}
+                        disabled={currentPage === 1}
+                    >
+                        &lt;
+                    </button>
+                }
+                {pageNumber.map((num) => (
+                    <li key={num} onClick={() => setCurrentPage(num)}>
+                        <button
+                            style={ currentPage === num ? {backgroundColor : 'orange' } : null}
+                        >
+                            {num}
+                        </button>
+                    </li>
+                ))}
+                { Array.isArray(mailData.data) &&
+                    <button
+                        onClick={() => {return setCurrentPage(currentPage + 1)}}
+                        disabled={currentPage === pageInfo.pageEnd || pageInfo.total == 0}
+                    >
+                        &gt;
+                    </button>
                 }
             </div>
         </div>

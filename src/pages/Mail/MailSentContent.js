@@ -14,6 +14,26 @@ function MailkSentContent(){
     const decodedToken = accessToken ? decodeJwt(accessToken) : null;
 
 
+    // 페이징 처리
+    const [start, setStart] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [pageEnd, setPageEnd] = useState(1);
+
+    useEffect(
+        () => {
+            setStart((currentPage - 1) * 5);
+            dispatch(callGetMailSentAPI({employeeNo: decodedToken.EmployeeNo}, currentPage))
+        }
+        ,[currentPage]
+    );
+    const pageNumber = [];
+    const pageInfo = mailData.pageInfo;
+    if(pageInfo){
+        for(let i = 1; i <= pageInfo.pageEnd ; i++){
+            pageNumber.push(i);
+        }
+    }
+
     const onClickMailDelete = async () =>{
         dispatch( callDELETEMailAPI() );
         window.location.reload();
@@ -22,15 +42,19 @@ function MailkSentContent(){
 
     useEffect(
         () =>  {
-            dispatch( callGetMailSentAPI({employeeNo: decodedToken.EmployeeNo}));
+            dispatch( callGetMailSentAPI({employeeNo: decodedToken.EmployeeNo}, currentPage));
         }
         ,[]
     );
 
+
+    const onClickTest = ()=>{
+        console.log(mailData)
+    }
     return(
         <div className={styles.content}>
             <div className={styles.mainHeader}>
-                <div className={styles.contentHeader}>
+                <div onClick={onClickTest} className={styles.contentHeader}>
                     보낸 쪽지
                 </div>
                 <div onClick={onClickMailDelete} className={styles.allDelete}>
@@ -47,6 +71,33 @@ function MailkSentContent(){
                 {mailData.data && mailData.data.map(mail => (
                     <MailSentItem key={mail.mailNo} mail={mail} />
                 ))}
+            </div>
+            <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
+                { Array.isArray(mailData.data) &&
+                    <button
+                        onClick={() => setCurrentPage(currentPage - 1)}
+                        disabled={currentPage === 1}
+                    >
+                        &lt;
+                    </button>
+                }
+                {pageNumber.map((num) => (
+                    <li key={num} onClick={() => setCurrentPage(num)}>
+                        <button
+                            style={ currentPage === num ? {backgroundColor : 'orange' } : null}
+                        >
+                            {num}
+                        </button>
+                    </li>
+                ))}
+                { Array.isArray(mailData.data) &&
+                    <button
+                        onClick={() => {return setCurrentPage(currentPage + 1)}}
+                        // disabled={currentPage === pageInfo.pageEnd || pageInfo.total == 0}
+                    >
+                        &gt;
+                    </button>
+                }
             </div>
         </div>
     )

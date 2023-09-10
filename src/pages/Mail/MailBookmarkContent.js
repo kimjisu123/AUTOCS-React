@@ -5,14 +5,41 @@ import { callGetMailAPI, callDELETEMailAPI, callPutMailAPI, callGetMailBookmarkA
 import { useDispatch, useSelector } from 'react-redux';
 import { decodeJwt } from '../../util/tokenUtils';
 import MailDetails from "./MailDetails";
+import {callGetHeadOfficeAPI} from "../../apis/DepartmentAPICalls";
 
 function MailBookmarkContent(){
 
     const [search, setSearch] = useState('');
-    const [result, setResult] = useState(null);
+    const [result, setResult] = useState('절대로아무도검색하지않을만한값입니다.');
 
     const dispatch = useDispatch();
     const mailData = useSelector(state => state.bookmarkReducer);
+
+
+
+    // 페이징 처리
+    const [start, setStart] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [pageEnd, setPageEnd] = useState(1);
+    useEffect(
+        () => {
+            setStart((currentPage - 1) * 5);
+            dispatch(callGetMailBookmarkAPI(currentPage, result))
+        }
+        ,[currentPage]
+    );
+    const pageNumber = [];
+    const pageInfo = mailData.pageInfo;
+    if(pageInfo){
+        for(let i = 1; i <= pageInfo.pageEnd ; i++){
+            pageNumber.push(i);
+        }
+    }
+
+    const onClickTest = ()=>{
+        console.log(mailData)
+    }
+
 
 
     const onClickMailDelete = async () =>{
@@ -22,25 +49,30 @@ function MailBookmarkContent(){
     }
 
     const onClickSearch = async () =>{
-        const filterResult =  mailData.data.filter(item => {
-
-                return item.title.toLowerCase().includes(search.toLowerCase())
-            }
-        );
-        setResult(filterResult);
+        console.log(search)
+        dispatch( callGetMailBookmarkAPI(currentPage, result) )
     }
 
     useEffect(
         () =>  {
-            dispatch( callGetMailBookmarkAPI() );
+            dispatch( callGetMailBookmarkAPI(currentPage, result) );
         }
         ,[]
     );
 
+
+    useEffect(
+        () =>  {
+            dispatch( callGetMailBookmarkAPI(currentPage, result) );
+        }
+        ,[]
+    );
+
+
     return(
         <div className={styles.content}>
             <div className={styles.mainHeader}>
-                <div className={styles.contentHeader}>
+                <div onClick={onClickTest} className={styles.contentHeader}>
                     즐겨찾기
                 </div>
                 <div onClick={onClickMailDelete} className={styles.allDelete}>
@@ -48,8 +80,8 @@ function MailBookmarkContent(){
                 </div>
                 <form style={{display: "flex", justifyContent:"flex-start"}}>
                     <div className={styles.type}> 제목</div>
-                    <input value={search} onChange={ (e) => {setSearch(e.target.value)} }  type="text" className={styles.inputText}/>
-                    <input onClick={ () => onClickSearch() } type="submit" value="검색" className={styles.inputButton}/>
+                    <input value={search} onChange={ (e) => { console.log(search);  setResult(e.target.value); return setSearch(e.target.value)} }  type="text" className={styles.inputText}/>
+                    <input onClick={ () => onClickSearch() } type="button" value="검색" className={styles.inputButton}/>
                 </form>
             </div>
             <div>
@@ -57,6 +89,33 @@ function MailBookmarkContent(){
                     mailData.data && mailData.data.map(mail => (
                         <BookmarkItem key={mail.mailNo} mail={mail} />
                     ))
+                }
+            </div>
+            <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
+                { Array.isArray(mailData.data) &&
+                    <button
+                        onClick={() => setCurrentPage(currentPage - 1)}
+                        disabled={currentPage === 1}
+                    >
+                        &lt;
+                    </button>
+                }
+                {pageNumber.map((num) => (
+                    <li key={num} onClick={() => setCurrentPage(num)}>
+                        <button
+                            style={ currentPage === num ? {backgroundColor : 'orange' } : null}
+                        >
+                            {num}
+                        </button>
+                    </li>
+                ))}
+                { Array.isArray(mailData.data) &&
+                    <button
+                        onClick={() => {return setCurrentPage(currentPage + 1)}}
+                        disabled={currentPage === pageInfo.pageEnd || pageInfo.total == 0}
+                    >
+                        &gt;
+                    </button>
                 }
             </div>
         </div>
