@@ -57,6 +57,8 @@ import NoticeMarket from "./pages/board/noticeMarket";
 import SuggestionM from "./pages/board/suggestionM";
 import FreeM from "./pages/board/freeM";
 import Writing from "./pages/board/writing";
+import PostDetail from "./pages/board/PostDetail";
+import UpdateBoard from "./pages/board/updateBoard";
 
 //지수
 import Management from "./pages/management/Management"
@@ -100,6 +102,8 @@ import TodoApp from "./pages/Todolist/TodoApp";
 // import {GlobalStyle} from "./theme/theme/GlobalStyle";
 
 import MailSend from "./pages/Mail/MailSend";
+import PurchaseContent from "./pages/approvalPage/PurchaseContent";
+import ApprovalDocument from "./pages/approvalPage/ApprovalDocument";
 
 
 
@@ -129,6 +133,7 @@ function App() {
                         <Route path='/approval/Receive' element={<Receive/>}/>
                         <Route path='/approval/Send' element={<Send/>}/>
                         <Route path='chart' element={<OrgChart/>}/>
+                        <Route path='/approval/document' element={<ApprovalDocument/>}/>
 
                         //지수
                         <Route path='/management' element={<Management />} />
@@ -199,6 +204,9 @@ function App() {
                             <Route path='freeM' element={<FreeM />}/>
                             //글작성
                             <Route path='writing' element={<Writing />}/>
+                            <Route path='update/:boardNo' element={<UpdateBoard />}/>
+                            //글 내용 확인
+                            <Route path='detail/:boardNo' element={<PostDetail />} />
                         </Route>
 
                         //지은

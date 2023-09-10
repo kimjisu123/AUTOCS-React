@@ -13,10 +13,17 @@ import orderReducer from "./OrderModule";
 import orderNumberReducer from "./OrderNumberModule";
 import orderProductReducer from "./OrderProductModule";
 import chartReducer from './ChartModule';
-import approvalReducer from './ApprovalModule';
 import todoReducer from "./TodoModule";
 import myPageReducer from "./MypageModule";
 import boardReducer from "./BoardModule";
+import {
+    approvalAppWaitReducer, approvalBusinessDocReducer,
+    approvalHomeReducer, approvalMyAppReducer,
+    approvalMyBusinessReducer, approvalMySeeReducer, approvalPayDocReducer, approvalPurchaseDocReducer,
+    approvalReducer, approvalSeeWaitReducer,
+    approvalSendReducer, approvalTrafficDocReducer, approvalVacationDocReducer,
+    vacationReducer
+} from "./ApprovalModule";
 
 const rootReducer = combineReducers({
     chartReducer,
@@ -34,10 +41,23 @@ const rootReducer = combineReducers({
     orderProductReducer,
     todoReducer,
     marketReducer,
-    approvalReducer,
     mailSentReducer,
     myPageReducer,
-    boardReducer
+    boardReducer,
+    approvalReducer,
+    vacationReducer,
+    approvalHomeReducer,
+    approvalSendReducer,
+    approvalMyBusinessReducer,
+    approvalAppWaitReducer,
+    approvalSeeWaitReducer,
+    approvalMyAppReducer,
+    approvalMySeeReducer,
+    approvalBusinessDocReducer,
+    approvalTrafficDocReducer,
+    approvalPurchaseDocReducer,
+    approvalVacationDocReducer,
+    approvalPayDocReducer
 });
 
 export default rootReducer;
