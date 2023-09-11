@@ -27,7 +27,7 @@
 
 .ReactModal__Overlay {
     position: fixed;
-    top: -478px;
+    top: -392px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -41,8 +41,8 @@
 
 .popup {
     margin: 0 auto;
-    width: 550px;
-    height: 512px;
+    /*width: 550px;*/
+    /*height: 512px;*/
     border-radius: 8px;
 
 

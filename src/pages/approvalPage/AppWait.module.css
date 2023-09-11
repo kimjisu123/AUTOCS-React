@@ -2,28 +2,31 @@
 .paging {
     display: flex;
     justify-content: center;
+    margin-right: 40px;
+    margin-bottom: 40px;
 }
 
-.one, .two, .three, .four, .five {
+.pagingBtn {
     cursor: pointer;
-    font-size: 1.3em;
-    margin-left: 20px;
+    font-size: 1.5em;
 }
 
-.first, .before, .after, .last {
-    cursor: pointer;
-    font-size: 2em;
-    line-height: 26px;
-    margin-left: 20px;
-}
-
-.one:hover, .two:hover, .three:hover, .four:hover, .five:hover, .first:hover, .before:hover, .after:hover, .last:hover {
+.pagingBtn:hover {
     color: #8d8a6d;
 }
 
 .search {
     display: flex;
     justify-content: center;
+}
+
+.before, .after {
+    font-size : 1.5em;
+    cursor : pointer;
+}
+
+.before:hover, .after:hover {
+    color: #8d8a6d;
 }
 
 .searchBar {
@@ -68,6 +71,6 @@
 }
 
 .checkOne {
-    margin-right: 50px;
-    margin-left: -60px;
+    position: absolute;
+    left: 350px;
 }

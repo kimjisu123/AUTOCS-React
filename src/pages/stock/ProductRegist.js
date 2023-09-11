@@ -97,7 +97,10 @@ const onClickRegistHandler = () => {
                         카테고리
                     </td>
                     <td>
-                        <select name='refProductCategoryNo' onChange={ onChangeHandler }>
+                        <select
+                            className={StockCSS.selectOption}
+                            name='refProductCategoryNo'
+                            onChange={ onChangeHandler }>
                             <option> </option>
                         {
                             Array.isArray(categoryList) && categoryList.map((category) => (
@@ -124,7 +127,10 @@ const onClickRegistHandler = () => {
                         규격
                     </td>
                     <td>
-                        <select name='refProductStandardNo' onChange={ onChangeHandler }>
+                        <select
+                            className={StockCSS.selectOption}
+                            name='refProductStandardNo'
+                            onChange={ onChangeHandler }>
                             <option> </option>
                             {
                                 Array.isArray(standardList) && standardList.map((standard) => (
@@ -139,7 +145,10 @@ const onClickRegistHandler = () => {
                         단위
                     </td>
                     <td>
-                        <select name='refProductUnitNo' onChange={ onChangeHandler }>
+                        <select
+                            className={StockCSS.selectOption}
+                            name='refProductUnitNo'
+                            onChange={ onChangeHandler }>
                             <option> </option>
                         {
                             Array.isArray(unitList) && unitList.map((unit) => (

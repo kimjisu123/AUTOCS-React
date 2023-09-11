@@ -5,6 +5,7 @@ import { useDispatch , useSelector } from 'react-redux';
 import {callGetMemberTodoAPI, callInsertTodoAPI} from "../../apis/TodoAPICalls";
 import {decodeJwt} from "../../util/tokenUtils";
 import {useNavigate} from "react-router-dom";
+import swal from "sweetalert";
 
 
 
@@ -18,33 +19,28 @@ const TodoInsert = ({onInsert}) => {
     const dispatch = useDispatch();
     const memberTodoList = useSelector(state => state.todoReducer);
     const naviage = useNavigate();
-    // 멤버정보 가지고 오기
-    // useEffect(() => {
-    //
-    //     console.log("decodedToken.MemberNo1 {}",decodedToken.MemberNo);
-    //
-    // }, []);
+
 
 
     // input 입력 이벤트
     const inputRef = useRef(null);
 
-    const onChange= useCallback(e => {
+    const onChange= (e) => {
         const inputValue = e.target.value;
             setValue(inputValue);
-            console.info(inputValue);
+            // console.info(inputValue);
 
-    },[]);  // use콜백 및 사용해서 쓸데없이 함수를 반복해서 불러오지 않기 성능 최적화를 위해
+    };  // use콜백 및 사용해서 쓸데없이 함수를 반복해서 불러오지 않기 성능 최적화를 위해
 
 
     // 버튼 클릭 이벤트 ( onSubmit으로 한 이유는 클릭과 enter둘다 사용가능하도록 하기위해 씀. onKeyPress이벤트를 따로 작성하지 않아도 됨.
-    const onSubmit = useCallback(
-        async e=> {
+    const onSubmit =
+        (e) => {
 
-            if(value !== null){
-
+            if(value !== null && value.trim() !== ''){
+                console.log("입력값 {}" , value);
                 try {
-                    console.table("초기값211111 {}",value);
+                    // console.table("초기값211111 {}",value);
                     // Todo 추가 API 호출
                     onInsert(value);
                     // 값 초기화
@@ -52,17 +48,22 @@ const TodoInsert = ({onInsert}) => {
                 } catch (error) {
                     // Todo 추가 실패 시 처리
                     console.error('Error adding Todo:', error);
+                    swal("등록에 실패했습니다.");
                 }
                 e.preventDefault();
             } else {
-                if (inputRef.current) {
-                    inputRef.current.focus();
-                }
+
+                // 빈값을 입력했을때 알럿창과 입력창 포커스
+                e.preventDefault();
+                swal('값을 입력해주세요.').then(() => {
+                    if (inputRef.current) {
+                        inputRef.current.focus();
+
+                    }});
+
             }
 
-        },
-        [onInsert, value]
-    );
+        };
 
 
 

@@ -1,13 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import StockCSS from '../stock/Stock.module.css'
-import { useSelector, useDispatch  } from 'react-redux';
 
 function Menubar() {
-
-    // 리덕스를 이용하기 위한 디스패처, 셀렉터 선언
-    const dispatch = useDispatch();
-    const loginMember = useSelector(state => state.memberReducer);
-    const accessToken = window.localStorage.getItem('accessToken');
 
 
     return(

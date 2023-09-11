@@ -1,47 +1,114 @@
 import styles from './approval.module.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useRef } from 'react';
 import NewApproval from './NewApproval';
 import Swal from 'sweetalert2';
-import Modal from './Modal'
 import { useSelector, useDispatch } from 'react-redux';
+import Modal from './Modal'
+import Modal1 from './Modal1'
 import {
-    callGetAppLineAPI
+    callGetAppLineAPI,
+    callPostPurchaseAPI
 } from '../../apis/ApprovalAPICalls';
 import { FileUpload } from 'primereact/fileupload';
 import './input.css'
 import { usePurchaseContext } from './appContext/PurchaseContext';
-
-
-const onClickAddHandler = () => {
-    let inputRow = document.getElementsByClassName(styles.inputRow)[0];
-    let table2 = document.getElementsByClassName(styles.table2)[0].children[0];
-    let clone = inputRow.cloneNode(true);
-    console.log(clone.children[3].children[0])
-    for(let i = 0; i <= 5; i++) {
-        if(i !== 4) {
-            clone.children[i].children[0].value = '';
-        }
-    }
-    table2.append(clone);
-}
-
-
-const onClickDelHandler = () => {
-    let table2 = document.getElementsByClassName(styles.table2)[0].children[0];
-    console.log(table2.lastElementChild);
-    if(table2.childElementCount === 2) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: '더 이상 삭제하실 수 없어요',
-        })
-    } else {
-        table2.lastElementChild.remove();
-    }
-}
-
+import { decodeJwt } from '../../util/tokenUtils';
+import AppLine from './AppLine';
+import AddRow from './AddRow';
+import { NoArg } from "./functionList/FuntionList";
+import {useNavigate} from "react-router-dom";
+import ReceiveLine from './ReceiveLine'
 
 function PurchaseContent() {
+
+    // 로그인 사용자 가져올 토큰
+    const accessToken = window.localStorage.getItem('accessToken');
+    const decodedToken = accessToken ? decodeJwt(accessToken) : null;
+    const myRef = useRef(null)
+    const navigate = useNavigate();
+    const [total, setTotal] = useState(0);
+
+    // 열 추가
+    const onClickAddRow = () => {
+
+        const inputData = {
+            productName: '',
+            productSize: '',
+            amount: 0,
+            price: 0,
+            note: ''
+        }
+
+        setData(prev => ({...prev, documentContent:[...prev.documentContent, inputData]}))
+        console.log(data)
+    }
+
+    // 열 삭제
+    const onClickDelRow = () => {
+        const newData = data.documentContent.splice(0, data.documentContent.length - 1);
+        console.log(newData)
+        setData(prev => ({...prev, documentContent : newData}))
+    }
+
+    // 데이터 담아줄 핸들러
+    const onChangeInput = (field, value, index) => {
+        const tempData = [...data.documentContent];
+        tempData[index][field] = value;
+        setData(prev => ({...prev, documentContent: tempData}));
+
+        let totalPrice = 0;
+        [...data.documentContent].map(item => item?.amount * item?.price)
+            .forEach(price => totalPrice += price)
+
+        setTotal(totalPrice);
+    }
+
+    // 제목 핸들러
+    const onChangeTitleHandler = (e) => {
+        setData(prev => ({...prev, [e.target.name] : e.target.value}));
+        console.log(data);
+    }
+
+    // 제출 핸들러
+    const onSubmitHandler = (e) => {
+        e.preventDefault();
+        const formdata = new FormData(e.target);
+
+        for(let i = 0; i < myRef.current.getFiles().length; i++) {
+            formdata.append("files", myRef.current.getFiles()[i]);
+        }
+
+        for(let i = 0; i < data.allowList.length; i++) {
+            // console.log(data.allowList[i]);
+            formdata.append("allow", data.allowList[i].empNo);
+        }
+
+        for(let i = 0; i < data.receiveList.length; i++) {
+
+            formdata.append("receive", data.receiveList[i].empNo);
+        }
+
+        let keys = [];
+        let values = [];
+
+        for(let param of formdata) {
+            keys.push(param[0]);
+            values.push(param[1]);
+        }
+
+        NoArg(keys, values, formdata, dispatch, navigate);
+
+        for(let param of formdata) {
+            console.log(param[0], param[1]);
+        }
+    }
+
+    // 오늘 날짜
+    const now = new Date();
+    let year = now.getFullYear();
+    let month = now.getMonth() + 1 < 10 ? "0"+(now.getMonth() + 1) : now.getMonth();
+    let date = now.getDate() < 10? "0"+(now.getDate()) : now.getDate();
+    let today = year + "-" + month + "-" + date;
 
     const {data, setData} = usePurchaseContext();
 
@@ -57,22 +124,29 @@ function PurchaseContent() {
     const list = useSelector(state => state.approvalReducer);
 
     const [addPeople, setAddPeople] = useState(false);
+    const [addReceive, setAddReceive] = useState(false);
 
     const [file, setFile] = useState(null);
     const [fileName, setFileName] = useState([]);
-
-    const onClickSendHandler = () => {
-        setData(prev => ({...prev, allowList:['박지호', '김마야'], files:[1,2,3], purchaseList:[{productName:'test', productSize:'test', amount:5, price: 10000}]}));
-    }
+    const result = 0;
 
     const showPeople = () => {
         setAddPeople(true);
     }
 
+    const showReceiver = () => {
+        setAddReceive(true);
+    }
+
     return (
-        <div className={styles.content}>
-            <div className={styles.modify} onClick={showPeople}>
-                결재선 추가
+        <form className={styles.content} onSubmit={onSubmitHandler}>
+            <div style={{display:"flex"}}>
+                <div className={styles.modify} onClick={showPeople}>
+                    결재선 추가
+                </div>
+                <div className={styles.modify} onClick={showReceiver}>
+                    수신자 추가
+                </div>
             </div>
             <div className={styles.area1}>구 매 요 청</div>
             <br/><br/>
@@ -82,15 +156,15 @@ function PurchaseContent() {
                         <tbody>
                         <tr>
                             <td className={styles.td2}>작 성 자</td>
-                            <td className={styles.td1}>박지호</td>
+                            <td className={styles.td1}>{decodedToken.Name}</td>
                         </tr>
                         <tr>
                             <td className={styles.td2}>소 속 부 서</td>
-                            <td className={styles.td1}>영업 1부</td>
+                            <td className={styles.td1}>{decodedToken.Department}</td>
                         </tr>
                         <tr>
                             <td className={styles.td2}>작 성 날 짜</td>
-                            <td className={styles.td1}>2023-08-15</td>
+                            <td className={styles.td1}>{today}</td>
                         </tr>
                         <tr>
                             <td className={styles.td2}>문 서 번 호</td>
@@ -103,33 +177,26 @@ function PurchaseContent() {
                     <div className={styles.approve}>
                         <span className={styles.area4}>요청</span>
                         <span className={styles.area5} style={{marginRight: 20}}>
-                            <div className={styles.area6}>사원</div>
-                            <div className={styles.area7}>박지호</div>
+                            <div className={styles.area6}>{decodedToken.Position}</div>
+                            <div className={styles.area7}>{decodedToken.Name}</div>
                             <div className={styles.area8}></div>
                         </span>
                         <span className={styles.area4}>승인</span>
-                        <span className={styles.area5}>
-                            <div className={styles.area6}>팀장</div>
-                            <div className={styles.area7}>유승제</div>
-                            <div className={styles.area8}></div>
-                        </span>
-                        <span className={styles.area5}>
-                            <div className={styles.area6}>이사</div>
-                            <div className={styles.area7}>김마야</div>
-                            <div className={styles.area8}></div>
-                        </span>
+                        <AppLine data={data}/>
+                        <span className={styles.area4} style={{marginLeft:"20px"}}>수신</span>
+                        <ReceiveLine data={data}/>
                     </div>
                 </div>
             </div>
             <br/><br/>
             <div className={styles.docTitle}>
                 <div className={styles.area9}>제목</div>
-                <input type="text" name="docTitle" id={styles.docTitle}/>
+                <input type="text" name="documentTitle" id={styles.docTitle} onChange={onChangeTitleHandler}/>
             </div>
             <br/><br/>
             <div className={styles.addDelBtn}>
-                <div className={styles.add} onClick={ onClickAddHandler }>추가</div>
-                <div className={styles.delete} onClick={ onClickDelHandler }>삭제</div>
+                <div className={styles.add} onClick={ onClickAddRow }>추가</div>
+                <div className={styles.delete} onClick={ onClickDelRow }>삭제</div>
             </div>
             <div className={styles.area10}>
                 <table className={styles.table2}>
@@ -142,33 +209,32 @@ function PurchaseContent() {
                             <td className={styles.totalPrice}>금액</td>
                             <td className={styles.note}>비고</td>
                         </tr>
-                        <tr className={styles.inputRow}>
-                            <td className={styles.td3}><input type="text" value={data.purchaseList.productName} name="productName"/></td>
-                            <td className={styles.td3}><input type="text" name="productSize"/></td>
-                            <td className={styles.td3}><input type="text" name="amount"/></td>
-                            <td className={styles.td3}><input type="text" name="price"/></td>
-                            <td className={styles.td3}></td>
-                            <td className={styles.td3}><input type="text" name="note"/></td>
-                        </tr>
+                        {data.documentContent && data.documentContent.map((value, index) => (
+                            <AddRow key={index} value={value} onChangeInput={(field, value) => onChangeInput(field, value, index)}/>
+                        ))}
                     </tbody>
                 </table>
+                <input type="hidden" name="empNo" value={decodedToken.EmployeeNo}/>
+                <input type="hidden" name="empName" value={decodedToken.Name}/>
                 <div className={styles.area11}>
                     <div className={styles.area12}>합계</div>
-                    <div className={styles.allPrice}>1,000,000</div>
+                    <div className={styles.allPrice}>{total.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</div>
                 </div>
             </div>
             <br/><br/><br/>
             <div className={styles.file}>
                 <div style={{width: "100%", textAlign:"center", margin:"20px 0px"}}>
-                    <FileUpload name="demo[]" url={'/api/upload'} multiple emptyTemplate={<p className="m-0">파일을 첨부하세요</p>} />
+                    <FileUpload ref={myRef} name="demo[]" url={'/api/upload'} multiple emptyTemplate={<p className="m-0">파일을 첨부하세요</p>} />
                 </div>
             </div>
             { addPeople && <Modal setAddPeople={setAddPeople}/>}
+            { addReceive && <Modal1 setAddReceive={setAddReceive}/>}
             <br/><br/><br/>
             <div style={{display:"flex", justifyContent:"right", marginRight:"40px"}}>
-                <div className={styles.sendApp} onClick={onClickSendHandler}>결재요청</div>
+                <button className={styles.sendApp}>결재요청</button>
             </div>
-        </div>
+            <br/><br/>
+        </form>
     )
 }
 

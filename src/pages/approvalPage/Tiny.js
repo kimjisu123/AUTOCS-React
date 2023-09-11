@@ -1,7 +1,13 @@
 import React, { useRef } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 
-function Tiny() {
+function Tiny({setData}) {
+
+    const onChangeHandler = (e) => {
+        console.log(e.target.contentDocument.activeElement.innerText);
+        const text= e.target.contentDocument.activeElement.innerText;
+        setData(prev => ({...prev, ["business"]: text? text : ''}));
+    }
 
     const editorRef = useRef(null);
     const log = () => {
@@ -13,6 +19,7 @@ function Tiny() {
     return (
         <>
             <Editor
+                onChange={e => onChangeHandler(e)}
                 apiKey='5dx70iqy6vq5omb4hc0pdrajzqupigj8rlvhi3jzlie3gjl7'
                 init={{
                     height: 500,

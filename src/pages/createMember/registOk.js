@@ -21,7 +21,7 @@ const RegistOk = () => {
         return <div>Loading...</div>;
     }
 
-    const sortedEmployeeList = employeeList
+    const sortedEmployeeList = employeeList ? employeeList : []
         .filter(employee => !employee.employeeOut && !employee.reason)
         .sort((a, b) => {
             const dateA = new Date(a.employeeJoin);

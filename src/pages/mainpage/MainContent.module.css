@@ -8,48 +8,36 @@
 
 
 .homeContainer {
-
+    max-width: 2200px;
     min-height: 1300px;
     width: 90%;
-    /* height: 100%; */
-    margin: auto;
+    margin: 30px auto;
     display: grid;
     grid-template-columns: 70% 30%;
-    /* grid-template-rows: 15% 45% 40%; */
     gap: 20px;
+    user-select: none; /* 텍스트 선택 금지 */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer */
+    -webkit-user-select: none;
 
-
-    /*min-width: 1700px;*/
-    /*min-height: 1400px;*/
-    /*width: 2000px;*/
-    /*height:100%;*/
-    /*margin: auto;*/
-    /*display: grid;*/
-    /*grid-template-columns: 70% 30%;*/
-    /*grid-template-rows: 15% 35% 40% ;*/
-    /*gap: 20px;*/
-
-    /*grid-template-columns: 50% 20% 20%;*/
-    /*grid-template-rows: 10% 45% 40% 40%;*/
-    /*gap: 40px;*/
 }
 
 
 
 .tempBox {
-    margin: 20px;
+
     width: 100%;
     height: 100%;
     border-radius: 5px;
     overflow: hidden;
     box-shadow: 1px 1px 5px #cdcec974; ;
     transition: all 0.5s;
-    transition-delay: 0.4s;
+    transition-delay: 0.3s;
 }
 
 .tempBox:hover {
-    width: 99%;
-    height:99%;
+    transform: scale(1.01);
+    box-shadow: 1px 1px 5px rgba(129, 125, 125, 0.45); ;
 }
 
 
@@ -75,9 +63,40 @@
     position: relative;
 }
 .empInfoImg:hover{
+    transform: rotateY( 360deg );
     filter: grayscale(100%);
-    transition: all 0.3s;
+    transition: all 0.5s;
     transition-delay: 0.2s;
+}
+
+.fastButtons {
+
+    display: flex;
+    margin: 20px auto;
+    justify-content: space-evenly;
+
+
+}
+
+.fastButtons button {
+    margin-top: 20px;
+    background: none;
+    border-radius: 10px;
+    border: 1px solid #92aa81;
+    width: 150px;
+    height: 50px;
+    font-size: 1em;
+    color: #92aa81;
+    font-weight: 700;
+}
+
+.fastButtons button:hover {
+    border: none;
+    background-color: #92aa81;
+    color: white;
+    transition: all 0.3s;
+    transform:scale(1.1);
+    /*transition-delay: 0.2s;*/
 }
 
 .infoTitle, .empDepDate{
@@ -96,7 +115,8 @@
 }
 
 .maintext {
-    flex:7
+    flex:7;
+    margin: auto;
 }
 
 .maintitle h1, h3{
@@ -130,6 +150,7 @@
     background-color: #4c7522;
     transition: all 0.3s;
     transition-delay: 0.2s;
+    transform:scale(1.1);
 
 }
 
@@ -154,10 +175,10 @@
 }
 
 .mainTime h1  {
-    /*color: #909094;*/
+
     font-size: 2em;
     font-weight: 700;
-    /*margin: 0;*/
+
 }
 .mainTime svg {
     text-align: center;
@@ -202,8 +223,6 @@
 
 .monthYear {
     margin-bottom: 0.75em;
-    /*font-weight: normal;*/
-    /*font-size: 1.25em;*/
     text-align: center;
 }
 
@@ -224,9 +243,7 @@
     font-size: 0.75em;
     text-transform: uppercase;
     letter-spacing: 0.0625em;
-    /*box-shadow:*/
-    /*        inset 0 -0.875em #fff,*/
-    /*        inset 0 -1em rgba(0,20,50,0.1);*/
+
 }
 
 .datelist {
@@ -249,7 +266,7 @@
 }
 
 .mainTodo {
-
+    width: 90%;
     height: 100%;
     /* margin-left: auto; */
     /* margin-right: auto; */
@@ -291,4 +308,70 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.smallimg {
+    border: 1px solid #4c7522;
+    border-radius: 20px;
+    width: 30px;
+    height: 30px;
+}
+
+.doculist{
+    margin: 10px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px 0px;
+    justify-content: space-evenly;
+}
+
+.loading {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: #ffffffb7;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font: 1rem 'Noto Sans KR';
+    text-align: center;
+}
+
+.worktimes {
+
+    display: flex;
+    gap: 50px;
+
+}
+
+.worktimes h1 {
+
+    font-size: 2.5em;
+}
+
+.worktimes p {
+
+    text-align: center;
+}
+
+.worktimes h1:hover {
+    color: #4c7522;
+    transform: scale(1.1);
+    transition: all 0.3s;
+    transition-delay: 0.2s;
+}
+
+.color {
+    background-color: #92aa81;
+}
+
+.DocuList + .DocuList {
+
+    border-top :1px solid #dee2e6;
 }

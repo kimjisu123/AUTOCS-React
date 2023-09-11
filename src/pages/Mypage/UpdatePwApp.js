@@ -5,7 +5,7 @@ import styles from "../Todolist/TodoTemplate.module.css";
 import updateCSS from "./UpdatePW.module.css";
 import UpdatePWok from "./UpdatePWok";
 
-const UpdatePwApp = () => {
+const UpdatePwApp = (memberNo) => {
 
     //  모달 값
 

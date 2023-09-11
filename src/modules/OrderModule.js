@@ -6,12 +6,11 @@ const initialState = [];
 
 /* 액션 */
 export const GET_ORDERS            = 'stock/GET_ORDERS';
-export const GET_LAST_ORDER_NO            = 'stock/GET_LAST_ORDER_NO';
 export const POST_ORDER           = 'stock/POST_ORDER';
+
 
 const actions = createActions({
     [GET_ORDERS]: () => {},
-    [GET_LAST_ORDER_NO]: () => {},
     [POST_ORDER]: () => {},
 });
 
@@ -19,10 +18,6 @@ const actions = createActions({
 const orderReducer = handleActions(
     {
         [GET_ORDERS]: (state, { payload }) => {
-
-            return payload;
-        },
-        [GET_LAST_ORDER_NO]: (state, { payload }) => {
 
             return payload;
         },

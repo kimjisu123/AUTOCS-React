@@ -24,8 +24,7 @@ function Mypage(){
 
         console.log("callGetMemberInfoAPI : {} " + callGetMemberInfoAPI(decodedToken.MemberNo))
         dispatch(callGetMemberInfoAPI(decodedToken.MemberNo));
-        // console.log("employees : {} ", employees);
-        // console.log("employeeList.name {}" ,employeeList(41).id);
+
 
     }, []);
 
