@@ -53,7 +53,7 @@ function PersonnelDepartment (){
 
     // 휴가
     const vacationStatus = todayFilter && todayFilter.filter(item=>
-        item.vacationStatus === 'Y'
+        item.vactionStatus === 'N'
     )
 
     function formatFunction (data) {

@@ -37,7 +37,7 @@ function WorkStatusContent (){
 
 
     // 이번 주의 근태 정보 (수정 완료)
-    const weekData =  workData.data && workData.data.length >0 ? workData.data.filter(item => {
+    const weekData =  workData.data && workData.data.length >0 && workData.data.filter(item => {
 
             const endDate = new Date(item.attendanceTime)
 
@@ -45,10 +45,10 @@ function WorkStatusContent (){
 
             return mondayDate <= endDate && endDate <= currentDate
         }
-    ) : 0;
+    );
     
     // 이번달의 근태 정보 (수정 완료) 출근을 기준으로 조회
-    const monthData = workData.data && workData.data.length != 0 && workData.data.filter(item => {
+    const monthData = workData.data && workData.data.length > 0 && workData.data.filter(item => {
         const itemDate = new Date(item.attendanceTime)
         const itemYear = itemDate.getFullYear();
         const itemMonth = itemDate.getMonth() + 1;

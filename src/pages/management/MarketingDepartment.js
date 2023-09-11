@@ -2,11 +2,12 @@ import styles from './Department.module.css';
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {callGetMarketingAPI} from "../../apis/DepartmentAPICalls";
+import {marketingReducer} from "../../modules/DepartmentModule";
 function MarketingDepartment (){
 
 
     const dispatch = useDispatch();
-    const data = useSelector(state => state.marketReducer);
+    const data = useSelector(state => state.marketingReducer);
 
     const currentDate = new Date();
     const year = currentDate.getFullYear();    // 현재 년 (2023)
@@ -102,7 +103,7 @@ function MarketingDepartment (){
 
     // 테스트용 쓰고 지우기
     const onClickTest = () =>{
-        console.log(todayFilter)
+        console.log(data)
     }
     return (
         <>

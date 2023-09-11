@@ -20,6 +20,7 @@ import Spinner from "./Spinner-1s-200px.gif";
 import logo from "../compoments/LOGO.png";
 import Clock from "./Clock";
 import DocuList2 from "./DocuList2";
+import {callPostAttendanceAPI, callPutQuittingAPI} from "../../apis/WorkStatusAPICalls";
 
 
 
@@ -105,6 +106,8 @@ const MainContent = () => {
             // 현재 시간을 상태에 저장
             setWorkTime(formattedTime);
             setIsStartWorkTimeVisible(true); // 오늘 출근을 했다고 표시
+
+            dispatch( callPostAttendanceAPI() )
         } else {
             alert('오늘 이미 출근했습니다.');
         }
@@ -124,6 +127,8 @@ const MainContent = () => {
             // 현재 시간을 상태에 저장
             setWorkFinishTime(formattedTime);
             setIsFinishWorkTimeVisible(true); // 오늘 출근을 했다고 표시
+
+            dispatch( callPutQuittingAPI() )
         } else {
             alert('오늘 이미 퇴근했습니다.');
         }

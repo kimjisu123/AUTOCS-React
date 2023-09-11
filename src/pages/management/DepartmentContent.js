@@ -102,7 +102,7 @@ function DepartmentContent (){
 
     // 테스트용 쓰고 지우기
     const onClickTest = () =>{
-        console.log(todayFilter)
+        console.log()
     }
     return (
         <>
@@ -211,7 +211,7 @@ function DepartmentContent (){
                                         { item.quittingTime ? formatTime(formatFunction(item.quittingTime)) : '미등록' }
                                     </div>
                                     <div className={styles.statusInfoBox6}>
-                                        { item.vacationStatus}
+                                        { item.vactionStatus }
                                     </div>
                                 </div>
                             </div>

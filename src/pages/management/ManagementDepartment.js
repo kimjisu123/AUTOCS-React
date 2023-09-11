@@ -101,7 +101,7 @@ function ManagementDepartment (){
 
     // 테스트용 쓰고 지우기
     const onClickTest = () =>{
-        console.log(todayFilter)
+        console.log(data.data)
     }
     return (
         <>
