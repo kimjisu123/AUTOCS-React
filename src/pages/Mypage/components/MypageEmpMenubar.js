@@ -14,10 +14,10 @@ function MypageEmpMenubar(){
             <div className={style.menubar} style={{width: "295px", height: "890px",  paddingTop: "30px"}}>
                 <Link to='/myPage' style={{textDecoration:"none"}}><div className={style.newApp}>마이페이지</div></Link>
                 <br/><br/>
-                <div className={style.documentForm}>
-                    사원 정보
-                </div>
-                <div className={style.purchase}><button style={{border:"none"}} onClick={() => setModalIsOpen(true)}>비밀번호 변경</button></div>
+                {/*<div className={style.documentForm}>*/}
+                {/*    사원 정보*/}
+                {/*</div>*/}
+                {/*<div className={style.purchase}><button style={{border:"none"}} onClick={() => setModalIsOpen(true)}>비밀번호 변경</button></div>*/}
             </div>
 
             {/*비밀번호 변경 모달창 띄우기 */}

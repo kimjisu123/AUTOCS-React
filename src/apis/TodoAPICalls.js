@@ -1,4 +1,11 @@
-import {GET_TODO, POST_TODO, GET_TODO_MEMBER, DELETE_TODO, PUT_TODO_STATUS} from "../modules/TodoModule";
+import {
+    GET_TODO,
+    POST_TODO,
+    GET_TODO_MEMBER,
+    DELETE_TODO,
+    PUT_TODO_STATUS,
+    PUT_TODO_CONTENT
+} from "../modules/TodoModule";
 import {DELETE_SELECT_MAIL} from "../modules/MailModule";
 
 // 투두 조회
@@ -140,7 +147,7 @@ export const callUpdateTodoAPI = (todoData) => {
             console.info(" callUpdateTodoAPI 초기값5 {}",todoData)
             if(result.ok) {
                 console.log(' callUpdateTodoAPI result >>>>>> {} ', result);
-                dispatch({type: PUT_TODO_STATUS, payload:result});
+                dispatch({type: PUT_TODO_CONTENT, payload:result});
             } else {
                 console.error('Error adding Todo:', result.status);
             }

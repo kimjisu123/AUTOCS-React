@@ -11,6 +11,7 @@ const Writing = () => {
     const accessToken = window.localStorage.getItem('accessToken');
     const decodedToken = accessToken ? decodeJwt(accessToken) : null;
     const dispatch = useDispatch();
+    const role = decodedToken ? decodedToken.auth : null;
 
     const [title, setTitle] = useState('');
     const [categoryNo, setcategoryNo] = useState(0);
@@ -112,19 +113,32 @@ const Writing = () => {
                         />
                         익명
                     </label>
-            <select id="categorySelect" name="categorySelect" className="categorySelect" value={categoryNo}
-                    onChange={handleCategoryNoChange}>
-                <option value="default">카테고리를 선택하세요</option>
-                <option value={1}>공지사항(직원)</option>
-                <option value={2}>업무규정 및 규칙</option>
-                <option value={3}>인사소식</option>
-                <option value={4}>부서별소식</option>
-                <option value={5}>건의 및 의견</option>
-                <option value={6}>자유게시판</option>
-                <option value={7}>공지사항(영업점)</option>
-                <option value={8}>건의 및 의견</option>
-                <option value={9}>자유게시판</option>
-            </select>
+                    <select
+                        id="categorySelect"
+                        name="categorySelect"
+                        className="categorySelect"
+                        value={categoryNo}
+                        onChange={handleCategoryNoChange}
+                    >
+                        <option value="default">카테고리를 선택하세요</option>
+                        {(role === 'EMPLOYEE') && (
+                            <>
+                                <option value={1}>공지사항</option>
+                                <option value={2}>업무규정 및 규칙</option>
+                                <option value={3}>인사소식</option>
+                                <option value={4}>부서별소식</option>
+                                <option value={5}>건의 및 의견</option>
+                                <option value={6}>자유게시판</option>
+                                <option value={7}>영업점 공지사항</option>
+                            </>
+                        )}
+                        {(role === 'STORE') && (
+                            <>
+                                <option value={8}>건의 및 의견</option>
+                                <option value={9}>자유게시판</option>
+                            </>
+                        )}
+                    </select>
                 </div>
                 <MyEditor
                     onUploadFileChange={uploadImageCallback}

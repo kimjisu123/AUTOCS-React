@@ -9,8 +9,17 @@
 .menuContents {
     padding-left: 60px;
     margin-bottom: 7px;
-    cursor: pointer;
+    /*cursor: pointer;*/
+    /*text-decoration: none;*/
+}
+
+.navContents {
     text-decoration: none;
+    color: black;
+}
+
+.navContents:hover {
+    color: #95ab85;
 }
 
 /* 컨텐츠 */
@@ -67,6 +76,11 @@
     background-color: lightgray;
 }
 
+.selectOption{
+    width: 170px;
+    height: 20px;
+}
+
 
 
 /* 테이블 */
@@ -95,6 +109,13 @@
 .listbox {
     display: flex;
     width: 400px;
+    height: auto;
+    background-color: #ecead8;
+}
+
+.listbox2 {
+    display: flex;
+    width: 1000px;
     height: auto;
     background-color: #ecead8;
 }

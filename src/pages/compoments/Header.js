@@ -38,7 +38,7 @@ const Header = () => {
 
         let menuItems = [
             { to: "/main", label: "홈" },
-            { to: "calendar", label: "캘린더" },
+            // { to: "calendar", label: "캘린더" },
             // { to: "todo", label: "+Todo" }
         ];
 
@@ -50,23 +50,23 @@ const Header = () => {
                 { to: "management", label: "근태관리" },
                 { to: `/mail/${decodedToken.EmployeeNo}`, label: "쪽지함" },
                 { to: `/myPage`, label: "마이페이지" },
-                { to: "outM", label: "계정비활성화" }
+                { to: "stock", label: "재고관리" },
+                //{ to: "outM", label: "계정비활성화" }
             );
 
             if (department === "인사부") {
                 menuItems.push({ to: "menu/registration", label: "인사관리" });
             }
-            if (department === "경영부") {
-                menuItems.push({ to: "stock", label: "재고관리" });
-            }
+            // if (department === "경영부") {
+            //     menuItems.push({ to: "stock", label: "재고관리" });
+            // }
         } else if (role === "STORE") {
             menuItems.push(
+                { to: "/mainstore", label: "홈" },
                 { to: "/board/notieM", label: "게시판" },
                 { to: "stock", label: "재고관리" },
-                //영업점 마이페이지 경로로 바꿔야함
-                //{ to: `/myPage`, label: "마이페이지" },
-                //나중에 마이페이지 안으로 넣어줘야함
-                { to: "outS", label: "계정비활성화" }
+                { to: `/mypagestore`, label: "마이페이지" },
+                // { to: "outS", label: "계정비활성화" }
 
             );
         }
@@ -175,7 +175,7 @@ const Header = () => {
                     overlayClassName="ReactModal__Overlay"
                     contentLabel="Modal"
                 >
-                    <div style={{ width:"500px", height:"500px", margin:"60px auto",boxShadow:"2px 2px 10px #cdcec974"} }>
+                    <div style={{ width:"650px", margin:"60px auto",boxShadow:"2px 2px 10px #cdcec974"} }>
                         <TodoApp todoModal={ todoModal } setTodoModal={ setTodoModal } />
                     </div>
                 </Modal>

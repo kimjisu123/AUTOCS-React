@@ -10,10 +10,22 @@ import unitReducer from "./UnitModule";
 import ioReducer from "./IoModule";
 import ioGroupReducer from "./IoGroupModule";
 import orderReducer from "./OrderModule";
+import myOrderReducer from "./MyOrderModule";
+import refundReducer from "./RefundModule";
+import billReducer from "./BillModule";
+import billDetailReducer from "./BillDetailModule";
+import myBillReducer from "./MyBillModule";
+import orderForBillReducer from "./OrderListForBillModule";
+import orderNumberReducer from "./OrderNumberModule";
+import orderProductReducer from "./OrderProductModule";
+import myOrderProductReducer from "./MyOrderProductModule";
 import chartReducer from './ChartModule';
 import todoReducer from "./TodoModule";
 import myPageReducer from "./MypageModule";
 import boardReducer from "./BoardModule";
+import mainReducer from "./MainModule";
+import commentReducer from "./CommentModule";
+
 import {
     approvalAppWaitReducer,
     approvalBusinessDocReducer,
@@ -46,11 +58,19 @@ const rootReducer = combineReducers({
     ioReducer,
     ioGroupReducer,
     orderReducer,
+    myOrderReducer,
+    refundReducer,
+    orderNumberReducer,
+    orderProductReducer,
+    myOrderProductReducer,
+    billReducer,
+    billDetailReducer,
+    orderForBillReducer,
+    myBillReducer,
     todoReducer,
     marketReducer,
     mailSentReducer,
     myPageReducer,
-    boardReducer,
     approvalReducer,
     vacationReducer,
     approvalHomeReducer,
@@ -64,10 +84,13 @@ const rootReducer = combineReducers({
     approvalTrafficDocReducer,
     approvalPurchaseDocReducer,
     approvalVacationDocReducer,
-    approvalPayDocReducer,
     approvalDocumentAppYNReducer,
     approvalDeleteDocumentReducer,
-    approvalGetFileReducer
+    approvalGetFileReducer,
+    approvalPayDocReducer,
+    commentReducer,
+    boardReducer,
+    mainReducer,
 });
 
 export default rootReducer;

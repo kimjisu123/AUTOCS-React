@@ -1,5 +1,5 @@
 
-import {GET_MEMBERINFO, GET_PROFILE, POST_CHECKPWD} from "../modules/MypageModule";
+import {GET_MEMBERINFO, GET_PROFILE, GET_STOREINFO, POST_CHECKPWD} from "../modules/MypageModule";
 import Swal from 'sweetalert2';
 
 
@@ -21,6 +21,28 @@ export const callGetMemberInfoAPI = (memberNo) => {
         dispatch({type: GET_MEMBERINFO, payload: result});
     }
 };
+
+
+// 매장 정보 확인하기 API
+export const callGetSToreInfoAPI = (memberNo) => {
+    const requestURL = `http://localhost:8080/member/store/${memberNo}`;
+
+    console.log('요청 URL:', requestURL); // URL 출력
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        }).then(response => response.json());
+
+        console.log('마이페이지에 매장 정보가지고오기 결과 >>>>>>', result);
+        dispatch({type: GET_STOREINFO, payload: result});
+    }
+};
+
+
 
 
 // 비밀번호 확인 API
@@ -59,7 +81,7 @@ export const callPostPwdCheckAPI = (memberNo,checkPw) => {
 // 비밀번호 변경 API
     export const callPutChangePwdAPI = (memberNo,newPwd) => {
 
-        const requestURL = `http://localhost:8080/mypage/changepwd?memberNo=${memberNo}&newpw=${newPwd}`;
+        const requestURL = `http://localhost:8080/mypage/changepwd`;
         console.log('새  패스워드 변경  API진입? >>>>>>');
         console.log('새 패스워드 >>>>>>', newPwd);
         console.log('멤버번호 >>>>>>', memberNo);
@@ -69,7 +91,7 @@ export const callPostPwdCheckAPI = (memberNo,checkPw) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({memberNo: memberNo, newpw: newPwd}),
+            body: JSON.stringify({no: memberNo, pwd: newPwd}),
         })
             .then((response) => {
                 if (response.ok) {
@@ -88,7 +110,7 @@ export const callPostPwdCheckAPI = (memberNo,checkPw) => {
                         title: '비밀번호 변경',
                         text: '비밀번호가 변경되었습니다.',
                     }).then((value) => {
-                        window.location="/main";
+                        window.location="/login";
                         }
                     )
                 } else {
@@ -157,4 +179,54 @@ export const callPostPwdCheckAPI = (memberNo,checkPw) => {
             dispatch({type: GET_PROFILE, payload: result});
         }
     };
+
+
+
+// 매장 정보 변경 API
+export const callPutSToreInfoAPI = ({formData}) => {
+
+    const requestURL = `http://localhost:8080/mypage/updatestoreinfo`;
+    console.log('새  매장정보 변경  API진입? >>>>>>');
+    console.log("formData=========>" + formData);
+
+
+    // formData 내용 출력
+    for (const pair of formData.entries()) {
+        console.log(`${pair[0]}: ${pair[1]}`);
+    }
+
+    return fetch(requestURL, {
+        method: 'PUT',
+        headers: {
+            // 'Content-Type': 'application/json',
+        },
+        body: formData,
+    })
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                console.error('Error  매장정보 수정 에러');
+                throw new Error('Error 매장정보 수정 에러');
+            }
+        })
+        .then(()=> {
+
+                Swal.fire({
+                    icon: 'success',
+                    title: '매장 정보 변경',
+                    text: '매장정보가 변경되었습니다.',
+                })
+        })
+        .catch((error) => {
+            Swal.fire({
+                icon: 'error',
+                title: '매장 정보 변경.',
+                text: '매장 정보 변경에 실패했습니다.',
+            })
+            console.error('Error:', error);
+        });
+
+};
+
 
