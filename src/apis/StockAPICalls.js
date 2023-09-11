@@ -42,7 +42,8 @@ import {
 import {GET_MY_ORDERS, POST_BILL} from "../modules/MyOrderModule";
 import {GET_MY_ORDER_PRODUCT} from "../modules/MyOrderProductModule";
 import {GET_REFUND} from "../modules/RefundModule";
-import {GET_BILL, GET_BILLS} from "../modules/BillModule";
+import {GET_BILLS} from "../modules/BillModule";
+import {GET_BILL} from "../modules/BillDetailModule";
 
 /* 물품 조회 */
 export const callProductListAPI = ({currentPage}) => {
@@ -761,11 +762,11 @@ export const callBillRegistAPI = ({form}) => {
 }
 
 /* 계산서 조회 - 페이징 */
-export const callBillListWithPagingAPI = ({currentPage}) => {
+export const callBillListWithPagingAPI = ({currentPage, store, startDate, endDate}) => {
 
     let requestURL;
     if(currentPage !== undefined || currentPage !== null){
-        requestURL = `http://localhost:8080/stock/bill?offset=${currentPage}`;
+        requestURL = `http://localhost:8080/stock/bill?offset=${currentPage}&store=${store}&startDate=${startDate}&endDate=${endDate}`;
     }else {
         requestURL = `http://localhost:8080/stock/bill`;
     }
@@ -781,6 +782,30 @@ export const callBillListWithPagingAPI = ({currentPage}) => {
             .then(response => response.json());
         if(result.status === 200){
             dispatch({ type: GET_BILLS,  payload: result.data });
+        }
+
+    };
+}
+
+/* 계산서 조회 - 주문번호별 */
+export const callBillAPI = ({orderNo}) => {
+console.log('호출')
+    let requestURL;
+
+    requestURL = `http://localhost:8080/stock/bill/detail?orderNo=${orderNo}`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            }
+        })
+            .then(response => response.json());
+        if(result.status === 200){
+            dispatch({ type: GET_BILL,  payload: result.data });
         }
 
     };

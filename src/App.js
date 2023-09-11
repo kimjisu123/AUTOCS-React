@@ -152,7 +152,7 @@ function App() {
                             <Route path='check' element={<Check/>}/>
                             <Route path='orderlist' element={<OrderList/>}/>
                             <Route path='bill' element={<Bill/>}/>
-                            <Route path='bill/detail' element={<BillDetail/>}/>
+                            <Route path='bill/detail/:orderNo' element={<BillDetail/>}/>
                             <Route path='statistics' element={<Statistics/>}/>
                             <Route path='stockio' element={<StockIo/>}/>
                             //본사 물품관리
