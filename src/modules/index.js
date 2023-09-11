@@ -20,6 +20,8 @@ import chartReducer from './ChartModule';
 import todoReducer from "./TodoModule";
 import myPageReducer from "./MypageModule";
 import boardReducer from "./BoardModule";
+import commentReducer from "./CommentModule";
+
 import {
     approvalAppWaitReducer, approvalBusinessDocReducer,
     approvalHomeReducer, approvalMyAppReducer,
@@ -65,7 +67,8 @@ const rootReducer = combineReducers({
     approvalTrafficDocReducer,
     approvalPurchaseDocReducer,
     approvalVacationDocReducer,
-    approvalPayDocReducer
+    approvalPayDocReducer,
+    commentReducer
 });
 
 export default rootReducer;

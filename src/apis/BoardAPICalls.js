@@ -1,5 +1,5 @@
-import { GET_BOARD } from "../modules/BoardModule";
-import { NUM_BOARD } from "../modules/BoardModule";
+import {GET_BOARD, NUM_BOARD} from "../modules/BoardModule";
+import { GET_COMMENT } from "../modules/CommentModule";
 
 // 모든 게시물 불러오기
 export const callGetBoardAllAPI = () => {
@@ -132,5 +132,57 @@ export const callFindBoardNumAPI = (boardNoAsInt) => {
 
         console.log('response :>>>>>>>>>>>>>>>>', result);
         dispatch({ type: NUM_BOARD, payload: result });
+    };
+};
+
+// 댓글 작성
+export const callCommentAPI = ({ formData }) => {
+    const requestURL = 'http://localhost:8080/comment/commentInsert';
+
+    console.log("formData=========>" + formData);
+    for (const entry of formData.entries()) {
+        console.log(entry[0], entry[1]);
+    }
+    console.log("formData======================");
+
+    return fetch(requestURL, {
+        method: 'POST',
+        headers: {
+            "Accept": "*/*"
+        },
+        body: formData,
+    })
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                console.error('Error comment insert');
+                throw new Error('Error comment insert');
+            }
+        })
+        .then(() => {
+            window.alert('댓글이 작성 되었습니다.');
+            window.location.reload();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+};
+
+// 특정 게시물의 댓글 불러오기
+export const callFindCommentAPI = () => {
+    const requestURL = 'http://localhost:8080/comment/getBoardCommentAll';
+
+    return async (dispatch) => {
+        const result = await fetch(requestURL, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+        }).then(response => response.json());
+
+        console.log('response :>>>>>>>>>>>>>>>>', result);
+        dispatch({ type: GET_COMMENT, payload: result });
     };
 };
