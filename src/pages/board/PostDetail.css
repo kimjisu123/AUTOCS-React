@@ -40,7 +40,7 @@ margin-right: 10px;
 .comment-form {
     display: flex;
     align-items: center;
-    max-width: 900px;
+    max-width: 1050px;
     margin: auto;
     padding: 10px;
     background-color: #e7efe4;
@@ -50,7 +50,8 @@ margin-right: 10px;
 .form-group {
     margin-bottom: 10px;
     flex-grow: 1;
-    margin-right: -295px;
+    margin-right: -330px;
+    margin-top: 15px;
 }
 
 .form-control {

@@ -11,7 +11,6 @@ export const NUM_BOARD = 'board/NUM_BOARD';
 const actions = createActions({
     [GET_BOARD]: () => {},
     [NUM_BOARD]: () => {}
-
 });
 
 //리듀서
