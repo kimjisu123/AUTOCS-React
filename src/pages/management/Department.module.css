@@ -53,7 +53,7 @@ contentsbox.newApp {
     border: 1.5px solid rgb(187, 187, 187, 0.3);
     height: 70px;
     display: flex;
-    margin: 20px 40px 0px;
+    margin: 50px 40px 0px;
 }
 
 .statusBox{

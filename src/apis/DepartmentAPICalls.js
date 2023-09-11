@@ -19,8 +19,8 @@ export const callGetDepartmentAPI = () => {
     }
 };
 
-export const callGetPersonnelAPI = () => {
-    const requestURL = "http://localhost:8080/personnel";
+export const callGetPersonnelAPI = (name) => {
+    const requestURL = `http://localhost:8080/personnel/${name}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -36,8 +36,8 @@ export const callGetPersonnelAPI = () => {
 };
 
 
-export const callGetAccountingAPI = () => {
-    const requestURL = "http://localhost:8080/accounting";
+export const callGetAccountingAPI = (result) => {
+    const requestURL = `http://localhost:8080/accounting/${result}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -52,8 +52,8 @@ export const callGetAccountingAPI = () => {
 };
 
 
-export const callGetManagementAPI = () => {
-    const requestURL = "http://localhost:8080/management";
+export const callGetManagementAPI = (result) => {
+    const requestURL = `http://localhost:8080/management/${result}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -68,8 +68,8 @@ export const callGetManagementAPI = () => {
 };
 
 
-export const callGetMarketingAPI = () => {
-    const requestURL = "http://localhost:8080/marketing";
+export const callGetMarketingAPI = (result) => {
+    const requestURL = `http://localhost:8080/marketing/${result}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -84,8 +84,8 @@ export const callGetMarketingAPI = () => {
 };
 
 
-export const callGetSalesAPI = () => {
-    const requestURL = "http://localhost:8080/sales";
+export const callGetSalesAPI = (result) => {
+    const requestURL = `http://localhost:8080/sales/${result}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -100,8 +100,8 @@ export const callGetSalesAPI = () => {
 };
 
 
-export const callGetServiceAPI = () => {
-    const requestURL = "http://localhost:8080/service";
+export const callGetServiceAPI = (result) => {
+    const requestURL = `http://localhost:8080/service/${result}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -114,8 +114,8 @@ export const callGetServiceAPI = () => {
         dispatch({ type: GET_SERIVCE, payload: result });
     }
 };
-export const callGetHeadOfficeAPI = (page) => {
-    const requestURL = `http://localhost:8080/headOffice/${page}`;
+export const callGetHeadOfficeAPI = (page, search) => {
+    const requestURL = `http://localhost:8080/headOffice/${page}/${search}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {

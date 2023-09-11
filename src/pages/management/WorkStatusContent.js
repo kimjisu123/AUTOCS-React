@@ -6,8 +6,8 @@ import moment from 'moment';
 import 'moment/locale/ko';
 
 function WorkStatusContent (){
-    const [message, setMessage] = useState({});
 
+    const [message, setMessage] = useState({});
 
     const dispatch = useDispatch();
     const workData = useSelector(state => state.workStatusReducer);
@@ -66,6 +66,9 @@ function WorkStatusContent (){
         quittingTime: item.quittingTime !== null ? formatFunction(item.quittingTime) : '미등록',
         extensionTime : extensionTimeFormat(item.extensionTime)
     }));
+
+    // 날짜 검색 포맷
+
 
 
     // weekOvertime는 시분초밀리초의 값을 따로 구해 밀리초로 반환을 해야함
@@ -267,7 +270,16 @@ function WorkStatusContent (){
 
 
 
+    function isToday(date) {
+        const inputDate = new Date(date);
+        const today = new Date();
 
+        return (
+            inputDate.getDate() === today.getDate() &&
+            inputDate.getMonth() === today.getMonth() &&
+            inputDate.getFullYear() === today.getFullYear()
+        );
+    }
 
     // 기본 근무 시간 포맷
     function formatTimeComponent(component) {

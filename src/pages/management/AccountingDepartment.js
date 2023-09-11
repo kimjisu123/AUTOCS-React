@@ -1,11 +1,25 @@
 import styles from './Department.module.css';
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
-import {callGetAccountingAPI} from "../../apis/DepartmentAPICalls";
+import {useEffect, useState} from "react";
+import {callGetAccountingAPI, callGetPersonnelAPI} from "../../apis/DepartmentAPICalls";
 function AccountingDepartment (){
 
     const dispatch = useDispatch();
     const data = useSelector(state => state.accountingReducer);
+
+    const [search, setSearch] = useState('');
+    const [result, setResult] = useState('절대로아무도검색하지않을만한값입니다.');
+
+    const onClickSearch = async () =>{
+        console.log(result)
+        dispatch( callGetAccountingAPI(result) )
+    }
+
+
+    useEffect( () =>{
+        dispatch( callGetAccountingAPI(result) )
+    }, [])
+
 
     const currentDate = new Date();
     const year = currentDate.getFullYear();    // 현재 년 (2023)
@@ -17,9 +31,6 @@ function AccountingDepartment (){
     const toDayDate ="<"+ year + "년 " + month + "월 " + day+"일" + ">";
     const toDay= year + "-" + month2 + "-" + day2
 
-    useEffect( () =>{
-        dispatch( callGetAccountingAPI() )
-    }, [])
 
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -166,8 +177,8 @@ function AccountingDepartment (){
                     <div className={styles.weekStatus} style={{marginTop: "30px"}}>
                         <form style={{display: "flex", justifyContent:"flex-start"}}>
                             <div className={styles.type}> 부서원</div>
-                            <input type="text" className={styles.inputText} />
-                            <input type="submit" value="검색" className={styles.inputButton} />
+                            <input value={search} onChange={ (e) => { console.log(search);  setResult(e.target.value); return setSearch(e.target.value)} }  type="text" className={styles.inputText}/>
+                            <input onClick={ () => onClickSearch() } type="button" value="검색" className={styles.inputButton}/>
                         </form>
                     </div>
                     <div className={styles.infoHeader} style={{marginTop:"30px"}}>

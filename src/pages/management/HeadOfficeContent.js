@@ -3,6 +3,7 @@ import {useEffect, useState, useCallback, useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { callGetHeadOfficeAPI} from "../../apis/DepartmentAPICalls";
 import { FixedSizeList } from 'react-window';
+import {callGetMailAPI} from "../../apis/MailAPICalls";
 
 
 
@@ -46,12 +47,35 @@ function HeadOfficeContent(){
     const [currentPage, setCurrentPage] = useState(1);
     const [pageEnd, setPageEnd] = useState(1);
 
+
+    const [search, setSearch] = useState('');
+    const [result, setResult] = useState('절대로아무도검색하지않을만한값입니다.');
+
+
+
     const pageInfo = data.pageInfo;
 
     useEffect(() => {
         // 초기 데이터 로드
-        dispatch( callGetHeadOfficeAPI(currentPage)) ;
+        dispatch( callGetHeadOfficeAPI(currentPage, result)) ;
     }, []);
+
+
+    const onClickSearch = async () =>{
+        console.log(result)
+        dispatch( callGetHeadOfficeAPI(currentPage, result) )
+    }
+
+
+    useEffect(
+        () => {
+            setStart((currentPage - 1) * 5);
+            dispatch( callGetHeadOfficeAPI(currentPage, result) )
+        }
+        ,[currentPage]
+    );
+
+
 
     const pageNumber = [];
     if(pageInfo){
@@ -59,16 +83,6 @@ function HeadOfficeContent(){
             pageNumber.push(i);
         }
     }
-
-
-    useEffect(
-        () => {
-            setStart((currentPage - 1) * 5);
-            dispatch(callGetHeadOfficeAPI(currentPage))
-        }
-        ,[currentPage]
-    );
-
 
     const currentDate = new Date();
     const mondayDate = new Date()
@@ -217,7 +231,7 @@ function HeadOfficeContent(){
 
     // 테스트용 쓰고 나서 지우기
     const onClickTest =() =>{
-        console.log(data.data)
+        console.log(filteredData)
     }
 
 
@@ -237,8 +251,8 @@ function HeadOfficeContent(){
                         <div className={styles.weekStatus} style={{marginTop: "30px"}}>
                             <form style={{display:"flex", justifyContent:"flex-start"}}>
                                 <div className={styles.type}> 부서원</div>
-                                <input type="text" className={styles.inputText} />
-                                <input type="submit" value="검색" className={styles.inputButton} />
+                                <input value={search} onChange={ (e) => { console.log(search);  setResult(e.target.value); return setSearch(e.target.value)} }  type="text" className={styles.inputText}/>
+                                <input onClick={ () => onClickSearch() } type="button" value="검색" className={styles.inputButton}/>
                             </form>
                         </div>
                         <div className={styles.infoHeader}>
@@ -270,15 +284,15 @@ function HeadOfficeContent(){
                                 {  mondayDate.getDate()+6 + '(' + days[mondayDate.getDay()-1] + ')' }
                             </div>
                         </div>
-                        <div style={{width:"auto", height:"675px"}}>
+                        <div>
                             {filteredData && filteredData.length > 0 && filteredData.map(item => (
                                 <div className={styles.infoContent}>
-                                    <div className={styles.statusInfoBox1}>
+                                    <div className={styles.statusBox1}>
                                         <div>
                                             {item.name + "("+ item.position.name + ")"}
                                         </div>
                                     </div>
-                                    <div className={styles.statusInfoBox2}>
+                                    <div className={styles.statusBox2}>
                                         {item.department.name}
                                     </div>
                                     {item.workStatusLists.map(item=>(
@@ -320,8 +334,6 @@ function HeadOfficeContent(){
                                 </div>
                             ))}
                         </div>
-                        {/*<div ref={target} style={{width:"auto", height:"100px", border:"1px solid black"}}>*/}
-                        {/*</div>*/}
                         <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
                             { Array.isArray(data.data) &&
                                 <button
