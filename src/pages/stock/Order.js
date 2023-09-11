@@ -4,9 +4,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import {
-    callOrderListAPI,
     callOrderRegistAPI,
     callLastOrderAPI,
+    callOrderUpdateAPI,
+    callOrderProductRegistAPI,
 } from '../../apis/StockAPICalls'
 import {decodeJwt} from "../../util/tokenUtils";
 
@@ -30,7 +31,7 @@ function showPopup()
 
     // 주문번호 등록
     const [form, setForm] = useState({
-        storeInfoNo: decodedToken.StoreNo
+        // storeInfoNo: decodedToken.StoreNo
     });
 
     // 페이지 로드되면 자동으로 주문번호 생성
@@ -40,30 +41,61 @@ function showPopup()
     },[]);
 
     /* 마지막 주문번호 조회 함수 */
-    const lastOrderNo = useSelector(state => state.orderReducer);
+    const lastOrderNo = useSelector(state => state.orderNumberReducer);
+    const storeNo = parseInt(decodedToken.StoreNo, 10)
     console.log(lastOrderNo);
+    console.log('정보',parseInt(decodedToken.StoreNo, 10))
+
+    const [orderItems, setOrderItems] = useState([]); // 주문된 물품들을 저장하는 배열
 
 
-
-    /* 물품 등록 */
+    /* 주문물품 등록 및 주문상태 업데이트 */
     const onClickRegistHandler = async () => {
-        const confirmed = window.confirm('등록하시겠습니까?');
+        const confirmed = window.confirm('신청하시겠습니까?');
         if (confirmed) {
 
-            // const formData = new FormData();
-            // formData.append("storeInfoNo", decodedToken.StoreNo);
-            // dispatch(callOrderRegistAPI({
-            //     form: formData
-            // }));
+            // 주문상태 업데이트
+            const formData = new FormData();
+            formData.append("orderNo", lastOrderNo);
+            formData.append("storeInfoNo", storeNo);
+            formData.append("status", "Y");
+
+            dispatch(callOrderUpdateAPI({
+                form: formData
+            }));
+
+            // 테이블에서 첫 번째와 네 번째 td 요소를 배열에 담기
+            const table = document.getElementById("orderTable");
+            const trElements = table.querySelectorAll("tr");
+            const tdArray = [];
+
+            trElements.forEach((tr) => {
+                const tdElements = tr.querySelectorAll("td");
+                if (tdElements.length >= 4) {
+                    const refProductNo = tdElements[0].textContent;
+                    const quantity = tdElements[3].textContent;
+                    tdArray.push({ refProductNo, quantity });
+                }
+            });
 
 
-            // 마지막 주문번호 조회
-            // dispatch(callLastOrderAPI());
-            // const lastOrderNo = useSelector(state => state.orderReducer);
+            // 주문된 물품 업데이트
+            for (const item of tdArray) {
+                const itemFormData = new FormData();
+                itemFormData.append('refOrderNo', lastOrderNo);
+                itemFormData.append('refProductNo', item.refProductNo); // 물품 코드 또는 ID
+                itemFormData.append('quantity', item.quantity);
 
-            alert('등록되었습니다. 마지막 주문번호: ' + lastOrderNo);
-            // navigate('/stock/productregist', {replace: true});
-            // window.location.reload();
+                dispatch(
+                    callOrderProductRegistAPI({
+                        form: itemFormData,
+                    })
+                );
+            }
+
+            alert('신청되었습니다. 주문번호: ' + lastOrderNo);
+            navigate('/stock/order', {replace: true});
+            window.location.reload();
         }
     }
 
@@ -75,7 +107,7 @@ function showPopup()
         const orderQuantity = document.getElementById("orderQuantity").value;
         const button =  document.createElement("button");
         button.textContent="삭제";
-        button.onclick=onClickRemoveHandler;
+        button.onclick= onClickRemoveHandler;
 
         const newRow = document.createElement("tr");
         const codeCell = document.createElement("td");
@@ -96,17 +128,20 @@ function showPopup()
         newRow.appendChild(quantityCell);
         newRow.appendChild(deleteButton);
 
+
         document.getElementById("orderTable").appendChild(newRow);
     }
 
     /* 행삭제 핸들러*/
-    const onClickRemoveHandler = (e) => {
+    const onClickRemoveHandler = (e, index) => {
         const trElement = e.target.closest("tr");
 
         if (trElement) {
             trElement.parentNode.removeChild(trElement);
         }
-    }
+
+    };
+
 
     /********************************************************************/
 

@@ -2,30 +2,56 @@ import style from './ApprovalHome.module.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from "react";
 import {
+    callGetAppHomeAPI,
     callGetAppLineAPI
 } from '../../apis/ApprovalAPICalls';
+import {approvalHomeReducer} from "../../modules/ApprovalModule";
+import {useNavigate} from "react-router-dom";
 
 function ApprovalHome() {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(
         () => {
-            dispatch(callGetAppLineAPI());
+            dispatch(callGetAppHomeAPI())
         },
         []
     )
 
+    useEffect(
+        () => {
+            dispatch(callGetAppLineAPI())
+        },
+        []
+    )
+
+    const result = useSelector(state => state.approvalHomeReducer);
+
     const list = useSelector(state => state.approvalReducer);
+
+    const passData1 = result.length > 0 && result[0][0];
+    const passData2 = result.length > 0 && result[1][0];
+    const passData3 = result.length > 0 && result[2][0][0];
+
+    const onClickHandler = (e) => {
+        // console.log(e.target.nextSibling.nextSibling.innerText)
+        const documentCode = e.target.nextSibling.value;
+        const type = e.target.nextSibling.nextSibling.innerText;
+        navigate('/approval/document', {state:{documentCode : documentCode, type : type}});
+    }
 
     return (
         <div className={style.content}>
             <div className={style.TopTitle}>
                 전자결재
             </div>
-            <div className={style.willApp}>
+            {passData3 === 0? <div className={style.willApp}>
                 결재할 문서가 없습니다
-            </div>
+            </div> : <div className={style.willApp}>
+                결재할 문서가 있습니다. 결재 대기 문서함으로 이동하세요
+            </div>}
             <div className={style.waiting}>
                 결재 요청 문서
             </div>
@@ -41,27 +67,16 @@ function ApprovalHome() {
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td className={style.td0}>2023-08-14</td>
-                        <td className={style.td0}>업무보고</td>
-                        <td className={style.td1}>2023년 8월 첫 째주 업무보고</td>
-                        <td className={style.td0}>1</td>
-                        <td className={style.td0}>대기중</td>
-                    </tr>
-                    <tr>
-                        <td className={style.td0}>2023-07-14</td>
-                        <td className={style.td0}>업무보고</td>
-                        <td className={style.td1}>2023년 7월 첫 째주 업무보고</td>
-                        <td className={style.td0}>1</td>
-                        <td className={style.td0}>대기중</td>
-                    </tr>
-                    <tr>
-                        <td className={style.td0}>2023-07-28</td>
-                        <td className={style.td0}>업무보고</td>
-                        <td className={style.td1}>2023년 7월 셋 째주 업무보고</td>
-                        <td className={style.td0}>1</td>
-                        <td className={style.td0}>대기중</td>
-                    </tr>
+                    {passData1?.length > 0 && passData1.map(doc =>
+                        <tr>
+                            <td className={style.td0}>{doc.applicationDate.substring(0,10)}</td>
+                            <td className={style.td1} onClick={e => onClickHandler(e)}>{doc.documentTitle}</td>
+                            <input type="hidden" value={doc.documentCode}/>
+                            <td className={style.td0}>{doc.documentType}</td>
+                            <td className={style.td0}>{doc.fileNum}</td>
+                            <td className={style.td0}>{doc.status}</td>
+                        </tr>
+                    )}
                     </tbody>
                 </table>
             </div>
@@ -71,36 +86,26 @@ function ApprovalHome() {
             <div className={style.doneDoc}>
                 <table className={style.table1}>
                     <thead>
+
                     <tr>
                         <th className={style.th}>발신일</th>
-                        <th className={style.th}>결재양식</th>
                         <th className={style.th}>제목</th>
+                        <th className={style.th}>결재양식</th>
                         <th className={style.th}>첨부</th>
                         <th className={style.th}>결재상태</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td className={style.td0}>2023-08-14</td>
-                        <td className={style.td0}>업무보고</td>
-                        <td className={style.td1}>2023년 8월 첫 째주 업무보고</td>
-                        <td className={style.td0}>1</td>
-                        <td className={style.td0}>결재완료</td>
-                    </tr>
-                    <tr>
-                        <td className={style.td0}>2023-07-14</td>
-                        <td className={style.td0}>업무보고</td>
-                        <td className={style.td1}>2023년 7월 첫 째주 업무보고</td>
-                        <td className={style.td0}>1</td>
-                        <td className={style.td0}>결재완료</td>
-                    </tr>
-                    <tr>
-                        <td className={style.td0}>2023-07-28</td>
-                        <td className={style.td0}>업무보고</td>
-                        <td className={style.td1}>2023년 7월 셋 째주 업무보고</td>
-                        <td className={style.td0}>1</td>
-                        <td className={style.td0}>결재완료</td>
-                    </tr>
+                    {passData2?.length > 0 && passData2.map(doc =>
+                        <tr>
+                            <td className={style.td0}>{doc.applicationDate.substring(0,10)}</td>
+                            <td className={style.td1} onClick={e => onClickHandler(e)}>{doc.documentTitle}</td>
+                            <input type="hidden" value={doc.documentCode}/>
+                            <td className={style.td0}>{doc.documentType}</td>
+                            <td className={style.td0}>{doc.fileNum}</td>
+                            <td className={style.td0}>{doc.status}</td>
+                        </tr>
+                    )}
                     </tbody>
                 </table>
             </div>

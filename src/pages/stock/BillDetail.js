@@ -1,9 +1,44 @@
 import { NavLink } from 'react-router-dom';
 import StockCSS from './Stock.module.css'
+import { useEffect, useRef, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+
+import {
+    callBillAPI, callMyOrderProductListAPI,
+} from '../../apis/StockAPICalls'
+
 
 function showPopup() { window.open('/ReciptPopup', "a", "width=1020, height=600, left=100, top=50"); }
 
 function Bill() {
+
+    /********************************************************************/
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    // 파라미터에서 주문번호 받음
+    const { orderNo } = useParams();
+    console.log(orderNo)
+
+    // 주문물품 조회
+    // useEffect(
+    //     () => {
+    //         const paramOrderNo = orderNo;
+    //         console.log('ddddddddd',paramOrderNo)
+    //         dispatch(callBillAPI(paramOrderNo));
+    //     }
+    //     ,[]
+    // );
+
+    useEffect(async () => {
+        await dispatch(callBillAPI(orderNo)); // API 호출이 완료될 때까지 대기
+    }, []);
+
+    // 조회
+    const bill = useSelector(state => state.billDetailReducer);
+    console.log('sssss',bill)
+
+
 
     const onClickReciptHandler= () => {
         alert('거래명세표를 출력 하시겠습니까?');

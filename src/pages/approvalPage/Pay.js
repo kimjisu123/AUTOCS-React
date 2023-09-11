@@ -1,12 +1,15 @@
 import PayContent from './PayContent';
 import ApprovalMenubar from './ApprovalMenubar';
+import {PurchaseProvider} from "./appContext/PurchaseContext";
 
 function Pay () {
 
     return (
         <div style={{display:"flex"}}>
             <ApprovalMenubar/>
-            <PayContent/>
+            <PurchaseProvider>
+                <PayContent/>
+            </PurchaseProvider>
         </div>
     )
 }

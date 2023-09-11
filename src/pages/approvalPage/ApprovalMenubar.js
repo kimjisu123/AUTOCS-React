@@ -13,7 +13,7 @@ function ApprovalMenubar() {
 
     return(
         <>
-            <div className={style.menubar} style={{width: "295px", height: "890px",  paddingTop: "30px"}}>
+            <div className={style.menubar} style={{width: "295px", height: "910px",  paddingTop: "30px"}}>
                     <Link to='/approval' style={{textDecoration:"none"}}><div className={style.newApp}>전자결재</div></Link>
                     <br/><br/>
             <div className={style.documentForm}>
@@ -36,7 +36,6 @@ function ApprovalMenubar() {
             <Link to='/approval/myBusiness' style={{textDecoration:"none"}}><div className={style.myBusiness}>업무 문서함</div></Link>
             <Link to='/approval/myApp' style={{textDecoration:"none"}}><div className={style.myApp}>결재 문서함</div></Link>
             <Link to='/approval/mySee' style={{textDecoration:"none"}}><div className={style.mySee}>참조/열람 문서함</div></Link>
-            <Link to='/approval/receive' style={{textDecoration:"none"}}><div className={style.receive}>수신 문서함</div></Link>
             <Link to='/approval/send' style={{textDecoration:"none"}}><div className={style.send}>발신 문서함</div></Link>
             </div>
                 {newApp && <NewApproval setNewApp={setNewApp}/>}

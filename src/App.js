@@ -57,6 +57,8 @@ import NoticeMarket from "./pages/board/noticeMarket";
 import SuggestionM from "./pages/board/suggestionM";
 import FreeM from "./pages/board/freeM";
 import Writing from "./pages/board/writing";
+import PostDetail from "./pages/board/PostDetail";
+import UpdateBoard from "./pages/board/updateBoard";
 
 //지수
 import Management from "./pages/management/Management"
@@ -100,6 +102,8 @@ import TodoApp from "./pages/Todolist/TodoApp";
 // import {GlobalStyle} from "./theme/theme/GlobalStyle";
 
 import MailSend from "./pages/Mail/MailSend";
+import PurchaseContent from "./pages/approvalPage/PurchaseContent";
+import ApprovalDocument from "./pages/approvalPage/ApprovalDocument";
 import MypageStore from "./pages/Mypage/MypageStore";
 import MainContentStore from "./pages/mainpage/MainContentStore";
 
@@ -132,6 +136,7 @@ function App() {
                         <Route path='/approval/Receive' element={<Receive/>}/>
                         <Route path='/approval/Send' element={<Send/>}/>
                         <Route path='chart' element={<OrgChart/>}/>
+                        <Route path='/approval/document' element={<ApprovalDocument/>}/>
 
                         //지수
                         <Route path='/management' element={<Management />} />
@@ -150,7 +155,7 @@ function App() {
                             <Route path='check' element={<Check/>}/>
                             <Route path='orderlist' element={<OrderList/>}/>
                             <Route path='bill' element={<Bill/>}/>
-                            <Route path='bill/detail' element={<BillDetail/>}/>
+                            <Route path='bill/detail/:orderNo' element={<BillDetail/>}/>
                             <Route path='statistics' element={<Statistics/>}/>
                             <Route path='stockio' element={<StockIo/>}/>
                             //본사 물품관리
@@ -162,8 +167,8 @@ function App() {
                             //영업점 발주관리
                             <Route path='order' element={<Order/>}/>
                             <Route path='myorderlist' element={<MyOrderList/>}/>
-                            <Route path='myorderlist/detail' element={<MyOrderListDetail/>}/>
-                            <Route path='refund' element={<Refund/>}/>
+                            <Route path='myorderlist/detail/:myOrderNo' element={<MyOrderListDetail/>}/>
+                            <Route path='refund/:myOrderProductNo' element={<Refund/>}/>
                             <Route path='mybill' element={<MyBill/>}/>
                             <Route path='mystatistics' element={<MyStatistics/>}/>
                         </Route>
@@ -202,6 +207,9 @@ function App() {
                             <Route path='freeM' element={<FreeM />}/>
                             //글작성
                             <Route path='writing' element={<Writing />}/>
+                            <Route path='update/:boardNo' element={<UpdateBoard />}/>
+                            //글 내용 확인
+                            <Route path='detail/:boardNo' element={<PostDetail />} />
                         </Route>
 
                         //지은

@@ -4,6 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+    <list default="true" id="157f9457-97ad-4bcb-ada0-2b69963deafb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/approvalPage/ApprovalDocumentType/PayType.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/approvalPage/ApprovalDocumentType/PayType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/approvalPage/ApprovalHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/approvalPage/ApprovalHome.js" afterDir="false" />
+    </list>
     <list default="true" id="826319ae-5fbf-4cc5-921f-3746c7ac60dc" name="Changes" comment="머지를 위한 커밋(메인 수정중)  23/9/7">
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-08-31__10_36__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-08-31__10_36__Changes_.xml" afterDir="false" />
     </list>
@@ -22,6 +27,7 @@
         <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -36,12 +42,43 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/pages/compoments/Header.css" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="ProjectErrors" />
   </component>
+  <component name="ProjectId" id="2UlvYF1CLo5XkCJW59PdeKDORw9" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/dev/autocs-css/AUTOCS-React/src/pages/approvalPage&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.1.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\dev\autocs-css\AUTOCS-React\src\pages\approvalPage" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\dev\autocs-css\AUTOCS-React\src\pages\approvalPage" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "node.js.selected.package.tslint": "(autodetect)",
@@ -114,6 +151,26 @@
   }
 }]]></component>
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="157f9457-97ad-4bcb-ada0-2b69963deafb" name="Changes" comment="" />
+      <created>1693527035184</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1693527035184</updated>
+      <workItem from="1693527040076" duration="13504000" />
+      <workItem from="1693545703776" duration="4375000" />
+      <workItem from="1693559176724" duration="177000" />
+      <workItem from="1693786679848" duration="21625000" />
+      <workItem from="1693873564760" duration="19080000" />
+      <workItem from="1693959376237" duration="20710000" />
+      <workItem from="1694046257127" duration="3136000" />
+      <workItem from="1694057010689" duration="122000" />
+      <workItem from="1694057826260" duration="9258000" />
+      <workItem from="1694070978512" duration="9109000" />
+      <workItem from="1694081758597" duration="83000" />
+      <workItem from="1694132528296" duration="977000" />
+      <workItem from="1694139611587" duration="588000" />
+    </task>
     <task id="LOCAL-00001" summary="비밀번호 중복확인 유효성검사 완 23/9/5">
       <created>1693904222317</created>
     <task id="LOCAL-00001" summary="머지위한 커밋">
@@ -432,6 +489,20 @@
     </task>
     <option name="localTasksCounter" value="8" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="비밀번호 중복확인 유효성검사 완 23/9/5" />

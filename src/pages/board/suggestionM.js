@@ -2,14 +2,12 @@ import "./board.css";
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect} from "react";
 import {callGetBoardAllAPI} from "../../apis/BoardAPICalls";
+import {Link} from "react-router-dom";
 
 const SuggestionM = () => {
-    /////////////////////////////여기는 영업점 정보 불러와야함/////////////////////////////////////
-    //영업점 정보긴한데 직원이랑 작성자 다르게 보여주는 부분 필요
-
     const dispatch = useDispatch();
     const board = useSelector(state => state.boardReducer);
-    const boardList = board.data;
+    const boardList = Array.isArray(board.data) ? board.data : [];
     console.log("boardList : " + boardList)
 
     // categoryNo가 8인 항목만 필터링
@@ -28,13 +26,17 @@ const SuggestionM = () => {
 
     return (
         <div className="notice-employee">
-            <h1 style={{marginBottom: "30px", marginTop: "-20px", marginRight: "40px"}}>건의 및 의견</h1>
+            <h1 style={{marginBottom: "30px", marginTop: "10px"}}>건의 및 의견</h1>
             <div className="board-container">
                 {filteredBoardData.map((item, index) => (
                     <div key={index} className="board-item">
                         <div className="registt">{item.regist}</div>
-                        <h2>{item.title}</h2>
-                        <div className="author">{item.department} {item.employeeName} {item.position} </div>
+                        <h2>
+                            <Link to={`/board/detail/${item.boardNo}`}>{item.title}</Link>
+                        </h2>
+                        <div className="author">
+                            {item.anonymity === 'N' ? `${item.storeName}` : '익명'}
+                        </div>
                     </div>
                 ))}
             </div>
