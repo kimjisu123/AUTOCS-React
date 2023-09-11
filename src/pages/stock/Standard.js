@@ -197,6 +197,33 @@ function Standard() {
                         ))
                     }
                 </table>
+                <div style={{ listStyleType: "none", display: "flex", justifyContent: "center", marginTop:"2%"}}>
+                    { Array.isArray(standardList) &&
+                        <button
+                            onClick={() => setCurrentPage(currentPage - 1)}
+                            disabled={currentPage === 1}
+                        >
+                            &lt;
+                        </button>
+                    }
+                    {pageNumber.map((num) => (
+                        <li key={num} onClick={() => setCurrentPage(num)}>
+                            <button
+                                style={ currentPage === num ? {backgroundColor : '#ecead8' } : null}
+                            >
+                                {num}
+                            </button>
+                        </li>
+                    ))}
+                    { Array.isArray(standardList) &&
+                        <button
+                            onClick={() => setCurrentPage(currentPage + 1)}
+                            disabled={currentPage === pageInfo.pageEnd  || pageInfo.total == 0}
+                        >
+                            &gt;
+                        </button>
+                    }
+                </div>
             </div>
         </div>
     )

@@ -18,7 +18,9 @@ function Refund() {
     // 파라미터에서 주문번호 받음
     const { myOrderProductNo } = useParams();
 
-    console.log(myOrderProductNo)
+    // 조회
+    const [orderProductInfo, setOrderProductInfo] = useState({});
+    const orderProduct= useSelector(state => state.refundReducer);
 
 
     // 주문물품 조회
@@ -28,12 +30,11 @@ function Refund() {
                     myOrderProductNo: myOrderProductNo
             }
             ));
+            setOrderProductInfo(orderProduct);
         }
-        ,[myOrderProductNo]
+        ,[]
     );
 
-    // 조회
-    const orderProduct= useSelector(state => state.refundReducer);
 
     console.log(orderProduct)
 
@@ -53,7 +54,7 @@ function Refund() {
                     <td>
                         <input className={StockCSS.readOnlybox}
                                type="text"
-                               value={orderProduct.refOrderNo.orderNo}
+                               value={orderProduct.refOrderNo?.orderNo}
                                readOnly/>
                     </td>
                 </tr>
@@ -64,7 +65,7 @@ function Refund() {
                     <td>
                         <input className={StockCSS.readOnlybox}
                                type="text"
-                               value={orderProduct.refProductNo.name}
+                               value={orderProduct.refProductNo?.name}
                                readOnly/>
                     </td>
                 </tr>
@@ -75,7 +76,7 @@ function Refund() {
                     <td>
                         <input className={StockCSS.readOnlybox}
                                type="text"
-                               value={orderProduct.refProductNo.standard.name}
+                               value={orderProduct.refProductNo?.standard?.name}
                                readOnly/>
                     </td>
                 </tr>
@@ -86,7 +87,7 @@ function Refund() {
                     <td>
                         <input className={StockCSS.readOnlybox}
                                type="text"
-                               value={orderProduct.refProductNo.unit.name}
+                               value={orderProduct.refProductNo?.unit?.name}
                                readOnly/>
                     </td>
                 </tr>
@@ -97,7 +98,7 @@ function Refund() {
                     <td>
                         <input className={StockCSS.readOnlybox}
                                type="text"
-                               value={orderProduct.quantity}
+                               value={orderProduct?.quantity}
                                readOnly/>
                     </td>
                 </tr>

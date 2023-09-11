@@ -14,6 +14,8 @@ import myOrderReducer from "./MyOrderModule";
 import refundReducer from "./RefundModule";
 import billReducer from "./BillModule";
 import billDetailReducer from "./BillDetailModule";
+import myBillReducer from "./MyBillModule";
+import orderForBillReducer from "./OrderListForBillModule";
 import orderNumberReducer from "./OrderNumberModule";
 import orderProductReducer from "./OrderProductModule";
 import myOrderProductReducer from "./MyOrderProductModule";
@@ -52,6 +54,8 @@ const rootReducer = combineReducers({
     myOrderProductReducer,
     billReducer,
     billDetailReducer,
+    orderForBillReducer,
+    myBillReducer,
     todoReducer,
     marketReducer,
     mailSentReducer,
