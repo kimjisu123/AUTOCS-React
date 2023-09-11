@@ -13,6 +13,13 @@ function MailkSentContent(){
     const accessToken = window.localStorage.getItem('accessToken');
     const decodedToken = accessToken ? decodeJwt(accessToken) : null;
 
+    const [search, setSearch] = useState('');
+    const [result, setResult] = useState('절대로아무도검색하지않을만한값입니다.');
+
+    const onClickSearch = async () =>{
+        console.log(search)
+        dispatch(callGetMailSentAPI({employeeNo: decodedToken.EmployeeNo}, currentPage, result))
+    }
 
     // 페이징 처리
     const [start, setStart] = useState(0);
@@ -22,7 +29,7 @@ function MailkSentContent(){
     useEffect(
         () => {
             setStart((currentPage - 1) * 5);
-            dispatch(callGetMailSentAPI({employeeNo: decodedToken.EmployeeNo}, currentPage))
+            dispatch(callGetMailSentAPI({employeeNo: decodedToken.EmployeeNo}, currentPage,result))
         }
         ,[currentPage]
     );
@@ -62,8 +69,8 @@ function MailkSentContent(){
                 </div>
                 <form style={{display: "flex", justifyContent:"flex-start"}}>
                     <div className={styles.type}> 제목</div>
-                    <input type="text" className={styles.inputText}/>
-                    <input type="submit" value="검색" className={styles.inputButton}/>
+                    <input value={search} onChange={ (e) => { console.log(search);  setResult(e.target.value); return setSearch(e.target.value)} }  type="text" className={styles.inputText}/>
+                    <input onClick={ () => onClickSearch() } type="button" value="검색" className={styles.inputButton}/>
                 </form>
             </div>
 

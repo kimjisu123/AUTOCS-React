@@ -5,8 +5,8 @@ const accessToken = window.localStorage.getItem('accessToken');
 const decodedToken = accessToken ? decodeJwt(accessToken) : null;
 
 
-export const callGetMailAPI = (currentPage, result) => {
-    const requestURL = `http://localhost:8080/mail/${decodedToken.EmployeeNo}/${currentPage}`;
+export const callGetMailAPI = (currentPage, search) => {
+    const requestURL = `http://localhost:8080/mail/${decodedToken.EmployeeNo}/${currentPage}/${search}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -21,7 +21,7 @@ export const callGetMailAPI = (currentPage, result) => {
 };
 
 export const callGetMailBookmarkAPI = (currentPage, search) => {
-    const requestURL = `http://localhost:8080/mailBookmark/${currentPage}/${search}`;
+    const requestURL = `http://localhost:8080/mailBookmark/${decodedToken.EmployeeNo}/${currentPage}/${search}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -35,8 +35,8 @@ export const callGetMailBookmarkAPI = (currentPage, search) => {
     }
 };
 
-export const callGetMailSentAPI = ( {employeeNo}, currentPage) => {
-    const requestURL = `http://localhost:8080/mailSent/${employeeNo}/${currentPage}`;
+export const callGetMailSentAPI = ( {employeeNo}, currentPage, search) => {
+    const requestURL = `http://localhost:8080/mailSent/${employeeNo}/${currentPage}/${search}`;
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
             method: 'GET',

@@ -4,15 +4,11 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import FullCalendar from '@fullcalendar/react';
 
-export default class DashBoard extends Component {
-    constructor(props){
-        super(props);
-    }
-    dateClick=(info)=>{          // 모달창을 보여주는 이벤트로 변경
-        alert(info.dateStr)
-    }
+export default function DashBoard () {
 
-    render() {
+        const test = (e) => console.log(e);
+
+
         return(
             <>
                 <div style={{margin:"50px -400px 50px 270px", display:'grid',gridTemplateColumns:"2fr 1fr"}}>
@@ -35,12 +31,13 @@ export default class DashBoard extends Component {
                             }
                         }}
                         height={"90vh"}
-
-                        dateClick={this.dateClick}
+                        selectable={true}
+                        // dateClick={e => console.log(e)}
+                        select={e=> test(e)}
                         events={[{title:'판매건수 : 23건', date:'2023-05-11',},{title:'판매건수 : 23건',date:'2023-05-13',}]} // ajax데이터를 가져오는 곳
                     />
                 </div>
             </>
         );
-    }
+
 }

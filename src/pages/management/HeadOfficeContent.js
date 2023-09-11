@@ -217,7 +217,7 @@ function HeadOfficeContent(){
 
     // 테스트용 쓰고 나서 지우기
     const onClickTest =() =>{
-        console.log(currentPage)
+        console.log(data.data)
     }
 
 

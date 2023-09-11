@@ -3,9 +3,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios';
 import { callGetMailAPI, callDELETEMailAPI, callPutMailAPI, callGetMailBookmarkAPI } from '../../apis/MailAPICalls';
 import { useDispatch, useSelector } from 'react-redux';
-import { decodeJwt } from '../../util/tokenUtils';
 import MailDetails from "./MailDetails";
-import {callGetHeadOfficeAPI} from "../../apis/DepartmentAPICalls";
 
 function MailBookmarkContent(){
 
@@ -60,13 +58,6 @@ function MailBookmarkContent(){
         ,[]
     );
 
-
-    useEffect(
-        () =>  {
-            dispatch( callGetMailBookmarkAPI(currentPage, result) );
-        }
-        ,[]
-    );
 
 
     return(
