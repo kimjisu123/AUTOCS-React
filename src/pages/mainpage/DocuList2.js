@@ -1,3 +1,4 @@
+
 import React, {useEffect} from 'react';
 import TableCSS from '../Mypage/Table.module.css';
 import {NavLink} from "react-router-dom";
@@ -7,7 +8,9 @@ import {callGetBoardAllAPI} from "../../apis/BoardAPICalls";
 import mainstyle from "./MainContent.module.css";
 import Spinner from "./Spinner-1s-200px.gif";
 
-function DocuList() {
+function DocuList2() {
+
+
 
 
     const dispatch = useDispatch();
@@ -15,8 +18,8 @@ function DocuList() {
     const boardList = board.data;
     console.log("boardList : " + boardList)
 
-    // categoryNo가 1인 항목만 필터링
-    const filteredBoardData = boardList ? boardList.filter(item => item.refCategoryNo === 1) : [];
+    // categoryNo가 8인 항목만 필터링
+    const filteredBoardData = boardList ? boardList.filter(item => item.refCategoryNo === 8) : [];
 
     useEffect(() => {
         // 컴포넌트가 마운트되었을 때 목록을 가져오도록 API 호출
@@ -38,7 +41,7 @@ function DocuList() {
                     {/*<u style={{margin:"auto 0"}}><h3><NavLink to="/board/notieE">공지</NavLink></h3></u>*/}
                     <span className={TableCSS.line}></span>
                     <ul>
-                        <li>공지사항</li><strong className={TableCSS.strong}>{filteredBoardData.length}</strong>
+                        <li>영업점 건의 및 의견</li><strong className={TableCSS.strong}>{filteredBoardData.length}</strong>
                         <NavLink to="/board/notieE"><MdKeyboardDoubleArrowRight/></NavLink>
                     </ul>
                 </figcaption>
@@ -46,20 +49,22 @@ function DocuList() {
                     <table className={TableCSS.docuContent}>
                         <tr>
                             <th>NO</th>
-                            <th>부서</th>
+
                             <th>제목</th>
                             <th>날짜</th>
                             <th>작성자</th>
                         </tr>
                         {filteredBoardData.slice(0, 2).map((item, index) => (
-                        <tr ey={index} className={TableCSS.content} >
-                            <td>{index}</td>
-                                <td style={{width:"20%", height:"10%"}}><strong><button>{item.department} </button></strong></td>
-                            <td><NavLink to="/stock/myorderlist/detail">{item.title}</NavLink></td>
-                            <td>{item.regist}</td>
-                            <td>{item.employeeName}<br/>{item.position}</td>
-                        </tr>
+                            <tr ey={index} className={TableCSS.content} >
+                                <td>{index}</td>
+                                {/*<td style={{width:"20%", height:"10%"}}><strong><button>{item.department} </button></strong></td>*/}
+                                <td><NavLink to="/stock/myorderlist/detail">{item.title}</NavLink></td>
+                                <td>{item.regist}</td>
+                                <td>익명</td>
+                            </tr>
                         ))}
+
+
                     </table>
                 </div>
             </div>
@@ -67,6 +72,6 @@ function DocuList() {
     );
 }
 
-export default DocuList;
+export default DocuList2;
 
 

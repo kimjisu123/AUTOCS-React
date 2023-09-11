@@ -10,6 +10,8 @@ export const POST_MEMBERINFO = 'memberInfo/POST_MEMBERINFO';
 export const POST_CHECKPWD = 'memberInfo/POST_CHECKPWD';
 export const PUT_CHANGEPWD = 'memberInfo/PUT_CHANGEPWD';
 export const GET_PROFILE = 'memberInfo/GET_PROFILE';
+export const GET_STOREINFO = 'memberInfo/GET_STOREINFO';
+export const PUT_STOREINFO = "memberInfo/PUT_STOREINFO";
 
 
 
@@ -20,6 +22,8 @@ const actions = createActions({
     [POST_CHECKPWD]: () => {},
     [PUT_CHANGEPWD]: () => {},
     [GET_PROFILE]: () => {},
+    [GET_STOREINFO]: () => {},
+    [PUT_STOREINFO]: () => {},
 
 });
 
@@ -40,7 +44,12 @@ const myPageReducer= handleActions({
         [GET_PROFILE]: (state, { payload }) => {
             return payload;
         },
-
+        [GET_STOREINFO]: (state, { payload }) => {
+            return payload;
+        },
+        [PUT_STOREINFO]: (state, { payload }) => {
+            return [...state, payload];
+        },
 
     },
     initialState

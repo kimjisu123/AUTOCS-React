@@ -11,9 +11,9 @@
 
 .appTitle {
     /*background-color: #2a3c1e;*/
-    color: #1C2C10;
+    color: rgb(105, 103, 103);
     height: 5rem;
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 700;
     display: flex;
     align-items: center;
@@ -26,12 +26,17 @@
 
 
 .todoCount {
-    font-size:1.8rem;
-    margin:10px;
+    /*font-size:1.8rem;*/
+    margin: 0 20px;
     color: #b8b8b8;
     transition: all 0.3s;
     transition-delay: 0.2s;
 
+}
+
+.todoCount:hover {
+    color: #f87c7c;
+    transform: scale(1.1);
 }
 
 

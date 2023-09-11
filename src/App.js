@@ -96,7 +96,7 @@ import MainContent from "./pages/mainpage/MainContent";
 import UpdatePwApp from "./pages/Mypage/UpdatePwApp";
 import UpdatePWok from "./pages/Mypage/UpdatePWok";
 import YourComponent from "./pages/mainpage/DocuList";
-import MypageStore from "./pages/Mypage/MypageStore";
+import MypageStoreNo from "./pages/Mypage/MypageStoreNo";
 import TodoApp from "./pages/Todolist/TodoApp";
 // import {ThemeProvider} from "./theme/context/ThemeProvider";
 // import {GlobalStyle} from "./theme/theme/GlobalStyle";
@@ -104,6 +104,8 @@ import TodoApp from "./pages/Todolist/TodoApp";
 import MailSend from "./pages/Mail/MailSend";
 import PurchaseContent from "./pages/approvalPage/PurchaseContent";
 import ApprovalDocument from "./pages/approvalPage/ApprovalDocument";
+import MypageStore from "./pages/Mypage/MypageStore";
+import MainContentStore from "./pages/mainpage/MainContentStore";
 
 
 
@@ -116,8 +118,9 @@ function App() {
                     {/*<GlobalStyle/>*/}
                 <Routes>
                     <Route path='/' element={<Layout/>}>
-                        //메인
+                        //메인 MainContentStore
                         <Route path='/main' element={<Main/>}/>
+                        <Route path='/mainstore' element={<MainContentStore/>}/>
                         //지호
                         <Route path='/approval' element={<AppHome/>}/>
                         <Route path='/approval/purchase' element={<Purchase/>}/>
@@ -187,8 +190,8 @@ function App() {
                         </Route>
 
                         //계정 비활성화 신청
-                        <Route path='outM' element={<OutMForm/>}/>
-                        <Route path='outS' element={<OutSForm/>}/>
+                        <Route path='/outM' element={<OutMForm/>}/>
+                        <Route path='mypagestore/outS' element={<OutSForm/>}/>
 
                         //직원 게시판
                         <Route path='board' element={<BoardMenu/>}>
@@ -212,8 +215,8 @@ function App() {
                         //지은
                         <Route path='myPage' element={<Mypage/>}>
                             <Route path='employee' element={<Mypage/>}/>
-                            <Route path='store' element={<MypageStore/>}/>
                         </Route>
+                        <Route path='mypagestore' element={<MypageStore/>}/>
                         <Route path='pw2' element={<UpdatePwApp/>}/>
                         <Route path='home' element={<MainContent/>}/>
                         // 비밀번호 변경 팝업

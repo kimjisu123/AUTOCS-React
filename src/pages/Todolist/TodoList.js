@@ -14,6 +14,11 @@ const TodoList = ({todos, onRemove ,onToggle,onUpdate}) => {
         return new Date(b.todoNo) - new Date(a.todoNo);
     }) : [];
 
+
+    useEffect(() => {
+        console.log('memberTodoList ', todos);
+    }, [todos]);
+
     return (
         <div className={styles.TodoList}>
             {/*투두 리스트 map으로 넘겨주기*/}
