@@ -39,8 +39,6 @@ function Bill() {
     const bill = useSelector(state => state.billReducer);
     const billList = bill.data;
 
-    console.log('ssssssssssss',billList)
-
     const pageInfo = bill.pageInfo;
 
     const [start, setStart] = useState(0);
@@ -175,18 +173,6 @@ function Bill() {
                         <th>영업점</th>
                         <th>발행일</th>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td><NavLink to="/stock/bill/detail">20201234</NavLink></td>
-                        <td>종로점</td>
-                        <td>2023-08-01</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td><NavLink to="/stock/bill/detail">20201234</NavLink></td>
-                        <td>종로점</td>
-                        <td>2023-08-01</td>
-                    </tr>
                     {
                         Array.isArray(billList) && billList.map((bill) => (
                             <tr >
@@ -203,6 +189,33 @@ function Bill() {
                         ))
                     }
                 </table>
+                <div style={{ listStyleType: "none", display: "flex", justifyContent: "center", marginTop:"2%"}}>
+                    { Array.isArray(billList) &&
+                        <button
+                            onClick={() => setCurrentPage(currentPage - 1)}
+                            disabled={currentPage === 1}
+                        >
+                            &lt;
+                        </button>
+                    }
+                    {pageNumber.map((num) => (
+                        <li key={num} onClick={() => setCurrentPage(num)}>
+                            <button
+                                style={ currentPage === num ? {backgroundColor : '#ecead8' } : null}
+                            >
+                                {num}
+                            </button>
+                        </li>
+                    ))}
+                    { Array.isArray(billList) &&
+                        <button
+                            onClick={() => setCurrentPage(currentPage + 1)}
+                            disabled={currentPage === pageInfo.pageEnd  || pageInfo.total == 0}
+                        >
+                            &gt;
+                        </button>
+                    }
+                </div>
             </div>
         </div>
     )

@@ -44,6 +44,7 @@ import {GET_MY_ORDER_PRODUCT} from "../modules/MyOrderProductModule";
 import {GET_REFUND} from "../modules/RefundModule";
 import {GET_BILLS} from "../modules/BillModule";
 import {GET_BILL} from "../modules/BillDetailModule";
+import {GET_ORDER_FOR_BILL} from "../modules/OrderListForBillModule";
 
 /* 물품 조회 */
 export const callProductListAPI = ({currentPage}) => {
@@ -804,8 +805,61 @@ console.log('호출')
             }
         })
             .then(response => response.json());
+        console.log('----------->', result.data)
         if(result.status === 200){
             dispatch({ type: GET_BILL,  payload: result.data });
+        }
+
+    };
+}
+
+/* 주문물품 조회 - 계산서용 */
+export const callMyOrderProductListForBillAPI = ({myOrderNo}) => {
+
+    console.log('홓로호호호ㅗ호호')
+    let requestURL;
+
+    requestURL = `http://localhost:8080/stock/bill/detail/order?myOrderNo=${myOrderNo}`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            }
+        })
+            .then(response => response.json());
+        console.log('----------->', result.data)
+        if(result.status === 200){
+            dispatch({ type: GET_ORDER_FOR_BILL,  payload: result.data });
+        }
+
+    };
+}
+
+/* 마이 계산서 조회 - 페이징 */
+export const callMyBillListWithPagingAPI = ({currentPage, store, startDate, endDate}) => {
+
+    let requestURL;
+    if(currentPage !== undefined || currentPage !== null){
+        requestURL = `http://localhost:8080/stock/mybill?offset=${currentPage}&store=${store}&startDate=${startDate}&endDate=${endDate}`;
+    }else {
+        requestURL = `http://localhost:8080/stock/mybill`;
+    }
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            }
+        })
+            .then(response => response.json());
+        if(result.status === 200){
+            dispatch({ type: GET_BILLS,  payload: result.data });
         }
 
     };
