@@ -13,16 +13,21 @@ import {MdKeyboardDoubleArrowRight} from "react-icons/md";
 import {NavLink, useNavigate} from "react-router-dom";
 import moment from "moment-timezone";
 import DocuList from "./DocuList";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {decodeJwt} from "../../util/tokenUtils";
-import {callPostAttendanceAPI, callPutQuittingAPI} from "../../apis/WorkStatusAPICalls";
+import {callGetMemberInfoAPI} from "../../apis/MypageAPICalls";
+import Spinner from "./Spinner-1s-200px.gif";
+import logo from "../compoments/LOGO.png";
+import Clock from "./Clock";
+import DocuList2 from "./DocuList2";
+
+
 
 
 // 비구조화 할당 문법을 활용한 css내부 값 추출하기 이렇게 쓰면 MypageCSS.mainContatiner를 안써도된다. )
 
 
 const MainContent = () => {
-
 
     const combineClass = classNames('tempBox' , 'three')
     const today = String(new Date().toLocaleDateString());
@@ -77,19 +82,17 @@ const MainContent = () => {
         }
         fetchData();
     }, []);
-    const onClickAttendance= () =>  dispatch( callPostAttendanceAPI() )
-    const onClickQuitting = () => dispatch( callPutQuittingAPI() )
 
     // 로딩화면
     if (!employees) {
         return <div className={mainstyle.loading}>
-                    Loading...
-                    <img src={Spinner} alt="로딩중" width="5%" />
-                </div>;
+            Loading...
+            <img src={Spinner} alt="로딩중" width="5%" />
+        </div>;
     }
 
-        // 출근시간 표시
-        const startWork = () => {
+    // 출근시간 표시
+    const startWork = () => {
         if (!isStartWorkTimeVisible) {
             // 출근 버튼 클릭 시 현재 시간 가져오기
             const now = new Date();
@@ -203,10 +206,10 @@ const MainContent = () => {
                                     )}
                                 </div>
                                 <div className={mainstyle.workbuttons}>
-                                        <button  className="startWorkTime"
-                                                 onClick={startWork}
-                                        >출근하기</button>
-                                        <button className="finishWorkTime"onClick={finishWork} >퇴근하기</button>
+                                    <button  className="startWorkTime"
+                                             onClick={startWork}
+                                    >출근하기</button>
+                                    <button className="finishWorkTime"onClick={finishWork} >퇴근하기</button>
                                 </div>
                             </div>
                             <div className={mainstyle.fastButtons}>
@@ -268,8 +271,8 @@ const MainContent = () => {
                     <div className={mainstyle.tempBox}>
                         <div className={mainstyle.boradPart}>
                             <div className={mainstyle.docutitle}>
-                            <h1 style={{textAlign:"center", color:"#696767"}}>전자문서</h1>
-                            <div><NavLink to="/stock/myorderlist/detail"><MdKeyboardDoubleArrowRight/></NavLink></div>
+                                <h1 style={{textAlign:"center", color:"#696767"}}>전자문서</h1>
+                                <div><NavLink to="/stock/myorderlist/detail"><MdKeyboardDoubleArrowRight/></NavLink></div>
                             </div>
                             {/*<div><DocuList /></div>*/}
                             <div><ApprovalList /></div>

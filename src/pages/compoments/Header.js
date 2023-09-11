@@ -11,6 +11,7 @@ import TodoApp from "../Todolist/TodoApp";
 import './CoustomModal.css';
 import { useUserContext } from "../Todolist/TodoContext";
 import Swal from 'sweetalert2';
+import Login from "../Login/Login";
 
 const Header = () => {
     const navigate = useNavigate();
@@ -150,13 +151,13 @@ const Header = () => {
                             +Todo
                         </NavLink>
                         <div className="profileAndLogout">
-                                {decodedToken ? (
-                                    <h5 className="userName" style={{ marginTop: "-0.5px", fontSize: "16px" }}>
-                                        {decodedToken.Name}님 안녕하세요!
-                                    </h5>
-                                ) : (
-                                    window.location = "/login"
-                                )}
+                            {decodedToken ? (
+                                <h5 className="userName" style={{ marginTop: "-0.5px", fontSize: "16px" }}>
+                                    {decodedToken.Name}님 안녕하세요!
+                                </h5>
+                            ) : (
+                                window.location = "/login"
+                            )}
                             <button onClick={onClickLogoutHandler} style={{ marginRight: "-50px" }} className="logOut">
                                 로그아웃
                             </button>
