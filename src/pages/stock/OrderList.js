@@ -10,6 +10,7 @@ import {
 } from '../../apis/StockAPICalls'
 import orderProductReducer from "../../modules/OrderProductModule";
 
+// 이번달 첫째일
 function getFirstDayOfMonth() {
     const now = new Date();
     console.log(now)

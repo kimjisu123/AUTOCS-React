@@ -5,17 +5,17 @@ const initialState = [];
 
 
 /* 액션 */
-export const GET_BILLS            = 'stock/GET_BILLS';
+export const GET_BILL            = 'stock/GET_BILL';
 
 
 const actions = createActions({
-    [GET_BILLS]: () => {},
+    [GET_BILL]: () => {},
 });
 
 /* 리듀서 */
-const billReducer = handleActions(
+const billDetailReducer = handleActions(
     {
-        [GET_BILLS]: (state, { payload }) => {
+        [GET_BILL]: (state, { payload }) => {
 
             return payload;
         },
@@ -23,4 +23,4 @@ const billReducer = handleActions(
     initialState
 );
 
-export default billReducer;
+export default billDetailReducer;
