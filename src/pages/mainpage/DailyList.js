@@ -1,9 +1,35 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import TableCSS from './DailyList.module.css';
 import {NavLink} from "react-router-dom";
 import {MdKeyboardDoubleArrowRight} from "react-icons/md";
+import {callGetDailyMainAPI} from "../../apis/MainAPICalls";
+import {useDispatch, useSelector} from "react-redux";
+import {decodeJwt} from "../../util/tokenUtils";
 
-function DailyList() {
+function DailyList(emp) {
+    const accessToken = window.localStorage.getItem('accessToken');
+// callGetDailyMainAPI(emp);
+    const dispatch = useDispatch();
+    const employees = useSelector(state => state.mainReducer);
+    console.log("캘린더 일정 리스트를 위한 멤버 번호 조회 {}", callGetDailyMainAPI(240));
+    console.log("캘린더 일정 리스트를 위한 멤버 번호 조회 {}", employees);
+
+
+
+    // // 회원정보 가지고 오기
+
+    // const [memberNo , setMemberNo] = useState(0);
+    //
+    //
+    // const decodedToken = accessToken ? decodeJwt(accessToken) : null;
+    //
+    // useEffect = () => {
+
+        // setMemberNo(employees.data.memberNo);
+
+
+    // };
+
     return (
         <div className={TableCSS.container}>
             <div className={TableCSS.section}>

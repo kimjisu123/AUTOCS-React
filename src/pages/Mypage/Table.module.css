@@ -1,9 +1,14 @@
 
 
 .container {
-    width: 500px;
-    height: 500px;
-    margin: 0 auto;
+    /*width: 500px;*/
+    /*height: 500px;*/
+    margin: auto 16px;
+    width: 664px;
+    user-select: none; /* 텍스트 선택 금지 */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer */
+    -webkit-user-select: none;
 }
 
 .section {
@@ -20,11 +25,14 @@
 }
 
 .docuList ul {
+
     list-style-type: none;
     display: flex;
-    gap: 30px;
+    /*gap: 30px;*/
 
 }
+
+
 
 .docuList ul last-child {
 
@@ -35,10 +43,10 @@
 .line::after {
     content: "";
     display: inline-block;
-    width: 2px;
+    width: 8px;
     height: 50%;
     margin: 0 auto;
-    background-color: #ccc;
+    background-color: #4b653b;
     margin: 1em 0.5em;
 }
 
@@ -53,16 +61,45 @@
 }
 
 .docuList li {
+
+    user-select: none; /* 텍스트 선택 금지 */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer */
+    -webkit-user-select: none;
     position:relative;
     overflow:hidden;
     transition: background .3s ease;
     display: block;
     line-height: 30px;
     text-align: center;
-    font-size: 1em;
-    color: black;
+    font-size: 1.5em;
+    font-weight: 800;
+    color: #444;
     text-decoration: none;
     margin: 0 auto;
+}
+
+.strong {
+    user-select: none; /* 텍스트 선택 금지 */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer */
+    -webkit-user-select: none;
+    color: #f27474;
+    /* background: #506b54; */
+    font-weight: 800;
+    width: 20px;
+    height: 20px;
+    font-size: 1em;
+    text-align: center;
+    margin-left: -7px;
+    margin-top: -7px;
+    /* padding: 1px 1px; */
+    border-radius: 16px;
+}
+
+.strong:hover {
+    transform: scale(1.5);
+    transition: all .3s ease;
 }
 
 .docuList li::after{
@@ -82,6 +119,8 @@
 
 .docuList li:hover::after {
     transform:translateX(0);
+    height:3px;
+    background:#2a3c1e;
 }
 
 .docuList + .docuContent , tr +tr{
@@ -91,6 +130,10 @@
 
 /* 테이블 */
 .docuContent {
+    user-select: none; /* 텍스트 선택 금지 */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer */
+    -webkit-user-select: none;
     width: 100%;
     border-collapse: collapse;
     /*border: 1px solid #ccc;*/
@@ -142,4 +185,8 @@
     color: white;
 }
 
+.content:hover {
 
+    background-color: rgb(250, 250, 250);
+
+}
