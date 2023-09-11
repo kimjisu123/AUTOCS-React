@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import TableCSS from '../Mypage/Table.module.css';
-import {NavLink} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import {MdKeyboardDoubleArrowRight} from "react-icons/md";
 import {useDispatch, useSelector} from "react-redux";
 import {callGetBoardAllAPI} from "../../apis/BoardAPICalls";
@@ -55,7 +55,7 @@ function DocuList() {
                         <tr ey={index} className={TableCSS.content} >
                             <td>{index}</td>
                                 <td style={{width:"20%", height:"10%"}}><strong><button>{item.department} </button></strong></td>
-                            <td><NavLink to="/stock/myorderlist/detail">{item.title}</NavLink></td>
+                            <td>  <Link to={`/board/detail/${item.boardNo}`}>{item.title}</Link></td>
                             <td>{item.regist}</td>
                             <td>{item.employeeName}<br/>{item.position}</td>
                         </tr>
