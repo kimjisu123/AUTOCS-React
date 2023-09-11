@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import TableCSS from '../Mypage/Table.module.css';
-import {NavLink} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import {MdKeyboardDoubleArrowRight} from "react-icons/md";
 import {useDispatch, useSelector} from "react-redux";
 import {callGetBoardAllAPI} from "../../apis/BoardAPICalls";
@@ -16,7 +16,8 @@ function DocuList() {
     console.log("boardList : " + boardList)
 
     // categoryNo가 1인 항목만 필터링
-    const filteredBoardData = boardList ? boardList.filter(item => item.refCategoryNo === 1) : [];
+    // categoryNo가 8인 항목만 필터링
+    const filteredBoardData = Array.isArray(boardList) ? boardList.filter(item => item.refCategoryNo === 1) : [];
 
     useEffect(() => {
         // 컴포넌트가 마운트되었을 때 목록을 가져오도록 API 호출
@@ -53,9 +54,9 @@ function DocuList() {
                         </tr>
                         {filteredBoardData.slice(0, 2).map((item, index) => (
                         <tr ey={index} className={TableCSS.content} >
-                            <td>{index}</td>
+                            <td>{index + 1}</td>
                                 <td style={{width:"20%", height:"10%"}}><strong><button>{item.department} </button></strong></td>
-                            <td><NavLink to="/stock/myorderlist/detail">{item.title}</NavLink></td>
+                            <td>  <Link to={`/board/detail/${item.boardNo}`}>{item.title}</Link></td>
                             <td>{item.regist}</td>
                             <td>{item.employeeName}<br/>{item.position}</td>
                         </tr>

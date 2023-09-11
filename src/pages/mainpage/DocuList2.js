@@ -19,7 +19,7 @@ function DocuList2() {
     console.log("boardList : " + boardList)
 
     // categoryNo가 8인 항목만 필터링
-    const filteredBoardData = boardList ? boardList.filter(item => item.refCategoryNo === 8) : [];
+    const filteredBoardData = Array.isArray(boardList) ? boardList.filter(item => item.refCategoryNo === 8) : [];
 
     useEffect(() => {
         // 컴포넌트가 마운트되었을 때 목록을 가져오도록 API 호출
@@ -56,7 +56,7 @@ function DocuList2() {
                         </tr>
                         {filteredBoardData.slice(0, 2).map((item, index) => (
                             <tr ey={index} className={TableCSS.content} >
-                                <td>{index}</td>
+                                <td>{index + 1}</td>
                                 {/*<td style={{width:"20%", height:"10%"}}><strong><button>{item.department} </button></strong></td>*/}
                                 <td><NavLink to="/stock/myorderlist/detail">{item.title}</NavLink></td>
                                 <td>{item.regist}</td>
