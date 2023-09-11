@@ -323,6 +323,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    gap: 20px 0px;
     justify-content: space-evenly;
 }
 

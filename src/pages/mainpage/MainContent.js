@@ -19,6 +19,7 @@ import {callGetMemberInfoAPI} from "../../apis/MypageAPICalls";
 import Spinner from "./Spinner-1s-200px.gif";
 import logo from "../compoments/LOGO.png";
 import Clock from "./Clock";
+import DocuList2 from "./DocuList2";
 
 
 
@@ -31,7 +32,6 @@ const MainContent = () => {
     const combineClass = classNames('tempBox' , 'three')
     const today = String(new Date().toLocaleDateString());
     const formatDate = monent(today).format("MMMM Do YYYY");
-    // const [ThemeMode , toggleTheme] = useTheme();
 
     const dispatch = useDispatch();
     const accessToken = window.localStorage.getItem('accessToken');
@@ -55,22 +55,6 @@ const MainContent = () => {
     // 사진 파일 전달
     const [ selectedImage, setSelectedImage ] = useState('');
 
-
-    // const getCurrentTime = () => {
-    //     var m = moment().tz("Asia/Seoul"); // ← 이곳이 포인트
-    //     return m.format("HH:mm:ss");
-    // };
-    // const [currentTime, setCurrentTime] = useState(getCurrentTime());
-
-    // useEffect(() => {
-    //     const intervalId = setInterval(() => {
-    //         setCurrentTime(getCurrentTime());
-    //     }, 1000); // (60초)마다 업데이트
-    //
-    //     return () => {
-    //         clearInterval(intervalId);
-    //     };
-    // }, []);
 
     // 회원 정보 불러오기
     useEffect(() => {
@@ -259,7 +243,7 @@ const MainContent = () => {
                         <div className={mainstyle.datelist}>
                             <div className={mainstyle.daliyTitle}>
                                 <h1 style={{textAlign:"center", color:"#696767"}}>일정리스트</h1>
-                                <div className={mainstyle.mainTodo}><DailyList/></div>
+                                <div className={mainstyle.mainTodo}><DailyList emp={employees}/></div>
                             </div>
                         </div>
                     </div>
@@ -276,7 +260,7 @@ const MainContent = () => {
                             </div>
                             <div className={mainstyle.doculist}>
                                 <DocuList />
-                                <DocuList />
+                                <DocuList2 />
                                 <DocuList />
                                 <DocuList />
                             </div>
