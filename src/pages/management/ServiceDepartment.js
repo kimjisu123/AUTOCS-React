@@ -134,7 +134,7 @@ function ServiceDepartment (){
                                     출근 미체크
                                 </div>
                                 <div className={styles.statusValue}>
-                                    {todayFilter && data.data[0].totalCount -todayFilter.length}
+                                    {todayFilter && todayFilter.length > 0 ? data.data[0].totalCount -todayFilter.length : '0'}
                                 </div>
                             </div>
                             <div className={styles.statusBox}>
