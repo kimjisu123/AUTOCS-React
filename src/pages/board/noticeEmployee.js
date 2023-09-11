@@ -2,12 +2,13 @@ import "./board.css";
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect} from "react";
 import {callGetBoardAllAPI} from "../../apis/BoardAPICalls";
+import { Link } from 'react-router-dom';
 
 const NoticeEmployee = () => {
 
     const dispatch = useDispatch();
     const board = useSelector(state => state.boardReducer);
-    const boardList = board.data;
+    const boardList = Array.isArray(board.data) ? board.data : [];
     console.log("boardList : " + boardList)
 
     // categoryNo가 1인 항목만 필터링
@@ -26,18 +27,22 @@ const NoticeEmployee = () => {
 
     return (
         <div className="notice-employee">
-            <h1 style={{marginBottom: "30px", marginTop: "-20px", marginRight: "40px"}}>공지사항</h1>
+            <h1 style={{ marginBottom: '30px', marginTop: '10px'}}>공지사항</h1>
             <div className="board-container">
                 {filteredBoardData.map((item, index) => (
                     <div key={index} className="board-item">
                         <div className="registt">{item.regist}</div>
-                        <h2>{item.title}</h2>
-                        <div className="author">{item.department} {item.employeeName} {item.position} </div>
+                        <h2>
+                            <Link to={`/board/detail/${item.boardNo}`}>{item.title}</Link>
+                        </h2>
+                        <div className="author">
+                            {item.department} {item.employeeName} {item.position}
+                        </div>
                     </div>
                 ))}
             </div>
         </div>
     );
-}
+};
 
 export default NoticeEmployee;

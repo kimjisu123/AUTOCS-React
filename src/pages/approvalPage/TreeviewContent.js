@@ -21,13 +21,15 @@ import {
     callGetAppLineAPI
 } from '../../apis/ApprovalAPICalls';
 
-function TreeviewContent() {
+function TreeviewContent({setAddPeople}) {
 
     const {data, setData} = usePurchaseContext();
 
     const dispatch = useDispatch();
 
     const [checkList, setCheckList] = useState([]);
+
+    // const allowList = [];
 
     useEffect(
         () => {
@@ -67,10 +69,18 @@ function TreeviewContent() {
                 e.target.checked=false;
             } else {
                 setCheckList([...checkList, node]);
+
             }
         } else {
             setCheckList(checkList.filter(item => item !== node));
         }
+
+        console.log(node);
+    }
+
+    const onClickAddHandler = () => {
+        setData(prev => ({...prev, allowList:checkList}));
+        setAddPeople(false);
     }
 
     const list = useSelector(state => state.approvalReducer);
@@ -105,7 +115,7 @@ function TreeviewContent() {
                 <Name checkList={checkList}/>
             </div>
             <div className={modal.bottom}>
-                <div className={modal.okBtn}>추가하기</div>
+                <div className={modal.okBtn} onClick={onClickAddHandler}>추가하기</div>
             </div>
         </>
     );
