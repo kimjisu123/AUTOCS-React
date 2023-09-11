@@ -259,7 +259,7 @@ const MainContent = () => {
                         <div className={mainstyle.datelist}>
                             <div className={mainstyle.daliyTitle}>
                                 <h1 style={{textAlign:"center", color:"#696767"}}>일정리스트</h1>
-                                <div className={mainstyle.mainTodo}><DailyList /></div>
+                                <div className={mainstyle.mainTodo}><DailyList/></div>
                             </div>
                         </div>
                     </div>

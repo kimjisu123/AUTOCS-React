@@ -9,20 +9,21 @@ import {decodeJwt} from "../../util/tokenUtils";
 function DailyList() {
 
 
-
     // const dispatch = useDispatch();
+    // const employees = useSelector(state => state.mainReducer);
+
     // const accessToken = window.localStorage.getItem('accessToken');
     // // 회원정보 가지고 오기
-    // const employees = useSelector(state => state.mainReducer);
+
     // const [memberNo , setMemberNo] = useState(0);
     //
     //
     // const decodedToken = accessToken ? decodeJwt(accessToken) : null;
-
-    // useEffect = () => {
     //
-    //     // callGetDailyMainAPI();
-    //     // console.log(employees);
+    // useEffect = () => {
+    // //
+    // //     callGetDailyMainAPI();
+    //     console.log("캘린더 일정 리스트를 위한 멤버 번호 조회 {}", memberNo);
     // };
 
     return (

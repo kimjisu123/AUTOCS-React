@@ -43,7 +43,6 @@ const TodoApp = ( ) => {
         setTodos(memberTodoList);
         // setShouldFetchData(true);
         // }
-        console.log("useEffect check", memberTodoList)
 
     }, [todos]);
 
@@ -55,8 +54,8 @@ const TodoApp = ( ) => {
     const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}`;
 
     // 입력 값 전달.
-    const onInsert = useCallback(
-        async value => {
+    const onInsert =
+        (value) => {
 
             const todoData = {
                 ...todos,
@@ -87,13 +86,10 @@ const TodoApp = ( ) => {
                 console.error('Error adding Todo:', error);
             }
 
-        },[]
-
-    );
+        };
 
     //  할일 지우기 함수 filter 사용
-    const onRemove = useCallback(
-        memberTodoList => {
+    const onRemove = (memberTodoList) => {
             setTodos({
                 ...memberTodoList,
                 memberNo: memberTodoList.memberNo
@@ -101,12 +97,10 @@ const TodoApp = ( ) => {
             // setTodos(todos => todos.filter(todo => todo.id !== id));
             dispatch(callDeleteTodoAPI(memberTodoList)); // 할일 삭제 API 호출
             // window.location.reload();
-        },[],
-    );
+        };
 
     // 할일 체크 함수
-    const onToggle = useCallback(
-        memberTodoList => {
+    const onToggle = (memberTodoList) => {
             setTodos ( {
                 ...memberTodoList,
                 todoStatus: memberTodoList.todoStatus,
@@ -115,12 +109,10 @@ const TodoApp = ( ) => {
                 checked:memberTodoList.checked
             });
             dispatch(callUpdateToggleAPI(memberTodoList));
-        },[dispatch, callUpdateToggleAPI, decodedToken.MemberNo],
-    );
+        };
 
     // 더블클릭시 내용 수정 함수
-    const onUpdate = useCallback(
-        todo => {
+    const onUpdate = (memberTodoList) => {
             // const editedText = prompt('수정할 내용을 입력하세요', todo.content);
             const editedText = swal("수정할 내용을 입력해주세요:", {
                 content: "input",
@@ -129,20 +121,20 @@ const TodoApp = ( ) => {
                     if(value !== null && value !== " "){
                     swal("수정이 완료 되었습니다.");
                     const todoData = {
+                        ...memberTodoList,
                         content: value,
                         memberNo: decodedToken.MemberNo,
-                        todoNo:todo.todoNo,
+                        todoNo:memberTodoList.todoNo,
                     };
                     console.log(" onUpdate value {}" , value);
                     dispatch(callUpdateTodoAPI(todoData));
+                    setTodos(todoData);
                     } else {
                         swal("입력된 값이 없습니다.");
 
                     }
                 });
-
-        },[],
-    );
+        };
 
 
 
