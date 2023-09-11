@@ -31,9 +31,6 @@ const TodoApp = ( ) => {
         url: ""
     }]);
 
-
-    const [ change , setChange ] = useState(0);
-
     useEffect(() => {
         // if (shouldFetchData) {
         const decodedToken = decodeJwt(
@@ -42,11 +39,20 @@ const TodoApp = ( ) => {
         if (decodedToken) {
             dispatch(callGetMemberTodoAPI(decodedToken.MemberNo));
         }
-        console.log('memberTodoList check : ', memberTodoList.data);
+        console.log('memberTodoList ', memberTodoList);
         setTodos(memberTodoList);
         // setShouldFetchData(true);
         // }
+        console.log("useEffect check", memberTodoList)
+
     }, [todos]);
+
+    const currentDate = new Date();
+    // 시간 부분을 모두 0으로 설정
+    currentDate.setHours(0, 0, 0, 0);
+
+    // 원하는 형식으로 날짜 포맷팅
+    const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}`;
 
     // 입력 값 전달.
     const onInsert = useCallback(
@@ -57,13 +63,13 @@ const TodoApp = ( ) => {
                 todoNo: null,
                 content: value,
                 todoStatus: "N",
+                regDate: formattedDate,
                 memberNo: decodedToken.MemberNo,
                 url: null
             };
 
             try {
 
-                console.info("초기값2 {}", todoData);
                 // Todo 추가 API 호출
                 dispatch(callInsertTodoAPI(todoData));
 
@@ -88,8 +94,6 @@ const TodoApp = ( ) => {
     //  할일 지우기 함수 filter 사용
     const onRemove = useCallback(
         memberTodoList => {
-            console.log("투두 삭제 시작~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-            console.log("id {}" , memberTodoList);
             setTodos({
                 ...memberTodoList,
                 memberNo: memberTodoList.memberNo

@@ -4,6 +4,8 @@ import {NavLink} from "react-router-dom";
 import {MdKeyboardDoubleArrowRight} from "react-icons/md";
 import {useDispatch, useSelector} from "react-redux";
 import {callGetBoardAllAPI} from "../../apis/BoardAPICalls";
+import mainstyle from "./MainContent.module.css";
+import Spinner from "./Spinner-1s-200px.gif";
 
 function DocuList() {
 
@@ -23,23 +25,24 @@ function DocuList() {
 
     // boardList 아직 로드되지 않은 경우 로딩 중 메시지 표시
     if (!boardList) {
-        return <div>Loading...</div>;
+        return <div className={mainstyle.loading}>
+            Loading...
+            <img src={Spinner} alt="로딩중" width="5%" />
+        </div>;
     }
 
     return (
         <div className={TableCSS.container}>
             <div className={TableCSS.section}>
                 <figcaption className={TableCSS.docuList}>
-                    <u style={{margin:"auto 0"}}><h3><NavLink to="/board/notieE">공지</NavLink></h3></u>
+                    {/*<u style={{margin:"auto 0"}}><h3><NavLink to="/board/notieE">공지</NavLink></h3></u>*/}
                     <span className={TableCSS.line}></span>
                     <ul>
-                        <li>공지 사항<strong>{filteredBoardData.length}</strong></li>
-                        <li>진행중 문서<strong>3</strong></li>
-                        <li>수신 문서<strong>3</strong></li>
+                        <li>공지사항</li><strong className={TableCSS.strong}>{filteredBoardData.length}</strong>
                         <NavLink to="/board/notieE"><MdKeyboardDoubleArrowRight/></NavLink>
                     </ul>
                 </figcaption>
-                <div style={{marginTop: "1%"}}  className={TableCSS.docuContent}>
+                <div style={{marginTop: "0%"}}  className={TableCSS.docuContent}>
                     <table className={TableCSS.docuContent}>
                         <tr>
                             <th>NO</th>
@@ -48,15 +51,39 @@ function DocuList() {
                             <th>날짜</th>
                             <th>작성자</th>
                         </tr>
-                        {filteredBoardData.slice(0, 6).map((item, index) => (
-                        <tr ey={index} className={TableCSS.content} >
-                            <td>{index}</td>
-                                <td style={{width:"20%", height:"10%"}}><strong><button>{item.department} </button></strong></td>
-                            <td><NavLink to="/stock/myorderlist/detail">{item.title}</NavLink></td>
-                            <td>{item.regist}</td>
-                            <td><strong>{item.employeeName}<br/>{item.position}</strong></td>
+                        {/*{filteredBoardData.slice(0, 6).map((item, index) => (*/}
+                        {/*<tr ey={index} className={TableCSS.content} >*/}
+                        {/*    <td>{index}</td>*/}
+                        {/*        <td style={{width:"20%", height:"10%"}}><strong><button>{item.department} </button></strong></td>*/}
+                        {/*    <td><NavLink to="/stock/myorderlist/detail">{item.title}</NavLink></td>*/}
+                        {/*    <td>{item.regist}</td>*/}
+                        {/*    <td><strong>{item.employeeName}<br/>{item.position}</strong></td>*/}
+                        {/*</tr>*/}
+                        {/*))}*/}
+
+                        <tr  className={TableCSS.content} >
+                            <td>1</td>
+                                <td style={{width:"20%", height:"10%"}}><strong><button>부서명</button></strong></td>
+                            <td><NavLink to="/stock/myorderlist/detail">공지사항입니다요</NavLink></td>
+                            <td>1</td>
+                            <td>김사원<br/>과장</td>
                         </tr>
-                        ))}
+                        <tr  className={TableCSS.content} >
+                            <td>1</td>
+                            <td style={{width:"20%", height:"10%"}}><strong><button>부서명</button></strong></td>
+                            <td><NavLink to="/stock/myorderlist/detail">공지사항입니다요</NavLink></td>
+                            <td>1</td>
+                            <td><strong>김사원<br/>과장</strong></td>
+                        </tr>
+                        <tr  className={TableCSS.content} >
+                            <td>1</td>
+                            <td style={{width:"20%", height:"10%"}}><strong><button>부서명</button></strong></td>
+                            <td><NavLink to="/stock/myorderlist/detail">공지사항입니다요</NavLink></td>
+                            <td>1</td>
+                            <td><strong>김사원<br/>과장</strong></td>
+                        </tr>
+
+
                     </table>
                 </div>
             </div>

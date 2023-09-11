@@ -242,7 +242,7 @@ const MainContent = () => {
                         <div className={mainstyle.timeAndDark}>
                             <div className={mainstyle.mainTime}>
                                 {/*<MdAccessTime />*/}
-                                <h3 style={{textAlign:"center"}}>Today</h3>
+                                <h3 style={{textAlign:"center" ,marginTop:'20px'}}>Today</h3>
                                 <h1>{ formatDate }</h1>
                                 <Clock/>
                                 {/*<h1 style={{textAlign:"center", fontSize:'60px', margin:'0px'}}>{ currentTime }</h1>*/}

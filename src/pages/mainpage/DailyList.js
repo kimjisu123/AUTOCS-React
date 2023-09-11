@@ -1,9 +1,30 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import TableCSS from './DailyList.module.css';
 import {NavLink} from "react-router-dom";
 import {MdKeyboardDoubleArrowRight} from "react-icons/md";
+import {callGetDailyMainAPI} from "../../apis/MainAPICalls";
+import {useDispatch, useSelector} from "react-redux";
+import {decodeJwt} from "../../util/tokenUtils";
 
 function DailyList() {
+
+
+
+    // const dispatch = useDispatch();
+    // const accessToken = window.localStorage.getItem('accessToken');
+    // // 회원정보 가지고 오기
+    // const employees = useSelector(state => state.mainReducer);
+    // const [memberNo , setMemberNo] = useState(0);
+    //
+    //
+    // const decodedToken = accessToken ? decodeJwt(accessToken) : null;
+
+    // useEffect = () => {
+    //
+    //     // callGetDailyMainAPI();
+    //     // console.log(employees);
+    // };
+
     return (
         <div className={TableCSS.container}>
             <div className={TableCSS.section}>

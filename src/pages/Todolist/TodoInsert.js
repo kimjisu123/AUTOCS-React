@@ -27,7 +27,7 @@ const TodoInsert = ({onInsert}) => {
     const onChange= useCallback(e => {
         const inputValue = e.target.value;
             setValue(inputValue);
-            console.info(inputValue);
+            // console.info(inputValue);
 
     },[]);  // use콜백 및 사용해서 쓸데없이 함수를 반복해서 불러오지 않기 성능 최적화를 위해
 
@@ -39,7 +39,7 @@ const TodoInsert = ({onInsert}) => {
             if(value !== null){
 
                 try {
-                    console.table("초기값211111 {}",value);
+                    // console.table("초기값211111 {}",value);
                     // Todo 추가 API 호출
                     onInsert(value);
                     // 값 초기화

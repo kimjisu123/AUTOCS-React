@@ -61,11 +61,11 @@ function MypageStore() {
     const [phoneMessage, setPhoneMessage] = useState('')
 
     useEffect(() => {
-        async function fetchData() {
+        function fetchData() {
             try {
 
 
-                const memeberInfo = await dispatch(callGetSToreInfoAPI(decodedToken.MemberNo));
+                dispatch(callGetSToreInfoAPI(decodedToken.MemberNo));
                 // const profileInfo = await dispatch(callGetPofileAPI(decodedToken.MemberNo));
 
                 if (employees.data && employees.data.name) {
@@ -312,6 +312,7 @@ function MypageStore() {
                                                             <label htmlFor="postcode">주소</label>
                                                             <div>
                                                                 <button className={adButton} type="button"
+                                                                        style={{marginLeft:"132px"}}
                                                                         onClick={handlePostcodeSearch} value="우편번호 찾기">
                                                                     <span><i
                                                                         className="fa-solid fa-magnifying-glass"></i>주소검색</span>
@@ -327,7 +328,7 @@ function MypageStore() {
                                                         <div className={detailAddress2}>
                                                             <input className="lo" type="text" name="detailAddress" id="sample4_detailAddress"
                                                                    onChange={(e) => setDetailAddress(e.target.value)}
-                                                                   placeholder={employees.data.detailAddress} required style={{border: "none"}}/>
+                                                                   placeholder={employees.data.detailAddress} required style={{border: "none",marginTop:"-20px", marginLeft:"-10px"}}/>
                                                         </div>
                                                     </div>
                                                 </div>

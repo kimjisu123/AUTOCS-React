@@ -101,6 +101,7 @@ import TodoApp from "./pages/Todolist/TodoApp";
 
 import MailSend from "./pages/Mail/MailSend";
 import MypageStore from "./pages/Mypage/MypageStore";
+import MainContentStore from "./pages/mainpage/MainContentStore";
 
 
 
@@ -113,8 +114,9 @@ function App() {
                     {/*<GlobalStyle/>*/}
                 <Routes>
                     <Route path='/' element={<Layout/>}>
-                        //메인
+                        //메인 MainContentStore
                         <Route path='/main' element={<Main/>}/>
+                        <Route path='/mainstore' element={<MainContentStore/>}/>
                         //지호
                         <Route path='/approval' element={<AppHome/>}/>
                         <Route path='/approval/purchase' element={<Purchase/>}/>

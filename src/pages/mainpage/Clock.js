@@ -24,7 +24,7 @@ const Clock = () => {
 
     return(
         <>
-            <h1 style={{textAlign:"center", fontSize:'60px', margin:'0px'}}>{ currentTime }</h1>
+            <h1 style={{textAlign:"center", fontSize:'60px', marginTop:'0px'}}>{ currentTime }</h1>
         </>
     )
 

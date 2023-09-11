@@ -1,9 +1,11 @@
 body {
     font-family: 'Noto Sans KR', sans-serif;
 
+
 }
 
 .container {
+
     justify-content: center;
     max-width: 2000px;
     margin: auto;
@@ -46,8 +48,10 @@ body {
 
 .content{
 
-    /*border-left: 1px solid rgb(202, 202, 202);*/
-    /*min-height: 959px;*/
+    user-select: none; /* 텍스트 선택 금지 */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer */
+    -webkit-user-select: none;
     width: 100%;
 }
 
@@ -155,7 +159,7 @@ body {
 
 }
 
-.infoInput input, .section2 input, .empAddress input,.detailAddress input{
+.infoInput input, .section2 input,.detailAddress input{
 
     width: 400px;
     height: 50px;
@@ -171,6 +175,9 @@ body {
 
 }
 
+.empAddress input ,.detailAddress input {
+    margin-left: 0;
+}
 
 /* 사진 넣기 버튼 */
 
