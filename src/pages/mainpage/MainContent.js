@@ -9,7 +9,7 @@ import ApprovalList from "./ApprovalList";
 import YourComponent from "./DocuList";
 import React, {useEffect, useState} from "react";
 import DailyList from "./DailyList";
-import {MdKeyboardDoubleArrowRight} from "react-icons/md";
+import {MdKeyboardDoubleArrowRight, MdWork, MdWorkOff} from "react-icons/md";
 import {NavLink, useNavigate} from "react-router-dom";
 import moment from "moment-timezone";
 import DocuList from "./DocuList";
@@ -20,6 +20,8 @@ import Spinner from "./Spinner-1s-200px.gif";
 import logo from "../compoments/LOGO.png";
 import Clock from "./Clock";
 import DocuList2 from "./DocuList2";
+import DocuList3 from "./DocuList3";
+import DocuList4 from "./DocuList4";
 
 
 
@@ -208,8 +210,8 @@ const MainContent = () => {
                                 <div className={mainstyle.workbuttons}>
                                         <button  className="startWorkTime"
                                                  onClick={startWork}
-                                        >출근하기</button>
-                                        <button className="finishWorkTime"onClick={finishWork} >퇴근하기</button>
+                                        ><MdWork/><br/><span>출근하기</span></button>
+                                        <button className="finishWorkTime"onClick={finishWork} ><MdWorkOff/><br/><span>퇴근하기</span></button>
                                 </div>
                             </div>
                             <div className={mainstyle.fastButtons}>
@@ -260,25 +262,34 @@ const MainContent = () => {
                             </div>
                             <div className={mainstyle.doculist}>
                                 <DocuList />
+                                <DocuList3 />
                                 <DocuList2 />
-                                <DocuList />
-                                <DocuList />
+                                <DocuList4 />
                             </div>
 
                             {/*<div><ApprovalList /></div>*/}
                         </div>
                     </div>
+
                     <div className={mainstyle.tempBox}>
+
                         <div className={mainstyle.boradPart}>
+
                             <div className={mainstyle.docutitle}>
-                            <h1 style={{textAlign:"center", color:"#696767"}}>전자문서</h1>
-                            <div><NavLink to="/stock/myorderlist/detail"><MdKeyboardDoubleArrowRight/></NavLink></div>
+                                <NavLink to="/approval/"><h1 style={{textAlign:"center", color:"#696767"}}>전자문서</h1></NavLink>
+                                    <div>
+                                        <NavLink to="/approval/"><MdKeyboardDoubleArrowRight/></NavLink>
+                                    </div>
                             </div>
                             {/*<div><DocuList /></div>*/}
-                            <div><ApprovalList /></div>
+
+                                    <div><ApprovalList /></div>
+
                         </div>
+
                     </div>
                 </div>
+
             </div>
 
         </>

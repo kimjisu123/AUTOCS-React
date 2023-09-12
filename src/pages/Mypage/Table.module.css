@@ -2,7 +2,7 @@
 
 .container {
     /*width: 500px;*/
-    /*height: 500px;*/
+    height: 300px;
     margin: auto 16px;
     width: 664px;
     user-select: none; /* 텍스트 선택 금지 */

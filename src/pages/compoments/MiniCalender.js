@@ -1,24 +1,40 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './MiniCalender.css'
 import moment from "moment-timezone";
 import {MdOutlineMood, MdStarRate} from "react-icons/md";
 import { DateRange } from 'react-date-range';
+import {useDispatch, useSelector} from "react-redux";
+import {callGetDailyMainAPI} from "../../apis/MainAPICalls";
+import {decodeJwt} from "../../util/tokenUtils";
+import {format} from "date-fns";
 //css 적용시키기
 
+export const MiniCalender = () => {
+
+    const accessToken = window.localStorage.getItem('accessToken');
+    const dispatch = useDispatch();
+    const employees = useSelector(state => state.mainReducer);
+    // console.log("캘린더 일정 리스트를 위한 멤버 번호 조회 {}", callGetDailyMainAPI(240));
+    // console.log("캘린더 일정 리스트를 위한 멤버 번호 조회 {}", employees);
+    const decodedToken = accessToken ? decodeJwt(accessToken) : null;
 
 
-
-export const MiniCalender = ({ user }) => {
+    // // 회원정보 가지고 오기
+    useEffect(  () => {
+        dispatch(callGetDailyMainAPI(decodedToken.MemberNo));
+    },[]);
 
     const [value, onChange] = useState(new Date());
     const [mark, setMark] = useState([]);
-    const dayList = [
-        '2023-09-21',
-        '2023-09-23',
-        '2023-09-08',
-    ];
+    // const dayList = [
+    //     '2023-09-21',
+    //     '2023-09-23',
+    //     '2023-09-08',
+    // ];
+    const dayList = employees.data?.map(daily => format(new Date(daily.startDate), 'yyyy-MM-dd')) || [];
+
 
     // 각 날짜 타일에 컨텐츠 추가
     const addContent = ({ date }: any) => {

@@ -189,18 +189,15 @@ function UpdatePW(resultMessage) {
                     </div>
             </div>
 
-
-            {/*onClick={() => setModalIsOpen(true)}*/}
-            {/*비밀번호 변경 모달창 띄우기 */}
-            {modalIsOpen && (
-                <Modal
-                    isOpen={modalIsOpen}
-                    onRequestClose={() => setModalIsOpen(false)}
-                    className={`customModalStyle ${modalIsOpen ? 'isOpen' : ''}`}
-                >
-                    <UpdatePWok/>
-                </Modal>
-            )}
+            {/*{modalIsOpen && (*/}
+            {/*    <Modal*/}
+            {/*        isOpen={modalIsOpen}*/}
+            {/*        onRequestClose={() => setModalIsOpen(false)}*/}
+            {/*        className={`customModalStyle ${modalIsOpen ? 'isOpen' : ''}`}*/}
+            {/*    >*/}
+            {/*        <UpdatePWok/>*/}
+            {/*    </Modal>*/}
+            {/*)}*/}
         </>
 
     )
