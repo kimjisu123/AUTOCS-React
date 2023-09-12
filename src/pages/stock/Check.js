@@ -178,17 +178,17 @@ function Check() {
                     </tr>
                     {
                         Array.isArray(ioGroupList) && ioGroupList.map((ioGroup) => (
-                            <tr key={ioGroup.refProductNo}>
-                                <td>{ ioGroup.refProductNo}</td>
+                            <tr key={ioGroup.productNo}>
+                                <td>{ ioGroup.productNo}</td>
                                 <td>{ ioGroup.categoryName}</td>
                                 <td>{ ioGroup.productName}</td>
                                 <td>{ ioGroup.standardName}</td>
                                 <td>{ ioGroup.unitName}</td>
                                 <td>{ ioGroup.stock}</td>
-                                <td className={StockCSS.mainline}>{ ioGroup.totalQuantityIn - ioGroup.totalQuantityOut}</td>
+                                <td className={StockCSS.mainline}>{ ioGroup.currentQuantity}</td>
                                 <td>{ ioGroup.totalQuantityIn}</td>
-                                <td></td>
-                                <td></td>
+                                <td>{ ioGroup.completeQuantity}</td>
+                                <td>{ ioGroup.refundQuantity}</td>
                                 <td>{ ioGroup.totalQuantityOut}</td>
                                 <td>{ ioGroup.price}</td>
                                 <td>{ ioGroup.etc}</td>

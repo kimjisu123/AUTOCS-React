@@ -469,6 +469,8 @@ export const callIoListAPI = ({currentPage}) => {
 export const callIOListWithGroupingAPI = ({currentPage, s, startDate, endDate}) => {
 
     let requestURL;
+    
+    console.log('불러와집니까')
 
     if(currentPage !== undefined || currentPage !== null){
         requestURL = `http://localhost:8080/stock/check?offset=${currentPage}&s=${s}&startDate=${startDate}&endDate=${endDate}`;
