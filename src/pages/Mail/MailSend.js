@@ -24,6 +24,7 @@ function MailSend( {setModal} ){
     }, []);
 
     const [select, setSelect] = useState([]);
+    const [selectDpname, setSelectDpname] = useState([]);
     const [titleValue, setTitileValue] = useState('');
     const [contextValue, setContextValue] = useState('');
     const [searchValue, setSearchValue] = useState('');
@@ -108,7 +109,7 @@ function MailSend( {setModal} ){
 
 
     const onClickTest= () =>{
-        console.log()
+        console.log(select[0].position)
     }
 
     return (

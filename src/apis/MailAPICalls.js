@@ -52,7 +52,7 @@ export const callGetMailSentAPI = ( {employeeNo}, currentPage, search) => {
 
 
 export const callDELETEMailAPI = () =>{
-    const requestURL = 'http://localhost:8080/mail'
+    const requestURL = `http://localhost:8080/mail/${decodedToken.EmployeeNo}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
