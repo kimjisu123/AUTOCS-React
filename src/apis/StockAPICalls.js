@@ -46,6 +46,7 @@ import {GET_BILLS} from "../modules/BillModule";
 import {GET_BILL} from "../modules/BillDetailModule";
 import {GET_ORDER_FOR_BILL} from "../modules/OrderListForBillModule";
 import {GET_STASTISTICS} from "../modules/StatisticsModule";
+import {GET_NY_STASTISTICS} from "../modules/MyStatisticsModule";
 
 /* 물품 조회 */
 export const callProductListAPI = ({currentPage}) => {
@@ -816,7 +817,6 @@ console.log('호출')
 /* 주문물품 조회 - 계산서용 */
 export const callMyOrderProductListForBillAPI = ({myOrderNo}) => {
 
-    console.log('홓로호호호ㅗ호호')
     let requestURL;
 
     requestURL = `http://localhost:8080/stock/bill/detail/order?myOrderNo=${myOrderNo}`;
@@ -866,11 +866,10 @@ export const callMyBillListWithPagingAPI = ({currentPage, store, startDate, endD
 }
 
 
-/* 입출고 조회 - 그룹화 */
+/* 매출통계 */
 export const callStatisticsAPI = ({s, startDate, endDate}) => {
 
     let requestURL;
-console.log('fasfdas')
         requestURL = `http://localhost:8080/stock/statistics?s=${s}&startDate=${startDate}&endDate=${endDate}`;
 
 
@@ -887,6 +886,31 @@ console.log('fasfdas')
         console.log(result)
         if(result.status === 200){
             dispatch({ type: GET_STASTISTICS,  payload: result.data });
+        }
+
+    };
+}
+
+/* 발주통계 */
+export const callMyStatisticsAPI = ({store, s, startDate, endDate}) => {
+
+    let requestURL;
+    requestURL = `http://localhost:8080/stock/statistics?store=${store}&s=${s}&startDate=${startDate}&endDate=${endDate}`;
+
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            }
+        })
+            .then(response => response.json());
+        console.log(result)
+        if(result.status === 200){
+            dispatch({ type: GET_NY_STASTISTICS,  payload: result.data });
         }
 
     };

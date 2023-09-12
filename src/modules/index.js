@@ -46,6 +46,7 @@ import {
     vacationReducer
 } from "./ApprovalModule";
 import statisticsReducer from "./StatisticsModule";
+import myStatisticsReducer from "./MyStatisticsModule";
 
 const rootReducer = combineReducers({
     chartReducer,
@@ -69,6 +70,7 @@ const rootReducer = combineReducers({
     orderForBillReducer,
     myBillReducer,
     statisticsReducer,
+    myStatisticsReducer,
     todoReducer,
     marketReducer,
     mailSentReducer,
