@@ -85,6 +85,8 @@ function Unit() {
             alert('등록되었습니다.');
             navigate('/stock/unit', {replace: true});
             window.location.reload();
+        }        else {
+            alert('취소되었습니다.');
         }
     }
 
@@ -121,6 +123,8 @@ function Unit() {
             alert('수정되었습니다.');
             navigate('/stock/unit', { replace: true });
             window.location.reload();
+        }        else {
+            alert('취소되었습니다.');
         }
     }
 
@@ -145,6 +149,8 @@ function Unit() {
             alert('수정되었습니다.');
             navigate('/stock/unit', { replace: true });
             window.location.reload();
+        }        else {
+            alert('취소되었습니다.');
         }
     }
     /********************************************************************/

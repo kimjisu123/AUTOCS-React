@@ -84,6 +84,8 @@ function ProductDelete() {
             alert('등록되었습니다.');
             navigate('/stock/productdelete', { replace: true });
             window.location.reload();
+        }        else {
+            alert('취소되었습니다.');
         }
     }
 

@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import {
     callMyOrderProductForRefundAPI,
+    callOrderProductRegistAPI, callOrderProductUpdateAPI,
 } from '../../apis/StockAPICalls'
 import refundReducer from "../../modules/RefundModule";
 
@@ -38,10 +39,55 @@ function Refund() {
 
     console.log(orderProduct)
 
+    // 등록
+    const [form, setForm] = useState({
+        refOrderNo: '',
+        refProductNo: '',
+        quantity: '',
+        status: '',
+        etc: '품질불량',
+    });
 
-    const onClickOrderHandler= () => {
-        alert('신청하시겠습니까?');
-    }
+    // form 데이터 세팅
+    const onChangeHandler = (e) => {
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    /* 반품물품 등록 */
+    const onClickRegistHandler = async () => {
+        const confirmed = window.confirm('신청하시겠습니까?');
+        if (confirmed) {
+
+            const formData = new FormData();
+            formData.append("refOrderNo", orderProduct.refOrderNo?.orderNo);
+            formData.append("refProductNo", orderProduct.refProductNo.productNo);
+            formData.append("quantity", (form.quantity)* (-1));
+            formData.append("etc", form.etc);
+
+            dispatch(callOrderProductRegistAPI({
+                form: formData
+            }));
+
+            const ModifyFormData = new FormData();
+            ModifyFormData.append("orderProductNo", orderProduct.orderProductNo);
+            ModifyFormData.append("status", 'REFUND');
+
+            dispatch(callOrderProductUpdateAPI({
+                form: ModifyFormData
+            }));
+
+
+            alert('신청되었습니다.');
+            // navigate('/stock/order', {replace: true});
+            window.location.reload();
+            }
+            else {
+            alert('취소되었습니다.');
+        }
+        }
 
     return(
         <div>
@@ -107,7 +153,10 @@ function Refund() {
                         반품수량
                     </td>
                     <td>
-                        <input type="text"/>
+                        <input type="text"
+                        name="quantity"
+                        onChange={onChangeHandler}
+                        />
                     </td>
                 </tr>
                 <tr>
@@ -115,15 +164,15 @@ function Refund() {
                         사유
                     </td>
                     <td>
-                        <select>
-                            <option value="1">품질불량</option>
-                            <option value="2">배송상태불량</option>
-                            <option value="3">오배송</option>
+                        <select name="etc" onChange={onChangeHandler}>
+                            <option value="품질불량">품질불량</option>
+                            <option value="배송상태불량">배송상태불량</option>
+                            <option value="오배송">오배송</option>
                         </select>
                     </td>
                 </tr>
             </table>
-            <button style={{marginTop: "5%"}} onClick={ onClickOrderHandler }>신청</button>
+            <button style={{marginTop: "5%"}} onClick={ onClickRegistHandler }>신청</button>
         </div>
     )
 }

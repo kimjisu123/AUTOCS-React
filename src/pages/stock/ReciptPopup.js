@@ -118,7 +118,9 @@ function ReciptPopup() {
                                 <td colSpan={2}>비고</td>
                             </tr>
                             {
-                                Array.isArray(orderList) && orderList.map((order) => (
+                                Array.isArray(orderList) && orderList.map((order) => {
+                                    if (order.status === 'COMPLETE' || order.status === 'REFUND') {
+                                        return (
                                     <tr >
                                         <td colSpan={2}>{ order.registDate}</td>
                                         <td colSpan={12}>{ order.productName}</td>
@@ -128,7 +130,10 @@ function ReciptPopup() {
                                         <td colSpan={6}>{ Math.floor((order.quantity * order.price) - ((order.quantity * order.price) * 0.1)).toLocaleString() }</td>
                                         <td colSpan={2}></td>
                                     </tr>
-                                ))
+                                        );
+                                    }
+                                    return null; // Return null for other statuses, effectively skipping them
+                                })
                             }
                             <tr>
                                 <td style={{color: "limegreen"}} colSpan={2}>인수자</td>

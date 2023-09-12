@@ -90,6 +90,8 @@ function StockIo() {
             alert('등록되었습니다.');
             navigate('/stock/stockio', { replace: true });
             window.location.reload();
+        }        else {
+            alert('취소되었습니다.');
         }
     }
 

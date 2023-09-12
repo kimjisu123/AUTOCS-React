@@ -91,11 +91,15 @@ function showPopup()
                         form: itemFormData,
                     })
                 );
+
+                alert('신청되었습니다. 주문번호: ' + lastOrderNo);
+                navigate('/stock/order', {replace: true});
+                window.location.reload();
             }
 
-            alert('신청되었습니다. 주문번호: ' + lastOrderNo);
-            navigate('/stock/order', {replace: true});
-            window.location.reload();
+
+        }        else {
+            alert('취소되었습니다.');
         }
     }
 

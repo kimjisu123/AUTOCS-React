@@ -166,7 +166,7 @@ function MyBill() {
             <div style={{marginTop: "1%"}}>
                 <table className={StockCSS.stockTable}>
                     <tr>
-                        <th>NO</th>
+                        <th>발행번호</th>
                         <th>거래번호</th>
                         <th>영업점</th>
                         <th>발행일</th>
