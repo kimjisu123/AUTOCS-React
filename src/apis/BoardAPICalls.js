@@ -1,4 +1,4 @@
-import {GET_BOARD, NUM_BOARD} from "../modules/BoardModule";
+import {GET_BOARD, MY_BOARD, NUM_BOARD} from "../modules/BoardModule";
 import { GET_COMMENT } from "../modules/CommentModule";
 
 // 모든 게시물 불러오기
@@ -203,6 +203,7 @@ export const callUpdateCommentAPI = ({ formData }) => {
         headers: {
             "Accept": "*/*"
         },
+        body: formData,
     })
         .then((response) => {
             if (response.ok) {
@@ -249,4 +250,23 @@ export const callDeleteCommentAPI = ( commentToDelete ) => {
         .catch((error) => {
             console.error('Error:', error);
         });
+};
+
+// 특정 멤버 게시물 불러오기
+export const callGetEmployeeBoardAllAPI = (memberNo) => {
+    const refMemberNo = memberNo;
+    const requestURL = `http://localhost:8080/board/getMyBoarEmployee?refMemberNo=${refMemberNo}`;
+
+    return async (dispatch) => {
+        const result = await fetch(requestURL, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+        }).then(response => response.json());
+
+        console.log('response :>>>>>>>>>>>>>>>>', result);
+        dispatch({ type: MY_BOARD, payload: result });
+    };
 };

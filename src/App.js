@@ -59,6 +59,7 @@ import FreeM from "./pages/board/freeM";
 import Writing from "./pages/board/writing";
 import PostDetail from "./pages/board/PostDetail";
 import UpdateBoard from "./pages/board/updateBoard";
+import MyBoard from "./pages/board/myBoard";
 
 //지수
 import Management from "./pages/management/Management"
@@ -192,6 +193,9 @@ function App() {
                         //계정 비활성화 신청
                         <Route path='/outM' element={<OutMForm/>}/>
                         <Route path='mypagestore/outS' element={<OutSForm/>}/>
+
+                        //직원 내가 쓴 글
+                        <Route path='myBoard' element={<MyBoard/>}/>
 
                         //직원 게시판
                         <Route path='board' element={<BoardMenu/>}>
