@@ -188,6 +188,7 @@ function Check() {
                                 <td className={StockCSS.mainline}>{ ioGroup.totalQuantityIn - ioGroup.totalQuantityOut}</td>
                                 <td>{ ioGroup.totalQuantityIn}</td>
                                 <td></td>
+                                <td></td>
                                 <td>{ ioGroup.totalQuantityOut}</td>
                                 <td>{ ioGroup.price}</td>
                                 <td>{ ioGroup.etc}</td>
