@@ -101,6 +101,7 @@ function MyStatistics() {
             selectedEndDate= form.endDate;
         }
 
+        formData.append("store", storeNo);
         formData.append("s", form.s);
         formData.append("startDate", selectedStartDate);
         formData.append("endDate", selectedEndDate);
