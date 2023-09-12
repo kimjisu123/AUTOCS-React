@@ -168,9 +168,10 @@ function Check() {
                         <th>규격</th>
                         <th>단위</th>
                         <th>적정<br/>재고</th>
-                        <th className={StockCSS.mainline}>기간<br/>재고</th>
+                        <th className={StockCSS.mainline}>현재<br/>재고</th>
                         <th>기간<br/>입고</th>
                         <th>기간<br/>출고</th>
+                        <th>기간<br/>환불</th>
                         <th>기간<br/>폐기</th>
                         <th>단가</th>
                         <th>비고</th>
