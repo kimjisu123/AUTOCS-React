@@ -1,0 +1,42 @@
+.my-posts {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    height: 980px;
+    overflow-y: auto;
+}
+
+.post-list {
+    margin-top: 20px;
+}
+
+.post-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.post-date {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.post-title {
+    font-size: 24px;
+    margin: 0;
+    color: #333;
+}
+
+.post-title a {
+    text-decoration: none;
+    color: #333;
+}
+
+.post-info {
+    font-size: 16px;
+    color: #777;
+}
