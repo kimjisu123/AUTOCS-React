@@ -122,7 +122,7 @@ function showPopup()
 
         codeCell.textContent = parentCodeValue;
         nameCell.textContent = parentNameValue;
-        priceCell.textContent = parentPriceValue;
+        priceCell.textContent = parentPriceValue.toLocaleString();
         quantityCell.textContent = orderQuantity;
         deleteButton.appendChild(button);
 

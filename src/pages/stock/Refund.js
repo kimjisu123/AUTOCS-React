@@ -43,7 +43,7 @@ function Refund() {
     const [form, setForm] = useState({
         refOrderNo: '',
         refProductNo: '',
-        quantity: '',
+        quantity: (orderProduct?.quantity)* (-1),
         status: '',
         etc: '품질불량',
     });
@@ -64,7 +64,7 @@ function Refund() {
             const formData = new FormData();
             formData.append("refOrderNo", orderProduct.refOrderNo?.orderNo);
             formData.append("refProductNo", orderProduct.refProductNo.productNo);
-            formData.append("quantity", (form.quantity)* (-1));
+            formData.append("quantity", (orderProduct?.quantity)* (-1));
             formData.append("etc", form.etc);
 
             dispatch(callOrderProductRegistAPI({
@@ -153,8 +153,11 @@ function Refund() {
                         반품수량
                     </td>
                     <td>
-                        <input type="text"
+                        <input className={StockCSS.readOnlybox}
+                            type="text"
                         name="quantity"
+                        value={orderProduct?.quantity}
+                               readOnly
                         onChange={onChangeHandler}
                         />
                     </td>

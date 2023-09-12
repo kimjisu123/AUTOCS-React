@@ -237,8 +237,8 @@ function StockIo() {
                                     <td>{ io.refProductNo.unit.name}</td>
                                     <td>{ io.refProductNo.standard.name}</td>
                                     <td className={StockCSS.mainline}>{ io.io}</td>
-                                    <td className={StockCSS.mainline}>{ io.quantity }</td>
-                                    <td>{ io.refProductNo.price }</td>
+                                    <td className={StockCSS.mainline}>{ io.quantity.toLocaleString() }</td>
+                                    <td>{ io.refProductNo.price.toLocaleString() }</td>
                                 </tr>
                             ))
                         }

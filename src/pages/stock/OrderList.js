@@ -86,9 +86,8 @@ function OrderList() {
     const onChangeHandler = (e) => {
         setForm({
             ...form,
-            [e.target.name]: e.target.value
+            [e?.target.name]: e?.target.value
         });
-        console.log(e.target.value)
     };
 
     /* 주문물품 조회 핸들러 */
@@ -100,7 +99,7 @@ function OrderList() {
 
         const formData = new FormData();
 
-        const selectedStat = e.target.value;
+        const selectedStat = e?.target.value;
 
         setForm({
             ...form,
@@ -151,7 +150,7 @@ function OrderList() {
     // 수정
     const onClickModifyModeHandler = (e) => {    // 수정모드
         setModifyMode(true);
-        let inputValue = { orderProductNo: e.target.value };
+        let inputValue = { orderProductNo: e?.target.value };
         setSelectedOrders(prevSelectedOrders => [...prevSelectedOrders, inputValue]);
     }
 
@@ -283,8 +282,8 @@ function OrderList() {
                                 <td>{ orderProduct.productName}</td>
                                 <td>{ orderProduct.unitName}</td>
                                 <td>{ orderProduct.standardName}</td>
-                                <td>{ orderProduct.price}</td>
-                                <td>{ orderProduct.quantity}</td>
+                                <td>{ orderProduct.price.toLocaleString()}</td>
+                                <td>{ orderProduct.quantity.toLocaleString()}</td>
                                 <td>{ orderProduct.etc}</td>
                                 <td>{ orderProduct.registDate}</td>
                                 <td>{ orderProduct.status}</td>

@@ -45,6 +45,7 @@ import {GET_REFUND} from "../modules/RefundModule";
 import {GET_BILLS} from "../modules/BillModule";
 import {GET_BILL} from "../modules/BillDetailModule";
 import {GET_ORDER_FOR_BILL} from "../modules/OrderListForBillModule";
+import {GET_STASTISTICS} from "../modules/StatisticsModule";
 
 /* 물품 조회 */
 export const callProductListAPI = ({currentPage}) => {
@@ -469,12 +470,9 @@ export const callIoListAPI = ({currentPage}) => {
 export const callIOListWithGroupingAPI = ({currentPage, s, startDate, endDate}) => {
 
     let requestURL;
-    
-    console.log('불러와집니까')
 
     if(currentPage !== undefined || currentPage !== null){
         requestURL = `http://localhost:8080/stock/check?offset=${currentPage}&s=${s}&startDate=${startDate}&endDate=${endDate}`;
-        console.log(s)
     }else {
         requestURL = `http://localhost:8080/stock/check`;
     }
@@ -862,6 +860,33 @@ export const callMyBillListWithPagingAPI = ({currentPage, store, startDate, endD
             .then(response => response.json());
         if(result.status === 200){
             dispatch({ type: GET_BILLS,  payload: result.data });
+        }
+
+    };
+}
+
+
+/* 입출고 조회 - 그룹화 */
+export const callStatisticsAPI = ({s, startDate, endDate}) => {
+
+    let requestURL;
+console.log('fasfdas')
+        requestURL = `http://localhost:8080/stock/statistics?s=${s}&startDate=${startDate}&endDate=${endDate}`;
+
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            }
+        })
+            .then(response => response.json());
+        console.log(result)
+        if(result.status === 200){
+            dispatch({ type: GET_STASTISTICS,  payload: result.data });
         }
 
     };

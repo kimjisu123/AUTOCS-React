@@ -75,9 +75,8 @@ function Check() {
     const onChangeHandler = (e) => {
         setForm({
             ...form,
-            [e.target.name]: e.target.value
+            [e?.target.name]: e?.target.value
         });
-        console.log(e.target.value)
     };
 
     /* 물품 조회 */
@@ -107,10 +106,10 @@ function Check() {
         formData.append("endDate", selectedEndDate);
 
         dispatch(callIOListWithGroupingAPI({
+            currentPage: 1,
             s: form.s,
             startDate: selectedStartDate,
-            endDate: selectedEndDate,
-            currentPage: 1
+            endDate: selectedEndDate
         }));
         console.log(form.startDate)
         console.log(form.endDate)
@@ -185,12 +184,12 @@ function Check() {
                                 <td>{ ioGroup.standardName}</td>
                                 <td>{ ioGroup.unitName}</td>
                                 <td>{ ioGroup.stock}</td>
-                                <td className={StockCSS.mainline}>{ ioGroup.currentQuantity}</td>
-                                <td>{ ioGroup.totalQuantityIn}</td>
-                                <td>{ ioGroup.completeQuantity}</td>
-                                <td>{ ioGroup.refundQuantity}</td>
-                                <td>{ ioGroup.totalQuantityOut}</td>
-                                <td>{ ioGroup.price}</td>
+                                <td className={StockCSS.mainline}>{ ioGroup.currentQuantity.toLocaleString()}</td>
+                                <td>{ ioGroup.totalQuantityIn.toLocaleString()}</td>
+                                <td>{ ioGroup.completeQuantity.toLocaleString()}</td>
+                                <td>{ ioGroup.refundQuantity.toLocaleString()}</td>
+                                <td>{ ioGroup.totalQuantityOut.toLocaleString()}</td>
+                                <td>{ ioGroup.price.toLocaleString()}</td>
                                 <td>{ ioGroup.etc}</td>
                             </tr>
                         ))

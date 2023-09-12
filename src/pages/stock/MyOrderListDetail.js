@@ -157,8 +157,8 @@ function MyOrderListDetail() {
                                 <td>{ orderProduct.productName}</td>
                                 <td>{ orderProduct.unitName}</td>
                                 <td>{ orderProduct.standardName}</td>
-                                <td>{ orderProduct.price}</td>
-                                <td>{ orderProduct.quantity}</td>
+                                <td>{ orderProduct.price.toLocaleString()}</td>
+                                <td>{ orderProduct.quantity.toLocaleString()}</td>
                                 <td>{ orderProduct.etc}</td>
                                 <td>{ orderProduct.registDate}</td>
                                 <td>{ orderProduct.status}</td>
