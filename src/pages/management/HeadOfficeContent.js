@@ -178,14 +178,19 @@ function HeadOfficeContent(){
 
 
     // 연장 근무가 있을시 기본 근무시간을 구하는 함수
+
     function defaultTime(timeString) {
         const components = timeString.split(':');
-        const hours = parseInt(components[0], 10);
-        const formattedHours = hours >= 8 ? '08' : formatTimeComponent(hours);
-        const minutes = hours >= 8 ? '00' : formatTimeComponent(parseInt(components[1], 10));
-        const seconds = hours >= 8 ? '00' : formatTimeComponent(parseInt(components[2], 10));
+        const hours = parseInt(components[1], 10);
 
-        return `${formattedHours}:${minutes}:${seconds}`;
+        if (hours >= 8) {
+            return '08:00:00';
+        } else {
+            const formattedHours = formatTimeComponent(hours);
+            const minutes = formatTimeComponent(parseInt(components[1], 10));
+            const seconds = formatTimeComponent(parseInt(components[2], 10));
+            return `${formattedHours}:${minutes}:${seconds}`;
+        }
     }
 
     // 총 근무시간에서 8시간을 빼주는 함수(연장근무)
@@ -221,6 +226,20 @@ function HeadOfficeContent(){
     // 테스트용 쓰고 나서 지우기
     const onClickTest =() =>{
         console.log(filteredData)
+    }
+
+    function formatTime(timeString) {
+        if(timeString !== '미등록'){
+            const components = timeString.split(':');
+            const hours = formatTimeComponent(parseInt(components[0], 10));
+            const minutes = formatTimeComponent(parseInt(components[1], 10));
+            const seconds = formatTimeComponent(parseInt(components[2], 10));
+
+            return `${hours}:${minutes}:${seconds}`;
+        } else{
+            return '미등록'
+        }
+
     }
 
 
@@ -293,7 +312,7 @@ function HeadOfficeContent(){
                                                     </div>
                                                     <div className={styles.hoursDuty}>
                                                         <div>
-                                                            기본 : { item.workStatus.extensionTime && defaultTime(item.workStatus.extensionTime)}
+                                                            기본 : { item.workStatus.extensionTime && defaultTime(formatTime(item.workStatus.extensionTime))}
                                                         </div>
                                                         <div>
                                                             연장 : {item.workStatus.extensionTime && formatAndAdjustTime( formatTimeString(item.workStatus.extensionTime) )}

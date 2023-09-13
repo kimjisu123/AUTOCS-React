@@ -22,7 +22,7 @@ function Mailmenu({children}){
             <div className={styles.documentForm}>
                 쪽지함
             </div>
-            <Link to={`/mail/${decodedToken.EmployeeNo}`}> <div className={styles.receivedMail}>받은 편지</div> </Link>
+            <Link to={`/mail/${decodedToken.EmployeeNo}`} replace={true}> <div className={styles.receivedMail}>받은 편지</div> </Link>
             <Link to={`/mailSent/${decodedToken.EmployeeNo}`}><div className={styles.sentMail}>보낸 편지</div></Link>
             <Link to="/mailBookmark" > <div className={styles.mailBookMark}>즐겨찾기</div></Link>
             <div style={ modal ? {display:"inline"} : {display: "none"} }>

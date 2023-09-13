@@ -104,6 +104,7 @@ const MainContent = () => {
 
             // 현재 시간을 시:분 형식으로 표시
             const formattedTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+            dispatch( callPostAttendanceAPI() )
 
             // 현재 시간을 상태에 저장
             setWorkTime(formattedTime);
@@ -123,6 +124,8 @@ const MainContent = () => {
 
             // 현재 시간을 시:분 형식으로 표시
             const formattedTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+
+            dispatch( callPutQuittingAPI() )
 
             // 현재 시간을 상태에 저장
             setWorkFinishTime(formattedTime);
