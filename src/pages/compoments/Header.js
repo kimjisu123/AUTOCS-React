@@ -123,7 +123,7 @@ const Header = () => {
             {login ? <Login setLoginModal={setLoginModal} /> : null}
             <div className="headerWrapper">
                 <div className="topNav">
-                    <NavLink to="/main">
+                    { role === "EMPLOYEE" ? (<NavLink to="/main">
                         <div className="gohome">
                             <div className="logo">
                                 <img src={img} style={{ width: "40px", marginTop: "6px", marginRight: "5px", marginLeft: "10px" }} />
@@ -132,7 +132,18 @@ const Header = () => {
                                 AUTOCSS
                             </div>
                         </div>
-                    </NavLink>
+                    </NavLink>) :(<NavLink to="/mainstore">
+                        <div className="gohome">
+                            <div className="logo">
+                                <img src={img} style={{ width: "40px", marginTop: "6px", marginRight: "5px", marginLeft: "10px" }} />
+                            </div>
+                            <div className="officName">
+                                AUTOCSS
+                            </div>
+                        </div>
+                    </NavLink>)
+
+                    }
                     <div className="menuContainer">
                         {menuItems.map((menuItem) => (
                             <NavLink

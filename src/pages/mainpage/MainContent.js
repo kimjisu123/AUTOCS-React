@@ -209,10 +209,12 @@ const MainContent = () => {
                                     )}
                                 </div>
                                 <div className={mainstyle.workbuttons}>
+
                                         <button  className="startWorkTime"
                                                  onClick={startWork}
-                                        >출근하기</button>
-                                        <button className="finishWorkTime"onClick={finishWork} >퇴근하기</button>
+                                        ><MdWork/>출근하기</button>
+
+                                        <button className="finishWorkTime"onClick={finishWork} ><MdWorkOff/>퇴근하기</button>
                                 </div>
                             </div>
                             <div className={mainstyle.fastButtons}>

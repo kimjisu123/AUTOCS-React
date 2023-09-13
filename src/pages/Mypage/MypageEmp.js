@@ -130,7 +130,7 @@ function MypageEmp() {
         const phoneCurrent = e.target.value
         setPhone(phoneCurrent);
         if (!phoneExp.test(phoneCurrent)) {
-            setPhoneMessage('숫자만 입력해주세요.')
+            setPhoneMessage('000-0000-0000의 형식으로 입력해주세요.')
             setIsPhone(false)
         } else {
             setPhoneMessage('바른 형식으로 입력하셨습니다.')
@@ -295,6 +295,7 @@ function MypageEmp() {
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div className={udButton}>
                                             <div>
                                                 <button className={updateButton} type="button"

@@ -156,9 +156,18 @@ export const callPostPwdCheckAPI = (memberNo,checkPw) => {
                 }
             })
             .then(() => {
-                window.alert('회원 정보 변경완료');
+                Swal.fire({
+                    icon: 'success',
+                    title: '매장 정보 변경',
+                    text: '매장정보가 변경되었습니다.',
+                })
             })
             .catch((error) => {
+                Swal.fire({
+                    icon: 'error',
+                    title: '매장 정보 변경.',
+                    text: '매장 정보 변경에 실패했습니다.',
+                })
                 console.error('Error:', error);
             });
     }
