@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import {
     callMyOrderListAPI,
-    callBillRegistAPI,
+    callBillRegistAPI, callOrderUpdateAPI,
 } from '../../apis/StockAPICalls'
 import {decodeJwt} from "../../util/tokenUtils";
 
@@ -109,9 +109,18 @@ function MyOrderList() {
             console.log(storeNo)
             console.log(e.target.value)
 
-
             dispatch(callBillRegistAPI({
                 form: formData
+            }));
+
+            // 주문상태 업데이트
+            const orderFormData = new FormData();
+            orderFormData.append("orderNo", e.target.value);
+            orderFormData.append("storeInfoNo", storeNo);
+            orderFormData.append("status", "C");
+
+            dispatch(callOrderUpdateAPI({
+                form: orderFormData
             }));
 
             alert('발행되었습니다.');
@@ -214,9 +223,13 @@ function MyOrderList() {
                                 </td>
                                 <td>{ order.registDate}</td>
                                 <td>{ order.status}</td>
-                                <td><button onClick={onClickRegistHandler}
+                                <td>{order.status === 'Y' ? (
+                                    <button onClick={onClickRegistHandler}
                                             name='refOrderNo'
-                                            value={order.orderNo}>발행</button></td>
+                                            value={order.orderNo}>발행
+                                    </button>
+                                ) : null}
+                                </td>
                             </tr>
                         ))
                     }

@@ -84,6 +84,8 @@ function ProductDelete() {
             alert('등록되었습니다.');
             navigate('/stock/productdelete', { replace: true });
             window.location.reload();
+        }        else {
+            alert('취소되었습니다.');
         }
     }
 
@@ -172,8 +174,8 @@ function ProductDelete() {
                                     <td>{ product.name }</td>
                                     <td>{ product.standard.name}</td>
                                     <td>{ product.unit.name}</td>
-                                    <td>{ product.stock }</td>
-                                    <td>{ product.price }</td>
+                                    <td>{ product.stock.toLocaleString() }</td>
+                                    <td>{ product.price.toLocaleString() }</td>
                                     <td>{ product.etc }</td>
                                     <td>{ product.registDate }</td>
                                     <td>{ product.unusedDate }</td>

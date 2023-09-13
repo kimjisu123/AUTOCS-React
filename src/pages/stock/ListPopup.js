@@ -81,8 +81,8 @@ function ListPopup() {
         window.opener.document.getElementById( "parentNameValue" ).value = productName;
         window.opener.document.getElementById( "parentStandardValue" ).value = productStandard;
         window.opener.document.getElementById( "parentUnitValue" ).value = productUnit;
-        window.opener.document.getElementById( "parentStockValue" ).value = productStock;
-        window.opener.document.getElementById( "parentPriceValue" ).value = productPrice;
+        window.opener.document.getElementById( "parentStockValue" ).value = productStock.toLocaleString();
+        window.opener.document.getElementById( "parentPriceValue" ).value = productPrice.toLocaleString();
         console.log('선택한 제품 번호:', productNo);
         console.log('선택한 제품 이름:', productName);
         window.close();

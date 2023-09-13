@@ -239,7 +239,8 @@ function MypageStore() {
                                                 </div>
                                             </div>
                                             <div className={ousSButton}>
-                                                <NavLink to="outS"><button>계정 비활성화</button></NavLink>
+                                                <NavLink to="/myBoard"><button style={{marginBottom: "15px", marginLeft: "40px", marginTop: "-15px"}}>내가 쓴 글</button></NavLink>
+                                                <NavLink to="/outS"><button style={{marginLeft: "22px"}}>계정 비활성화</button></NavLink>
                                             </div>
                                         </div>
                                         <div className={infoInput}>

@@ -113,6 +113,13 @@
     background-color: #ecead8;
 }
 
+.listbox2 {
+    display: flex;
+    width: 1000px;
+    height: auto;
+    background-color: #ecead8;
+}
+
 .contentsbox {
     padding: 2%;
     width: 100%;
