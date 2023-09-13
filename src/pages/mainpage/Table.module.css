@@ -46,12 +46,13 @@
     /*border: 2px solid #ffc95c;*/
 }
 
+.cardBody:hover .badge,
 .badge:hover {
     /*background-color: #ffc95c;*/
     color: #ffffff; /* Change the text color when hovering */
 }
 
-
+.cardBody:hover .badge::after,
 .badge:hover::after {
     transform:translateX(0);
     color: #ffffff;
@@ -159,4 +160,8 @@ a {
     flex: 0 0 300px; /* 슬라이드 하나의 가로 너비를 조절하세요 */
     height: 100%;
     margin-right: 20px; /* 슬라이드 사이의 간격을 조절하세요 */
+}
+
+.cardDetail a:link , .cardDetail a:visited, .detailCard h5 {
+    color: #313131;
 }

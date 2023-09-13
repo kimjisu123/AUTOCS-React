@@ -38,7 +38,6 @@ function MypageStore() {
     const accessToken = window.localStorage.getItem('accessToken');
     // console.log("employeeList : " , employeeList);
     const decodedToken = accessToken ? decodeJwt(accessToken) : null;
-    const role = decodedToken ? decodedToken.auth : null;
 
     const [memberNo , setMemberNo] = useState(0);
     const [storeNo , setStoreNo] = useState(0);
@@ -61,12 +60,12 @@ function MypageStore() {
     const [phoneMessage, setPhoneMessage] = useState('')
 
     useEffect(() => {
-        function fetchData() {
+        async function fetchData() {
             try {
 
+                console.log("액세스 토큰 찾기 ===========> {}", decodedToken.MemberNo);
+              await  dispatch(callGetSToreInfoAPI(decodedToken.MemberNo));
 
-                dispatch(callGetSToreInfoAPI(decodedToken.MemberNo));
-                // const profileInfo = await dispatch(callGetPofileAPI(decodedToken.MemberNo));
 
                 if (employees.data && employees.data.name) {
                     // 'name' 속성에 접근할 수 있습니다.
@@ -132,7 +131,7 @@ function MypageStore() {
         setPhone(phoneCurrent);
         console.log("입력된 핸드폰 번호 입력 ", phone);
         if (!phoneExp.test(phoneCurrent)) {
-            setPhoneMessage('숫자만 입력해주세요.')
+            setPhoneMessage('000-0000-0000의 형식으로 입력해주세요.')
             setIsPhone(false)
         } else {
             setPhoneMessage('바른 형식으로 입력하셨습니다.')
@@ -306,16 +305,17 @@ function MypageStore() {
                                                         <div className={inputAddress}>
                                                             <div className={baseAddress}>
                                                                 <input className="lo" type="text" name="baseAddress" id="aseAddress" placeholder={employees.data.address}
-                                                                        value={address} style={{border: "none"}}/>
+                                                                        value={address} style={{border: "none" , marginLeft:"174px"}}/>
                                                             </div>
                                                         </div>
                                                         <div className={detailAddress2}>
                                                             <input className="lo" type="text" name="detailAddress" id="sample4_detailAddress"
                                                                    onChange={(e) => setDetailAddress(e.target.value)}
-                                                                   placeholder={employees.data.detailAddress} required style={{border: "none",marginTop:"-20px", marginLeft:"-10px"}}/>
+                                                                   placeholder={employees.data.detailAddress} required style={{border: "none",marginTop:"-20px", marginLeft:"155px"}}/>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                {/*<p>정보는 휴대전화, 이메일, 주소만 변경 가능합니다.</p>*/}
                                                 <div className={udButton}>
                                                     <div>
                                                         <button className={updateButton} type="button"

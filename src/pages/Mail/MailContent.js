@@ -59,10 +59,14 @@ function MailContent(){
         dispatch( callGetMailAPI(currentPage, result) )
     }
 
+    const onClickTest = ()=>{
+        console.log();
+    }
+
     return(
         <div className={styles.content}>
             <div className={styles.mainHeader}>
-                <div className={styles.contentHeader}>
+                <div onClick={onClickTest} className={styles.contentHeader}>
                     받은 쪽지
                 </div>
                 <div onClick={onClickMailDelete} className={styles.allDelete}>
@@ -83,7 +87,7 @@ function MailContent(){
             </div>
             <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
                 { Array.isArray(mailData.data) &&
-                    <button style={{border:"none", color:"black", fontWeight:"500", backgroundColor:"white", fontSize:"20px"}}
+                    <button style={ mailData.data.length > 1 ? {border:"none", color:"black", fontWeight:"500", backgroundColor:"white", fontSize:"20px"} : {display:"none"}}
                         onClick={() => setCurrentPage(currentPage - 1)}
                         disabled={currentPage === 1}
                     >
@@ -100,7 +104,7 @@ function MailContent(){
                     </li>
                 ))}
                 { Array.isArray(mailData.data) &&
-                    <button style={{border:"none", color:"black", fontWeight:"500", backgroundColor:"white", fontSize:"20px"}}
+                    <button style={ mailData.data.length > 1 ? {border:"none", color:"black", fontWeight:"500", backgroundColor:"white", fontSize:"20px"} : {display:"none"}}
                         onClick={() => {return setCurrentPage(currentPage + 1)}}
                         disabled={currentPage === pageInfo.pageEnd || pageInfo.total == 0}
                     >
