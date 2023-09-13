@@ -81,7 +81,7 @@ function MailkSentContent(){
             </div>
             <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
                 { Array.isArray(mailData.data) &&
-                    <button
+                    <button style={{border:"none", color:"black", fontWeight:"500", backgroundColor:"white", fontSize:"20px"}}
                         onClick={() => setCurrentPage(currentPage - 1)}
                         disabled={currentPage === 1}
                     >
@@ -91,20 +91,21 @@ function MailkSentContent(){
                 {pageNumber.map((num) => (
                     <li key={num} onClick={() => setCurrentPage(num)}>
                         <button
-                            style={ currentPage === num ? {backgroundColor : 'orange' } : null}
+                            style={ currentPage === num ? {backgroundColor : 'white', border:"none", fontSize:"20px", color:"", cursor:"pointer"} : {backgroundColor : 'white', border:"none", color:"", cursor:"pointer"} }
                         >
                             {num}
                         </button>
                     </li>
                 ))}
                 { Array.isArray(mailData.data) &&
-                    <button
+                    <button style={{border:"none", color:"black", fontWeight:"500", backgroundColor:"white", fontSize:"20px"}}
                         onClick={() => {return setCurrentPage(currentPage + 1)}}
-                        // disabled={currentPage === pageInfo.pageEnd || pageInfo.total == 0}
+                        disabled={currentPage === pageInfo.pageEnd || pageInfo.total == 0}
                     >
                         &gt;
                     </button>
                 }
+
             </div>
         </div>
     )

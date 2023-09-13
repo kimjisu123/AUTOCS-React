@@ -57,11 +57,12 @@ contentsbox.newApp {
 }
 
 .statusBox{
-    border: 1px solid black;
+    border: 1px solid #ecead8;;
     flex: 1;
     height: 100%;
-    border-right: 1px solid black; /* 각 자식 div 사이에 선을 생성 */
+    border-right: 1px solid #ecead8;; /* 각 자식 div 사이에 선을 생성 */
     box-sizing: border-box; /* 선의 두께를 포함하여 크기 계산 */
+    border-radius: 3px;
 }
 
 .statusContent{
