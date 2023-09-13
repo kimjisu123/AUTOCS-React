@@ -9,6 +9,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {callGetDailyMainAPI} from "../../apis/MainAPICalls";
 import {decodeJwt} from "../../util/tokenUtils";
 import {format} from "date-fns";
+import {NavLink} from "react-router-dom";
 //css 적용시키기
 
 export const MiniCalender = () => {

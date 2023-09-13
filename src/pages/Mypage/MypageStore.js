@@ -108,13 +108,13 @@ function MypageStore() {
             formData.append('email', email);
             formData.append('address', address);
             formData.append('detailAddress',detailAddress);
-            console.log("회원번호 {}" ,memberNo);
+            console.log("회원번호 {}" ,employees.data.memberNo);
             console.log("전화 {}" ,phone);
             console.log("이메일 {}" ,email);
             console.log("baseAddress {}" ,address);
             console.log("detailAddress) {}" ,detailAddress);
-            formData.append('memberNo', memberNo);
-            formData.append('storeNo', storeNo)
+            formData.append('memberNo', employees.data.memberNo);
+            formData.append('storeNo', employees.data.storeNo)
 
             callPutSToreInfoAPI({ formData, dispatch });
 
@@ -130,9 +130,9 @@ function MypageStore() {
         const phoneExp = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/
         const phoneCurrent = e.target.value
         setPhone(phoneCurrent);
-
+        console.log("입력된 핸드폰 번호 입력 ", phone);
         if (!phoneExp.test(phoneCurrent)) {
-            setPhoneMessage('"000-0000-0000" 형식으로 입력해주세요.')
+            setPhoneMessage('숫자만 입력해주세요.')
             setIsPhone(false)
         } else {
             setPhoneMessage('바른 형식으로 입력하셨습니다.')
@@ -222,13 +222,6 @@ function MypageStore() {
 
                                                 {/* 회원 사진  */}
                                                 <div className={empImg}>
-                                                    {/*<input*/}
-                                                    {/*       style={{top:"40%"}}*/}
-                                                    {/*       type="file"*/}
-                                                    {/*       id="file"*/}
-                                                    {/*       name="file"*/}
-                                                    {/*       accept='image/jpg,image/png,image/jpeg,image/gif'*/}
-                                                    {/*       onChange={handleImageChange}/><MdAccountCircle/>*/}
                                                     {selectedImage? (
                                                         <img
                                                             id="file"
@@ -245,16 +238,6 @@ function MypageStore() {
                                                     />)}
                                                 </div>
                                             </div>
-                                            {/*<br/>*/}
-                                            {/*<small*/}
-                                            {/*    style={{color: "white", textAlign: "center"}}>가로200 세로 200<br/>이미지를 넣어주세요</small>*/}
-                                            {/*<div className={empDepDate}>*/}
-                                            {/*    <br/>*/}
-                                            {/*    <br/>*/}
-                                            {/*    <h3>사업자등록번호</h3>*/}
-                                            {/*    <br/>*/}
-                                            {/*    <h1 >{employees.data.license}</h1>*/}
-                                            {/*</div>*/}
                                             <div className={ousSButton}>
                                                 <NavLink to="outS"><button>계정 비활성화</button></NavLink>
                                             </div>

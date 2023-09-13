@@ -36,9 +36,9 @@ function DailyList(emp) {
                     {/*<u style={{margin:"auto 0"}}><h3><NavLink to="/stock/myorderlist/detail">일정</NavLink></h3></u>*/}
                     {/*<span className={TableCSS.line}></span>*/}
                     <ul style={{marginBottom:"-30px"}}>
-                        <li>오늘일정<strong>3</strong></li>
-                        <li>한주일정<strong>5</strong></li>
-                        <li>월별일정<strong>3</strong></li>
+                        <li>일정<strong>{sortedData.length}</strong></li>
+                        <li>한주일정<strong>{sortedData.length}</strong></li>
+                        <li>월별일정<strong>{sortedData.length}</strong></li>
                         <NavLink to="/stock/myorderlist/detail"><MdKeyboardDoubleArrowRight/></NavLink>
                     </ul>
                 </figcaption>
@@ -50,13 +50,13 @@ function DailyList(emp) {
                             <th>상태</th>
 
                         </tr>
-                        {sortedData.map((daily) => (
-                        <tr  key={daily.id} style={isToday(new Date(daily.startDate)) ? { background: 'beige' , fontWeight:"700", fontSize:"1.2em"} : {}}>
+                        {sortedData && sortedData.length > 0 ? (sortedData.map((daily) => (
+                        <tr  key={daily.id} style={isToday(new Date(daily.startDate)) ? { border:"1px solid", background: 'beige' , fontWeight:"700", fontSize:"1.2em"} : {}}>
                             <td>{format(new Date(daily.startDate), 'MM월 dd일')}</td>
                             <td>{daily.content}</td>
                             <td><button>{daily.place}</button></td>
                         </tr>
-                        ))}
+                        ))): <tr><td colSpan="3" style={{color:"#ceced0", textAlign: "center", margin: "300px 0"}}> 일정이 없습니다.</td></tr>}
 
                     </table>
                 </div>

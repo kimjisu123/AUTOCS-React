@@ -237,7 +237,7 @@ const MainContent = () => {
                     </div>
                     <div className={mainstyle.tempBox} style={{ display:"flex"}}>
                         <div className={mainstyle.datelist}>
-                            <h1 style={{textAlign:"center", color:"#696767"}}>Calender</h1>
+                            <NavLink to="/approval/vacation"><h1 style={{textAlign:"center", color:"#696767"}}>Calender</h1></NavLink>
                             <div className={mainstyle.calnederContent}>
                                 <MiniCalender/>
                             </div>
