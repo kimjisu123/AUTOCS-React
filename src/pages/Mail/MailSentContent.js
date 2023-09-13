@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { callGetMailAPI, callDELETEMailAPI, callPutMailAPI, callGetMailBookmarkAPI, callGetMailSentAPI } from '../../apis/MailAPICalls';
 import { useDispatch, useSelector } from 'react-redux';
 import { decodeJwt } from '../../util/tokenUtils';
+import MailDetails from "./MailDetails";
 
 function MailkSentContent(){
 
@@ -12,6 +13,33 @@ function MailkSentContent(){
     const accessToken = window.localStorage.getItem('accessToken');
     const decodedToken = accessToken ? decodeJwt(accessToken) : null;
 
+    const [search, setSearch] = useState('');
+    const [result, setResult] = useState('절대로아무도검색하지않을만한값입니다.');
+
+    const onClickSearch = async () =>{
+        console.log(search)
+        dispatch(callGetMailSentAPI({employeeNo: decodedToken.EmployeeNo}, currentPage, result))
+    }
+
+    // 페이징 처리
+    const [start, setStart] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [pageEnd, setPageEnd] = useState(1);
+
+    useEffect(
+        () => {
+            setStart((currentPage - 1) * 5);
+            dispatch(callGetMailSentAPI({employeeNo: decodedToken.EmployeeNo}, currentPage,result))
+        }
+        ,[currentPage]
+    );
+    const pageNumber = [];
+    const pageInfo = mailData.pageInfo;
+    if(pageInfo){
+        for(let i = 1; i <= pageInfo.pageEnd ; i++){
+            pageNumber.push(i);
+        }
+    }
 
     const onClickMailDelete = async () =>{
         dispatch( callDELETEMailAPI() );
@@ -21,15 +49,19 @@ function MailkSentContent(){
 
     useEffect(
         () =>  {
-            dispatch( callGetMailSentAPI({employeeNo: decodedToken.EmployeeNo}));
+            dispatch( callGetMailSentAPI({employeeNo: decodedToken.EmployeeNo}, currentPage));
         }
         ,[]
     );
 
+
+    const onClickTest = ()=>{
+        console.log(mailData)
+    }
     return(
         <div className={styles.content}>
             <div className={styles.mainHeader}>
-                <div className={styles.contentHeader}>
+                <div onClick={onClickTest} className={styles.contentHeader}>
                     보낸 쪽지
                 </div>
                 <div onClick={onClickMailDelete} className={styles.allDelete}>
@@ -37,8 +69,8 @@ function MailkSentContent(){
                 </div>
                 <form style={{display: "flex", justifyContent:"flex-start"}}>
                     <div className={styles.type}> 제목</div>
-                    <input type="text" className={styles.inputText}/>
-                    <input type="submit" value="검색" className={styles.inputButton}/>
+                    <input value={search} onChange={ (e) => { console.log(search);  setResult(e.target.value); return setSearch(e.target.value)} }  type="text" className={styles.inputText}/>
+                    <input onClick={ () => onClickSearch() } type="button" value="검색" className={styles.inputButton}/>
                 </form>
             </div>
 
@@ -46,7 +78,34 @@ function MailkSentContent(){
                 {mailData.data && mailData.data.map(mail => (
                     <MailSentItem key={mail.mailNo} mail={mail} />
                 ))}
-                { console.log(mailData.data)}
+            </div>
+            <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
+                { Array.isArray(mailData.data) &&
+                    <button style={{border:"none", color:"black", fontWeight:"500", backgroundColor:"white", fontSize:"20px"}}
+                        onClick={() => setCurrentPage(currentPage - 1)}
+                        disabled={currentPage === 1}
+                    >
+                        &lt;
+                    </button>
+                }
+                {pageNumber.map((num) => (
+                    <li key={num} onClick={() => setCurrentPage(num)}>
+                        <button
+                            style={ currentPage === num ? {backgroundColor : 'white', border:"none", fontSize:"20px", color:"", cursor:"pointer"} : {backgroundColor : 'white', border:"none", color:"", cursor:"pointer"} }
+                        >
+                            {num}
+                        </button>
+                    </li>
+                ))}
+                { Array.isArray(mailData.data) &&
+                    <button style={{border:"none", color:"black", fontWeight:"500", backgroundColor:"white", fontSize:"20px"}}
+                        onClick={() => {return setCurrentPage(currentPage + 1)}}
+                        disabled={currentPage === pageInfo.pageEnd || pageInfo.total == 0}
+                    >
+                        &gt;
+                    </button>
+                }
+
             </div>
         </div>
     )
@@ -55,7 +114,7 @@ function MailkSentContent(){
 function MailSentItem({ mail }) {
 
     const [bookmark, setBookmark] = useState(mail.status);
-
+    const [modal, setModal] = useState(false);
     const dispatch = useDispatch();
 
     const inputDate = mail.goDate;
@@ -69,12 +128,17 @@ function MailSentItem({ mail }) {
         setBookmark( (bookmark == 'Y') ? 'N' : 'Y' );
     };
 
+    const onClickModal = () => {
+        setModal(!modal);
+    }
+
+
     return (
         <div className={styles.receivedNote}>
             <div className={styles.bookmark} onClick={onClickbookmark}>
                 {( bookmark == 'Y')  ? '★' : '☆'}
             </div>
-            <div className={styles.noteHeader}>
+            <div onClick={ () => onClickModal() } className={styles.noteHeader}>
                 <div style={{ marginBottom: "5px" }}>
                     {mail.title}
                 </div>
@@ -89,6 +153,10 @@ function MailSentItem({ mail }) {
             </div>
             <div className={styles.deleteButton}>
                 x
+            </div>
+
+            <div style={ modal ? {display:"inline"} : {display: "none"} }>
+                <MailDetails setModal = { setModal  } mail={ mail } />
             </div>
         </div>
     );

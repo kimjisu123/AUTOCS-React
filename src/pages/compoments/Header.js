@@ -152,13 +152,13 @@ const Header = () => {
                             +Todo
                         </NavLink>
                         <div className="profileAndLogout">
-                                {decodedToken ? (
-                                    <h5 className="userName" style={{ marginTop: "-0.5px", fontSize: "16px" }}>
-                                        {decodedToken.Name}님 안녕하세요!
-                                    </h5>
-                                ) : (
-                                    window.location = "/login"
-                                )}
+                            {decodedToken ? (
+                                <h5 className="userName" style={{ marginTop: "-0.5px", fontSize: "16px" }}>
+                                    {decodedToken.Name}님 안녕하세요!
+                                </h5>
+                            ) : (
+                                window.location = "/login"
+                            )}
                             <button onClick={onClickLogoutHandler} style={{ marginRight: "-50px" }} className="logOut">
                                 로그아웃
                             </button>

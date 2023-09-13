@@ -66,10 +66,23 @@
     height: 100%;
     text-align: center;
 }
+.statusBox1{
+    margin-left: 25px;
+    width: 120px;
+    height: 100%;
+    text-align: center;
+    line-height: 65px;
+}
 .statusInfoBox2{
     width: 230px;
     height: 100%;
     text-align: center;
+}
+.statusBox2{
+    width: 230px;
+    height: 100%;
+    text-align: center;
+    line-height: 65px;
 }
 .statusInfoBox3{
     width: 170px;
@@ -110,7 +123,10 @@
 
 .infoContent{
     display: flex;
-    margin-top: 13px;
+    padding: 6px 0px;
+}
+.infoContent:hover{
+    background-color: rgba(223, 223,223, 0.5);
 }
 
 .statusTime{

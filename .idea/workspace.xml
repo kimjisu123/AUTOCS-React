@@ -14,7 +14,15 @@
     </list>
     <list default="true" id="157f9457-97ad-4bcb-ada0-2b69963deafb" name="Changes" comment="" />
     <list default="true" id="157f9457-97ad-4bcb-ada0-2b69963deafb" name="Changes" comment="마이페이지 회원 조회 / 이미지 불러오기 및 정보 및 비밀번호 수정 진행해야함.23/9/4">
+    <list default="true" id="edd449e3-8f7f-41fd-8d85-7a0014586861" name="Changes" comment="2023-09-10 commit&#10;메일 페이징 처리 및 검색기능 완료">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/management/AccountingDepartment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/management/AccountingDepartment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/management/DepartmentContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/management/DepartmentContent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/management/ManagementDepartment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/management/ManagementDepartment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/management/MarketingDepartment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/management/MarketingDepartment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/management/PersonnelDepartment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/management/PersonnelDepartment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/management/SalesDepartment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/management/SalesDepartment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/management/ServiceDepartment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/management/ServiceDepartment.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,6 +147,11 @@
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="jieun" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -150,6 +163,31 @@
     &quot;state&quot;: &quot;OPEN&quot;
   }
 }]]></component>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Uzy8NQ5TplmVew8mf9Cruof5aH" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/CSS final/react",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.JavaScript",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.1.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="157f9457-97ad-4bcb-ada0-2b69963deafb" name="Changes" comment="" />
@@ -176,19 +214,25 @@
     <task id="LOCAL-00001" summary="머지위한 커밋">
       <created>1693874594256</created>
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e5e69753-cc39-4812-8b5e-965ae83abd38" name="Changes" comment="" />
-      <created>1692331221305</created>
+      <changelist id="edd449e3-8f7f-41fd-8d85-7a0014586861" name="Changes" comment="" />
+      <created>1693874147789</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1692331221305</updated>
-      <workItem from="1692331222070" duration="236209000" />
-      <workItem from="1693364952973" duration="19396000" />
-      <workItem from="1693414472967" duration="88576000" />
+      <updated>1693874147789</updated>
+      <workItem from="1693874149218" duration="23380000" />
+      <workItem from="1693956544844" duration="8329000" />
+      <workItem from="1693985260425" duration="4630000" />
+      <workItem from="1694049206074" duration="11918000" />
+      <workItem from="1694079036880" duration="2279000" />
+      <workItem from="1694225379419" duration="5950000" />
+      <workItem from="1694394015916" duration="9927000" />
     </task>
     <task id="LOCAL-00001" summary="첫번째 커밋">
       <created>1692332083730</created>
     <task id="LOCAL-00001" summary="머지위한 커밋">
       <created>1693874594256</created>
+    <task id="LOCAL-00001" summary="2023-09-05 commit&#10;중간 커밋">
+      <created>1693884733862</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
@@ -230,30 +274,31 @@
       <updated>1694052206776</updated>
       <updated>1693874594256</updated>
       <updated>1692332083730</updated>
+      <updated>1693884733862</updated>
     </task>
-    <task id="LOCAL-00002" summary="첫번째 커밋">
-      <created>1692350864902</created>
+    <task id="LOCAL-00002" summary="2023-09-05 commit&#10;커밋">
+      <created>1693914885610</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1692350864902</updated>
+      <updated>1693914885610</updated>
     </task>
-    <task id="LOCAL-00003" summary="마이페이지 수정중">
-      <created>1692419361835</created>
+    <task id="LOCAL-00003" summary="2023-09-07 commit&#10;커밋">
+      <created>1694081665275</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1692419361835</updated>
+      <updated>1694081665275</updated>
     </task>
-    <task id="LOCAL-00004" summary="TodoList 리액트 작업 중 (스타일링 기초 완)">
-      <created>1692583689965</created>
+    <task id="LOCAL-00004" summary="2023-09-07 commit&#10;커밋">
+      <created>1694239788086</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1692583689965</updated>
+      <updated>1694239788086</updated>
     </task>
-    <task id="LOCAL-00005" summary="TodoList 리액트 기능 작업(insert기능완)">
-      <created>1692585708171</created>
+    <task id="LOCAL-00005" summary="2023-09-10 commit&#10;메일 페이징 처리 및 검색기능 완료">
+      <created>1694414013965</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
@@ -477,6 +522,7 @@
       <option name="presentableId" value="LOCAL-00036" />
       <option name="project" value="LOCAL" />
       <updated>1693828757912</updated>
+      <updated>1694414013965</updated>
     </task>
     <option name="localTasksCounter" value="37" />
     <option name="localTasksCounter" value="2" />
@@ -488,6 +534,7 @@
       <updated>1694065116230</updated>
     </task>
     <option name="localTasksCounter" value="8" />
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -554,5 +601,10 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <MESSAGE value="2023-09-05 commit&#10;중간 커밋" />
+    <MESSAGE value="2023-09-05 commit&#10;커밋" />
+    <MESSAGE value="2023-09-07 commit&#10;커밋" />
+    <MESSAGE value="2023-09-10 commit&#10;메일 페이징 처리 및 검색기능 완료" />
+    <option name="LAST_COMMIT_MESSAGE" value="2023-09-10 commit&#10;메일 페이징 처리 및 검색기능 완료" />
   </component>
 </project>
