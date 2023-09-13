@@ -1,3 +1,4 @@
+
 import React, {useEffect} from 'react';
 import TableCSS from '../Mypage/Table.module.css';
 import {Link, NavLink} from "react-router-dom";
@@ -7,7 +8,9 @@ import {callGetBoardAllAPI} from "../../apis/BoardAPICalls";
 import mainstyle from "./MainContent.module.css";
 import Spinner from "./Spinner-1s-200px.gif";
 
-function DocuList() {
+function DocuList3() {
+    // 사원의 부서 게시판
+
 
 
     const dispatch = useDispatch();
@@ -15,8 +18,8 @@ function DocuList() {
     const boardList = board.data;
     console.log("boardList : " + boardList)
 
-    // categoryNo가 1인 항목만 필터링
-    const filteredBoardData = Array.isArray(boardList) ? boardList.filter(item => item.refCategoryNo === 1) : [];
+    // categoryNo가 4인 항목만 필터링
+    const filteredBoardData = Array.isArray(boardList) ? boardList.filter(item => item.refCategoryNo === 4) : [];
 
     useEffect(() => {
         // 컴포넌트가 마운트되었을 때 목록을 가져오도록 API 호출
@@ -52,27 +55,26 @@ function DocuList() {
                     {/*<u style={{margin:"auto 0"}}><h3><NavLink to="/board/notieE">공지</NavLink></h3></u>*/}
                     <span className={TableCSS.line}></span>
                     <ul>
-                        <NavLink to="/board/notieE"><li>공지사항</li></NavLink><strong className={TableCSS.strong}>{filteredBoardData.length}</strong>
-                        <NavLink to="/board/notieE"><MdKeyboardDoubleArrowRight/></NavLink>
+                        <NavLink to="/board/departmentNews"><li>부서별 소식</li></NavLink><strong className={TableCSS.strong}>{filteredBoardData.length}</strong>
+                        <NavLink to="/board/departmentNews"><MdKeyboardDoubleArrowRight/></NavLink>
                     </ul>
                 </figcaption>
                 <div style={{marginTop: "0%"}}  className={TableCSS.docuContent}>
                     <table className={TableCSS.docuContent}>
                         <tr>
                             <th>NO</th>
-                            <th>부서</th>
                             <th>제목</th>
                             <th>날짜</th>
                             <th>작성자</th>
                         </tr>
-                        {filteredBoardData.slice(0, 3).map((item, index) => (
-                        <tr ey={index} className={TableCSS.content} >
-                            <td>{index + 1}</td>
+                        {filteredBoardData.slice(0, 2).map((item, index) => (
+                            <tr key={index} className={TableCSS.content} >
+                                <td>{index + 1}</td>
                                 <td style={{width:"20%", height:"10%"}}><strong><button style={{backgroundColor: getBackgroundColor(item.department)}}>{item.department} </button></strong></td>
-                            <td>  <Link to={`/board/detail/${item.boardNo}`}>{item.title}</Link></td>
-                            <td>{item.regist}</td>
-                            <td>{item.employeeName}<br/>{item.position}</td>
-                        </tr>
+                                <td> <Link to={`/board/detail/${item.boardNo}`}>{item.title}</Link></td>
+                                <td>{item.regist}</td>
+                                <td>{item.employeeName} {item.position}</td>
+                            </tr>
                         ))}
                     </table>
                 </div>
@@ -81,6 +83,6 @@ function DocuList() {
     );
 }
 
-export default DocuList;
+export default DocuList3;
 
 

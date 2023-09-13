@@ -9,7 +9,7 @@ import ApprovalList from "./ApprovalList";
 import YourComponent from "./DocuList";
 import React, {useEffect, useState} from "react";
 import DailyList from "./DailyList";
-import {MdKeyboardDoubleArrowRight} from "react-icons/md";
+import {MdKeyboardDoubleArrowRight, MdWork, MdWorkOff} from "react-icons/md";
 import {NavLink, useNavigate} from "react-router-dom";
 import moment from "moment-timezone";
 import DocuList from "./DocuList";
@@ -20,6 +20,8 @@ import Spinner from "./Spinner-1s-200px.gif";
 import logo from "../compoments/LOGO.png";
 import Clock from "./Clock";
 import DocuList2 from "./DocuList2";
+import DocuList3 from "./DocuList3";
+import DocuList4 from "./DocuList4";
 import {callPostAttendanceAPI, callPutQuittingAPI} from "../../apis/WorkStatusAPICalls";
 
 
@@ -87,13 +89,13 @@ const MainContent = () => {
     // 로딩화면
     if (!employees) {
         return <div className={mainstyle.loading}>
-            Loading...
-            <img src={Spinner} alt="로딩중" width="5%" />
-        </div>;
+                    Loading...
+                    <img src={Spinner} alt="로딩중" width="5%" />
+                </div>;
     }
 
-    // 출근시간 표시
-    const startWork = () => {
+        // 출근시간 표시
+        const startWork = () => {
         if (!isStartWorkTimeVisible) {
             // 출근 버튼 클릭 시 현재 시간 가져오기
             const now = new Date();
@@ -106,8 +108,6 @@ const MainContent = () => {
             // 현재 시간을 상태에 저장
             setWorkTime(formattedTime);
             setIsStartWorkTimeVisible(true); // 오늘 출근을 했다고 표시
-
-            dispatch( callPostAttendanceAPI() )
         } else {
             alert('오늘 이미 출근했습니다.');
         }
@@ -127,8 +127,6 @@ const MainContent = () => {
             // 현재 시간을 상태에 저장
             setWorkFinishTime(formattedTime);
             setIsFinishWorkTimeVisible(true); // 오늘 출근을 했다고 표시
-
-            dispatch( callPutQuittingAPI() )
         } else {
             alert('오늘 이미 퇴근했습니다.');
         }
@@ -211,10 +209,10 @@ const MainContent = () => {
                                     )}
                                 </div>
                                 <div className={mainstyle.workbuttons}>
-                                    <button  className="startWorkTime"
-                                             onClick={startWork}
-                                    >출근하기</button>
-                                    <button className="finishWorkTime"onClick={finishWork} >퇴근하기</button>
+                                        <button  className="startWorkTime"
+                                                 onClick={startWork}
+                                        >출근하기</button>
+                                        <button className="finishWorkTime"onClick={finishWork} >퇴근하기</button>
                                 </div>
                             </div>
                             <div className={mainstyle.fastButtons}>
@@ -240,7 +238,7 @@ const MainContent = () => {
                     </div>
                     <div className={mainstyle.tempBox} style={{ display:"flex"}}>
                         <div className={mainstyle.datelist}>
-                            <h1 style={{textAlign:"center", color:"#696767"}}>Calender</h1>
+                            <NavLink to="/approval/vacation"><h1 style={{textAlign:"center", color:"#696767"}}>Calender</h1></NavLink>
                             <div className={mainstyle.calnederContent}>
                                 <MiniCalender/>
                             </div>
@@ -265,25 +263,34 @@ const MainContent = () => {
                             </div>
                             <div className={mainstyle.doculist}>
                                 <DocuList />
+                                <DocuList3 />
                                 <DocuList2 />
-                                <DocuList />
-                                <DocuList />
+                                <DocuList4 />
                             </div>
 
                             {/*<div><ApprovalList /></div>*/}
                         </div>
                     </div>
+
                     <div className={mainstyle.tempBox}>
+
                         <div className={mainstyle.boradPart}>
+
                             <div className={mainstyle.docutitle}>
-                                <h1 style={{textAlign:"center", color:"#696767"}}>전자문서</h1>
-                                <div><NavLink to="/stock/myorderlist/detail"><MdKeyboardDoubleArrowRight/></NavLink></div>
+                                <NavLink to="/approval/"><h1 style={{textAlign:"center", color:"#696767"}}>전자문서</h1></NavLink>
+                                    <div>
+                                        <NavLink to="/approval/"><MdKeyboardDoubleArrowRight/></NavLink>
+                                    </div>
                             </div>
                             {/*<div><DocuList /></div>*/}
-                            <div><ApprovalList /></div>
+
+                                    <div><ApprovalList /></div>
+
                         </div>
+
                     </div>
                 </div>
+
             </div>
 
         </>

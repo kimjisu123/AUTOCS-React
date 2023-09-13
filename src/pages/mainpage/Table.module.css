@@ -4,7 +4,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 10px;
+
 }
 
 
@@ -34,7 +34,7 @@
     background-color: #ffc95c;
     /*padding: 2px 8px;*/
     font-size: 20px;
-    color: #ffc95c;
+    color: beige;
     transform:translateX(-100%);
     transition: all .3s ease;
     content:"";
@@ -73,13 +73,14 @@ a {
 }
 
 .card {
-    width: 100%;
+    /*width: 100%;*/
     /*height: 100px;*/
     /*gap:10px;*/
     margin:5px auto;
 }
 
 .cardBody {
+    width: 550px;
     height: 130px;
     display: flex;
     flex-direction: column;
@@ -101,7 +102,7 @@ a {
 .cardDetail {
     display: flex;
     flex-direction: column;
-    margin:-8px 12px;
+    margin: auto 10px;
 }
 
 .detailCard {
@@ -138,3 +139,21 @@ a {
 
 }
 
+/*슬라이더 적용*/
+
+.slider-container {
+    overflow: hidden;
+    width: 300px; /* 슬라이더의 가로 너비를 조절하세요 */
+    height: 300px; /* 슬라이더의 세로 높이를 조절하세요 */
+}
+
+.slider-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    flex: 0 0 300px; /* 슬라이드 하나의 가로 너비를 조절하세요 */
+    height: 100%;
+    margin-right: 20px; /* 슬라이드 사이의 간격을 조절하세요 */
+}
