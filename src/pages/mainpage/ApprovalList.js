@@ -59,7 +59,7 @@ const ApprovalList = () => {
             case '구매요청':
                 return 'rgb(253 243 212)';
             default:
-                return 'rgb(253 243 212)'; // 기본값 또는 다른 부서일 경우 투명 배경색
+                return 'rgb(70, 84, 5)'; // 기본값 또는 다른 부서일 경우 투명 배경색
         }
     }
 
@@ -72,18 +72,20 @@ const ApprovalList = () => {
                 <div className={CardCSS.row}>
                     <div className={CardCSS.card}>
                         <div className={`${CardCSS.card} border-0 bg-light rounded shadow`}>
+                            <NavLink to="/approval/">
                             <div className={`${CardCSS.cardBody } p-4`}>
-                                <span className={CardCSS.badge} style={{backgroundColor: getBackgroundColor(item.documentType)}}></span>
+                                <span className={CardCSS.badge}></span>
                                 <span className={CardCSS.badgeText}><strong>{item.documentType}</strong></span>
                                 <div className={CardCSS.cardDetail}>
                                     <small style={{textAlign:"right"}}>{item.status}</small>
-                                    <span onClick={e => onClickHandler(e)}>{item.documentTitle}</span>
+                                    <NavLink to="/approval/"><span>{item.documentTitle}</span></NavLink>
                                     <div className={CardCSS.detailCard}>
                                         <h5>김 사 원</h5>
                                         <h5>{format(new Date(item.applicationDate), 'yyyy-MM-dd')}</h5>
                                     </div>
                                 </div>
                             </div>
+                            </NavLink>
                         </div>
                     </div>
                 </div>

@@ -20,6 +20,7 @@ import Statistics from "../stock/Statistics";
 import MyStatistics from "../stock/MyStatistics";
 import SalesChart from "./SalesChart";
 import DocuListS3 from "./DocuListS3";
+import Order from "../stock/Order";
 
 
 const MainContentStore = () => {
@@ -147,9 +148,9 @@ const MainContentStore = () => {
                             </div>
                         </div>
                         <div className={mainstyle.datelist}>
-                            <div className={mainstyle.daliyTitle}>
-                                <h1 style={{textAlign:"center", color:"#696767"}}>일정리스트</h1>
-                                <div className={mainstyle.mainTodo}><DailyList /></div>
+                            <div className={mainstyle.daliyTitle} style={{marginTop:"50px"}}>
+                                {/*<h1 style={{textAlign:"center", color:"#696767"}}>일정리스트</h1>*/}
+                                <div className={mainstyle.mainTodo}><Order /></div>
                             </div>
                         </div>
                     </div>
@@ -161,12 +162,12 @@ const MainContentStore = () => {
                     <div className={mainstyle.tempBox}>
                         <div className={mainstyle.documentPart}>
                             <div className={mainstyle.docutitle}>
-                                <div><h1 style={{textAlign:"center", color:"#696767"}}>발주 통계</h1></div>
+                                <div><h1 style={{textAlign:"center", color:"#696767"}}>재고 관리</h1></div>
                                 {/*<div><NavLink to="/stock/myorderlist/detail"><MdKeyboardDoubleArrowRight/></NavLink></div>*/}
                             </div>
                             <div className={mainstyle.doculist} style={{gap:"0 80px"}}>
                                 <SalesChart />
-                                <Statistics />
+                                {/*<Statistics />*/}
                                 <MyStatistics/>
                             </div>
 

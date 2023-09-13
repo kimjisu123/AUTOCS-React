@@ -51,10 +51,10 @@ function DailyList(emp) {
 
                         </tr>
                         {sortedData && sortedData.length > 0 ? (sortedData.map((daily) => (
-                        <tr  key={daily.id} style={isToday(new Date(daily.startDate)) ? { border:"1px solid", background: 'beige' , fontWeight:"700", fontSize:"1.2em"} : {}}>
+                        <tr  key={daily.id} style={isToday(new Date(daily.startDate)) ? { color:"white", background: '#465405' , fontWeight:"700", fontSize:"1.2em"} : {}}>
                             <td>{format(new Date(daily.startDate), 'MM월 dd일')}</td>
                             <td>{daily.content}</td>
-                            <td><button>{daily.place}</button></td>
+                            <td><button style={isToday(new Date(daily.startDate)) ? { color:"white", background: '#465405' , fontWeight:"700", fontSize:"1em"} : {}}>{daily.place}</button></td>
                         </tr>
                         ))): <tr><td colSpan="3" style={{color:"#ceced0", textAlign: "center", margin: "300px 0"}}> 일정이 없습니다.</td></tr>}
 

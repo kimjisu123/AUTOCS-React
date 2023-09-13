@@ -1,6 +1,7 @@
 
 import {GET_MEMBERINFO, GET_PROFILE, GET_STOREINFO, POST_CHECKPWD} from "../modules/MypageModule";
 import Swal from 'sweetalert2';
+import {callLogoutAPI} from "./MemberAPICalls";
 
 
 
@@ -110,7 +111,7 @@ export const callPostPwdCheckAPI = (memberNo,checkPw) => {
                         title: '비밀번호 변경',
                         text: '비밀번호가 변경되었습니다.',
                     }).then((value) => {
-                        window.location="/login";
+                            callLogoutAPI();
                         }
                     )
                 } else {
