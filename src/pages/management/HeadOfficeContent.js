@@ -104,45 +104,35 @@ function HeadOfficeContent(){
 
     const toDayDate ="<"+ year + "년 " + month + "월 " + monday+"일" + ' ~ ' + year + "년 " + month + "월 " + sunday+"일" +">";
 
-    // // data 배열 내의 각 요소를 순회하며 필터링
-    const filteredData = data.data && data.data.length >0 && data.data.map(item => {
+    const filteredData = data.data && data.data.length > 0 && data.data.map(item => {
         const filteredWorkStatusLists = item.workStatusLists.filter(workStatusItem => {
             const attendanceTime = new Date(workStatusItem.workStatus.quittingTime);
             return attendanceTime >= mondayDate && attendanceTime <= new Date();
         });
 
-        // 요일 확인
         const daysOfWeek = ['월', '화', '수', '목', '금', '토', '일'];
 
-        // 월요일을 첫 번째로 배치하기 위해, 월요일을 배열 맨 앞으로 이동
         const sortedDaysOfWeek = [
-            ...daysOfWeek.slice(1), // 화요일부터 일요일까지 복사
-            daysOfWeek[0], // 월요일 추가
+            ...daysOfWeek.slice(1),
+            daysOfWeek[0],
         ];
 
-        // 요일 순서대로 빈 객체 삽입
-        const sortedWorkStatusLists = [];
-        sortedDaysOfWeek.forEach(day => {
+        const sortedWorkStatusLists = sortedDaysOfWeek.map(day => {
             const foundItem = filteredWorkStatusLists.find(workStatusItem => {
                 const attendanceTime = new Date(workStatusItem.workStatus.quittingTime);
                 return daysOfWeek[attendanceTime.getDay()] === day;
             });
 
-            if (foundItem) {
-                sortedWorkStatusLists.push(foundItem);
-            } else {
-                // 해당 요일에 데이터가 없으면 빈 객체 추가
-                sortedWorkStatusLists.push({
-                    employeeNo: item.employeeNo,
-                    workStatus: {
-                        attendanceTime: null,
-                        extensionTime: null,
-                        quittingTime: null,
-                        vacationStatus: null,
-                        workStatusCode: null,
-                    },
-                });
-            }
+            return foundItem || {
+                employeeNo: item.employeeNo,
+                workStatus: {
+                    attendanceTime: null,
+                    extensionTime: null,
+                    quittingTime: null,
+                    vacationStatus: null,
+                    workStatusCode: null,
+                },
+            };
         });
 
         return {
