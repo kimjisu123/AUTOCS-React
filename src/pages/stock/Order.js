@@ -12,7 +12,7 @@ import {
 import {decodeJwt} from "../../util/tokenUtils";
 
 function showPopup()
-{ window.open('/ListPopup', "a", "width=420, height=800, left=100, top=50");
+{ window.open('/ListPopup', "a", "width=600, height=800, left=100, top=50");
     document.getElementById( "parentCodeValue" ).value = '';
     document.getElementById( "parentNameValue" ).value = '';
     document.getElementById( "parentStandardValue" ).value = '';
