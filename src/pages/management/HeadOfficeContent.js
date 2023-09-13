@@ -44,16 +44,15 @@ function HeadOfficeContent(){
     const dispatch = useDispatch();
     const data = useSelector(state => state.headOfficeReducer);
     const [start, setStart] = useState(0);
-    const [currentPage, setCurrentPage] = useState(1);
     const [pageEnd, setPageEnd] = useState(1);
-
-
     const [search, setSearch] = useState('');
-    const [result, setResult] = useState('절대로아무도검색하지않을만한값입니다.');
-
+    const [currentPage, setCurrentPage] = useState(1);
 
 
     const pageInfo = data.pageInfo;
+
+
+    const [result, setResult] = useState('절대로아무도검색하지않을만한값입니다.');
 
     useEffect(() => {
         // 초기 데이터 로드
