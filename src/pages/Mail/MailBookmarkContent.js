@@ -84,7 +84,7 @@ function MailBookmarkContent(){
             </div>
             <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
                 { Array.isArray(mailData.data) &&
-                    <button style={{border:"none", color:"black", fontWeight:"500", backgroundColor:"white", fontSize:"20px"}}
+                    <button style={ mailData.data.length > 1 ? {border:"none", color:"black", fontWeight:"500", backgroundColor:"white", fontSize:"20px"} : {display:"none"}}
                         onClick={() => setCurrentPage(currentPage - 1)}
                         disabled={currentPage === 1}
                     >
@@ -101,7 +101,7 @@ function MailBookmarkContent(){
                     </li>
                 ))}
                 { Array.isArray(mailData.data) &&
-                    <button style={{border:"none", color:"black", fontWeight:"500", backgroundColor:"white", fontSize:"20px"}}
+                    <button style={ mailData.data.length > 1 ? {border:"none", color:"black", fontWeight:"500", backgroundColor:"white", fontSize:"20px"} : {display:"none"}}
                         onClick={() => {return setCurrentPage(currentPage + 1)}}
                         disabled={currentPage === pageInfo.pageEnd || pageInfo.total == 0}
                     >
