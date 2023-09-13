@@ -156,7 +156,7 @@ function PayType({documentCode}) {
                     {data && data.files?.map(file => (
                         <>
                             <div className={styles.files} key={file.documentFileCode} onClick={e => onClickFile(e)}>{file.originName}</div>
-                            <input type="hidden" value={file.filePath + "\\" + file.modifyName}/>
+                            <input type="hidden" value={file.documentFileCode}/>
                         </>
                     ))}
                 </div>
