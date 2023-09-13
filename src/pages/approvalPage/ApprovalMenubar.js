@@ -13,7 +13,7 @@ function ApprovalMenubar() {
 
     return(
         <>
-            <div className={style.menubar} style={{width: "295px", height: "931px",  paddingTop: "30px"}}>
+            <div className={style.menubar} style={{width: "295px", height: "93 paddingTop: "30px"}}>
                     <Link to='/approval' style={{textDecoration:"none"}}><div className={style.newApp}>전자결재</div></Link>
                     <br/><br/>
             <div className={style.documentForm}>
