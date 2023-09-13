@@ -129,9 +129,8 @@ function MypageEmp() {
         const phoneExp = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/
         const phoneCurrent = e.target.value
         setPhone(phoneCurrent);
-
         if (!phoneExp.test(phoneCurrent)) {
-            setPhoneMessage('"000-0000-0000" 형식으로 입력해주세요.')
+            setPhoneMessage('숫자만 입력해주세요.')
             setIsPhone(false)
         } else {
             setPhoneMessage('바른 형식으로 입력하셨습니다.')
@@ -283,15 +282,6 @@ function MypageEmp() {
                                                     <input type="tel" id="empnum" name="empnum" maxLength="20"
                                                            readOnly value="112~1" style={{border: "none"}}/>
                                                 </div>
-                                                {/*<div className=" empInfo empDep">*/}
-                                                {/*    <label htmlFor="empDep">생일</label>*/}
-                                                {/*        <DatePicker*/}
-                                                {/*            locale={ko}*/}
-                                                {/*            dateFormat="yyyy년 MM월 dd일"*/}
-                                                {/*            selected={birthDate}*/}
-                                                {/*            onChange={date => setBirthDate(date)}*/}
-                                                {/*        />*/}
-                                                {/*</div>*/}
                                                 <div className=" empInfo empwhere">
                                                     <label htmlFor="empwhere">근무지</label>
                                                     <input type="text" id="empwhere" name="empwhere" maxLength="20"
@@ -310,10 +300,10 @@ function MypageEmp() {
                                                 <button className={updateButton} type="button"
                                                         onClick={() => {
                                                             // 필요한 입력 필드의 값을 확인
-                                                            if (!phone || !email || !memberNo) {
-                                                                swal("필수 정보를 입력하세요.");
-                                                                return; // 필수 정보가 누락된 경우 함수를 중단
-                                                            }
+                                                            // if (!phone || !email || !memberNo) {
+                                                            //     swal("필수 정보를 입력하세요.");
+                                                            //     return; // 필수 정보가 누락된 경우 함수를 중단
+                                                            // }
                                                             onChangeInfo(); // 필수 정보가 모두 입력된 경우에만 변경 요청 보내기
                                                         }}
                                                 >

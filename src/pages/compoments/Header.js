@@ -67,7 +67,7 @@ const Header = () => {
             menuItems.push(
                 { to: "/mainstore", label: "홈" },
                 { to: "/board/notieM", label: "게시판" },
-                { to: "stock", label: "재고관리" },
+                { to: "stock", label: "발주관리" },
                 { to: `/mypagestore`, label: "마이페이지" },
             );
         }

@@ -59,6 +59,8 @@ svg {
     background-color: #F0F1EEFF;
     transition: all 0.1s;
     transition-delay: 0.1s;
+    transform: scale(1.01);
+    /*border: 2px solid #4c7522;*/
 
 }
 
