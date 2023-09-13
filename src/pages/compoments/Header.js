@@ -13,6 +13,9 @@ import { useUserContext } from "../Todolist/TodoContext";
 import Swal from 'sweetalert2';
 import Login from "../Login/Login";
 
+// 예제
+
+
 const Header = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -37,21 +40,21 @@ const Header = () => {
     const getMenuItems = (role, department) => {
 
         let menuItems = [
-            { to: "/main", label: "홈" },
+
             // { to: "calendar", label: "캘린더" },
             // { to: "todo", label: "+Todo" }
         ];
 
         if (role === "EMPLOYEE") {
             menuItems.push(
+                { to: "/main", label: "홈" },
                 { to: "/board/notieE", label: "게시판" },
                 { to: "chart", label: "조직도" },
                 { to: "approval", label: "전자결재" },
                 { to: "management", label: "근태관리" },
                 { to: `/mail/${decodedToken.EmployeeNo}`, label: "쪽지함" },
-                { to: `/myPage`, label: "마이페이지" },
                 { to: "stock", label: "재고관리" },
-                //{ to: "outM", label: "계정비활성화" }
+                { to: `/myPage`, label: "마이페이지" },
             );
 
             if (department === "인사부") {
@@ -66,8 +69,6 @@ const Header = () => {
                 { to: "/board/notieM", label: "게시판" },
                 { to: "stock", label: "재고관리" },
                 { to: `/mypagestore`, label: "마이페이지" },
-                // { to: "outS", label: "계정비활성화" }
-
             );
         }
 

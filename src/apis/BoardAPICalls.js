@@ -1,4 +1,4 @@
-import {GET_BOARD, NUM_BOARD} from "../modules/BoardModule";
+import {GET_BOARD, MY_BOARD, NUM_BOARD} from "../modules/BoardModule";
 import { GET_COMMENT } from "../modules/CommentModule";
 
 // 모든 게시물 불러오기
@@ -184,5 +184,89 @@ export const callFindCommentAPI = () => {
 
         console.log('response :>>>>>>>>>>>>>>>>', result);
         dispatch({ type: GET_COMMENT, payload: result });
+    };
+};
+
+// 댓글 update
+export const callUpdateCommentAPI = ({ formData }) => {
+
+    console.log("formData=========>" + formData);
+    for (const entry of formData.entries()) {
+        console.log(entry[0], entry[1]);
+    }
+    console.log("updateComment======================");
+
+    const requestURL = 'http://localhost:8080/comment/updateComment';
+
+    return fetch(requestURL, {
+        method: 'POST',
+        headers: {
+            "Accept": "*/*"
+        },
+        body: formData,
+    })
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                console.error('Error board update');
+                throw new Error('Error board update');
+            }
+        })
+        .then(() => {
+            window.alert('댓글이 수정 되었습니다.');
+            window.location.reload();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+};
+
+// 댓글 delete
+export const callDeleteCommentAPI = ( commentToDelete ) => {
+
+    console.log("commentToDelete=========>" + commentToDelete);
+    const commentNo = commentToDelete;
+    const requestURL = `http://localhost:8080/comment/deleteComment?commentNo=${commentNo}`;
+
+    return fetch(requestURL, {
+        method: 'POST',
+        headers: {
+            "Accept": "*/*"
+        },
+    })
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                console.error('Error board delete');
+                throw new Error('Error board delete');
+            }
+        })
+        .then(() => {
+            window.alert('댓글이 삭제 되었습니다.');
+            window.location.reload();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+};
+
+// 특정 멤버 게시물 불러오기
+export const callGetEmployeeBoardAllAPI = (memberNo) => {
+    const refMemberNo = memberNo;
+    const requestURL = `http://localhost:8080/board/getMyBoarEmployee?refMemberNo=${refMemberNo}`;
+
+    return async (dispatch) => {
+        const result = await fetch(requestURL, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+        }).then(response => response.json());
+
+        console.log('response :>>>>>>>>>>>>>>>>', result);
+        dispatch({ type: MY_BOARD, payload: result });
     };
 };

@@ -75,9 +75,8 @@ function Check() {
     const onChangeHandler = (e) => {
         setForm({
             ...form,
-            [e.target.name]: e.target.value
+            [e?.target.name]: e?.target.value
         });
-        console.log(e.target.value)
     };
 
     /* 물품 조회 */
@@ -107,10 +106,10 @@ function Check() {
         formData.append("endDate", selectedEndDate);
 
         dispatch(callIOListWithGroupingAPI({
+            currentPage: 1,
             s: form.s,
             startDate: selectedStartDate,
-            endDate: selectedEndDate,
-            currentPage: 1
+            endDate: selectedEndDate
         }));
         console.log(form.startDate)
         console.log(form.endDate)
@@ -168,27 +167,29 @@ function Check() {
                         <th>규격</th>
                         <th>단위</th>
                         <th>적정<br/>재고</th>
-                        <th className={StockCSS.mainline}>기간<br/>재고</th>
+                        <th className={StockCSS.mainline}>현재<br/>재고</th>
                         <th>기간<br/>입고</th>
                         <th>기간<br/>출고</th>
+                        <th>기간<br/>환불</th>
                         <th>기간<br/>폐기</th>
                         <th>단가</th>
                         <th>비고</th>
                     </tr>
                     {
                         Array.isArray(ioGroupList) && ioGroupList.map((ioGroup) => (
-                            <tr key={ioGroup.refProductNo}>
-                                <td>{ ioGroup.refProductNo}</td>
+                            <tr key={ioGroup.productNo}>
+                                <td>{ ioGroup.productNo}</td>
                                 <td>{ ioGroup.categoryName}</td>
                                 <td>{ ioGroup.productName}</td>
                                 <td>{ ioGroup.standardName}</td>
                                 <td>{ ioGroup.unitName}</td>
                                 <td>{ ioGroup.stock}</td>
-                                <td className={StockCSS.mainline}>{ ioGroup.totalQuantityIn - ioGroup.totalQuantityOut}</td>
-                                <td>{ ioGroup.totalQuantityIn}</td>
-                                <td></td>
-                                <td>{ ioGroup.totalQuantityOut}</td>
-                                <td>{ ioGroup.price}</td>
+                                <td className={StockCSS.mainline}>{ ioGroup.currentQuantity.toLocaleString()}</td>
+                                <td>{ ioGroup.totalQuantityIn.toLocaleString()}</td>
+                                <td>{ ioGroup.completeQuantity.toLocaleString()}</td>
+                                <td>{ ioGroup.refundQuantity.toLocaleString()}</td>
+                                <td>{ ioGroup.totalQuantityOut.toLocaleString()}</td>
+                                <td>{ ioGroup.price.toLocaleString()}</td>
                                 <td>{ ioGroup.etc}</td>
                             </tr>
                         ))

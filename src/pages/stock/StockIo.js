@@ -90,6 +90,8 @@ function StockIo() {
             alert('등록되었습니다.');
             navigate('/stock/stockio', { replace: true });
             window.location.reload();
+        }        else {
+            alert('취소되었습니다.');
         }
     }
 
@@ -235,8 +237,8 @@ function StockIo() {
                                     <td>{ io.refProductNo.unit.name}</td>
                                     <td>{ io.refProductNo.standard.name}</td>
                                     <td className={StockCSS.mainline}>{ io.io}</td>
-                                    <td className={StockCSS.mainline}>{ io.quantity }</td>
-                                    <td>{ io.refProductNo.price }</td>
+                                    <td className={StockCSS.mainline}>{ io.quantity.toLocaleString() }</td>
+                                    <td>{ io.refProductNo.price.toLocaleString() }</td>
                                 </tr>
                             ))
                         }

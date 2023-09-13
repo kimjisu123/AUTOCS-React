@@ -1,7 +1,7 @@
 
 
 .container {
-    width: 500px;
+    width: 700px;
     height: 500px;
     margin: 0 auto;
 }
@@ -95,10 +95,11 @@
     border: none;
     margin-top: 2%;
     overflow: scroll;
+    color: #383838;
 }
 
 .docuContent th, .docuContent td {
-    padding: 10px;
+    padding: 20px 10px;
     /*border: 1px solid #ccc;*/
     text-align: center;
     border: none;
@@ -114,11 +115,12 @@
 
 .docuContent td button {
 
-    background-color: #adb5db;
+    background-color: #92aa81;
     border-radius: 20px;
     border: none;
-    padding: 5px 15px;
+    padding: 8px 15px;
     color: white;
+    font-weight: 800;
 }
 
 .docuContent td button:hover {
@@ -126,8 +128,16 @@
     background-color: #6d86ff;
     border-radius: 20px;
     border: none;
-    padding: 5px 15px;
     color: white;
+}
+
+.docuContent tr:hover {
+    font-weight: 700;
+    /*background-color: #d7d6d6;*/
+    /*transition: all 0.3s;*/
+    /*transition-delay: 0.2s;*/
+    /*transform:scale(1.001);*/
+    /*transition: all .3s ease;*/
 }
 
 .docuList button {

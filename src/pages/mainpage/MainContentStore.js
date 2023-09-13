@@ -1,17 +1,12 @@
-import emp from "../Mypage/emp.jpg";
 import mainstyle from './MainContent.module.css';
 import classNames from "classnames";
 import TodoApp from "../Todolist/TodoApp";
 import MiniCalender from "../compoments/MiniCalender";
 import monent from 'moment';
-
-import ApprovalList from "./ApprovalList";
-import YourComponent from "./DocuList";
 import React, {useEffect, useState} from "react";
 import DailyList from "./DailyList";
 import {MdKeyboardDoubleArrowRight} from "react-icons/md";
 import {NavLink, useNavigate} from "react-router-dom";
-import moment from "moment-timezone";
 import DocuList from "./DocuList";
 import {useDispatch, useSelector} from "react-redux";
 import {decodeJwt} from "../../util/tokenUtils";
@@ -19,12 +14,12 @@ import {callGetMemberInfoAPI} from "../../apis/MypageAPICalls";
 import Spinner from "./Spinner-1s-200px.gif";
 import logo from "../compoments/LOGO.png";
 import Clock from "./Clock";
-import MainCart from "./MainCart";
-
-
-
-
-// 비구조화 할당 문법을 활용한 css내부 값 추출하기 이렇게 쓰면 MypageCSS.mainContatiner를 안써도된다. )
+import DocuListS1 from "./DocuListS1";
+import DocuListS2 from "./DocuListS2";
+import Statistics from "../stock/Statistics";
+import MyStatistics from "../stock/MyStatistics";
+import SalesChart from "./SalesChart";
+import DocuListS3 from "./DocuListS3";
 
 
 const MainContentStore = () => {
@@ -55,23 +50,6 @@ const MainContentStore = () => {
     const [phone, setPhone] = useState('');
     // 사진 파일 전달
     const [ selectedImage, setSelectedImage ] = useState('');
-
-
-    // const getCurrentTime = () => {
-    //     var m = moment().tz("Asia/Seoul"); // ← 이곳이 포인트
-    //     return m.format("HH:mm:ss");
-    // };
-    // const [currentTime, setCurrentTime] = useState(getCurrentTime());
-
-    // useEffect(() => {
-    //     const intervalId = setInterval(() => {
-    //         setCurrentTime(getCurrentTime());
-    //     }, 1000); // (60초)마다 업데이트
-    //
-    //     return () => {
-    //         clearInterval(intervalId);
-    //     };
-    // }, []);
 
     // 회원 정보 불러오기
     useEffect(() => {
@@ -108,45 +86,11 @@ const MainContentStore = () => {
                 </div>;
     }
 
-        // 출근시간 표시
-        const startWork = () => {
-        if (!isStartWorkTimeVisible) {
-            // 출근 버튼 클릭 시 현재 시간 가져오기
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = now.getMinutes();
 
-            // 현재 시간을 시:분 형식으로 표시
-            const formattedTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
 
-            // 현재 시간을 상태에 저장
-            setWorkTime(formattedTime);
-            setIsStartWorkTimeVisible(true); // 오늘 출근을 했다고 표시
-        } else {
-            alert('오늘 이미 출근했습니다.');
-        }
-    };
 
-    //퇴근시간 표시
-    const finishWork = () => {
-        if (!isFinishWorkTimeVisible) {
-            // 출근 버튼 클릭 시 현재 시간 가져오기
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = now.getMinutes();
 
-            // 현재 시간을 시:분 형식으로 표시
-            const formattedTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
 
-            // 현재 시간을 상태에 저장
-            setWorkFinishTime(formattedTime);
-            setIsFinishWorkTimeVisible(true); // 오늘 출근을 했다고 표시
-        } else {
-            alert('오늘 이미 퇴근했습니다.');
-        }
-    };
-
-    //
 
     return (
         <>
@@ -192,13 +136,12 @@ const MainContentStore = () => {
                                 <h3 style={{textAlign:"center", marginTop:'20px'}}>Today</h3>
                                 <h1>{ formatDate }</h1>
                                 <Clock/>
-                                {/*<h1 style={{textAlign:"center", fontSize:'60px', margin:'0px'}}>{ currentTime }</h1>*/}
                             </div>
                         </div>
                     </div>
                     <div className={mainstyle.tempBox} style={{ display:"flex"}}>
                         <div className={mainstyle.datelist}>
-                            <h1 style={{textAlign:"center", color:"#696767"}}>Calender</h1>
+                            <NavLink to="/approval/vacation"><h1 style={{textAlign:"center", color:"#696767"}}>Calender</h1></NavLink>
                             <div className={mainstyle.calnederContent}>
                                 <MiniCalender/>
                             </div>
@@ -218,15 +161,13 @@ const MainContentStore = () => {
                     <div className={mainstyle.tempBox}>
                         <div className={mainstyle.documentPart}>
                             <div className={mainstyle.docutitle}>
-                                <div><h1 style={{textAlign:"center", color:"#696767"}}>게시판</h1></div>
+                                <div><h1 style={{textAlign:"center", color:"#696767"}}>발주 통계</h1></div>
                                 {/*<div><NavLink to="/stock/myorderlist/detail"><MdKeyboardDoubleArrowRight/></NavLink></div>*/}
                             </div>
-                            <div className={mainstyle.doculist}>
-                                {/*<MainCart/>*/}
-                                <DocuList />
-                                <DocuList />
-                                <DocuList />
-                                <DocuList />
+                            <div className={mainstyle.doculist} style={{gap:"0 80px"}}>
+                                <SalesChart />
+                                <Statistics />
+                                <MyStatistics/>
                             </div>
 
                             {/*<div><ApprovalList /></div>*/}
@@ -235,11 +176,14 @@ const MainContentStore = () => {
                     <div className={mainstyle.tempBox}>
                         <div className={mainstyle.boradPart}>
                             <div className={mainstyle.docutitle}>
-                            <h1 style={{textAlign:"center", color:"#696767"}}>전자문서</h1>
+                            <h1 style={{textAlign:"center", color:"#696767"}}>게시판</h1>
                             <div><NavLink to="/stock/myorderlist/detail"><MdKeyboardDoubleArrowRight/></NavLink></div>
                             </div>
-                            {/*<div><DocuList /></div>*/}
-                            <div><ApprovalList /></div>
+                            <div style={{ margin:"16px"}}>
+                                <div style={{ height:"200px"}}><DocuListS1 /></div>
+                                <div style={{marginTop:"20px",height:"200px"}}><DocuListS2 /></div>
+                                <div style={{marginTop:"20px",height:"200px"}}><DocuListS3 /></div>
+                            </div>
                         </div>
                     </div>
                 </div>
