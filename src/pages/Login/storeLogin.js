@@ -28,7 +28,7 @@ function Login({setLogin}) {
     useEffect(() => {
         if (loginMember.status === 200) {
             console.log("[Login] Login SUCCESS>>>>>>>>>>>>>> {}", loginMember);
-            navigate("/main", { replace: true });
+            navigate("/mainstore", { replace: true });
         }
         else {
             console.log("[Login] Login is not authenticated yet");
