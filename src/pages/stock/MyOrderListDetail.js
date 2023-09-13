@@ -19,7 +19,7 @@ function MyOrderListDetail() {
 
     // 수정
     const [modifyMode, setModifyMode] = useState(false);
-    const [selectedOrders, setSelectedOrders] = useState([]); // 배열로 선택된 주문물품 저장
+    // const [selectedOrders, setSelectedOrders] = useState([]); // 배열로 선택된 주문물품 저장
 
 
     // 조회
@@ -61,32 +61,36 @@ function MyOrderListDetail() {
     });
 
     // 수정
-    const onClickModifyModeHandler = (e) => {    // 수정모드
-        setModifyMode(true);
-        let inputValue = { orderProductNo: e.target.value };
-        setSelectedOrders(prevSelectedOrders => [...prevSelectedOrders, inputValue]);
-    }
+    // const onClickModifyModeHandler = (e) => {    // 수정모드
+    //     setModifyMode(true);
+    //     let inputValue = { orderProductNo: e.target.value };
+    //     setSelectedOrders(prevSelectedOrders => [...prevSelectedOrders, inputValue]);
+    // }
 
 
-    const onClickCancelHandler= () => {
+    /* 취소 핸들러 */
+    const onClickCancelHandler= (e) => {
         const confirmed = window.confirm('취소하시겠습니까?');
         if (confirmed) {
-            selectedOrders.forEach(form => {
+            // selectedOrders.forEach(form => {
                 const formData = new FormData();
-                formData.append("orderProductNo", form.orderProductNo);
+                formData.append("orderProductNo", e.target.value);
                 formData.append("status", 'CANCEL');
 
                 dispatch(callOrderProductUpdateAPI({
                     form: formData
                 }));
-            });
+            // });
 
-            setModifyMode(false);
-            setSelectedOrders([]); // 선택된 카테고리 초기화
+            // setModifyMode(false);
+            // setSelectedOrders([]); // 선택된 카테고리 초기화
 
             alert('취소되었습니다.');
             // navigate('/stock/orderlist', { replace: true });
             window.location.reload();
+        }
+        else {
+            alert('취소되었습니다.');
         }
     }
 
@@ -94,28 +98,32 @@ function MyOrderListDetail() {
         const confirmed = window.confirm('반품하시겠습니까?');
         if (confirmed) {
             navigate(`/stock/refund/${orderProduct}`);
+        }        else {
+            alert('취소되었습니다.');
         }
     }
 
-    const onClickCompleteHandler= () => {
+    const onClickCompleteHandler= (e) => {
         const confirmed = window.confirm('완료하시겠습니까?');
         if (confirmed) {
-            selectedOrders.forEach(form => {
+            // selectedOrders.forEach(form => {
                 const formData = new FormData();
-                formData.append("orderProductNo", form.orderProductNo);
+                formData.append("orderProductNo", e.target.value);
                 formData.append("status", 'COMPLETE');
 
                 dispatch(callOrderProductUpdateAPI({
                     form: formData
                 }));
-            });
+            // });
 
-            setModifyMode(false);
-            setSelectedOrders([]); // 선택된 카테고리 초기화
+            // setModifyMode(false);
+            // setSelectedOrders([]); // 선택된 카테고리 초기화
 
             alert('완료되었습니다.');
             // navigate('/stock/orderlist', { replace: true });
             window.location.reload();
+        }        else {
+            alert('취소되었습니다.');
         }
     }
 
@@ -149,26 +157,40 @@ function MyOrderListDetail() {
                                 <td>{ orderProduct.productName}</td>
                                 <td>{ orderProduct.unitName}</td>
                                 <td>{ orderProduct.standardName}</td>
-                                <td>{ orderProduct.price}</td>
-                                <td>{ orderProduct.quantity}</td>
+                                <td>{ orderProduct.price.toLocaleString()}</td>
+                                <td>{ orderProduct.quantity.toLocaleString()}</td>
                                 <td>{ orderProduct.etc}</td>
                                 <td>{ orderProduct.registDate}</td>
                                 <td>{ orderProduct.status}</td>
-                                <td><input
-                                    type="checkbox"
-                                    value={orderProduct.orderProductNo}
-                                    onClick={onClickModifyModeHandler}/>
+                                {/*<td><input*/}
+                                {/*    type="checkbox"*/}
+                                {/*    value={orderProduct.orderProductNo}*/}
+                                {/*    onClick={onClickModifyModeHandler}/>*/}
+                                {/*</td>*/}
+                                <td>
+                                    {orderProduct.status === 'WAITING' ? (
+                                        <button onClick={onClickCancelHandler} value={orderProduct.orderProductNo}>취소</button>
+                                    ) : orderProduct.status === 'PERMIT' ? (
+                                        <button onClick={onClickCompleteHandler} value={orderProduct.orderProductNo}>완료</button>
+                                    ) : null}
                                 </td>
-                                <td><button onClick={() => onClickRefundHandler(orderProduct.orderProductNo)}>반품</button></td>
+                                <td>
+                                    {/*<button onClick={() => onClickRefundHandler(orderProduct.orderProductNo)}>반품</button>*/}
+                                    {orderProduct.status === 'PERMIT' &&  orderProduct.quantity >0 ? (
+                                        <button onClick={() => onClickRefundHandler(orderProduct.orderProductNo)}>
+                                            반품
+                                        </button>
+                                    ) : null}
+                                </td>
                             </tr>
                         ))
                     }
                 </table>
-                <div style={{display: "flex", justifyContent: "flex-end", marginTop: "1%"}}>
-                    <button style={{marginRight: "10px"}} onClick={ onClickCancelHandler }>취소</button>
+                {/*<div style={{display: "flex", justifyContent: "flex-end", marginTop: "1%"}}>*/}
+                {/*    <button style={{marginRight: "10px"}} onClick={ onClickCancelHandler }>취소</button>*/}
 
-                    <button onClick={ onClickCompleteHandler }>완료</button>
-                </div>
+                {/*    <button onClick={ onClickCompleteHandler }>완료</button>*/}
+                {/*</div>*/}
             </div>
         </div>
     )

@@ -86,6 +86,9 @@ function Category() {
             navigate('/stock/category', {replace: true});
             window.location.reload();
         }
+        else {
+            alert('취소되었습니다.');
+        }
     }
 
     // 수정
@@ -124,6 +127,9 @@ function Category() {
             navigate('/stock/category', { replace: true });
             window.location.reload();
         }
+        else {
+            alert('취소되었습니다.');
+        }
     }
 
     /* 사용 핸들러 */
@@ -149,6 +155,10 @@ function Category() {
             alert('수정되었습니다.');
             navigate('/stock/category', { replace: true });
             window.location.reload();
+        }
+
+        else {
+            alert('취소되었습니다.');
         }
     }
     /********************************************************************/

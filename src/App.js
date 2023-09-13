@@ -59,6 +59,7 @@ import FreeM from "./pages/board/freeM";
 import Writing from "./pages/board/writing";
 import PostDetail from "./pages/board/PostDetail";
 import UpdateBoard from "./pages/board/updateBoard";
+import MyBoard from "./pages/board/myBoard";
 
 //지수
 import Department from "./pages/management/Department"
@@ -207,6 +208,9 @@ function App() {
                         <Route path='/outM' element={<OutMForm/>}/>
                         <Route path='mypagestore/outS' element={<OutSForm/>}/>
 
+                        //직원 내가 쓴 글
+                        <Route path='myBoard' element={<MyBoard/>}/>
+
                         //직원 게시판
                         <Route path='board' element={<BoardMenu/>}>
                             <Route path='notieE' element={<NoticeEmployee/>}/>
@@ -242,7 +246,7 @@ function App() {
                     //미지
                     //재고관리 팝업
                     <Route path='ListPopup' element={<ListPopup/>}/>
-                    <Route path='ReciptPopup' element={<ReciptPopup/>}/>
+                    <Route path='ReciptPopup/:orderNo' element={<ReciptPopup/>}/>
 
                     //해든
                     //아이디비밀번호찾기, 안내등

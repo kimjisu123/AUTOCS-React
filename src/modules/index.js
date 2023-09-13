@@ -14,6 +14,8 @@ import myOrderReducer from "./MyOrderModule";
 import refundReducer from "./RefundModule";
 import billReducer from "./BillModule";
 import billDetailReducer from "./BillDetailModule";
+import myBillReducer from "./MyBillModule";
+import orderForBillReducer from "./OrderListForBillModule";
 import orderNumberReducer from "./OrderNumberModule";
 import orderProductReducer from "./OrderProductModule";
 import myOrderProductReducer from "./MyOrderProductModule";
@@ -27,13 +29,26 @@ import mainReducer from "./MainModule";
 import commentReducer from "./CommentModule";
 
 import {
-    approvalAppWaitReducer, approvalBusinessDocReducer,
-    approvalHomeReducer, approvalMyAppReducer,
-    approvalMyBusinessReducer, approvalMySeeReducer, approvalPayDocReducer, approvalPurchaseDocReducer,
-    approvalReducer, approvalSeeWaitReducer,
-    approvalSendReducer, approvalTrafficDocReducer, approvalVacationDocReducer,
+    approvalAppWaitReducer,
+    approvalBusinessDocReducer,
+    approvalDeleteDocumentReducer,
+    approvalDocumentAppYNReducer,
+    approvalGetFileReducer,
+    approvalHomeReducer,
+    approvalMyAppReducer,
+    approvalMyBusinessReducer,
+    approvalMySeeReducer,
+    approvalPayDocReducer,
+    approvalPurchaseDocReducer,
+    approvalReducer,
+    approvalSeeWaitReducer,
+    approvalSendReducer,
+    approvalTrafficDocReducer,
+    approvalVacationDocReducer,
     vacationReducer
 } from "./ApprovalModule";
+import statisticsReducer from "./StatisticsModule";
+import myStatisticsReducer from "./MyStatisticsModule";
 
 const rootReducer = combineReducers({
     chartReducer,
@@ -54,6 +69,10 @@ const rootReducer = combineReducers({
     myOrderProductReducer,
     billReducer,
     billDetailReducer,
+    orderForBillReducer,
+    myBillReducer,
+    statisticsReducer,
+    myStatisticsReducer,
     todoReducer,
     marketReducer,
     mailSentReducer,
@@ -71,6 +90,9 @@ const rootReducer = combineReducers({
     approvalTrafficDocReducer,
     approvalPurchaseDocReducer,
     approvalVacationDocReducer,
+    approvalDocumentAppYNReducer,
+    approvalDeleteDocumentReducer,
+    approvalGetFileReducer,
     approvalPayDocReducer,
     commentReducer,
     boardReducer,

@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import {
     callMyOrderProductForRefundAPI,
+    callOrderProductRegistAPI, callOrderProductUpdateAPI,
 } from '../../apis/StockAPICalls'
 import refundReducer from "../../modules/RefundModule";
 
@@ -18,7 +19,9 @@ function Refund() {
     // 파라미터에서 주문번호 받음
     const { myOrderProductNo } = useParams();
 
-    console.log(myOrderProductNo)
+    // 조회
+    const [orderProductInfo, setOrderProductInfo] = useState({});
+    const orderProduct= useSelector(state => state.refundReducer);
 
 
     // 주문물품 조회
@@ -28,19 +31,63 @@ function Refund() {
                     myOrderProductNo: myOrderProductNo
             }
             ));
+            setOrderProductInfo(orderProduct);
         }
-        ,[myOrderProductNo]
+        ,[]
     );
 
-    // 조회
-    const orderProduct= useSelector(state => state.refundReducer);
 
     console.log(orderProduct)
 
+    // 등록
+    const [form, setForm] = useState({
+        refOrderNo: '',
+        refProductNo: '',
+        quantity: (orderProduct?.quantity)* (-1),
+        status: '',
+        etc: '품질불량',
+    });
 
-    const onClickOrderHandler= () => {
-        alert('신청하시겠습니까?');
-    }
+    // form 데이터 세팅
+    const onChangeHandler = (e) => {
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    /* 반품물품 등록 */
+    const onClickRegistHandler = async () => {
+        const confirmed = window.confirm('신청하시겠습니까?');
+        if (confirmed) {
+
+            const formData = new FormData();
+            formData.append("refOrderNo", orderProduct.refOrderNo?.orderNo);
+            formData.append("refProductNo", orderProduct.refProductNo.productNo);
+            formData.append("quantity", (orderProduct?.quantity)* (-1));
+            formData.append("etc", form.etc);
+
+            dispatch(callOrderProductRegistAPI({
+                form: formData
+            }));
+
+            const ModifyFormData = new FormData();
+            ModifyFormData.append("orderProductNo", orderProduct.orderProductNo);
+            ModifyFormData.append("status", 'REFUND');
+
+            dispatch(callOrderProductUpdateAPI({
+                form: ModifyFormData
+            }));
+
+
+            alert('신청되었습니다.');
+            // navigate('/stock/order', {replace: true});
+            window.location.reload();
+            }
+            else {
+            alert('취소되었습니다.');
+        }
+        }
 
     return(
         <div>
@@ -53,7 +100,7 @@ function Refund() {
                     <td>
                         <input className={StockCSS.readOnlybox}
                                type="text"
-                               value={orderProduct.refOrderNo.orderNo}
+                               value={orderProduct.refOrderNo?.orderNo}
                                readOnly/>
                     </td>
                 </tr>
@@ -64,7 +111,7 @@ function Refund() {
                     <td>
                         <input className={StockCSS.readOnlybox}
                                type="text"
-                               value={orderProduct.refProductNo.name}
+                               value={orderProduct.refProductNo?.name}
                                readOnly/>
                     </td>
                 </tr>
@@ -75,7 +122,7 @@ function Refund() {
                     <td>
                         <input className={StockCSS.readOnlybox}
                                type="text"
-                               value={orderProduct.refProductNo.standard.name}
+                               value={orderProduct.refProductNo?.standard?.name}
                                readOnly/>
                     </td>
                 </tr>
@@ -86,7 +133,7 @@ function Refund() {
                     <td>
                         <input className={StockCSS.readOnlybox}
                                type="text"
-                               value={orderProduct.refProductNo.unit.name}
+                               value={orderProduct.refProductNo?.unit?.name}
                                readOnly/>
                     </td>
                 </tr>
@@ -97,7 +144,7 @@ function Refund() {
                     <td>
                         <input className={StockCSS.readOnlybox}
                                type="text"
-                               value={orderProduct.quantity}
+                               value={orderProduct?.quantity}
                                readOnly/>
                     </td>
                 </tr>
@@ -106,7 +153,13 @@ function Refund() {
                         반품수량
                     </td>
                     <td>
-                        <input type="text"/>
+                        <input className={StockCSS.readOnlybox}
+                            type="text"
+                        name="quantity"
+                        value={orderProduct?.quantity}
+                               readOnly
+                        onChange={onChangeHandler}
+                        />
                     </td>
                 </tr>
                 <tr>
@@ -114,15 +167,15 @@ function Refund() {
                         사유
                     </td>
                     <td>
-                        <select>
-                            <option value="1">품질불량</option>
-                            <option value="2">배송상태불량</option>
-                            <option value="3">오배송</option>
+                        <select name="etc" onChange={onChangeHandler}>
+                            <option value="품질불량">품질불량</option>
+                            <option value="배송상태불량">배송상태불량</option>
+                            <option value="오배송">오배송</option>
                         </select>
                     </td>
                 </tr>
             </table>
-            <button style={{marginTop: "5%"}} onClick={ onClickOrderHandler }>신청</button>
+            <button style={{marginTop: "5%"}} onClick={ onClickRegistHandler }>신청</button>
         </div>
     )
 }
