@@ -66,6 +66,7 @@
     height: 28px;
     text-align: center;
     line-height: 25px;
+    border: 1px solid rgba(123, 123, 123, 0.5);
 }
 .mainHeader{
     display: flex;
@@ -82,6 +83,7 @@
 
 .noteHeader{
     margin-right: auto;
+    cursor: pointer;
 }
 .deleteButton{
     font-size: 25px;

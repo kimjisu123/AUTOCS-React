@@ -1,12 +1,28 @@
 import styles from './Department.module.css';
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
-import {callGetDepartmentAPI} from "../../apis/DepartmentAPICalls";
-
-function DepartmentContent (){
+import {useEffect, useState} from "react";
+import {callGetManagementAPI, callGetPersonnelAPI} from "../../apis/DepartmentAPICalls";
+function ManagementDepartment (){
 
     const dispatch = useDispatch();
-    const data = useSelector(state => state.departmentReducer);
+    const data = useSelector(state => state.managementReducer);
+
+    const [search, setSearch] = useState('');
+    const [result, setResult] = useState('절대로아무도검색하지않을만한값입니다.');
+
+
+    const onClickSearch = async () =>{
+        console.log(result)
+        dispatch( callGetManagementAPI(result) )
+    }
+
+    useEffect( () =>{
+        dispatch( callGetManagementAPI(result) )
+    }, [])
+
+
+
+
 
     const currentDate = new Date();
     const year = currentDate.getFullYear();    // 현재 년 (2023)
@@ -17,10 +33,6 @@ function DepartmentContent (){
 
     const toDayDate ="<"+ year + "년 " + month + "월 " + day+"일" + ">";
     const toDay= year + "-" + month2 + "-" + day2
-
-    useEffect( () =>{
-        dispatch( callGetDepartmentAPI() )
-    }, [])
 
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -102,7 +114,7 @@ function DepartmentContent (){
 
     // 테스트용 쓰고 지우기
     const onClickTest = () =>{
-        console.log()
+        console.log(data.data)
     }
     return (
         <>
@@ -111,7 +123,7 @@ function DepartmentContent (){
                     <div>
                         <div>
                             <div onClick={onClickTest} className={styles.contentHeader}>
-                                부서별 근태 통계
+                                경영부
                             </div>
                             <div className={styles.today}>
                                 {toDayDate}
@@ -167,8 +179,8 @@ function DepartmentContent (){
                     <div className={styles.weekStatus} style={{marginTop: "30px"}}>
                         <form style={{display: "flex", justifyContent:"flex-start"}}>
                             <div className={styles.type}> 부서원</div>
-                            <input type="text" className={styles.inputText} />
-                            <input type="submit" value="검색" className={styles.inputButton} />
+                            <input value={search} onChange={ (e) => { console.log(search);  setResult(e.target.value); return setSearch(e.target.value)} }  type="text" className={styles.inputText}/>
+                            <input onClick={ () => onClickSearch() } type="button" value="검색" className={styles.inputButton}/>
                         </form>
                     </div>
                     <div className={styles.infoHeader} style={{marginTop:"30px"}}>
@@ -196,10 +208,10 @@ function DepartmentContent (){
                             <div>
                                 <div className={styles.infoContent}>
                                     <div className={styles.statusInfoBox1}>
-                                        { item.empName}
+                                        { item.workStatusLists[0].employee.name}
                                     </div>
                                     <div className={styles.statusInfoBox2}>
-                                        {item.deptName}
+                                        {item.workStatusLists[0].employee.department.name}
                                     </div>
                                     <div className={styles.statusInfoBox3}>
                                         { getYearMonthDay(new Date())  }
@@ -211,7 +223,7 @@ function DepartmentContent (){
                                         { item.quittingTime ? formatTime(formatFunction(item.quittingTime)) : '미등록' }
                                     </div>
                                     <div className={styles.statusInfoBox6}>
-                                        { item.vactionStatus }
+                                        { item.vacationStatus}
                                     </div>
                                 </div>
                             </div>
@@ -222,4 +234,4 @@ function DepartmentContent (){
         </>
     )
 }
-export default DepartmentContent;
+export default ManagementDepartment;

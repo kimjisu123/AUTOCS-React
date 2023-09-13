@@ -1,12 +1,12 @@
-import ManagementDepartment from "./ManagementDepartment";
+import AccountingDepartment from "./AccountingDepartment";
 import ManagementMenu from './ManagementMenu'
 
-function Management(){
+function Accounting(){
     return (
         <div style={{display: 'flex'}}>
             <ManagementMenu />
-            <ManagementDepartment />
+            <AccountingDepartment />
         </div>
     )
 }
-export default Management;
+export default Accounting;

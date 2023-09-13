@@ -22,6 +22,7 @@ import Clock from "./Clock";
 import DocuList2 from "./DocuList2";
 import DocuList3 from "./DocuList3";
 import DocuList4 from "./DocuList4";
+import {callPostAttendanceAPI, callPutQuittingAPI} from "../../apis/WorkStatusAPICalls";
 
 
 
@@ -210,8 +211,8 @@ const MainContent = () => {
                                 <div className={mainstyle.workbuttons}>
                                         <button  className="startWorkTime"
                                                  onClick={startWork}
-                                        ><MdWork/><br/><span>출근하기</span></button>
-                                        <button className="finishWorkTime"onClick={finishWork} ><MdWorkOff/><br/><span>퇴근하기</span></button>
+                                        >출근하기</button>
+                                        <button className="finishWorkTime"onClick={finishWork} >퇴근하기</button>
                                 </div>
                             </div>
                             <div className={mainstyle.fastButtons}>

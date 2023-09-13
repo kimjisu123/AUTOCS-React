@@ -22,6 +22,8 @@ import myOrderProductReducer from "./MyOrderProductModule";
 import chartReducer from './ChartModule';
 import todoReducer from "./TodoModule";
 import myPageReducer from "./MypageModule";
+import {workStatusReducer} from"./WorkStatusModule";
+import { departmentReducer, personnelReducer, accountingReducer, managementReducer, marketingReducer, salesReducer, serviceReducer, headOfficeReducer  } from "./DepartmentModule";
 import boardReducer from "./BoardModule";
 import mainReducer from "./MainModule";
 import commentReducer from "./CommentModule";
@@ -95,6 +97,16 @@ const rootReducer = combineReducers({
     commentReducer,
     boardReducer,
     mainReducer,
+    workStatusReducer,
+    departmentReducer,
+    personnelReducer,
+    accountingReducer,
+    managementReducer,
+    marketingReducer,
+    salesReducer,
+    serviceReducer,
+    headOfficeReducer,
+
 });
 
 export default rootReducer;

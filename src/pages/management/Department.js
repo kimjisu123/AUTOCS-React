@@ -1,7 +1,6 @@
 import DepartmentContent from './DepartmentContent'
 import ManagementMenu from './ManagementMenu'
 
-
 function Department(){
     return (
         <div style={{display: 'flex'}}>

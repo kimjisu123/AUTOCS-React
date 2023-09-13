@@ -1,12 +1,12 @@
-import ManagementDepartment from "./ManagementDepartment";
+import WorkStatusContent from "./WorkStatusContent"
 import ManagementMenu from './ManagementMenu'
 
-function Management(){
+function WorkStatus(){
     return (
         <div style={{display: 'flex'}}>
             <ManagementMenu />
-            <ManagementDepartment />
+            <WorkStatusContent />
         </div>
     )
 }
-export default Management;
+export default WorkStatus;

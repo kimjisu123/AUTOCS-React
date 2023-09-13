@@ -1,6 +1,12 @@
 import styles from './Mail.module.css';
 import { useState, useEffect } from 'react'
-import { callGetMailAPI, callDELETEMailAPI, callPutMailAPI, callSeleteDELETEMailAPI } from '../../apis/MailAPICalls';
+import {
+    callGetMailAPI,
+    callDELETEMailAPI,
+    callPutMailAPI,
+    callSeleteDELETEMailAPI,
+    callGetMailBookmarkAPI
+} from '../../apis/MailAPICalls';
 import { useDispatch, useSelector } from 'react-redux';
 import MailDetails from "../../pages/Mail/MailDetails"
 
@@ -8,18 +14,40 @@ import MailDetails from "../../pages/Mail/MailDetails"
 function MailContent(){
 
     const [search, setSearch] = useState('');
-    const [result, setResult] = useState(null);
+    const [result, setResult] = useState('절대로아무도검색하지않을만한값입니다.');
     const dispatch = useDispatch();
     const mailData = useSelector(state => state.mailReducer);
 
+    // 페이징 처리
+    const [start, setStart] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [pageEnd, setPageEnd] = useState(1);
+
+    useEffect(
+        () => {
+            setStart((currentPage - 1) * 5);
+            dispatch(callGetMailAPI(currentPage,result))
+        }
+        ,[currentPage]
+    );
+
+    const pageNumber = [];
+    const pageInfo = mailData.pageInfo;
+    if(pageInfo){
+        for(let i = 1; i <= pageInfo.pageEnd ; i++){
+            pageNumber.push(i);
+        }
+    }
 
 
     useEffect(
         () =>  {
-            dispatch( callGetMailAPI() );
+            dispatch( callGetMailAPI(currentPage, result) );
         }
         ,[]
     );
+
+
     const onClickMailDelete = async () => {
         dispatch( callDELETEMailAPI() );
         window.location.reload();
@@ -27,16 +55,10 @@ function MailContent(){
     }
 
     const onClickSearch = async () =>{
-        const filterResult =  mailData.data.filter(item => {
-
-            return item.title.toLowerCase().includes(search.toLowerCase())
-        }
-        );
-        console.log(filterResult)
-        setResult(filterResult);
+        console.log(result)
+        dispatch( callGetMailAPI(currentPage, result) )
     }
 
-    console.log('result', result)
     return(
         <div className={styles.content}>
             <div className={styles.mainHeader}>
@@ -48,17 +70,42 @@ function MailContent(){
                 </div>
                 <div style={{display: "flex", justifyContent:"flex-start"}}>
                     <div className={styles.type}> 제목</div>
-                    <input value={search} onChange={ (e) => {setSearch(e.target.value)} }  type="text" className={styles.inputText}/>
-                    <div onClick={ () => onClickSearch() } className={styles.inputButton}>검색</div>
+                    <input value={search} onChange={ (e) => { console.log(search);  setResult(e.target.value); return setSearch(e.target.value)} }  type="text" className={styles.inputText}/>
+                    <input onClick={ () => onClickSearch() } type="button" value="검색" className={styles.inputButton}/>
                 </div>
             </div>
             <div>
-                {  result !== null  ? result.map(mail=>(
-                    <MailItem key={mail.mailNo} mail={mail} />
-                    )) :
+                {
                     mailData.data && mailData.data.map(mail => (
                     <MailItem key={mail.mailNo} mail={mail} />
                     ))
+                }
+            </div>
+            <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
+                { Array.isArray(mailData.data) &&
+                    <button style={{border:"none", color:"black", fontWeight:"500", backgroundColor:"white", fontSize:"20px"}}
+                        onClick={() => setCurrentPage(currentPage - 1)}
+                        disabled={currentPage === 1}
+                    >
+                        &lt;
+                    </button>
+                }
+                {pageNumber.map((num) => (
+                    <li key={num} onClick={() => setCurrentPage(num)}>
+                        <button
+                            style={ currentPage === num ? {backgroundColor : 'white', border:"none", fontSize:"20px", color:"", cursor:"pointer"} : {backgroundColor : 'white', border:"none", color:"", cursor:"pointer"} }
+                        >
+                            {num}
+                        </button>
+                    </li>
+                ))}
+                { Array.isArray(mailData.data) &&
+                    <button style={{border:"none", color:"black", fontWeight:"500", backgroundColor:"white", fontSize:"20px"}}
+                        onClick={() => {return setCurrentPage(currentPage + 1)}}
+                        disabled={currentPage === pageInfo.pageEnd || pageInfo.total == 0}
+                    >
+                        &gt;
+                    </button>
                 }
             </div>
         </div>
