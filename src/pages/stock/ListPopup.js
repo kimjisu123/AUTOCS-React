@@ -106,7 +106,9 @@ function ListPopup() {
                             <th>CODE</th>
                             <th>카테고리명</th>
                             <th>품목명</th>
-                            <th>사용상태</th>
+                            <th>단위</th>
+                            <th>규격</th>
+                            <th>불용일</th>
                         </tr>
                         {
                             Array.isArray(productList) && productList.map((product) => (
@@ -119,7 +121,9 @@ function ListPopup() {
                                     <td>{ product.productNo }</td>
                                     <td>{ product.category.name}</td>
                                     <td>{ product.name }</td>
-                                    <td>{ product.status }</td>
+                                    <td>{ product.standard.name }</td>
+                                    <td>{ product.unit.name }</td>
+                                    <td>{ product.unusedDate }</td>
                                 </tr>
                             ))
                         }
