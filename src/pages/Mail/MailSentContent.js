@@ -135,7 +135,7 @@ function MailSentItem({ mail }) {
 
     return (
         <div className={styles.receivedNote}>
-            <div className={styles.bookmark} onClick={onClickbookmark}>
+            <div style={(bookmark == 'Y') ? {color : "gold"} : {}} className={styles.bookmark} onClick={onClickbookmark}>
                 {( bookmark == 'Y')  ? '★' : '☆'}
             </div>
             <div onClick={ () => onClickModal() } className={styles.noteHeader}>

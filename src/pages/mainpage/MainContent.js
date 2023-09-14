@@ -18,7 +18,7 @@ import Clock from "./Clock";
 import DocuList2 from "./DocuList2";
 import DocuList3 from "./DocuList3";
 import DocuList4 from "./DocuList4";
-
+import {callPostAttendanceAPI, callPutQuittingAPI} from "../../apis/WorkStatusAPICalls";
 
 
 
@@ -93,6 +93,8 @@ const MainContent = () => {
             const minutes = now.getMinutes();
             // 현재 시간을 시:분 형식으로 표시
             const formattedTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+            dispatch( callPostAttendanceAPI() )
+
             // 현재 시간을 상태에 저장
             setWorkTime(formattedTime);
             setIsStartWorkTimeVisible(true); // 오늘 출근을 했다고 표시
@@ -110,6 +112,9 @@ const MainContent = () => {
             const minutes = now.getMinutes();
             // 현재 시간을 시:분 형식으로 표시
             const formattedTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+
+            dispatch( callPutQuittingAPI() )
+
             // 현재 시간을 상태에 저장
             setWorkFinishTime(formattedTime);
             setIsFinishWorkTimeVisible(true); // 오늘 출근을 했다고 표시

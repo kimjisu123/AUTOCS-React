@@ -108,7 +108,7 @@
 /* 팝업창 */
 .listbox {
     display: flex;
-    width: 400px;
+    width: 600px;
     height: auto;
     background-color: #ecead8;
 }

@@ -104,45 +104,35 @@ function HeadOfficeContent(){
 
     const toDayDate ="<"+ year + "년 " + month + "월 " + monday+"일" + ' ~ ' + year + "년 " + month + "월 " + sunday+"일" +">";
 
-    // // data 배열 내의 각 요소를 순회하며 필터링
-    const filteredData = data.data && data.data.length >0 && data.data.map(item => {
+    const filteredData = data.data && data.data.length > 0 && data.data.map(item => {
         const filteredWorkStatusLists = item.workStatusLists.filter(workStatusItem => {
             const attendanceTime = new Date(workStatusItem.workStatus.quittingTime);
             return attendanceTime >= mondayDate && attendanceTime <= new Date();
         });
 
-        // 요일 확인
         const daysOfWeek = ['월', '화', '수', '목', '금', '토', '일'];
 
-        // 월요일을 첫 번째로 배치하기 위해, 월요일을 배열 맨 앞으로 이동
         const sortedDaysOfWeek = [
-            ...daysOfWeek.slice(1), // 화요일부터 일요일까지 복사
-            daysOfWeek[0], // 월요일 추가
+            ...daysOfWeek.slice(1),
+            daysOfWeek[0],
         ];
 
-        // 요일 순서대로 빈 객체 삽입
-        const sortedWorkStatusLists = [];
-        sortedDaysOfWeek.forEach(day => {
+        const sortedWorkStatusLists = sortedDaysOfWeek.map(day => {
             const foundItem = filteredWorkStatusLists.find(workStatusItem => {
                 const attendanceTime = new Date(workStatusItem.workStatus.quittingTime);
                 return daysOfWeek[attendanceTime.getDay()] === day;
             });
 
-            if (foundItem) {
-                sortedWorkStatusLists.push(foundItem);
-            } else {
-                // 해당 요일에 데이터가 없으면 빈 객체 추가
-                sortedWorkStatusLists.push({
-                    employeeNo: item.employeeNo,
-                    workStatus: {
-                        attendanceTime: null,
-                        extensionTime: null,
-                        quittingTime: null,
-                        vacationStatus: null,
-                        workStatusCode: null,
-                    },
-                });
-            }
+            return foundItem || {
+                employeeNo: item.employeeNo,
+                workStatus: {
+                    attendanceTime: null,
+                    extensionTime: null,
+                    quittingTime: null,
+                    vacationStatus: null,
+                    workStatusCode: null,
+                },
+            };
         });
 
         return {
@@ -188,14 +178,19 @@ function HeadOfficeContent(){
 
 
     // 연장 근무가 있을시 기본 근무시간을 구하는 함수
+
     function defaultTime(timeString) {
         const components = timeString.split(':');
-        const hours = parseInt(components[0], 10);
-        const formattedHours = hours >= 8 ? '08' : formatTimeComponent(hours);
-        const minutes = hours >= 8 ? '00' : formatTimeComponent(parseInt(components[1], 10));
-        const seconds = hours >= 8 ? '00' : formatTimeComponent(parseInt(components[2], 10));
+        const hours = parseInt(components[1], 10);
 
-        return `${formattedHours}:${minutes}:${seconds}`;
+        if (hours >= 8) {
+            return '08:00:00';
+        } else {
+            const formattedHours = formatTimeComponent(hours);
+            const minutes = formatTimeComponent(parseInt(components[1], 10));
+            const seconds = formatTimeComponent(parseInt(components[2], 10));
+            return `${formattedHours}:${minutes}:${seconds}`;
+        }
     }
 
     // 총 근무시간에서 8시간을 빼주는 함수(연장근무)
@@ -231,6 +226,20 @@ function HeadOfficeContent(){
     // 테스트용 쓰고 나서 지우기
     const onClickTest =() =>{
         console.log(filteredData)
+    }
+
+    function formatTime(timeString) {
+        if(timeString !== '미등록'){
+            const components = timeString.split(':');
+            const hours = formatTimeComponent(parseInt(components[0], 10));
+            const minutes = formatTimeComponent(parseInt(components[1], 10));
+            const seconds = formatTimeComponent(parseInt(components[2], 10));
+
+            return `${hours}:${minutes}:${seconds}`;
+        } else{
+            return '미등록'
+        }
+
     }
 
 
@@ -303,7 +312,7 @@ function HeadOfficeContent(){
                                                     </div>
                                                     <div className={styles.hoursDuty}>
                                                         <div>
-                                                            기본 : { item.workStatus.extensionTime && defaultTime(item.workStatus.extensionTime)}
+                                                            기본 : { item.workStatus.extensionTime && defaultTime(formatTime(item.workStatus.extensionTime))}
                                                         </div>
                                                         <div>
                                                             연장 : {item.workStatus.extensionTime && formatAndAdjustTime( formatTimeString(item.workStatus.extensionTime) )}

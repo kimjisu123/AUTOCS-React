@@ -9,7 +9,7 @@ import {
 } from '../../apis/StockAPICalls'
 
 function showPopup()
-{ window.open('/ListPopup', "a", "width=400, height=800, left=100, top=50");
+{ window.open('/ListPopup', "a", "width=600, height=800, left=100, top=50");
     document.getElementById( "parentCodeValue" ).value = '';
     document.getElementById( "parentNameValue" ).value = '';
 }
