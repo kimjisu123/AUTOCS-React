@@ -1,17 +1,13 @@
-import emp from "../Mypage/emp.jpg";
 import mainstyle from './MainContent.module.css';
 import classNames from "classnames";
 import TodoApp from "../Todolist/TodoApp";
 import MiniCalender from "../compoments/MiniCalender";
 import monent from 'moment';
-
 import ApprovalList from "./ApprovalList";
-import YourComponent from "./DocuList";
 import React, {useEffect, useState} from "react";
 import DailyList from "./DailyList";
 import {MdKeyboardDoubleArrowRight, MdWork, MdWorkOff} from "react-icons/md";
 import {NavLink, useNavigate} from "react-router-dom";
-import moment from "moment-timezone";
 import DocuList from "./DocuList";
 import {useDispatch, useSelector} from "react-redux";
 import {decodeJwt} from "../../util/tokenUtils";
@@ -22,7 +18,7 @@ import Clock from "./Clock";
 import DocuList2 from "./DocuList2";
 import DocuList3 from "./DocuList3";
 import DocuList4 from "./DocuList4";
-import {callPostAttendanceAPI, callPutQuittingAPI} from "../../apis/WorkStatusAPICalls";
+
 
 
 
@@ -38,8 +34,6 @@ const MainContent = () => {
 
     const dispatch = useDispatch();
     const accessToken = window.localStorage.getItem('accessToken');
-
-
     const decodedToken = accessToken ? decodeJwt(accessToken) : null;
 
     // 출퇴근 시간 보이기
@@ -64,21 +58,17 @@ const MainContent = () => {
         async function fetchData() {
             try {
 
-                console.log("callGetMemberInfoAPI : {} " + callGetMemberInfoAPI(decodedToken.MemberNo))
                 const memeberInfo = await dispatch(callGetMemberInfoAPI(decodedToken.MemberNo));
-                // const profileInfo = await dispatch(callGetPofileAPI(decodedToken.MemberNo));
 
                 if (employees.data && employees.data.name) {
                     // 'name' 속성에 접근할 수 있습니다.
-                    console.log("employeeList.name {}" ,employees.data.name);
+                    // console.log("employeeList.name {}" ,employees.data.name);
                     setMemberNo(employees.data.memberNo);
-                    console.log("employeeList.name {}" ,memberNo);
+                    // console.log("employeeList.name {}" ,memberNo);
                     // 이제 name을 사용할 수 있습니다.
                     setSelectedImage(employees.data.memberFile);
-                    console.log("employees.data.memberFile {}" ,employees.data.memberFile);
+                    // console.log("employees.data.memberFile {}" ,employees.data.memberFile);
                 }
-
-
             } catch (error) {
                 console.error('API 호출 오류:', error);
             }
@@ -101,10 +91,8 @@ const MainContent = () => {
             const now = new Date();
             const hours = now.getHours();
             const minutes = now.getMinutes();
-
             // 현재 시간을 시:분 형식으로 표시
             const formattedTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
-
             // 현재 시간을 상태에 저장
             setWorkTime(formattedTime);
             setIsStartWorkTimeVisible(true); // 오늘 출근을 했다고 표시
@@ -120,10 +108,8 @@ const MainContent = () => {
             const now = new Date();
             const hours = now.getHours();
             const minutes = now.getMinutes();
-
             // 현재 시간을 시:분 형식으로 표시
             const formattedTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
-
             // 현재 시간을 상태에 저장
             setWorkFinishTime(formattedTime);
             setIsFinishWorkTimeVisible(true); // 오늘 출근을 했다고 표시
@@ -131,42 +117,6 @@ const MainContent = () => {
             alert('오늘 이미 퇴근했습니다.');
         }
     };
-
-    //로컬스토리지 구현
-    // useEffect(() => {
-    //     // 로컬 스토리지에서 마지막 출근 일자 가져오기
-    //     const lastWorkedDate = localStorage.getItem('lastWorkedDate');
-    //     const today = new Date().toLocaleDateString();
-    //
-    //     if (lastWorkedDate === today) {
-    //         setIsWorkedToday(true);
-    //         // 마지막 출근 일자가 오늘인 경우 버튼 비활성화
-    //     } else {
-    //         setIsWorkedToday(false);
-    //     }
-    // }, []);
-    //
-    // const startWork = () => {
-    //     if (!isWorkedToday) {
-    //         // 출근 버튼 클릭 시 현재 시간 가져오기
-    //         const now = new Date();
-    //         const hours = now.getHours();
-    //         const minutes = now.getMinutes();
-    //
-    //         // 현재 시간을 시:분 형식으로 표시
-    //         const formattedTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
-    //
-    //         // 현재 시간을 상태에 저장
-    //         setCurrentTime(formattedTime);
-    //
-    //         // 오늘 출근을 했다고 표시하고 로컬 스토리지에 저장
-    //         setIsWorkedToday(true);
-    //         localStorage.setItem('lastWorkedDate', new Date().toLocaleDateString());
-    //     } else {
-    //         alert('오늘 이미 출근했습니다.');
-    //     }
-    // };
-    //
 
     return (
         <>
@@ -176,15 +126,12 @@ const MainContent = () => {
                         <div className={mainstyle.titleContainer}>
                             <div className={mainstyle.maintitle}>
                                 <div className={mainstyle.mainImg}>
-                                    {/*<img src={ selectedImage } alt="" className={mainstyle.empInfoImg}/>*/}
                                     {selectedImage? (
                                         <img
-                                            // src={ emp }
                                             className={mainstyle.empInfoImg}
                                             src={ selectedImage }
                                             alt="Selected"
                                         />):(<img
-                                        // src={ emp }
                                         className={mainstyle.empInfoImg}
                                         src={ logo }
                                         alt="Selected"
@@ -209,10 +156,11 @@ const MainContent = () => {
                                     )}
                                 </div>
                                 <div className={mainstyle.workbuttons}>
-
                                         <button  className="startWorkTime"
                                                  onClick={startWork}
-                                        ><MdWork/>출근하기</button>
+                                        ><MdWork/>
+                                            출근하기
+                                        </button>
 
                                         <button className="finishWorkTime"onClick={finishWork} ><MdWorkOff/>퇴근하기</button>
                                 </div>
@@ -230,11 +178,9 @@ const MainContent = () => {
                     <div className={mainstyle.tempBox}>
                         <div className={mainstyle.timeAndDark}>
                             <div className={mainstyle.mainTime}>
-                                {/*<MdAccessTime />*/}
                                 <h3 style={{textAlign:"center" ,marginTop:'20px'}}>Today</h3>
                                 <h1>{ formatDate }</h1>
                                 <Clock/>
-                                {/*<h1 style={{textAlign:"center", fontSize:'60px', margin:'0px'}}>{ currentTime }</h1>*/}
                             </div>
                         </div>
                     </div>
@@ -261,7 +207,6 @@ const MainContent = () => {
                         <div className={mainstyle.documentPart}>
                             <div className={mainstyle.docutitle}>
                                 <div><h1 style={{textAlign:"center", color:"#696767"}}>게시판</h1></div>
-                                {/*<div><NavLink to="/stock/myorderlist/detail"><MdKeyboardDoubleArrowRight/></NavLink></div>*/}
                             </div>
                             <div className={mainstyle.doculist}>
                                 <DocuList />
@@ -269,32 +214,21 @@ const MainContent = () => {
                                 <DocuList2 />
                                 <DocuList4 />
                             </div>
-
-                            {/*<div><ApprovalList /></div>*/}
                         </div>
                     </div>
-
                     <div className={mainstyle.tempBox}>
-
                         <div className={mainstyle.boradPart}>
-
                             <div className={mainstyle.docutitle}>
                                 <NavLink to="/approval/"><h1 style={{textAlign:"center", color:"#696767"}}>전자문서</h1></NavLink>
                                     <div>
                                         <NavLink to="/approval/"><MdKeyboardDoubleArrowRight/></NavLink>
                                     </div>
                             </div>
-                            {/*<div><DocuList /></div>*/}
-
-                                    <div><ApprovalList /></div>
-
+                            <div><ApprovalList /></div>
                         </div>
-
                     </div>
                 </div>
-
             </div>
-
         </>
     )
 }

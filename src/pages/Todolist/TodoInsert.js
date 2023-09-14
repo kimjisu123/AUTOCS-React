@@ -8,9 +8,6 @@ import {useNavigate} from "react-router-dom";
 import swal from "sweetalert";
 
 
-
-
-
 const TodoInsert = ({onInsert}) => {
 
     const accessToken = window.localStorage.getItem('accessToken');
@@ -28,7 +25,6 @@ const TodoInsert = ({onInsert}) => {
     const onChange= (e) => {
         const inputValue = e.target.value;
             setValue(inputValue);
-            // console.info(inputValue);
 
     };  // use콜백 및 사용해서 쓸데없이 함수를 반복해서 불러오지 않기 성능 최적화를 위해
 
@@ -40,7 +36,6 @@ const TodoInsert = ({onInsert}) => {
             if(value !== null && value.trim() !== ''){
                 console.log("입력값 {}" , value);
                 try {
-                    // console.table("초기값211111 {}",value);
                     // Todo 추가 API 호출
                     onInsert(value);
                     // 값 초기화
@@ -58,15 +53,10 @@ const TodoInsert = ({onInsert}) => {
                 swal('값을 입력해주세요.').then(() => {
                     if (inputRef.current) {
                         inputRef.current.focus();
-
                     }});
-
             }
 
         };
-
-
-
 
     return (
         <form className={ styles.TodoInsert } onSubmit={ onSubmit }>

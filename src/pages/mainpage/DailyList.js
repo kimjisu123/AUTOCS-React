@@ -47,7 +47,7 @@ function DailyList(emp) {
                         <tr>
                             <th>날짜</th>
                             <th>내용</th>
-                            <th>상태</th>
+                            <th>장소</th>
 
                         </tr>
                         {sortedData && sortedData.length > 0 ? (sortedData.map((daily) => (

@@ -1,12 +1,11 @@
 import MypageCSS from './MypageEmp.module.css';
-import {MdAccountCircle} from "react-icons/md";
+
 import React, {useCallback, useEffect, useState} from "react";
 import Modal from "react-modal";
 import UpdatePwApp from "./UpdatePwApp";
 import {useDispatch, useSelector} from "react-redux";
 import {decodeJwt} from "../../util/tokenUtils";
 import {
-    callChangeInfoAPI,
     callGetSToreInfoAPI, callPutSToreInfoAPI
 } from "../../apis/MypageAPICalls";
 
@@ -16,8 +15,6 @@ import MypageEmpMenubar from "./components/MypageEmpMenubar";
 import mainstyle from "../mainpage/MainContent.module.css";
 import Spinner from "../mainpage/Spinner-1s-200px.gif";
 import {NavLink} from "react-router-dom";
-
-
 
 function MypageStore() {
 

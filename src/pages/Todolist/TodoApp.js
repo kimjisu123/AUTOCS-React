@@ -32,7 +32,6 @@ const TodoApp = ( ) => {
     }]);
 
     useEffect(() => {
-        // if (shouldFetchData) {
         const decodedToken = decodeJwt(
             window.localStorage.getItem('accessToken')
         );
@@ -41,15 +40,12 @@ const TodoApp = ( ) => {
         }
         console.log('memberTodoList ', memberTodoList);
         setTodos(memberTodoList);
-        // setShouldFetchData(true);
-        // }
 
     }, [todos]);
 
     const currentDate = new Date();
     // 시간 부분을 모두 0으로 설정
     currentDate.setHours(0, 0, 0, 0);
-
     // 원하는 형식으로 날짜 포맷팅
     const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}`;
 
@@ -79,7 +75,7 @@ const TodoApp = ( ) => {
 
                 });
                 // Todo 추가 성공 시 추가 작업 수행
-
+                // window.location.reload();   //  입력이 잘안되므로 새로고침하려면 이거 풀고하자
                 // 값 초기화
             } catch (error) {
                 // Todo 추가 실패 시 처리
@@ -94,9 +90,8 @@ const TodoApp = ( ) => {
                 ...memberTodoList,
                 memberNo: memberTodoList.memberNo
             });
-            // setTodos(todos => todos.filter(todo => todo.id !== id));
             dispatch(callDeleteTodoAPI(memberTodoList)); // 할일 삭제 API 호출
-            // window.location.reload();
+
         };
 
     // 할일 체크 함수
@@ -113,7 +108,6 @@ const TodoApp = ( ) => {
 
     // 더블클릭시 내용 수정 함수
     const onUpdate = (memberTodoList) => {
-            // const editedText = prompt('수정할 내용을 입력하세요', todo.content);
             const editedText = swal("수정할 내용을 입력해주세요:", {
                 content: "input",
             })
@@ -131,7 +125,6 @@ const TodoApp = ( ) => {
                     setTodos(todoData);
                     } else {
                         swal("입력된 값이 없습니다.");
-
                     }
                 });
         };

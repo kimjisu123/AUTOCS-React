@@ -4,10 +4,8 @@ import TodoApp from "../Todolist/TodoApp";
 import MiniCalender from "../compoments/MiniCalender";
 import monent from 'moment';
 import React, {useEffect, useState} from "react";
-import DailyList from "./DailyList";
 import {MdKeyboardDoubleArrowRight} from "react-icons/md";
 import {NavLink, useNavigate} from "react-router-dom";
-import DocuList from "./DocuList";
 import {useDispatch, useSelector} from "react-redux";
 import {decodeJwt} from "../../util/tokenUtils";
 import {callGetMemberInfoAPI} from "../../apis/MypageAPICalls";
@@ -16,7 +14,6 @@ import logo from "../compoments/LOGO.png";
 import Clock from "./Clock";
 import DocuListS1 from "./DocuListS1";
 import DocuListS2 from "./DocuListS2";
-import Statistics from "../stock/Statistics";
 import MyStatistics from "../stock/MyStatistics";
 import SalesChart from "./SalesChart";
 import DocuListS3 from "./DocuListS3";
@@ -28,20 +25,10 @@ const MainContentStore = () => {
     const combineClass = classNames('tempBox' , 'three')
     const today = String(new Date().toLocaleDateString());
     const formatDate = monent(today).format("MMMM Do YYYY");
-    // const [ThemeMode , toggleTheme] = useTheme();
 
     const dispatch = useDispatch();
     const accessToken = window.localStorage.getItem('accessToken');
-
-
     const decodedToken = accessToken ? decodeJwt(accessToken) : null;
-
-    // 출퇴근 시간 보이기
-    const [isStartWorkTimeVisible, setIsStartWorkTimeVisible] = useState(false);
-    const [isFinishWorkTimeVisible, setIsFinishWorkTimeVisible] = useState(false);
-    const [workTime, setWorkTime] = useState(null);
-    const [workFinishTime, setWorkFinishTime] = useState(null);
-
 
     // 회원정보 가지고 오기
     const employees = useSelector(state => state.myPageReducer);
@@ -56,22 +43,16 @@ const MainContentStore = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-
-                console.log("callGetMemberInfoAPI : {} " + callGetMemberInfoAPI(decodedToken.MemberNo))
                 const memeberInfo = await dispatch(callGetMemberInfoAPI(decodedToken.MemberNo));
-                // const profileInfo = await dispatch(callGetPofileAPI(decodedToken.MemberNo));
-
                 if (employees.data && employees.data.name) {
                     // 'name' 속성에 접근할 수 있습니다.
-                    console.log("employeeList.name {}" ,employees.data.name);
+                    // console.log("employeeList.name {}" ,employees.data.name);
                     setMemberNo(employees.data.memberNo);
-                    console.log("employeeList.name {}" ,memberNo);
+                    // console.log("employeeList.name {}" ,memberNo);
                     // 이제 name을 사용할 수 있습니다.
                     setSelectedImage(employees.data.memberFile);
-                    console.log("employees.data.memberFile {}" ,employees.data.memberFile);
+                    // console.log("employees.data.memberFile {}" ,employees.data.memberFile);
                 }
-
-
             } catch (error) {
                 console.error('API 호출 오류:', error);
             }
@@ -87,12 +68,6 @@ const MainContentStore = () => {
                 </div>;
     }
 
-
-
-
-
-
-
     return (
         <>
             <div className={mainstyle.container}>
@@ -101,15 +76,12 @@ const MainContentStore = () => {
                         <div className={mainstyle.titleContainer}>
                             <div className={mainstyle.maintitle}>
                                 <div className={mainstyle.mainImg}>
-                                    {/*<img src={ selectedImage } alt="" className={mainstyle.empInfoImg}/>*/}
                                     {selectedImage? (
                                         <img
-                                            // src={ emp }
                                             className={mainstyle.empInfoImg}
                                             src={ selectedImage }
                                             alt="Selected"
                                         />):(<img
-                                        // src={ emp }
                                         className={mainstyle.empInfoImg}
                                         src={ logo }
                                         alt="Selected"
@@ -133,7 +105,6 @@ const MainContentStore = () => {
                     <div className={mainstyle.tempBox}>
                         <div className={mainstyle.timeAndDark}>
                             <div className={mainstyle.mainTime}>
-                                {/*<MdAccessTime />*/}
                                 <h3 style={{textAlign:"center", marginTop:'20px'}}>Today</h3>
                                 <h1>{ formatDate }</h1>
                                 <Clock/>
@@ -149,7 +120,6 @@ const MainContentStore = () => {
                         </div>
                         <div className={mainstyle.datelist}>
                             <div className={mainstyle.daliyTitle} style={{marginTop:"50px"}}>
-                                {/*<h1 style={{textAlign:"center", color:"#696767"}}>일정리스트</h1>*/}
                                 <div className={mainstyle.mainTodo}><Order /></div>
                             </div>
                         </div>
@@ -163,15 +133,11 @@ const MainContentStore = () => {
                         <div className={mainstyle.documentPart}>
                             <div className={mainstyle.docutitle}>
                                 <div><h1 style={{textAlign:"center", color:"#696767"}}>재고 관리</h1></div>
-                                {/*<div><NavLink to="/stock/myorderlist/detail"><MdKeyboardDoubleArrowRight/></NavLink></div>*/}
                             </div>
                             <div className={mainstyle.doculist} style={{gap:"0 80px"}}>
                                 <SalesChart />
-                                {/*<Statistics />*/}
                                 <MyStatistics/>
                             </div>
-
-                            {/*<div><ApprovalList /></div>*/}
                         </div>
                     </div>
                     <div className={mainstyle.tempBox}>
@@ -189,7 +155,6 @@ const MainContentStore = () => {
                     </div>
                 </div>
             </div>
-
         </>
     )
 }

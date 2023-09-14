@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {
-    MdOutlineToggleOn,
-    MdOutlineToggleOff,
     MdRemoveCircleOutline,
     MdOutlineCheckBoxOutlineBlank, MdOutlineCheckBox, MdModeEditOutline
 } from 'react-icons/md';
@@ -9,12 +7,10 @@ import styles from './TodoListItem.module.css';
 import cn from 'classnames';
 
 
-
 //  내가 입력한 할일 객체
 const TodoListItem = ({ todo, onRemove, onToggle,onUpdate }) => {
 
     const { todoNo, content , todoStatus, regDate } = todo;
-    // console.log("투두 리스트 :==========> {} ",todo);
 
     return (
         // cn은 [변경될 클래스명] : 조건 값 에 따라 본래 클래스 명이 변경된다!

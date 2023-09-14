@@ -14,12 +14,7 @@ import Spinner from "../mainpage/Spinner-1s-200px.gif";
 import {NavLink} from "react-router-dom";
 
 
-
-
 function MypageEmp() {
-
-
-
 
     // 비구조화 할당 문법을 활용한 css내부 값 추출하기 이렇게 쓰면 MypageCSS.mainContatiner를 안써도된다. )
     const { mainContainer, rightContainer, content, wrap , empInfoTitle, infoTitle,empInfoImg
@@ -33,9 +28,7 @@ function MypageEmp() {
     const dispatch = useDispatch();
     const employees = useSelector(state => state.myPageReducer);
     const accessToken = window.localStorage.getItem('accessToken');
-    // console.log("employeeList : " , employeeList);
     const decodedToken = accessToken ? decodeJwt(accessToken) : null;
-    const role = decodedToken ? decodedToken.auth : null;
 
     const [memberNo , setMemberNo] = useState(0);
     const [image, setImage] = useState('');
@@ -58,19 +51,16 @@ function MypageEmp() {
 
                 console.log("callGetMemberInfoAPI : {} " + callGetMemberInfoAPI(decodedToken.MemberNo))
                 const memeberInfo = await dispatch(callGetMemberInfoAPI(decodedToken.MemberNo));
-                // const profileInfo = await dispatch(callGetPofileAPI(decodedToken.MemberNo));
 
                 if (employees.data && employees.data.name) {
                     // 'name' 속성에 접근할 수 있습니다.
-                    console.log("employeeList.name {}" ,employees.data.name);
+                    // console.log("employeeList.name {}" ,employees.data.name);
                     setMemberNo(employees.data.memberNo);
-                    console.log("employeeList.name {}" ,memberNo);
+                    // console.log("employeeList.name {}" ,memberNo);
                     // 이제 name을 사용할 수 있습니다.
                     setSelectedImage(employees.data.memberFile);
-                    console.log("employees.data.memberFile {}" ,employees.data.memberFile);
+                    // console.log("employees.data.memberFile {}" ,employees.data.memberFile);
                 }
-
-
             } catch (error) {
                 console.error('API 호출 오류:', error);
             }
@@ -78,12 +68,8 @@ function MypageEmp() {
         fetchData();
     }, []);
 
-    // 생일입력 (Date에 현재 값 가지고 와야함.
-    const [birthDate,setBirthDate] =useState(new Date("1994/02/01"));
     //  모달 값
     const [modalIsOpen, setModalIsOpen] = useState(false);
-
-
 
 
     const onChangeInfo = () => {
@@ -92,9 +78,9 @@ function MypageEmp() {
             const formData = new FormData();
             formData.append('employeePhone', phone);
             formData.append('employeeEmail', email);
-            console.log("회원번호 {}" ,memberNo);
-            console.log("전화 {}" ,phone);
-            console.log("이메일 {}" ,email);
+            // console.log("회원번호 {}" ,memberNo);
+            // console.log("전화 {}" ,phone);
+            // console.log("이메일 {}" ,email);
             formData.append('memberNo', memberNo);
 
             if(image){
@@ -182,7 +168,6 @@ function MypageEmp() {
                                         <h1>사원 정보</h1>
                                     </div>
                                     <div>
-
                                         {/* 회원 사진  */}
                                         <div className={empImg}>
                                             <input type="file"
@@ -194,21 +179,18 @@ function MypageEmp() {
                                                 <img
                                                     id="file"
                                                     name="file"
-                                                    // src={ emp }
                                                     className={empInfoImg}
                                                     src={ selectedImage }
                                                     alt="Selected"
                                                 />):(<img
                                                 id="file"
                                                 name="file"
-                                                // src={ emp }
                                                 className={empInfoImg}
                                                 src={ logo }
                                                 alt="Selected"
                                             />)}
                                         </div>
                                     </div>
-                                    {/*<br/>*/}
                                     <small
                                         style={{color: "white", textAlign: "center"}}>가로200 세로 200<br/>이미지를 넣어주세요</small>
                                     <div className={empDepDate}>
@@ -223,7 +205,6 @@ function MypageEmp() {
                                     </div>
                                 </div>
                                 <div className={infoInput}>
-                                    {/*<form id="infoform" action="" method="post" onClick={ () => onChangeInfo(employees.data) }>*/}
                                         <div className={sections}>
                                             <div className={section1}>
                                                 <div className="empId">
@@ -244,7 +225,6 @@ function MypageEmp() {
                                                 </div>
                                                 <div className=" empInfo empEmail">
                                                     <label htmlFor="empEmail">이메일</label>
-
                                                     <input type="email" id="empEmail" name="empEmail" maxLength="20"
                                                            onChange={handleEmailChange} placeholder={employees.data.employeeEmail} style={{border: "none"}}/>
                                                     {email.length > 0 && <p className={`message ${isEmail ? 'success' : 'error'}`}style={isEmail? {fontSize:"0.7em",color:"green",fontWeight:"500" ,marginTop:"5px"} : {fontSize:"0.7em",color:"red",fontWeight:"500",marginTop:"5px"}}>{emailMessage}</p>}
@@ -260,7 +240,6 @@ function MypageEmp() {
                                                     <input type="text" id="empDep" name="empDep" maxLength="20"
                                                            readOnly value={employees.data.department}
                                                            style={{border: "none"}} readOnly/>
-
                                                 </div>
                                             </div>
                                             <div className={section2}>
@@ -295,16 +274,10 @@ function MypageEmp() {
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div className={udButton}>
                                             <div>
                                                 <button className={updateButton} type="button"
                                                         onClick={() => {
-                                                            // 필요한 입력 필드의 값을 확인
-                                                            // if (!phone || !email || !memberNo) {
-                                                            //     swal("필수 정보를 입력하세요.");
-                                                            //     return; // 필수 정보가 누락된 경우 함수를 중단
-                                                            // }
                                                             onChangeInfo(); // 필수 정보가 모두 입력된 경우에만 변경 요청 보내기
                                                         }}
                                                 >
@@ -312,7 +285,6 @@ function MypageEmp() {
                                                 </button>
                                             </div>
                                         </div>
-                                    {/*</form>*/}
                                 </div>
                             </div>
                         </div>
@@ -333,7 +305,6 @@ function MypageEmp() {
                         <UpdatePwApp/>
                     </Modal>
                 )}
-
             </>
         )
 }

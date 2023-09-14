@@ -23,14 +23,12 @@ function YourComponent() {
                             <th>거래번호</th>
                             <th>발주일</th>
                             <th>상태</th>
-
                         </tr>
                         <tr>
                             <td>1</td>
                             <td><NavLink to="/stock/myorderlist/detail">문서제목1</NavLink></td>
                             <td>2023-08-01</td>
                             <td><button>대기</button></td>
-
                         </tr>
                         <tr>
                             <td>2</td>

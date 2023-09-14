@@ -70,7 +70,7 @@ function DocuList3() {
                         {filteredBoardData.slice(0, 2).map((item, index) => (
                             <tr key={index} className={TableCSS.content} >
                                 <td>{index + 1}</td>
-                                <td style={{width:"20%", height:"10%"}}><strong><button style={{backgroundColor: getBackgroundColor(item.department)}}>{item.department} </button></strong></td>
+                                {/*<td style={{width:"20%", height:"10%"}}><strong><button style={{backgroundColor: getBackgroundColor(item.department)}}>{item.department} </button></strong></td>*/}
                                 <td> <Link to={`/board/detail/${item.boardNo}`}>{item.title}</Link></td>
                                 <td>{item.regist}</td>
                                 <td>{item.employeeName} {item.position}</td>
