@@ -63,13 +63,6 @@ const SalesChart = () => {
 
     return (
         <>
-            {/*<ApexCharts*/}
-            {/*    options={chartData.options}*/}
-            {/*    series={chartData.series}*/}
-            {/*    type='line' // 오타 수정: 'typs' -> 'type'*/}
-            {/*    width={700}*/}
-            {/*    height={400}*/}
-            {/*/>*/}
             <ApexCharts
                 options={chartData.options}
                 series={chartData.series}

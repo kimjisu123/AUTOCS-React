@@ -158,15 +158,15 @@ export const callPostPwdCheckAPI = (memberNo,checkPw) => {
             .then(() => {
                 Swal.fire({
                     icon: 'success',
-                    title: '매장 정보 변경',
-                    text: '매장정보가 변경되었습니다.',
+                    title: '회원 정보 변경',
+                    text: '회원정보가 변경되었습니다.',
                 })
             })
             .catch((error) => {
                 Swal.fire({
                     icon: 'error',
-                    title: '매장 정보 변경.',
-                    text: '매장 정보 변경에 실패했습니다.',
+                    title: '회원 정보 변경.',
+                    text: '회원 정보 변경에 실패했습니다.',
                 })
                 console.error('Error:', error);
             });

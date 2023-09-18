@@ -11,7 +11,6 @@ import {
     callUpdateToggleAPI
 } from "../../apis/TodoAPICalls";
 import {decodeJwt} from "../../util/tokenUtils";
-import Modal from "react-modal";
 import swal from 'sweetalert';
 
 
@@ -23,7 +22,6 @@ const TodoApp = ( ) => {
     const dispatch = useDispatch();
     const memberTodoList = useSelector(state => state.todoReducer);
     const [todos, setTodos ] = useState([{
-
         todoNo: "",
         content: "",
         todoStatus: "",
@@ -32,10 +30,10 @@ const TodoApp = ( ) => {
     }]);
 
     useEffect(() => {
-        const decodedToken = decodeJwt(
-            window.localStorage.getItem('accessToken')
-        );
-        if (decodedToken) {
+        // const decodedToken = decodeJwt(
+        //     window.localStorage.getItem('accessToken')
+        // );
+        if (decodedToken ,memberTodoList) {
             dispatch(callGetMemberTodoAPI(decodedToken.MemberNo));
         }
         console.log('memberTodoList ', memberTodoList);
@@ -67,7 +65,6 @@ const TodoApp = ( ) => {
 
                 // Todo 추가 API 호출
                 dispatch(callInsertTodoAPI(todoData));
-
                 setTodos({
                     ...memberTodoList,
                     memberNo: decodedToken.MemberNo,

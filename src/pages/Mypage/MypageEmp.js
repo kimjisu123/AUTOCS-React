@@ -113,6 +113,7 @@ function MypageEmp() {
     // 휴대전화 유효성 검사 및 전달
     const handlePhoneChange = useCallback((e) => {
         const phoneExp = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/
+
         const phoneCurrent = e.target.value
         setPhone(phoneCurrent);
         if (!phoneExp.test(phoneCurrent)) {
