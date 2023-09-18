@@ -5,7 +5,7 @@ import { decodeJwt } from '../util/tokenUtils';
 
 //영업점 신청 폼 전송
 export const callApplyMarketAPI = ({ formData }) => {
-    const requestURL = 'http://localhost:8080/market/applyMarket';
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/market/applyMarket`;
 
     console.log("formData=========>" + formData);
     for (const entry of formData.entries()) {
@@ -40,7 +40,7 @@ export const callApplyMarketAPI = ({ formData }) => {
 
     //상태 W인 신청폼 조회
 export const callGetMarketStateWAPI = () => {
-        const requestURL = 'http://localhost:8080/market/getMarketStateW';
+        const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/market/getMarketStateW`;
 
         return async (dispatch) => {
             const result = await fetch(requestURL, {
@@ -58,7 +58,7 @@ export const callGetMarketStateWAPI = () => {
 
 //영업점 등록 및 아이디/비번 생성
 export const callInsertMarketAPI = ({ infoToPass }) => {
-    const requestURL = 'http://localhost:8080/market/insertMarket';
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/market/insertMarket`;
 
     return fetch(requestURL, {
         method: 'POST',
@@ -86,7 +86,7 @@ export const callInsertMarketAPI = ({ infoToPass }) => {
 
 // 영업점로그인
 export const callLoginGOAPI = ({ loginInfo, rememberAccount }) => {
-    const requestURL = 'http://localhost:8080/auth/login2';
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/auth/login2`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -139,7 +139,7 @@ export const callLoginGOAPI = ({ loginInfo, rememberAccount }) => {
 
 //영업점 계정 비활성화 폼 전송
 export const callStoreOutAPI = ({ formData }) => {
-    const requestURL = 'http://localhost:8080/market/StoreOut';
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/market/StoreOut`;
 
     console.log("formData=========>" + formData);
     for (const entry of formData.entries()) {
@@ -175,7 +175,7 @@ export const callStoreOutAPI = ({ formData }) => {
 
 //상태 W인 신청폼 조회(Out)
 export const callGetOutMarketStateWAPI = () => {
-    const requestURL = 'http://localhost:8080/market/getOutMarketStateW';
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/market/getOutMarketStateW`;
 
     return async (dispatch) => {
         const result = await fetch(requestURL, {
@@ -195,7 +195,7 @@ export const callGetOutMarketStateWAPI = () => {
 export const callOutGoMarketAPI = ({ infoToPass }) => {
     const { fileNo, license, no, email } = infoToPass; // 구조 분해 할당을 통해 변수 추출
 
-    const requestURL = `http://localhost:8080/market/StoreOutGOGO?fileNo=${fileNo}&license=${license}&no=${no}&email=${email}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/market/StoreOutGOGO?fileNo=${fileNo}&license=${license}&no=${no}&email=${email}`;
 
     console.log("infoToPass=========> {}",  infoToPass);
 

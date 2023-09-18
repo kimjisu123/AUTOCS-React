@@ -10,7 +10,7 @@ import {DELETE_SELECT_MAIL} from "../modules/MailModule";
 
 // 투두 조회
 export const callGetTodoAPI = () => {
-    const requestURL = 'http://localhost:8080/todo/getTodolist';
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/todo/getTodolist`;
 
     return async (dispatch) => {
         const result = await fetch(requestURL, {
@@ -29,7 +29,7 @@ export const callGetTodoAPI = () => {
 
 // 회원 한명 투두목록 조회
 export const callGetMemberTodoAPI = (memberNo) => {
-    const requestURL = `http://localhost:8080/todo/${memberNo}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/todo/${memberNo}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -48,7 +48,7 @@ export const callGetMemberTodoAPI = (memberNo) => {
 // 투두 등록
 export const callInsertTodoAPI = (todoData) => {
     console.info("초기값3 {}",todoData);
-    const requestURL = 'http://localhost:8080/todo/insertTodo';
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/todo/insertTodo`;
     console.info("초기값4 {}",todoData);
 
     return async (dispatch) => {
@@ -78,7 +78,7 @@ export const callInsertTodoAPI = (todoData) => {
 
 // 투두 삭제
 export const callDeleteTodoAPI = (todo) =>{
-    const requestURL = 'http://localhost:8080/todo/deleteTodo'
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/todo/deleteTodo`
     console.info("[callDeleteTodoAPI]삭제값 {}",todo);
 
     return async (dispatch, getState) => {
@@ -100,7 +100,7 @@ export const callDeleteTodoAPI = (todo) =>{
 export const callUpdateToggleAPI = (todoData) => {
 
     console.info("callUpdateToggleAPI 초기값3 {}",todoData);
-    const requestURL = 'http://localhost:8080/todo/toggle';
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/todo/toggle`;
     console.info(" callUpdateToggleAPI 초기값4 {}",todoData);
 
     return async (dispatch) => {
@@ -131,7 +131,7 @@ export const callUpdateToggleAPI = (todoData) => {
 export const callUpdateTodoAPI = (todoData) => {
 
     console.info("callUpdateTodoAPI 초기값3 {}",todoData);
-    const requestURL = 'http://localhost:8080/todo/updateTodo';
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/todo/updateTodo`;
     console.info(" callUpdateTodoAPI 초기값4 {}",todoData);
 
     return async (dispatch) => {

@@ -7,7 +7,7 @@ import {callLogoutAPI} from "./MemberAPICalls";
 
 // 한명의 회원정보 확인하기 API
 export const callGetMemberInfoAPI = (memberNo) => {
-    const requestURL = `http://localhost:8080/member/${memberNo}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/member/${memberNo}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -26,7 +26,7 @@ export const callGetMemberInfoAPI = (memberNo) => {
 
 // 매장 정보 확인하기 API
 export const callGetSToreInfoAPI = (memberNo) => {
-    const requestURL = `http://localhost:8080/member/store/${memberNo}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/member/store/${memberNo}`;
 
     console.log('요청 URL:', requestURL); // URL 출력
     return async (dispatch, getState) => {
@@ -49,7 +49,7 @@ export const callGetSToreInfoAPI = (memberNo) => {
 // 비밀번호 확인 API
 export const callPostPwdCheckAPI = (memberNo,checkPw) => {
 
-    const requestURL = `http://localhost:8080/mypage/checkpwd?memberNo=${memberNo}&checkpw=${checkPw}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/mypage/checkpwd?memberNo=${memberNo}&checkpw=${checkPw}`;
     console.log('패스워드 확인 API진입? >>>>>>');
     console.log('패스워드 >>>>>>',checkPw);
     console.log('멤버번호 >>>>>>',memberNo);
@@ -82,7 +82,7 @@ export const callPostPwdCheckAPI = (memberNo,checkPw) => {
 // 비밀번호 변경 API
     export const callPutChangePwdAPI = (memberNo,newPwd) => {
 
-        const requestURL = `http://localhost:8080/mypage/changepwd`;
+        const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/mypage/changepwd`;
         console.log('새  패스워드 변경  API진입? >>>>>>');
         console.log('새 패스워드 >>>>>>', newPwd);
         console.log('멤버번호 >>>>>>', memberNo);
@@ -132,7 +132,7 @@ export const callPostPwdCheckAPI = (memberNo,checkPw) => {
 
     // 회원정보 변경 API
     export const callChangeInfoAPI = ({formData}) =>{
-        const requestURL = 'http://localhost:8080/mypage/updatememberinfo';
+        const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/mypage/updatememberinfo`;
 
         console.log("formData=========>" + formData);
 
@@ -174,7 +174,7 @@ export const callPostPwdCheckAPI = (memberNo,checkPw) => {
 
     // 한명의 회원정보 확인하기 API
     export const callGetPofileAPI = (memberNo) => {
-        const requestURL = `http://localhost:8080/mypage/img/${memberNo}`;
+        const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/mypage/img/${memberNo}`;
 
         return async (dispatch, getState) => {
             const result = await fetch(requestURL, {
@@ -195,7 +195,7 @@ export const callPostPwdCheckAPI = (memberNo,checkPw) => {
 // 매장 정보 변경 API
 export const callPutSToreInfoAPI = ({formData}) => {
 
-    const requestURL = `http://localhost:8080/mypage/updatestoreinfo`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/mypage/updatestoreinfo`;
     console.log('새  매장정보 변경  API진입? >>>>>>');
     console.log("formData=========>" + formData);
 

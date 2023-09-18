@@ -4,7 +4,7 @@ const accessToken = window.localStorage.getItem('accessToken');
 const decodedToken = accessToken ? decodeJwt(accessToken) : null;
 
 export const callGetWorkStatusAPI = () => {
-    const requestURL = `http://localhost:8080/workStatus/${decodedToken.EmployeeNo}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/workStatus/${decodedToken.EmployeeNo}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -19,7 +19,7 @@ export const callGetWorkStatusAPI = () => {
 };
 
 export const callPostAttendanceAPI = () => {
-    const requestURL = `http://localhost:8080/attendance/${decodedToken.EmployeeNo}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/attendance/${decodedToken.EmployeeNo}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -34,7 +34,7 @@ export const callPostAttendanceAPI = () => {
 };
 
 export const callPutQuittingAPI = () => {
-    const requestURL = `http://localhost:8080/quitting/${decodedToken.EmployeeNo}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/quitting/${decodedToken.EmployeeNo}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {

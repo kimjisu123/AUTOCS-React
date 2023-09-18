@@ -54,9 +54,9 @@ export const callProductListAPI = ({currentPage}) => {
     let requestURL;
 
     if(currentPage !== undefined || currentPage !== null){
-        requestURL = `http://localhost:8080/stock/productdelete?offset=${currentPage}`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/productdelete?offset=${currentPage}`;
     }else {
-        requestURL = `http://localhost:8080/stock/productdelete`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/productdelete`;
     }
 
     console.log('[StockAPICalls] requestURL : ', requestURL);
@@ -86,10 +86,10 @@ export const callProductListByNameAPI = ({currentPage, s}) => {
     let requestURL;
 
     if(currentPage !== undefined || currentPage !== null){
-        requestURL = `http://localhost:8080/ListPopup?offset=${currentPage}&s=${s}`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/ListPopup?offset=${currentPage}&s=${s}`;
         console.log(s)
     }else {
-        requestURL = `http://localhost:8080/ListPopup`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/ListPopup`;
     }
 
     return async (dispatch, getState) => {
@@ -111,7 +111,7 @@ export const callProductListByNameAPI = ({currentPage, s}) => {
 
 /* 물품 등록 */
 export const callProductRegistAPI = ({form}) => {
-    const requestURL = `http://localhost:8080/stock/productregist`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/productregist`;
 
     return async (dispatch, getState) => {
 
@@ -132,7 +132,7 @@ export const callProductRegistAPI = ({form}) => {
 /* 물품 수정 */
 export const callProductUpdateAPI = ({form}) => {
 
-    const requestURL = `http://localhost:8080/stock/productdelete`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/productdelete`;
 
     return async (dispatch, getState) => {
 
@@ -153,7 +153,7 @@ export const callProductUpdateAPI = ({form}) => {
 /* 카테고리 조회 */
 export const callCategoryListAPI = () => {
     let requestURL;
-    requestURL = `http://localhost:8080/stock/category/all`;
+    requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/category/all`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -175,9 +175,9 @@ export const callCategoryListWithPagingAPI = ({currentPage}) => {
 
     let requestURL;
     if(currentPage !== undefined || currentPage !== null){
-        requestURL = `http://localhost:8080/stock/category?offset=${currentPage}`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/category?offset=${currentPage}`;
     }else {
-        requestURL = `http://localhost:8080/stock/category`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/category`;
     }
     return async (dispatch, getState) => {
 
@@ -200,7 +200,7 @@ export const callCategoryListWithPagingAPI = ({currentPage}) => {
 export const callCategoryRegistAPI = ({form}) => {
     console.log('[StockAPICalls] callCategoryInsertAPI Call');
 
-    const requestURL = `http://localhost:8080/stock/category`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/category`;
 
     return async (dispatch, getState) => {
 
@@ -224,7 +224,7 @@ export const callCategoryRegistAPI = ({form}) => {
 export const callCategoryUpdateAPI = ({form}) => {
     console.log('[StockAPICalls] callCategoryUpdateAPI Call');
 
-    const requestURL = `http://localhost:8080/stock/category`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/category`;
 
     return async (dispatch, getState) => {
 
@@ -247,7 +247,7 @@ export const callCategoryUpdateAPI = ({form}) => {
 /* 규격 조회 */
 export const callStandardListAPI = () => {
     let requestURL;
-    requestURL = `http://localhost:8080/stock/standard/all`;
+    requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/standard/all`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -269,9 +269,9 @@ export const callStandardListWithPagingAPI = ({currentPage}) => {
 
     let requestURL;
     if(currentPage !== undefined || currentPage !== null){
-        requestURL = `http://localhost:8080/stock/standard?offset=${currentPage}`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/standard?offset=${currentPage}`;
     }else {
-        requestURL = `http://localhost:8080/stock/standard`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/standard`;
     }
     return async (dispatch, getState) => {
 
@@ -293,7 +293,7 @@ export const callStandardListWithPagingAPI = ({currentPage}) => {
 /* 규격 등록 */
 export const callStandardRegistAPI = ({form}) => {
 
-    const requestURL = `http://localhost:8080/stock/standard`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/standard`;
 
     return async (dispatch, getState) => {
 
@@ -314,7 +314,7 @@ export const callStandardRegistAPI = ({form}) => {
 /* 규격 수정 */
 export const callStandardUpdateAPI = ({form}) => {
 
-    const requestURL = `http://localhost:8080/stock/standard`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/standard`;
 
     return async (dispatch, getState) => {
 
@@ -335,7 +335,7 @@ export const callStandardUpdateAPI = ({form}) => {
 /* 단위 조회 */
 export const callUnitListAPI = () => {
     let requestURL;
-    requestURL = `http://localhost:8080/stock/unit/all`;
+    requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/unit/all`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -357,9 +357,9 @@ export const callUnitListWithPagingAPI = ({currentPage}) => {
 
     let requestURL;
     if(currentPage !== undefined || currentPage !== null){
-        requestURL = `http://localhost:8080/stock/unit?offset=${currentPage}`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/unit?offset=${currentPage}`;
     }else {
-        requestURL = `http://localhost:8080/stock/unit`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/unit`;
     }
     return async (dispatch, getState) => {
 
@@ -381,7 +381,7 @@ export const callUnitListWithPagingAPI = ({currentPage}) => {
 /* 단위 등록 */
 export const callUnitRegistAPI = ({form}) => {
 
-    const requestURL = `http://localhost:8080/stock/unit`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/unit`;
 
     return async (dispatch, getState) => {
 
@@ -402,7 +402,7 @@ export const callUnitRegistAPI = ({form}) => {
 /* 단위 수정 */
 export const callUnitUpdateAPI = ({form}) => {
 
-    const requestURL = `http://localhost:8080/stock/unit`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/unit`;
 
     return async (dispatch, getState) => {
 
@@ -422,7 +422,7 @@ export const callUnitUpdateAPI = ({form}) => {
 
 /* 입출고 등록 */
 export const callIoRegistAPI = ({form}) => {
-    const requestURL = `http://localhost:8080/stock/stockio`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/stockio`;
 
     return async (dispatch, getState) => {
 
@@ -445,9 +445,9 @@ export const callIoListAPI = ({currentPage}) => {
 
     let requestURL;
     if(currentPage !== undefined || currentPage !== null){
-        requestURL = `http://localhost:8080/stock/stockio?offset=${currentPage}`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/stockio?offset=${currentPage}`;
     }else {
-        requestURL = `http://localhost:8080/stock/stockio`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/stockio`;
     }
     return async (dispatch, getState) => {
 
@@ -473,9 +473,9 @@ export const callIOListWithGroupingAPI = ({currentPage, s, startDate, endDate}) 
     let requestURL;
 
     if(currentPage !== undefined || currentPage !== null){
-        requestURL = `http://localhost:8080/stock/check?offset=${currentPage}&s=${s}&startDate=${startDate}&endDate=${endDate}`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/check?offset=${currentPage}&s=${s}&startDate=${startDate}&endDate=${endDate}`;
     }else {
-        requestURL = `http://localhost:8080/stock/check`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/check`;
     }
 
     return async (dispatch, getState) => {
@@ -501,9 +501,9 @@ export const callOrderListAPI = ({currentPage}) => {
     let requestURL;
 
     if(currentPage !== undefined || currentPage !== null){
-        requestURL = `http://localhost:8080/stock/order?offset=${currentPage}`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/order?offset=${currentPage}`;
     }else {
-        requestURL = `http://localhost:8080/stock/order`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/order`;
     }
 
     console.log('[StockAPICalls] requestURL : ', requestURL);
@@ -530,7 +530,7 @@ export const callLastOrderAPI = () => {
 
     let requestURL;
 
-    requestURL = `http://localhost:8080/stock/order/findLast`;
+    requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/order/findLast`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -548,7 +548,7 @@ export const callLastOrderAPI = () => {
 }
 /* 주문번호 등록 */
 export const callOrderRegistAPI = ({form}) => {
-    const requestURL = `http://localhost:8080/stock/order`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/order`;
 
     return async (dispatch, getState) => {
 
@@ -569,7 +569,7 @@ export const callOrderRegistAPI = ({form}) => {
 /* 주문번호 수정 */
 export const callOrderUpdateAPI = ({form}) => {
 
-    const requestURL = `http://localhost:8080/stock/order/update`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/order/update`;
 
     return async (dispatch, getState) => {
 
@@ -590,7 +590,7 @@ export const callOrderUpdateAPI = ({form}) => {
 
 /* 주문물품 등록 */
 export const callOrderProductRegistAPI = ({form}) => {
-    const requestURL = `http://localhost:8080/stock/order/product`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/order/product`;
 
     return async (dispatch, getState) => {
 
@@ -615,10 +615,10 @@ export const callOrderProductListAPI = ({currentPage, stat, search, startDate, e
     let requestURL;
 
     if(currentPage !== undefined || currentPage !== null){
-        requestURL = `http://localhost:8080/stock/orderlist?offset=${currentPage}&status=${stat}&search=${search}&startDate=${startDate}&endDate=${endDate}`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/orderlist?offset=${currentPage}&status=${stat}&search=${search}&startDate=${startDate}&endDate=${endDate}`;
         // requestURL = `http://localhost:8080/stock/orderlist?offset=${currentPage}&status=${stat}&search=${search}`;
     }else {
-        requestURL = `http://localhost:8080/stock/orderlist`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/orderlist`;
     }
 
     console.log('[StockAPICalls] requestURL : ', requestURL);
@@ -643,7 +643,7 @@ export const callOrderProductListAPI = ({currentPage, stat, search, startDate, e
 /* 주문물품 수정 */
 export const callOrderProductUpdateAPI = ({form}) => {
     console.log('업데이트')
-    const requestURL = `http://localhost:8080/stock/orderlist`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/orderlist`;
 
     return async (dispatch, getState) => {
 
@@ -667,9 +667,9 @@ export const callMyOrderListAPI = ({currentPage, store, startDate, endDate}) => 
     let requestURL;
 
     if(currentPage !== undefined || currentPage !== null){
-        requestURL = `http://localhost:8080/stock/myorderlist?offset=${currentPage}&store=${store}&startDate=${startDate}&endDate=${endDate}`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/myorderlist?offset=${currentPage}&store=${store}&startDate=${startDate}&endDate=${endDate}`;
     }else {
-        requestURL = `http://localhost:8080/stock/myorderlist`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/myorderlist`;
     }
 
     return async (dispatch, getState) => {
@@ -696,10 +696,10 @@ export const callMyOrderProductListAPI = ({currentPage, myOrderNo}) => {
 
     if(currentPage !== undefined || currentPage !== null){
         // requestURL = `http://localhost:8080/stock/myorderlist/detail?offset=${currentPage}&myOrderNo=${myOrderNo}`;
-        requestURL = `http://localhost:8080/stock/myorderlist/detail?myOrderNo=${myOrderNo}&offset=${currentPage}`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/myorderlist/detail?myOrderNo=${myOrderNo}&offset=${currentPage}`;
 
     }else {
-        requestURL = `http://localhost:8080/stock/myorderlist/detail?myOrderNo${myOrderNo}`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/myorderlist/detail?myOrderNo${myOrderNo}`;
     }
 
     return async (dispatch, getState) => {
@@ -724,7 +724,7 @@ export const callMyOrderProductForRefundAPI = ({myOrderProductNo}) => {
 
     let requestURL;
 
-        requestURL = `http://localhost:8080/stock/refund?myOrderProductNo=${myOrderProductNo}`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/refund?myOrderProductNo=${myOrderProductNo}`;
 
     return async (dispatch, getState) => {
 
@@ -745,7 +745,7 @@ export const callMyOrderProductForRefundAPI = ({myOrderProductNo}) => {
 
 /* 계산서 등록 */
 export const callBillRegistAPI = ({form}) => {
-    const requestURL = `http://localhost:8080/stock/myorderlist`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/myorderlist`;
 
     return async (dispatch, getState) => {
 
@@ -768,9 +768,9 @@ export const callBillListWithPagingAPI = ({currentPage, store, startDate, endDat
 
     let requestURL;
     if(currentPage !== undefined || currentPage !== null){
-        requestURL = `http://localhost:8080/stock/bill?offset=${currentPage}&store=${store}&startDate=${startDate}&endDate=${endDate}`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/bill?offset=${currentPage}&store=${store}&startDate=${startDate}&endDate=${endDate}`;
     }else {
-        requestURL = `http://localhost:8080/stock/bill`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/bill`;
     }
     return async (dispatch, getState) => {
 
@@ -794,7 +794,7 @@ export const callBillAPI = ({orderNo}) => {
 console.log('호출')
     let requestURL;
 
-    requestURL = `http://localhost:8080/stock/bill/detail?orderNo=${orderNo}`;
+    requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/bill/detail?orderNo=${orderNo}`;
 
     return async (dispatch, getState) => {
 
@@ -819,7 +819,7 @@ export const callMyOrderProductListForBillAPI = ({myOrderNo}) => {
 
     let requestURL;
 
-    requestURL = `http://localhost:8080/stock/bill/detail/order?myOrderNo=${myOrderNo}`;
+    requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/bill/detail/order?myOrderNo=${myOrderNo}`;
 
     return async (dispatch, getState) => {
 
@@ -844,9 +844,9 @@ export const callMyBillListWithPagingAPI = ({currentPage, store, startDate, endD
 
     let requestURL;
     if(currentPage !== undefined || currentPage !== null){
-        requestURL = `http://localhost:8080/stock/mybill?offset=${currentPage}&store=${store}&startDate=${startDate}&endDate=${endDate}`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/mybill?offset=${currentPage}&store=${store}&startDate=${startDate}&endDate=${endDate}`;
     }else {
-        requestURL = `http://localhost:8080/stock/mybill`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/mybill`;
     }
     return async (dispatch, getState) => {
 
@@ -870,7 +870,7 @@ export const callMyBillListWithPagingAPI = ({currentPage, store, startDate, endD
 export const callStatisticsAPI = ({s, startDate, endDate}) => {
 
     let requestURL;
-        requestURL = `http://localhost:8080/stock/statistics?s=${s}&startDate=${startDate}&endDate=${endDate}`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/statistics?s=${s}&startDate=${startDate}&endDate=${endDate}`;
 
 
     return async (dispatch, getState) => {
@@ -895,7 +895,7 @@ export const callStatisticsAPI = ({s, startDate, endDate}) => {
 export const callMyStatisticsAPI = ({store, s, startDate, endDate}) => {
 
     let requestURL;
-    requestURL = `http://localhost:8080/stock/statistics?store=${store}&s=${s}&startDate=${startDate}&endDate=${endDate}`;
+    requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/stock/statistics?store=${store}&s=${s}&startDate=${startDate}&endDate=${endDate}`;
 
 
     return async (dispatch, getState) => {

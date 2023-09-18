@@ -10,7 +10,7 @@ import { decodeJwt } from '../util/tokenUtils';
 
 //직원 등록 및 아이디/비번 생성
 export const callInsertEmployeeAPI = ({ infoToPass }) => {
-    const requestURL = 'http://localhost:8080/member/insertEmployee';
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/member/insertEmployee`;
 
     return fetch(requestURL, {
         method: 'POST',
@@ -38,7 +38,7 @@ export const callInsertEmployeeAPI = ({ infoToPass }) => {
 
 //직원 조회
 export const callGetEmployeeAPI = () => {
-    const requestURL = 'http://localhost:8080/member/getEmployee';
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/member/getEmployee`;
 
     return async (dispatch) => {
         const result = await fetch(requestURL, {
@@ -56,7 +56,7 @@ export const callGetEmployeeAPI = () => {
 
 // 로그인
 export const callLoginAPI = ({ loginInfo, rememberAccount }) => {
-    const requestURL = 'http://localhost:8080/auth/login';
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/auth/login`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -120,7 +120,7 @@ export const callLogoutAPI = () => {
 }
 
 export const callSelectEmployeeAPI = () => {
-    const requestURL = 'http://localhost:8080/member/selectEmployee';
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/member/selectEmployee`;
 
     return async (dispatch) => {
         const result = await fetch(requestURL, {
@@ -140,7 +140,7 @@ export const callEmployeeFindIdAPI = (findIdInfo) => {
     const { name, employeeEmail } = findIdInfo; // 구조 분해 할당을 통해 변수 추출
 
     // URL에 파라미터를 포함하여 요청을 생성
-    const requestURL = `http://localhost:8080/member/findEmployeeId?name=${name}&employeeEmail=${employeeEmail}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/member/findEmployeeId?name=${name}&employeeEmail=${employeeEmail}`;
 
     console.log("findIdInfo>>>>>>>>|||||||||||" + JSON.stringify(findIdInfo));
 
@@ -175,7 +175,7 @@ export const callStoreFindIdAPI = (findIdInfo) => {
     const email = employeeEmail;
 
     // URL에 파라미터를 포함하여 요청을 생성
-    const requestURL = `http://localhost:8080/market/findStoreId?name=${name}&email=${email}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/market/findStoreId?name=${name}&email=${email}`;
 
     return async (dispatch) => {
         try {
@@ -206,7 +206,7 @@ export const callEmployeeFindPwdAPI = (findIdInfo) => {
     const { name, id, employeeEmail } = findIdInfo; // 구조 분해 할당을 통해 변수 추출
 
     // URL에 파라미터를 포함하여 요청을 생성
-    const requestURL = `http://localhost:8080/member/findEmployeePwd?name=${name}&id=${id}&employeeEmail=${employeeEmail}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/member/findEmployeePwd?name=${name}&id=${id}&employeeEmail=${employeeEmail}`;
 
     console.log("findIdInfo>>>>>>>>|||||||||||" + JSON.stringify(findIdInfo));
 
@@ -239,7 +239,7 @@ export const callStoreFindPwdAPI = (findIdInfo) => {
     const { name, id, employeeEmail } = findIdInfo; // 구조 분해 할당을 통해 변수 추출
 
     // URL에 파라미터를 포함하여 요청을 생성
-    const requestURL = `http://localhost:8080/market/findStorePwd?name=${name}&id=${id}&employeeEmail=${employeeEmail}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/market/findStorePwd?name=${name}&id=${id}&employeeEmail=${employeeEmail}`;
 
     return async (dispatch) => {
         try {
@@ -272,7 +272,7 @@ export const callChangePwdAPI = (changInfo) => {
     console.log("changInfo>>>>>>>>|||||||||||" + JSON.stringify(changInfo));
 
     // URL에 파라미터를 포함하여 요청을 생성
-    const requestURL = `http://localhost:8080/auth/ChangePwd?Id=${Id}&email=${email}&name=${name}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/auth/ChangePwd?Id=${Id}&email=${email}&name=${name}`;
 
     return async () => {
         try {
@@ -298,7 +298,7 @@ export const callChangePwdAPI = (changInfo) => {
 
 //비활성화(직원)
 export const callEmployeeOutAPI = (outInfo) => {
-    const requestURL = 'http://localhost:8080/member/employeeOut';
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/member/employeeOut`;
     console.log("outInfo>>>>>>>>>>>>>>>>>>", outInfo)
 
     return async (dispatch) => {
@@ -339,7 +339,7 @@ export const callEmployeeOutAPI = (outInfo) => {
 
 // 비활성화(직원) 진짜 하러 가기
 export const callOutEmployeeOkAPI = ({ infoToPass }) => {
-    const requestURL = 'http://localhost:8080/member/employeeOutGo';
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/member/employeeOutGo`;
 
     return fetch(requestURL, {
         method: 'POST',
