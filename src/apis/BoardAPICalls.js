@@ -3,7 +3,7 @@ import { GET_COMMENT } from "../modules/CommentModule";
 
 // 모든 게시물 불러오기
 export const callGetBoardAllAPI = () => {
-    const requestURL = 'http://localhost:8080/board/getBoardAll';
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/board/getBoardAll`;
 
     return async (dispatch) => {
         const result = await fetch(requestURL, {
@@ -21,7 +21,7 @@ export const callGetBoardAllAPI = () => {
 
 // 게시판 insert
 export const callWritingInsertAPI = ({ formData }) => {
-    const requestURL = 'http://localhost:8080/board/writingGo';
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/board/writingGo`;
 
     console.log("formData=========>" + formData);
     for (const entry of formData.entries()) {
@@ -55,7 +55,7 @@ export const callWritingInsertAPI = ({ formData }) => {
 
 // 게시판 update
 export const callUpdateBoardAPI = ({ formData }) => {
-    const requestURL = 'http://localhost:8080/board/updateBoard';
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/board/updateBoard`;
 
     console.log("formData=========>" + formData);
     for (const entry of formData.entries()) {
@@ -91,7 +91,7 @@ export const callUpdateBoardAPI = ({ formData }) => {
 export const callDeleteBoardAPI = (boardNo) => {
 
     console.log("boardNo=========>" + boardNo);
-    const requestURL = `http://localhost:8080/board/deleteBoard?boardNo=${boardNo}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/board/deleteBoard?boardNo=${boardNo}`;
 
     return fetch(requestURL, {
         method: 'POST',
@@ -119,7 +119,7 @@ export const callDeleteBoardAPI = (boardNo) => {
 // 특정 게시물 불러오기
 export const callFindBoardNumAPI = (boardNoAsInt) => {
     const boardNo = boardNoAsInt;
-    const requestURL = `http://localhost:8080/board/getBoardNum?boardNo=${boardNo}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/board/getBoardNum?boardNo=${boardNo}`;
 
     return async (dispatch) => {
         const result = await fetch(requestURL, {
@@ -137,7 +137,7 @@ export const callFindBoardNumAPI = (boardNoAsInt) => {
 
 // 댓글 작성
 export const callCommentAPI = ({ formData }) => {
-    const requestURL = 'http://localhost:8080/comment/commentInsert';
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/comment/commentInsert`;
 
     console.log("formData=========>" + formData);
     for (const entry of formData.entries()) {
@@ -171,7 +171,7 @@ export const callCommentAPI = ({ formData }) => {
 
 // 특정 게시물의 댓글 불러오기
 export const callFindCommentAPI = () => {
-    const requestURL = 'http://localhost:8080/comment/getBoardCommentAll';
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/comment/getBoardCommentAll`;
 
     return async (dispatch) => {
         const result = await fetch(requestURL, {
@@ -196,7 +196,7 @@ export const callUpdateCommentAPI = ({ formData }) => {
     }
     console.log("updateComment======================");
 
-    const requestURL = 'http://localhost:8080/comment/updateComment';
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/comment/updateComment`;
 
     return fetch(requestURL, {
         method: 'POST',
@@ -227,7 +227,7 @@ export const callDeleteCommentAPI = ( commentToDelete ) => {
 
     console.log("commentToDelete=========>" + commentToDelete);
     const commentNo = commentToDelete;
-    const requestURL = `http://localhost:8080/comment/deleteComment?commentNo=${commentNo}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/comment/deleteComment?commentNo=${commentNo}`;
 
     return fetch(requestURL, {
         method: 'POST',
@@ -255,7 +255,7 @@ export const callDeleteCommentAPI = ( commentToDelete ) => {
 // 특정 멤버 게시물 불러오기
 export const callGetEmployeeBoardAllAPI = (memberNo) => {
     const refMemberNo = memberNo;
-    const requestURL = `http://localhost:8080/board/getMyBoarEmployee?refMemberNo=${refMemberNo}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/board/getMyBoarEmployee?refMemberNo=${refMemberNo}`;
 
     return async (dispatch) => {
         const result = await fetch(requestURL, {

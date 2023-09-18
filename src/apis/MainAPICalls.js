@@ -4,7 +4,7 @@
 import {GET_DAILY} from "../modules/MainModule";
 
 export const callGetDailyMainAPI = (memberNo) => {
-    const requestURL = `http://localhost:8080/mainContent/shortDaily/${memberNo}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/mainContent/shortDaily/${memberNo}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {

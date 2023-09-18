@@ -5,7 +5,7 @@ import
 ,GET_SERIVCE,GET_HEAD_OFFICE} from '../modules/DepartmentModule'
 
 export const callGetDepartmentAPI = () => {
-    const requestURL = "http://localhost:8080/department";
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/department`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -20,7 +20,7 @@ export const callGetDepartmentAPI = () => {
 };
 
 export const callGetPersonnelAPI = (name) => {
-    const requestURL = `http://localhost:8080/personnel/${name}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/personnel/${name}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -37,7 +37,7 @@ export const callGetPersonnelAPI = (name) => {
 
 
 export const callGetAccountingAPI = (result) => {
-    const requestURL = `http://localhost:8080/accounting/${result}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/accounting/${result}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -53,7 +53,7 @@ export const callGetAccountingAPI = (result) => {
 
 
 export const callGetManagementAPI = (result) => {
-    const requestURL = `http://localhost:8080/management/${result}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/management/${result}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -69,7 +69,7 @@ export const callGetManagementAPI = (result) => {
 
 
 export const callGetMarketingAPI = (result) => {
-    const requestURL = `http://localhost:8080/marketing/${result}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/marketing/${result}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -85,7 +85,7 @@ export const callGetMarketingAPI = (result) => {
 
 
 export const callGetSalesAPI = (result) => {
-    const requestURL = `http://localhost:8080/sales/${result}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/sales/${result}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -101,7 +101,7 @@ export const callGetSalesAPI = (result) => {
 
 
 export const callGetServiceAPI = (result) => {
-    const requestURL = `http://localhost:8080/service/${result}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/service/${result}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -115,7 +115,7 @@ export const callGetServiceAPI = (result) => {
     }
 };
 export const callGetHeadOfficeAPI = (page, search) => {
-    const requestURL = `http://localhost:8080/headOffice/${page}/${search}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/headOffice/${page}/${search}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {

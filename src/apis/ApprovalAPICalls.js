@@ -51,7 +51,7 @@ export const callGetAppLineAPI = () => {
 /* 구매요청서 insert */
 export const callPostPurchaseAPI = (formData) => {
 
-    const requestURL = 'http://localhost:8080/approval/purchase';
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/purchase`;
 
     return async (dispatch, getState) => {
 
@@ -69,7 +69,7 @@ export const callPostPurchaseAPI = (formData) => {
 /* 여비정산 insert */
 export const callPostTrafficAPI = (formData) => {
 
-    const requestURL = "http://localhost:8080/approval/traffic";
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/traffic`;
 
     return async (dispatch, getState) => {
 
@@ -87,7 +87,7 @@ export const callPostTrafficAPI = (formData) => {
 /* 업무보고 insert */
 export const callPostBusinessAPI = (formdata) => {
 
-    const requestURL = "http://localhost:8080/approval/business";
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/business`;
 
     return async (dispatch, getState) => {
 
@@ -108,7 +108,7 @@ export const callPostVacationAPI = (formdata) => {
 
     console.log(".vacation")
 
-    const requestURL = "http://localhost:8080/approval/vacation";
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/vacation`;
 
     return async (dispatch, getState) => {
 
@@ -126,7 +126,7 @@ export const callPostVacationAPI = (formdata) => {
 /* 비용 청구 insert */
 export const callPostPayAPI = (formdata) => {
 
-    const requestURL = "http://localhost:8080/approval/pay";
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/pay`;
 
     return async (dispatch, getState) => {
 
@@ -148,7 +148,7 @@ export const callGetVacationAPI = () => {
 
     console.log("들어왔습니다!!");
 
-    const requestURL = `http://localhost:8080/approval/getVacation/${decodedToken.EmployeeNo}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/getVacation/${decodedToken.EmployeeNo}`;
 
     return async (dispatch, getState) => {
 
@@ -170,7 +170,7 @@ export const callGetVacationAPI = () => {
 /* 전자결재 홈 */
 export const callGetAppHomeAPI = () => {
 
-    const requestURL = `http://localhost:8080/approval/${decodedToken.EmployeeNo}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/${decodedToken.EmployeeNo}`;
 
     console.log("callGetAppHomeAPI ", decodedToken.EmployeeNo);
 
@@ -197,9 +197,9 @@ export const callGetSendAPI = ({currentPage}) => {
     let requestURL;
 
     if(currentPage !== undefined || currentPage !== null) {
-        requestURL = `http://localhost:8080/approval/send/${decodedToken.EmployeeNo}?offset=${currentPage}`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/send/${decodedToken.EmployeeNo}?offset=${currentPage}`;
     } else {
-        requestURL = `http://localhost:8080/approval/send/${decodedToken.EmployeeNo}`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/send/${decodedToken.EmployeeNo}`;
     }
 
     return async (dispatch, getState) => {
@@ -224,9 +224,9 @@ export const callGetMyBusinessAPI = ({currentPage}) => {
     let requestURL;
 
     if(currentPage !== undefined || currentPage !== null) {
-        requestURL = `http://localhost:8080/approval/myBusiness/${decodedToken.EmployeeNo}?offset=${currentPage}`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/myBusiness/${decodedToken.EmployeeNo}?offset=${currentPage}`;
     } else {
-        requestURL = `http://localhost:8080/approval/myBusiness/${decodedToken.EmployeeNo}`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/myBusiness/${decodedToken.EmployeeNo}`;
     }
 
     return async (dispatch, getState) => {
@@ -251,9 +251,9 @@ export const callGetAppWaitAPI = ({currentPage}) => {
     let requestURL;
 
     if(currentPage !== undefined || currentPage !== null) {
-        requestURL = `http://localhost:8080/approval/appWait/${decodedToken.EmployeeNo}?offset=${currentPage}`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/appWait/${decodedToken.EmployeeNo}?offset=${currentPage}`;
     } else {
-        requestURL = `http://localhost:8080/approval/appWait/${decodedToken.EmployeeNo}`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/appWait/${decodedToken.EmployeeNo}`;
     }
 
     return async (dispatch, getState) => {
@@ -278,9 +278,9 @@ export const callGetSeeWaitAPI = ({currentPage}) => {
     let requestURL;
 
     if(currentPage !== undefined || currentPage !== null) {
-        requestURL = `http://localhost:8080/approval/seeWait/${decodedToken.EmployeeNo}?offset=${currentPage}`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/seeWait/${decodedToken.EmployeeNo}?offset=${currentPage}`;
     } else {
-        requestURL = `http://localhost:8080/approval/seeWait/${decodedToken.EmployeeNo}`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/seeWait/${decodedToken.EmployeeNo}`;
     }
 
     return async (dispatch, getState) => {
@@ -307,9 +307,9 @@ export const callGetMyAppAPI = ({currentPage}) => {
     console.log("hello")
 
     if(currentPage !== undefined || currentPage !== null) {
-        requestURL = `http://localhost:8080/approval/myApp/${decodedToken.EmployeeNo}?offset=${currentPage}`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/myApp/${decodedToken.EmployeeNo}?offset=${currentPage}`;
     } else {
-        requestURL = `http://localhost:8080/approval/myApp/${decodedToken.EmployeeNo}`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/myApp/${decodedToken.EmployeeNo}`;
     }
 
     return async (dispatch, getState) => {
@@ -334,9 +334,9 @@ export const callGetMySeeAPI = ({currentPage}) => {
     let requestURL;
 
     if(currentPage !== undefined || currentPage !== null) {
-        requestURL = `http://localhost:8080/approval/mySee/${decodedToken.EmployeeNo}?offset=${currentPage}`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/mySee/${decodedToken.EmployeeNo}?offset=${currentPage}`;
     } else {
-        requestURL = `http://localhost:8080/approval/mySee/${decodedToken.EmployeeNo}`;
+        requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/mySee/${decodedToken.EmployeeNo}`;
     }
 
     return async (dispatch, getState) => {
@@ -358,7 +358,7 @@ export const callGetMySeeAPI = ({currentPage}) => {
 
 export const callGetBusinessDocAPI = ({documentCode}) => {
 
-    const requestURL = `http://localhost:8080/approval/document/business/${documentCode}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/document/business/${documentCode}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -378,7 +378,7 @@ export const callGetBusinessDocAPI = ({documentCode}) => {
 
 export const callGetTrafficDocAPI = ({documentCode}) => {
 
-    const requestURL = `http://localhost:8080/approval/document/traffic/${documentCode}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/document/traffic/${documentCode}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -400,7 +400,7 @@ export const callGetPurchaseDocAPI = ({documentCode}) => {
 
     console.log("hello")
 
-    const requestURL = `http://localhost:8080/approval/document/purchase/${documentCode}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/document/purchase/${documentCode}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -420,7 +420,7 @@ export const callGetPurchaseDocAPI = ({documentCode}) => {
 
 export const callGetVacationDocAPI = ({documentCode}) => {
 
-    const requestURL = `http://localhost:8080/approval/document/vacation/${documentCode}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/document/vacation/${documentCode}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -440,7 +440,7 @@ export const callGetVacationDocAPI = ({documentCode}) => {
 
 export const callGetPayDocAPI = ({documentCode}) => {
 
-    const requestURL = `http://localhost:8080/approval/document/pay/${documentCode}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/document/pay/${documentCode}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -460,7 +460,7 @@ export const callGetPayDocAPI = ({documentCode}) => {
 
 export const callGetAppYNAPI = ({documentCode}) => {
 
-    const requestURL = `http://localhost:8080/approval/document/appYN/${documentCode}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/document/appYN/${documentCode}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -482,7 +482,7 @@ export const deleteDocumentAPI = ({documentCode}) => {
 
     console.log("delete ", documentCode)
 
-    const requestURL = `http://localhost:8080/approval/delete/${documentCode}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/delete/${documentCode}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -498,7 +498,7 @@ export const deleteDocumentAPI = ({documentCode}) => {
 
 export const putApprovalAPI = ({documentCode, employeeNo}) => {
 
-    const requestURL = `http://localhost:8080/approval/${documentCode}/${employeeNo}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/${documentCode}/${employeeNo}`;
 
     return async (dispatch, getState) => {
 
@@ -517,7 +517,7 @@ export const putBackApprovalAPI = ({documentCode, comment, employeeNo}) => {
 
     console.log(comment)
 
-    const requestURL = `http://localhost:8080/approval/back/${documentCode}/${employeeNo}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/back/${documentCode}/${employeeNo}`;
 
     return async (dispatch, getState) => {
 
@@ -534,7 +534,7 @@ export const putBackApprovalAPI = ({documentCode, comment, employeeNo}) => {
 
 export const putVacationAPI = ({documentCode, useDate}) => {
 
-    const requestURL = `http://localhost:8080/approval/putVacation/${documentCode}/${useDate}`
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/putVacation/${documentCode}/${useDate}`
 
     return async (dispatch, getState) => {
 
@@ -545,7 +545,7 @@ export const putVacationAPI = ({documentCode, useDate}) => {
 }
 
 export const getFileAPI = ({fileCode}) => {
-    const requestURL = `http://localhost:8080/approval/download/${fileCode}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/download/${fileCode}`;
 
     return async (dispatch, getState) => {
         try {
@@ -578,7 +578,7 @@ export const getFileAPI = ({fileCode}) => {
 
 export const putReceiverAPI = ({employeeNo, documentCode}) => {
 
-    const requestURL = `http://localhost:8080/approval/putReceiver/${documentCode}/${employeeNo}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/putReceiver/${documentCode}/${employeeNo}`;
 
     return async (dispatch, getState) => {
 

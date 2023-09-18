@@ -4,7 +4,7 @@ import {GET_CHART} from '../modules/ChartModule';
 export const callGetChartAPI = () => {
 
     console.log("API 진입");
-    const requestURL = `http://localhost:8080/chart`
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/chart`
 
     return async (dispatch, getState) => {
 
