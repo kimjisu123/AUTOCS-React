@@ -27,7 +27,7 @@ import {decodeJwt} from "../util/tokenUtils";
 export const callGetAppLineAPI = () => {
 
     console.log("AppLine API 진입");
-    const requestURL = 'http://localhost:8080/approval/appLine';
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/approval/appLine`;
 
     return async (dispatch, getState) => {
 
