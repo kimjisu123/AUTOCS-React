@@ -58,6 +58,8 @@ function MarketingDepartment (){
         item.quittingTime === null
     )
 
+
+
     // 늦은 출근 ( 지각 )
     const beingLate = todayFilter && todayFilter.filter(item=>
         beingLateTest(item.attendanceTime)

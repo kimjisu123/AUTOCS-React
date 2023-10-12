@@ -110,7 +110,7 @@ function HeadOfficeContent(){
             return attendanceTime >= mondayDate && attendanceTime <= new Date();
         });
 
-        const daysOfWeek = ['월', '화', '수', '목', '금', '토', '일'];
+        const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
 
         const sortedDaysOfWeek = [
             ...daysOfWeek.slice(1),
@@ -118,11 +118,11 @@ function HeadOfficeContent(){
         ];
 
         const sortedWorkStatusLists = sortedDaysOfWeek.map(day => {
+
             const foundItem = filteredWorkStatusLists.find(workStatusItem => {
                 const attendanceTime = new Date(workStatusItem.workStatus.quittingTime);
                 return daysOfWeek[attendanceTime.getDay()] === day;
             });
-
             return foundItem || {
                 employeeNo: item.employeeNo,
                 workStatus: {
@@ -133,6 +133,7 @@ function HeadOfficeContent(){
                     workStatusCode: null,
                 },
             };
+
         });
 
         return {
@@ -145,8 +146,6 @@ function HeadOfficeContent(){
     const weekData =  data.data && data.data.length >0 ? data.data.filter(item => {
 
             const endDate = new Date(item.attendanceTime)
-
-            console.log("endDate : " + endDate, "mondayDate : " + mondayDate,"currentDate : " + currentDate )
 
             return mondayDate <= endDate && endDate <= currentDate
         }
@@ -323,18 +322,21 @@ function HeadOfficeContent(){
                                             :
                                             <div>
                                                 <div>
-                                                    <div className={styles.statusInfoBox3}>
-                                                        <div className={styles.cumulativeTime}>
-                                                            0:00:00
-                                                        </div>
-                                                        <div className={styles.hoursDuty}>
-                                                            <div>
-                                                                기본 : 0:00:00
-                                                            </div>
-                                                            <div>
-                                                                연장 : 0:00:00
-                                                            </div>
-                                                        </div>
+                                                    {/*<div className={styles.statusInfoBox3}>*/}
+                                                    {/*    <div className={styles.cumulativeTime}>*/}
+                                                    {/*        0:00:00*/}
+                                                    {/*    </div>*/}
+                                                    {/*    <div className={styles.hoursDuty}>*/}
+                                                    {/*        <div>*/}
+                                                    {/*            기본 : 0:00:00*/}
+                                                    {/*        </div>*/}
+                                                    {/*        <div>*/}
+                                                    {/*            연장 : 0:00:00*/}
+                                                    {/*        </div>*/}
+                                                    {/*    </div>*/}
+                                                    {/*</div>*/}
+                                                    <div className={styles.statusInfoBox}>
+                                                        미등록
                                                     </div>
                                                 </div>
                                             </div>

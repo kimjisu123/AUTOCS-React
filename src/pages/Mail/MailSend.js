@@ -24,7 +24,6 @@ function MailSend( {setModal} ){
     }, []);
 
     const [select, setSelect] = useState([]);
-    const [selectDpname, setSelectDpname] = useState([]);
     const [titleValue, setTitileValue] = useState('');
     const [contextValue, setContextValue] = useState('');
     const [searchValue, setSearchValue] = useState('');
@@ -37,7 +36,7 @@ function MailSend( {setModal} ){
         context : "",
         goDate : "",
         status : "",
-        position:"",
+        position:[],
     });
 
 
@@ -64,7 +63,7 @@ function MailSend( {setModal} ){
         setMail(prevMail => ({
             ...prevMail,
             receiver: [...prevMail.receiver ,attendee.name],
-            position: JSON.parse(attendee.position).name
+            position: [...prevMail.position, JSON.parse(attendee.position).name]
         }));
         setSearchArea(false);
         setSearchValue('');
@@ -109,7 +108,7 @@ function MailSend( {setModal} ){
 
 
     const onClickTest= () =>{
-        console.log(select[0].position)
+        console.log(mail)
     }
 
     return (

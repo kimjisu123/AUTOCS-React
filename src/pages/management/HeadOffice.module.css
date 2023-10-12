@@ -172,3 +172,10 @@
     font-size: 18px;
     margin-bottom: 4px;
 }
+
+.statusInfoBox{
+    line-height: 65px;
+    width: 170px;
+    height: 100%;
+    text-align: center;
+}
