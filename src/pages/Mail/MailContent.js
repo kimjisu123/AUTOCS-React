@@ -1,14 +1,14 @@
 import styles from './Mail.module.css';
-import { useState, useEffect } from 'react'
+import {useState, useEffect, useRef} from 'react'
 import {
     callGetMailAPI,
     callDELETEMailAPI,
     callPutMailAPI,
     callSeleteDELETEMailAPI,
-    callGetMailBookmarkAPI
 } from '../../apis/MailAPICalls';
 import { useDispatch, useSelector } from 'react-redux';
 import MailDetails from "../../pages/Mail/MailDetails"
+import {useInView} from "react-intersection-observer";
 
 
 function MailContent(){
@@ -22,14 +22,15 @@ function MailContent(){
     const [start, setStart] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     const [pageEnd, setPageEnd] = useState(1);
+    const [loading, setLoading] = useState(false);
 
-    useEffect(
-        () => {
-            setStart((currentPage - 1) * 5);
-            dispatch(callGetMailAPI(currentPage,result))
-        }
-        ,[currentPage]
-    );
+    // useEffect(
+    //     () => {
+    //         setStart((currentPage - 1) * 5);
+    //         dispatch(callGetMailAPI(currentPage,result))
+    //     }
+    //     ,[currentPage]
+    // );
 
     const pageNumber = [];
     const pageInfo = mailData.pageInfo;
@@ -39,14 +40,11 @@ function MailContent(){
         }
     }
 
-
     useEffect(
-        () =>  {
-            dispatch( callGetMailAPI(currentPage, result) );
-        }
+        () =>
+            dispatch( callGetMailAPI(currentPage, result))
         ,[]
     );
-
 
     const onClickMailDelete = async () => {
         dispatch( callDELETEMailAPI() );
@@ -62,6 +60,20 @@ function MailContent(){
     const onClickTest = ()=>{
         console.log();
     }
+
+    // // 무한 스크롤 페이지네이션
+    const [ref, inView] = useInView({triggerOnce : true});
+
+    if(inView){
+        setCurrentPage(prev => prev + 1)
+    }
+
+    useEffect(
+        () => {
+            dispatch(callGetMailAPI(currentPage,result))
+        }
+        ,[currentPage]
+    );
 
     return(
         <div className={styles.content}>
@@ -85,6 +97,7 @@ function MailContent(){
                     ))
                 }
             </div>
+            {/* 페이지 버튼 */}
             <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
                 { Array.isArray(mailData.data) &&
                     <button style={ mailData.data.length > 1 ? {border:"none", color:"black", fontWeight:"500", backgroundColor:"white", fontSize:"20px"} : {display:"none"}}
@@ -112,7 +125,11 @@ function MailContent(){
                     </button>
                 }
             </div>
+            {/*<div ref={ref} style={{border:'1px solid black', width:'auto', height:'100px'}}  >*/}
+
+            {/*</div>*/}
         </div>
+
     )
 }
 

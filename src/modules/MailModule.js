@@ -39,6 +39,33 @@ export const mailReducer = handleActions(
     initialState
 );
 
+export const putMailReducer = handleActions(
+    {
+        [PUT_MAIL] : (state, { payload }) =>{
+            return payload
+        },
+    },
+    initialState
+)
+
+export const deleteMailReducer = handleActions(
+    {
+        [DELETE_SELECT_MAIL] : (state, { payload }) =>{
+            return payload
+        },
+    },
+    initialState
+)
+
+export const deleteAllMailReducer = handleActions(
+    {
+        [DELETE_MAIL] : (state, { payload }) =>{
+            return payload
+        },
+    },
+    initialState
+)
+
 export const bookmarkReducer = handleActions(
     {
         [GET_MAIL_BOOKMARK]: (state, { payload }) => {
