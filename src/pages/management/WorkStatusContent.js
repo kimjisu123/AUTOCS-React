@@ -36,7 +36,7 @@ function WorkStatusContent (){
     const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토", "일"];
 
 
-    // 이번 주의 근태 정보 (수정 완료)
+    // 이번 주의 근태 정보
     const weekData =  workData.data && workData.data.length >0 && workData.data.filter(item => {
 
             const endDate = new Date(item.attendanceTime)
@@ -46,8 +46,8 @@ function WorkStatusContent (){
             return mondayDate <= endDate && endDate <= currentDate
         }
     );
-    
-    // 이번달의 근태 정보 (수정 완료) 출근을 기준으로 조회
+
+    // 이번달의 근태 정보 출근을 기준으로 조회
     const monthData = workData.data && workData.data.length > 0 && workData.data.filter(item => {
         const itemDate = new Date(item.attendanceTime)
         const itemYear = itemDate.getFullYear();
@@ -297,7 +297,6 @@ function WorkStatusContent (){
         } else{
             return '미등록'
         }
-
     }
 
     // 연장 근무가 있을시 기본 근무시간을 구하는 함수

@@ -6,8 +6,7 @@ const decodedToken = accessToken ? decodeJwt(accessToken) : null;
 
 
 export const callGetMailAPI = (currentPage, search) => {
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/mail/${decodedToken.EmployeeNo}/${currentPage}/${search}`;
-
+    const requestURL = `http://localhost:8080/mail/${decodedToken.EmployeeNo}/${currentPage}/${search}`;
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
             method: 'GET',
@@ -21,7 +20,7 @@ export const callGetMailAPI = (currentPage, search) => {
 };
 
 export const callGetMailBookmarkAPI = (currentPage, search) => {
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/mailBookmark/${decodedToken.EmployeeNo}/${currentPage}/${search}`;
+    const requestURL = `http://localhost:8080/mailBookmark/${decodedToken.EmployeeNo}/${currentPage}/${search}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -36,7 +35,7 @@ export const callGetMailBookmarkAPI = (currentPage, search) => {
 };
 
 export const callGetMailSentAPI = ( {employeeNo}, currentPage, search) => {
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/mailSent/${employeeNo}/${currentPage}/${search}`;
+    const requestURL = `http://localhost:8080/mailSent/${employeeNo}/${currentPage}/${search}`;
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
             method: 'GET',
@@ -52,7 +51,7 @@ export const callGetMailSentAPI = ( {employeeNo}, currentPage, search) => {
 
 
 export const callDELETEMailAPI = () =>{
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/mail/${decodedToken.EmployeeNo}`;
+    const requestURL = `http://localhost:8080/mail/${decodedToken.EmployeeNo}`;
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -66,7 +65,7 @@ export const callDELETEMailAPI = () =>{
 }
 
 export const callSeleteDELETEMailAPI = (paramValue) =>{
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/selectMail`
+    const requestURL = 'http://localhost:8080/selectMail'
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -83,7 +82,7 @@ export const callSeleteDELETEMailAPI = (paramValue) =>{
 
 
 export const callPutMailAPI = (paramValue) =>{
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/mail`
+    const requestURL = 'http://localhost:8080/mail'
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
@@ -100,7 +99,7 @@ export const callPutMailAPI = (paramValue) =>{
 
 
 export const callPostMailAPI = (paramValue) =>{
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8080/mail/${decodedToken.EmployeeNo}`
+    const requestURL = `http://localhost:8080/mail/${decodedToken.EmployeeNo}`
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {

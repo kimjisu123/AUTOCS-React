@@ -51,7 +51,7 @@ const Header = () => {
                 { to: "/board/notieE", label: "게시판" },
                 { to: "chart", label: "조직도" },
                 { to: "approval", label: "전자결재" },
-                { to: "management", label: "근태관리" },
+                { to: "workstatus", label: "근태관리" },
                 { to: `/mail/${decodedToken.EmployeeNo}`, label: "쪽지함" },
                 { to: "stock", label: "재고관리" },
                 { to: `/myPage`, label: "마이페이지" },
