@@ -18,7 +18,7 @@ function MailContent(){
     const dispatch = useDispatch();
     const mailData = useSelector(state => state.mailReducer);
 
-    // 페이징 처리
+    // 페이징 처리 테스트
     const [start, setStart] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     const [pageEnd, setPageEnd] = useState(1);
