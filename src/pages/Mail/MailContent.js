@@ -40,11 +40,6 @@ function MailContent(){
         }
     }
 
-    useEffect(
-        () =>
-            dispatch( callGetMailAPI(currentPage, result))
-        ,[]
-    );
 
     const onClickMailDelete = async () => {
         dispatch( callDELETEMailAPI() );
@@ -62,18 +57,25 @@ function MailContent(){
     }
 
     // // 무한 스크롤 페이지네이션
-    const [ref, inView] = useInView({triggerOnce : true});
 
-    if(inView){
-        setCurrentPage(prev => prev + 1)
-    }
-
+    const [ref, inView] = useInView();
+    console.log(mailData.data)
     useEffect(
         () => {
-            dispatch(callGetMailAPI(currentPage,result))
+            console.log(inView)
+            if(inView){
+                setCurrentPage((prev) => prev + 1)
+            }
         }
-        ,[currentPage]
+        ,[inView]
     );
+
+    useEffect(() =>
+        {
+            dispatch(callGetMailAPI(currentPage,result))
+        } // 중괄호가 없을 경우 return이 됨
+        , [currentPage, dispatch, result]
+    )
 
     return(
         <div className={styles.content}>
@@ -92,42 +94,50 @@ function MailContent(){
             </div>
             <div>
                 {
-                    mailData.data && mailData.data.map(mail => (
-                    <MailItem key={mail.mailNo} mail={mail} />
+                    mailData.data && mailData.data.map((mail, index) => (
+                    index !== mailData.data.length - 1 ? <MailItem key={mail.mailNo} mail={mail} /> :
+                        (
+                            <>
+                                <MailItem key={mail.mailNo} mail={mail} />
+                                {/*  */}
+                            </>
+                        )
                     ))
                 }
             </div>
-            {/* 페이지 버튼 */}
-            <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
-                { Array.isArray(mailData.data) &&
-                    <button style={ mailData.data.length > 1 ? {border:"none", color:"black", fontWeight:"500", backgroundColor:"white", fontSize:"20px"} : {display:"none"}}
-                        onClick={() => setCurrentPage(currentPage - 1)}
-                        disabled={currentPage === 1}
-                    >
-                        &lt;
-                    </button>
-                }
-                {pageNumber.map((num) => (
-                    <li key={num} onClick={() => setCurrentPage(num)}>
-                        <button
-                            style={ currentPage === num ? {backgroundColor : 'white', border:"none", fontSize:"20px", color:"", cursor:"pointer"} : {backgroundColor : 'white', border:"none", color:"", cursor:"pointer"} }
-                        >
-                            {num}
-                        </button>
-                    </li>
-                ))}
-                { Array.isArray(mailData.data) &&
-                    <button style={ mailData.data.length > 1 ? {border:"none", color:"black", fontWeight:"500", backgroundColor:"white", fontSize:"20px"} : {display:"none"}}
-                        onClick={() => {return setCurrentPage(currentPage + 1)}}
-                        disabled={currentPage === pageInfo.pageEnd || pageInfo.total == 0}
-                    >
-                        &gt;
-                    </button>
-                }
-            </div>
-            {/*<div ref={ref} style={{border:'1px solid black', width:'auto', height:'100px'}}  >*/}
+            {/* */}
+            <div  ref={ref} style={mailData.data.length ? { width:'auto', height:'100px'} : {display:'none'}}  >
 
+            </div>
+            {/* 페이지 버튼 */}
+            {/*<div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>*/}
+            {/*    { Array.isArray(mailData.data) &&*/}
+            {/*        <button style={ mailData.data.length > 1 ? {border:"none", color:"black", fontWeight:"500", backgroundColor:"white", fontSize:"20px"} : {display:"none"}}*/}
+            {/*            onClick={() => setCurrentPage(currentPage - 1)}*/}
+            {/*            disabled={currentPage === 1}*/}
+            {/*        >*/}
+            {/*            &lt;*/}
+            {/*        </button>*/}
+            {/*    }*/}
+            {/*    {pageNumber.map((num) => (*/}
+            {/*        <li key={num} onClick={() => setCurrentPage(num)}>*/}
+            {/*            <button*/}
+            {/*                style={ currentPage === num ? {backgroundColor : 'white', border:"none", fontSize:"20px", color:"", cursor:"pointer"} : {backgroundColor : 'white', border:"none", color:"", cursor:"pointer"} }*/}
+            {/*            >*/}
+            {/*                {num}*/}
+            {/*            </button>*/}
+            {/*        </li>*/}
+            {/*    ))}*/}
+            {/*    { Array.isArray(mailData.data) &&*/}
+            {/*        <button style={ mailData.data.length > 1 ? {border:"none", color:"black", fontWeight:"500", backgroundColor:"white", fontSize:"20px"} : {display:"none"}}*/}
+            {/*            onClick={() => {return setCurrentPage(currentPage + 1)}}*/}
+            {/*            disabled={currentPage === pageInfo.pageEnd || pageInfo.total == 0}*/}
+            {/*        >*/}
+            {/*            &gt;*/}
+            {/*        </button>*/}
+            {/*    }*/}
             {/*</div>*/}
+
         </div>
     )
 }

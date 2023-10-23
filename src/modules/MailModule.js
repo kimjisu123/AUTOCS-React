@@ -1,7 +1,10 @@
 import { createActions, handleActions } from 'redux-actions';
 
 //초기값
-const initialState = [];
+const initialState = {
+    data: [],
+    pageInfo: {}
+};
 
 //액션
 export const GET_MAIL = 'mail/GET_MAIL';
@@ -24,7 +27,8 @@ export const PUT_MAIL = 'mail/PUT_MAIL';
 export const mailReducer = handleActions(
     {
         [GET_MAIL]: (state, { payload }) => {
-            return payload;
+            state.data.push( ...payload.data );
+            return { ...state };
         },
         [PUT_MAIL] : (state, { payload }) =>{
             return payload
