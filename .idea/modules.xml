@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/AUTOCS-react.iml" filepath="$PROJECT_DIR$/.idea/AUTOCS-react.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Autocs-final.iml" filepath="$PROJECT_DIR$/Autocs-final.iml" />
     </modules>
   </component>
 </project>

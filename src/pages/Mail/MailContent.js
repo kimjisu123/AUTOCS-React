@@ -9,6 +9,8 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import MailDetails from "../../pages/Mail/MailDetails"
 import {useInView} from "react-intersection-observer";
+import SockJS from 'sockjs-client';
+import Stomp from 'stompjs';
 
 
 function MailContent(){
@@ -17,12 +19,27 @@ function MailContent(){
     const [result, setResult] = useState('절대로아무도검색하지않을만한값입니다.');
     const dispatch = useDispatch();
     const mailData = useSelector(state => state.mailReducer);
+    const [data, setDate] = useState();
 
     // 페이징 처리 테스트
-    const [start, setStart] = useState(0);
+    // const [start, setStart] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
-    const [pageEnd, setPageEnd] = useState(1);
-    const [loading, setLoading] = useState(false);
+    // const [pageEnd, setPageEnd] = useState(1);
+    // const [loading, setLoading] = useState(false);
+
+    var socket = new SockJS('/webSocket');
+    var stompClient = Stomp.over(socket);
+
+    stompClient.connect({}, function (frame) {
+        stompClient.subscribe('/topic/mail', function (notification) {
+            // 알림을 처리하고 화면에 표시
+            var message = JSON.parse(notification.body).message;
+            // 처리 로직 추가
+            setDate(message);
+        });
+    });
+
+
 
     // useEffect(
     //     () => {
@@ -53,16 +70,14 @@ function MailContent(){
     }
 
     const onClickTest = ()=>{
-        console.log();
+        console.log(data);
     }
 
     // // 무한 스크롤 페이지네이션
-
     const [ref, inView] = useInView();
     console.log(mailData.data)
     useEffect(
         () => {
-            console.log(inView)
             if(inView){
                 setCurrentPage((prev) => prev + 1)
             }
@@ -73,7 +88,7 @@ function MailContent(){
     useEffect(() =>
         {
             dispatch(callGetMailAPI(currentPage,result))
-        } // 중괄호가 없을 경우 return이 됨
+        }
         , [currentPage, dispatch, result]
     )
 
@@ -105,7 +120,7 @@ function MailContent(){
                     ))
                 }
             </div>
-            {/* */}
+            {/* 새로운 값을 가져오는 영역 */}
             <div  ref={ref} style={mailData.data.length ? { width:'auto', height:'100px'} : {display:'none'}}  >
 
             </div>
