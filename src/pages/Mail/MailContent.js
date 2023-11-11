@@ -11,32 +11,33 @@ import MailDetails from "../../pages/Mail/MailDetails"
 import {useInView} from "react-intersection-observer";
 import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
-
+// import * as StompJs from "@stomp/stompjs";
 
 function MailContent(){
 
     const [search, setSearch] = useState('');
     const [result, setResult] = useState('절대로아무도검색하지않을만한값입니다.');
+    const [conneted, setConnected] = useState(false);
+    const [wsMessage, setWsMessage] = useState('값이 안들어온');
     const dispatch = useDispatch();
     const mailData = useSelector(state => state.mailReducer);
-    const [data, setDate] = useState();
 
     // 페이징 처리 테스트
     // const [start, setStart] = useState(0);
-    const [currentPage, setCurrentPage] = useState(1);
     // const [pageEnd, setPageEnd] = useState(1);
     // const [loading, setLoading] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
 
-    var socket = new SockJS('/webSocket');
-    var stompClient = Stomp.over(socket);
 
-    stompClient.connect({}, function (frame) {
-        stompClient.subscribe('/topic/mail', function (notification) {
-            // 알림을 처리하고 화면에 표시
-            var message = JSON.parse(notification.body).message;
-            // 처리 로직 추가
-            setDate(message);
+    const socket = new SockJS('/webSocket');
+    const stompClient = Stomp.over(socket);
+    stompClient.connect({},  function (frame) {
+        console.log('ConnectedTest: ' + frame);
+        stompClient.subscribe('/topic/mail', function (msg) {
+            console.log('구독 중', msg);
+            setWsMessage(msg)
         });
+        setConnected(true);
     });
 
 
@@ -69,9 +70,6 @@ function MailContent(){
         dispatch( callGetMailAPI(currentPage, result) )
     }
 
-    const onClickTest = ()=>{
-        console.log(data);
-    }
 
     // // 무한 스크롤 페이지네이션
     const [ref, inView] = useInView();
@@ -92,6 +90,12 @@ function MailContent(){
         , [currentPage, dispatch, result]
     )
 
+    const employeeNo = 1;
+    const onClickTest = function(){
+        stompClient.send(`app/mail/${employeeNo}`,{}, '{Test : test}');
+        console.log("==========================>")
+        console.log(wsMessage)
+    }
     return(
         <div className={styles.content}>
             <div className={styles.mainHeader}>
