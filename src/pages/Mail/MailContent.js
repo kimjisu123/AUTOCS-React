@@ -92,7 +92,7 @@ function MailContent(){
 
     const employeeNo = 1;
     const onClickTest = function(){
-        stompClient.send(`app/mail/${employeeNo}`,{}, '{Test : test}');
+        stompClient.send(`/app/mail/${employeeNo}`,{}, '{Test : test}');
         console.log("==========================>")
         console.log(wsMessage)
     }
