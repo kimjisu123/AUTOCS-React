@@ -11,6 +11,7 @@ import MailDetails from "../../pages/Mail/MailDetails"
 import {useInView} from "react-intersection-observer";
 import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
+import {decodeJwt} from "../../util/tokenUtils";
 // import * as StompJs from "@stomp/stompjs";
 
 function MailContent(){
@@ -18,37 +19,34 @@ function MailContent(){
     const [search, setSearch] = useState('');
     const [result, setResult] = useState('절대로아무도검색하지않을만한값입니다.');
     const [conneted, setConnected] = useState(false);
-    const [wsMessage, setWsMessage] = useState('값이 안들어온');
+    const [wsMessage, setWsMessage] = useState('');
     const dispatch = useDispatch();
     const mailData = useSelector(state => state.mailReducer);
-
-    // 페이징 처리 테스트
-    // const [start, setStart] = useState(0);
-    // const [pageEnd, setPageEnd] = useState(1);
-    // const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
+    const accessToken = window.localStorage.getItem('accessToken');
+    const decodedToken = accessToken ? decodeJwt(accessToken) : null;
 
-
+    // 서버와 동일한 엔드포인트 url로 소켓 설정
     const socket = new SockJS('/webSocket');
     const stompClient = Stomp.over(socket);
+
+    // 웹소켓 코드
+    // 서버와 웹소켓 연결
     stompClient.connect({},  function (frame) {
         console.log('ConnectedTest: ' + frame);
+
+        // 구독 설정
         stompClient.subscribe('/topic/mail', function (msg) {
             console.log('구독 중', msg);
-            setWsMessage(msg)
+            setWsMessage(msg.body)
         });
-        setConnected(true);
+
+        // 값 요청
+        const employeeNo = decodedToken.EmployeeNo;
+        stompClient.send(`/app/mail/${employeeNo}`,{}, '{Test : test}');
     });
 
 
-
-    // useEffect(
-    //     () => {
-    //         setStart((currentPage - 1) * 5);
-    //         dispatch(callGetMailAPI(currentPage,result))
-    //     }
-    //     ,[currentPage]
-    // );
 
     const pageNumber = [];
     const pageInfo = mailData.pageInfo;
@@ -90,12 +88,11 @@ function MailContent(){
         , [currentPage, dispatch, result]
     )
 
-    const employeeNo = 1;
-    const onClickTest = function(){
-        stompClient.send(`/app/mail/${employeeNo}`,{}, '{Test : test}');
-        console.log("==========================>")
-        console.log(wsMessage)
+    const onClickTest = function() {
+
     }
+
+
     return(
         <div className={styles.content}>
             <div className={styles.mainHeader}>
