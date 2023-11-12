@@ -89,7 +89,7 @@ function MailContent(){
     )
 
     const onClickTest = function() {
-
+        console.log(mailData.data);
     }
 
 
@@ -194,7 +194,7 @@ function MailItem({ mail }) {
                     {( bookmark == 'Y')  ? '★' : '☆'}
                 </div>
                 <div onClick={ () => onClickModal() } className={styles.noteHeader}>
-                    <div style={{ marginBottom: "5px", cursor:"pointer"}}>
+                    <div style={mail.read === 'Y' ? { color:"gray", marginBottom: "5px", cursor:"pointer"} : { marginBottom: "5px", cursor:"pointer"}}>
                         {mail.title}
                     </div>
                     <div style={{ display: "flex" }}>
