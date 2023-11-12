@@ -110,14 +110,10 @@ function MailContent(){
             </div>
             <div>
                 {
-                    mailData.data && mailData.data.map((mail, index) => (
-                    index !== mailData.data.length - 1 ? <MailItem key={mail.mailNo} mail={mail} /> :
-                        (
-                            <>
-                                <MailItem key={mail.mailNo} mail={mail} />
-                                {/*  */}
-                            </>
-                        )
+                    mailData.data && mailData.data.map((mail) => (
+                        <>
+                            <MailItem key={mail.mailNo} mail={mail} />
+                        </>
                     ))
                 }
             </div>
@@ -161,6 +157,7 @@ function MailContent(){
 function MailItem({ mail }) {
 
     const [bookmark, setBookmark] = useState(mail.status);
+    const [read, setRead] = useState(mail.read);
     const [modal, setModal] = useState(false);
 
     const inputDate = mail.goDate;
@@ -181,6 +178,7 @@ function MailItem({ mail }) {
         window.location.reload();
     };
 
+
     const onClickSelectDelete = (mail) =>{
         dispatch( callSeleteDELETEMailAPI(mail) )
         window.location.reload();
@@ -194,7 +192,7 @@ function MailItem({ mail }) {
                     {( bookmark == 'Y')  ? '★' : '☆'}
                 </div>
                 <div onClick={ () => onClickModal() } className={styles.noteHeader}>
-                    <div style={mail.read === 'Y' ? { color:"gray", marginBottom: "5px", cursor:"pointer"} : { marginBottom: "5px", cursor:"pointer"}}>
+                    <div style={read === 'Y' ? { color:"gray", marginBottom: "5px", cursor:"pointer"} : { marginBottom: "5px", cursor:"pointer"}}>
                         {mail.title}
                     </div>
                     <div style={{ display: "flex" }}>
