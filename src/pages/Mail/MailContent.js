@@ -18,33 +18,9 @@ function MailContent(){
 
     const [search, setSearch] = useState('');
     const [result, setResult] = useState('절대로아무도검색하지않을만한값입니다.');
-    const [conneted, setConnected] = useState(false);
-    const [wsMessage, setWsMessage] = useState('');
     const dispatch = useDispatch();
     const mailData = useSelector(state => state.mailReducer);
     const [currentPage, setCurrentPage] = useState(1);
-    const accessToken = window.localStorage.getItem('accessToken');
-    const decodedToken = accessToken ? decodeJwt(accessToken) : null;
-
-    // 서버와 동일한 엔드포인트 url로 소켓 설정
-    const socket = new SockJS('/webSocket');
-    const stompClient = Stomp.over(socket);
-
-    // 웹소켓 코드
-    // 서버와 웹소켓 연결
-    stompClient.connect({},  function (frame) {
-        console.log('ConnectedTest: ' + frame);
-
-        // 구독 설정
-        stompClient.subscribe('/topic/mail', function (msg) {
-            console.log('구독 중', msg);
-            setWsMessage(msg.body)
-        });
-
-        // 값 요청
-        const employeeNo = decodedToken.EmployeeNo;
-        stompClient.send(`/app/mail/${employeeNo}`,{}, '{Test : test}');
-    });
 
 
 
@@ -118,7 +94,7 @@ function MailContent(){
                 }
             </div>
             {/* 새로운 값을 가져오는 영역 */}
-            <div  ref={ref} style={mailData.data.length ? { width:'auto', height:'100px'} : {display:'none'}}  >
+            <div  ref={ref} style={mailData.data !== null && mailData.data.length ? { width:'auto', height:'100px'} : {display:'none'}}  >
 
             </div>
             {/* 페이지 버튼 */}

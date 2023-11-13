@@ -12,11 +12,14 @@ import './CoustomModal.css';
 import { useUserContext } from "../Todolist/TodoContext";
 import Swal from 'sweetalert2';
 import Login from "../Login/Login";
+import SockJS from "sockjs-client";
+import Stomp from "stompjs";
 
 // 예제
 
 
 const Header = () => {
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const accessToken = window.localStorage.getItem('accessToken');
@@ -37,6 +40,29 @@ const Header = () => {
     //창띄울때  요거 NavLink to 에 location.pathname 넣으면 현재페이지 유지됩니다.
     const location = useLocation();
 
+    const [wsMessage, setWsMessage] = useState('');
+    // 서버와 동일한 엔드포인트 url로 소켓 설정
+    const socket = new SockJS('/webSocket');
+    const stompClient = Stomp.over(socket);
+
+    // 웹소켓 코드
+    // 서버와 웹소켓 연결
+    stompClient.connect({},  function (frame) {
+        console.log('ConnectedTest: ' + frame);
+
+        // 구독 설정
+        stompClient.subscribe('/topic/mail', function (msg) {
+            console.log('구독 중', msg);
+            setWsMessage(msg.body)
+        });
+
+        // 값 요청
+        const employeeNo = decodedToken.EmployeeNo;
+        stompClient.send(`/app/mail/${employeeNo}`,{}, '{Test : test}');
+    });
+
+
+
     const getMenuItems = (role, department) => {
 
         let menuItems = [
@@ -52,10 +78,12 @@ const Header = () => {
                 { to: "chart", label: "조직도" },
                 { to: "approval", label: "전자결재" },
                 { to: "workstatus", label: "근태관리" },
-                { to: `/mail/${decodedToken.EmployeeNo}`, label: "쪽지함" },
+                { to: `/mail/${decodedToken.EmployeeNo}`, label: `쪽지함 ` },
+                { Notifications : "Notifications", label:`${wsMessage}` },
                 { to: "stock", label: "재고관리" },
                 { to: `/myPage`, label: "마이페이지" },
             );
+
 
             if (department === "인사부") {
                 menuItems.push({ to: "menu/registration", label: "인사관리" });
@@ -146,6 +174,10 @@ const Header = () => {
                     }
                     <div className="menuContainer">
                         {menuItems.map((menuItem) => (
+                            menuItem.Notifications === "Notifications" ?
+                            <div style={ {color: "red", marginLeft:"-60px"} } >
+                                {menuItem.label}
+                            </div>:
                             <NavLink
                                 key={menuItem.to}
                                 to={menuItem.to}
@@ -153,7 +185,6 @@ const Header = () => {
                             >
                                 {menuItem.label}
                             </NavLink>
-
                         ))}
                         <NavLink
                             to={location.pathname}
