@@ -4,7 +4,7 @@ import {
     callGetMailAPI,
     callDELETEMailAPI,
     callPutMailAPI,
-    callSeleteDELETEMailAPI,
+    callSeleteDELETEMailAPI, callPutReadMailAPI,
 } from '../../apis/MailAPICalls';
 import { useDispatch, useSelector } from 'react-redux';
 import MailDetails from "../../pages/Mail/MailDetails"
@@ -132,43 +132,43 @@ function MailContent(){
 
 function MailItem({ mail }) {
 
-    const [bookmark, setBookmark] = useState(mail.status);
-    const [read, setRead] = useState(mail.read);
     const [modal, setModal] = useState(false);
-
     const inputDate = mail.goDate;
     const date = new Date(inputDate);
-
     const outputDate = date.toISOString().substr(0, 19);
     const updatedDate = outputDate.replace("T", " ");
+    const dispatch = useDispatch();
+
 
     const onClickModal = () => {
         setModal(!modal);
     }
 
-    const dispatch = useDispatch();
-
-    const onClickbookmark = async () => {
-        await dispatch( callPutMailAPI(mail) );
-        setBookmark( (bookmark == 'Y') ? 'N' : 'Y' );
+    // 북마크
+    const onClickbookmark = () => {
+        dispatch( callPutMailAPI(mail) );
         window.location.reload();
     };
 
+    // 읽음 처리
+    const onClickReadMail = () =>{
+        dispatch(callPutReadMailAPI(mail));
+    }
 
+    // 쪽지 삭제
     const onClickSelectDelete = (mail) =>{
         dispatch( callSeleteDELETEMailAPI(mail) )
         window.location.reload();
     }
 
-
     return (
         <>
             <div className={styles.receivedNote}>
-                <div style={(bookmark == 'Y') ? {color : "gold"} : {}}  className={styles.bookmark} onClick={onClickbookmark}>
-                    {( bookmark == 'Y')  ? '★' : '☆'}
+                <div style={(mail.status == 'Y') ? {color : "gold"} : {}}  className={styles.bookmark} onClick={onClickbookmark}>
+                    {( mail.status == 'Y')  ? '★' : '☆'}
                 </div>
                 <div onClick={ () => onClickModal() } className={styles.noteHeader}>
-                    <div style={read === 'Y' ? { color:"gray", marginBottom: "5px", cursor:"pointer"} : { marginBottom: "5px", cursor:"pointer"}}>
+                    <div onClick={() => onClickReadMail()} style={mail.read === 'Y' ? { color:"gray", marginBottom: "5px", cursor:"pointer"} : { marginBottom: "5px", cursor:"pointer"}}>
                         {mail.title}
                     </div>
                     <div style={{ display: "flex" }}>

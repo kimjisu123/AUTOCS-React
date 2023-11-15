@@ -21,6 +21,8 @@ export const DELETE_SELECT_MAIL = 'mail/DELETE_SELECT_MAIL';
 
 export const PUT_MAIL = 'mail/PUT_MAIL';
 
+export const PUT_READ_MAIL = 'mail/READ_MAIL';
+
 
 
 //리듀서
@@ -29,15 +31,6 @@ export const mailReducer = handleActions(
         [GET_MAIL]: (state, { payload }) => {
             state.data.push( ...payload.data );
             return { ...state };
-        },
-        [PUT_MAIL] : (state, { payload }) =>{
-            return payload
-        },
-        [DELETE_MAIL] : (state, { payload }) =>{
-            return payload
-        },
-        [DELETE_SELECT_MAIL] : (state, { payload }) =>{
-            return payload
         },
     },
     initialState
@@ -87,3 +80,12 @@ export const mailSentReducer = handleActions(
     },
     initialState
 );
+
+export const readMailReducer = handleActions(
+    {
+        [PUT_READ_MAIL] : (state, { payload }) =>{
+            return payload
+        },
+    },
+    initialState
+)

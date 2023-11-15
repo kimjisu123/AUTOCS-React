@@ -4,6 +4,7 @@ import { useState } from 'react';
 function MailDetails( { setModal, mail } ){
     const onClickClose = () =>{
         setModal(false)
+        window.location.reload();
     }
 
     return (

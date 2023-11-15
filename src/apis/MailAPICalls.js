@@ -1,4 +1,13 @@
-import  { GET_MAIL, GET_MAIL_BOOKMARK, GET_MAIL_SENT, DELETE_MAIL, PUT_MAIL, POST_MAIL_SEND, DELETE_SELECT_MAIL}  from '../modules/MailModule'
+import {
+    GET_MAIL,
+    GET_MAIL_BOOKMARK,
+    GET_MAIL_SENT,
+    DELETE_MAIL,
+    PUT_MAIL,
+    POST_MAIL_SEND,
+    DELETE_SELECT_MAIL,
+    PUT_READ_MAIL
+} from '../modules/MailModule'
 import { decodeJwt } from '../../src/util/tokenUtils';
 
 const accessToken = window.localStorage.getItem('accessToken');
@@ -111,5 +120,20 @@ export const callPostMailAPI = (paramValue) =>{
             body: JSON.stringify(paramValue)
         });
         dispatch({ type: POST_MAIL_SEND, payload: result });
+    }
+}
+export const callPutReadMailAPI = (paramValue) =>{
+    const requestURL = 'http://localhost:8080/readMail'
+
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(paramValue)
+        });
+        dispatch({ type: PUT_READ_MAIL, payload: result });
     }
 }

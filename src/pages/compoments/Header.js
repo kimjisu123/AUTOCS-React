@@ -41,12 +41,13 @@ const Header = () => {
     const location = useLocation();
 
     const [wsMessage, setWsMessage] = useState('');
+
     // 서버와 동일한 엔드포인트 url로 소켓 설정
     const socket = new SockJS('/webSocket');
     const stompClient = Stomp.over(socket);
 
     // 웹소켓 코드
-    // 서버와 웹소켓 연결
+    // 서버와 클라이언트 소켓 연결
     stompClient.connect({},  function (frame) {
         console.log('ConnectedTest: ' + frame);
 
