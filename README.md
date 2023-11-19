@@ -1,6 +1,6 @@
 # AUTOCS PROJECT
 
-### Time CSS(권지은, 김지수, 김해든, 박지호, 여미지)
+### Team CSS(권지은, 김지수, 김해든, 박지호, 여미지)
 
 ## Introduce
 
